@@ -1,7 +1,8 @@
 // Cloud save: keeps this browser's progress and the D1 database in step.
 // Local-first — the site always works from localStorage; the cloud copy is pulled on start and pushed a few
 // seconds after each change. When two computers both changed things, the logs are merged day by day
-// (more minutes wins, ticked tasks and done letter groups are combined), so nothing studied is ever lost.
+// (more minutes wins, ticked tasks and done letter groups are combined) and each card keeps its newest version,
+// so nothing studied is ever lost.
 import * as store from "./store.js";
 
 const DEBOUNCE_MS = 3000;
@@ -21,11 +22,25 @@ const key = () => store.get().sync?.key ?? "";
 const headers = () => ({ authorization: `Bearer ${key()}`, "content-type": "application/json" });
 
 // The parts of the state that belong in the cloud. prefs (language, theme) stay per computer; so does the timer.
-const cloudPart = s => ({ version: s.version, script: s.script, log: s.log });
+const cloudPart = s => ({ version: s.version, script: s.script, log: s.log, srs: s.srs });
 
 function mergeDay(a = { min: 0, tasks: [] }, b = { min: 0, tasks: [] }) {
   const quiz = (a.quiz?.total ?? 0) >= (b.quiz?.total ?? 0) ? a.quiz : b.quiz;
-  return { min: Math.max(a.min ?? 0, b.min ?? 0), tasks: [...new Set([...(a.tasks ?? []), ...(b.tasks ?? [])])], ...(quiz ? { quiz } : {}) };
+  const cards = (a.cards?.r ?? 0) >= (b.cards?.r ?? 0) ? a.cards : b.cards;
+  return {
+    min: Math.max(a.min ?? 0, b.min ?? 0),
+    tasks: [...new Set([...(a.tasks ?? []), ...(b.tasks ?? [])])],
+    ...(quiz ? { quiz } : {}),
+    ...(cards ? { cards } : {}),
+  };
+}
+
+// Each card, and the card settings, keep whichever version changed last.
+function mergeSrs(local = { cards: {}, prefs: {} }, remote = { cards: {}, prefs: {} }) {
+  const cards = { ...local.cards };
+  for (const [id, c] of Object.entries(remote.cards ?? {})) if (!cards[id] || (c.mod ?? 0) > (cards[id].mod ?? 0)) cards[id] = c;
+  const prefs = (remote.prefs?.mod ?? 0) > (local.prefs?.mod ?? 0) ? { ...local.prefs, ...remote.prefs } : local.prefs;
+  return { cards, prefs };
 }
 
 export function merge(local, remote) {
@@ -35,6 +50,7 @@ export function merge(local, remote) {
   return {
     script: { ...local.script, done: union(local.script.done, remote.script?.done), quiz: union(local.script.quiz, remote.script?.quiz) },
     log,
+    srs: mergeSrs(local.srs, remote.srs),
   };
 }
 

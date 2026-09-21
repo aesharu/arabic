@@ -76,7 +76,7 @@ function renderDetail(date, log, today) {
       ${plan.tasks.map(task => {
         const done = e.tasks.includes(task.id);
         return editable
-          ? `<li><label><input type="checkbox" data-task="${task.id}"${done ? " checked" : ""}> ${rich(tx(task.text))}</label></li>`
+          ? `<li><label><input type="checkbox" data-task="${task.id}"${done ? " checked" : ""}> <span>${rich(tx(task.text))}</span></label></li>`
           : `<li>${rich(tx(task.text))}</li>`;
       }).join("")}
     </ul>
@@ -108,7 +108,7 @@ export default {
       const log = store.get().log;
       const wd = weekdays();
       root.innerHTML = `
-        ${pageHead(t("cal.title"), esc(t("cal.sub", { start: longDate(START, locale()), goal: longDate(GOAL, locale()) })))}
+        ${pageHead(t("cal.title"), esc(t("cal.sub", { start: longDate(START, locale()), goal: longDate(GOAL, locale()) })), "", "", "calendar")}
         <div class="legend" aria-label="${esc(t("cal.legend"))}">
           <span>${t("cal.less")} <span class="heat-scale" dir="ltr">${[0, 1, 2, 3, 4].map(l => `<i class="heat-key l${l}"></i>`).join("")}</span> ${t("cal.more")}</span>
           <span><i class="heat-key l3"></i>${t("cal.legendDone", { min: DAILY_GOAL_MIN })}</span>

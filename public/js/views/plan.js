@@ -1,11 +1,11 @@
 import { todayKey, shortDate, diffDays } from "../core/dates.js";
 import { phaseFor, phaseTitle } from "../core/schedule.js";
 import { t, tx, locale } from "../core/i18n.js";
-import { esc, ar, pageHead } from "../core/dom.js";
+import { esc, ar, translit, pageHead } from "../core/dom.js";
 import { START, GOAL } from "../config.js";
 import { PHASES } from "../data/plan.js";
 
-// NAJDI-PLAN.md Parts 2–3, with today's stage highlighted.
+// The roadmap (Parts 2–3 of the plan), with today's stage highlighted.
 const BLOCKS = PHASES[1].routine;
 const WEEK = PHASES[1].weekly;
 const lowerFirst = s => s.charAt(0).toLocaleLowerCase() + s.slice(1);
@@ -16,10 +16,10 @@ export default {
     const today = todayKey();
     const current = phaseFor(today);
     const date = d => esc(shortDate(d, locale()));
-    const phrase = `${ar("وش تسوين؟", "ar-in")} <i>wesh tsawwīn?</i>`;
+    const phrase = `${ar("وش تسوين؟", "ar-in")} ${translit("wesh tsawwīn?")}`;
 
     root.innerHTML = `
-      ${pageHead(t("plan.title"), t("plan.sub"), t("plan.eyebrow", { start: date(START), goal: date(GOAL) }))}
+      ${pageHead(t("plan.title"), t("plan.sub"), t("plan.eyebrow", { start: date(START), goal: date(GOAL) }), "", "plan")}
 
       <div class="plan-intro">
         <section class="panel">

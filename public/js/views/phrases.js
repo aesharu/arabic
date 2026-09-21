@@ -11,7 +11,7 @@ export default {
     const days = [...new Set(PHRASES.map(p => p.day))];
 
     root.innerHTML = `
-      ${pageHead(t("phrases.title"), t("phrases.sub"))}
+      ${pageHead(t("phrases.title"), t("phrases.sub"), "", "", "phrases")}
       <p class="hint">${t("phrases.hint", { q: ar("ق", "ar-in") })}</p>
       ${days.map(d => `
         <section class="pday${d === n ? " is-today" : ""}${d > n ? " is-later" : ""}">

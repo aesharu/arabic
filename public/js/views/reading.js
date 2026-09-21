@@ -19,7 +19,7 @@ export default {
       const list = order.filter(i => showAll || readable(i));
 
       root.innerHTML = `
-        ${pageHead(t("reading.title"), t("reading.sub"))}
+        ${pageHead(t("reading.title"), t("reading.sub"), "", "", "reading")}
         <div class="toolbar">
           <p>${t("reading.count", { n: count, total: WORDS.length })}</p>
           <div class="btn-row">

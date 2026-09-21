@@ -6,7 +6,12 @@ const defaults = () => ({
   version: 2,
   prefs: { theme: "auto", lang: "en" },
   script: { group: 0, done: [], quiz: [0] }, // letter groups marked done / selected for the quiz
-  log: {}, // "YYYY-MM-DD" → { min: minutes studied, tasks: ids of ticked tasks, quiz?: { right, total } }
+  // "YYYY-MM-DD" → { min: minutes studied, tasks: ids of ticked tasks, quiz?: { right, total },
+  //                  cards?: { n: new cards seen, r: answers, a: "Again" answers } }
+  log: {},
+  // Cards (core/cards.js): cardId → the scheduler's card (core/srs.js) plus mod, the time it last changed.
+  // prefs: new cards a day, practise saying (reverse cards), open every deck early, read the answer aloud.
+  srs: { cards: {}, prefs: { newPerDay: 8, reverse: true, unlockAll: false, autoplay: true, mod: 0 } },
   timer: null, // { start: epoch ms, date: "YYYY-MM-DD" } while the study timer runs
   sync: { key: "", pushedAt: 0 }, // cloud save: this computer's secret key and the last successful save
 });
@@ -19,6 +24,7 @@ function merge(saved) {
     prefs: { ...d.prefs, ...saved.prefs },
     script: { ...d.script, ...saved.script },
     sync: { ...d.sync, ...saved.sync },
+    srs: { cards: { ...saved.srs?.cards }, prefs: { ...d.srs.prefs, ...saved.srs?.prefs } },
     log: saved.log && typeof saved.log === "object" ? saved.log : {},
   };
 }
@@ -52,7 +58,7 @@ function editEntry(date, fn) {
   update(s => {
     const e = (s.log[date] ??= { min: 0, tasks: [] });
     fn(e);
-    if (!e.min && !e.tasks.length && !e.quiz?.total) delete s.log[date];
+    if (!e.min && !e.tasks.length && !e.quiz?.total && !e.cards?.r) delete s.log[date];
   });
 }
 

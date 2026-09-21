@@ -109,7 +109,7 @@ export const SCRIPT_DAYS = {
 
 // "A normal day (90 minutes)" and "A normal week" — NAJDI-PLAN.md Part 3.
 const DAY_BLOCKS = [
-  { id: "cards", min: 20, text: four(
+  { id: "cards", min: 20, href: "#/cards/study", text: four(
     "Cards: review, then 3–5 new words — always as whole sentences with audio",
     "Картки: повторення, потім 3–5 нових слів — завжди цілими реченнями з аудіо",
     "الكروت: مراجعة، وبعدين 3–5 كلمات جديدة — دايم بجمل كاملة مع صوت",

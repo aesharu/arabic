@@ -33,7 +33,7 @@ export default {
       const answered = q.picked !== null;
       const right = answered && q.options[q.picked] === q.answer;
       root.innerHTML = `
-        ${pageHead(t("quiz.title"), t("quiz.sub"))}
+        ${pageHead(t("quiz.title"), t("quiz.sub"), "", "", "quiz")}
         ${groupChips({ isOn: i => groups().includes(i), done, scheduled: scheduledGroup() })}
         <div class="quiz">
           <div class="qglyph">${ar(q.form[0])}<small>${t("quiz.form", { form: t(q.form[1]) })}</small></div>

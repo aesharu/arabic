@@ -1,24 +1,32 @@
-import { t, tx, tu } from "../core/i18n.js";
+// The Word list: every word by stage and topic, a search across all four languages, and the Anki decks.
+//   #/words/<tab>   tab = 1 · 2 · 3 · 4 · special · grammar · traps
+import { t, tx, tu, num } from "../core/i18n.js";
 import { esc, rich, ar, translit, flag, meanings, playIcon, pageHead } from "../core/dom.js";
-import { phaseTitle } from "../core/schedule.js";
-import { PHASES } from "../data/plan.js";
+import { icon } from "../core/art.js";
+import { loadVocab, speakText } from "../core/vocab.js";
+import { wordState } from "../core/cards.js";
+import { haystack, matches } from "../core/search.js";
+import { deckName } from "./shared.js";
 
-// The vocabulary comes from public/data/vocab.json, generated from NAJDI-PLAN.md by `npm run vocab`.
-let request = null; // the fetch, shared by every visit
-let tab = "1";
-const load = () => (request ??= fetch("data/vocab.json").then(r => (r.ok ? r.json() : Promise.reject(r.status))));
-
-const DECK_FILES = { "1": "najdi-stage1.csv", "2": "najdi-stage2.csv", "3": "najdi-stage3.csv", special: "najdi-special.csv", grammar: "najdi-grammar.csv" };
-const stageName = id => (["1", "2", "3"].includes(id) ? tx(phaseTitle(PHASES[+id])) : t(id === "special" ? "words.special" : "words.grammar"));
+const TABS = ["1", "2", "3", "4", "special", "grammar", "traps"];
+const DECK_FILES = { "1": "najdi-stage1.csv", "2": "najdi-stage2.csv", "3": "najdi-stage3.csv", "4": "najdi-stage4-5.csv", special: "najdi-special.csv", grammar: "najdi-grammar.csv" };
 const count = stage => stage.topics.reduce((n, topic) => n + topic.entries.length, 0);
+let query = ""; // kept while you move between pages
+let hay = null; // search strings, built once
+
+const STATE_KEY = { learning: "words.stLearning", learned: "words.stLearned", strong: "words.stStrong", suspended: "words.stSuspended" };
+const badge = id => {
+  const st = wordState(id);
+  return STATE_KEY[st] ? `<span class="wstate ${st}">${st === "strong" || st === "learned" ? icon("check") : ""}${t(STATE_KEY[st])}</span>` : "";
+};
 
 const entry = e => `
-  <button class="phrase" data-say="${esc(e.ar.split(/ [/→] /).at(-1).replace(/[…؟]/g, ""))}">
+  <button class="phrase" data-say="${esc(speakText(e.ar))}">
     ${ar(e.ar, "phrase-ar")}
-    <span class="phrase-t">${translit(e.say)} ${e.check ? flag({ check: true, checkNote: e.note }) : ""}${meanings(e)}
+    <span class="phrase-t">${translit(e.say)} ${badge(e.id)} ${e.check ? flag({ check: true, checkNote: e.note }) : ""}${meanings(e)}
       ${e.toHer ? `<span class="to-her">${t("words.toHer")}: ${ar(e.toHer.ar)} ${translit(e.toHer.say)}</span>` : ""}
       ${e.reply ? `<span class="to-her">${t("words.reply")}: ${ar(e.reply.ar)} ${e.reply.say ? translit(e.reply.say) : ""}</span>` : ""}
-      ${e.note ? `<span class="pnote">${rich(tx(e.note))}</span>` : ""}</span>
+      ${e.note && !e.check ? `<span class="pnote">${rich(tx(e.note))}</span>` : ""}</span>
     ${playIcon}
   </button>`;
 
@@ -31,16 +39,47 @@ const trapRow = tr => `
 
 export default {
   titleKey: "words.title",
-  mount(root, { signal }) {
-    root.innerHTML = pageHead(t("words.title"), esc(t("words.loading")));
+  mount(root, { params, signal }) {
+    const tab = TABS.includes(params[0]) ? params[0] : "1";
+    root.innerHTML = pageHead(t("words.title"), esc(t("words.loading")), "", "", "words");
 
     let vocab = null;
+    const results = () => {
+      const all = vocab.stages.flatMap(s => s.topics.flatMap(tp => tp.entries.map(e => ({ e, s }))));
+      hay ??= new Map(all.map(({ e }) => [e, haystack(e)]));
+      const found = all.filter(({ e }) => matches(hay.get(e), query));
+      if (!found.length) return `<p class="empty-note">${esc(t("words.noResults", { q: query }))}</p>`;
+      const shown = found.slice(0, 120);
+      return `<p class="muted">${esc(t("words.results", { n: num(found.length) }))}</p>
+        <div class="vocab">${shown.map(({ e, s }) => entry(e).replace('<span class="phrase-t">', `<span class="phrase-t"><span class="in-stage">${esc(deckName(s.id))}</span>`)).join("")}</div>`;
+    };
+
+    const tabPanel = () => {
+      if (tab === "traps") return `<p class="hint">${esc(t("words.trapsSub"))}</p><div class="phrase-list">${vocab.traps.map(trapRow).join("")}</div>`;
+      const stage = vocab.stages.find(s => s.id === tab);
+      return `${tab === "4" ? `<p class="callout">${icon("star")} ${t("words.herNote")}</p>` : ""}
+        ${stage.topics.map(topic => `
+          <section class="topic">
+            <h2>${esc(tx(topic.title))} <span class="muted small">${num(topic.entries.length)}</span></h2>
+            <div class="vocab">${topic.entries.map(entry).join("")}</div>
+          </section>`).join("")}`;
+    };
+
     const render = () => {
       const total = vocab.stages.reduce((n, s) => n + count(s), 0);
-      const tabs = [...vocab.stages.map(s => s.id), "traps"];
-      const current = vocab.stages.find(s => s.id === tab);
       root.innerHTML = `
-        ${pageHead(t("words.title"), esc(t("words.sub", { n: total })))}
+        ${pageHead(t("words.title"), esc(t("words.sub", { n: num(total) })), "", "", "words")}
+        <div class="words-tools">
+          <label class="search">${icon("search")}<span class="visually-hidden">${t("words.search")}</span>
+            <input type="search" name="q" value="${esc(query)}" placeholder="${esc(t("words.searchHint"))}" autocomplete="off" spellcheck="false" data-search></label>
+        </div>
+        <div data-results${query ? "" : " hidden"}>${query ? results() : ""}</div>
+        <div data-browse${query ? " hidden" : ""}>
+          <div class="tabs" role="tablist" aria-label="${esc(t("words.stages"))}">
+            ${TABS.map(id => `<a role="tab" id="tab-${id}" href="#/words/${id}" aria-selected="${id === tab}" aria-controls="panel" tabindex="${id === tab ? 0 : -1}">${esc(id === "traps" ? t("words.traps") : deckName(id))}</a>`).join("")}
+          </div>
+          <div id="panel" role="tabpanel" aria-labelledby="tab-${tab}">${tabPanel()}</div>
+        </div>
         <section class="panel anki">
           <div>
             <h2>${t("words.anki")}</h2>
@@ -53,35 +92,45 @@ export default {
             </ol>
           </div>
           <div class="btn-row anki-downloads">
-            ${vocab.stages.map(s => `<a class="btn" href="anki/${DECK_FILES[s.id]}" download>${esc(t("words.download", { name: stageName(s.id) }))} · ${count(s)} ${tu("unit.cards", count(s))}</a>`).join("")}
+            ${vocab.stages.map(s => `<a class="btn" href="anki/${DECK_FILES[s.id]}" download>${icon("download")} ${esc(t("words.download", { name: deckName(s.id) }))} · ${num(count(s))} ${tu("unit.cards", count(s))}</a>`).join("")}
           </div>
-        </section>
-        <div class="tabs" role="tablist">
-          ${tabs.map(id => `<button role="tab" data-tab="${id}" aria-selected="${id === tab}">${esc(id === "traps" ? t("words.traps") : stageName(id))}</button>`).join("")}
-        </div>
-        ${tab === "traps"
-          ? `<p class="hint">${esc(t("words.trapsSub"))}</p><div class="phrase-list">${vocab.traps.map(trapRow).join("")}</div>`
-          : current.topics.map(topic => `
-            <section class="topic">
-              <h2>${esc(tx(topic.title))}</h2>
-              <div class="vocab">${topic.entries.map(entry).join("")}</div>
-            </section>`).join("")}`;
+        </section>`;
     };
 
-    root.addEventListener("click", e => {
-      const b = e.target.closest("[data-tab]");
-      if (!b) return;
-      tab = b.dataset.tab;
-      render();
-      root.querySelector(`[data-tab="${tab}"]`)?.focus();
+    // Arrow keys move between tabs (and open them), as in any tab list.
+    root.addEventListener("keydown", e => {
+      const tabEl = e.target.closest?.('[role="tab"]');
+      if (!tabEl) return;
+      const rtl = document.documentElement.dir === "rtl";
+      const step = { ArrowRight: rtl ? -1 : 1, ArrowLeft: rtl ? 1 : -1, Home: -99, End: 99 }[e.key];
+      if (!step) return;
+      e.preventDefault();
+      const i = Math.max(0, Math.min(TABS.length - 1, TABS.indexOf(tab) + step));
+      location.hash = `#/words/${TABS[i]}`;
     }, { signal });
 
-    load().then(v => {
+    let pending = 0;
+    root.addEventListener("input", e => {
+      if (!e.target.matches("[data-search]")) return;
+      clearTimeout(pending);
+      pending = setTimeout(() => {
+        query = e.target.value.trim();
+        const res = root.querySelector("[data-results]");
+        res.hidden = !query;
+        res.innerHTML = query ? results() : "";
+        root.querySelector("[data-browse]").hidden = !!query;
+      }, 120);
+    }, { signal });
+    signal.addEventListener("abort", () => clearTimeout(pending));
+
+    loadVocab().then(({ vocab: v }) => {
       vocab = v;
-      if (!signal.aborted) render();
+      if (signal.aborted) return;
+      render();
+      // Switching tabs re-draws the page; keep the keyboard focus on the tab you're on.
+      if ((document.activeElement === document.body || !document.activeElement) && params[0]) root.querySelector(`#tab-${tab}`)?.focus({ preventScroll: true });
     }).catch(() => {
-      request = null; // try again on the next visit
-      if (!signal.aborted) root.innerHTML = pageHead(t("words.title"), esc(t("words.loadError")));
+      if (!signal.aborted) root.innerHTML = pageHead(t("words.title"), esc(t("words.loadError")), "", "", "words");
     });
   },
 };

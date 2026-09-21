@@ -42,7 +42,7 @@ export default {
       const group = GROUPS[g];
       const isDone = done.includes(g);
       root.innerHTML = `
-        ${pageHead(t("letters.title"), t("letters.sub"))}
+        ${pageHead(t("letters.title"), t("letters.sub"), "", "", "letters")}
         ${groupChips({ isOn: i => i === g, done, scheduled: scheduledGroup() })}
         <div class="gintro"><h2>${esc(tx(group.title))}</h2><p>${rich(tx(group.note))}</p></div>
         <div class="cards">${group.letters.map(card).join("")}</div>

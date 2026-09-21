@@ -6,7 +6,7 @@ export default {
   titleKey: "vowels.title",
   mount(root) {
     root.innerHTML = `
-      ${pageHead(t("vowels.title"), t("vowels.sub"))}
+      ${pageHead(t("vowels.title"), t("vowels.sub"), "", "", "vowels")}
       <div class="vgrid">
         ${VOWEL_SECTIONS.map(s => `
           <section class="vsec">

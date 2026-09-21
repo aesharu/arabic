@@ -74,3 +74,60 @@
   --viz-bar: #4F9C9B; --viz-deemph: #6B5A45; --viz-grid: rgba(239, 227, 204, .12); --viz-future: #3A2C1F;
   color-scheme: dark;
 }
+
+/* ---------- Art: the Najdi scene, page illustrations, Sadu weave (core/art.js) ----------
+   One palette for light pages, one for dark; the sky itself follows the clock (.sky-dawn … .sky-night). */
+:root {
+  --art-sand-far: #E8D5AE; --art-sand: #D8B784; --art-ground: #C9A46E;
+  --art-wall: #C99866; --art-wall-shade: #A87949; --art-band: #B3834F; --art-vent: #6E4A2B; --art-door: #7A4E2A; --art-door-paint: #E9C46A;
+  --art-far: #9BB8AA; --art-far-ball: #C8961E;
+  --art-palm: #2E8B57; --art-palm-dark: #1C6B43; --art-trunk: #8C6A3F; --art-trunk-line: #6E5231; --art-dates: #A0522D;
+  --art-brass: #D4A437; --art-brass-shade: #B0842A; --art-brass-dark: #8A6420; --art-shine: #F6E3A8;
+  --art-cup: #FBF6EA; --art-cup-band: #C8961E; --art-steam: #B9A98C;
+  --art-paper: #FFFFFF; --art-rule: #CBD9D0; --art-trace: #C4CFC8; --art-ink: #0B2E1C;
+  --art-green: #006C35; --art-cream: #FBF6EA; --art-shadow: rgba(11, 46, 28, .12);
+  --art-sun: #F4C24D; --art-sun-glow: rgba(244, 194, 77, .28); --art-moon: #F3EBD2; --art-star: #F3EBD2;
+  --sadu-red: #9E2A2B; --sadu-dark: #231A14; --sadu-cream: #F3E7CF; --sadu-green: #006C35;
+  /* Anki's three counts: new, learning, to review — always with their label, never colour alone */
+  --c-new: #1D5FA8; --c-learn: #B3261E; --c-due: #006C35;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --art-sand-far: #3B3222; --art-sand: #4A3D29; --art-ground: #574730;
+    --art-wall: #6E5236; --art-wall-shade: #58412A; --art-band: #624930; --art-vent: #2A1D12; --art-door: #3B2716; --art-door-paint: #B8923F;
+    --art-far: #2B4A3C; --art-far-ball: #9C7A2A;
+    --art-palm: #2F7A52; --art-palm-dark: #235E3F; --art-trunk: #5E4730; --art-trunk-line: #45331F; --art-dates: #7A4424;
+    --art-brass: #C69633; --art-brass-shade: #9E7527; --art-brass-dark: #7A5A1D; --art-shine: #E9CF86;
+    --art-cup: #E9E1CC; --art-steam: #6D6454;
+    --art-paper: #1F3D2C; --art-rule: #33584A; --art-trace: #3E6452; --art-ink: #E6F1EA;
+    --art-green: #4CC38A; --art-cream: #F3EBD2; --art-shadow: rgba(0, 0, 0, .3);
+    --c-new: #7FB0F0; --c-learn: #F08A7A; --c-due: #4CC38A;
+  }
+}
+:root[data-theme="saudi-dark"], :root[data-theme="dark"] {
+  --art-sand-far: #3B3222; --art-sand: #4A3D29; --art-ground: #574730;
+  --art-wall: #6E5236; --art-wall-shade: #58412A; --art-band: #624930; --art-vent: #2A1D12; --art-door: #3B2716; --art-door-paint: #B8923F;
+  --art-far: #2B4A3C; --art-far-ball: #9C7A2A;
+  --art-palm: #2F7A52; --art-palm-dark: #235E3F; --art-trunk: #5E4730; --art-trunk-line: #45331F; --art-dates: #7A4424;
+  --art-brass: #C69633; --art-brass-shade: #9E7527; --art-brass-dark: #7A5A1D; --art-shine: #E9CF86;
+  --art-cup: #E9E1CC; --art-steam: #6D6454;
+  --art-paper: #1F3D2C; --art-rule: #33584A; --art-trace: #3E6452; --art-ink: #E6F1EA;
+  --art-green: #4CC38A; --art-cream: #F3EBD2; --art-shadow: rgba(0, 0, 0, .3);
+  --c-new: #7FB0F0; --c-learn: #F08A7A; --c-due: #4CC38A;
+}
+:root[data-theme="dark"] { --art-paper: #30251B; --art-rule: #4B3723; --art-trace: #5A4630; --art-ink: #EFE3CC; --art-green: #7CC08A; }
+:root[data-theme="light"] { --art-paper: #F5ECDB; --art-rule: #CDB892; --art-trace: #C9B28A; --art-ink: #2A1C10; --art-green: #1D5A5C; --c-due: #2F6B3A; }
+
+/* The sky over the scene, by time of day. Text on it stays at 4.5:1 or better. */
+.sky-dawn  { --sky-top: #F2C9B0; --sky-bottom: #FBEEE2; --hero-ink: #0B2E1C; --hero-muted: #4B3A2E; }
+.sky-day   { --sky-top: #BFE0E6; --sky-bottom: #EEF6F1; --hero-ink: #0B2E1C; --hero-muted: #3F5A4C; }
+.sky-dusk  { --sky-top: #E9A06B; --sky-bottom: #F7D8B0; --hero-ink: #2A160B; --hero-muted: #4F2E17; }
+.sky-night { --sky-top: #06120C; --sky-bottom: #123524; --hero-ink: #F1F6F3; --hero-muted: #BFD6C8; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .sky-dawn { --sky-top: #2A2330; --sky-bottom: #3F3438; --hero-ink: #F6EEE6; --hero-muted: #D9C8BD; }
+  :root:not([data-theme]) .sky-day  { --sky-top: #0F2C2A; --sky-bottom: #1B4337; --hero-ink: #EEF6F1; --hero-muted: #BCD6C8; }
+  :root:not([data-theme]) .sky-dusk { --sky-top: #2B1A1E; --sky-bottom: #4A2E24; --hero-ink: #FBEFE3; --hero-muted: #E2C6AE; }
+}
+:root[data-theme="saudi-dark"] .sky-dawn, :root[data-theme="dark"] .sky-dawn { --sky-top: #2A2330; --sky-bottom: #3F3438; --hero-ink: #F6EEE6; --hero-muted: #D9C8BD; }
+:root[data-theme="saudi-dark"] .sky-day, :root[data-theme="dark"] .sky-day { --sky-top: #0F2C2A; --sky-bottom: #1B4337; --hero-ink: #EEF6F1; --hero-muted: #BCD6C8; }
+:root[data-theme="saudi-dark"] .sky-dusk, :root[data-theme="dark"] .sky-dusk { --sky-top: #2B1A1E; --sky-bottom: #4A2E24; --hero-ink: #FBEFE3; --hero-muted: #E2C6AE; }

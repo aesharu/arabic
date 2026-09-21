@@ -2,7 +2,8 @@
 import * as store from "../core/store.js";
 import { addDays, format } from "../core/dates.js";
 import { phaseFor, phaseTitle, TOTAL_DAYS } from "../core/schedule.js";
-import { t, tx, locale } from "../core/i18n.js";
+import { t, tx, tu, num, locale } from "../core/i18n.js";
+import { esc } from "../core/dom.js";
 import { parapet } from "../core/charts.js";
 import { START, GOAL } from "../config.js";
 import { PHASES } from "../data/plan.js";
@@ -48,4 +49,33 @@ export function ring(fraction, size = 86) {
     <circle class="track" cx="${size / 2}" cy="${size / 2}" r="${r}"/>
     <circle class="fill" cx="${size / 2}" cy="${size / 2}" r="${r}" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 ${size / 2} ${size / 2})"/>
   </svg>`;
+}
+
+// A deck's name in the current language.
+export function deckName(id) {
+  if (id === "phrases") return t("cards.deckPhrases");
+  if (["1", "2", "3"].includes(id)) return tx(phaseTitle(PHASES[+id]));
+  return t(id === "4" ? "words.her" : id === "special" ? "words.special" : "words.grammar");
+}
+
+// "You know 37 words": the words you've learned on the way to 1000, with the plan's milestones (Part 2).
+const MILESTONES = [150, 500, 1000];
+export function wordsMeter({ learned, strong, seen }) {
+  const goal = 1000;
+  const pct = n => Math.min(100, (n / goal) * 100).toFixed(1);
+  const next = MILESTONES.find(m => m > learned) ?? goal;
+  return `
+    <div class="words-meter">
+      <p class="words-big"><b>${num(learned)}</b> <span>${esc(t("cards.wordsKnown", { goal: num(goal) }))}</span></p>
+      <div class="wm-track" role="meter" aria-valuemin="0" aria-valuemax="${goal}" aria-valuenow="${learned}" aria-label="${esc(t("cards.wordsKnownLabel"))}">
+        <span class="wm-strong" style="width:${pct(strong)}%"></span>
+        <span class="wm-learned" style="width:${pct(Math.max(0, learned - strong))}%"></span>
+        ${MILESTONES.map(m => `<i class="wm-mark${learned >= m ? " is-passed" : ""}" style="inset-inline-start:${pct(m)}%"><b>${num(m)}</b></i>`).join("")}
+      </div>
+      <p class="wm-legend">
+        <span><i class="wm-key strong"></i>${esc(t("cards.strong", { n: num(strong) }))}</span>
+        <span><i class="wm-key learned"></i>${esc(t("cards.learnedN", { n: num(Math.max(0, learned - strong)) }))}</span>
+        <span class="muted">${esc(t("cards.seenN", { n: num(seen) }))} · ${esc(t("cards.nextMilestone", { n: num(next - learned), m: num(next), words: tu("unit.words", next - learned) }))}</span>
+      </p>
+    </div>`;
 }

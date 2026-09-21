@@ -1,4 +1,5 @@
 import { t, tx, lang, isArabic } from "./i18n.js";
+import { icon, vignette } from "./art.js";
 
 export const esc = s =>
   String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -8,11 +9,12 @@ export const esc = s =>
 const ARABIC_RUN = /[؀-ۿ](?:[؀-ۿً-ْ ،]*[؀-ۿ])?/g;
 export const rich = text => (isArabic() ? esc(text) : esc(text).replace(ARABIC_RUN, m => `<span class="ar ar-in" lang="ar">${m}</span>`));
 
-// Arabic learning content always goes through here: Naskh font, right-to-left.
-export const ar = (text, cls = "") => `<span class="ar${cls ? " " + cls : ""}" lang="ar">${esc(text)}</span>`;
+// Arabic learning content always goes through here: Naskh font, right-to-left, and never machine-translated.
+export const ar = (text, cls = "") => `<span class="ar${cls ? " " + cls : ""}" lang="ar" translate="no">${esc(text)}</span>`;
 
 // Latin text (transliteration, English, Ukrainian) kept left-to-right inside an Arabic interface.
-export const lat = (text, cls = "", l = "") => `<bdi class="lat${cls ? " " + cls : ""}" dir="ltr"${l ? ` lang="${l}"` : ""}>${esc(text)}</bdi>`;
+export const lat = (text, cls = "", l = "") =>
+  `<bdi class="lat${cls ? " " + cls : ""}" dir="ltr"${l ? ` lang="${l}"` : ""}${cls === "tr" ? ` translate="no"` : ""}>${esc(text)}</bdi>`;
 export const translit = text => lat(text, "tr");
 
 // Visible "check with tutor" badge for content that still needs a native speaker's OK.
@@ -35,13 +37,17 @@ export function meanings(item) {
   return `${lines}<span class="msa"><i title="${esc(t("lab.msaHint"))}">${t("lab.msa")}</i> ${ar(item.msa)}</span>`;
 }
 
-export const playIcon = `<span class="play" aria-hidden="true">▶</span>`;
+export const playIcon = `<span class="play" aria-hidden="true">${icon("sound")}</span>`;
 
-export const pageHead = (title, sub = "", eyebrow = "", cls = "") => `
-  <header class="page-head${cls ? " " + cls : ""}">
-    ${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ""}
-    <h1>${title}</h1>
-    ${sub ? `<p class="sub">${sub}</p>` : ""}
+// A page's heading, with its small illustration (core/art.js) beside it.
+export const pageHead = (title, sub = "", eyebrow = "", cls = "", art = "") => `
+  <header class="page-head${cls ? " " + cls : ""}${art ? " has-art" : ""}">
+    <div class="page-head-text">
+      ${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ""}
+      <h1>${title}</h1>
+      ${sub ? `<p class="sub">${sub}</p>` : ""}
+    </div>
+    ${art ? vignette(art) : ""}
   </header>`;
 
 export const shuffle = a => {

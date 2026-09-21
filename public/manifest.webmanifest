@@ -1,0 +1,17 @@
+{
+  "name": "Najdi — spoken Riyadh Arabic",
+  "short_name": "Najdi",
+  "description": "Learn Najdi Arabic in 15 months: daily plan, cards, 1000 words, the alphabet and phrases.",
+  "start_url": "./#/today",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F1F6F3",
+  "theme_color": "#006C35",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

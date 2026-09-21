@@ -1,13 +1,18 @@
-// npm run vocab — reads every vocabulary table in NAJDI-PLAN.md (Parts 5–8) and writes:
-//   public/data/vocab.json     the Words page
+// npm run vocab — reads every vocabulary table in NAJDI-PLAN.md (Parts 5–8) and the candidate words for Stages 4–5 in
+// NAJDI-WORDS.md, and writes:
+//   public/data/vocab.json     the Word list and the Cards page
 //   public/anki/*.csv          one Anki deck per stage (Anki reads the #headers and sets deck, note type and tags)
-// NAJDI-PLAN.md stays the source of truth for the Najdi words. The formal-Arabic and Ukrainian meanings, and the
-// Ukrainian/Najdi/MSA topic names, live in data/vocab-translations.json (keyed by "arabic|english meaning").
+// NAJDI-PLAN.md stays the source of truth for the plan's words. The formal-Arabic and Ukrainian meanings of those, and
+// the Ukrainian/Najdi/MSA topic names, live in data/vocab-translations.json (keyed by "arabic|english meaning").
+// NAJDI-WORDS.md carries all four languages in its own tables; a word there is flagged "check with tutor" until its
+// Checked column has a ✓.
+// Every entry gets an id from its Arabic and English, so card progress stays attached to the word.
 // Run with --check to only report entries that are missing a translation.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 
 const root = new URL("../", import.meta.url);
 const plan = readFileSync(new URL("NAJDI-PLAN.md", root), "utf8").split("\n");
+const candidates = readFileSync(new URL("NAJDI-WORDS.md", root), "utf8").split("\n");
 const extra = JSON.parse(readFileSync(new URL("data/vocab-translations.json", root), "utf8"));
 const checkOnly = process.argv.includes("--check");
 
@@ -112,12 +117,48 @@ for (let i = 0; i < plan.length; i++) {
   }
 }
 
+// NAJDI-WORDS.md: "## 4.1 English | Ukrainian | Najdi | MSA" headings, then | Arabic | Say | English | Ukrainian | MSA | Checked |
+const UNCHECKED = {
+  en: "Suggested word — not yet checked by a native speaker",
+  uk: "Запропоноване слово — носій мови ще не перевірив",
+  najdi: "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+  msa: "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد",
+};
+const herTopics = [];
+for (let i = 0; i < candidates.length; i++) {
+  const h = candidates[i].match(/^## (4\.\d+) (.+)$/);
+  if (h) {
+    const [en, uk, najdi, msa] = h[2].split("|").map(x => x.trim());
+    herTopics.push({ id: h[1], stage: "4", title: { en, uk, najdi, msa }, entries: [] });
+    continue;
+  }
+  const line = candidates[i];
+  if (!herTopics.length || !line.startsWith("| ") || line.startsWith("| Arabic") || line.startsWith("|---")) continue;
+  const [ar, say, en, uk, msa, checked = ""] = cells(line);
+  const check = !checked.includes("✓");
+  herTopics.at(-1).entries.push({ ar, say, en, uk, msa, check, ...(check ? { note: UNCHECKED } : {}) });
+}
+
 // Merge translations and check completeness.
 const key = e => `${e.ar}|${e.en}`; // بعد means both “after” and “also”: the meaning is part of the key
 const missing = [];
-const STAGES = ["1", "2", "3", "special", "grammar"];
+const STAGES = ["1", "2", "3", "4", "special", "grammar"];
+// A short, stable id per word: FNV-1a of "arabic|english", in base 36.
+const idOf = e => {
+  let h = 0x811c9dc5;
+  for (const ch of key(e)) h = Math.imul(h ^ ch.codePointAt(0), 0x01000193) >>> 0;
+  return h.toString(36);
+};
 const out = { generated: "npm run vocab", stages: [], traps: [] };
 for (const s of STAGES) {
+  if (s === "4") {
+    out.stages.push({ id: s, topics: herTopics.map(t => ({ id: t.id, title: t.title, entries: t.entries.map(e => ({ id: idOf(e), stage: s, topic: t.id, ...e })) })) });
+    for (const t of herTopics) {
+      if (!t.title.uk || !t.title.najdi || !t.title.msa) missing.push(`topic ${t.id} ${t.title.en}`);
+      for (const e of t.entries) if (!e.say || !e.en || !e.uk || !e.msa) missing.push(`NAJDI-WORDS.md ${t.id}: ${e.ar}`);
+    }
+    continue;
+  }
   const list = [...topics.values()].filter(t => t.stage === s).map(t => {
     const title = { en: t.title, ...(extra.topics[t.id] ?? {}) };
     if (!title.uk || !title.najdi || !title.msa) missing.push(`topic ${t.id} ${t.title}`);
@@ -129,7 +170,7 @@ for (const s of STAGES) {
         if (!tr?.msa || !tr?.uk) missing.push(`${key(e)}  (${e.en})`);
         if (e.note && !extra.notes[e.note]) missing.push(`note: ${e.note}`);
         const note = e.note ? { en: e.note, ...extra.notes[e.note] } : undefined;
-        return { ...e, note, msa: tr?.msa ?? "", uk: tr?.uk ?? "" };
+        return { id: idOf(e), stage: s, topic: t.id, ...e, note, msa: tr?.msa ?? "", uk: tr?.uk ?? "" };
       }),
     };
   });
@@ -139,6 +180,19 @@ out.traps = traps.map(t => ({ ...t, dialect: { en: t.dialect, ...extra.dialects[
 for (const t of out.traps) if (!t.dialect.uk) missing.push(`dialect: ${t.dialect.en}`);
 
 const count = out.stages.reduce((n, s) => n + s.topics.reduce((m, t) => m + t.entries.length, 0), 0);
+
+// A candidate word that is already in the plan would become a second card for the same thing.
+const bare = ar => ar.replace(/[\u064B-\u0652ـ؟?…!.،]/g, "").trim();
+const inPlan = new Set(out.stages.filter(s => s.id !== "4").flatMap(s => s.topics.flatMap(t => t.entries.map(e => bare(e.ar)))));
+const dupes = herTopics.flatMap(t => t.entries.filter(e => inPlan.has(bare(e.ar))).map(e => `${t.id} ${e.ar}`));
+if (dupes.length) console.log(`${dupes.length} NAJDI-WORDS.md entries repeat a plan word:\n  ${dupes.join("\n  ")}`);
+// The plan repeats a few phrases on purpose (ما فهمت is in Stage 3 and in the grammar of "no"): the same word keeps
+// the same id, so it is one card. Two different words must never share one.
+const byId = new Map();
+for (const e of out.stages.flatMap(s => s.topics.flatMap(t => t.entries))) {
+  if (byId.has(e.id) && key(byId.get(e.id)) !== key(e)) throw new Error(`id clash: ${key(byId.get(e.id))} / ${key(e)}`);
+  byId.set(e.id, e);
+}
 if (missing.length) {
   console.log(`${missing.length} missing translations:\n  ${missing.join("\n  ")}`);
   if (checkOnly) process.exit(1);
@@ -153,7 +207,8 @@ mkdirSync(new URL("public/anki/", root), { recursive: true });
 writeFileSync(new URL("public/data/vocab.json", root), JSON.stringify(out, null, 1));
 
 // Anki: Najdi on the front; pronunciation, English, Ukrainian, formal Arabic, the "to her" form and notes on the back.
-const DECKS = { "1": "Stage 1 — Core", "2": "Stage 2 — Daily life", "3": "Stage 3 — Talking to her", special: "Special moments", grammar: "Grammar patterns" };
+const DECKS = { "1": "Stage 1 — Core", "2": "Stage 2 — Daily life", "3": "Stage 3 — Talking to her", "4": "Stages 4–5 — Her words (to check)", special: "Special moments", grammar: "Grammar patterns" };
+export const DECK_FILE = id => `najdi-${id === "4" ? "stage4-5" : /^\d$/.test(id) ? `stage${id}` : id}.csv`;
 const csv = v => `"${String(v).replace(/"/g, '""')}"`;
 const html = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 for (const s of out.stages) {
@@ -181,6 +236,6 @@ for (const s of out.stages) {
       lines.push([front, back, tags].map(csv).join(","));
     }
   }
-  writeFileSync(new URL(`public/anki/najdi-${s.id === "1" || s.id === "2" || s.id === "3" ? `stage${s.id}` : s.id}.csv`, root), lines.join("\n") + "\n");
+  writeFileSync(new URL(`public/anki/${DECK_FILE(s.id)}`, root), lines.join("\n") + "\n");
 }
 console.log(`Wrote ${count} entries in ${out.stages.length} decks and ${traps.length} traps.`);

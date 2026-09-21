@@ -1,14 +1,16 @@
 import * as store from "../core/store.js";
+import * as timer from "../core/timer.js";
+import * as cards from "../core/cards.js";
+import { loadVocab, vocabNow } from "../core/vocab.js";
 import { todayKey, longDate, addDays, diffDays, format } from "../core/dates.js";
 import { planFor, phaseTitle, TOTAL_DAYS, weekNumber, streak, totals, allTasksTicked } from "../core/schedule.js";
 import { t, tx, tu, num, locale } from "../core/i18n.js";
-import { esc, rich, ar, translit, flag, meanings, playIcon, pageHead } from "../core/dom.js";
+import { esc, rich, ar, translit, flag, meanings, playIcon } from "../core/dom.js";
+import { icon, scene } from "../core/art.js";
 import { START, GOAL, DAILY_GOAL_MIN } from "../config.js";
 import { PHRASES } from "../data/phrases.js";
 import { GROUPS } from "../data/letters.js";
-import { journeyParapet, ring, TOTAL_WEEKS } from "./shared.js";
-
-const MAX_SESSION_MIN = 240; // a forgotten timer never logs more than 4 hours
+import { journeyParapet, ring, TOTAL_WEEKS, wordsMeter } from "./shared.js";
 
 // New phrases on Days 1–14; after that, a rotating review of three.
 function phrasesFor(n) {
@@ -18,25 +20,20 @@ function phrasesFor(n) {
   return { label: t("today.phraseReview"), list: [0, 1, 2].map(i => PHRASES[(start + i) % PHRASES.length]) };
 }
 
-const clock = ms => {
-  const s = Math.floor(ms / 1000);
-  const h = Math.floor(s / 3600);
-  const mm = String(Math.floor((s % 3600) / 60)).padStart(2, "0");
-  const ss = String(s % 60).padStart(2, "0");
-  return h ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
+// The sky over the fort follows your clock; the greeting teaches the words for this time of day.
+function timeOfDay(h = new Date().getHours()) {
+  if (h >= 5 && h < 8) return "dawn";
+  if (h >= 8 && h < 17) return "day";
+  if (h >= 17 && h < 20) return "dusk";
+  return "night";
+}
+const GREETING = {
+  morning: { ar: "صباح الخير", say: "ṣabāḥ al-khēr", key: "today.greetMorning", reply: "صباح النور", replySay: "ṣabāḥ an-nūr" },
+  evening: { ar: "مساء الخير", say: "masāʾ al-khēr", key: "today.greetEvening", reply: "مساء النور", replySay: "masāʾ an-nūr" },
 };
 
-function stopTimer() {
-  const timer = store.get().timer;
-  if (!timer) return;
-  const min = Math.min(MAX_SESSION_MIN, Math.round((Date.now() - timer.start) / 60000));
-  if (min > 0) store.addMinutes(timer.date, min);
-  store.update(s => {
-    s.timer = null;
-  });
-}
-
-const stat = (label, value, unit) => `<div><dt>${label}</dt><dd>${value} <small>${unit}</small></dd></div>`;
+const stat = (iconName, label, value, unit) =>
+  `<div><dt>${icon(iconName)}${label}</dt><dd>${value} <small>${unit}</small></dd></div>`;
 
 // Minutes for each of the last 14 days, as small columns with a tooltip each.
 function last14(date) {
@@ -47,8 +44,28 @@ function last14(date) {
     const min = d < START ? 0 : log[d]?.min ?? 0;
     const title = format(d, { weekday: "short", day: "numeric", month: "short" }, locale());
     return `<span class="${min ? "" : "zero"}" style="height:${Math.max(6, (min / max) * 100)}%" tabindex="0"
-      data-tip="${esc(title)}" data-rows="${esc(`${t("min", { n: min })}||`)}"></span>`;
+      data-tip="${esc(title)}" data-rows="${esc(`${t("min", { n: min })}||`)}" aria-label="${esc(`${title}: ${t("min", { n: min })}`)}"></span>`;
   }).join("")}</div>`;
+}
+
+function cardsPanel() {
+  const v = vocabNow();
+  if (!v) return `<section class="panel today-cards"><h2>${icon("cards")} ${t("nav.cards")}</h2><p class="muted">${esc(t("cards.loading"))}</p></section>`;
+  const c = cards.counts(v.notes);
+  const waiting = c.fresh + c.learn + c.review;
+  return `
+    <section class="panel today-cards">
+      <div class="panel-head"><h2>${icon("cards")} ${t("nav.cards")}</h2><a href="#/cards" class="small">${t("cards.decks")}</a></div>
+      <dl class="due-counts compact">
+        <div class="c-new"><dt>${t("cards.new")}</dt><dd>${c.fresh}</dd></div>
+        <div class="c-learn"><dt>${t("cards.learning")}</dt><dd>${c.learn}</dd></div>
+        <div class="c-due"><dt>${t("cards.due")}</dt><dd>${c.review}</dd></div>
+      </dl>
+      ${waiting
+        ? `<a class="btn btn-primary btn-wide" href="#/cards/study">${t("cards.studyNow")} ${icon("arrow", "flip-rtl")}</a>`
+        : `<p class="all-done">${icon("check")} ${t("cards.allDoneToday")}</p>`}
+      ${wordsMeter(cards.wordStats(v.notes))}
+    </section>`;
 }
 
 export default {
@@ -58,7 +75,8 @@ export default {
       const date = todayKey();
       const plan = planFor(date);
       if (!plan) {
-        root.innerHTML = pageHead(t("today.notStarted"), esc(t("today.day1Is", { date: longDate(START, locale()) })));
+        root.innerHTML = `<section class="hero sky-${timeOfDay()}">${scene(timeOfDay())}<div class="hero-text"><h1>${t("today.notStarted")}</h1>
+          <p class="hero-sub">${esc(t("today.day1Is", { date: longDate(START, locale()) }))}</p></div></section>`;
         return;
       }
       const s = store.get();
@@ -74,13 +92,28 @@ export default {
       const days = streak(s.log, date);
       const left = Math.max(0, diffDays(date, GOAL));
       const week = weekNumber(date);
+      const time = timeOfDay();
+      const g = GREETING[new Date().getHours() < 12 && time !== "night" ? "morning" : "evening"];
+      const run = timer.running();
 
       root.innerHTML = `
-        ${pageHead(`${t("day.n", { n })} <span class="of">${t("day.of", { total: TOTAL_DAYS })}</span>`,
-                   `${esc(tx(phaseTitle(phase)))} · ${t("week.n", { n: week })}`,
-                   esc(longDate(date, locale())), "has-parapet")}
+        <section class="hero sky-${time}">
+          ${scene(time)}
+          <div class="hero-text">
+            <p class="eyebrow">${esc(longDate(date, locale()))}</p>
+            <h1>${t("day.n", { n })} <span class="of">${t("day.of", { total: TOTAL_DAYS })}</span></h1>
+            <p class="hero-sub">${esc(tx(phaseTitle(phase)))} · ${t("week.n", { n: week })}</p>
+            <button class="greet" data-say="${esc(g.ar)}" aria-label="${esc(t("lab.hear", { what: g.say }))}">
+              ${ar(g.ar, "greet-ar")}
+              <span class="greet-t">${translit(g.say)} <span>${esc(t(g.key))}</span>
+                <small>${t("today.greetReply")} ${ar(g.reply)} ${translit(g.replySay)}</small></span>
+              ${icon("sound")}
+            </button>
+          </div>
+        </section>
         ${journeyParapet(date)}
         <p class="parapet-caption">${t("today.weekOf", { n: week, total: TOTAL_WEEKS })}</p>
+
         <div class="today">
           <div class="today-main">
             <section class="panel">
@@ -98,11 +131,11 @@ export default {
                     <label><input type="checkbox" data-task="${task.id}"${done ? " checked" : ""}>
                       <span class="task-text">${rich(tx(task.text))}</span></label>
                     <span class="task-min">${t("min", { n: task.min })}</span>
-                    ${task.href ? `<a class="task-go" href="${task.href}">${t("open")}</a>` : `<span></span>`}
+                    ${task.href ? `<a class="task-go" href="${task.href}">${t("open")} ${icon("arrow", "flip-rtl")}</a>` : `<span></span>`}
                   </li>`;
                 }).join("")}
               </ul>
-              ${allTasksTicked(date, e) ? `<p class="day-done"><span aria-hidden="true">✓</span> ${esc(t("today.dayDone"))}</p>` : ""}
+              ${allTasksTicked(date, e) ? `<p class="day-done">${icon("star")} ${esc(t("today.dayDone"))}</p>` : ""}
               ${phase.weekly.length ? `<div class="weekly"><b>${t("today.everyWeek")}</b><ul>${phase.weekly.map(w => `<li>${esc(tx(w))}</li>`).join("")}</ul></div>` : ""}
             </section>
 
@@ -121,16 +154,18 @@ export default {
           </div>
 
           <aside class="today-side">
-            <section class="panel timer">
-              <h2>${t("today.studyTime")}</h2>
+            <div data-cards-panel>${cardsPanel()}</div>
+
+            <section class="panel timer${run ? " is-running" : ""}">
+              <h2>${icon("timer")} ${t("today.studyTime")}</h2>
               <div class="ring-wrap">
                 ${ring(e.min / DAILY_GOAL_MIN)}
                 <div>
-                  <p class="clock" id="clock">${s.timer ? clock(Date.now() - s.timer.start) : t("min", { n: e.min })}</p>
-                  <p class="muted small">${s.timer ? t("today.running", { min: e.min }) : t("today.logged", { goal: DAILY_GOAL_MIN })}</p>
+                  <p class="clock" id="clock">${run ? timer.clock(Date.now() - run.start) : t("min", { n: e.min })}</p>
+                  <p class="muted small">${run ? t("today.running", { min: e.min }) : t("today.logged", { goal: DAILY_GOAL_MIN })}</p>
                 </div>
               </div>
-              <button class="btn btn-primary" data-timer>${s.timer ? t("today.stop") : t("today.start")}</button>
+              <button class="btn btn-primary btn-wide" data-timer>${run ? `${icon("pause")} ${t("today.stop")}` : `${icon("play")} ${t("today.start")}`}</button>
               <div class="btn-row" role="group" aria-label="${esc(t("today.adjust"))}">
                 <button class="btn" data-add="-10">−10</button>
                 <button class="btn" data-add="10">+10</button>
@@ -141,10 +176,10 @@ export default {
             <section class="panel stats">
               <h2>${t("today.journey")}</h2>
               <dl class="stat-pairs">
-                ${stat(t("today.streak"), days, tu("unit.days", days))}
-                ${stat(t("today.studied"), tot.days, tu("unit.days", tot.days))}
-                ${stat(t("today.total"), num(hours, 1), tu("unit.hours", hours, { minimumFractionDigits: 1 }))}
-                ${stat(t("today.toGo"), left, tu("unit.days", left))}
+                ${stat("flame", t("today.streak"), days, tu("unit.days", days))}
+                ${stat("calendar", t("today.studied"), tot.days, tu("unit.days", tot.days))}
+                ${stat("timer", t("today.total"), num(hours, 1), tu("unit.hours", hours, { minimumFractionDigits: 1 }))}
+                ${stat("plan", t("today.toGo"), left, tu("unit.days", left))}
               </dl>
               <h3>${t("today.last14")}</h3>
               ${last14(date)}
@@ -176,23 +211,28 @@ export default {
       const b = e.target.closest("button");
       if (!b) return;
       if (b.hasAttribute("data-timer")) {
-        if (store.get().timer) stopTimer();
-        else store.update(s => { s.timer = { start: Date.now(), date: todayKey() }; });
+        if (timer.running()) timer.stop();
+        else timer.start(todayKey());
       } else if (b.dataset.add) {
         store.addMinutes(todayKey(), +b.dataset.add);
       } else if (b.dataset.addYesterday) {
         store.addMinutes(addDays(todayKey(), -1), +b.dataset.addYesterday);
       } else return;
       render();
+      root.querySelector(b.hasAttribute("data-timer") ? "[data-timer]" : `[data-add="${b.dataset.add}"]`)?.focus();
     }, { signal });
 
     const tick = setInterval(() => {
-      const timer = store.get().timer;
+      const run = timer.running();
       const el = document.getElementById("clock");
-      if (timer && el) el.textContent = clock(Date.now() - timer.start);
+      if (run && el) el.textContent = timer.clock(Date.now() - run.start);
     }, 1000);
     signal.addEventListener("abort", () => clearInterval(tick));
 
     render();
+    if (!vocabNow()) loadVocab().then(() => {
+      const slot = !signal.aborted && root.querySelector("[data-cards-panel]");
+      if (slot) slot.innerHTML = cardsPanel();
+    }, () => {});
   },
 };

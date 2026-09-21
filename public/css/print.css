@@ -1,0 +1,102 @@
+/* Printables (views/print.js): A4 sheets. On screen they are previews on the page; when printing, only the
+   sheets print, edge to edge, one per page. Arabic practice text is 10.5mm (≈30pt), rows start on the right. */
+.sheets { --bl: 34px; display: flex; flex-direction: column; align-items: center; gap: 28px; padding-bottom: 20px; }
+.sheet {
+  width: 210mm; height: 297mm; padding: 9mm 11mm 7mm; flex: 0 0 auto;
+  display: flex; flex-direction: column; overflow: hidden;
+  background: #fff; color: #111; box-shadow: 0 2px 24px rgba(0, 0, 0, .16);
+  font-family: var(--font-ui); font-size: 11pt; line-height: 1.3;
+}
+html[dir="rtl"] .sheet { font-family: var(--font-ui-ar); }
+.sheet-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8mm; padding-bottom: 2.5mm; margin-bottom: 3mm; border-bottom: .7mm solid #006C35; }
+.sheet-head h2 { margin: 0; font-size: 13pt; color: #0B2E1C; }
+.sheet-head p { margin: 0; color: #777; font-size: 9.5pt; white-space: nowrap; }
+.sheet-body { flex: 1; min-height: 0; }
+.sheet-foot { display: flex; justify-content: space-between; padding-top: 1.5mm; border-top: .3mm solid #ddd; color: #999; font-size: 8pt; }
+.sheet-foot [lang="ar"] { font-family: var(--font-ar); }
+
+/* A guideline row: solid baseline where the Arabic sits, a dashed line for the height of a tooth */
+.trow {
+  position: relative; height: 12mm; line-height: 12mm; white-space: nowrap; direction: rtl;
+  font-family: var(--font-ar); font-size: 10.5mm; color: #111;
+  background:
+    linear-gradient(#8f9c95, #8f9c95) 0 var(--bl) / 100% .3mm no-repeat,
+    repeating-linear-gradient(to left, #cdd6d0 0 1.4mm, transparent 1.4mm 2.8mm) 0 calc(var(--bl) - 4.4mm) / 100% .25mm no-repeat;
+}
+.g { display: inline-block; margin: 0 1.6mm; }
+.g.grey { color: #c4c4c4; }
+.free-label { margin: 3mm 0 0; color: #777; font-size: 9pt; font-weight: 700; }
+
+/* 1. Letter tracing */
+.tletter { margin-bottom: 1.5mm; }
+.tl-head { display: flex; align-items: baseline; gap: 2.5mm; margin: 0; height: 6mm; font-size: 10pt; }
+.tl-char { font-family: var(--font-ar); font-size: 15pt; color: #006C35; }
+.tl-sound { color: #555; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tl-forms { display: none; }
+.trow.cells { display: grid; grid-template-columns: repeat(var(--cols), 1fr); }
+.cell { position: relative; text-align: center; border-inline-start: .25mm dashed #e2e2e2; }
+.cell:first-child { border-inline-start: 0; }
+.cell[data-form]::before {
+  content: attr(data-form); position: absolute; top: .6mm; inset-inline-start: 1.2mm;
+  font: 700 6.5pt/1 var(--font-ui); color: #9a9a9a; direction: ltr;
+}
+html[dir="rtl"] .cell[data-form]::before { font-family: var(--font-ui-ar); direction: rtl; }
+
+/* 2. Word writing */
+.tword { margin-bottom: 1mm; }
+.tw-meta { position: absolute; top: 1.2mm; inset-inline-end: 0; display: flex; flex-direction: column; align-items: flex-start; max-width: 70mm; font-family: var(--font-ui); font-size: 9pt; line-height: 1.2; direction: ltr; text-align: left; }
+.tw-meta .tr { font-size: 10.5pt; }
+.pm1 { color: #222; }
+.pm2 { color: #777; font-size: 8.5pt; }
+
+/* 3. Fold and test */
+.fold-line { position: relative; height: 5mm; margin: 0 0 1mm; text-align: center; }
+.fold-line::before { content: ""; position: absolute; top: 0; bottom: -250mm; left: 50%; border-left: .3mm dashed #b8b8b8; }
+.fold-line span { position: relative; padding: 0 2mm; background: #fff; color: #999; font-size: 8pt; }
+.fold { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.fold td { height: 15.6mm; padding: 0 5mm; border-bottom: .25mm solid #e4e4e4; vertical-align: middle; }
+.fold-meaning { display: table-cell; font-size: 10pt; line-height: 1.25; }
+.fold-meaning .tr { display: block; font-size: 10.5pt; }
+.fold-meaning .pm1, .fold-meaning .pm2 { display: block; }
+.fold-ar { font-family: var(--font-ar); font-size: 10.5mm; text-align: right; }
+
+/* 4. Phrase cards: 2 × 4, dashed cut lines */
+.pcards { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 1fr); height: 100%; border: .25mm dashed #bdbdbd; }
+.pcard { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5mm; padding: 5mm; text-align: center; border: .25mm dashed #bdbdbd; }
+.pcard p { margin: 0; font-family: var(--font-ar); font-size: 11mm; line-height: 1.35; }
+.pcard.back .tr { font-size: 13pt; }
+.pcard.back .pm1 { font-size: 11.5pt; }
+.pcard.back .pm2 { font-size: 10pt; }
+.pmsa { margin-top: 1.5mm; font-family: var(--font-ar); font-size: 5.5mm; color: #666; }
+
+/* 5. Weekly tracker */
+.tk-day { margin-bottom: 3mm; padding-top: 2mm; border-top: .3mm solid #e0e0e0; }
+.tk-top { display: flex; align-items: center; gap: 4mm; margin: 0; font-size: 10pt; }
+.tk-top b { min-width: 42mm; font-size: 11pt; }
+.tk-field { display: inline-flex; align-items: flex-end; gap: 1.5mm; color: #555; }
+.tk-field i { display: inline-block; width: 14mm; border-bottom: .3mm solid #999; height: 5mm; }
+.tk-check { display: inline-flex; align-items: center; gap: 1.5mm; color: #555; margin-inline-start: auto; }
+.tk-check i { width: 4.5mm; height: 4.5mm; border: .35mm solid #777; border-radius: .8mm; }
+.tk-label { margin: 1.5mm 0 0; color: #777; font-size: 8.5pt; }
+
+/* Phones and tablets: shrink the preview to fit the screen */
+@media screen and (max-width: 860px) {
+  .sheets { zoom: .5; gap: 36px; }
+}
+@media screen and (max-width: 480px) {
+  .sheets { zoom: .42; }
+}
+
+@page { size: A4; margin: 0; }
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { background: #fff !important; color: #111 !important; }
+  .sidebar, .tabbar, .skip, .print-bar, .tooltip, .page-head .vignette { display: none !important; }
+  .app { display: block; }
+  main { max-width: none; padding: 12mm !important; }
+  body[data-route="print"] main { padding: 0 !important; }
+  .sheets { display: block; zoom: 1; padding: 0; }
+  .sheet { box-shadow: none; margin: 0; break-after: page; }
+  .sheet:last-child { break-after: auto; }
+  .panel, .phrase-row, .card, .word { break-inside: avoid; }
+}

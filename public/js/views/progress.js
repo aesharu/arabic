@@ -111,7 +111,7 @@ export default {
       <div class="stage-names-row" dir="ltr">${PHASES.map(p => `<span style="flex:${diffDays(p.start, p.end) + 1}">${esc(tx(p.label))}</span>`).join("")}</div>`;
 
     root.innerHTML = `
-      ${pageHead(t("progress.title"), t("progress.sub"), "", "has-parapet")}
+      ${pageHead(t("progress.title"), t("progress.sub"), "", "has-parapet", "progress")}
       ${journeyParapet(today)}
       <dl class="stats-row">
         ${tile(t("progress.journey"), t("day.n", { n }), t("day.of", { total: TOTAL_DAYS }), `<span class="meter" aria-hidden="true"><span style="width:${pct(n, TOTAL_DAYS)}%"></span></span>`, "hero")}

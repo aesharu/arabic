@@ -22,9 +22,10 @@ function columnPath(x, y, w, h, rounded) {
   return `M${x},${y + h}V${y + r}Q${x},${y} ${x + r},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h}Z`;
 }
 
-// Tooltip rows travel as data attributes: data-tip="Title" data-rows="value|label;value|label"
+// Tooltip rows travel as data attributes: data-tip="Title" data-rows="value|label;value|label". The same text is
+// the mark's name for screen readers.
 const tipAttrs = (title, rows) =>
-  `data-tip="${esc(title)}" data-rows="${esc(rows.map(([v, label, cls = ""]) => `${v}|${label}|${cls}`).join(";"))}"`;
+  `data-tip="${esc(title)}" data-rows="${esc(rows.map(([v, label, cls = ""]) => `${v}|${label}|${cls}`).join(";"))}" aria-label="${esc(`${title}: ${rows.map(([v, label]) => `${v} ${label}`.trim()).join(", ")}`)}"`;
 
 /**
  * columns({ label, data, series, goal, goalLabel, format, emptyText, tableHead, width, height })
@@ -63,7 +64,7 @@ export function columns({ label, data, series, goal, goalLabel, format = v => St
     const rows = d.values.map((v, s) => [format(v), series[s].name, series[s].cls]);
     const xLabel = i % labelEvery === 0 || i === data.length - 1
       ? `<text class="axis" x="${x + barW / 2}" y="${H - 8}" text-anchor="middle">${esc(d.label)}</text>` : "";
-    return `<g class="col" tabindex="0" ${tipAttrs(d.title, rows)}>
+    return `<g class="col" tabindex="0" role="img" ${tipAttrs(d.title, rows)}>
       <rect class="hit" x="${PAD.left + i * slot}" y="${PAD.top}" width="${slot}" height="${plotH}"/>${marks}</g>${xLabel}`;
   }).join("");
 
@@ -108,7 +109,7 @@ export function parapet({ weeks, label, stageLabels }) {
     if (i > 0 && w.stage !== weeks[i - 1].stage) x += GAP;
     if (i === 0 || w.stage !== weeks[i - 1].stage) starts.push({ stage: w.stage, x });
     const d = `M${x.toFixed(1)},${TH}L${(x + tw / 2).toFixed(1)},1L${(x + tw).toFixed(1)},${TH}Z`;
-    const el = `<path class="wk p${w.stage} ${w.state}" d="${d}" tabindex="0" ${tipAttrs(w.title, w.rows)}/>`;
+    const el = `<path class="wk p${w.stage} ${w.state}" d="${d}" tabindex="0" role="img" ${tipAttrs(w.title, w.rows)}/>`;
     x += tw;
     return el;
   }).join("");
@@ -159,9 +160,17 @@ export function attachTooltips(root) {
   };
 
   root.addEventListener("pointermove", e => {
+    if (e.pointerType === "touch") return;
     const el = e.target.closest?.("[data-tip]");
     if (el) show(el, e.clientX, e.clientY);
     else if (!focused) hide();
+  });
+  // iPhone and iPad: a tap shows the mark's tooltip; a tap anywhere else hides it.
+  root.addEventListener("pointerdown", e => {
+    if (e.pointerType !== "touch") return;
+    const el = e.target.closest?.("[data-tip]");
+    if (el) show(el, e.clientX, e.clientY);
+    else hide();
   });
   root.addEventListener("pointerleave", () => focused || hide());
   root.addEventListener("focusin", e => {
@@ -174,4 +183,14 @@ export function attachTooltips(root) {
     hide();
   });
   window.addEventListener("scroll", () => (focused ? showFocused() : hide()), { passive: true });
+}
+
+// SVG text scales with the chart. Keep axis labels at their real size by telling CSS how much the chart is scaled
+// (--k = drawn width ÷ shown width); call after a page renders and when the window resizes.
+export function fitCharts(root) {
+  for (const svg of root.querySelectorAll(".chart svg")) {
+    const vb = svg.viewBox.baseVal;
+    const shown = svg.clientWidth;
+    if (vb?.width && shown) svg.style.setProperty("--k", (vb.width / shown).toFixed(3));
+  }
 }

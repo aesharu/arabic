@@ -1,32 +1,57 @@
 import { startRouter } from "./core/router.js";
 import { say, canSpeak } from "./core/speech.js";
 import * as store from "./core/store.js";
+import * as timer from "./core/timer.js";
 import { todayKey } from "./core/dates.js";
 import { dayNumber, phaseFor, phaseTitle, TOTAL_DAYS } from "./core/schedule.js";
 import { t, tx, lang, meta, setLang } from "./core/i18n.js";
 import { esc } from "./core/dom.js";
-import { attachTooltips } from "./core/charts.js";
+import { icon } from "./core/art.js";
+import { attachTooltips, fitCharts } from "./core/charts.js";
+import { loadVocab, vocabNow } from "./core/vocab.js";
+import { counts as cardCounts } from "./core/cards.js";
 import * as sync from "./core/sync.js";
 
 import today from "./views/today.js";
 import progress from "./views/progress.js";
 import calendar from "./views/calendar.js";
 import plan from "./views/plan.js";
+import print from "./views/print.js";
+import cards from "./views/cards.js";
+import words from "./views/words.js";
+import phrases from "./views/phrases.js";
 import letters from "./views/letters.js";
 import vowels from "./views/vowels.js";
 import reading from "./views/reading.js";
 import quiz from "./views/quiz.js";
-import phrases from "./views/phrases.js";
-import words from "./views/words.js";
 
 // Each view is { titleKey, mount(root, { params, signal }) }. Listeners a view adds with
 // { signal } are removed automatically when you leave it.
-const routes = { today, progress, calendar, plan, letters, vowels, reading, quiz, phrases, words };
+const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz };
+const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz" };
 const view = document.getElementById("view");
+const motion = !matchMedia("(prefers-reduced-motion: reduce)").matches;
 let controller = null;
-let current = { name: "today", params: [] };
+let current = { name: "", params: [] };
 
 if (!canSpeak) document.body.classList.add("no-tts");
+document.querySelectorAll("nav [data-route]").forEach(a => a.insertAdjacentHTML("afterbegin", icon(NAV_ICONS[a.dataset.route])));
+document.querySelector("[data-menu-open]").insertAdjacentHTML("afterbegin", icon("more"));
+document.querySelector("[data-menu-close]").innerHTML = icon("close");
+
+// Phones and tablets: "More" opens the whole menu as a sheet; Escape, the close button or any link closes it.
+const moreButton = document.querySelector("[data-menu-open]");
+function setMenu(open) {
+  document.body.classList.toggle("menu-open", open);
+  moreButton.setAttribute("aria-expanded", open);
+  if (open) document.querySelector("#menu nav a")?.focus();
+}
+moreButton.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
+document.querySelector("[data-menu-close]").addEventListener("click", () => {
+  setMenu(false);
+  moreButton.focus();
+});
+document.addEventListener("keydown", e => e.key === "Escape" && document.body.classList.contains("menu-open") && (setMenu(false), moreButton.focus()));
 
 // Anything with data-say speaks its Arabic, on every page.
 document.addEventListener("click", e => {
@@ -62,6 +87,48 @@ function renderDayPill() {
     : `<b>${t("pill.soon")}</b>`;
 }
 
+// The study timer, visible from every page while it runs.
+const pill = document.getElementById("timerpill");
+function renderTimerPill() {
+  const run = timer.running();
+  pill.hidden = !run;
+  if (!run) return;
+  if (!pill.firstChild) {
+    pill.innerHTML = `<a href="#/today">${icon("timer")}<span class="tp-clock"></span></a>
+      <button type="button" class="tp-stop">${icon("pause")}<span></span></button>`;
+  }
+  pill.querySelector(".tp-clock").textContent = timer.clock(Date.now() - run.start);
+  pill.querySelector("a").setAttribute("aria-label", t("timer.running"));
+  pill.querySelector(".tp-stop span").textContent = t("today.stop");
+}
+pill.addEventListener("click", e => {
+  if (!e.target.closest(".tp-stop")) return;
+  timer.stop();
+  pill.replaceChildren();
+  if (current.name === "today") show(current.name, current.params);
+});
+setInterval(() => timer.running() && renderTimerPill(), 1000);
+
+// Cards waiting today, on the Cards menu item — like the numbers beside Anki's decks.
+let countQueued = false;
+function renderNavCount() {
+  countQueued = false;
+  const v = vocabNow();
+  if (!v) return;
+  const c = cardCounts(v.notes);
+  const n = c.fresh + c.learn + c.review;
+  document.querySelectorAll(".navcount").forEach(el => {
+    el.hidden = n === 0;
+    el.textContent = n > 99 ? "99+" : String(n);
+    el.setAttribute("aria-label", t("cards.waiting", { n }));
+  });
+}
+const queueNavCount = () => {
+  if (countQueued) return;
+  countQueued = true;
+  setTimeout(renderNavCount, 250);
+};
+
 // Sidebar line showing whether progress is saved to the cloud.
 const SHORT = { off: "off", syncing: "syncing", saved: "saved" };
 function renderCloudPill({ state } = sync.getStatus()) {
@@ -71,11 +138,20 @@ function renderCloudPill({ state } = sync.getStatus()) {
 }
 sync.onStatus(renderCloudPill);
 
+// The browser's own bar takes the page's background colour.
+const themeMeta = document.querySelector('meta[name="theme-color"]');
+const paintThemeColor = () => themeMeta.setAttribute("content", getComputedStyle(document.body).backgroundColor);
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+  paintThemeColor();
+  show(current.name, current.params); // charts and the sky read theme colours
+});
+
 function applyTheme() {
   const theme = store.get().prefs.theme;
   if (theme === "auto") delete document.documentElement.dataset.theme;
   else document.documentElement.dataset.theme = theme;
   document.querySelectorAll("[data-set-theme]").forEach(b => b.setAttribute("aria-pressed", b.dataset.setTheme === theme));
+  paintThemeColor();
 }
 document.querySelector(".themes").addEventListener("click", e => {
   const b = e.target.closest("[data-set-theme]");
@@ -84,7 +160,7 @@ document.querySelector(".themes").addEventListener("click", e => {
     s.prefs.theme = b.dataset.setTheme;
   });
   applyTheme();
-  show(current.name, current.params); // charts read theme colours
+  show(current.name, current.params);
 });
 
 function show(name, params) {
@@ -96,9 +172,16 @@ function show(name, params) {
     else a.removeAttribute("aria-current");
   });
   document.title = `${t(routes[name].titleKey)} · Najdi`;
+  document.body.dataset.route = name;
   renderDayPill();
   routes[name].mount(view, { params, signal: controller.signal });
+  requestAnimationFrame(() => fitCharts(view));
 }
+let resizeTimer = 0;
+addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => fitCharts(view), 120);
+});
 
 document.querySelector(".langs").addEventListener("click", e => {
   const b = e.target.closest("[data-lang]");
@@ -106,15 +189,29 @@ document.querySelector(".langs").addEventListener("click", e => {
   setLang(b.dataset.lang);
   translateShell();
   renderCloudPill();
+  renderTimerPill();
+  renderNavCount();
   show(current.name, current.params);
+});
+
+store.subscribe(() => {
+  renderTimerPill();
+  queueNavCount();
 });
 
 translateShell();
 renderCloudPill();
+renderTimerPill();
 sync.start(() => show(current.name, current.params)); // re-render if another computer had newer progress
 applyTheme();
 startRouter(routes, "today", (name, params) => {
+  const samePage = name === current.name;
+  if (document.body.classList.contains("menu-open")) setMenu(false);
   show(name, params);
+  if (samePage) return; // a tab or letter group inside the same page: stay where you are
   view.focus({ preventScroll: true });
   window.scrollTo(0, 0);
+  if (motion) view.animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 220, easing: "cubic-bezier(.2,.7,.2,1)" });
 });
+loadVocab().then(renderNavCount, () => {});
+setInterval(renderNavCount, 60_000); // learning cards come due by themselves
