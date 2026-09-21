@@ -862,3 +862,35 @@ html[dir="rtl"] .gr-card > .i { transform: scaleX(-1); }
 .gr-score { font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
 .gr-nav { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
 .gr-row .phrase-t { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+
+/* Weekly lessons */
+.ls-today { display: flex; align-items: center; gap: 14px; margin: 0 0 16px; padding: 14px 18px; border-radius: 16px; background: var(--strong-bg); color: var(--strong-ink); text-decoration: none; }
+.ls-today > span { flex: 1; display: grid; }
+.ls-today small { opacity: .8; font-weight: 700; }
+html[dir="rtl"] .ls-today > .i:last-child, html[dir="rtl"] .gr-nav .i, html[dir="rtl"] .gr-back .i { transform: scaleX(-1); }
+.ls-stage { margin: 0 0 22px; }
+.ls-weeks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.ls-week { display: grid; gap: 3px; height: 100%; padding: 12px 14px; border-radius: 14px; background: var(--surface); color: var(--ink); text-decoration: none; border: 2px solid transparent; }
+.ls-week:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+.ls-week.is-now { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+.ls-week.is-past { opacity: .75; }
+.ls-week > span { font-weight: 700; }
+.ls-week > span > span + span::before { content: " · "; }
+.ls-week small { color: var(--muted); }
+.ls-goal p { margin: 0; font-size: 17px; }
+.ls-goal h2, .ls-tasks h2 { display: flex; align-items: center; gap: 8px; }
+.ls-block { margin: 22px 0; }
+.ls-block .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.ls-tasks ul { margin: 0; padding-inline-start: 22px; display: grid; gap: 6px; font-size: 17px; }
+.dialogue { display: grid; gap: 10px; }
+.dl-line { display: grid; gap: 4px; max-width: 640px; }
+.dl-line.is-you { justify-self: end; }
+.dl-who { font-size: 13px; font-weight: 800; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+html[dir="rtl"] .dl-who { letter-spacing: 0; }
+.dl-line.is-her .dl-bubble { background: color-mix(in srgb, var(--accent) 9%, var(--surface)); }
+.dl-bubble .phrase-t { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.ls-block .phrase-t { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.dl-line { width: min(640px, 92%); }
+.dl-bubble { width: 100%; border-radius: 18px; background: var(--surface); }
+.dl-line.is-you .dl-who { justify-self: end; }
+.dl-line.is-you .dl-bubble { background: color-mix(in srgb, var(--ink) 6%, var(--surface)); }

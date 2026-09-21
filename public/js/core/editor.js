@@ -7,6 +7,7 @@ import { vocabNow } from "./vocab.js";
 
 function find(id) {
   const v = vocabNow();
+  if (content.registered(id)) return content.registered(id);
   if (!v) return null;
   return v.notes.find(n => n.id === id) ?? v.vocab.stages.flatMap(s => s.topics.flatMap(tp => tp.entries)).find(e => e.id === id) ?? null;
 }

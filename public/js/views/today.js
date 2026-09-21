@@ -120,6 +120,7 @@ export default {
 
         <div class="today">
           <div class="today-main">
+            ${week >= 3 && week <= 67 ? `<a class="ls-today" href="#/lessons/${week}">${icon("plan")}<span><b>${t("lessons.thisWeek")}</b><small>${t("lessons.weekN", { n: week })}</small></span>${icon("arrow")}</a>` : ""}
             <section class="panel">
               <div class="panel-head">
                 <h2>${t("today.focus")}</h2>

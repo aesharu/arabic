@@ -37,6 +37,10 @@ export function load() {
 }
 
 // ---------- Corrections ----------
+// Lines that aren't in the word list (the weekly conversations) register here so ✎ can find them.
+const extra = new Map();
+export const register = list => list.forEach(e => extra.set(e.id, e));
+export const registered = id => extra.get(id);
 export const editOf = id => edits[id];
 export const FIELDS = ["ar", "say", "en", "uk", "msa"];
 

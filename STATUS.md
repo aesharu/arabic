@@ -37,9 +37,11 @@ Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
 
 - **Grammar** `#/grammar` (`data/grammar.js`, `views/grammar.js`): the plan's nine Part 5 patterns as lessons — explanation in four languages, examples to hear (her voice when recorded), "to her" forms marked, ⚠ flags kept, a 5-question quiz. `tests/grammar.test.mjs` checks every example against Part 5.
 
+- **Weekly lessons** `#/lessons` (`data/weeks.js`, `views/lessons.js`), weeks 3–67, "This week's lesson" link on Today: the stage goal, that week's words from the plan (big topics split over 2–3 weeks; review weeks), a grammar lesson, a speaking task per stage, and a short conversation (weeks 3–10 so far). Conversation lines are Claude-written — each flagged, ✎-correctable (ids `d<week>x<line>`). `tests/weeks.test.mjs` checks weeks, topics, four languages and dialect traps.
+
 ## Next (in this order)
 
-0. **Weekly lessons** (in progress, asked 21 Sept): one lesson per week from week 3 to 67 — that week's topic and words, a grammar lesson, a short everyday conversation with "to her" forms (written by Claude, every line flagged for Dima), a speaking task.
+0. **Conversations for weeks 11–67** (weeks 3–10 are written). Same rules: built from the plan's words, "to her" forms, every line flagged until Dima ticks it. Then add a "Conversations" tab on the Record page so she can record the lines.
 1. Tell Volodymyr which recordings/corrections exist; a script to export `edits` from D1 as proposed changes to NAJDI-PLAN.md.
 2. **Prayer times and Qibla** (he asked on 21 Sept):
    - today's five prayers for Riyadh, Umm al-Qura method (Fajr 18.5°, Isha = Maghrib + 90 min, 120 in Ramadan), Asr standard;
