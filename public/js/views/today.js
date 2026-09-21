@@ -11,6 +11,7 @@ import { START, GOAL, DAILY_GOAL_MIN } from "../config.js";
 import { PHRASES } from "../data/phrases.js";
 import { GROUPS } from "../data/letters.js";
 import { journeyParapet, ring, TOTAL_WEEKS, wordsMeter } from "./shared.js";
+import { BIRTHDAY } from "../data/birthday.js";
 
 // New phrases on Days 1–14; after that, a rotating review of three.
 function phrasesFor(n) {
@@ -120,6 +121,7 @@ export default {
 
         <div class="today">
           <div class="today-main">
+            ${!store.isTeacher() && date <= BIRTHDAY ? `<a class="ls-today bd-today" href="#/birthday">${icon("heart")}<span><b>${esc(t("bday.todayLink", { n: num(diffDays(date, BIRTHDAY)) }))}</b><small>${esc(t("bday.todaySub"))}</small></span>${icon("arrow")}</a>` : ""}
             ${week >= 3 && week <= 67 ? `<a class="ls-today" href="#/lessons/${week}">${icon("plan")}<span><b>${t("lessons.thisWeek")}</b><small>${t("lessons.weekN", { n: week })}</small></span>${icon("arrow")}</a>` : ""}
             <section class="panel">
               <div class="panel-head">

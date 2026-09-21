@@ -30,6 +30,7 @@ const defaults = () => ({
   // "YYYY-MM-DD" → { min: minutes studied, tasks: ids of ticked tasks, quiz?: { right, total },
   //                  cards?: { n: new cards seen, r: answers, a: "Again" answers } }
   log: {},
+  goals: { done: [] }, // the birthday plan's "I can…" goals ticked (views/birthday.js)
   // Cards (core/cards.js): cardId → the scheduler's card (core/srs.js) plus mod, the time it last changed.
   // prefs: new cards a day, practice saying (reverse cards), open every deck early, read the answer aloud.
   srs: { cards: {}, prefs: { newPerDay: 8, reverse: true, unlockAll: profileNow === "teacher", autoplay: true, mod: 0 } }, // Dima: every deck open
@@ -47,6 +48,7 @@ function merge(saved) {
     sync: { ...d.sync, ...saved.sync },
     srs: { cards: { ...saved.srs?.cards }, prefs: { ...d.srs.prefs, ...saved.srs?.prefs } },
     log: saved.log && typeof saved.log === "object" ? saved.log : {},
+    goals: { done: Array.isArray(saved.goals?.done) ? saved.goals.done : [] },
   };
 }
 

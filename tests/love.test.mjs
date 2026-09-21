@@ -36,3 +36,12 @@ test("the phrase book: four languages, unique, and every unflagged phrase is in 
   }
   for (const f of ["en", "uk", "najdi", "msa"]) assert.ok(LOVE.LOVE_INTRO[f]);
 });
+
+test("her birthday: goals and wishes in four languages; the date is 2 Ramadan 1448", async () => {
+  const B = await import("../public/js/data/birthday.js");
+  for (const g of B.GOALS) for (const f of ["en", "uk", "najdi", "msa"]) assert.ok(g[f], `goal ${g.id}: ${f}`);
+  assert.equal(new Set(B.GOALS.map(g => g.id)).size, B.GOALS.length);
+  B.SPEECH.forEach((x, i) => (checkLine(x, `wish ${i + 1}`), assert.ok(x.say)));
+  const hijri = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { day: "numeric", month: "long" }).format(new Date(`${B.BIRTHDAY}T12:00:00Z`));
+  assert.match(hijri, /Ramadan 2/);
+});
