@@ -35,8 +35,11 @@ Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
   - **✎ Correct this word** (Word list, Record page, either profile): Najdi, pronunciation, English, Ukrainian, MSA, and "this is correct Najdi" (removes the tutor flag). D1 table `edits`, laid over the plan's words at runtime (`content.apply`). NAJDI-PLAN.md is not changed — later, turn her corrections into proposed plan changes for Volodymyr to approve.
   - Not yet covered by her corrections: the Phrases/Today pages (they read `data/phrases.js` directly) and letter names.
 
+- **Grammar** `#/grammar` (`data/grammar.js`, `views/grammar.js`): the plan's nine Part 5 patterns as lessons — explanation in four languages, examples to hear (her voice when recorded), "to her" forms marked, ⚠ flags kept, a 5-question quiz. `tests/grammar.test.mjs` checks every example against Part 5.
+
 ## Next (in this order)
 
+0. **Weekly lessons** (in progress, asked 21 Sept): one lesson per week from week 3 to 67 — that week's topic and words, a grammar lesson, a short everyday conversation with "to her" forms (written by Claude, every line flagged for Dima), a speaking task.
 1. Tell Volodymyr which recordings/corrections exist; a script to export `edits` from D1 as proposed changes to NAJDI-PLAN.md.
 2. **Prayer times and Qibla** (he asked on 21 Sept):
    - today's five prayers for Riyadh, Umm al-Qura method (Fajr 18.5°, Isha = Maghrib + 90 min, 120 in Ramadan), Asr standard;

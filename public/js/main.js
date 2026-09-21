@@ -26,13 +26,14 @@ import vowels from "./views/vowels.js";
 import reading from "./views/reading.js";
 import quiz from "./views/quiz.js";
 import record from "./views/record.js";
+import grammar from "./views/grammar.js";
 import * as content from "./core/content.js";
 import { openEditor } from "./core/editor.js";
 
 // Each view is { titleKey, mount(root, { params, signal }) }. Listeners a view adds with
 // { signal } are removed automatically when you leave it.
-const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record };
-const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound" };
+const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record, grammar };
+const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound", grammar: "reading" };
 const view = document.getElementById("view");
 const motion = !matchMedia("(prefers-reduced-motion: reduce)").matches;
 let controller = null;

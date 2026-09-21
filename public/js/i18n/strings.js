@@ -448,6 +448,26 @@ export const STRINGS = {
   "today.greetMorning": { en: "good morning", uk: "доброго ранку", najdi: "تحية الصباح", msa: "تحية الصباح" },
   "today.greetEvening": { en: "good evening", uk: "доброго вечора", najdi: "تحية المساء", msa: "تحية المساء" },
   "today.greetReply": { en: "Reply:", uk: "Відповідь:", najdi: "الرد:", msa: "الرد:" },
+  // Grammar lessons
+  "nav.grammar": { en: "Grammar", uk: "Граматика", najdi: "القواعد", msa: "القواعد" },
+  "grammar.title": { en: "Grammar", uk: "Граматика", najdi: "القواعد", msa: "القواعد" },
+  "grammar.sub": {
+    en: "Nine patterns — all the grammar you need for everyday Najdi. Learn them as examples, not rules.",
+    uk: "Дев'ять моделей — уся граматика, потрібна для щоденного наджді. Вчи їх як приклади, а не як правила.",
+    najdi: "تسع قواعد — كل اللي تحتاجه للنجدي اليومي. تعلّمها كأمثلة، مب كقوانين.",
+    msa: "تسعة أنماط — كلّ ما تحتاجه من القواعد للنجدية اليومية. تعلّمها أمثلةً لا قواعد.",
+  },
+  "grammar.all": { en: "All lessons", uk: "Усі уроки", najdi: "كل الدروس", msa: "جميع الدروس" },
+  "grammar.lessonN": { en: "Lesson {n} of 9", uk: "Урок {n} з 9", najdi: "الدرس {n} من ٩", msa: "الدرس {n} من ٩" },
+  "grammar.examples": { en: "Examples — tap to hear", uk: "Приклади — натисни, щоб почути", najdi: "أمثلة — اضغط وتسمع", msa: "أمثلة — اضغط للاستماع" },
+  "grammar.toHer": { en: "to her", uk: "до неї", najdi: "لها", msa: "للمؤنّث" },
+  "grammar.practice": { en: "Practice", uk: "Практика", najdi: "تمرين", msa: "تمرين" },
+  "grammar.qOf": { en: "Question {n} of {total}", uk: "Питання {n} з {total}", najdi: "سؤال {n} من {total}", msa: "السؤال {n} من {total}" },
+  "grammar.qSay": { en: "How do you say “{what}”?", uk: "Як сказати «{what}»?", najdi: "كيف تقول «{what}»؟", msa: "كيف تقول «{what}»؟" },
+  "grammar.next": { en: "Next", uk: "Далі", najdi: "اللي بعده", msa: "التالي" },
+  "grammar.score": { en: "{n} of {total} right", uk: "Правильно: {n} з {total}", najdi: "{n} من {total} صح", msa: "{n} من {total} صحيحة" },
+  "grammar.again": { en: "Practise again", uk: "Ще раз", najdi: "مرة ثانية", msa: "أعد التمرين" },
+
   // Recording (Dima's page) and correcting words
   "nav.record": { en: "Record", uk: "Запис", najdi: "تسجيل", msa: "التسجيل" },
   "record.title": { en: "Record your voice", uk: "Запиши свій голос", najdi: "سجّلي صوتك", msa: "سجّلي صوتكِ" },
