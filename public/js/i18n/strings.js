@@ -455,6 +455,7 @@ export const STRINGS = {
   "welcome.skip": { en: "Skip", uk: "Пропустити", najdi: "تخطّي", msa: "تخطّي" },
   "welcome.first": { en: "Welcome, Dima", uk: "Ласкаво просимо, Дімо", najdi: "يا هلا ومرحبا يا ديما", msa: "أهلًا وسهلًا يا ديما" },
   "welcome.back": { en: "Welcome back, Dima", uk: "З поверненням, Дімо", najdi: "هلا والله يا ديما", msa: "مرحبًا بعودتكِ يا ديما" },
+  "welcome.askV": { en: "Write your name", uk: "Напиши своє ім'я", najdi: "اكتب اسمك", msa: "اكتبْ اسمك" },
   "welcome.who": { en: "Who's here?", uk: "Хто тут?", najdi: "منهو هنا؟", msa: "مَن هنا؟" },
   "welcome.backV": { en: "Welcome back, Volodymyr", uk: "З поверненням, Володимире", najdi: "هلا والله يا فولوديمير", msa: "مرحبًا بعودتك يا فولوديمير" },
   "welcome.lineV": { en: "Today's lesson is waiting.", uk: "Сьогоднішній урок чекає.", najdi: "درس اليوم ينتظرك", msa: "درسُ اليوم بانتظارك" },

@@ -1,5 +1,7 @@
 // The welcome screen, each time the site is opened: choose who's here — Volodymyr (student) or Dima (teacher).
-// The first time Dima chooses her profile on a device, she writes her name (Dima, Діма or ديما) to come in.
+// The first time a profile is chosen on a device, its name must be written (Volodymyr / Володимир / فولوديمير,
+// Dima / Діма / ديما). That signs in to cloud save (worker /api/login): Volodymyr's progress is saved in the database;
+// Dima's sign-in can only read it.
 // Then: a greeting, her or his name in gold, and five seconds of oud.
 // It is a friendly door, not a lock: anyone who reads this file can see the name.
 import { lang } from "./i18n.js";
@@ -7,13 +9,18 @@ import { STRINGS } from "../i18n/strings.js";
 import { scene } from "./art.js";
 import { play, LENGTH } from "./music.js";
 import * as store from "./store.js";
+import * as sync from "./sync.js";
 
-const REGISTERED = "najdi-welcome"; // localStorage: Dima has written her name on this device
+const LOGINS = "najdi-logins"; // localStorage: { student?, teacher? } → cloud token ("local" when the cloud couldn't be reached)
 const GREETED = "najdi-welcomed"; // sessionStorage: "reload" = a profile was just chosen, don't greet twice
-const NAMES = ["dima", "deema", "dema", "діма", "дима", "ديما", "ديمه", "ديمة"];
+const NAMES = {
+  student: ["volodymyr", "volodimir", "volodia", "volodya", "володимир", "володя", "فولوديمير"],
+  teacher: ["dima", "deema", "dema", "діма", "дима", "ديما", "ديمه", "ديمة"],
+};
 
 const normal = s => s.normalize("NFC").toLowerCase().replace(/[ً-ْـ]/g, "").replace(/[^\p{L}]/gu, "");
-export const isHerName = s => NAMES.includes(normal(s));
+export const isNameOf = (profile, s) => NAMES[profile].includes(normal(s));
+const logins = () => storage("local", s => JSON.parse(s.getItem(LOGINS) || "{}")) ?? {};
 
 const arLang = () => (lang() === "msa" ? "msa" : "najdi");
 const latLang = () => (lang() === "uk" ? "uk" : "en");
@@ -140,6 +147,12 @@ export function welcome() {
   function celebrate(profile, greetingKey, lineKey) {
     chosen = profile;
     store.setProfile(profile);
+    // Cloud save follows the profile: this device now reads (and, for Volodymyr, saves) with that profile's token.
+    const token = logins()[profile];
+    if (token && token !== "local" && token !== store.get().sync.key) {
+      if (profile === startedAs) sync.connect(token);
+      else store.update(s => { s.sync = { key: token, pushedAt: 0 }; }, { silent: true });
+    }
     stopMusic = play();
     const name = STRINGS[profile === "student" ? "profile.volodymyr" : "profile.dima"].najdi;
     nameEl.textContent = name;
@@ -158,17 +171,17 @@ export function welcome() {
       <div class="wl-profiles">${profileCard("student", lastProfile === "student")}${profileCard("teacher", lastProfile === "teacher")}</div>`;
     stage.querySelectorAll("[data-profile]").forEach(b =>
       b.addEventListener("click", () => {
-        if (b.dataset.profile === "student") return celebrate("student", "welcome.backV", "welcome.lineV");
-        if (storage("local", s => s.getItem(REGISTERED))) return celebrate("teacher", "welcome.back", "welcome.line");
-        askName();
+        const p = b.dataset.profile;
+        if (logins()[p] && logins()[p] !== "local") return p === "student" ? celebrate("student", "welcome.backV", "welcome.lineV") : celebrate("teacher", "welcome.back", "welcome.line");
+        askName(p);
       }),
     );
     (stage.querySelector(".is-last") ?? stage.querySelector("[data-profile]")).focus({ preventScroll: true });
   }
 
-  // Dima, the first time on this device.
-  function askName() {
-    stage.innerHTML = `${three("welcome.ask", "h1", "wl-title wl-ask", "wl-title")}
+  // The first time this profile is used on this device: write the name to sign in.
+  function askName(profile) {
+    stage.innerHTML = `${three(profile === "student" ? "welcome.askV" : "welcome.ask", "h1", "wl-title wl-ask", "wl-title")}
       <form class="wl-form" novalidate>
         <input class="wl-input" name="name" type="text" dir="auto" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-labelledby="wl-title" placeholder="· · ·">
         <button class="wl-btn" type="submit">${two("welcome.go")}</button>
@@ -179,9 +192,9 @@ export function welcome() {
     const input = form.querySelector("input");
     const wrong = form.querySelector(".wl-wrong");
     form.querySelector(".wl-back").addEventListener("click", choose);
-    form.addEventListener("submit", e => {
+    form.addEventListener("submit", async e => {
       e.preventDefault();
-      if (!isHerName(input.value)) {
+      if (!isNameOf(profile, input.value)) {
         wrong.innerHTML = three("welcome.wrong", "p", "wl-wrong-text");
         form.classList.remove("shake");
         void form.offsetWidth; // restart the shake
@@ -189,9 +202,16 @@ export function welcome() {
         input.select();
         return;
       }
-      storage("local", s => s.setItem(REGISTERED, "1"));
       input.blur();
-      celebrate("teacher", "welcome.first", "welcome.line");
+      form.querySelector(".wl-btn").disabled = true;
+      let token = "local";
+      try {
+        const res = await fetch("api/login", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: input.value }), cache: "no-store" });
+        if (res.ok) token = (await res.json()).token || "local";
+      } catch {} // offline: come in anyway; cloud save connects next time
+      storage("local", s => s.setItem(LOGINS, JSON.stringify({ ...logins(), [profile]: token })));
+      if (profile === "student") celebrate("student", "welcome.backV", "welcome.lineV");
+      else celebrate("teacher", "welcome.first", "welcome.line");
     });
     input.focus();
   }

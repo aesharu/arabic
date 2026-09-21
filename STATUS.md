@@ -13,7 +13,7 @@ Last updated: 21 Sept 2026 (commit `22bd8a4`).
 - **Look** — Saudi green theme, hand-drawn Najdi scene (sky follows the clock), Sadu weave, icons, page illustrations.
 - **iPhone/iPad** — top bar + bottom tab bar + "More" sheet at ≤860px, safe areas, home-screen icon.
 
-- **Welcome screen** (every page load, `core/welcome.js`, `css/welcome.css`): day sky 6:00–18:00, night otherwise. Choose **Volodymyr · student** or **Dima · teacher**; Dima types her name (Dima/Діма/ديما) the first time on a device. Then greeting + 5 s of oud and drum in maqam Hijaz (`core/music.js`, synthesised — no audio files; sound needs a tap, browsers block it before).
+- **Welcome screen** (every page load, `core/welcome.js`, `css/welcome.css`): day sky 6:00–18:00, night otherwise. Choose **Volodymyr · student** or **Dima · teacher**; the first time on a device the name must be typed — that signs in to cloud save via `POST /api/login` (tokens = HMAC of the role with SYNC_KEY; the teacher token is read-only on the server). Then greeting + 5 s of oud and drum in maqam Hijaz (`core/music.js`, synthesised — no audio files; sound needs a tap, browsers block it before).
 - **Teacher profile** (`najdi-profile` in localStorage): read-only — nothing she does is saved or pushed; her device pulls his progress from the cloud every 5 min (needs the sync key once, Calendar → Your data). "Switch profile" in the menu.
 - **Sky follows the theme** on Today: dark theme = night with moon, light = sun.
 
