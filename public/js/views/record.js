@@ -8,6 +8,11 @@ import { loadVocab, speakText, DECKS } from "../core/vocab.js";
 import * as content from "../core/content.js";
 import * as store from "../core/store.js";
 import { deckName } from "./shared.js";
+import { DIALOGUES } from "../data/weeks.js";
+
+// The weekly conversations, recordable line by line (their ids match the lesson pages' ✎).
+const TALK = Object.entries(DIALOGUES).flatMap(([w, lines]) => lines.map((l, i) => ({ ...l, id: `d${w}x${i}`, deck: "talk" })));
+const deckLabel = d => (d === "talk" ? t("lessons.conversation") : deckName(d));
 
 const MAX_MS = 10_000; // a word or a phrase — never more than a few seconds
 let onlyTodo = true; // kept while she moves between decks
@@ -26,7 +31,7 @@ export default {
       stream?.getTracks().forEach(tr => tr.stop());
     });
 
-    const deckIds = DECKS.map(d => d.id);
+    const deckIds = [...DECKS.map(d => d.id), "talk"];
     const pick = () => {
       if (deckIds.includes(params[0])) return params[0];
       return deckIds.find(d => notes.some(n => n.deck === d && !content.hasAudio(textOf(n)))) ?? deckIds[0];
@@ -59,7 +64,7 @@ export default {
         <p class="rec-total"><b>${esc(t("record.count", { n: num(content.recordedCount(texts)), total: num(texts.length) }))}</b> · ${esc(t("record.tip"))}</p>
         <div class="tabs" role="tablist">${deckIds.map(d => {
           const left = notes.filter(n => n.deck === d && !content.hasAudio(textOf(n))).length;
-          return `<a role="tab" href="#/record/${d}" aria-selected="${d === deck}"${d === deck ? ' class="is-on"' : ""}>${esc(deckName(d))} <small>${num(left)}</small></a>`;
+          return `<a role="tab" href="#/record/${d}" aria-selected="${d === deck}"${d === deck ? ' class="is-on"' : ""}>${esc(deckLabel(d))} <small>${num(left)}</small></a>`;
         }).join("")}</div>
         <div class="seg" role="group">
           <button type="button" data-filter="todo" aria-pressed="${onlyTodo}">${t("record.filterTodo")}</button>
@@ -125,7 +130,7 @@ export default {
     }, { signal });
 
     Promise.all([loadVocab(), content.load()]).then(([v]) => {
-      notes = v.notes;
+      notes = [...v.notes, ...TALK.map(content.apply)];
       render();
     }, () => {});
     const off = content.onChange(render);

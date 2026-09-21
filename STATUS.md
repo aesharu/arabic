@@ -41,7 +41,7 @@ Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
 
 ## Next (in this order)
 
-0. **Conversations for weeks 11–67** (weeks 3–10 are written). Same rules: built from the plan's words, "to her" forms, every line flagged until Dima ticks it. Then add a "Conversations" tab on the Record page so she can record the lines.
+0. **Conversations for weeks 19–21 and 27–67** (weeks 3–18 and 22–26 are written; the Record page has a Conversations tab). Same rules: plan words, "to her" forms, every line flagged until Dima ticks it.
 1. Tell Volodymyr which recordings/corrections exist; a script to export `edits` from D1 as proposed changes to NAJDI-PLAN.md.
 2. **Prayer times and Qibla** (he asked on 21 Sept):
    - today's five prayers for Riyadh, Umm al-Qura method (Fajr 18.5°, Isha = Maghrib + 90 min, 120 in Ramadan), Asr standard;
