@@ -1,11 +1,10 @@
 // All progress lives in this browser's localStorage under one key, and — once cloud save is connected — in the
 // D1 database too (core/sync.js). The backup file on the Calendar page never contains the cloud-save key.
-const KEY = "najdi-v2";
 const PROFILE = "najdi-profile";
 
-// Who is using this device: Volodymyr (student) studies and saves; Dima (teacher) only looks.
-// In teacher mode nothing she does is saved or sent to the cloud — only the language, theme and cloud key —
-// and the page shows his latest progress from the cloud. Chosen on the welcome screen.
+// Who is using this device, chosen on the welcome screen. Each profile has its own progress, here and in the cloud:
+// Volodymyr (student) is the real learner; Dima (teacher) can study anything in her own copy, which never touches his,
+// and can look at his progress read-only (watch()).
 export const PROFILES = ["student", "teacher"];
 function readProfile() {
   try {
@@ -15,6 +14,7 @@ function readProfile() {
   }
 }
 const profileNow = readProfile();
+const KEY = profileNow === "teacher" ? "najdi-v2-dima" : "najdi-v2";
 export const profile = () => profileNow;
 export const isTeacher = () => profileNow === "teacher";
 export function setProfile(p) {
@@ -32,7 +32,7 @@ const defaults = () => ({
   log: {},
   // Cards (core/cards.js): cardId → the scheduler's card (core/srs.js) plus mod, the time it last changed.
   // prefs: new cards a day, practise saying (reverse cards), open every deck early, read the answer aloud.
-  srs: { cards: {}, prefs: { newPerDay: 8, reverse: true, unlockAll: false, autoplay: true, mod: 0 } },
+  srs: { cards: {}, prefs: { newPerDay: 8, reverse: true, unlockAll: profileNow === "teacher", autoplay: true, mod: 0 } }, // Dima: every deck open
   timer: null, // { start: epoch ms, date: "YYYY-MM-DD" } while the study timer runs
   sync: { key: "", pushedAt: 0 }, // cloud save: this computer's secret key and the last successful save
 });
@@ -61,36 +61,33 @@ function load() {
 let state = load();
 const listeners = new Set();
 
-export const get = () => state;
+// Dima looking at Volodymyr's progress: the whole site shows his, and nothing can change it.
+let his = null;
+export const get = () => his ?? state;
+export const own = () => state; // this profile's own progress, whatever is on screen (cloud save uses it)
+export const watching = () => Boolean(his);
+export function watch(data) {
+  his = data ? merge({ ...data, prefs: state.prefs, sync: state.sync }) : null;
+  listeners.forEach(l => l(get()));
+}
 export const subscribe = fn => (listeners.add(fn), () => listeners.delete(fn));
 
 // silent: true saves without telling subscribers (used by cloud save itself, so it doesn't re-trigger)
-export function update(fn, { silent = false } = {}) {
-  fn(state);
-  save();
-  if (!silent) listeners.forEach(l => l(state));
-}
-
-function save() {
-  try {
-    if (!isTeacher()) return localStorage.setItem(KEY, JSON.stringify(state));
-    // Teacher: keep the saved progress exactly as it was; only this device's settings change.
-    const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
-    localStorage.setItem(KEY, JSON.stringify({ ...saved, prefs: state.prefs, sync: state.sync }));
-  } catch {}
-}
-
-// Teacher: take the cloud copy of his progress as it is (nothing of hers is mixed in) and keep it for next time.
-export function adopt(cloud) {
-  const { prefs, sync } = state;
-  state = merge({ ...cloud, prefs, sync });
+// own: true always changes this profile's own progress (cloud save), even while watching his.
+export function update(fn, { silent = false, own: ownOnly = false } = {}) {
+  if (his && !ownOnly) {
+    // While watching his progress only the language and theme can change.
+    const copy = structuredClone(his);
+    fn(copy);
+    state.prefs = his.prefs = copy.prefs;
+  } else fn(state);
   try {
     localStorage.setItem(KEY, JSON.stringify(state));
   } catch {}
-  listeners.forEach(l => l(state));
+  if (!silent) listeners.forEach(l => l(get()));
 }
 
-export const entry = date => state.log[date] ?? { min: 0, tasks: [] };
+export const entry = date => get().log[date] ?? { min: 0, tasks: [] };
 
 function editEntry(date, fn) {
   update(s => {

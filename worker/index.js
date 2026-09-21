@@ -3,8 +3,9 @@
 //   PUT  /api/progress   ← { data, updatedAt }   replaces it, and keeps a snapshot of the day
 //   POST /api/login      ← { name }               → { role, token } when the name is Volodymyr's or Dima's
 // Every progress request needs "Authorization: Bearer <key>": the SYNC_KEY secret itself, or a token from /api/login.
-// Tokens are an HMAC of the role with SYNC_KEY, so they never need storing. Volodymyr's (student) can read and save;
-// Dima's (teacher) can only read — the server refuses her saves. SYNC_KEY is a Worker secret, never in this repository.
+// Tokens are an HMAC of the role with SYNC_KEY, so they never need storing. Each profile has its own saved progress:
+// Volodymyr's (student) is row "main", Dima's (teacher) is row "dima". Dima may also read his: GET ?who=student.
+// Nobody can write anyone else's. SYNC_KEY is a Worker secret, never in this repository.
 // Everything else is served straight from the assets.
 
 const MAX_BYTES = 1_000_000; // a year of study logs is well under 100 KB
@@ -69,14 +70,17 @@ async function progress(request, env) {
   const role = await roleOf(request, env);
   if (!role) return json({ error: "wrong-key" }, 401);
   await ensureTables(env.DB);
+  const ROW = { student: "main", teacher: "dima" };
+  const own = ROW[role];
 
   if (request.method === "GET") {
-    const row = await env.DB.prepare("SELECT data, updated_at FROM progress WHERE id = 'main'").first();
+    const who = new URL(request.url).searchParams.get("who");
+    const id = who === "student" ? ROW.student : own; // Dima can look at his progress; he has no reason to read hers
+    const row = await env.DB.prepare("SELECT data, updated_at FROM progress WHERE id = ?1").bind(id).first();
     return json(row ? { data: JSON.parse(row.data), updatedAt: row.updated_at } : { data: null, updatedAt: 0 });
   }
 
   if (request.method === "PUT") {
-    if (role !== "student") return json({ error: "read-only" }, 403); // the teacher only looks
     const text = await request.text();
     if (text.length > MAX_BYTES) return json({ error: "too-large" }, 413);
     let body;
@@ -90,10 +94,11 @@ async function progress(request, env) {
       return json({ error: "bad-shape" }, 400);
     }
     const serialized = JSON.stringify(data);
-    const day = new Date().toISOString().slice(0, 10);
+    const today = new Date().toISOString().slice(0, 10);
+    const day = own === "main" ? today : `${own}:${today}`; // his snapshots keep their old keys
     await env.DB.batch([
-      env.DB.prepare("INSERT INTO progress (id, data, updated_at) VALUES ('main', ?1, ?2) ON CONFLICT(id) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at")
-        .bind(serialized, updatedAt),
+      env.DB.prepare("INSERT INTO progress (id, data, updated_at) VALUES (?3, ?1, ?2) ON CONFLICT(id) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at")
+        .bind(serialized, updatedAt, own),
       env.DB.prepare("INSERT INTO snapshots (day, data, saved_at) VALUES (?1, ?2, ?3) ON CONFLICT(day) DO UPDATE SET data = excluded.data, saved_at = excluded.saved_at")
         .bind(day, serialized, Date.now()),
     ]);

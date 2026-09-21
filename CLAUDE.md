@@ -4,7 +4,7 @@
 
 I'm Volodia, a Ukrainian speaker (English as my second language) learning **Najdi Arabic** — the spoken dialect of Riyadh and central Saudi Arabia — from zero. Day 1 was **Monday 21 September 2026**; the plan runs 15 months to **31 December 2027**. My goal is comfortable everyday conversation, studying about 1–2 hours a day.
 
-This project is my personal learning website: the tools I study with every day, hosted on Cloudflare. **I study on my computer**, so the site is built for a desktop screen first. I'm self-taught in code and work mostly through you, so **explain what you're doing in plain language before each step**, and tell me when something needs me to act (logins, accounts, clicking in a dashboard).
+This project is my personal learning website: the tools I study with every day, hosted on Cloudflare. I study on my computer. My girlfriend **Dima** — a Saudi, native Najdi speaker; I'm learning Najdi for her — uses it on her **iPad** and iPhone with her own profile (see `STATUS.md`). Every page must work on all three. I'm self-taught in code and work mostly through you, so **explain what you're doing in plain language before each step**, and tell me when something needs me to act (logins, accounts, clicking in a dashboard).
 
 ## Sources of truth
 
@@ -33,7 +33,7 @@ This project is my personal learning website: the tools I study with every day, 
 1. ✅ Project set up and restructured: `public/` site, `.gitignore`, `README.md`, git history.
 2. ✅ GitHub repository: https://github.com/aesharu/arabic
 3. ✅ Deployed to Cloudflare **Workers with static assets** as `arabic` → https://arabic.aesdvi.workers.dev. Deploy with `npx wrangler deploy` (Wrangler is logged in on this Mac). Auto-deploy on push is not connected yet — it needs the dashboard: Worker → Settings → Build → Connect.
-4. ✅ Cloud save: D1 database `arabic-db` (binding `DB`), API in `worker/index.js`, secret `SYNC_KEY` set with `wrangler secret put` — never commit it.
+4. ✅ Cloud save: D1 database `arabic-db` (binding `DB`), API in `worker/index.js`, secret `SYNC_KEY` set with `wrangler secret put` — never commit it. Sign-in is by typing the profile's name on the welcome screen (`/api/login`); my progress is row `main`, Dima's is row `dima`.
 
 Phases 2–4 of Part 9 of `NAJDI-PLAN.md` are built too (only `npm run pdf` is missing). Deploy in small parts as each is ready, so I can see it live.
 
@@ -44,6 +44,8 @@ Phases 2–4 of Part 9 of `NAJDI-PLAN.md` are built too (only `npm run pdf` is m
 - Never commit secrets, API keys or tokens. No accounts or payments without asking me.
 - I study on my computer; my girlfriend uses an **iPhone and an iPad**. Every page must look good on desktop, iPhone (~390px) and iPad (~820px), in light and dark — check screenshots at those widths before deploying.
 - Defaults: English interface and the Saudi theme (green and white, dark green when the computer is in dark mode).
+- **My account is the real progress.** Nothing in Dima's profile may ever change my progress; she can view mine read-only. Address her in feminine Arabic forms.
+- When I say "commit", "push" or "so I can see it": run `npm test`, commit, push, `npx wrangler deploy`, and update `STATUS.md`.
 - When I report a bug, find the cause before changing code.
 
 ## Arabic content rules — important

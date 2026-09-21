@@ -22,7 +22,8 @@ public/                 the website — Cloudflare serves this folder as-is
     data/               letters, vowels, words, phrases, plan — the content
     i18n/strings.js     every interface text in English, Ukrainian, Najdi and MSA
     views/              one file per page
-worker/index.js         the only server code: /api/progress saves progress to the D1 database
+  css/welcome.css, js/core/welcome.js, js/core/music.js   the welcome screen, profiles and the synthesised oud greeting
+worker/index.js         the only server code: /api/login (sign in by name) and /api/progress (each profile's progress in D1)
 scripts/build-vocab.mjs npm run vocab — builds public/data/vocab.json and the Anki decks from NAJDI-PLAN.md + NAJDI-WORDS.md
 data/                   MSA and Ukrainian meanings for the plan's vocabulary
 tests/                  checks for dates/plan logic, translations, vocabulary and content vs NAJDI-PLAN.md
@@ -44,7 +45,7 @@ npm test         # all checks must pass before every commit
 npm test && npx wrangler deploy
 ```
 
-The site is https://arabic.aesdvi.workers.dev. Progress is saved in the browser and, once a computer is connected with the cloud-save key (Calendar → Your data), in the D1 database `arabic-db`. The key is the Worker secret `SYNC_KEY`.
+The site is https://arabic.aesdvi.workers.dev. It opens with a welcome screen: choose Volodymyr (student) or Dima (teacher) and, the first time on a device, type the name — that signs in to cloud save. Progress is saved in the browser and in the D1 database `arabic-db`, one row per profile; Dima can also view Volodymyr's progress read-only. Tokens are derived from the Worker secret `SYNC_KEY`, which also still works as a key on its own (Calendar → Your data).
 
 ## Content rules
 

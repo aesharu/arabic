@@ -168,16 +168,36 @@ document.querySelector(".themes").addEventListener("click", e => {
   show(current.name, current.params);
 });
 
-// Teacher view: a note at the top of every page. Pages that draw themselves later (after loading words)
-// replace their content, so the note is put back whenever it goes missing.
+// Dima's profile: a note at the top of every page, with a switch between her own study and his progress (read-only).
+// Pages that draw themselves later (after loading words) replace their content, so the note is put back when it goes missing.
+let hisError = false;
 function teacherBanner() {
   if (!store.isTeacher() || view.querySelector(":scope > .teacher-banner")) return;
-  view.insertAdjacentHTML("afterbegin", `<p class="teacher-banner" role="note">${icon("star")}<span>${t("teacher.banner")}${
-    store.get().sync.key ? "" : `<small>${t("teacher.connect")}</small>`}</span></p>`);
+  const w = store.watching();
+  const hint = hisError ? t("teacher.hisError") : !store.own().sync.key ? t("teacher.connect") : "";
+  view.insertAdjacentHTML("afterbegin", `<div class="teacher-banner${w ? " is-watching" : ""}" role="note">${icon("star")}
+    <span>${t(w ? "teacher.watching" : "teacher.banner")}${hint ? `<small>${hint}</small>` : ""}</span>
+    <button type="button" class="btn btn-ghost" data-watch>${t(w ? "teacher.backMine" : "teacher.seeHis")}</button></div>`);
 }
 if (store.isTeacher()) {
   document.documentElement.style.overflowAnchor = "none"; // otherwise the browser scrolls to keep the page still and pushes the note off the top
   new MutationObserver(teacherBanner).observe(view, { childList: true });
+  view.addEventListener("click", async e => {
+    const b = e.target.closest("[data-watch]");
+    if (!b) return;
+    b.disabled = true;
+    hisError = false;
+    if (store.watching()) store.watch(null);
+    else {
+      try {
+        store.watch(await sync.fetchHis());
+      } catch (err) {
+        hisError = err.state !== "off"; // not signed in to the cloud: the note already says how
+      }
+    }
+    document.body.classList.toggle("is-watching", store.watching());
+    show(current.name, current.params);
+  });
 }
 
 function show(name, params) {

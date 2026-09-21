@@ -25,7 +25,7 @@
 <script>
   // Apply the saved theme and language before the first paint, so the page doesn't flash.
   try {
-    const p = JSON.parse(localStorage.getItem("najdi-v2") || "{}").prefs || {};
+    const p = JSON.parse(localStorage.getItem(localStorage.getItem("najdi-profile") === "teacher" ? "najdi-v2-dima" : "najdi-v2") || "{}").prefs || {};
     if (["saudi", "saudi-dark", "light", "dark"].includes(p.theme)) document.documentElement.dataset.theme = p.theme;
     if (p.lang === "najdi" || p.lang === "msa") { document.documentElement.dir = "rtl"; document.documentElement.lang = "ar"; }
     else if (p.lang === "uk") document.documentElement.lang = "uk";

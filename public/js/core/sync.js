@@ -18,7 +18,7 @@ const setStatus = (state, extra = {}) => {
   listeners.forEach(fn => fn(status));
 };
 
-const key = () => store.get().sync?.key ?? "";
+const key = () => store.own().sync?.key ?? "";
 const headers = () => ({ authorization: `Bearer ${key()}`, "content-type": "application/json" });
 
 // The parts of the state that belong in the cloud. prefs (language, theme) stay per computer; so does the timer.
@@ -63,15 +63,15 @@ async function request(method, body) {
 }
 
 export async function push() {
-  if (!key() || store.isTeacher()) return; // the teacher's device only reads
+  if (!key()) return;
   clearTimeout(timer);
   setStatus("syncing");
   try {
     const updatedAt = Date.now();
-    const data = cloudPart(store.get());
+    const data = cloudPart(store.own());
     await request("PUT", { data, updatedAt });
     lastPushed = JSON.stringify(data);
-    store.update(s => { s.sync.pushedAt = updatedAt; }, { silent: true });
+    store.update(s => { s.sync.pushedAt = updatedAt; }, { silent: true, own: true });
     setStatus("saved");
   } catch (e) {
     setStatus(e.state ?? "error");
@@ -84,17 +84,11 @@ export async function pull() {
   setStatus("syncing");
   try {
     const { data } = await request("GET");
-    if (store.isTeacher()) {
-      const before = JSON.stringify(cloudPart(store.get()));
-      if (data) store.adopt(data);
-      setStatus("saved");
-      return JSON.stringify(cloudPart(store.get())) !== before; // re-render only when his progress moved
-    }
     if (data) {
-      const before = JSON.stringify(cloudPart(store.get()));
-      store.update(s => Object.assign(s, merge(s, data)), { silent: true });
-      const after = JSON.stringify(cloudPart(store.get()));
-      lastPushed = JSON.stringify(cloudPart({ ...data, version: store.get().version }));
+      const before = JSON.stringify(cloudPart(store.own()));
+      store.update(s => Object.assign(s, merge(s, data)), { silent: true, own: true });
+      const after = JSON.stringify(cloudPart(store.own()));
+      lastPushed = JSON.stringify(cloudPart({ ...data, version: store.own().version }));
       if (after !== lastPushed) await push(); // this computer had something the cloud didn't
       else setStatus("saved");
       return before !== after; // true when the page should re-render
@@ -106,25 +100,33 @@ export async function pull() {
   return false;
 }
 
+// Volodymyr's progress, for Dima to look at (read-only).
+export async function fetchHis() {
+  if (!key()) throw Object.assign(new Error("off"), { state: "off" });
+  const res = await fetch("api/progress?who=student", { headers: headers(), cache: "no-store" });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return (await res.json()).data;
+}
+
 export function connect(newKey) {
-  store.update(s => { s.sync = { key: newKey.trim(), pushedAt: 0 }; }, { silent: true });
+  store.update(s => { s.sync = { key: newKey.trim(), pushedAt: 0 }; }, { silent: true, own: true });
   return pull();
 }
 
 export function disconnect() {
-  store.update(s => { s.sync = { key: "", pushedAt: 0 }; }, { silent: true });
+  store.update(s => { s.sync = { key: "", pushedAt: 0 }; }, { silent: true, own: true });
   setStatus("off");
 }
 
 // Any change to progress schedules a push a few seconds later (one request for a burst of clicks).
 export function start(onRemoteChange) {
-  store.subscribe(s => {
-    if (!key() || store.isTeacher() || JSON.stringify(cloudPart(s)) === lastPushed) return;
+  store.subscribe(() => {
+    if (!key() || JSON.stringify(cloudPart(store.own())) === lastPushed) return;
     clearTimeout(timer);
     timer = setTimeout(push, DEBOUNCE_MS);
   });
   addEventListener("pagehide", () => key() && timer && push());
-  const refresh = () => pull().then(changed => changed && onRemoteChange());
-  if (store.isTeacher()) setInterval(refresh, 5 * 60_000); // keep her view of his progress fresh
-  refresh();
+  pull().then(changed => changed && !store.watching() && onRemoteChange());
+  // Dima watching his progress: refresh it every few minutes.
+  setInterval(() => store.watching() && fetchHis().then(d => d && (store.watch(d), onRemoteChange()), () => {}), 5 * 60_000);
 }

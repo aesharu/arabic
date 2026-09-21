@@ -765,4 +765,8 @@ html[dir="rtl"] .print-bar p { margin: 0 0 0 auto; }
   font-size: 15.5px; line-height: 1.45;
 }
 .teacher-banner .i { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 2px; }
+.teacher-banner > span { flex: 1; }
+.teacher-banner .btn { flex: 0 0 auto; align-self: center; white-space: nowrap; }
+.teacher-banner.is-watching { background: color-mix(in srgb, var(--accent) 12%, var(--surface)); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+@media (max-width: 560px) { .teacher-banner { flex-wrap: wrap; } .teacher-banner .btn { width: 100%; } }
 .teacher-banner small { display: block; margin-top: 2px; color: var(--muted); font-size: 14.5px; }
