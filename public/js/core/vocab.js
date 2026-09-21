@@ -4,6 +4,7 @@
 import { PHASES } from "../data/plan.js";
 import { PHRASES } from "../data/phrases.js";
 import { LOVE_ITEMS } from "../data/love.js";
+import { HER_WORDS } from "../data/hers.js";
 import { dateOfDay } from "./schedule.js";
 import * as content from "./content.js";
 
@@ -34,6 +35,7 @@ content.onChange(applyEdits);
 // id → when that deck opens. PHASES[1] is Stage 1, [2] Stage 2, [3] Stage 3, [4] Stage 4.
 export const DECKS = [
   { id: "phrases", opens: PHASES[0].start },
+  { id: "hers", opens: PHASES[0].start }, // words she taught him — open from the first day
   { id: "love", opens: PHASES[0].start }, // what to say to her — open from the first day
   { id: "1", opens: PHASES[1].start },
   { id: "grammar", opens: PHASES[1].start },
@@ -80,9 +82,10 @@ export function buildNotes(vocab) {
       topicTitle: twin?.topicTitle,
     });
   }
-  // To her ♥ (data/love.js): open from Day 1.
+  // Her words (data/hers.js) and To her ♥ (data/love.js): open from Day 1.
+  for (const x of HER_WORDS) add({ ...x, deck: "hers", opens: OPENS.hers, check: false, topicTitle: null });
   for (const x of LOVE_ITEMS) add({ ...x, deck: "love", opens: OPENS.love, topicTitle: null });
-  for (const d of DECKS.filter(d => !["phrases", "love"].includes(d.id))) {
+  for (const d of DECKS.filter(d => !["phrases", "hers", "love"].includes(d.id))) {
     for (const e of all.filter(x => x.deck === d.id)) add({ ...e, opens: OPENS[d.id] });
   }
   return notes;

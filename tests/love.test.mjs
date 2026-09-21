@@ -45,3 +45,15 @@ test("her birthday: goals and wishes in four languages; the date is 2 Ramadan 14
   const hijri = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { day: "numeric", month: "long" }).format(new Date(`${B.BIRTHDAY}T12:00:00Z`));
   assert.match(hijri, /Ramadan 2/);
 });
+
+test("her words and the rude words: four languages, pronunciation, a level for each rude one", async () => {
+  const H = await import("../public/js/data/hers.js");
+  assert.ok(H.HER_WORDS.length >= 9);
+  for (const w of [...H.HER_WORDS, ...H.RUDE]) {
+    for (const f of ["ar", "say", "en", "uk", "msa"]) assert.ok(w[f], `${w.ar}: ${f}`);
+    assert.match(w.uk, /[Ѐ-ӿ]/);
+    assert.match(w.msa, /[؀-ۿ]/);
+  }
+  for (const w of H.RUDE) assert.ok(["rude", "very rude"].includes(w.level), `${w.ar}: level`);
+  assert.equal(new Set([...H.HER_WORDS, ...H.RUDE].map(w => w.id)).size, H.HER_WORDS.length + H.RUDE.length);
+});

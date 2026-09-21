@@ -55,6 +55,7 @@ export function ring(fraction, size = 86) {
 export function deckName(id) {
   if (id === "phrases") return t("cards.deckPhrases");
   if (id === "love") return t("cards.deckLove");
+  if (id === "hers") return t("cards.deckHers");
   if (["1", "2", "3"].includes(id)) return tx(phaseTitle(PHASES[+id]));
   return t(id === "4" ? "words.her" : id === "special" ? "words.special" : "words.grammar");
 }

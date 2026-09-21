@@ -1239,3 +1239,15 @@ html[dir="rtl"] .bd-go .i { transform: scaleX(-1); }
 .bd-line .gr-msa { display: block; }
 .is-testing .bd-line:not(.is-open) :is(.bd-ar, .bd-say, .gr-msa) { display: none; }
 .bd-today { background: linear-gradient(135deg, #7A1330, #D63A5E); color: #FFF4F6; }
+
+/* Her words and the rude ones (Phrases page) */
+.pday.hers h2 { color: #B0284C; }
+:root[data-theme$="dark"] .pday.hers h2, :root[data-theme="dark"] .pday.hers h2 { color: #F7A8B8; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme]) .pday.hers h2 { color: #F7A8B8; } }
+.rude { margin-top: 28px; }
+.rude summary { cursor: pointer; list-style: none; }
+.rude summary h2 { display: inline; }
+.rude summary::before { content: "▸ "; color: var(--muted); }
+.rude[open] summary::before { content: "▾ "; }
+.rude-tag { display: inline-block; vertical-align: 2px; margin: 0 4px; padding: 1px 7px; border-radius: 6px; background: color-mix(in srgb, var(--bad) 14%, transparent); color: var(--bad); font-size: 12.5px; font-weight: 800; white-space: nowrap; }
+.rude-tag.is-very { background: var(--bad); color: #fff; }

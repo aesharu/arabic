@@ -278,6 +278,12 @@ export const STRINGS = {
   "progress.goal": { en: "goal", uk: "мета", najdi: "الهدف", msa: "الهدف" },
 
   // Letters
+  "phrases.hers": { en: "Her words ♥", uk: "Її слова ♥", najdi: "كلماتها ♥", msa: "كلماتها ♥" },
+  "phrases.hersSub": { en: "Words she taught you — the way people really talk today.", uk: "Слова, яких вона тебе навчила, — так, як люди справді говорять сьогодні.", najdi: "كلمات علّمتك إياها — مثل ما يتكلمون الناس اليوم صدق.", msa: "كلمات علّمتك إيّاها — كما يتحدّث الناس اليوم فعلًا." },
+  "phrases.rude": { en: "Rude words — recognize them, never say them", uk: "Грубі слова — розпізнавай, але ніколи не кажи", najdi: "كلام قليل أدب — اعرفه ولا تقوله", msa: "ألفاظ بذيئة — اعرفها ولا تقلها" },
+  "phrases.rudeSub": { en: "So you know what you're hearing. Don't use them.", uk: "Щоб ти розумів, що чуєш. Не вживай їх.", najdi: "عشان تعرف وش تسمع. لا تستخدمها.", msa: "لتعرف ما تسمعه. لا تستعملها." },
+  "phrases.rudeTag": { en: "rude", uk: "грубо", najdi: "قليل أدب", msa: "بذيء" },
+  "phrases.veryRude": { en: "very rude", uk: "дуже грубо", najdi: "عيب مرة", msa: "بذيء جدًا" },
   "love.title": { en: "To her ♥", uk: "Для неї ♥", najdi: "كلام الحب ♥", msa: "عبارات الحب ♥" },
   "love.sub": {
     en: "What to say to her — love, missing her, compliments, flirting, making up, your future and her family. In her dialect.",
@@ -803,6 +809,7 @@ export const STRINGS = {
   "cards.allDoneToday": { en: "All done for today", uk: "На сьогодні все", najdi: "خلّصت كروت اليوم", msa: "أنهيت بطاقات اليوم" },
   "cards.waiting": { en: "Cards waiting: {n}", uk: "Карток чекає: {n}", najdi: "كروت تنتظرك: {n}", msa: "بطاقات بانتظارك: {n}" },
   "cards.decks": { en: "Decks", uk: "Колоди", najdi: "المجموعات", msa: "المجموعات" },
+  "cards.deckHers": { en: "Her words ♥", uk: "Її слова ♥", najdi: "كلماتها ♥", msa: "كلماتها ♥" },
   "cards.deckLove": { en: "To her ♥", uk: "Для неї ♥", najdi: "كلام الحب ♥", msa: "عبارات الحب ♥" },
   "cards.deckPhrases": { en: "Script weeks · daily phrases", uk: "Тижні письма · фрази дня", najdi: "أسابيع الكتابة · عبارات اليوم", msa: "أسبوعا الكتابة · العبارات اليومية" },
   "cards.allDecks": { en: "All decks", uk: "Усі колоди", najdi: "كل المجموعات", msa: "جميع المجموعات" },
