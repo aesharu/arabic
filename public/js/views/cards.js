@@ -187,7 +187,8 @@ export default {
               ? `<p class="study-ar big">${ar(n.ar)}</p>`
               : `${meaningFront(n)}<p class="study-prompt">${t("cards.sayPrompt")}</p>`}
           </div>
-          ${kind === "r" || current.revealed ? `<button class="hear" data-say="${esc(n.speak ?? speakText(n.ar))}" aria-label="${esc(t("lab.hear", { what: n.say }))}" title="R">${icon("sound")}</button>` : ""}
+          ${kind === "r" || current.revealed ? `<button class="hear" data-say="${esc(n.speak ?? speakText(n.ar))}" aria-label="${esc(t("lab.hear", { what: n.say }))}" title="R">${icon("sound")}</button>
+            <button class="hear hear-slow" data-say-slow="${esc(n.speak ?? speakText(n.ar))}" aria-label="${esc(t("speech.slowLabel"))}" title="S">${icon("slow")}</button>` : ""}
           <div class="study-back" aria-live="polite">${current.revealed ? `<hr>${answerSide(n, kind)}` : ""}</div>
         </article>
         </div>
@@ -313,6 +314,9 @@ export default {
       else if (e.key.toLowerCase() === "r" || e.key === "ق") {
         const n = byId.get(cards.noteOfCard(current.cardId));
         if (cards.kindOf(current.cardId) === "r" || current.revealed) say(n.speak ?? speakText(n.ar));
+      } else if (e.key.toLowerCase() === "s" || e.key === "س") {
+        const n = byId.get(cards.noteOfCard(current.cardId));
+        if (cards.kindOf(current.cardId) === "r" || current.revealed) say(n.speak ?? speakText(n.ar), { slow: true });
       }
     }, { signal });
 

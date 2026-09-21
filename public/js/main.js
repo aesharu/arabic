@@ -11,7 +11,7 @@ import { attachTooltips, fitCharts } from "./core/charts.js";
 import { loadVocab, vocabNow } from "./core/vocab.js";
 import { counts as cardCounts } from "./core/cards.js";
 import * as sync from "./core/sync.js";
-import { welcome, switchProfile } from "./core/welcome.js";
+import { welcome, switchProfile, logOut } from "./core/welcome.js";
 import { chime } from "./core/music.js";
 
 import today from "./views/today.js";
@@ -63,12 +63,15 @@ document.querySelector("[data-menu-close]").addEventListener("click", () => {
 });
 document.addEventListener("keydown", e => e.key === "Escape" && document.body.classList.contains("menu-open") && (setMenu(false), moreButton.focus()));
 
-// Anything with data-say speaks its Arabic, on every page; ✎ (data-edit) opens the word's correction form.
+// Anything with data-say speaks its Arabic, on every page (tap again: slowly); data-say-slow always slowly.
+// ✎ (data-edit) opens the word's correction form.
 document.addEventListener("click", e => {
   const ed = e.target.closest("[data-edit]");
   if (ed) return openEditor(ed.dataset.edit, () => show(current.name, current.params));
+  const slow = e.target.closest("[data-say-slow]");
+  if (slow) return say(slow.dataset.saySlow, { slow: true });
   const el = e.target.closest("[data-say]");
-  if (el) say(el.dataset.say);
+  if (el) say(el.dataset.say, { tap: true });
 });
 // Corrections, suggestions and recordings: load them, and redraw the page (and the menu) when they change.
 function renderReviewCount() {
@@ -100,6 +103,7 @@ if (store.isTeacher()) {
 }
 attachTooltips(document);
 document.querySelector("[data-profile-switch]").addEventListener("click", switchProfile);
+document.querySelector("[data-logout]").addEventListener("click", logOut);
 document.body.classList.toggle("is-teacher", store.isTeacher());
 
 // Sidebar texts in index.html name their string with a data-i18n attribute.

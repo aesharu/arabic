@@ -3,11 +3,16 @@
 //                                 "this is correct Najdi" (removes the check-with-tutor flag)
 //   openTextEditor(target, src)   any text on the site (a menu item, a heading, a lesson) — English, Ukrainian, Najdi, MSA
 // Volodymyr's changes go live; Dima's are sent to him as suggestions (core/content.js). The plan file is untouched.
+// After saving, a message with Undo. A word's editor also has its voice: listen, slowly, and (Dima) record it.
 import { t } from "./i18n.js";
 import { esc } from "./dom.js";
+import { icon } from "./art.js";
 import * as content from "./content.js";
 import * as store from "./store.js";
 import { vocabNow } from "./vocab.js";
+import { toast, rescue } from "./toast.js";
+import { say } from "./speech.js";
+import { openStudio, spoken } from "./studio.js";
 
 function find(id) {
   const v = vocabNow();
@@ -31,7 +36,7 @@ const TEXT_FIELDS = [
 ];
 
 // The dialog both editors share. fields: [name, label, dir, lang]; values: current; orig: before any change.
-function dialog({ title, fields, values, orig, extra = "", note = "", long = false, onSave, onRevert }) {
+function dialog({ title, fields, values, orig, top = "", extra = "", note = "", long = false, onSave, onRevert, onReady }) {
   const dlg = document.createElement("dialog");
   dlg.className = "editor";
   dlg.setAttribute("aria-labelledby", "editor-title");
@@ -40,6 +45,7 @@ function dialog({ title, fields, values, orig, extra = "", note = "", long = fal
     <h2 id="editor-title">${title}</h2>
     ${content.signedIn() ? "" : `<p class="editor-msg is-bad">${t("edit.signIn")}</p>`}
     ${note ? `<p class="muted small">${note}</p>` : ""}
+    ${top}
     ${fields.map(([f, label, dir, lang]) => `<label class="editor-field"><span>${t(label)}</span>
       ${long ? `<textarea name="${f}" dir="${dir}" lang="${lang}" rows="3" spellcheck="false">${esc(values[f] ?? "")}</textarea>`
         : `<input name="${f}" dir="${dir}" lang="${lang}" value="${esc(values[f] ?? "")}" autocomplete="off" spellcheck="false">`}
@@ -56,6 +62,7 @@ function dialog({ title, fields, values, orig, extra = "", note = "", long = fal
   const form = dlg.querySelector("form");
   const msg = dlg.querySelector(".editor-msg[aria-live]");
   const close = () => {
+    rescue();
     dlg.close();
     dlg.remove();
   };
@@ -75,19 +82,45 @@ function dialog({ title, fields, values, orig, extra = "", note = "", long = fal
     btn.disabled = true;
     msg.textContent = "";
     try {
-      const res = await onSave(form);
-      if (res?.pending) {
-        msg.classList.add("is-good");
-        msg.textContent = t("edit.sent");
-        setTimeout(close, 1400);
-      } else close();
+      await onSave(form);
+      close();
     } catch {
       msg.textContent = t("edit.error");
       btn.disabled = false;
     }
   });
+  onReady?.(dlg, close);
   dlg.showModal();
-  form.elements[0]?.focus();
+  form.querySelector("input, textarea")?.focus();
+}
+
+// Said once it's saved, with Undo: Dima's suggestion is taken back; Volodymyr's change goes back to what was there.
+async function saveWithUndo(id, data, before) {
+  const live = store.isTeacher() ? null : content.editOf(id);
+  const res = await content.saveEdit(id, data, before);
+  const undone = () => toast(t("edit.undone"));
+  const failed = () => toast(t("edit.error"));
+  if (res?.pending) {
+    toast(t("edit.sent"), { action: t("studio.undo"), onAction: () => content.withdraw(res.sid).then(undone, failed) });
+  } else {
+    const { by, at, ...was } = live ?? {};
+    toast(t("edit.savedToast"), { action: t("studio.undo"), onAction: () => (live ? content.saveEdit(id, was) : content.revertEdit(id)).then(undone, failed) });
+  }
+  return res;
+}
+
+// The voice of a word: hers if recorded, and in her profile a way into the studio.
+function voiceRow(e) {
+  const has = content.hasAudio(spoken(e));
+  const canRecord = store.isTeacher() && content.signedIn();
+  return `<div class="editor-voice">
+    <span class="ev-state${has ? " is-hers" : ""}">${has ? `${icon("check")} ${t("studio.herVoice")}` : t("studio.robotVoice")}</span>
+    <span class="ev-btns">
+      <button type="button" class="btn btn-ghost" data-ev="play" aria-label="${esc(t("record.play"))}">${icon("play")}</button>
+      <button type="button" class="btn btn-ghost" data-ev="slow" aria-label="${esc(t("speech.slowLabel"))}">${icon("slow")}</button>
+      ${canRecord ? `<button type="button" class="btn" data-ev="record">${icon("mic")} ${t(has ? "record.redo" : "record.start")}</button>` : ""}
+    </span>
+  </div>`;
 }
 
 export function openEditor(id) {
@@ -99,7 +132,17 @@ export function openEditor(id) {
     fields: WORD_FIELDS,
     values: e,
     orig,
+    top: voiceRow(e),
     extra: `<label class="check"><input type="checkbox" name="checked"${content.editOf(id)?.checked ? " checked" : ""}><span>${t("edit.checked")}</span></label>`,
+    onReady: (dlg, close) => dlg.querySelector(".editor-voice").addEventListener("click", ev => {
+      const b = ev.target.closest("[data-ev]");
+      if (!b) return;
+      if (b.dataset.ev === "record") {
+        close();
+        return openStudio([e], 0);
+      }
+      say(spoken(e), { slow: b.dataset.ev === "slow" });
+    }),
     onSave: form => {
       const data = { checked: form.checked.checked };
       // Only what differs from the plan is stored, so later fixes to the plan still come through.
@@ -107,7 +150,7 @@ export function openEditor(id) {
         const v = form[f].value.trim();
         if (v && v !== orig[f]) data[f] = v;
       }
-      return content.saveEdit(id, data, Object.fromEntries(WORD_FIELDS.map(([f]) => [f, orig[f]])));
+      return saveWithUndo(id, data, Object.fromEntries(WORD_FIELDS.map(([f]) => [f, orig[f]])));
     },
     onRevert: !store.isTeacher() && content.editOf(id) ? () => content.revertEdit(id) : null,
   });
@@ -130,7 +173,7 @@ export function openTextEditor(target, source) {
         const v = form[f].value.trim();
         if (v && v !== orig[f]) data[f] = v;
       }
-      return content.saveEdit(target, data, orig);
+      return saveWithUndo(target, data, orig);
     },
     onRevert: !store.isTeacher() && content.editOf(target) ? () => content.revertEdit(target) : null,
   });

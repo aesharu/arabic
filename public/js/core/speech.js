@@ -3,6 +3,8 @@
 // so each time it plays a short note says so.
 import * as content from "./content.js";
 import { t } from "./i18n.js";
+import { toast } from "./toast.js";
+import { SLOW, stop } from "./audiotools.js";
 
 export const canSpeak = "speechSynthesis" in window;
 
@@ -16,39 +18,30 @@ if (canSpeak) {
   speechSynthesis.onvoiceschanged = pickVoice;
 }
 
-let toast = null;
-let toastTimer = 0;
-function robotNote() {
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.className = "voice-toast";
-    toast.setAttribute("role", "status");
-    document.body.append(toast);
-  }
-  toast.textContent = t("speech.robot");
-  toast.classList.add("is-on");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("is-on"), 3200);
-}
-
-function robot(text) {
+function robot(text, slow) {
   if (!canSpeak) return;
   try {
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = "ar-SA";
     if (voice) u.voice = voice;
-    u.rate = 0.8;
+    u.rate = slow ? 0.5 : 0.8;
     speechSynthesis.speak(u);
-    robotNote();
+    toast(slow ? `${t("speech.slow")} · ${t("speech.robot")}` : t("speech.robot"), { ms: 3200 });
   } catch {}
 }
 
-export function say(text) {
+// Tap the same speaker again within a few seconds and it plays slowly (the next tap is normal again).
+let last = { text: "", at: 0, slow: false };
+export function say(text, { tap = false, slow } = {}) {
+  const now = Date.now();
+  slow ??= tap && last.tap && last.text === text && now - last.at < 5000 && !last.slow;
+  last = { text, at: now, slow, tap };
   if (content.hasAudio(text)) {
     if (canSpeak) speechSynthesis.cancel();
-    content.playRecording(text).catch(() => robot(text));
+    content.playRecording(text, slow ? SLOW : 1).then(() => slow && toast(t("speech.slowHint")), () => robot(text, slow));
     return;
   }
-  robot(text);
+  stop();
+  robot(text, slow);
 }

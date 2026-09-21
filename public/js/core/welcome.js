@@ -3,7 +3,7 @@
 // Dima / Діма / ديما). That signs in to cloud save (worker /api/login): Volodymyr's progress is saved in the database;
 // Dima's sign-in can only read it.
 // Then: a greeting, her or his name in gold, and five seconds of oud.
-// It is a friendly door, not a lock: anyone who reads this file can see the name.
+// It is a friendly door, not a lock: anyone who reads this file can see the name. "Log out" in the menu forgets the sign-in.
 import { lang } from "./i18n.js";
 import { STRINGS } from "../i18n/strings.js";
 import { scene } from "./art.js";
@@ -224,5 +224,20 @@ export function welcome() {
 
 // "Switch profile" in the menu: show the welcome screen again.
 export function switchProfile() {
+  location.reload();
+}
+
+// "Log out": this device forgets both sign-ins, so the name must be written again on the welcome screen.
+// Progress stays: it's saved in the cloud (the last minutes are sent first) and on this device.
+export async function logOut() {
+  if (store.own().sync?.key) await sync.push().catch(() => {});
+  sync.disconnect();
+  storage("local", s => {
+    s.removeItem(LOGINS);
+    for (const k of ["najdi-v2", "najdi-v2-dima"]) {
+      const d = JSON.parse(s.getItem(k) || "null");
+      if (d?.sync?.key) s.setItem(k, JSON.stringify({ ...d, sync: { key: "", pushedAt: 0 } }));
+    }
+  });
   location.reload();
 }

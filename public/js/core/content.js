@@ -2,10 +2,12 @@
 // Corrections are laid over the words from the plan at runtime — NAJDI-PLAN.md itself never changes here.
 // Recordings are found by their Arabic text, so a word she records plays wherever that word appears.
 import * as store from "./store.js";
+import { play } from "./audiotools.js";
 
 let edits = {};
 let audio = {}; // key → time recorded
 let suggestions = []; // Dima's changes waiting for Volodymyr: { sid, target, data, before, at }
+let history = []; // the last ones he decided: the same, with status "approved" or "rejected"
 let loaded = null;
 const listeners = new Set();
 export const onChange = fn => (listeners.add(fn), () => listeners.delete(fn));
@@ -31,6 +33,7 @@ export function load() {
       edits = d.edits ?? {};
       audio = d.audio ?? {};
       suggestions = d.suggestions ?? [];
+      history = d.history ?? [];
       changed();
     })
     .catch(() => {})
@@ -50,6 +53,7 @@ function effective(id) {
 }
 export const editOf = id => effective(id);
 export const pending = () => suggestions;
+export const decided = () => history;
 export const pendingFor = id => suggestions.find(x => x.target === id);
 // A text anywhere on the site, if it has been changed: "s.<string key>" or "x.<hash>" (see core/i18n.js).
 export const textOf = (id, l) => effective(id)?.[l];
@@ -83,6 +87,7 @@ export async function decide(sid, action) {
   const res = await r.json();
   const s = suggestions.find(x => x.sid === sid);
   suggestions = suggestions.filter(x => x.sid !== sid);
+  if (s) history = [{ ...s, status: action === "approve" ? "approved" : "rejected" }, ...history];
   if (action === "approve" && s) edits[s.target] = { ...res.data, by: "teacher", at: Date.now() };
   changed();
 }
@@ -106,24 +111,24 @@ export const hasAudio = text => Boolean(audio[audioKey(text)]);
 export const recordedCount = texts => texts.filter(hasAudio).length;
 const urls = new Map();
 
+// Each version has its own address (?v=<time recorded>), so a new recording never plays the old one from the cache.
 async function urlFor(text) {
   const k = audioKey(text);
   const tag = `${k}.${audio[k]}`;
   if (!urls.has(tag)) {
-    const r = await fetch(`api/audio/${k}`, { headers: auth() });
+    const r = await fetch(`api/audio/${k}?v=${audio[k]}`, { headers: auth() });
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     urls.set(tag, URL.createObjectURL(await r.blob()));
   }
   return urls.get(tag);
 }
 
-let playing = null;
-export async function playRecording(text) {
-  playing?.pause();
-  const a = new Audio(await urlFor(text));
-  playing = a;
-  await a.play();
-  return a;
+export const playRecording = async (text, rate = 1) => play(await urlFor(text), rate);
+
+// The version before the last change (for "bring it back"): an object URL, or null when there was none.
+export async function previousUrl(text) {
+  const r = await fetch(`api/audio/${audioKey(text)}?v=prev`, { headers: auth(), cache: "no-store" });
+  return r.status === 200 ? URL.createObjectURL(await r.blob()) : null; // 204: there was none
 }
 
 export async function upload(text, blob) {
@@ -131,6 +136,7 @@ export async function upload(text, blob) {
   const r = await fetch(`api/audio/${k}`, { method: "PUT", headers: { ...auth(), "content-type": blob.type.split(";")[0] || "audio/mp4" }, body: blob });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   audio[k] = (await r.json()).at;
+  urls.set(`${k}.${audio[k]}`, URL.createObjectURL(blob)); // no need to download what was just recorded
   changed();
 }
 
@@ -139,5 +145,16 @@ export async function removeRecording(text) {
   const r = await fetch(`api/audio/${k}`, { method: "DELETE", headers: auth() });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   delete audio[k];
+  changed();
+}
+
+// Undo the last change to a recording (a new one, a replacement or a delete). Doing it again redoes it.
+export async function restoreRecording(text) {
+  const k = audioKey(text);
+  const r = await fetch(`api/audio/${k}`, { method: "POST", headers: { ...auth(), "content-type": "application/json" }, body: JSON.stringify({ action: "restore" }) });
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const { at } = await r.json();
+  if (at) audio[k] = at;
+  else delete audio[k];
   changed();
 }

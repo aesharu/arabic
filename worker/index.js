@@ -6,13 +6,16 @@
 // Tokens are an HMAC of the role with SYNC_KEY, so they never need storing. Each profile has its own saved progress:
 // Volodymyr's (student) is row "main", Dima's (teacher) is row "dima". Dima may also read his: GET ?who=student.
 // Nobody can write anyone else's. SYNC_KEY is a Worker secret, never in this repository.
-//   GET    /api/content          → { edits, audio }      Dima's corrections and which words she has recorded
+//   GET    /api/content          → { edits, audio, suggestions, history }  corrections, which words she has recorded,
+//                                  her suggestions waiting, and the last ones decided
 //   PUT    /api/edits/<id>       ← { ar?, say?, en?, uk?, najdi?, msa?, checked?, before? }  a correction to a word, a line
 //                                  or any text on the site ("s.<string key>", "x.<hash>"). Volodymyr's goes live at once;
 //                                  Dima's becomes a suggestion that waits for him.
 //   DELETE /api/edits/<id>       back to the original (Volodymyr)
 //   POST   /api/suggestions/<n>  ← { action: "approve" | "reject" }  (Volodymyr) · DELETE: Dima withdraws her own
 //   GET    /api/audio/<key>      → her recording        PUT (raw audio, Dima only) · DELETE (Dima only)
+//                                  The version before the last change is kept: GET ?v=prev hears it, and
+//                                  POST ← { action: "restore" } swaps it back (Undo — works again to redo).
 // Everything else is served straight from the assets.
 
 const MAX_BYTES = 1_000_000; // a year of study logs is well under 100 KB
@@ -70,6 +73,7 @@ async function ensureTables(db) {
     db.prepare("CREATE TABLE IF NOT EXISTS snapshots (day TEXT PRIMARY KEY, data TEXT NOT NULL, saved_at INTEGER NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS edits (id TEXT PRIMARY KEY, data TEXT NOT NULL, by TEXT NOT NULL, updated_at INTEGER NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS audio (key TEXT PRIMARY KEY, type TEXT NOT NULL, data BLOB NOT NULL, updated_at INTEGER NOT NULL)"),
+    db.prepare("CREATE TABLE IF NOT EXISTS audio_prev (key TEXT PRIMARY KEY, type TEXT NOT NULL, data BLOB NOT NULL, updated_at INTEGER NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS suggestions (sid INTEGER PRIMARY KEY AUTOINCREMENT, target TEXT NOT NULL, data TEXT NOT NULL, before TEXT, by TEXT NOT NULL, created INTEGER NOT NULL, status TEXT NOT NULL DEFAULT 'pending')"),
   ]);
   tablesReady = true;
@@ -138,15 +142,18 @@ async function content(request, env, url) {
   const m = request.method;
 
   if (kind === "content" && m === "GET") {
-    const [edits, audio, sugg] = await Promise.all([
+    const [edits, audio, sugg, done] = await Promise.all([
       env.DB.prepare("SELECT id, data, by, updated_at FROM edits").all(),
       env.DB.prepare("SELECT key, updated_at FROM audio").all(),
-      env.DB.prepare("SELECT sid, target, data, before, by, created FROM suggestions WHERE status = 'pending' ORDER BY sid").all(),
+      env.DB.prepare("SELECT sid, target, data, before, by, created, status FROM suggestions WHERE status = 'pending' ORDER BY sid").all(),
+      env.DB.prepare("SELECT sid, target, data, before, by, created, status FROM suggestions WHERE status IN ('approved', 'rejected') ORDER BY sid DESC LIMIT 40").all(),
     ]);
+    const suggestion = r => ({ sid: r.sid, target: r.target, data: JSON.parse(r.data), before: r.before ? JSON.parse(r.before) : null, by: r.by, at: r.created, status: r.status });
     return json({
       edits: Object.fromEntries(edits.results.map(r => [r.id, { ...JSON.parse(r.data), by: r.by, at: r.updated_at }])),
       audio: Object.fromEntries(audio.results.map(r => [r.key, r.updated_at])),
-      suggestions: sugg.results.map(r => ({ sid: r.sid, target: r.target, data: JSON.parse(r.data), before: r.before ? JSON.parse(r.before) : null, by: r.by, at: r.created })),
+      suggestions: sugg.results.map(suggestion),
+      history: done.results.map(suggestion), // the last decisions, newest first
     });
   }
   if (!kind || kind === "content" || !ID.test(id)) return json({ error: "not-found" }, 404);
@@ -211,14 +218,39 @@ async function content(request, env, url) {
 
   // audio
   if (m === "GET") {
-    const row = await env.DB.prepare("SELECT type, data FROM audio WHERE key = ?1").bind(id).first();
-    if (!row) return json({ error: "not-found" }, 404);
-    return new Response(row.data, { headers: { "content-type": row.type, "cache-control": "private, max-age=31536000, immutable" } });
+    const table = url.searchParams.get("v") === "prev" ? "audio_prev" : "audio";
+    const row = await env.DB.prepare(`SELECT type, data FROM ${table} WHERE key = ?1`).bind(id).first();
+    if (!row) return table === "audio_prev" ? new Response(null, { status: 204 }) : json({ error: "not-found" }, 404); // 204: no earlier version
+    // The page asks for ?v=<time recorded>, so each version has its own address and can be cached for good.
+    const cache = table === "audio" && url.searchParams.has("v") ? "private, max-age=31536000, immutable" : "no-store";
+    return new Response(row.data, { headers: { "content-type": row.type, "cache-control": cache } });
   }
   if (role !== "teacher") return json({ error: "only-dima-records" }, 403); // the voice to learn from is hers
+  // Before any change, what is there now becomes the previous version (or "none", so Undo can remove a first recording).
+  const keepPrev = () => [
+    env.DB.prepare("DELETE FROM audio_prev WHERE key = ?1").bind(id),
+    env.DB.prepare("INSERT INTO audio_prev (key, type, data, updated_at) SELECT key, type, data, updated_at FROM audio WHERE key = ?1").bind(id),
+  ];
   if (m === "DELETE") {
-    await env.DB.prepare("DELETE FROM audio WHERE key = ?1").bind(id).run();
+    await env.DB.batch([...keepPrev(), env.DB.prepare("DELETE FROM audio WHERE key = ?1").bind(id)]);
     return json({ ok: true });
+  }
+  if (m === "POST") {
+    let body = {};
+    try {
+      body = await request.json();
+    } catch {}
+    if (body.action !== "restore") return json({ error: "bad-action" }, 400);
+    const [cur, prev] = await Promise.all(["audio", "audio_prev"].map(tb => env.DB.prepare(`SELECT type, data, updated_at FROM ${tb} WHERE key = ?1`).bind(id).first()));
+    if (!cur && !prev) return json({ error: "not-found" }, 404);
+    const at = prev ? Date.now() : null;
+    await env.DB.batch([
+      env.DB.prepare("DELETE FROM audio WHERE key = ?1").bind(id),
+      env.DB.prepare("DELETE FROM audio_prev WHERE key = ?1").bind(id),
+      ...(prev ? [env.DB.prepare("INSERT INTO audio (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4)").bind(id, prev.type, prev.data, at)] : []),
+      ...(cur ? [env.DB.prepare("INSERT INTO audio_prev (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4)").bind(id, cur.type, cur.data, cur.updated_at)] : []),
+    ]);
+    return json({ ok: true, at });
   }
   if (m !== "PUT") return json({ error: "method-not-allowed" }, 405);
   const type = (request.headers.get("content-type") ?? "").split(";")[0];
@@ -226,8 +258,11 @@ async function content(request, env, url) {
   const buf = await request.arrayBuffer();
   if (!buf.byteLength || buf.byteLength > MAX_AUDIO) return json({ error: "too-large" }, 413);
   const at = Date.now();
-  await env.DB.prepare("INSERT INTO audio (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(key) DO UPDATE SET type = excluded.type, data = excluded.data, updated_at = excluded.updated_at")
-    .bind(id, type, buf, at).run();
+  await env.DB.batch([
+    ...keepPrev(),
+    env.DB.prepare("INSERT INTO audio (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(key) DO UPDATE SET type = excluded.type, data = excluded.data, updated_at = excluded.updated_at")
+      .bind(id, type, buf, at),
+  ]);
   return json({ ok: true, at });
 }
 

@@ -34,6 +34,12 @@ const ICONS = {
   pause: `<path d="M8.5 5v14M15.5 5v14"/>`,
   more: `<circle cx="5.5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="18.5" cy="12" r="1.6" fill="currentColor"/>`,
   close: `<path d="M6 6l12 12M18 6L6 18"/>`,
+  mic: `<rect x="9" y="2.8" width="6" height="11.4" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5v3.5M8.5 21h7"/>`,
+  stop: `<rect x="6.5" y="6.5" width="11" height="11" rx="2.2" fill="currentColor"/>`,
+  slow: `<path d="M3.5 15.5a7.5 6.8 0 0 1 15 0z"/><path d="M8 15.5l1.8-3.6h3.4l1.8 3.6M6.5 15.5v2.8M15.5 15.5v2.8M18.5 13.4c.6-1.4 1.6-2.2 2.6-2 .6.2.8.9.4 1.5-.5.8-1.6 1.2-3 1.2"/>`,
+  trash: `<path d="M4.5 6.5h15M9.5 6.5V4.5h5v2M6.5 6.5l1 13.5h9l1-13.5M10 10.5v6M14 10.5v6"/>`,
+  pencil: `<path d="M4 20l1-4.6L15.6 4.8a2.1 2.1 0 0 1 3 3L8 18.4z"/><path d="M13.6 6.8l3 3"/>`,
+  redo: `<path d="M15.5 5.5L20 10l-4.5 4.5"/><path d="M20 10H10a6 6 0 0 0 0 12h3"/>`,
 };
 
 export const icon = (name, cls = "") =>

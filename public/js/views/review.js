@@ -1,5 +1,5 @@
 // Dima's suggestions, for Volodymyr: what each text or word says now, what she suggests, and Approve / Reject.
-// Approved changes become the site's text for both profiles.
+// Approved changes become the site's text for both profiles. Below: the last ones decided, approved or not.
 //   #/review
 import { t, tx } from "../core/i18n.js";
 import { esc, ar, pageHead } from "../core/dom.js";
@@ -27,8 +27,17 @@ function now(s, f) {
 const cell = (f, text) => (RTL.has(f) ? ar(text) : esc(text));
 
 function card(s) {
+  const done = Boolean(s.status && s.status !== "pending");
+  const was = f => (done ? s.before?.[f] ?? "" : now(s, f));
   const rows = Object.keys(s.data).filter(f => f !== "checked").map(f => `<tr><th>${t(LABEL[f] ?? f)}</th>
-    <td class="rv-before">${cell(f, now(s, f)) || "—"}</td><td class="rv-arrow" aria-hidden="true">→</td><td class="rv-after">${cell(f, s.data[f])}</td></tr>`).join("");
+    <td class="rv-before">${cell(f, was(f)) || "—"}</td><td class="rv-arrow" aria-hidden="true">→</td><td class="rv-after">${cell(f, s.data[f])}</td></tr>`).join("");
+  if (done) {
+    return `<li class="panel rv-card is-done">
+      <p class="rv-kind">${esc(kind(s.target))} · <span class="muted">${esc(new Date(s.at).toLocaleString())}</span>
+        <span class="rv-status is-${s.status}">${icon(s.status === "approved" ? "check" : "close")} ${t(s.status === "approved" ? "review.approved" : "review.rejected")}</span></p>
+      ${rows ? `<table class="rv-table"><tbody>${rows}</tbody></table>` : ""}
+    </li>`;
+  }
   return `<li class="panel rv-card" data-sid="${s.sid}">
     <p class="rv-kind">${esc(kind(s.target))} · <span class="muted">${esc(new Date(s.at).toLocaleString())}</span></p>
     ${rows ? `<table class="rv-table"><thead><tr><th></th><th>${t("review.before")}</th><th></th><th>${t("review.after")}</th></tr></thead><tbody>${rows}</tbody></table>` : ""}
@@ -50,7 +59,9 @@ export default {
       const list = content.pending();
       root.innerHTML = `${pageHead(t("review.title"), esc(t(store.isTeacher() ? "review.subDima" : "review.sub")), "", "", "print")}
         ${list.length > 1 && !store.isTeacher() ? `<p><button type="button" class="btn" data-all>${icon("check")} ${t("review.approveAll", { n: list.length })}</button></p>` : ""}
-        ${list.length ? `<ol class="rv-list${store.isTeacher() ? " is-mine" : ""}">${list.map(card).join("")}</ol>` : `<p class="empty-note">${icon("check")} ${t("review.none")}</p>`}`;
+        ${list.length ? `<ol class="rv-list${store.isTeacher() ? " is-mine" : ""}">${list.map(card).join("")}</ol>` : `<p class="empty-note">${icon("check")} ${t("review.none")}</p>`}
+        ${content.decided().length ? `<h2 class="rv-history">${t("review.history")}</h2>
+          <ol class="rv-list">${content.decided().slice(0, 20).map(card).join("")}</ol>` : ""}`;
     };
     render();
     content.load();
