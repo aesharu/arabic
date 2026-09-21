@@ -5,6 +5,28 @@ import { t, tx, locale, isArabic } from "../core/i18n.js";
 import { esc, rich, pageHead } from "../core/dom.js";
 import { START, GOAL, DAILY_GOAL_MIN } from "../config.js";
 import { PHASES } from "../data/plan.js";
+import * as sync from "../core/sync.js";
+
+const STATUS_KEY = { off: "off", syncing: "syncing", saved: "saved", error: "error", "wrong-key": "wrongKey", "not-configured": "notConfigured" };
+function cloudStatus({ state, at } = sync.getStatus()) {
+  const time = new Date(store.get().sync.pushedAt || at).toLocaleTimeString(locale(), { hour: "2-digit", minute: "2-digit" });
+  return esc(t(`cloud.status.${STATUS_KEY[state] ?? "error"}`, { time }));
+}
+function cloudBox() {
+  const connected = !!store.get().sync.key;
+  return `
+    <div class="cloud">
+      <h3>${t("cloud.title")}</h3>
+      <p class="muted">${t("cloud.hint")}</p>
+      <p class="cloud-status" data-cloud-status aria-live="polite">${cloudStatus()}</p>
+      ${connected
+        ? `<div class="btn-row"><button class="btn" data-cloud="save">${t("cloud.saveNow")}</button><button class="btn" data-cloud="disconnect">${t("cloud.disconnect")}</button></div>`
+        : `<form class="cloud-form" data-cloud-form>
+             <label>${t("cloud.keyLabel")} <input type="password" name="key" autocomplete="off" spellcheck="false" required dir="ltr"></label>
+             <button class="btn btn-primary" type="submit">${t("cloud.connect")}</button>
+           </form>`}
+    </div>`;
+}
 
 const status = s => t(`status.${s}`);
 
@@ -100,6 +122,8 @@ export default {
         </div>
         <section class="panel backup">
           <h2>${t("cal.data")}</h2>
+          ${cloudBox()}
+          <h3>${t("cal.download")}</h3>
           <p class="muted">${t("cal.dataHint")}</p>
           <div class="btn-row">
             <button class="btn" data-export>${t("cal.download")}</button>
@@ -111,6 +135,11 @@ export default {
     root.addEventListener("click", e => {
       const b = e.target.closest("button");
       if (!b) return;
+      if (b.dataset.cloud === "save") return sync.push();
+      if (b.dataset.cloud === "disconnect") {
+        sync.disconnect();
+        return render();
+      }
       if (b.dataset.date) selected = b.dataset.date;
       else if (b.dataset.add) store.addMinutes(selected, +b.dataset.add);
       else if (b.hasAttribute("data-export")) return download(`najdi-backup-${todayKey()}.json`, store.exportJson());
@@ -118,6 +147,18 @@ export default {
       render();
       if (b.dataset.date) root.querySelector(`[data-date="${selected}"]`)?.focus();
     }, { signal });
+
+    root.addEventListener("submit", async e => {
+      if (!e.target.matches("[data-cloud-form]")) return;
+      e.preventDefault();
+      await sync.connect(new FormData(e.target).get("key"));
+      render();
+    }, { signal });
+    const off = sync.onStatus(s => {
+      const el = root.querySelector("[data-cloud-status]");
+      if (el) el.innerHTML = cloudStatus(s);
+    });
+    signal.addEventListener("abort", off);
 
     root.addEventListener("change", async e => {
       if (e.target.dataset.task) {

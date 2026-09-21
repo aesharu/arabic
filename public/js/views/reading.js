@@ -1,7 +1,7 @@
 import * as store from "../core/store.js";
 import { learnedLetters, lettersIn } from "../core/schedule.js";
 import { t } from "../core/i18n.js";
-import { esc, ar, translit, flag, flagNote, meanings, playIcon, pageHead, reviewNote, shuffle } from "../core/dom.js";
+import { esc, ar, translit, flag, flagNote, meanings, playIcon, pageHead, shuffle } from "../core/dom.js";
 import { WORDS } from "../data/words.js";
 
 // View settings survive page switches until reload.
@@ -43,8 +43,7 @@ export default {
               ${open ? flagNote(w) : ""}
             </article>`;
           }).join("")}
-        </div>
-        ${reviewNote()}`;
+        </div>`;
     };
 
     root.addEventListener("click", e => {

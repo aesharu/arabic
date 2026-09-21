@@ -1,5 +1,5 @@
 // The 28 letters in six shape-based groups, two study days each. Every text is in four languages:
-// { en, uk, najdi, msa }. The Najdi and MSA explanations were written by Claude (flagged on the site).
+// { en, uk, najdi, msa }.
 //   char, name, nameAr     the letter and its name
 //   translit               Latin spelling of the sound
 //   sound                  how to say it (Najdi first when it differs from formal Arabic)

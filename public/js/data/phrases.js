@@ -1,10 +1,10 @@
 // Phrases for the two Script weeks — three a day, so you speak from Day 1.
 // Every phrase is in four languages:
 //   ar + tr   Najdi Arabic and its pronunciation — copied from NAJDI-PLAN.md (Parts 6–7)
-//   msa       the formal-Arabic (MSA) equivalent — added by Claude, for recognising, not for saying
+//   msa       the formal-Arabic (MSA) equivalent, for recognising, not for saying
 //   en        English meaning — from the plan
-//   uk        Ukrainian meaning — added by Claude
-// note {en, uk, najdi, msa} comes from the plan's Note column (Najdi/MSA versions by Claude). check = marked ⚠ in the plan.
+//   uk        Ukrainian meaning
+// note {en, uk, najdi, msa} comes from the plan's Note column. check = marked ⚠ in the plan.
 // speak = what the voice reads, when ar has a slash or "…".
 // tests/content.test.mjs checks every ar/tr against the plan and that no language is missing.
 export const PHRASES = [

@@ -3,9 +3,10 @@ import { say, canSpeak } from "./core/speech.js";
 import * as store from "./core/store.js";
 import { todayKey } from "./core/dates.js";
 import { dayNumber, phaseFor, phaseTitle, TOTAL_DAYS } from "./core/schedule.js";
-import { t, tx, lang, meta, isArabic, setLang } from "./core/i18n.js";
+import { t, tx, lang, meta, setLang } from "./core/i18n.js";
 import { esc } from "./core/dom.js";
 import { attachTooltips } from "./core/charts.js";
+import * as sync from "./core/sync.js";
 
 import today from "./views/today.js";
 import progress from "./views/progress.js";
@@ -61,6 +62,15 @@ function renderDayPill() {
     : `<b>${t("pill.soon")}</b>`;
 }
 
+// Sidebar line showing whether progress is saved to the cloud.
+const SHORT = { off: "off", syncing: "syncing", saved: "saved" };
+function renderCloudPill({ state } = sync.getStatus()) {
+  const el = document.getElementById("cloudpill");
+  el.dataset.state = SHORT[state] ?? "error";
+  el.textContent = t(`cloud.short.${SHORT[state] ?? "error"}`);
+}
+sync.onStatus(renderCloudPill);
+
 function applyTheme() {
   const theme = store.get().prefs.theme;
   if (theme === "auto") delete document.documentElement.dataset.theme;
@@ -88,8 +98,6 @@ function show(name, params) {
   document.title = `${t(routes[name].titleKey)} · Najdi`;
   renderDayPill();
   routes[name].mount(view, { params, signal: controller.signal });
-  // The Arabic interfaces are Claude's translation: say so on every page until a native speaker has checked them.
-  if (isArabic()) view.insertAdjacentHTML("afterbegin", `<p class="ar-banner">${esc(t("ar.banner"))}</p>`);
 }
 
 document.querySelector(".langs").addEventListener("click", e => {
@@ -97,10 +105,13 @@ document.querySelector(".langs").addEventListener("click", e => {
   if (!b || b.dataset.lang === lang()) return;
   setLang(b.dataset.lang);
   translateShell();
+  renderCloudPill();
   show(current.name, current.params);
 });
 
 translateShell();
+renderCloudPill();
+sync.start(() => show(current.name, current.params)); // re-render if another computer had newer progress
 applyTheme();
 startRouter(routes, "today", (name, params) => {
   show(name, params);

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Najdi — spoken Riyadh Arabic</title>
 <meta name="description" content="Volodia's Najdi Arabic study site: today's tasks, a 15-month calendar, progress charts, the alphabet trainer, phrases and Anki cards — in English, Ukrainian, Najdi and formal Arabic.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231D5A5C'/%3E%3Ctext x='50' y='70' font-size='62' text-anchor='middle' fill='%23F2E9D6' font-family='serif'%3E%D9%86%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23006C35'/%3E%3Ctext x='50' y='70' font-size='62' text-anchor='middle' fill='%23FFFFFF' font-family='serif'%3E%D9%86%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Kufi+Arabic:wght@400;600;700;800&family=Alegreya+Sans:wght@400;500;700;800&display=swap">
@@ -16,7 +16,7 @@
   // Apply the saved theme and language before the first paint, so the page doesn't flash.
   try {
     const p = JSON.parse(localStorage.getItem("najdi-v2") || "{}").prefs || {};
-    if (["light", "dark", "saudi"].includes(p.theme)) document.documentElement.dataset.theme = p.theme;
+    if (["saudi", "saudi-dark", "light", "dark"].includes(p.theme)) document.documentElement.dataset.theme = p.theme;
     if (p.lang === "najdi" || p.lang === "msa") { document.documentElement.dir = "rtl"; document.documentElement.lang = "ar"; }
     else if (p.lang === "uk") document.documentElement.lang = "uk";
   } catch {}
@@ -28,6 +28,7 @@
   <aside class="sidebar">
     <a class="brand" href="#/today">Najdi<span class="ar" lang="ar">نجدي</span></a>
     <div class="daypill" id="daypill"></div>
+    <a class="cloudpill" id="cloudpill" href="#/calendar" data-state="off"></a>
     <nav data-i18n-label="nav.main" aria-label="Main">
       <p class="navhead" data-i18n="nav.plan">Plan</p>
       <a href="#/today" data-route="today" data-i18n="nav.today">Today</a>
@@ -53,10 +54,11 @@
       </div>
       <p class="foot-label" data-i18n="theme.label">Theme</p>
       <div class="themes" role="group" data-i18n-label="theme.label" aria-label="Theme">
-        <button type="button" data-set-theme="auto" style="--sw: linear-gradient(135deg, #DCC8A6 50%, #1B140E 50%)"></button>
+        <button type="button" data-set-theme="auto" style="--sw: linear-gradient(135deg, #FFFFFF 33%, #006C35 33% 66%, #0B1A12 66%)"></button>
+        <button type="button" data-set-theme="saudi" style="--sw: linear-gradient(135deg, #006C35 50%, #FFFFFF 50%)"></button>
+        <button type="button" data-set-theme="saudi-dark" style="--sw: linear-gradient(135deg, #006C35 50%, #0B1A12 50%)"></button>
         <button type="button" data-set-theme="light" style="--sw: #DCC8A6"></button>
         <button type="button" data-set-theme="dark" style="--sw: #1B140E"></button>
-        <button type="button" data-set-theme="saudi" style="--sw: linear-gradient(135deg, #006C35 50%, #FFFFFF 50%)"></button>
       </div>
     </div>
   </aside>

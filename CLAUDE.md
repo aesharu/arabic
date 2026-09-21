@@ -16,19 +16,20 @@ This project is my personal learning website: the tools I study with every day, 
 
 **Everything must ALWAYS be translated. Every time you change or add anything, translate it into every language below — never add or change text in only one language.**
 
-- **Interface text** (menus, buttons, instructions, notes): **English AND Ukrainian.** My girlfriend reads English and checks the site to help me; I read Ukrainian. Texts live in `public/js/i18n/strings.js` (both side by side); content data uses `{ en, uk }`.
+- **Interface text** (menus, buttons, instructions, notes): **English, Ukrainian, Najdi Arabic AND MSA.** My girlfriend reads English and Arabic and checks the site to help me; I read Ukrainian. Texts live in `public/js/i18n/strings.js` (all four side by side); content data uses `{ en, uk, najdi, msa }`. The Arabic interfaces run right-to-left.
 - **Every Arabic word, phrase and example**: **Najdi Arabic (with pronunciation), MSA (formal Arabic), English AND Ukrainian** — four languages. MSA is shown as "recognise it, don't say it".
 - **Double- and triple-check every translation:**
   1. Proofread each translation yourself — natural Ukrainian and English, correct Najdi and MSA.
   2. Run `npm test` — it fails if any language is missing, if Ukrainian isn't in Cyrillic or MSA isn't in Arabic script, or if a Najdi word doesn't match `NAJDI-PLAN.md`.
-  3. MSA and Ukrainian lines you write are marked on the site as added by Claude, so she (a native speaker) can check them. If you're unsure of a translation, say so and flag it.
+  3. Tell me (in chat, not on the site) which translations you're unsure of, so she can check them. If a Najdi word itself is uncertain, use the "check with tutor" flag.
+- **No behind-the-scenes notes on the site.** My girlfriend uses it too: never show who translated what, file names like NAJDI-PLAN.md, or notes addressed to me about the build. Study content only.
 
 ## Phase 1 — get it live (in progress)
 
 1. ✅ Project set up and restructured: `public/` site, `.gitignore`, `README.md`, git history.
-2. Create the GitHub repository **arabic** and push to it. I do any login myself — tell me exactly what to click or run.
-3. Deploy to Cloudflare **Workers with static assets** (Cloudflare's current recommendation for new projects; checked 21 Sept 2026), connected to GitHub so every push redeploys automatically. `wrangler.jsonc` names the Worker `arabic`.
-4. Give me the live URL and confirm it works on my computer: Arabic renders correctly, fonts load, tap-to-hear works, progress survives a page reload, both languages work.
+2. ✅ GitHub repository: https://github.com/aesharu/arabic
+3. ✅ Deployed to Cloudflare **Workers with static assets** as `arabic` → https://arabic.aesdvi.workers.dev. Deploy with `npx wrangler deploy` (Wrangler is logged in on this Mac). Auto-deploy on push is not connected yet — it needs the dashboard: Worker → Settings → Build → Connect.
+4. ✅ Cloud save: D1 database `arabic-db` (binding `DB`), API in `worker/index.js`, secret `SYNC_KEY` set with `wrangler secret put` — never commit it.
 
 Stop after Phase 1 and show me what we have before building anything new. After that, follow Part 9 of `NAJDI-PLAN.md` phase by phase, stopping after each.
 
@@ -38,6 +39,7 @@ Stop after Phase 1 and show me what we have before building anything new. After 
 - Keep it simple: plain HTML/CSS/JS, no framework and no build step, until a feature genuinely needs one. If you think we need one, explain why and ask first.
 - Never commit secrets, API keys or tokens. No accounts or payments without asking me.
 - Desktop-first — I use this on my computer. It should still work in a narrow window.
+- Defaults: English interface and the Saudi theme (green and white, dark green when the computer is in dark mode).
 - When I report a bug, find the cause before changing code.
 
 ## Arabic content rules — important

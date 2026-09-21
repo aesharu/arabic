@@ -1,6 +1,5 @@
 // Every interface text in four languages: English, Ukrainian, Najdi Arabic and formal Arabic (MSA).
-// tests/i18n.test.mjs fails if any language is missing. The Najdi and MSA texts were written by Claude and are
-// flagged on the site for a native speaker to check.
+// tests/i18n.test.mjs fails if any language is missing.
 // {name} is filled in by t(key, { name }). Counted words go through tu(): English one/other,
 // Ukrainian one/few/many/other, Arabic zero/one/two/few/many/other.
 // A few strings contain simple HTML (<b>, <a>) — they are ours, never user input.
@@ -22,20 +21,15 @@ export const STRINGS = {
   "nav.main": { en: "Main", uk: "Головне меню", najdi: "القائمة", msa: "القائمة الرئيسية" },
   "lang.label": { en: "Language", uk: "Мова", najdi: "اللغة", msa: "اللغة" },
   "theme.label": { en: "Theme", uk: "Тема", najdi: "الشكل", msa: "المظهر" },
-  "theme.auto": { en: "Automatic — follows your computer", uk: "Автоматично — як на комп'ютері", najdi: "تلقائي — مثل جهازك", msa: "تلقائي — حسب إعدادات جهازك" },
-  "theme.light": { en: "Light — mud brick", uk: "Світла — глиняна цегла", najdi: "فاتح — لون الطين", msa: "فاتح — لون الطين" },
-  "theme.dark": { en: "Dark", uk: "Темна", najdi: "غامق", msa: "داكن" },
-  "theme.saudi": { en: "Saudi flag — green and white", uk: "Прапор Саудівської Аравії — зелений і білий", najdi: "علم السعودية — أخضر وأبيض", msa: "علم السعودية — الأخضر والأبيض" },
+  "theme.auto": { en: "Saudi — light or dark like your computer", uk: "Саудівська — світла чи темна, як на комп'ютері", najdi: "سعودي — فاتح أو غامق مثل جهازك", msa: "سعودي — فاتح أو داكن حسب جهازك" },
+  "theme.saudi": { en: "Saudi — light", uk: "Саудівська — світла", najdi: "سعودي — فاتح", msa: "سعودي — فاتح" },
+  "theme.saudi-dark": { en: "Saudi — dark", uk: "Саудівська — темна", najdi: "سعودي — غامق", msa: "سعودي — داكن" },
+  "theme.light": { en: "Mud brick — light", uk: "Глиняна цегла — світла", najdi: "طين — فاتح", msa: "الطين — فاتح" },
+  "theme.dark": { en: "Mud brick — dark", uk: "Глиняна цегла — темна", najdi: "طين — غامق", msa: "الطين — داكن" },
   "pill.soon": { en: "Starts soon", uk: "Скоро старт", najdi: "قريب نبدأ", msa: "يبدأ قريبًا" },
-  "ar.banner": {
-    en: "This Arabic interface was translated by Claude — please check it.",
-    uk: "Цей арабський інтерфейс переклав Claude — попроси її перевірити його.",
-    najdi: "واجهة النجدي هذي ترجمها Claude — تكفين راجعيها.",
-    msa: "ترجم Claude هذه الواجهة العربية — يُرجى مراجعتها.",
-  },
 
   // Shared
-  "day.n": { en: "Day {n}", uk: "День {n}", najdi: "اليوم {n}", msa: "اليوم {n}" },
+  "day.n": { en: "Day {n}", uk: "День {n}", najdi: "يوم {n}", msa: "يوم {n}" },
   "day.of": { en: "of {total}", uk: "з {total}", najdi: "من {total}", msa: "من {total}" },
   "week.n": { en: "week {n}", uk: "тиждень {n}", najdi: "الأسبوع {n}", msa: "الأسبوع {n}" },
   "min": { en: "{n} min", uk: "{n} хв", najdi: "{n} دقيقة", msa: "{n} دقيقة" },
@@ -58,7 +52,7 @@ export const STRINGS = {
     najdi: { zero: "كرت", one: "كرت", two: "كرتين", few: "كروت", many: "كرت", other: "كرت" },
     msa: { zero: "بطاقة", one: "بطاقة", two: "بطاقتان", few: "بطاقات", many: "بطاقة", other: "بطاقة" },
   },
-  "flag.label": { en: "check with tutor", uk: "перевірити з викладачем", najdi: "تأكد من المدرّس", msa: "يُراجَع مع المعلّم" },
+  "flag.label": { en: "check with tutor", uk: "перевірити з викладачем", najdi: "اسأل المدرّس", msa: "يُراجَع مع المعلّم" },
   "flag.default": {
     en: "Not yet verified as Najdi — ask a native speaker.",
     uk: "Ще не перевірено, що це саме наджді, — спитай носія мови.",
@@ -70,14 +64,8 @@ export const STRINGS = {
   "lab.ua": { en: "UA", uk: "Укр.", najdi: "بالأوكراني", msa: "بالأوكرانية" },
   "lab.najdi": { en: "Najdi:", uk: "Наджді:", najdi: "نجدي:", msa: "النجدية:" },
   "lab.hear": { en: "Hear {what}", uk: "Почути {what}", najdi: "اسمع {what}", msa: "استمع إلى {what}" },
-  "review.note": {
-    en: "Najdi words and phrases come from NAJDI-PLAN.md. The formal Arabic (MSA) and Ukrainian lines were added by Claude — if anything looks wrong, please tell Volodia.",
-    uk: "Слова й фрази наджді взято з NAJDI-PLAN.md. Рядки формальною арабською (MSA) та українською додав Claude — попроси її перевірити їх.",
-    najdi: "الكلمات والعبارات النجدية من ملف NAJDI-PLAN.md. الفصحى والأوكراني أضافها Claude — إذا فيه شي غلط قولي لفولوديا.",
-    msa: "الكلمات والعبارات النجدية مأخوذة من الملف NAJDI-PLAN.md، أما أسطر الفصحى والأوكرانية فأضافها Claude — إن وجدتِ خطأً فأخبري فولوديا.",
-  },
   "status.done": { en: "Done", uk: "Виконано", najdi: "خلصت", msa: "مكتمل" },
-  "status.partial": { en: "Started", uk: "Розпочато", najdi: "بديت", msa: "بدأت" },
+  "status.partial": { en: "Started", uk: "Розпочато", najdi: "بديت", msa: "قيد الإنجاز" },
   "status.missed": { en: "Missed", uk: "Пропущено", najdi: "فاتك", msa: "فائت" },
   "status.open": { en: "Today — not started yet", uk: "Сьогодні — ще не почато", najdi: "اليوم — للحين ما بديت", msa: "اليوم — لم تبدأ بعد" },
   "status.future": { en: "Coming up", uk: "Попереду", najdi: "جاي", msa: "قادم" },
@@ -104,7 +92,7 @@ export const STRINGS = {
   "today.studied": { en: "Studied", uk: "Навчання", najdi: "ذاكرت", msa: "أيام الدراسة" },
   "today.total": { en: "Total", uk: "Усього", najdi: "المجموع", msa: "المجموع" },
   "today.toGo": { en: "To go", uk: "Залишилось", najdi: "باقي", msa: "المتبقي" },
-  "today.finish": { en: "Day {n} of {total} — finish line {date}", uk: "День {n} з {total} — фініш {date}", najdi: "اليوم {n} من {total} — خط النهاية {date}", msa: "اليوم {n} من {total} — خط النهاية {date}" },
+  "today.finish": { en: "Day {n} of {total} — finish line {date}", uk: "День {n} з {total} — фініш {date}", najdi: "يوم {n} من {total} — خط النهاية {date}", msa: "يوم {n} من {total} — خط النهاية {date}" },
   "today.yesterday": { en: "Studied yesterday? Log it:", uk: "Учора теж було заняття? Запиши:", najdi: "ذاكرت أمس؟ سجّله:", msa: "هل درست أمس؟ سجّل ذلك:" },
   "today.dayDone": { en: "Day complete — well done.", uk: "День завершено — молодець!", najdi: "خلصت يومك — كفو!", msa: "أتممت يومك — أحسنت!" },
   "today.last14": { en: "Last 14 days", uk: "Останні 14 днів", najdi: "آخر 14 يوم", msa: "آخر 14 يومًا" },
@@ -136,6 +124,32 @@ export const STRINGS = {
     najdi: "تقدّمك محفوظ في هالمتصفح بس. نزّل نسخة احتياطية كل فترة — لو مسحت بيانات المتصفح بيروح.",
     msa: "يُحفظ تقدّمك في هذا المتصفح فقط. نزّل نسخة احتياطية بين حين وآخر، فمسح بيانات المتصفح سيحذفه.",
   },
+  "cloud.title": { en: "Cloud save", uk: "Збереження в хмарі", najdi: "الحفظ في السحابة", msa: "الحفظ السحابي" },
+  "cloud.hint": {
+    en: "Keeps your progress in your Cloudflare database, so it survives clearing the browser and works on any computer. Paste your cloud-save key once on each computer.",
+    uk: "Зберігає прогрес у твоїй базі даних Cloudflare, тож він не зникне після очищення браузера й працюватиме на будь-якому комп'ютері. Встав ключ збереження один раз на кожному комп'ютері.",
+    najdi: "يحفظ تقدّمك في قاعدة بياناتك في Cloudflare، فما يروح لو مسحت المتصفح ويشتغل على أي جهاز. حط مفتاح الحفظ مرة وحدة في كل جهاز.",
+    msa: "يحفظ تقدّمك في قاعدة بياناتك على Cloudflare، فلا يضيع عند مسح المتصفح ويعمل على أي حاسوب. ألصق مفتاح الحفظ مرة واحدة على كل حاسوب.",
+  },
+  "cloud.keyLabel": { en: "Cloud-save key", uk: "Ключ збереження", najdi: "مفتاح الحفظ", msa: "مفتاح الحفظ" },
+  "cloud.connect": { en: "Connect", uk: "Підключити", najdi: "اربط", msa: "اربط" },
+  "cloud.saveNow": { en: "Save now", uk: "Зберегти зараз", najdi: "احفظ الحين", msa: "احفظ الآن" },
+  "cloud.disconnect": { en: "Disconnect this computer", uk: "Від'єднати цей комп'ютер", najdi: "افصل هالجهاز", msa: "افصل هذا الحاسوب" },
+  "cloud.status.off": { en: "Not connected — progress is only in this browser.", uk: "Не підключено — прогрес лише в цьому браузері.", najdi: "مو مربوط — تقدّمك في هالمتصفح بس.", msa: "غير متصل — تقدّمك في هذا المتصفح فقط." },
+  "cloud.status.syncing": { en: "Saving…", uk: "Зберігаю…", najdi: "قاعد يحفظ…", msa: "جارٍ الحفظ…" },
+  "cloud.status.saved": { en: "Saved to the cloud · {time}", uk: "Збережено в хмарі · {time}", najdi: "محفوظ في السحابة · {time}", msa: "محفوظ في السحابة · {time}" },
+  "cloud.status.error": {
+    en: "Couldn't reach the cloud — progress is safe in this browser and will save next time.",
+    uk: "Не вдалося зв'язатися з хмарою — прогрес у безпеці в цьому браузері й збережеться наступного разу.",
+    najdi: "ما قدرنا نوصل للسحابة — تقدّمك محفوظ في المتصفح وبيتحفظ المرة الجاية.",
+    msa: "تعذّر الوصول إلى السحابة — تقدّمك محفوظ في المتصفح وسيُحفظ في المرة القادمة.",
+  },
+  "cloud.status.wrongKey": { en: "That key isn't right — check it and connect again.", uk: "Ключ неправильний — перевір його й підключи ще раз.", najdi: "المفتاح غلط — تأكد منه واربط مرة ثانية.", msa: "المفتاح غير صحيح — تحقّق منه ثم اربط مجددًا." },
+  "cloud.status.notConfigured": { en: "Cloud save isn't set up on the server yet.", uk: "Збереження в хмарі ще не налаштовано на сервері.", najdi: "الحفظ السحابي للحين ما تجهّز في السيرفر.", msa: "لم يُهيَّأ الحفظ السحابي على الخادم بعد." },
+  "cloud.short.off": { en: "Only in this browser", uk: "Лише в цьому браузері", najdi: "بس في هالمتصفح", msa: "في هذا المتصفح فقط" },
+  "cloud.short.syncing": { en: "Saving…", uk: "Зберігаю…", najdi: "قاعد يحفظ…", msa: "جارٍ الحفظ…" },
+  "cloud.short.saved": { en: "Saved to cloud", uk: "Збережено в хмарі", najdi: "محفوظ في السحابة", msa: "محفوظ في السحابة" },
+  "cloud.short.error": { en: "Not saved to cloud", uk: "Не збережено в хмарі", najdi: "ما انحفظ في السحابة", msa: "لم يُحفظ في السحابة" },
   "cal.download": { en: "Download backup", uk: "Завантажити копію", najdi: "نزّل نسخة احتياطية", msa: "نزّل نسخة احتياطية" },
   "cal.restore": { en: "Restore from backup", uk: "Відновити з копії", najdi: "رجّع من النسخة", msa: "استعد من النسخة الاحتياطية" },
   "cal.restored": { en: "Backup restored.", uk: "Копію відновлено.", najdi: "رجعت النسخة.", msa: "تمت استعادة النسخة." },
@@ -185,7 +199,7 @@ export const STRINGS = {
   "plan.here": { en: "You are here", uk: "Ти тут", najdi: "أنت هنا", msa: "أنت هنا" },
   "plan.meta": { en: "{when} · {start} – {end} · words: {words}", uk: "{when} · {start} – {end} · слів: {words}", najdi: "{when} · {start} – {end} · الكلمات: {words}", msa: "{when} · {start} – {end} · عدد الكلمات: {words}" },
   "plan.canDo": { en: "You can… {text}", uk: "Ти зможеш… {text}", najdi: "بتقدر… {text}", msa: "ستتمكن من… {text}" },
-  "plan.dayInStage": { en: "Day {n} of {len} in this stage", uk: "День {n} з {len} на цьому етапі", najdi: "اليوم {n} من {len} في هالمرحلة", msa: "اليوم {n} من {len} في هذه المرحلة" },
+  "plan.dayInStage": { en: "Day {n} of {len} in this stage", uk: "День {n} з {len} на цьому етапі", najdi: "يوم {n} من {len} في هالمرحلة", msa: "يوم {n} من {len} في هذه المرحلة" },
   "plan.normalDay": { en: "A normal day — 90 minutes", uk: "Звичайний день — 90 хвилин", najdi: "يوم عادي — 90 دقيقة", msa: "يوم عادي — تسعون دقيقة" },
   "plan.normalDayHint": {
     en: "From week 3. The two Script weeks are planned day by day instead — see <a href=\"#/today\">Today</a> and the <a href=\"#/calendar\">Calendar</a>.",
@@ -219,7 +233,6 @@ export const STRINGS = {
     najdi: "القواعد والتمارين على المدرّس. هي للحياة الحقيقية.",
     msa: "القواعد والتمارين من مهمة المعلّم، أما هي فللحياة الحقيقية.",
   },
-  "plan.source": { en: "Source: NAJDI-PLAN.md, Parts 2–3.", uk: "Джерело: NAJDI-PLAN.md, частини 2–3.", najdi: "المصدر: NAJDI-PLAN.md، الأجزاء 2–3.", msa: "المصدر: NAJDI-PLAN.md، الجزءان 2 و3." },
 
   // Progress
   "progress.title": { en: "Progress", uk: "Прогрес", najdi: "وين وصلت", msa: "التقدّم" },
@@ -230,7 +243,7 @@ export const STRINGS = {
     msa: "وقت دراستك ونتائج الاختبارات ومدى تقدّمك في الخطة.",
   },
   "progress.journey": { en: "The 15 months", uk: "15 місяців", najdi: "الـ15 شهر", msa: "الأشهر الخمسة عشر" },
-  "progress.stageNow": { en: "Day {n} of {len} in {stage}", uk: "День {n} з {len} на етапі «{stage}»", najdi: "اليوم {n} من {len} في {stage}", msa: "اليوم {n} من {len} في {stage}" },
+  "progress.stageNow": { en: "Day {n} of {len} in {stage}", uk: "День {n} з {len} на етапі «{stage}»", najdi: "يوم {n} من {len} في {stage}", msa: "يوم {n} من {len} في {stage}" },
   "progress.minutesDay": { en: "Minutes per day", uk: "Хвилин на день", najdi: "الدقايق كل يوم", msa: "الدقائق يوميًا" },
   "progress.minutesSub": { en: "Last 28 days · the line is your {goal}-minute goal", uk: "Останні 28 днів · лінія — твоя мета {goal} хв", najdi: "آخر 28 يوم · الخط هو هدفك {goal} دقيقة", msa: "آخر 28 يومًا · الخط هو هدفك البالغ {goal} دقيقة" },
   "progress.hoursWeek": { en: "Hours per week", uk: "Годин на тиждень", najdi: "الساعات كل أسبوع", msa: "الساعات أسبوعيًا" },
@@ -249,7 +262,7 @@ export const STRINGS = {
   "progress.empty": {
     en: "Nothing logged yet — study on the Today page and this fills in.",
     uk: "Поки нічого не записано — займайся на сторінці «Сьогодні», і тут з'являться дані.",
-    najdi: "للحين ما فيه شي مسجّل — ذاكر من صفحة اليوم وبتتعبى هنا.",
+    najdi: "للحين ما فيه شي مسجّل — ذاكر من صفحة اليوم وبتطلع أرقامك هنا.",
     msa: "لا يوجد شيء مسجّل بعد — ادرس من صفحة اليوم وستمتلئ هذه المساحة.",
   },
   "progress.showTable": { en: "Show as table", uk: "Показати таблицею", najdi: "طلّعها جدول", msa: "اعرض كجدول" },

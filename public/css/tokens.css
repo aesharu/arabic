@@ -1,31 +1,21 @@
-/* Themes. Light (mud-brick walls, painted-door teal) is the default; dark follows the system unless a theme is
-   picked in the sidebar; "saudi" is the flag's green and white. The chosen theme sits on <html data-theme>. */
-:root {
-  --bg: #DCC8A6;
-  --surface: #EBDEC6;
-  --surface-2: #E2D0B0;
-  --tile: #C39B69;
-  --trim: #C39B69;          /* the zigzag parapet */
-  --ink: #2A1C10;
-  --muted: #66503A;
-  --accent: #1D5A5C;
-  --accent-ink: #F2E9D6;
-  --hard: #8B3A1C;
-  --line: rgba(42, 28, 16, .18);
-  --good: #2F6B3A;
-  --bad: #9A2F1F;
-  --flag: #8A5A00;
-  --sidebar-bg: var(--surface);
-  --sidebar-ink: var(--ink);
-  --sidebar-muted: var(--muted);
-  --nav-on-bg: var(--ink);
-  --nav-on-ink: var(--bg);
+/* Themes. The default is Saudi — the flag's green and white — and it follows the computer: light by day,
+   dark green at night. The chosen theme sits on <html data-theme>:
+     (none)       Saudi, light or dark like the computer
+     saudi        Saudi, always light
+     saudi-dark   Saudi, always dark
+     light        mud brick with the painted-door teal (the original design)
+     dark         mud brick, dark */
+:root,
+:root[data-theme="saudi"] {
+  --bg: #F1F6F3; --surface: #FFFFFF; --surface-2: #E6F0EA; --tile: #D3E7DB; --trim: #006C35;
+  --ink: #0B2E1C; --muted: #4B6656; --accent: #006C35; --accent-ink: #FFFFFF; --hard: #9A3412;
+  --line: rgba(11, 46, 28, .14); --good: #006C35; --bad: #B42318; --flag: #8A5A00;
+  --sidebar-bg: #006C35; --sidebar-ink: #FFFFFF; --sidebar-muted: rgba(255, 255, 255, .78);
+  --nav-on-bg: #FFFFFF; --nav-on-ink: #006C35;
+  --strong-bg: #006C35; --strong-ink: #FFFFFF; --brand-ar: #FFFFFF; --pill-meter: #FFFFFF; --pill-ok: #FFFFFF;
   /* charts: one hue light→dark for the six stages (validated as an ordinal ramp) */
-  --r1: #6FA5A2; --r2: #4E8E8C; --r3: #357878; --r4: #1D5A5C; --r5: #134649; --r6: #0B3335;
-  --viz-bar: var(--accent);
-  --viz-deemph: #BFAE92;
-  --viz-grid: rgba(42, 28, 16, .14);
-  --viz-future: #D2BC95;
+  --r1: #6DB38D; --r2: #3F9A69; --r3: #1C8350; --r4: #006C35; --r5: #00562A; --r6: #003F1F;
+  --viz-bar: #006C35; --viz-deemph: #B9CDBF; --viz-grid: rgba(11, 46, 28, .1); --viz-future: #DCEAE1;
 
   --font-ui: "Alegreya Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-ui-ar: "Alegreya Sans", "Noto Kufi Arabic", "Geeza Pro", system-ui, sans-serif;
@@ -36,32 +26,51 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --bg: #1B140E; --surface: #261D15; --surface-2: #30251B; --tile: #4B3723; --trim: #4B3723; --ink: #EFE3CC; --muted: #B39B7C;
-    --accent: #3F8D8D; --accent-ink: #0F0B07; --hard: #E0925F; --line: rgba(239, 227, 204, .16);
-    --good: #7CC08A; --bad: #EE8A76; --flag: #E3B55B;
-    --r1: #2F6E6D; --r2: #3C8584; --r3: #529C9A; --r4: #6DB3B0; --r5: #8FC8C4; --r6: #B5DDD9;
-    --viz-bar: #4F9C9B; --viz-deemph: #6B5A45; --viz-grid: rgba(239, 227, 204, .12); --viz-future: #3A2C1F;
+    --bg: #0B1A12; --surface: #11241A; --surface-2: #173024; --tile: #1F3D2C; --trim: #1C8350;
+    --ink: #E6F1EA; --muted: #9FBDAC; --accent: #4CC38A; --accent-ink: #04130B; --hard: #F0A36B;
+    --line: rgba(230, 241, 234, .14); --good: #4CC38A; --bad: #F08A7A; --flag: #E3B55B;
+    --sidebar-bg: #00552A; --sidebar-ink: #FFFFFF; --sidebar-muted: rgba(255, 255, 255, .75);
+    --nav-on-bg: #FFFFFF; --nav-on-ink: #00552A;
+    --strong-bg: #006C35; --strong-ink: #FFFFFF; --brand-ar: #FFFFFF; --pill-meter: #FFFFFF; --pill-ok: #FFFFFF;
+    --r1: #2A7A52; --r2: #379066; --r3: #4DA67B; --r4: #6CBC93; --r5: #93D1AF; --r6: #BFE6CF;
+    --viz-bar: #3FAF77; --viz-deemph: #3E5A4A; --viz-grid: rgba(230, 241, 234, .1); --viz-future: #1C3326;
     color-scheme: dark;
   }
 }
 
-:root[data-theme="dark"] {
-  --bg: #1B140E; --surface: #261D15; --surface-2: #30251B; --tile: #4B3723; --trim: #4B3723; --ink: #EFE3CC; --muted: #B39B7C;
-  --accent: #3F8D8D; --accent-ink: #0F0B07; --hard: #E0925F; --line: rgba(239, 227, 204, .16);
-  --good: #7CC08A; --bad: #EE8A76; --flag: #E3B55B;
-  --r1: #2F6E6D; --r2: #3C8584; --r3: #529C9A; --r4: #6DB3B0; --r5: #8FC8C4; --r6: #B5DDD9;
-  --viz-bar: #4F9C9B; --viz-deemph: #6B5A45; --viz-grid: rgba(239, 227, 204, .12); --viz-future: #3A2C1F;
+:root[data-theme="saudi-dark"] {
+  --bg: #0B1A12; --surface: #11241A; --surface-2: #173024; --tile: #1F3D2C; --trim: #1C8350;
+  --ink: #E6F1EA; --muted: #9FBDAC; --accent: #4CC38A; --accent-ink: #04130B; --hard: #F0A36B;
+  --line: rgba(230, 241, 234, .14); --good: #4CC38A; --bad: #F08A7A; --flag: #E3B55B;
+  --sidebar-bg: #00552A; --sidebar-ink: #FFFFFF; --sidebar-muted: rgba(255, 255, 255, .75);
+  --nav-on-bg: #FFFFFF; --nav-on-ink: #00552A;
+  --strong-bg: #006C35; --strong-ink: #FFFFFF; --brand-ar: #FFFFFF; --pill-meter: #FFFFFF; --pill-ok: #FFFFFF;
+  --r1: #2A7A52; --r2: #379066; --r3: #4DA67B; --r4: #6CBC93; --r5: #93D1AF; --r6: #BFE6CF;
+  --viz-bar: #3FAF77; --viz-deemph: #3E5A4A; --viz-grid: rgba(230, 241, 234, .1); --viz-future: #1C3326;
   color-scheme: dark;
 }
 
-/* Saudi flag: green #006C35 and white. The sidebar is the flag field; pages are white on a green-tinted ground. */
-:root[data-theme="saudi"] {
-  --bg: #F1F6F3; --surface: #FFFFFF; --surface-2: #E6F0EA; --tile: #D3E7DB; --trim: #006C35; --ink: #0B2E1C; --muted: #4B6656;
-  --accent: #006C35; --accent-ink: #FFFFFF; --hard: #9A3412; --line: rgba(11, 46, 28, .14);
-  --good: #006C35; --bad: #B42318; --flag: #8A5A00;
-  --sidebar-bg: #006C35; --sidebar-ink: #FFFFFF; --sidebar-muted: rgba(255, 255, 255, .78);
-  --nav-on-bg: #FFFFFF; --nav-on-ink: #006C35;
-  --r1: #6DB38D; --r2: #3F9A69; --r3: #1C8350; --r4: #006C35; --r5: #00562A; --r6: #003F1F;
-  --viz-bar: #006C35; --viz-deemph: #B9CDBF; --viz-grid: rgba(11, 46, 28, .1); --viz-future: #DCEAE1;
+/* Mud brick: Najdi mud-brick walls with a painted-door teal accent. */
+:root[data-theme="light"] {
+  --bg: #DCC8A6; --surface: #EBDEC6; --surface-2: #E2D0B0; --tile: #C39B69; --trim: #C39B69;
+  --ink: #2A1C10; --muted: #66503A; --accent: #1D5A5C; --accent-ink: #F2E9D6; --hard: #8B3A1C;
+  --line: rgba(42, 28, 16, .18); --good: #2F6B3A; --bad: #9A2F1F; --flag: #8A5A00;
+  --sidebar-bg: #EBDEC6; --sidebar-ink: #2A1C10; --sidebar-muted: #66503A;
+  --nav-on-bg: #2A1C10; --nav-on-ink: #DCC8A6;
+  --strong-bg: #2A1C10; --strong-ink: #DCC8A6; --brand-ar: #1D5A5C; --pill-meter: #1D5A5C; --pill-ok: #2F6B3A;
+  --r1: #6FA5A2; --r2: #4E8E8C; --r3: #357878; --r4: #1D5A5C; --r5: #134649; --r6: #0B3335;
+  --viz-bar: #1D5A5C; --viz-deemph: #BFAE92; --viz-grid: rgba(42, 28, 16, .14); --viz-future: #D2BC95;
   color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #1B140E; --surface: #261D15; --surface-2: #30251B; --tile: #4B3723; --trim: #4B3723;
+  --ink: #EFE3CC; --muted: #B39B7C; --accent: #3F8D8D; --accent-ink: #0F0B07; --hard: #E0925F;
+  --line: rgba(239, 227, 204, .16); --good: #7CC08A; --bad: #EE8A76; --flag: #E3B55B;
+  --sidebar-bg: #261D15; --sidebar-ink: #EFE3CC; --sidebar-muted: #B39B7C;
+  --nav-on-bg: #EFE3CC; --nav-on-ink: #1B140E;
+  --strong-bg: #EFE3CC; --strong-ink: #1B140E; --brand-ar: #3F8D8D; --pill-meter: #3F8D8D; --pill-ok: #7CC08A;
+  --r1: #2F6E6D; --r2: #3C8584; --r3: #529C9A; --r4: #6DB3B0; --r5: #8FC8C4; --r6: #B5DDD9;
+  --viz-bar: #4F9C9B; --viz-deemph: #6B5A45; --viz-grid: rgba(239, 227, 204, .12); --viz-future: #3A2C1F;
+  color-scheme: dark;
 }

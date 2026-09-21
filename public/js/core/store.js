@@ -1,5 +1,5 @@
-// All progress lives in this browser's localStorage under one key.
-// Use Export on the Calendar page to keep a backup — clearing browser data wipes it.
+// All progress lives in this browser's localStorage under one key, and — once cloud save is connected — in the
+// D1 database too (core/sync.js). The backup file on the Calendar page never contains the cloud-save key.
 const KEY = "najdi-v2";
 
 const defaults = () => ({
@@ -8,6 +8,7 @@ const defaults = () => ({
   script: { group: 0, done: [], quiz: [0] }, // letter groups marked done / selected for the quiz
   log: {}, // "YYYY-MM-DD" → { min: minutes studied, tasks: ids of ticked tasks, quiz?: { right, total } }
   timer: null, // { start: epoch ms, date: "YYYY-MM-DD" } while the study timer runs
+  sync: { key: "", pushedAt: 0 }, // cloud save: this computer's secret key and the last successful save
 });
 
 function merge(saved) {
@@ -17,6 +18,7 @@ function merge(saved) {
     ...saved,
     prefs: { ...d.prefs, ...saved.prefs },
     script: { ...d.script, ...saved.script },
+    sync: { ...d.sync, ...saved.sync },
     log: saved.log && typeof saved.log === "object" ? saved.log : {},
   };
 }
@@ -30,14 +32,18 @@ function load() {
 }
 
 let state = load();
+const listeners = new Set();
 
 export const get = () => state;
+export const subscribe = fn => (listeners.add(fn), () => listeners.delete(fn));
 
-export function update(fn) {
+// silent: true saves without telling subscribers (used by cloud save itself, so it doesn't re-trigger)
+export function update(fn, { silent = false } = {}) {
   fn(state);
   try {
     localStorage.setItem(KEY, JSON.stringify(state));
   } catch {}
+  if (!silent) listeners.forEach(l => l(state));
 }
 
 export const entry = date => state.log[date] ?? { min: 0, tasks: [] };
@@ -68,11 +74,13 @@ export const logQuiz = (date, right) =>
   });
 
 export function exportJson() {
-  return JSON.stringify(state, null, 2);
+  const { sync, timer, ...rest } = state; // never put the cloud-save key in a file
+  return JSON.stringify(rest, null, 2);
 }
 
 export function importJson(text) {
   const data = JSON.parse(text);
   if (!data || typeof data !== "object" || !data.log) throw new Error("This doesn't look like a Najdi backup file.");
-  update(s => Object.assign(s, merge(data)));
+  const { sync, ...rest } = data;
+  update(s => Object.assign(s, merge({ ...rest, sync: s.sync })));
 }

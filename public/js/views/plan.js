@@ -78,7 +78,6 @@ export default {
           <li>${t("plan.help3")}</li>
           <li>${t("plan.help4")}</li>
         </ul>
-        <p class="muted small">${t("plan.source")}</p>
       </section>`;
   },
 };

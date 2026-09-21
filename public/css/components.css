@@ -18,9 +18,8 @@
   background: transparent; color: var(--ink); font-weight: 800; font-size: 16px; text-decoration: none; cursor: pointer;
 }
 .btn:hover { background: var(--surface-2); }
-.btn[aria-pressed="true"], .btn-primary { background: var(--ink); color: var(--bg); }
-.btn-primary:hover { background: var(--ink); opacity: .9; }
-[data-theme="saudi"] .btn-primary, [data-theme="saudi"] .btn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+.btn[aria-pressed="true"], .btn-primary { background: var(--strong-bg); border-color: var(--strong-bg); color: var(--strong-ink); }
+.btn-primary:hover { background: var(--strong-bg); opacity: .9; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .flag {
@@ -33,9 +32,8 @@
 .play {
   flex: 0 0 36px; height: 36px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  background: var(--ink); color: var(--bg); font-size: 13px;
+  background: var(--strong-bg); color: var(--strong-ink); font-size: 13px;
 }
-[data-theme="saudi"] .play { background: var(--accent); color: #FFFFFF; }
 .no-tts .play, .no-tts .word-say { display: none; }
 
 /* A word's languages after its Najdi Arabic: meaning in the interface language, the others, formal Arabic */
@@ -44,11 +42,6 @@
 .m2 i, .msa i { font-style: normal; font-weight: 800; font-size: 12px; letter-spacing: .05em; margin-inline-end: 6px; text-transform: uppercase; }
 .msa .ar { font-size: 18px; }
 .tr { font-weight: 800; }
-.review-note {
-  margin: 18px 0; padding: 10px 14px; max-width: 80ch;
-  border-inline-start: 4px solid var(--flag); border-radius: 6px;
-  background: var(--surface); color: var(--muted); font-size: 15px;
-}
 
 .now-tag {
   display: inline-block; vertical-align: 3px; margin-inline-start: 6px; padding: 2px 8px;
@@ -71,12 +64,6 @@
 .parapet-labels { position: relative; height: 22px; margin-top: 4px; font-size: 13px; font-weight: 700; color: var(--muted); }
 .parapet-labels span { position: absolute; top: 0; white-space: nowrap; }
 .parapet-caption { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
-
-/* ---------- Arabic-interface note ---------- */
-.ar-banner {
-  margin: 0 0 18px; padding: 8px 14px; border-radius: 10px; border-inline-start: 4px solid var(--flag);
-  background: var(--surface); color: var(--muted); font-size: 15px; font-weight: 700;
-}
 
 /* ---------- Stat tiles ---------- */
 .stat-pairs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 6px 0 14px; }
@@ -212,8 +199,7 @@ html[dir="rtl"] .phrase-ar { text-align: start; }
 .chip .ar { font-size: 20px; line-height: 1; }
 .chip .ok { font-size: 13px; font-weight: 800; color: var(--good); }
 .chip .now { font-size: 12px; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
-.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-[data-theme="saudi"] .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+.chip[aria-pressed="true"] { background: var(--strong-bg); border-color: var(--strong-bg); color: var(--strong-ink); }
 .chip[aria-pressed="true"] .d, .chip[aria-pressed="true"] .ok, .chip[aria-pressed="true"] .now { color: inherit; opacity: .8; }
 
 .gintro { margin: 0 0 16px; }
@@ -260,8 +246,7 @@ html[dir="rtl"] .phrase-ar { text-align: start; }
   width: 100%; max-width: 420px; margin: 4px 0 10px; padding: 13px;
   border: 2px solid var(--ink); border-radius: 12px; background: transparent; font-weight: 800; font-size: 17px;
 }
-.done[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-[data-theme="saudi"] .done[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+.done[aria-pressed="true"] { background: var(--strong-bg); border-color: var(--strong-bg); color: var(--strong-ink); }
 
 /* ---------- Vowels ---------- */
 .vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; align-items: start; }
@@ -302,9 +287,8 @@ html[dir="rtl"] .phrase-ar { text-align: start; }
 .fb { min-height: 52px; margin: 12px 0 0; font-size: 16px; }
 .next {
   display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px;
-  border: 0; border-radius: 12px; background: var(--ink); color: var(--bg); font-weight: 800; font-size: 17px;
+  border: 0; border-radius: 12px; background: var(--strong-bg); color: var(--strong-ink); font-weight: 800; font-size: 17px;
 }
-[data-theme="saudi"] .next { background: var(--accent); color: #FFFFFF; }
 .next kbd { color: inherit; border-color: currentColor; opacity: .7; }
 
 /* ---------- Reading ---------- */
@@ -326,8 +310,7 @@ html[dir="rtl"] .phrase-ar { text-align: start; }
 /* ---------- Words (vocabulary) ---------- */
 .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; padding: 4px; border-radius: 12px; background: var(--surface); width: fit-content; }
 .tabs button { padding: 8px 14px; border: 0; border-radius: 9px; background: transparent; color: var(--muted); font-weight: 800; }
-.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
-[data-theme="saudi"] .tabs button[aria-selected="true"] { background: var(--accent); color: #FFFFFF; }
+.tabs button[aria-selected="true"] { background: var(--strong-bg); color: var(--strong-ink); }
 .topic { margin: 0 0 22px; }
 .topic h2 { font-size: 20px; }
 .vocab { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 10px; }
@@ -390,6 +373,13 @@ button.cal-day:hover { border-color: var(--ink); }
 .detail-tasks input { margin-top: 3px; accent-color: var(--accent); }
 .backup { margin-top: 22px; max-width: 720px; }
 .backup label.btn { cursor: pointer; }
+.backup h3 { margin-top: 18px; }
+.cloud { margin-bottom: 8px; }
+.cloud-status { font-weight: 700; }
+.cloud-form { display: flex; flex-wrap: wrap; align-items: end; gap: 10px; }
+.cloud-form label { display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: 15px; }
+.cloud-form input { min-width: 280px; padding: 9px 12px; border: 2px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font: inherit; }
+.cloud-form input:focus-visible { border-color: var(--accent); }
 
 /* ---------- Plan ---------- */
 .plan-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }

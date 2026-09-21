@@ -44,8 +44,6 @@ export const pageHead = (title, sub = "", eyebrow = "", cls = "") => `
     ${sub ? `<p class="sub">${sub}</p>` : ""}
   </header>`;
 
-export const reviewNote = () => `<p class="review-note">${esc(t("review.note"))}</p>`;
-
 export const shuffle = a => {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));

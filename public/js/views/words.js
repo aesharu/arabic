@@ -1,5 +1,5 @@
 import { t, tx, tu } from "../core/i18n.js";
-import { esc, rich, ar, translit, flag, meanings, playIcon, pageHead, reviewNote } from "../core/dom.js";
+import { esc, rich, ar, translit, flag, meanings, playIcon, pageHead } from "../core/dom.js";
 import { phaseTitle } from "../core/schedule.js";
 import { PHASES } from "../data/plan.js";
 
@@ -65,8 +65,7 @@ export default {
             <section class="topic">
               <h2>${esc(tx(topic.title))}</h2>
               <div class="vocab">${topic.entries.map(entry).join("")}</div>
-            </section>`).join("")}
-        ${reviewNote()}`;
+            </section>`).join("")}`;
     };
 
     root.addEventListener("click", e => {
