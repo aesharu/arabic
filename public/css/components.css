@@ -1251,3 +1251,33 @@ html[dir="rtl"] .bd-go .i { transform: scaleX(-1); }
 .rude[open] summary::before { content: "▾ "; }
 .rude-tag { display: inline-block; vertical-align: 2px; margin: 0 4px; padding: 1px 7px; border-radius: 6px; background: color-mix(in srgb, var(--bad) 14%, transparent); color: var(--bad); font-size: 12.5px; font-weight: 800; white-space: nowrap; }
 .rude-tag.is-very { background: var(--bad); color: #fff; }
+
+/* Numbers & time (#/numbers) */
+.nm-input { display: flex; gap: 8px; margin: 8px 0 12px; }
+.nm-input input { flex: 1; min-width: 0; padding: 10px 14px; border: 2px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--ink); font: inherit; font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.nm-input input:focus { outline: none; border-color: var(--accent); }
+.nm-big, .nm-answer { position: relative; display: grid; justify-items: start; gap: 4px; width: 100%; padding: 16px 64px 16px 18px; border: 0; border-radius: 16px; background: var(--bg); color: inherit; font: inherit; text-align: start; cursor: pointer; }
+.nm-big .play, .nm-answer .play { position: absolute; inset-inline-end: 16px; top: 50%; translate: 0 -50%; }
+.nm-digits { font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.nm-digits span { margin-inline-start: 12px; color: var(--muted); }
+.nm-words { font-size: 34px; line-height: 1.5; }
+.nm-say { color: var(--muted); font-size: 17px; }
+.nm-q { margin: 6px 0; font-size: 48px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.nm-q span { margin-inline-start: 14px; color: var(--muted); }
+.nm-answer { margin: 0 0 12px; }
+.nm-answer > span:not(.play) { color: var(--muted); }
+.nm-practice .seg { margin: 0; flex-wrap: wrap; }
+.nm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin: 0 0 22px; }
+.nm-chip { display: grid; justify-items: start; gap: 0; padding: 10px 12px; border: 0; border-radius: 14px; background: var(--surface); color: inherit; font: inherit; text-align: start; cursor: pointer; }
+.nm-chip:hover { background: var(--surface-2); }
+.nm-chip b { font-size: 20px; font-variant-numeric: tabular-nums; }
+.nm-chip .ar { font-size: 22px; line-height: 1.5; }
+.nm-chip small { color: var(--muted); font-size: 13.5px; }
+.nm-timebox { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin: 6px 0 12px; }
+.nm-clock { width: 150px; height: 150px; flex: 0 0 auto; }
+.nm-face { fill: var(--bg); stroke: var(--accent); stroke-width: 3; }
+.nm-ticks { fill: var(--muted); }
+.nm-hands { stroke: var(--ink); }
+.nm-pin { fill: var(--accent); }
+.nm-time { flex: 1 1 260px; min-width: 0; }
+.nm-clockpanel h3 { margin-top: 10px; }
