@@ -12,6 +12,7 @@ import { loadVocab, vocabNow } from "./core/vocab.js";
 import { counts as cardCounts } from "./core/cards.js";
 import * as sync from "./core/sync.js";
 import { welcome, switchProfile } from "./core/welcome.js";
+import { chime } from "./core/music.js";
 
 import today from "./views/today.js";
 import progress from "./views/progress.js";
@@ -94,8 +95,8 @@ function translateShell() {
   if (typeof labelSky === "function") labelSky();
   const who = store.isTeacher() ? ["profile.dima", "profile.teacher"] : ["profile.volodymyr", "profile.student"];
   document.querySelector(".ps-who").textContent = `${t(who[0])} · ${t(who[1])}`;
-  document.querySelectorAll("[data-set-theme]").forEach(b => {
-    const name = t(`theme.${b.dataset.setTheme}`);
+  document.querySelectorAll("[data-palette]").forEach(b => {
+    const name = t(b.dataset.palette === "mud" ? "theme.mud" : "theme.saudi");
     b.title = name;
     b.setAttribute("aria-label", name);
   });
@@ -182,6 +183,7 @@ const skyButton = document.getElementById("sky-toggle");
 const labelSky = () => skyButton.setAttribute("aria-label", t(darkNow() ? "theme.toLight" : "theme.toDark"));
 skyButton.addEventListener("click", () => {
   const th = store.get().prefs.theme;
+  chime(!darkNow()); // a soft oud note: low for night, bright for day
   const next = th === "auto" ? (darkNow() ? "saudi" : "saudi-dark") : FLIP[th] ?? "saudi-dark";
   store.update(s => {
     s.prefs.theme = next;
@@ -194,15 +196,18 @@ function applyTheme() {
   const theme = store.get().prefs.theme;
   if (theme === "auto") delete document.documentElement.dataset.theme;
   else document.documentElement.dataset.theme = theme;
-  document.querySelectorAll("[data-set-theme]").forEach(b => b.setAttribute("aria-pressed", b.dataset.setTheme === theme));
+  const palette = theme === "light" || theme === "dark" ? "mud" : "saudi";
+  document.querySelectorAll("[data-palette]").forEach(b => b.setAttribute("aria-pressed", b.dataset.palette === palette));
   paintThemeColor();
   labelSky();
 }
+// Two palettes — Saudi green and mud brick; the sun/moon button decides light or dark.
 document.querySelector(".themes").addEventListener("click", e => {
-  const b = e.target.closest("[data-set-theme]");
+  const b = e.target.closest("[data-palette]");
   if (!b) return;
+  const dark = darkNow();
   store.update(s => {
-    s.prefs.theme = b.dataset.setTheme;
+    s.prefs.theme = b.dataset.palette === "mud" ? (dark ? "dark" : "light") : dark ? "saudi-dark" : "saudi";
   });
   applyTheme();
   show(current.name, current.params);

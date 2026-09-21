@@ -28,11 +28,6 @@ export const STRINGS = {
   "nav.main": { en: "Main", uk: "Головне меню", najdi: "القائمة", msa: "القائمة الرئيسية" },
   "lang.label": { en: "Language", uk: "Мова", najdi: "اللغة", msa: "اللغة" },
   "theme.label": { en: "Theme", uk: "Тема", najdi: "الشكل", msa: "المظهر" },
-  "theme.auto": { en: "Saudi — light or dark like your computer", uk: "Саудівська — світла чи темна, як на комп'ютері", najdi: "سعودي — فاتح أو غامق مثل جهازك", msa: "سعودي — فاتح أو داكن حسب جهازك" },
-  "theme.saudi": { en: "Saudi — light", uk: "Саудівська — світла", najdi: "سعودي — فاتح", msa: "سعودي — فاتح" },
-  "theme.saudi-dark": { en: "Saudi — dark", uk: "Саудівська — темна", najdi: "سعودي — غامق", msa: "سعودي — داكن" },
-  "theme.light": { en: "Mud brick — light", uk: "Глиняна цегла — світла", najdi: "طين — فاتح", msa: "الطين — فاتح" },
-  "theme.dark": { en: "Mud brick — dark", uk: "Глиняна цегла — темна", najdi: "طين — غامق", msa: "الطين — داكن" },
   "pill.soon": { en: "Starts soon", uk: "Скоро старт", najdi: "قريب نبدأ", msa: "يبدأ قريبًا" },
 
   // Shared
@@ -559,6 +554,8 @@ export const STRINGS = {
   "edit.error": { en: "Couldn't save — check the internet and that you're signed in.", uk: "Не вдалося зберегти — перевір інтернет і вхід.", najdi: "ما انحفظ — تأكّد من الإنترنت ومن تسجيل الدخول.", msa: "تعذّر الحفظ — تحقّق من الإنترنت ومن تسجيل الدخول." },
   "edit.signIn": { en: "Sign in first (type your name on the welcome screen) — corrections are saved in the cloud.", uk: "Спершу увійди (введи своє ім'я на вітальному екрані) — виправлення зберігаються в хмарі.", najdi: "سجّل دخولك أول (اكتب اسمك في شاشة الترحيب) — التصحيحات تنحفظ في السحابة.", msa: "سجّل الدخول أولًا (اكتب اسمك في شاشة الترحيب) — تُحفَظ التصحيحات في السحابة." },
 
+  "theme.saudi": { en: "Saudi green", uk: "Саудівський зелений", najdi: "أخضر سعودي", msa: "الأخضر السعودي" },
+  "theme.mud": { en: "Mud brick", uk: "Глиняна цегла", najdi: "طين", msa: "الطين" },
   "theme.toLight": { en: "Switch to light", uk: "Увімкнути світлу тему", najdi: "حوّل للوضع الفاتح", msa: "التبديل إلى الوضع الفاتح" },
   "theme.toDark": { en: "Switch to dark", uk: "Увімкнути темну тему", najdi: "حوّل للوضع الداكن", msa: "التبديل إلى الوضع الداكن" },
   // The welcome screen, when the site opens (addressed to Dima, so the Arabic is feminine)

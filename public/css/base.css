@@ -172,6 +172,15 @@ html[dir="rtl"] .foot-label { letter-spacing: 0; }
 }
 .langs button[lang^="ar"] { font-family: "Noto Kufi Arabic", var(--font-ar); letter-spacing: 0; font-size: 13px; }
 .langs button[aria-pressed="true"] { background: var(--nav-on-bg); color: var(--nav-on-ink); }
+.langs button { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.lang-sign { display: block; height: 18px; font-size: 16px; line-height: 18px; }
+svg.lang-sign { width: 19px; }
+.lang-heart path { fill: #D6455D; }
+.lang-dad { font-family: "Noto Kufi Arabic", var(--font-ar); font-weight: 800; font-size: 15px; }
+.palette { width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; transition: transform .15s ease; }
+.palette svg { width: 100%; height: 100%; display: block; }
+.palette:hover { transform: scale(1.08); }
+.palette[aria-pressed="true"] { outline: 2.5px solid var(--sidebar-ink); outline-offset: 2px; }
 .themes { display: flex; align-items: center; gap: 6px; padding: 0 4px; }
 .themes button {
   width: 24px; height: 24px; padding: 0; border-radius: 50%;
@@ -236,7 +245,7 @@ html[dir="rtl"] h3 { letter-spacing: 0; }
 .st-sun circle:last-child { fill: #F4C24D; }
 .st-sun .st-glow { fill: rgba(244, 194, 77, .28); }
 .st-sun .st-rays { fill: #E8A93A; }
-.st-moon circle { fill: #F3EBD2; }
+.st-moon .st-body, .st-moon .st-dot { fill: #F3EBD2; }
 .st-moon .st-glow { fill: rgba(243, 235, 210, .13); }
 .st-moon { opacity: 0; transform: rotate(-90deg) scale(.6); }
 :root[data-theme="saudi-dark"] .sky-toggle, :root[data-theme="dark"] .sky-toggle { background: #0E2A1D; box-shadow: 0 0 0 1px rgba(243, 235, 210, .12), 0 8px 24px -10px rgba(0, 0, 0, .6); }

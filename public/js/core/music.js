@@ -105,3 +105,26 @@ export function play() {
     } catch {}
   };
 }
+
+// The sun/moon button: two plucked notes — falling and low for night, rising and bright for day.
+export function chime(toDark) {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  try {
+    const ctx = new AC();
+    const sr = ctx.sampleRate;
+    const out = new Float32Array(Math.ceil(1.4 * sr));
+    const notes = toDark ? [[0, HZ.A3], [0.11, HZ.D3], [0.11, HZ.D2]] : [[0, HZ.D4], [0.1, HZ.A3 * 2], [0.2, HZ.D4 * 2]];
+    for (const [at, hz] of notes) pluck(out, sr, at, hz, 0.5);
+    let peak = 0;
+    for (const v of out) peak = Math.max(peak, Math.abs(v));
+    for (let i = 0; i < out.length; i++) out[i] = (out[i] / (peak || 1)) * 0.35 * Math.min(1, (out.length - i) / (0.4 * sr));
+    const buf = ctx.createBuffer(1, out.length, sr);
+    buf.copyToChannel(out, 0);
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    src.connect(ctx.destination);
+    src.start();
+    src.onended = () => ctx.close();
+  } catch {}
+}
