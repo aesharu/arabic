@@ -89,6 +89,7 @@ function translateShell() {
   document.querySelectorAll("[data-i18n]").forEach(el => (el.textContent = t(el.dataset.i18n)));
   document.querySelectorAll("[data-i18n-label]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nLabel)));
   document.querySelectorAll("[data-lang]").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang()));
+  if (typeof labelSky === "function") labelSky();
   const who = store.isTeacher() ? ["profile.dima", "profile.teacher"] : ["profile.volodymyr", "profile.student"];
   document.querySelector(".ps-who").textContent = `${t(who[0])} · ${t(who[1])}`;
   document.querySelectorAll("[data-set-theme]").forEach(b => {
@@ -169,12 +170,31 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
   show(current.name, current.params); // charts and the sky read theme colours
 });
 
+// The sun/moon button: flips between the light and dark version of the current theme.
+const FLIP = { saudi: "saudi-dark", "saudi-dark": "saudi", light: "dark", dark: "light" };
+const darkNow = () => {
+  const th = store.get().prefs.theme;
+  return th === "auto" ? matchMedia("(prefers-color-scheme: dark)").matches : th === "saudi-dark" || th === "dark";
+};
+const skyButton = document.getElementById("sky-toggle");
+const labelSky = () => skyButton.setAttribute("aria-label", t(darkNow() ? "theme.toLight" : "theme.toDark"));
+skyButton.addEventListener("click", () => {
+  const th = store.get().prefs.theme;
+  const next = th === "auto" ? (darkNow() ? "saudi" : "saudi-dark") : FLIP[th] ?? "saudi-dark";
+  store.update(s => {
+    s.prefs.theme = next;
+  });
+  applyTheme();
+  show(current.name, current.params);
+});
+
 function applyTheme() {
   const theme = store.get().prefs.theme;
   if (theme === "auto") delete document.documentElement.dataset.theme;
   else document.documentElement.dataset.theme = theme;
   document.querySelectorAll("[data-set-theme]").forEach(b => b.setAttribute("aria-pressed", b.dataset.setTheme === theme));
   paintThemeColor();
+  labelSky();
 }
 document.querySelector(".themes").addEventListener("click", e => {
   const b = e.target.closest("[data-set-theme]");

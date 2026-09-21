@@ -505,6 +505,8 @@ export const STRINGS = {
   "edit.error": { en: "Couldn't save — check the internet and that you're signed in.", uk: "Не вдалося зберегти — перевір інтернет і вхід.", najdi: "ما انحفظ — تأكّد من الإنترنت ومن تسجيل الدخول.", msa: "تعذّر الحفظ — تحقّق من الإنترنت ومن تسجيل الدخول." },
   "edit.signIn": { en: "Sign in first (type your name on the welcome screen) — corrections are saved in the cloud.", uk: "Спершу увійди (введи своє ім'я на вітальному екрані) — виправлення зберігаються в хмарі.", najdi: "سجّل دخولك أول (اكتب اسمك في شاشة الترحيب) — التصحيحات تنحفظ في السحابة.", msa: "سجّل الدخول أولًا (اكتب اسمك في شاشة الترحيب) — تُحفَظ التصحيحات في السحابة." },
 
+  "theme.toLight": { en: "Switch to light", uk: "Увімкнути світлу тему", najdi: "حوّل للوضع الفاتح", msa: "التبديل إلى الوضع الفاتح" },
+  "theme.toDark": { en: "Switch to dark", uk: "Увімкнути темну тему", najdi: "حوّل للوضع الداكن", msa: "التبديل إلى الوضع الداكن" },
   // The welcome screen, when the site opens (addressed to Dima, so the Arabic is feminine)
   "welcome.ask": { en: "Write your name", uk: "Напиши своє ім'я", najdi: "اكتبي اسمك", msa: "اكتبي اسمكِ" },
   "welcome.wrong": { en: "Not this name — this door opens for one person only.", uk: "Не те ім'я — ці двері відчиняються лише для однієї людини.", najdi: "مهوب هذا الاسم… هالباب لشخص واحد بس", msa: "ليس هذا الاسم… هذا الباب لشخصٍ واحدٍ فقط." },

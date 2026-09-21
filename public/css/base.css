@@ -223,6 +223,34 @@ h2 { margin: 0 0 8px; font-size: 22px; font-weight: 800; }
 h3 { margin: 0 0 6px; font-size: 15px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 html[dir="rtl"] h3 { letter-spacing: 0; }
 
+/* The sun or the moon, top right on every page: tap to switch light ↔ dark */
+.sky-toggle {
+  position: fixed; z-index: 25; top: 14px; inset-inline-end: 14px; width: 50px; height: 50px; padding: 0;
+  display: grid; place-items: center; border: 0; border-radius: 50%; cursor: pointer;
+  background: #CFE7EC; box-shadow: 0 0 0 1px rgba(11, 46, 28, .08), 0 8px 24px -10px rgba(11, 46, 28, .35);
+  transition: background-color .4s ease, transform .15s ease;
+}
+.sky-toggle:hover { transform: scale(1.06); }
+.sky-toggle:active { transform: scale(.94); }
+.sky-toggle svg { grid-area: 1 / 1; width: 46px; height: 46px; transition: opacity .35s ease, transform .5s cubic-bezier(.2, .7, .2, 1); }
+.st-sun circle:last-child { fill: #F4C24D; }
+.st-sun .st-glow { fill: rgba(244, 194, 77, .28); }
+.st-sun .st-rays { fill: #E8A93A; }
+.st-moon circle { fill: #F3EBD2; }
+.st-moon .st-glow { fill: rgba(243, 235, 210, .13); }
+.st-moon { opacity: 0; transform: rotate(-90deg) scale(.6); }
+:root[data-theme="saudi-dark"] .sky-toggle, :root[data-theme="dark"] .sky-toggle { background: #0E2A1D; box-shadow: 0 0 0 1px rgba(243, 235, 210, .12), 0 8px 24px -10px rgba(0, 0, 0, .6); }
+:root[data-theme="saudi-dark"] .st-moon, :root[data-theme="dark"] .st-moon { opacity: 1; transform: none; }
+:root[data-theme="saudi-dark"] .st-sun, :root[data-theme="dark"] .st-sun { opacity: 0; transform: rotate(90deg) scale(.6); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .sky-toggle { background: #0E2A1D; box-shadow: 0 0 0 1px rgba(243, 235, 210, .12), 0 8px 24px -10px rgba(0, 0, 0, .6); }
+  :root:not([data-theme]) .st-moon { opacity: 1; transform: none; }
+  :root:not([data-theme]) .st-sun { opacity: 0; transform: rotate(90deg) scale(.6); }
+}
+.sky-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .sky-toggle svg { transition: none; } }
+@media (min-width: 861px) { .app > main { padding-inline-end: 84px; } } /* room for it beside the page */
+
 /* ---------- iPad in landscape and smaller laptops ---------- */
 @media (max-width: 1180px) {
   .app { grid-template-columns: 224px minmax(0, 1fr); }
@@ -242,6 +270,8 @@ html[dir="rtl"] h3 { letter-spacing: 0; }
   .brand-lat { font-size: 22px; }
   .brand .ar { font-size: 17px; }
   .daypill { margin-inline-start: auto; padding: 5px 10px; grid-template-columns: auto auto; }
+  .sky-toggle { position: static; width: 42px; height: 42px; flex: 0 0 auto; }
+  .sky-toggle svg { width: 40px; height: 40px; }
   .daypill .meter, .daypill small { display: none; }
   .daypill b { font-size: 16px; }
   .daypill > span:not(.meter) { font-size: 14px; }

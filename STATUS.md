@@ -16,6 +16,7 @@ Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
 - **Phase 4**: the Plan, Today (daily checklist), Calendar and Progress pages.
 - **Cards** `#/cards`: Anki SM-2 scheduling, in both directions (recognise, then say). Decks open by stage. Syncs to the cloud.
 - **Look**: Saudi green theme, a hand-drawn Najdi scene, Sadu weave, icons, page illustrations. The Today sky follows the theme: dark themes show the moon, light themes the sun, low at dawn and dusk.
+- **Sun/moon button** (`#sky-toggle`, top-right of every page; in the top bar on iPad/iPhone): tap flips light ↔ dark (saudi ↔ saudi-dark, light ↔ dark).
 - **iPhone/iPad**: at ≤860 px, a top bar, bottom tab bar and "More" sheet. Safe areas, home-screen icon.
 - **Welcome screen, on every page load** (`core/welcome.js`, `css/welcome.css`):
   - Day sky 6:00–18:00, night otherwise.
