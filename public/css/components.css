@@ -757,3 +757,12 @@ html[dir="rtl"] .print-bar p { margin: 0 0 0 auto; }
   .deck-go .btn { padding: 6px 10px; }
   .due-counts dd { font-size: 24px; }
 }
+
+/* Teacher view: Dima sees his progress; nothing she does is saved (core/store.js) */
+.teacher-banner {
+  display: flex; gap: 10px; align-items: flex-start; margin: 0 0 18px; padding: 12px 16px; border-radius: 14px;
+  background: color-mix(in srgb, var(--warn, #C8961E) 14%, var(--surface)); border: 1px solid color-mix(in srgb, var(--warn, #C8961E) 45%, transparent);
+  font-size: 15.5px; line-height: 1.45;
+}
+.teacher-banner .i { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 2px; }
+.teacher-banner small { display: block; margin-top: 2px; color: var(--muted); font-size: 14.5px; }

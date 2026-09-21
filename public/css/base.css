@@ -155,6 +155,14 @@ nav a[aria-current="page"] { background: var(--nav-on-bg); color: var(--nav-on-i
 nav a[aria-current="page"] .navcount { background: var(--nav-on-ink); color: var(--nav-on-bg); }
 
 .sidebar-foot { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+.profile-switch {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; padding: 7px 12px;
+  border: 1px solid color-mix(in srgb, var(--sidebar-ink) 18%, transparent); border-radius: 11px;
+  background: none; color: var(--sidebar-ink); font: inherit; font-size: 14.5px; cursor: pointer; text-align: start;
+}
+.profile-switch:hover { background: color-mix(in srgb, var(--sidebar-ink) 9%, transparent); }
+.profile-switch .ps-who { font-weight: 800; }
+.profile-switch .ps-do { color: var(--sidebar-muted); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
 .foot-label { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--sidebar-muted); margin-inline-end: auto; }
 html[dir="rtl"] .foot-label { letter-spacing: 0; }
 .langs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; padding: 3px; border-radius: 11px; background: color-mix(in srgb, var(--sidebar-ink) 9%, transparent); }

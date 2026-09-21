@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/print.css">
+<link rel="stylesheet" href="css/welcome.css">
 <script>
   // Apply the saved theme and language before the first paint, so the page doesn't flash.
   try {
@@ -29,6 +30,8 @@
     if (p.lang === "najdi" || p.lang === "msa") { document.documentElement.dir = "rtl"; document.documentElement.lang = "ar"; }
     else if (p.lang === "uk") document.documentElement.lang = "uk";
   } catch {}
+  // The welcome screen, every time the page loads (js/core/welcome.js) — except right after choosing a new profile.
+  try { if (sessionStorage.getItem("najdi-welcomed") === "reload") sessionStorage.removeItem("najdi-welcomed"); else document.documentElement.dataset.welcome = "1"; } catch { document.documentElement.dataset.welcome = "1"; }
 </script>
 <script type="module" src="js/main.js"></script>
 <!-- Every module, fetched in parallel instead of one import level at a time (tests/shell.test.mjs keeps this list complete). -->
@@ -39,6 +42,7 @@
 <link rel="modulepreload" href="js/core/dates.js">
 <link rel="modulepreload" href="js/core/dom.js">
 <link rel="modulepreload" href="js/core/i18n.js">
+<link rel="modulepreload" href="js/core/music.js">
 <link rel="modulepreload" href="js/core/router.js">
 <link rel="modulepreload" href="js/core/schedule.js">
 <link rel="modulepreload" href="js/core/search.js">
@@ -48,6 +52,7 @@
 <link rel="modulepreload" href="js/core/sync.js">
 <link rel="modulepreload" href="js/core/timer.js">
 <link rel="modulepreload" href="js/core/vocab.js">
+<link rel="modulepreload" href="js/core/welcome.js">
 <link rel="modulepreload" href="js/data/letters.js">
 <link rel="modulepreload" href="js/data/phrases.js">
 <link rel="modulepreload" href="js/data/plan.js">
@@ -99,6 +104,7 @@
       <a href="#/quiz" data-route="quiz"><span data-i18n="nav.quiz">Quiz</span></a>
     </nav>
     <div class="sidebar-foot">
+      <button type="button" class="profile-switch" data-profile-switch><span class="ps-who"></span><span class="ps-do" data-i18n="profile.switch">Switch profile</span></button>
       <div class="langs" role="group" data-i18n-label="lang.label" aria-label="Language">
         <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang="uk" lang="uk" aria-pressed="false">УКР</button>

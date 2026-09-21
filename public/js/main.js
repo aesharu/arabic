@@ -11,6 +11,7 @@ import { attachTooltips, fitCharts } from "./core/charts.js";
 import { loadVocab, vocabNow } from "./core/vocab.js";
 import { counts as cardCounts } from "./core/cards.js";
 import * as sync from "./core/sync.js";
+import { welcome, switchProfile } from "./core/welcome.js";
 
 import today from "./views/today.js";
 import progress from "./views/progress.js";
@@ -59,6 +60,8 @@ document.addEventListener("click", e => {
   if (el) say(el.dataset.say);
 });
 attachTooltips(document);
+document.querySelector("[data-profile-switch]").addEventListener("click", switchProfile);
+document.body.classList.toggle("is-teacher", store.isTeacher());
 
 // Sidebar texts in index.html name their string with a data-i18n attribute.
 function translateShell() {
@@ -68,6 +71,8 @@ function translateShell() {
   document.querySelectorAll("[data-i18n]").forEach(el => (el.textContent = t(el.dataset.i18n)));
   document.querySelectorAll("[data-i18n-label]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nLabel)));
   document.querySelectorAll("[data-lang]").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang()));
+  const who = store.isTeacher() ? ["profile.dima", "profile.teacher"] : ["profile.volodymyr", "profile.student"];
+  document.querySelector(".ps-who").textContent = `${t(who[0])} · ${t(who[1])}`;
   document.querySelectorAll("[data-set-theme]").forEach(b => {
     const name = t(`theme.${b.dataset.setTheme}`);
     b.title = name;
@@ -163,6 +168,18 @@ document.querySelector(".themes").addEventListener("click", e => {
   show(current.name, current.params);
 });
 
+// Teacher view: a note at the top of every page. Pages that draw themselves later (after loading words)
+// replace their content, so the note is put back whenever it goes missing.
+function teacherBanner() {
+  if (!store.isTeacher() || view.querySelector(":scope > .teacher-banner")) return;
+  view.insertAdjacentHTML("afterbegin", `<p class="teacher-banner" role="note">${icon("star")}<span>${t("teacher.banner")}${
+    store.get().sync.key ? "" : `<small>${t("teacher.connect")}</small>`}</span></p>`);
+}
+if (store.isTeacher()) {
+  document.documentElement.style.overflowAnchor = "none"; // otherwise the browser scrolls to keep the page still and pushes the note off the top
+  new MutationObserver(teacherBanner).observe(view, { childList: true });
+}
+
 function show(name, params) {
   controller?.abort();
   controller = new AbortController();
@@ -175,6 +192,7 @@ function show(name, params) {
   document.body.dataset.route = name;
   renderDayPill();
   routes[name].mount(view, { params, signal: controller.signal });
+  teacherBanner();
   requestAnimationFrame(() => fitCharts(view));
 }
 let resizeTimer = 0;
@@ -200,6 +218,7 @@ store.subscribe(() => {
 });
 
 translateShell();
+welcome();
 renderCloudPill();
 renderTimerPill();
 sync.start(() => show(current.name, current.params)); // re-render if another computer had newer progress

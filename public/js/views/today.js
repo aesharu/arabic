@@ -21,11 +21,14 @@ function phrasesFor(n) {
 }
 
 // The sky over the fort follows your clock; the greeting teaches the words for this time of day.
+// The sky follows the theme: a dark theme is night with the moon; a light one has the sun, low at dawn and dusk.
 function timeOfDay(h = new Date().getHours()) {
+  const theme = document.documentElement.dataset.theme;
+  const dark = theme ? theme === "dark" || theme === "saudi-dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  if (dark) return "night";
   if (h >= 5 && h < 8) return "dawn";
-  if (h >= 8 && h < 17) return "day";
   if (h >= 17 && h < 20) return "dusk";
-  return "night";
+  return "day";
 }
 const GREETING = {
   morning: { ar: "صباح الخير", say: "ṣabāḥ al-khēr", key: "today.greetMorning", reply: "صباح النور", replySay: "ṣabāḥ an-nūr" },
@@ -93,7 +96,8 @@ export default {
       const left = Math.max(0, diffDays(date, GOAL));
       const week = weekNumber(date);
       const time = timeOfDay();
-      const g = GREETING[new Date().getHours() < 12 && time !== "night" ? "morning" : "evening"];
+      const hour = new Date().getHours();
+      const g = GREETING[hour >= 4 && hour < 12 ? "morning" : "evening"];
       const run = timer.running();
 
       root.innerHTML = `

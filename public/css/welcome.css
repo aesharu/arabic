@@ -1,0 +1,210 @@
+/* The welcome screen (js/core/welcome.js): always a Najdi night — the same in every theme. */
+
+/* Hide the site until she is in, so it never flashes behind the welcome (index.html sets data-welcome). */
+html[data-welcome] body > :not(.welcome) { visibility: hidden; }
+html[data-welcome] body { background: #03100A; overflow: hidden; }
+
+.welcome {
+  --wl-ink: #F6EEDC; --wl-muted: #B7CEBF; --wl-gold: #E2B04A; --wl-gold-2: #F8E3A6; --wl-deep: #03100A;
+  /* the fort by night, whatever the theme */
+  --art-sand-far: #2C2618; --art-sand: #3A301F; --art-ground: #463924;
+  --art-wall: #5E4630; --art-wall-shade: #4A3624; --art-band: #544028; --art-vent: #1E150D; --art-door: #2E1F12; --art-door-paint: #8E7234;
+  --art-far: #173427; --art-far-ball: #7E6222; --art-palm: #1F5E3E; --art-palm-dark: #184C32; --art-trunk: #4A3826; --art-trunk-line: #372919; --art-dates: #6A3A1F;
+  --art-moon: #F3EBD2; --art-star: #F3EBD2;
+
+  position: fixed; inset: 0; z-index: 100; visibility: visible;
+  display: grid; grid-template-rows: 1fr auto; overflow: hidden auto;
+  color: var(--wl-ink);
+  background:
+    radial-gradient(120% 70% at 50% 108%, #1B4A33 0%, transparent 60%),
+    linear-gradient(#010805 0%, #05160E 45%, #0C2A1C 100%);
+  font-family: var(--font-ui);
+  transition: opacity .8s ease, transform .9s cubic-bezier(.2, .7, .2, 1);
+}
+.welcome.is-leaving { opacity: 0; transform: scale(1.04); pointer-events: none; }
+
+.wl-stars { position: absolute; inset: 0; width: 100%; height: 100%; fill: var(--art-star); pointer-events: none; }
+.wl-stars circle { opacity: .75; }
+.wl-stars .tw { animation: wl-twinkle 4s ease-in-out infinite; }
+@keyframes wl-twinkle { 50% { opacity: .15; } }
+
+/* A warm light behind the star, that swells when the door opens */
+.wl-glow {
+  position: absolute; left: 50%; top: clamp(150px, 30vh, 290px); width: 760px; height: 760px; translate: -50% -50%;
+  background: radial-gradient(circle, rgba(226, 176, 74, .20) 0%, rgba(226, 176, 74, .06) 38%, transparent 66%);
+  pointer-events: none; transition: opacity 1.4s ease, scale 1.6s cubic-bezier(.2, .7, .2, 1);
+  opacity: .55; scale: .8;
+}
+.is-open .wl-glow { opacity: 1; scale: 1.15; }
+
+.wl-center {
+  position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; padding: calc(28px + env(safe-area-inset-top)) 20px 12px; text-align: center;
+}
+
+.wl-brand { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--wl-muted); font-weight: 800; font-size: 17px; letter-spacing: .02em; }
+.wl-brand svg { width: 22px; height: 22px; fill: var(--wl-gold); }
+.wl-brand [lang="ar"] { font-family: var(--font-ar); font-size: 19px; }
+
+/* The star medal with her name */
+.wl-medal { position: relative; width: clamp(200px, 34vh, 290px); aspect-ratio: 1; display: grid; place-items: center; }
+.wl-star { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; animation: wl-turn 90s linear infinite; }
+@keyframes wl-turn { to { rotate: 360deg; } }
+.wl-star .wl-ring, .wl-star .wl-outline, .wl-star .wl-inner { fill: none; stroke: var(--wl-gold); stroke-linejoin: round; }
+.wl-star .wl-ring { stroke-width: .8; stroke-dasharray: .4 1.6; opacity: .6; }
+.wl-star .wl-outline { stroke-width: 1.6; opacity: .45; }
+.wl-star .wl-inner { stroke-width: .8; opacity: .35; }
+.wl-star .wl-tips { fill: var(--wl-gold); opacity: .5; }
+.is-open .wl-star .wl-outline { opacity: 1; stroke: var(--wl-gold-2); stroke-dasharray: 100; animation: wl-draw 1.8s cubic-bezier(.6, .1, .2, 1) both; }
+.is-open .wl-star .wl-inner { opacity: .8; stroke-dasharray: 100; animation: wl-draw 1.6s .5s cubic-bezier(.6, .1, .2, 1) both; }
+.is-open .wl-star .wl-tips { opacity: 1; transition: opacity 1s 1.2s; }
+@keyframes wl-draw { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+
+.wl-name {
+  position: relative; margin: 0; padding-bottom: .15em;
+  font-family: var(--font-ar); font-weight: 700; font-size: clamp(64px, 11vh, 96px); line-height: 1.1;
+  background: linear-gradient(100deg, #B8872E 0%, var(--wl-gold-2) 35%, #FFF7DE 50%, var(--wl-gold-2) 65%, #B8872E 100%);
+  background-size: 250% 100%; background-position: 100% 0;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  opacity: .0; transform: translateY(8px) scale(.94);
+  transition: opacity 1s .35s ease, transform 1.2s .35s cubic-bezier(.2, .7, .2, 1);
+}
+.is-open .wl-name { opacity: 1; transform: none; animation: wl-shine 2.6s .6s ease-in-out both; }
+@keyframes wl-shine { to { background-position: 0 0; } }
+
+/* Gold sparks rising, like embers from a coffee fire */
+.wl-sparks { position: absolute; left: 50%; top: 58%; width: 0; height: 0; pointer-events: none; }
+.wl-sparks i {
+  position: absolute; left: var(--x); top: 0; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--wl-gold-2); box-shadow: 0 0 8px 2px rgba(248, 227, 166, .55); opacity: 0;
+}
+.is-open .wl-sparks i { animation: wl-rise 3.2s var(--d) cubic-bezier(.2, .6, .4, 1) both; }
+@keyframes wl-rise {
+  0% { opacity: 0; transform: translate(0, 20px) scale(var(--s)); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(var(--x) * .6), -190px) scale(calc(var(--s) * .4)); }
+}
+
+/* Words: Arabic large, English and Ukrainian beneath */
+.wl-stage { display: flex; flex-direction: column; align-items: center; gap: 18px; min-height: 250px; }
+.wl-title, .wl-line { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 0; }
+.wl-title .wl-ar { font-family: var(--font-ar); font-weight: 700; font-size: clamp(30px, 5vh, 42px); line-height: 1.4; color: var(--wl-ink); }
+.wl-title .wl-en, .wl-title .wl-uk { font-size: 19px; font-weight: 700; color: var(--wl-muted); line-height: 1.3; }
+.wl-title .wl-uk { font-weight: 400; }
+.wl-line .wl-ar { font-family: var(--font-ar); font-size: 22px; color: var(--wl-gold-2); line-height: 1.5; }
+.wl-line .wl-en, .wl-line .wl-uk { font-size: 16px; font-style: italic; color: var(--wl-muted); }
+.wl-line { opacity: 0; transform: translateY(8px); transition: opacity 1s 1.4s ease, transform 1s 1.4s ease; }
+.is-open .wl-line { opacity: 1; transform: none; }
+.is-open .wl-title { animation: wl-in .9s .2s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes wl-in { from { opacity: 0; transform: translateY(10px); } }
+
+.wl-name.is-long { font-size: clamp(38px, 6.5vh, 54px); }
+
+/* Choosing who's here */
+.wl-profiles { display: grid; grid-template-columns: repeat(2, minmax(0, 300px)); gap: 14px; width: 100%; justify-content: center; }
+.wl-profile {
+  display: flex; align-items: center; gap: 14px; padding: 16px 18px; min-height: 44px;
+  border: 1px solid color-mix(in srgb, var(--wl-gold) 30%, transparent); border-radius: 20px;
+  background: color-mix(in srgb, #0E2C1E 72%, transparent); color: var(--wl-ink); text-align: start; cursor: pointer;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  transition: transform .18s ease, border-color .2s ease, background-color .2s ease;
+  animation: wl-in .8s cubic-bezier(.2, .7, .2, 1) both;
+}
+.wl-profile + .wl-profile { animation-delay: .12s; }
+.wl-profile:hover { transform: translateY(-2px); border-color: var(--wl-gold); background: color-mix(in srgb, #14402B 80%, transparent); }
+.wl-profile:active { transform: scale(.98); }
+.wl-profile:focus-visible { outline: 3px solid var(--wl-gold-2); outline-offset: 3px; }
+.wl-profile.is-last { border-color: color-mix(in srgb, var(--wl-gold) 70%, transparent); }
+.wl-avatar {
+  flex: 0 0 auto; display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--wl-gold-2), var(--wl-gold) 60%, #9C7224);
+  color: #2A1B06; font-family: var(--font-ar); font-weight: 700; font-size: 30px; line-height: 1;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--wl-gold) 18%, transparent);
+}
+.wl-p-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.wl-p-ar { font-family: var(--font-ar); font-weight: 700; font-size: 26px; line-height: 1.3; }
+.wl-p-lat { font-weight: 800; font-size: 17px; }
+.wl-p-lat [lang="uk"] { font-weight: 400; }
+.wl-p-role { color: var(--wl-gold-2); font-weight: 800; font-size: 14.5px; letter-spacing: .02em; }
+.wl-p-role [lang="ar"] { font-family: var(--font-ar); font-size: 16px; }
+.wl-p-note { color: var(--wl-muted); font-size: 14.5px; line-height: 1.35; }
+@media (max-width: 620px) { .wl-profiles { grid-template-columns: minmax(0, 360px); } }
+.wl-back { min-height: 44px; padding: 6px 16px; border: 0; background: none; color: var(--wl-muted); font: 700 16px/1 var(--font-ui); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+
+/* Writing her name */
+.wl-form { display: flex; flex-direction: column; align-items: center; gap: 14px; width: min(360px, 100%); }
+.wl-input {
+  width: 100%; padding: 10px 12px 12px; border: 0; border-bottom: 2px solid color-mix(in srgb, var(--wl-gold) 55%, transparent);
+  border-radius: 0; background: transparent; color: var(--wl-ink); caret-color: var(--wl-gold);
+  font: 700 30px/1.3 var(--font-ui), var(--font-ar); text-align: center; letter-spacing: .02em;
+  transition: border-color .2s ease;
+}
+.wl-input:focus { outline: none; border-bottom-color: var(--wl-gold-2); }
+.wl-input::placeholder { color: color-mix(in srgb, var(--wl-muted) 45%, transparent); }
+.wl-btn {
+  display: inline-flex; align-items: baseline; gap: 10px; min-height: 52px; padding: 12px 28px; border: 0; border-radius: 999px;
+  background: linear-gradient(180deg, var(--wl-gold-2), var(--wl-gold)); color: #2A1B06;
+  font: 800 18px/1 var(--font-ui); cursor: pointer;
+  box-shadow: 0 10px 30px -10px rgba(226, 176, 74, .7), inset 0 1px 0 rgba(255, 255, 255, .5);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.wl-btn [lang="ar"] { font-family: var(--font-ar); font-size: 21px; }
+.wl-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 34px -10px rgba(226, 176, 74, .85), inset 0 1px 0 rgba(255, 255, 255, .5); }
+.wl-btn:active { transform: scale(.97); }
+.wl-btn:focus-visible, .wl-skip:focus-visible { outline: 3px solid var(--wl-ink); outline-offset: 3px; }
+.wl-wrong-text { display: flex; flex-direction: column; gap: 2px; margin: 0; color: #F2B8A0; font-size: 15px; }
+.wl-wrong-text .wl-ar { font-family: var(--font-ar); font-size: 18px; }
+.shake { animation: wl-shake .45s cubic-bezier(.36, .07, .19, .97); }
+@keyframes wl-shake { 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
+
+.wl-skip {
+  position: fixed; z-index: 2; top: calc(14px + env(safe-area-inset-top)); inset-inline-end: calc(14px + env(safe-area-inset-right));
+  min-height: 44px; padding: 8px 18px; border: 1px solid color-mix(in srgb, var(--wl-ink) 25%, transparent); border-radius: 999px;
+  background: color-mix(in srgb, var(--wl-deep) 50%, transparent); color: var(--wl-muted); font: 700 15px/1 var(--font-ui); cursor: pointer;
+}
+
+/* The fort at the bottom; its vents light up like windows when she arrives */
+.wl-scene { position: relative; height: clamp(150px, 30vh, 300px); pointer-events: none; }
+.wl-scene .scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.wl-scene .scene > rect { fill: none; }
+.wl-scene .a-vent, .wl-scene .a-door-paint { transition: fill 1.2s 1s ease; }
+.is-open .wl-scene .a-vent { fill: #F4C35C; }
+.is-open .wl-scene .a-door-paint { fill: #F8D98A; }
+html[dir="rtl"] .wl-scene .scene { transform: scaleX(-1); }
+
+@media (max-height: 700px) {
+  .wl-center { gap: 12px; padding-top: calc(16px + env(safe-area-inset-top)); }
+  .wl-stage { min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome, .welcome *, .welcome *::before { animation: none !important; transition-duration: .01s !important; transition-delay: 0s !important; }
+  .wl-sparks { display: none; }
+}
+
+/* Daytime (6:00–18:00): a clear Riyadh sky over the sand, the sun instead of the moon */
+.welcome.is-day {
+  --wl-ink: #0B2E1C; --wl-muted: #3C5647; --wl-gold: #B27B17; --wl-gold-2: #8A5A0C; --wl-deep: #EAF4F2;
+  --art-sand-far: #E8D5AE; --art-sand: #D8B784; --art-ground: #C9A46E;
+  --art-wall: #C99866; --art-wall-shade: #A87949; --art-band: #B3834F; --art-vent: #6E4A2B; --art-door: #7A4E2A; --art-door-paint: #E9C46A;
+  --art-far: #8FB2A2; --art-far-ball: #C8961E; --art-palm: #2E8B57; --art-palm-dark: #1C6B43; --art-trunk: #8C6A3F; --art-trunk-line: #6E5231; --art-dates: #A0522D;
+  --art-sun: #F4C24D; --art-sun-glow: rgba(244, 194, 77, .3);
+  background:
+    radial-gradient(90% 50% at 80% 8%, rgba(255, 236, 170, .55) 0%, transparent 60%),
+    linear-gradient(#8FC6D8 0%, #C7E3E6 45%, #F3E7CC 100%);
+}
+html[data-welcome] body:has(.welcome.is-day) { background: #C7E3E6; }
+.is-day .wl-glow { background: radial-gradient(circle, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, .15) 40%, transparent 66%); }
+.is-day .wl-star .wl-outline { opacity: .7; }
+.is-day .wl-star .wl-inner, .is-day .wl-star .wl-ring { opacity: .6; }
+.is-day .wl-name { background-image: linear-gradient(100deg, #6E4608 0%, #B27B17 35%, #D9A441 50%, #B27B17 65%, #6E4608 100%); }
+.is-day .wl-sparks i { background: #FFF6D6; box-shadow: 0 0 8px 2px rgba(255, 214, 120, .8); }
+.is-day .wl-profile { background: rgba(255, 255, 255, .72); border-color: rgba(178, 123, 23, .35); }
+.is-day .wl-profile:hover { background: rgba(255, 255, 255, .9); }
+.is-day .wl-profile.is-last { border-color: #B27B17; }
+.is-day .wl-p-role { color: #7A4F08; }
+.is-day .wl-btn { background: linear-gradient(180deg, #F3D48A, #D9A441); }
+.is-day .wl-wrong-text { color: #9A2E12; }
+.is-day .wl-skip { background: rgba(255, 255, 255, .7); }
+.is-day.is-open .wl-scene .a-vent { fill: var(--art-vent); }
+.is-day.is-open .wl-scene .a-door-paint { fill: #F4C24D; }

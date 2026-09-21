@@ -24,21 +24,25 @@ This project is my personal learning website: the tools I study with every day, 
   3. Tell me (in chat, not on the site) which translations you're unsure of, so she can check them. If a Najdi word itself is uncertain, use the "check with tutor" flag.
 - **No behind-the-scenes notes on the site.** My girlfriend uses it too: never show who translated what, file names like NAJDI-PLAN.md, or notes addressed to me about the build. Study content only.
 
-## Phase 1 — get it live (in progress)
+## Status
+
+**Read `STATUS.md` first**: what's built, what's next, open questions and decisions. Update it after every deploy.
+
+## Phase 1 — get it live (done)
 
 1. ✅ Project set up and restructured: `public/` site, `.gitignore`, `README.md`, git history.
 2. ✅ GitHub repository: https://github.com/aesharu/arabic
 3. ✅ Deployed to Cloudflare **Workers with static assets** as `arabic` → https://arabic.aesdvi.workers.dev. Deploy with `npx wrangler deploy` (Wrangler is logged in on this Mac). Auto-deploy on push is not connected yet — it needs the dashboard: Worker → Settings → Build → Connect.
 4. ✅ Cloud save: D1 database `arabic-db` (binding `DB`), API in `worker/index.js`, secret `SYNC_KEY` set with `wrangler secret put` — never commit it.
 
-Stop after Phase 1 and show me what we have before building anything new. After that, follow Part 9 of `NAJDI-PLAN.md` phase by phase, stopping after each.
+Phases 2–4 of Part 9 of `NAJDI-PLAN.md` are built too (only `npm run pdf` is missing). Deploy in small parts as each is ready, so I can see it live.
 
 ## How to work with me
 
 - One step at a time. Before running a command, say in one sentence what it does.
 - Keep it simple: plain HTML/CSS/JS, no framework and no build step, until a feature genuinely needs one. If you think we need one, explain why and ask first.
 - Never commit secrets, API keys or tokens. No accounts or payments without asking me.
-- Desktop-first — I use this on my computer. It should still work in a narrow window.
+- I study on my computer; my girlfriend uses an **iPhone and an iPad**. Every page must look good on desktop, iPhone (~390px) and iPad (~820px), in light and dark — check screenshots at those widths before deploying.
 - Defaults: English interface and the Saudi theme (green and white, dark green when the computer is in dark mode).
 - When I report a bug, find the cause before changing code.
 
@@ -53,7 +57,7 @@ Stop after Phase 1 and show me what we have before building anything new. After 
 
 Ideas for after Phase 1, in rough order. Don't start any of these without me asking:
 
-- **Phrase deck** — spaced-repetition cards of real Najdi sentences with audio, not single words
+- ✅ **Phrase deck** — built as the Cards page (spaced repetition, like Anki)
 - **Listening log** — track what I watched/listened to and for how long, with a running total of hours
 - ✅ **Daily plan** — built as the Today page and Calendar
 - **Sentence mining** — paste a line from a show or voice message, turn it into a card

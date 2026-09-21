@@ -63,7 +63,7 @@ async function request(method, body) {
 }
 
 export async function push() {
-  if (!key()) return;
+  if (!key() || store.isTeacher()) return; // the teacher's device only reads
   clearTimeout(timer);
   setStatus("syncing");
   try {
@@ -84,6 +84,12 @@ export async function pull() {
   setStatus("syncing");
   try {
     const { data } = await request("GET");
+    if (store.isTeacher()) {
+      const before = JSON.stringify(cloudPart(store.get()));
+      if (data) store.adopt(data);
+      setStatus("saved");
+      return JSON.stringify(cloudPart(store.get())) !== before; // re-render only when his progress moved
+    }
     if (data) {
       const before = JSON.stringify(cloudPart(store.get()));
       store.update(s => Object.assign(s, merge(s, data)), { silent: true });
@@ -113,10 +119,12 @@ export function disconnect() {
 // Any change to progress schedules a push a few seconds later (one request for a burst of clicks).
 export function start(onRemoteChange) {
   store.subscribe(s => {
-    if (!key() || JSON.stringify(cloudPart(s)) === lastPushed) return;
+    if (!key() || store.isTeacher() || JSON.stringify(cloudPart(s)) === lastPushed) return;
     clearTimeout(timer);
     timer = setTimeout(push, DEBOUNCE_MS);
   });
   addEventListener("pagehide", () => key() && timer && push());
-  pull().then(changed => changed && onRemoteChange());
+  const refresh = () => pull().then(changed => changed && onRemoteChange());
+  if (store.isTeacher()) setInterval(refresh, 5 * 60_000); // keep her view of his progress fresh
+  refresh();
 }
