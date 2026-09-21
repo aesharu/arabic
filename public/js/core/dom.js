@@ -16,11 +16,14 @@ export const flag = item =>
 
 export const flagNote = item => (item.check && item.checkNote ? `<p class="flag-note">${rich(tx(item.checkNote))}</p>` : "");
 
+// "UA", not "UK", so English readers don't read it as United Kingdom.
+const SHORT = { en: "EN", uk: "UA" };
+
 // The four languages of a word or phrase, after its Najdi Arabic: meaning in the interface language,
 // meaning in the other one, and the formal-Arabic (MSA) equivalent.
 export const meanings = item => `
   <span class="m1" lang="${lang()}">${esc(item[lang()])}</span>
-  <span class="m2" lang="${other()}"><i>${other().toUpperCase()}</i> ${esc(item[other()])}</span>
+  <span class="m2" lang="${other()}"><i>${SHORT[other()]}</i> ${esc(item[other()])}</span>
   <span class="msa"><i title="${esc(t("lab.msaHint"))}">${t("lab.msa")}</i> ${ar(item.msa)}</span>`;
 
 export const playIcon = `<span class="play" aria-hidden="true">▶</span>`;
