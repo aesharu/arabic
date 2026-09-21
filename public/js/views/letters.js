@@ -1,6 +1,7 @@
 import * as store from "../core/store.js";
 import { scheduledGroup } from "../core/schedule.js";
-import { t, tx } from "../core/i18n.js";
+import { t, tx, num } from "../core/i18n.js";
+import { icon } from "../core/art.js";
 import { esc, rich, ar, lat, translit, flag, flagNote, meanings, playIcon, pageHead } from "../core/dom.js";
 import { GROUPS, formsOf } from "../data/letters.js";
 
@@ -31,9 +32,43 @@ const card = l => `
     ${l.najdi ? `<div class="najdi"><b>${t("lab.najdi")}</b> ${rich(tx(l.najdi))}</div>` : ""}
   </article>`;
 
+// The whole alphabet in one table, in alphabetical order: #/letters/all
+const ORDER = "ابتثجحخدذرزسشصضطظعغفقكلمنهوي";
+const ALL = GROUPS.flatMap(g => g.letters).sort((a, b) => ORDER.indexOf(a.char) - ORDER.indexOf(b.char));
+const T = "\u0640"; // tatweel: the joining line
+// Start, middle, end, alone. A letter that never joins forward keeps its alone shape at the start.
+const shapes = l => (l.nonJoining ? [l.char, T + l.char, T + l.char, l.char] : [l.char + T, T + l.char + T, T + l.char, l.char]);
+const FORMS = ["form.start", "form.middle", "form.end", "form.alone"];
+
+const tableRow = (l, i) => `
+  <tr class="${l.hard ? "is-hard" : ""}">
+    <td class="lt-n">${num(i + 1)}</td>
+    <td class="lt-char"><button class="lt-glyph ar" lang="ar" data-say="${esc(l.nameAr)}" aria-label="${esc(t("letters.hearName", { name: l.name }))}">${esc(l.char)}</button></td>
+    <td class="lt-name"><b>${lat(l.name)}</b> ${ar(l.nameAr)}
+      ${l.hard ? `<span class="tag h">${t("letters.newSound")}</span>` : ""}${l.nonJoining ? `<span class="tag nc">${t("letters.nonJoining")}</span>` : ""}</td>
+    <td class="lt-sound"><b>${esc(l.translit)}</b></td>
+    <td class="lt-ua"><bdi lang="uk">${esc(l.ua)}</bdi></td>
+    ${shapes(l).map((f, k) => `<td class="lt-f" data-label="${esc(t(FORMS[k]))}">${ar(f)}</td>`).join("")}
+    <td class="lt-ex"><button class="lt-exbtn" data-say="${esc(l.example.ar)}">${ar(l.example.ar)}
+      <span>${translit(l.example.tr)} · ${esc(tx({ en: l.example.en, uk: l.example.uk, najdi: l.example.en, msa: l.example.en }))} ${flag(l)}</span></button></td>
+  </tr>`;
+
+const table = () => `
+  ${pageHead(t("letters.tableTitle"), t("letters.tableSub"), "", "", "letters")}
+  <p class="lt-back"><a href="#/letters">${icon("back")} ${t("letters.byGroups")}</a></p>
+  <table class="lt-table">
+    <thead><tr><th class="lt-n">#</th><th>${t("letters.colLetter")}</th><th>${t("letters.colName")}</th><th>${t("letters.colSound")}</th><th>${t("lab.ua")}</th>
+      ${FORMS.map(k => `<th class="lt-fh">${t(k)}</th>`).join("")}<th>${t("letters.colExample")}</th></tr></thead>
+    <tbody>${ALL.map(tableRow).join("")}</tbody>
+  </table>`;
+
 export default {
   titleKey: "letters.title",
   mount(root, { params, signal }) {
+    if (params[0] === "all") {
+      root.innerHTML = table();
+      return;
+    }
     const fromUrl = parseInt(params[0], 10) - 1;
     const g = fromUrl >= 0 && fromUrl < GROUPS.length ? fromUrl : scheduledGroup();
 
@@ -43,6 +78,7 @@ export default {
       const isDone = done.includes(g);
       root.innerHTML = `
         ${pageHead(t("letters.title"), t("letters.sub"), "", "", "letters")}
+        <p><a class="btn lt-all" href="#/letters/all">${icon("words")} ${t("letters.all")}</a></p>
         ${groupChips({ isOn: i => i === g, done, scheduled: scheduledGroup() })}
         <div class="gintro"><h2>${esc(tx(group.title))}</h2><p>${rich(tx(group.note))}</p></div>
         <div class="cards">${group.letters.map(card).join("")}</div>

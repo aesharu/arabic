@@ -168,8 +168,8 @@ nav a[aria-current="page"] .navcount { background: var(--nav-on-ink); color: var
 .edit-fab:active { transform: scale(.95); }
 .edit-fab[aria-pressed="true"] { background: #F4C24D; color: #2A1B06; box-shadow: 0 0 0 3px rgba(244, 194, 77, .35); }
 .edit-fab:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-.profile-box { display: flex; gap: 6px; }
-.profile-box .profile-switch { flex: 1; min-width: 0; }
+.profile-box { display: flex; flex-direction: column; gap: 6px; }
+.profile-box .logout { justify-content: center; }
 .logout {
   display: inline-flex; align-items: center; gap: 5px; min-height: 40px; padding: 7px 10px; flex: 0 0 auto;
   border: 1px solid color-mix(in srgb, var(--sidebar-ink) 18%, transparent); border-radius: 11px;
