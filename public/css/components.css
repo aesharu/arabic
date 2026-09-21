@@ -34,6 +34,13 @@
 }
 .no-tts .play, .no-tts .word-say { display: none; }
 
+/* A word's four languages: meaning (interface language), meaning (other language), formal Arabic */
+.m1 { display: block; color: var(--ink); }
+.m2, .msa { display: block; color: var(--muted); font-size: 15px; }
+.m2 i, .msa i { font-style: normal; font-weight: 800; font-size: 12px; letter-spacing: .06em; margin-right: 6px; text-transform: uppercase; }
+.msa .ar { font-size: 18px; }
+.review-note { margin: 18px 0; padding: 10px 14px; border-left: 4px solid var(--flag); border-radius: 6px; background: var(--surface); color: var(--muted); font-size: 15px; max-width: 80ch; }
+
 .now-tag {
   display: inline-block; vertical-align: 3px; margin-left: 6px; padding: 2px 8px;
   border-radius: 6px; background: var(--accent); color: var(--accent-ink);
@@ -88,7 +95,6 @@
 .phrase:hover { background: var(--surface-2); }
 .phrase-ar { flex: 0 0 auto; min-width: 180px; font-size: 30px; line-height: 1.5; text-align: right; }
 .phrase-t { flex: 1; }
-.phrase-t > span:not(.flag):not(.ua):not(.pnote) { display: block; color: var(--muted); }
 .phrase-t b { font-size: 18px; }
 .phrase-t .ua, .pnote { display: block; margin-top: 2px; font-size: 15px; }
 .ua { margin: 6px 0 0; font-weight: 700; }
@@ -149,7 +155,6 @@
 .ex .ar { font-size: 30px; line-height: 1.4; }
 .ex .t { flex: 1; }
 .ex .t b { font-size: 17px; }
-.ex .t > span:not(.flag) { display: block; color: var(--muted); font-size: 15px; }
 
 .najdi { background: var(--accent); color: var(--accent-ink); padding: 10px 14px; font-size: 16px; }
 .najdi b { font-weight: 800; }
@@ -216,7 +221,6 @@
 .word-ar:hover { background: var(--surface-2); }
 .word-back { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-top: 1.5px solid var(--line); }
 .word-back b { font-size: 17px; }
-.word-back span:not(.flag):not(.play) { display: block; color: var(--muted); font-size: 15px; }
 .word-say { padding: 0; border: 0; background: none; }
 .word .flag-note { font-size: 14px; }
 

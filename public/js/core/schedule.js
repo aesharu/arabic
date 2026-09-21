@@ -14,8 +14,11 @@ export function phaseFor(date) {
   return PHASES.find(p => date >= p.start && date <= p.end) ?? PHASES.at(-1);
 }
 
-// "Script" or "Stage 1 · Core"
-export const phaseTitle = p => (p.label === p.name ? p.name : `${p.label} · ${p.name}`);
+// "Script" / "Stage 1 · Core" — in both languages: { en, uk }
+export const phaseTitle = p => {
+  const title = l => (p.label[l] === p.name[l] ? p.name[l] : `${p.label[l]} · ${p.name[l]}`);
+  return { en: title("en"), uk: title("uk") };
+};
 
 export function planFor(date) {
   const phase = phaseFor(date);
@@ -24,7 +27,7 @@ export function planFor(date) {
   const day = SCRIPT_DAYS[n];
   return day
     ? { n, phase, focus: day.focus, group: day.group, tasks: day.tasks }
-    : { n, phase, focus: `By the end of ${phase.label}: ${phase.canDo}`, group: null, tasks: phase.routine };
+    : { n, phase, focus: { en: `Goal of this stage: ${phase.canDo.en}`, uk: `Мета етапу: ${phase.canDo.uk}` }, group: null, tasks: phase.routine };
 }
 
 const isActive = e => !!e && (e.min > 0 || e.tasks?.length > 0);

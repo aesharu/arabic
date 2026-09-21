@@ -30,7 +30,7 @@ export const daysInMonth = month => {
 // 0 = Monday … 6 = Sunday (weeks start on Monday, as in Ukraine)
 export const weekdayMon = key => (new Date(utc(key)).getUTCDay() + 6) % 7;
 
-export const format = (key, opts) =>
-  new Date(utc(key)).toLocaleDateString("en-GB", { timeZone: "UTC", ...opts });
-export const longDate = key => format(key, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-export const shortDate = key => format(key, { day: "numeric", month: "short", year: "numeric" });
+export const format = (key, opts, loc = "en-GB") =>
+  new Date(utc(key)).toLocaleDateString(loc, { timeZone: "UTC", ...opts });
+export const longDate = (key, loc) => format(key, { weekday: "long", day: "numeric", month: "long", year: "numeric" }, loc);
+export const shortDate = (key, loc) => format(key, { day: "numeric", month: "short", year: "numeric" }, loc);

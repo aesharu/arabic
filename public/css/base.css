@@ -91,8 +91,14 @@ nav a {
 nav a:hover { background: var(--surface-2); }
 nav a[aria-current="page"] { background: var(--ink); color: var(--bg); }
 
+.sidebar-foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+.langs { display: flex; padding: 3px; border-radius: 10px; background: var(--bg); }
+.langs button {
+  flex: 1; padding: 6px 0; border: 0; border-radius: 8px; background: transparent;
+  color: var(--muted); font-weight: 800; letter-spacing: .04em;
+}
+.langs button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
 .theme {
-  margin-top: auto;
   padding: 8px 10px;
   border: 1.5px solid var(--line);
   border-radius: 9px;
@@ -128,6 +134,7 @@ main:focus, main:focus-visible { outline: none; }
   opacity: .9;
 }
 .eyebrow { margin: 0 0 6px; color: var(--muted); font-weight: 700; font-size: 16px; }
+.eyebrow::first-letter, .month h3::first-letter { text-transform: uppercase; }
 h1 { margin: 0; font-size: 42px; font-weight: 800; letter-spacing: -.015em; line-height: 1.05; }
 h1 .of, h2 .of { color: var(--muted); font-weight: 700; font-size: .6em; }
 .sub { margin: 8px 0 0; max-width: 70ch; color: var(--muted); font-size: 18px; }
@@ -152,7 +159,7 @@ h3 { margin: 0 0 6px; font-size: 15px; font-weight: 800; letter-spacing: .06em; 
   nav { flex-direction: row; width: 100%; overflow-x: auto; }
   nav a { white-space: nowrap; }
   .navhead { display: none; }
-  .theme { margin: 0 0 0 auto; }
+  .sidebar-foot { margin: 0 0 0 auto; flex-direction: row; }
   main { padding: 24px 16px 56px; }
   h1 { font-size: 34px; }
 }

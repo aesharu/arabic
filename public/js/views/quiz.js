@@ -1,7 +1,8 @@
 import * as store from "../core/store.js";
 import { say } from "../core/speech.js";
 import { scheduledGroup } from "../core/schedule.js";
-import { esc, ar, pageHead, shuffle, typing } from "../core/dom.js";
+import { t, tx } from "../core/i18n.js";
+import { esc, rich, ar, pageHead, shuffle, typing } from "../core/dom.js";
 import { ALL_LETTERS, formsOf } from "../data/letters.js";
 import { groupChips } from "./letters.js";
 
@@ -21,7 +22,7 @@ function newQuestion(groups) {
 }
 
 export default {
-  title: "Quiz",
+  titleKey: "quiz.title",
   mount(root, { signal }) {
     const groups = () => store.get().script.quiz;
     if (!q || !groups().includes(q.answer.group)) newQuestion(groups());
@@ -31,20 +32,20 @@ export default {
       const answered = q.picked !== null;
       const right = answered && q.options[q.picked] === q.answer;
       root.innerHTML = `
-        ${pageHead("Quiz", "What sound is this letter? Pick the groups to test. Keys: 1–4 to answer, Enter for the next letter.")}
+        ${pageHead(t("quiz.title"), t("quiz.sub"))}
         ${groupChips({ isOn: i => groups().includes(i), done, scheduled: scheduledGroup() })}
         <div class="quiz">
-          <div class="qglyph">${ar(q.form[0])}<small>${q.form[1]} form</small></div>
+          <div class="qglyph">${ar(q.form[0])}<small>${t("quiz.form", { form: t(q.form[1]) })}</small></div>
           <div class="qside">
-            <div class="qhead"><p>Score <b>${score.right} / ${score.total}</b></p><p>In a row <b>${score.run}</b></p></div>
+            <div class="qhead"><p>${t("quiz.score")} <b>${score.right} / ${score.total}</b></p><p>${t("quiz.run")} <b>${score.run}</b></p></div>
             <div class="opts">${q.options.map((o, i) => {
               let cls = "opt";
               if (answered && o === q.answer) cls += " right";
               else if (answered && i === q.picked) cls += " wrong";
               return `<button class="${cls}" data-opt="${i}"${answered ? " disabled" : ""}><kbd>${i + 1}</kbd><b>${esc(o.translit)}</b><span>${esc(o.name)}</span></button>`;
             }).join("")}</div>
-            <div class="fb" aria-live="polite">${answered ? `${right ? "Right — " : "That's "}<b>${esc(q.answer.name)}</b>. ${esc(q.answer.sound)}` : ""}</div>
-            <button class="next"${answered ? "" : " hidden"}>Next letter <kbd>Enter</kbd></button>
+            <div class="fb" aria-live="polite">${answered ? `<b>${esc(t(right ? "quiz.right" : "quiz.wrong", { name: q.answer.name }))}</b> ${rich(tx(q.answer.sound))}` : ""}</div>
+            <button class="next"${answered ? "" : " hidden"}>${t("quiz.next")} <kbd>Enter</kbd></button>
           </div>
         </div>`;
       if (answered) root.querySelector(".next").focus({ preventScroll: true });

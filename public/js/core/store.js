@@ -4,7 +4,7 @@ const KEY = "najdi-v2";
 
 const defaults = () => ({
   version: 2,
-  prefs: { theme: "auto" },
+  prefs: { theme: "auto", lang: "en" },
   script: { group: 0, done: [], quiz: [0] }, // letter groups marked done / selected for the quiz
   log: {}, // "YYYY-MM-DD" → { min: minutes studied, tasks: ids of ticked tasks }
   timer: null, // { start: epoch ms, date: "YYYY-MM-DD" } while the study timer runs

@@ -26,7 +26,7 @@ test("stages follow NAJDI-PLAN.md Part 3 with no gaps or overlaps", () => {
 test("the two Script weeks are planned day by day; week 3 switches to the three blocks", () => {
   for (let n = 1; n <= 14; n++) {
     assert.ok(SCRIPT_DAYS[n], `day ${n}`);
-    assert.equal(phaseFor(dateOfDay(n)).label, "Script");
+    assert.equal(phaseFor(dateOfDay(n)).label.en, "Script");
     const ids = SCRIPT_DAYS[n].tasks.map(t => t.id);
     assert.equal(new Set(ids).size, ids.length, `duplicate task on day ${n}`);
   }

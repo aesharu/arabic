@@ -1,6 +1,7 @@
 import * as store from "../core/store.js";
 import { learnedLetters, lettersIn } from "../core/schedule.js";
-import { esc, ar, flag, flagNote, playIcon, pageHead, shuffle } from "../core/dom.js";
+import { t } from "../core/i18n.js";
+import { esc, ar, flag, flagNote, meanings, playIcon, pageHead, reviewNote, shuffle } from "../core/dom.js";
 import { WORDS } from "../data/words.js";
 
 // View settings survive page switches until reload.
@@ -9,7 +10,7 @@ let order = WORDS.map((_, i) => i);
 const revealed = new Set();
 
 export default {
-  title: "Reading",
+  titleKey: "reading.title",
   mount(root, { signal }) {
     const render = () => {
       const known = learnedLetters(store.get().script.done);
@@ -18,14 +19,14 @@ export default {
       const list = order.filter(i => showAll || readable(i));
 
       root.innerHTML = `
-        ${pageHead("Reading", "Real Najdi words, written the way Saudis write them — without vowel marks. Say each word out loud, then click it to check.")}
+        ${pageHead(t("reading.title"), t("reading.sub"))}
         <div class="toolbar">
-          <p><b>${count}</b> of ${WORDS.length} words use only letters you know so far.</p>
+          <p>${t("reading.count", { n: count, total: WORDS.length })}</p>
           <div class="btn-row">
-            <button class="btn" data-act="all" aria-pressed="${showAll}">${showAll ? "Showing all words" : "Show all words"}</button>
-            <button class="btn" data-act="shuffle">Shuffle</button>
-            <button class="btn" data-act="reveal">Reveal all</button>
-            <button class="btn" data-act="hide">Hide all</button>
+            <button class="btn" data-act="all" aria-pressed="${showAll}">${t(showAll ? "reading.showingAll" : "reading.showAll")}</button>
+            <button class="btn" data-act="shuffle">${t("reading.shuffle")}</button>
+            <button class="btn" data-act="reveal">${t("reading.revealAll")}</button>
+            <button class="btn" data-act="hide">${t("reading.hideAll")}</button>
           </div>
         </div>
         <div class="words">
@@ -36,13 +37,14 @@ export default {
             <article class="word${open ? " is-open" : ""}${readable(i) ? "" : " is-locked"}">
               <button class="word-ar" data-reveal="${i}" aria-expanded="${open}">${ar(w.ar)}</button>
               <div class="word-back"${open ? "" : " hidden"}>
-                <button class="word-say" data-say="${esc(w.ar)}" aria-label="Hear ${esc(w.tr)}">${playIcon}</button>
-                <div><b>${esc(w.tr)}</b> ${flag(w)}<span>${esc(w.en)}</span></div>
+                <button class="word-say" data-say="${esc(w.ar)}" aria-label="${esc(t("lab.hear", { what: w.tr }))}">${playIcon}</button>
+                <div><b>${esc(w.tr)}</b> ${flag(w)}${meanings(w)}</div>
               </div>
               ${open ? flagNote(w) : ""}
             </article>`;
           }).join("")}
-        </div>`;
+        </div>
+        ${reviewNote()}`;
     };
 
     root.addEventListener("click", e => {
