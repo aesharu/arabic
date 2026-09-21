@@ -17,6 +17,8 @@ Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
 - **Cards** `#/cards`: Anki SM-2 scheduling, in both directions (recognise, then say). Decks open by stage. Syncs to the cloud.
 - **Look**: Saudi green theme, a hand-drawn Najdi scene, Sadu weave, icons, page illustrations. The Today sky follows the theme: dark themes show the moon, light themes the sun, low at dawn and dusk.
 - **Sun/moon button** (`#sky-toggle`, top-right of every page; in the top bar on iPad/iPhone): crescent + star like on the flags; tap flips light ↔ dark with a soft oud note (`music.chime`). Only two palettes now (Saudi green, Mud brick — `data-palette`); language buttons show 🇬🇧, 🇺🇦, a heart for Najdi, ض for MSA.
+- **American English** everywhere (spelling, US date format `en-US`, 🇺🇸 flag). Round badges on the language buttons.
+- **Cards look like the deck picture**: the study card is a paper card with gold crenellations and a tilted card behind it; the deck list is a grid of such cards with each deck's first word on its face. Colors follow the theme (`--art-*` tokens).
 - **iPhone/iPad**: at ≤860 px, a top bar, bottom tab bar and "More" sheet. Safe areas, home-screen icon.
 - **Welcome screen, on every page load** (`core/welcome.js`, `css/welcome.css`):
   - Day sky 6:00–18:00, night otherwise.

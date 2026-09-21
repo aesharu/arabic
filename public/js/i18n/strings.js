@@ -62,7 +62,7 @@ export const STRINGS = {
     msa: "لم يُتحقَّق بعد من أنها نجدية — اسأل متحدثًا أصليًا.",
   },
   "lab.msa": { en: "Formal (MSA)", uk: "Формальна (MSA)", najdi: "الفصحى", msa: "الفصحى" },
-  "lab.msaHint": { en: "recognise it, don't say it", uk: "впізнавай, але не кажи", najdi: "افهمها بس لا تقولها", msa: "تعرّف عليها ولا تستخدمها في الكلام" },
+  "lab.msaHint": { en: "recognize it, don't say it", uk: "впізнавай, але не кажи", najdi: "افهمها بس لا تقولها", msa: "تعرّف عليها ولا تستخدمها في الكلام" },
   "lab.ua": { en: "UA", uk: "Укр.", najdi: "بالأوكراني", msa: "بالأوكرانية" },
   "lab.najdi": { en: "Najdi:", uk: "Наджді:", najdi: "نجدي:", msa: "النجدية:" },
   "lab.hear": { en: "Hear {what}", uk: "Почути {what}", najdi: "اسمع {what}", msa: "استمع إلى {what}" },
@@ -174,7 +174,7 @@ export const STRINGS = {
     msa: "تعلّم الكلمات <b>داخل الجمل</b>، وتحدّث <b>منذ الأسبوع الثالث</b>، واجعل <b>رسائلها الصوتية</b> مصدر استماعك الأول.",
   },
   "plan.chunks": {
-    en: "Memorised chunks first — you learn {phrase} as one piece, like a word. Grammar comes later to explain what you already say.",
+    en: "Memorized chunks first — you learn {phrase} as one piece, like a word. Grammar comes later to explain what you already say.",
     uk: "Спершу завчені блоки — ти вчиш {phrase} цілком, як одне слово. Граматика прийде пізніше й пояснить те, що ти вже кажеш.",
     najdi: "أول شي قطع محفوظة — تحفظ {phrase} قطعة وحدة، كأنها كلمة. القواعد تجي بعدين تشرح اللي صرت تقوله.",
     msa: "في البداية عبارات محفوظة — تتعلّم {phrase} قطعةً واحدة كأنها كلمة، ثم تأتي القواعد لاحقًا لتشرح ما تقوله أصلًا.",
@@ -495,7 +495,7 @@ export const STRINGS = {
   "grammar.qSay": { en: "How do you say “{what}”?", uk: "Як сказати «{what}»?", najdi: "كيف تقول «{what}»؟", msa: "كيف تقول «{what}»؟" },
   "grammar.next": { en: "Next", uk: "Далі", najdi: "اللي بعده", msa: "التالي" },
   "grammar.score": { en: "{n} of {total} right", uk: "Правильно: {n} з {total}", najdi: "{n} من {total} صح", msa: "{n} من {total} صحيحة" },
-  "grammar.again": { en: "Practise again", uk: "Ще раз", najdi: "مرة ثانية", msa: "أعد التمرين" },
+  "grammar.again": { en: "Practice again", uk: "Ще раз", najdi: "مرة ثانية", msa: "أعد التمرين" },
 
   // Recording (Dima's page) and correcting words
   "nav.record": { en: "Record", uk: "Запис", najdi: "تسجيل", msa: "التسجيل" },
@@ -624,7 +624,6 @@ export const STRINGS = {
   "cards.allDoneToday": { en: "All done for today", uk: "На сьогодні все", najdi: "خلّصت كروت اليوم", msa: "أنهيت بطاقات اليوم" },
   "cards.waiting": { en: "Cards waiting: {n}", uk: "Карток чекає: {n}", najdi: "كروت تنتظرك: {n}", msa: "بطاقات بانتظارك: {n}" },
   "cards.decks": { en: "Decks", uk: "Колоди", najdi: "المجموعات", msa: "المجموعات" },
-  "cards.deck": { en: "Deck", uk: "Колода", najdi: "المجموعة", msa: "المجموعة" },
   "cards.deckPhrases": { en: "Script weeks · daily phrases", uk: "Тижні письма · фрази дня", najdi: "أسابيع الكتابة · عبارات اليوم", msa: "أسبوعا الكتابة · العبارات اليومية" },
   "cards.allDecks": { en: "All decks", uk: "Усі колоди", najdi: "كل المجموعات", msa: "جميع المجموعات" },
   "cards.study": { en: "Study", uk: "Вчити", najdi: "ذاكر", msa: "ادرس" },
@@ -637,9 +636,9 @@ export const STRINGS = {
   },
   "cards.settings": { en: "Settings", uk: "Налаштування", najdi: "الإعدادات", msa: "الإعدادات" },
   "cards.newPerDay": { en: "New cards a day", uk: "Нових карток на день", najdi: "كم كرت جديد باليوم", msa: "عدد البطاقات الجديدة يوميًا" },
-  "cards.reverse": { en: "Practise saying it too", uk: "Тренувати й вимову", najdi: "تدرّب تقولها بعد", msa: "تدرّب على قولها أيضًا" },
+  "cards.reverse": { en: "Practice saying it too", uk: "Тренувати й вимову", najdi: "تدرّب تقولها بعد", msa: "تدرّب على قولها أيضًا" },
   "cards.reverseHint": {
-    en: "Adds a second card for each word: you see the meaning and say it in Najdi. It comes the day after you learn to recognise the word.",
+    en: "Adds a second card for each word: you see the meaning and say it in Najdi. It comes the day after you learn to recognize the word.",
     uk: "Додає другу картку до кожного слова: бачиш значення й кажеш його наджді. Вона з'являється наступного дня після того, як ти навчився впізнавати слово.",
     najdi: "يضيف لكل كلمة كرت ثاني: تشوف المعنى وتقولها بالنجدي. يطلع لك باليوم اللي بعد ما تعرف الكلمة.",
     msa: "يضيف لكل كلمة بطاقة ثانية: ترى المعنى فتقوله بالنجدية، وتظهر في اليوم التالي لتعرّفك على الكلمة.",
@@ -681,7 +680,7 @@ export const STRINGS = {
     msa: "المفاتيح: <kbd>مسافة</kbd> لكشف الإجابة · <kbd>1</kbd>–<kbd>4</kbd> للتقييم · <kbd>R</kbd> لإعادة الاستماع · <kbd>Ctrl</kbd>+<kbd>Z</kbd> للتراجع",
   },
   "cards.keysShort": { en: "Space · 1–4 · R · Ctrl+Z", uk: "Пробіл · 1–4 · R · Ctrl+Z", najdi: "مسافة · 1–4 · R · Ctrl+Z", msa: "مسافة · 1–4 · R · Ctrl+Z" },
-  "cards.kindRecognise": { en: "What does it mean?", uk: "Що це означає?", najdi: "وش معناها؟", msa: "ما معناها؟" },
+  "cards.kindRecognize": { en: "What does it mean?", uk: "Що це означає?", najdi: "وش معناها؟", msa: "ما معناها؟" },
   "cards.kindSay": { en: "Say it in Najdi", uk: "Скажи наджді", najdi: "قلها بالنجدي", msa: "قُلها بالنجدية" },
   "cards.sayPrompt": { en: "Say it out loud, then show the answer.", uk: "Скажи вголос, потім відкрий відповідь.", najdi: "قلها بصوت عالي، وبعدين اكشف الجواب.", msa: "انطقها بصوت عالٍ، ثم اكشف الإجابة." },
   "cards.show": { en: "Show answer", uk: "Показати відповідь", najdi: "اكشف الجواب", msa: "اكشف الإجابة" },
@@ -722,7 +721,7 @@ export const STRINGS = {
   },
   "print.lettersName": { en: "Letter tracing", uk: "Обведення літер", najdi: "تتبّع الحروف", msa: "تتبّع الحروف" },
   "print.lettersText": {
-    en: "One sheet per shape group: every letter in every form. Trace the grey copies, then write your own on the empty line.",
+    en: "One sheet per shape group: every letter in every form. Trace the gray copies, then write your own on the empty line.",
     uk: "Аркуш на кожну групу: кожна літера в кожній формі. Обведи сірі копії, потім напиши сам на порожньому рядку.",
     najdi: "ورقة لكل مجموعة: كل حرف بكل أشكاله. امشِ على النسخ الرمادية، وبعدين اكتبه بنفسك في السطر الفاضي.",
     msa: "ورقة لكل مجموعة: كل حرف بجميع أشكاله. تتبّع النسخ الرمادية، ثم اكتبه بنفسك في السطر الفارغ.",
@@ -732,7 +731,7 @@ export const STRINGS = {
   "print.all": { en: "All six", uk: "Усі шість", najdi: "كل المجموعات", msa: "جميع المجموعات" },
   "print.wordsName": { en: "Word writing", uk: "Письмо слів", najdi: "كتابة الكلمات", msa: "كتابة الكلمات" },
   "print.wordsText": {
-    en: "Each word with its pronunciation and meaning, three grey copies to trace and a line to write it yourself.",
+    en: "Each word with its pronunciation and meaning, three gray copies to trace and a line to write it yourself.",
     uk: "Кожне слово з вимовою та значенням, три сірі копії для обведення й рядок, щоб написати самому.",
     najdi: "كل كلمة مع نطقها ومعناها، وثلاث نسخ رمادية تمشي عليها، وسطر تكتبها فيه بنفسك.",
     msa: "كل كلمة مع نطقها ومعناها، وثلاث نسخ رمادية للتتبّع، وسطر لتكتبها بنفسك.",
@@ -781,7 +780,7 @@ export const STRINGS = {
     msa: "افتح الورقة واضغط <b>اطبع</b> (أو Cmd+P) واختر مقاس <b>A4</b> بمقياس <b>100%</b>.",
   },
   "print.how2": {
-    en: "Turn on <b>background graphics</b> so the grey tracing letters and guidelines print.",
+    en: "Turn on <b>background graphics</b> so the gray tracing letters and guidelines print.",
     uk: "Увімкни <b>фонові зображення</b>, щоб надрукувалися сірі літери для обведення й напрямні лінії.",
     najdi: "شغّل <b>رسومات الخلفية</b> عشان تنطبع الحروف الرمادية والخطوط.",
     msa: "فعّل <b>رسومات الخلفية</b> لتُطبع الحروف الرمادية وخطوط الإرشاد.",

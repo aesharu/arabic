@@ -149,7 +149,7 @@ const WEEK = [
   ),
 ];
 
-// id picks the stage's step on the colour ramp (p1–p6) on the calendar, plan and progress pages.
+// id picks the stage's step on the color ramp (p1–p6) on the calendar, plan and progress pages.
 export const PHASES = [
   { id: 1, label: four("Script", "Письмо", "الكتابة", "الكتابة"), name: four("Script", "Письмо", "الكتابة", "الكتابة"),
     when: four("Weeks 1–2", "Тижні 1–2", "الأسبوع 1–2", "الأسبوعان 1–2"),

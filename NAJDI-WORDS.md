@@ -53,7 +53,7 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | غسلت | ghassalt | I washed | я помив | غسلتُ | |
 | لبست | libast | I got dressed, I wore | я вдягнувся | لبستُ | |
 | تمشيت | tmashshēt | I went for a walk | я прогулявся | تمشّيتُ | |
-| سافرت | sāfart | I travelled | я поїхав (у подорож) | سافرتُ | |
+| سافرت | sāfart | I traveled | я поїхав (у подорож) | سافرتُ | |
 | انتظرت | ntaẓart | I waited | я чекав | انتظرتُ | |
 | تأخرت | tʾakhkhart | I was late | я запізнився | تأخّرتُ | |
 | تعبت | tiʿabt | I got tired | я втомився | تعبتُ | |
@@ -468,7 +468,7 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | السعودية | as-saʿūdiyya | Saudi Arabia | Саудівська Аравія | السعودية | |
 | الدرعية | ad-dirʿiyya | Diriyah (the historic town) | Дірія (історичне місто) | الدرعية | |
 | الديرة | ad-dīra | hometown; the old town | рідне місто; старе місто | البلدة | |
-| حي | ḥayy | neighbourhood | район | حيّ | |
+| حي | ḥayy | neighborhood | район | حيّ | |
 | شارع | shāriʿ | street | вулиця | شارع | |
 | كوفي | kōfi | café | кав'ярня | مقهى | |
 | حديقة | ḥadīga | park | парк | حديقة | |
@@ -531,7 +531,7 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | نص ساعة | nuṣṣ sāʿa | half an hour | пів години | نصف ساعة | |
 | ربع ساعة | rubʿ sāʿa | a quarter of an hour | чверть години | ربع ساعة | |
 
-## 4.11 Shopping, money and colours | Покупки, гроші, кольори | المقاضي والفلوس والألوان | التسوّق والمال والألوان
+## 4.11 Shopping, money and colors | Покупки, гроші, кольори | المقاضي والفلوس والألوان | التسوّق والمال والألوان
 
 | Arabic | Say | English | Ukrainian | MSA | Checked |
 |---|---|---|---|---|---|
@@ -547,7 +547,7 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | الحساب | al-ḥisāb | the bill (in a restaurant) | рахунок (у ресторані) | الحساب | |
 | كيس | kīs | (plastic) bag | пакет | كيس | |
 | مقاس | magās | size | розмір | مقاس | |
-| لون | lōn | colour | колір | لون | |
+| لون | lōn | color | колір | لون | |
 | أبيض | abyaẓ | white | білий | أبيض | |
 | أسود | aswad | black | чорний | أسود | |
 | أحمر | aḥmar | red | червоний | أحمر | |
@@ -558,7 +558,7 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | رمادي | ramādi | grey | сірий | رمادي | |
 | وردي | wardi | pink | рожевий | وردي | |
 | بنفسجي | banafsaji | purple | фіолетовий | بنفسجي | |
-| برتقالي | burtugāli | orange (colour) | помаранчевий | برتقالي | |
+| برتقالي | burtugāli | orange (color) | помаранчевий | برتقالي | |
 | أبيه | abīh | I want it | я хочу це | أريده | |
 | أرجعه | arajjʿah | I'll return it (to the shop) | я поверну це (в магазин) | سأعيده | |
 | أونلاين | onlāyn | online | онлайн | عبر الإنترنت | |
@@ -696,7 +696,7 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | زبالة | zibāla | rubbish | сміття | قمامة | |
 | شقة | shigga | flat, apartment | квартира | شقّة | |
 | فيلا | villa | house (villa) | будинок (вілла) | فيلا | |
-| جيران | jīrān | neighbours | сусіди | جيران | |
+| جيران | jīrān | neighbors | сусіди | جيران | |
 | إيجار | ījār | rent | оренда | إيجار | |
 | نظيف | naẓīf | clean | чистий | نظيف | |
 | وسخ | wasikh | dirty | брудний | متّسخ | |

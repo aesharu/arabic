@@ -1,5 +1,5 @@
 // Hand-drawn SVG: the icon set, the small illustration on each page, and the Najdi scene on Today.
-// Everything is flat shapes coloured by CSS classes (a-*), so every theme — light, dark, mud brick — repaints the
+// Everything is flat shapes colored by CSS classes (a-*), so every theme — light, dark, mud brick — repaints the
 // art from its own tokens (css/tokens.css). All of it is decoration: aria-hidden, never the only way to read anything.
 
 // ---------- Icons: 24×24, 1.8px strokes ----------

@@ -31,7 +31,7 @@ const defaults = () => ({
   //                  cards?: { n: new cards seen, r: answers, a: "Again" answers } }
   log: {},
   // Cards (core/cards.js): cardId → the scheduler's card (core/srs.js) plus mod, the time it last changed.
-  // prefs: new cards a day, practise saying (reverse cards), open every deck early, read the answer aloud.
+  // prefs: new cards a day, practice saying (reverse cards), open every deck early, read the answer aloud.
   srs: { cards: {}, prefs: { newPerDay: 8, reverse: true, unlockAll: profileNow === "teacher", autoplay: true, mod: 0 } }, // Dima: every deck open
   timer: null, // { start: epoch ms, date: "YYYY-MM-DD" } while the study timer runs
   sync: { key: "", pushedAt: 0 }, // cloud save: this computer's secret key and the last successful save

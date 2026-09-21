@@ -165,12 +165,12 @@ function renderCloudPill({ state } = sync.getStatus()) {
 }
 sync.onStatus(renderCloudPill);
 
-// The browser's own bar takes the page's background colour.
+// The browser's own bar takes the page's background color.
 const themeMeta = document.querySelector('meta[name="theme-color"]');
 const paintThemeColor = () => themeMeta.setAttribute("content", getComputedStyle(document.body).backgroundColor);
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
   paintThemeColor();
-  show(current.name, current.params); // charts and the sky read theme colours
+  show(current.name, current.params); // charts and the sky read theme colors
 });
 
 // The sun/moon button: flips between the light and dark version of the current theme.

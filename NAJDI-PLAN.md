@@ -21,8 +21,8 @@ Things that make Najdi *Najdi* (and different from the Egyptian/Levantine Arabic
 | **"your" is -ik for both men and women** | كيفك = *kēfik*, to him *and* to her. Older/regional forms like *-its* or *-ich* exist but many speakers avoid them. |
 | **Verbs to a woman end in -īn** | تبي = *tibi* (you want, to him) → تبين = *tibīn* (to her). This is the ending you'll use most. |
 | **Future = ب- in front of the verb** | أروح *arūḥ* (I go) → بروح *barūḥ* (I'll go). |
-| **"What" = وش** | *wesh*. The single most recognisable Najdi word. |
-| **Some sounds shift in old/rural speech** | ك can become *ts*, ج can become *y* in some families and regions. Recognise, don't copy. |
+| **"What" = وش** | *wesh*. The single most recognizable Najdi word. |
+| **Some sounds shift in old/rural speech** | ك can become *ts*, ج can become *y* in some families and regions. Recognize, don't copy. |
 
 Sources for these points are listed in Part 10.
 
@@ -40,7 +40,7 @@ This plan gets you to 500 carefully chosen words in 8 months, then to 1000 by th
 
 Learn words **inside sentences**, speak **from week 3**, and let her voice notes be your main listening.
 
-"Just start speaking" is right — but with memorised chunks, not by building sentences from grammar. You learn *wesh tsawwīn?* ("what are you doing?") as one piece, like a word. Grammar comes later to explain what you already say.
+"Just start speaking" is right — but with memorized chunks, not by building sentences from grammar. You learn *wesh tsawwīn?* ("what are you doing?") as one piece, like a word. Grammar comes later to explain what you already say.
 
 ---
 
@@ -210,7 +210,7 @@ Also heard: أبغى *abgha* = I want (same meaning, more pan-Saudi).
 
 ## Part 6 — The core 500
 
-Organised by stage and topic. **"To her"** shows the form you'd use talking to a woman, where it differs.
+Organized by stage and topic. **"To her"** shows the form you'd use talking to a woman, where it differs.
 
 ### STAGE 1 — Core (weeks 3–10)
 
@@ -227,7 +227,7 @@ Organised by stage and topic. **"To her"** shows the form you'd use talking to a
 | كم | kam | how much / many | |
 | أي | ay | which | |
 | وش فيك؟ | wesh fīk? | what's wrong? | |
-| وش لونك؟ | wesh lōnik? | how are you? | Najdi classic, lit. "what's your colour" |
+| وش لونك؟ | wesh lōnik? | how are you? | Najdi classic, lit. "what's your color" |
 
 #### 1.2 Yes, no, reactions
 
@@ -685,7 +685,7 @@ Read `CLAUDE.md` first; its working rules still apply. Build these in order. Sto
 
 Everything prints on **A4**. Each printable is an HTML page with a print stylesheet, and a script (`npm run pdf`) renders them to PDF with headless Chromium (Playwright `page.pdf()`), saved to `print/pdf/`.
 
-- **Self-host the Arabic font** (Noto Naskh Arabic, open licence) inside the project so PDFs look right everywhere. Don't rely on Google Fonts for printing.
+- **Self-host the Arabic font** (Noto Naskh Arabic, open license) inside the project so PDFs look right everywhere. Don't rely on Google Fonts for printing.
 - Arabic at **28pt minimum** on practice sheets. Rows start at the **right** margin.
 
 Printables to build:

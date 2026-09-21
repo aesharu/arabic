@@ -1,7 +1,7 @@
 // Phrases for the two Script weeks — three a day, so you speak from Day 1.
 // Every phrase is in four languages:
 //   ar + tr   Najdi Arabic and its pronunciation — copied from NAJDI-PLAN.md (Parts 6–7)
-//   msa       the formal-Arabic (MSA) equivalent, for recognising, not for saying
+//   msa       the formal-Arabic (MSA) equivalent, for recognizing, not for saying
 //   en        English meaning — from the plan
 //   uk        Ukrainian meaning
 // note {en, uk, najdi, msa} comes from the plan's Note column. check = marked ⚠ in the plan.
@@ -16,7 +16,7 @@ export const PHRASES = [
   { day: 2, ar: "الحمد لله", tr: "al-ḥamdu lillāh", msa: "الحمد لله", en: "good, thank God", uk: "добре, слава Богу", note: { en: "Standard answer", uk: "Стандартна відповідь", najdi: "الرد المعتاد", msa: "الرد المعتاد" } },
   { day: 2, ar: "بخير", tr: "bikhēr", msa: "بخير", en: "fine", uk: "добре" },
 
-  { day: 3, ar: "وش لونك؟", tr: "wesh lōnik?", msa: "كيف حالك؟", en: "how are you?", uk: "як ти?", note: { en: "Najdi classic, lit. “what's your colour”", uk: "Класика наджді, досл. «який твій колір»", najdi: "نجدية أصيلة، حرفيًا «وش لونك»", msa: "عبارة نجدية أصيلة، معناها الحرفي «ما لونك»" } },
+  { day: 3, ar: "وش لونك؟", tr: "wesh lōnik?", msa: "كيف حالك؟", en: "how are you?", uk: "як ти?", note: { en: "Najdi classic, lit. “what's your color”", uk: "Класика наджді, досл. «який твій колір»", najdi: "نجدية أصيلة، حرفيًا «وش لونك»", msa: "عبارة نجدية أصيلة، معناها الحرفي «ما لونك»" } },
   { day: 3, ar: "صباح الخير", tr: "ṣabāḥ al-khēr", msa: "صباح الخير", en: "good morning", uk: "доброго ранку" },
   { day: 3, ar: "صباح النور", tr: "ṣabāḥ an-nūr", msa: "صباح النور", en: "the reply", uk: "відповідь на «доброго ранку»" },
 

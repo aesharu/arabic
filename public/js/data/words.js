@@ -1,6 +1,6 @@
 // Reading practice, in four languages:
 //   ar + tr   Najdi Arabic and its pronunciation — copied from NAJDI-PLAN.md (Parts 5–6)
-//   msa       the formal-Arabic (MSA) equivalent, for recognising, not for saying
+//   msa       the formal-Arabic (MSA) equivalent, for recognizing, not for saying
 //   en        English meaning — from the plan
 //   uk        Ukrainian meaning
 // src: "alphabet" marks the two example words from the Letters page. check = marked ⚠ in the plan.

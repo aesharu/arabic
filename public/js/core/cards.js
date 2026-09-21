@@ -1,7 +1,7 @@
 // Cards: every word as two cards, like Anki's "Basic (and reversed card)".
-//   <id>.r  Recognise — Najdi on the front, meaning on the back
+//   <id>.r  Recognize — Najdi on the front, meaning on the back
 //   <id>.p  Say it    — meaning on the front, say it out loud in Najdi, then check
-// A "say it" card only comes up once you've learned to recognise the word (on an earlier day).
+// A "say it" card only comes up once you've learned to recognize the word (on an earlier day).
 // The next card is chosen the way Anki does it: learning cards that are due, then today's reviews, then new cards
 // up to the daily limit, then learning cards a little ahead of time so you don't wait.
 import * as store from "./store.js";
@@ -38,7 +38,7 @@ export function queue(notes, { deck = null, now = Date.now(), today = todayKey()
   const review = [];
   const later = [];
   const freshSay = [];
-  const freshRecognise = [];
+  const freshRecognize = [];
   for (const n of notes) {
     if (deck && n.deck !== deck) continue;
     for (const kind of reverse ? ["r", "p"] : ["r"]) {
@@ -47,7 +47,7 @@ export function queue(notes, { deck = null, now = Date.now(), today = todayKey()
       if (c?.susp) continue;
       if (!c || c.s === 0) {
         if (!isOpen(n, today)) continue;
-        if (kind === "r") freshRecognise.push(id);
+        if (kind === "r") freshRecognize.push(id);
         else {
           const twin = cards[`${n.id}.r`];
           if (isLearned(twin) && twin.last < today) freshSay.push(id);
@@ -61,8 +61,8 @@ export function queue(notes, { deck = null, now = Date.now(), today = todayKey()
   learn.sort(byDue);
   later.sort(byDue);
   review.sort(byDue);
-  // Words you can already recognise get their "say it" card before brand-new words.
-  const fresh = [...freshSay, ...freshRecognise].slice(0, newLeft(today));
+  // Words you can already recognize get their "say it" card before brand-new words.
+  const fresh = [...freshSay, ...freshRecognize].slice(0, newLeft(today));
   return { learn, review, fresh, later, nextAt: later.length ? cards[later[0]].due : 0 };
 }
 
@@ -121,7 +121,7 @@ export const unsuspendAll = () =>
     for (const [id, c] of Object.entries(s.srs.cards)) if (c.susp) s.srs.cards[id] = { ...c, susp: false, mod: Date.now() };
   });
 
-// How many words you know: learned = recognised after the learning steps, strong = three weeks or more.
+// How many words you know: learned = recognized after the learning steps, strong = three weeks or more.
 export function wordStats(notes) {
   const cards = cardsOf();
   let seen = 0, learned = 0, strong = 0;

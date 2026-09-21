@@ -132,7 +132,7 @@
        "say": "wesh lōnik?",
        "en": "how are you?",
        "note": {
-        "en": "Najdi classic, lit. \"what's your colour\"",
+        "en": "Najdi classic, lit. \"what's your color\"",
         "uk": "Класика наджді, досл. «який твій колір»",
         "najdi": "نجدية أصيلة، حرفيًا «وش لونك»",
         "msa": "عبارة نجدية أصيلة، معناها الحرفي «ما لونك»"
@@ -4468,12 +4468,12 @@
        }
       },
       {
-       "id": "19dmy97",
+       "id": "wbb02r",
        "stage": "4",
        "topic": "4.1",
        "ar": "سافرت",
        "say": "sāfart",
-       "en": "I travelled",
+       "en": "I traveled",
        "uk": "я поїхав (у подорож)",
        "msa": "سافرتُ",
        "check": true,
@@ -10931,12 +10931,12 @@
        }
       },
       {
-       "id": "126swq7",
+       "id": "2ggf8a",
        "stage": "4",
        "topic": "4.9",
        "ar": "حي",
        "say": "ḥayy",
-       "en": "neighbourhood",
+       "en": "neighborhood",
        "uk": "район",
        "msa": "حيّ",
        "check": true,
@@ -11915,7 +11915,7 @@
     {
      "id": "4.11",
      "title": {
-      "en": "Shopping, money and colours",
+      "en": "Shopping, money and colors",
       "uk": "Покупки, гроші, кольори",
       "najdi": "المقاضي والفلوس والألوان",
       "msa": "التسوّق والمال والألوان"
@@ -12126,12 +12126,12 @@
        }
       },
       {
-       "id": "19mo0x7",
+       "id": "15roa1m",
        "stage": "4",
        "topic": "4.11",
        "ar": "لون",
        "say": "lōn",
-       "en": "colour",
+       "en": "color",
        "uk": "колір",
        "msa": "لون",
        "check": true,
@@ -12313,12 +12313,12 @@
        }
       },
       {
-       "id": "1kqbwwg",
+       "id": "89l6d3",
        "stage": "4",
        "topic": "4.11",
        "ar": "برتقالي",
        "say": "burtugāli",
-       "en": "orange (colour)",
+       "en": "orange (color)",
        "uk": "помаранчевий",
        "msa": "برتقالي",
        "check": true,
@@ -14363,12 +14363,12 @@
        }
       },
       {
-       "id": "13e7adp",
+       "id": "brglf8",
        "stage": "4",
        "topic": "4.15",
        "ar": "جيران",
        "say": "jīrān",
-       "en": "neighbours",
+       "en": "neighbors",
        "uk": "сусіди",
        "msa": "جيران",
        "check": true,

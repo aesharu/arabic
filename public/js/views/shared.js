@@ -20,7 +20,7 @@ export function minutesBetween(from, to) {
   return sum;
 }
 
-// The whole plan as a row of rooftop crenellations: past weeks filled in their stage's colour, this week outlined.
+// The whole plan as a row of rooftop crenellations: past weeks filled in their stage's color, this week outlined.
 export function journeyParapet(today) {
   const weeks = [];
   for (let n = 1; n <= TOTAL_WEEKS; n++) {

@@ -80,7 +80,7 @@ export default {
       ...table,
     });
 
-    // Quiz answers per day: correct (accent) stacked under wrong (grey) — emphasis, not two competing colours
+    // Quiz answers per day: correct (accent) stacked under wrong (grey) — emphasis, not two competing colors
     const quizChart = columns({
       label: t("progress.quiz"),
       data: win.map(d => ({ label: day(d), title: dayLong(d), values: [log[d]?.quiz?.right ?? 0, (log[d]?.quiz?.total ?? 0) - (log[d]?.quiz?.right ?? 0)] })),

@@ -296,7 +296,7 @@ export const GROUPS = [
         sound: { en: "k.", uk: "к.", najdi: "كاف.", msa: "كاف." },
         example: { ar: "كيف", tr: "kēf", msa: "كيف", en: "how", uk: "як" },
         najdi: {
-          en: "In traditional Najdi you may hear ك as ц in some words. Recognise it, don't copy it yet.",
+          en: "In traditional Najdi you may hear ك as ц in some words. Recognize it, don't copy it yet.",
           uk: "У традиційній наджді ك у деяких словах може звучати як ц. Впізнавай, але поки не копіюй.",
           najdi: "في النجدي القديم ممكن تسمع الكاف «تس» في بعض الكلمات. افهمها بس لا تقلدها للحين.",
           msa: "في النجدية التقليدية قد تسمع الكاف تُنطق «تس» في بعض الكلمات. تعرّف عليها لكن لا تقلّدها الآن.",

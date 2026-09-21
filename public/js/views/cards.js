@@ -108,21 +108,22 @@ export default {
 
         <section class="panel">
           <div class="panel-head"><h2>${t("cards.decks")}</h2><span class="muted small">${t("cards.newPerDayNote", { n: p.newPerDay })}</span></div>
-          <table class="decks">
-            <thead><tr><th>${t("cards.deck")}</th><th class="num c-new">${t("cards.new")}</th><th class="num c-learn">${t("cards.learning")}</th><th class="num c-due">${t("cards.due")}</th><th><span class="visually-hidden">${t("cards.study")}</span></th></tr></thead>
-            <tbody>${DECKS.map(d => {
-              const open = cards.deckOpen(d.id, today);
-              const c = cards.counts(notes, { deck: d.id });
-              const size = notes.filter(n => n.deck === d.id).length;
-              const has = c.fresh + c.learn + c.review > 0;
-              return `<tr class="${open ? "" : "is-locked"}">
-                <th scope="row"><span class="deck-name">${esc(deckName(d.id))}</span>
-                  <span class="deck-size">${num(size)} ${tu("unit.words", size)}${open ? "" : ` · ${icon("lock")} ${esc(t("cards.opens", { date: shortDate(d.opens, locale()) }))}`}</span></th>
-                <td class="num c-new">${c.fresh || "·"}</td><td class="num c-learn">${c.learn || "·"}</td><td class="num c-due">${c.review || "·"}</td>
-                <td class="deck-go">${has ? `<a class="btn btn-small" href="#/cards/study/${d.id}">${t("cards.study")}</a>` : ""}</td>
-              </tr>`;
-            }).join("")}</tbody>
-          </table>
+          <ul class="deck-grid">${DECKS.map((d, i) => {
+            const open = cards.deckOpen(d.id, today);
+            const c = cards.counts(notes, { deck: d.id });
+            const inDeck = notes.filter(n => n.deck === d.id);
+            const has = c.fresh + c.learn + c.review > 0;
+            const face = inDeck[0] ? inDeck[0].ar.split(/ [/→] /)[0] : "";
+            const go = has ? `href="#/cards/study/${d.id}"` : "";
+            return `<li><${has ? "a" : "div"} class="deck-card${open ? "" : " is-locked"}" ${go} style="--tilt:${i % 2 ? 1.2 : -1.2}deg">
+              <span class="deck-face" lang="ar" translate="no">${esc(face)}</span>
+              <span class="deck-name">${esc(deckName(d.id))}</span>
+              <span class="deck-size">${num(inDeck.length)} ${tu("unit.words", inDeck.length)}${open ? "" : ` · ${icon("lock")} ${esc(t("cards.opens", { date: shortDate(d.opens, locale()) }))}`}</span>
+              <span class="deck-counts" aria-label="${esc(t("cards.new"))} ${c.fresh}, ${esc(t("cards.learning"))} ${c.learn}, ${esc(t("cards.due"))} ${c.review}">
+                <b class="c-new">${c.fresh}</b><b class="c-learn">${c.learn}</b><b class="c-due">${c.review}</b></span>
+              ${has ? `<span class="deck-study">${t("cards.study")} ${icon("arrow")}</span>` : ""}
+            </${has ? "a" : "div"}></li>`;
+          }).join("")}</ul>
         </section>
 
         <div class="cards-foot">
@@ -178,8 +179,9 @@ export default {
           <button class="btn btn-ghost" data-undo${undoToken ? "" : " disabled"} title="Ctrl+Z">${icon("undo")} ${t("cards.undo")}</button>
         </div>
 
+        <div class="study-stack">
         <article class="study-card kind-${kind}${current.revealed ? " is-revealed" : ""}" aria-labelledby="study-q">
-          <p class="study-kind">${kind === "r" ? t("cards.kindRecognise") : t("cards.kindSay")}${n.topicTitle ? ` · ${esc(tx(n.topicTitle))}` : ""}</p>
+          <p class="study-kind">${kind === "r" ? t("cards.kindRecognize") : t("cards.kindSay")}${n.topicTitle ? ` · ${esc(tx(n.topicTitle))}` : ""}</p>
           <div class="study-front" id="study-q">
             ${kind === "r"
               ? `<p class="study-ar big">${ar(n.ar)}</p>`
@@ -188,6 +190,7 @@ export default {
           ${kind === "r" || current.revealed ? `<button class="hear" data-say="${esc(n.speak ?? speakText(n.ar))}" aria-label="${esc(t("lab.hear", { what: n.say }))}" title="R">${icon("sound")}</button>` : ""}
           <div class="study-back" aria-live="polite">${current.revealed ? `<hr>${answerSide(n, kind)}` : ""}</div>
         </article>
+        </div>
 
         <div class="study-actions">
           ${current.revealed

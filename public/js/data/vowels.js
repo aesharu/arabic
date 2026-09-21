@@ -3,7 +3,7 @@ export const VOWEL_SECTIONS = [
   {
     title: { en: "Short vowels", uk: "Короткі голосні", najdi: "الحركات القصيرة", msa: "الحركات القصيرة" },
     intro: {
-      en: "Small marks above or below a letter. Practise with them now — everyday writing leaves them out, so later you'll read without them.",
+      en: "Small marks above or below a letter. Practice with them now — everyday writing leaves them out, so later you'll read without them.",
       uk: "Маленькі знаки над або під літерою. Тренуйся з ними зараз — у звичайному письмі їх пропускають, тож згодом читатимеш без них.",
       najdi: "علامات صغيرة فوق الحرف أو تحته. تدرّب عليها الحين — الكتابة العادية ما تحطها، فبعدين بتقرا بدونها.",
       msa: "علامات صغيرة فوق الحرف أو تحته. تدرّب عليها الآن، فالكتابة المعتادة تُسقطها، وستقرأ لاحقًا بدونها.",

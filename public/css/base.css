@@ -172,11 +172,19 @@ html[dir="rtl"] .foot-label { letter-spacing: 0; }
 }
 .langs button[lang^="ar"] { font-family: "Noto Kufi Arabic", var(--font-ar); letter-spacing: 0; font-size: 13px; }
 .langs button[aria-pressed="true"] { background: var(--nav-on-bg); color: var(--nav-on-ink); }
-.langs button { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.lang-sign { display: block; height: 18px; font-size: 16px; line-height: 18px; }
-svg.lang-sign { width: 19px; }
+.langs button { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 7px 0 6px; font-weight: 800; }
+/* Each language wears a round badge: the flag, a heart for Najdi, ض (the letter only Arabic has) for formal Arabic */
+.lang-sign {
+  display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; overflow: hidden;
+  box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--sidebar-ink) 22%, transparent); transition: transform .2s ease, box-shadow .2s ease;
+}
+.lang-flag > span { font-size: 34px; line-height: 1; transform: translateY(1px); }
+.lang-heart { background: #FBE3E8; }
+.lang-heart svg { width: 14px; height: 13px; }
 .lang-heart path { fill: #D6455D; }
-.lang-dad { font-family: "Noto Kufi Arabic", var(--font-ar); font-weight: 800; font-size: 15px; }
+.lang-dad { background: #006C35; color: #fff; font-family: "Noto Kufi Arabic", var(--font-ar); font-weight: 800; font-size: 13px; line-height: 1; }
+.langs button:hover .lang-sign { transform: scale(1.08); }
+.langs button[aria-pressed="true"] .lang-sign { box-shadow: 0 0 0 2px var(--nav-on-bg), 0 0 0 3.5px var(--nav-on-ink); }
 .palette { width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; transition: transform .15s ease; }
 .palette svg { width: 100%; height: 100%; display: block; }
 .palette:hover { transform: scale(1.08); }

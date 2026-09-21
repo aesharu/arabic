@@ -5,7 +5,7 @@ import { STRINGS } from "../i18n/strings.js";
 
 export const LANGS = ["en", "uk", "najdi", "msa"];
 const META = {
-  en: { html: "en", dir: "ltr", locale: "en-GB", plural: "en" },
+  en: { html: "en", dir: "ltr", locale: "en-US", plural: "en" },
   uk: { html: "uk", dir: "ltr", locale: "uk-UA", plural: "uk" },
   najdi: { html: "ar-SA", dir: "rtl", locale: "ar-SA-u-ca-gregory-nu-latn", plural: "ar" },
   msa: { html: "ar", dir: "rtl", locale: "ar-u-ca-gregory-nu-latn", plural: "ar" },
