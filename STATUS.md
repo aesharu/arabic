@@ -28,19 +28,26 @@ Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
   - localStorage keys: `najdi-v2` (his) and `najdi-v2-dima` (hers). `najdi-profile` holds the current profile. "Switch profile" is in the menu.
   - The old SYNC_KEY still works as Volodymyr's key.
 
+- **Dima's voice and corrections** (21 Sept — she said the computer voice is wrong: browser TTS reads formal Arabic, q not g):
+  - **Record** page `#/record` (her profile only; replaces Letters in her iPad tab bar): record each word (MediaRecorder, ≤10 s), deck by deck, "not recorded yet" filter. Stored in D1 table `audio` (key = hash of the Arabic without vowel marks, `content.audioKey`). Server: only her token may upload/delete.
+  - Every speaker button plays her recording when one exists (`core/speech.js` → `core/content.js`); otherwise the computer voice plays with a note "Computer voice — formal Arabic, not Najdi".
+  - **✎ Correct this word** (Word list, Record page, either profile): Najdi, pronunciation, English, Ukrainian, MSA, and "this is correct Najdi" (removes the tutor flag). D1 table `edits`, laid over the plan's words at runtime (`content.apply`). NAJDI-PLAN.md is not changed — later, turn her corrections into proposed plan changes for Volodymyr to approve.
+  - Not yet covered by her corrections: the Phrases/Today pages (they read `data/phrases.js` directly) and letter names.
+
 ## Next (in this order)
 
-1. **Prayer times and Qibla** (he asked on 21 Sept):
+1. Tell Volodymyr which recordings/corrections exist; a script to export `edits` from D1 as proposed changes to NAJDI-PLAN.md.
+2. **Prayer times and Qibla** (he asked on 21 Sept):
    - today's five prayers for Riyadh, Umm al-Qura method (Fajr 18.5°, Isha = Maghrib + 90 min, 120 in Ramadan), Asr standard;
    - the previous prayer and the next one with a countdown;
    - a compass arrow to Mecca (≈244° from Riyadh, ≈790 km);
    - on Today, plus a "next prayer" line on the welcome screen;
    - names in four languages with pronunciation.
-2. Optional PIN for Volodymyr's sign-in (right now the name is the password; offered, not asked for yet).
-3. `npm run pdf`: `scripts/print-pdf.mjs`, Playwright with the installed Chrome, waits for `body[data-print-ready]`, writes to `print/pdf/` (gitignored).
-4. Progress page: cards answered per day, plus the words-known meter.
-5. Calendar: arrow keys between days. Backup restore: ask for confirmation and show an inline message instead of `alert()`. Letters: make the chips real links.
-6. `public/_headers`: security headers and CSP. Tests for `srs.js`, `cards.js`, `search.js`, `welcome.js` name matching and worker login.
+3. Optional PIN for Volodymyr's sign-in (right now the name is the password; offered, not asked for yet).
+4. `npm run pdf`: `scripts/print-pdf.mjs`, Playwright with the installed Chrome, waits for `body[data-print-ready]`, writes to `print/pdf/` (gitignored).
+5. Progress page: cards answered per day, plus the words-known meter.
+6. Calendar: arrow keys between days. Backup restore: ask for confirmation and show an inline message instead of `alert()`. Letters: make the chips real links.
+7. `public/_headers`: security headers and CSP. Tests for `srs.js`, `cards.js`, `search.js`, `welcome.js` name matching and worker login.
 
 ## Waiting on Dima (native speaker)
 

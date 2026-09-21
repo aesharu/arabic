@@ -25,11 +25,14 @@ import letters from "./views/letters.js";
 import vowels from "./views/vowels.js";
 import reading from "./views/reading.js";
 import quiz from "./views/quiz.js";
+import record from "./views/record.js";
+import * as content from "./core/content.js";
+import { openEditor } from "./core/editor.js";
 
 // Each view is { titleKey, mount(root, { params, signal }) }. Listeners a view adds with
 // { signal } are removed automatically when you leave it.
-const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz };
-const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz" };
+const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record };
+const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound" };
 const view = document.getElementById("view");
 const motion = !matchMedia("(prefers-reduced-motion: reduce)").matches;
 let controller = null;
@@ -54,11 +57,26 @@ document.querySelector("[data-menu-close]").addEventListener("click", () => {
 });
 document.addEventListener("keydown", e => e.key === "Escape" && document.body.classList.contains("menu-open") && (setMenu(false), moreButton.focus()));
 
-// Anything with data-say speaks its Arabic, on every page.
+// Anything with data-say speaks its Arabic, on every page; ✎ (data-edit) opens the word's correction form.
 document.addEventListener("click", e => {
+  const ed = e.target.closest("[data-edit]");
+  if (ed) return openEditor(ed.dataset.edit, () => show(current.name, current.params));
   const el = e.target.closest("[data-say]");
   if (el) say(el.dataset.say);
 });
+// Dima's corrections and recordings: load them, and redraw pages that show words once they arrive.
+content.onChange(() => ["words", "cards"].includes(current.name) && !document.querySelector("dialog[open]") && show(current.name, current.params));
+content.load();
+// Record is Dima's page: in the menu only in her profile, and in place of Letters on the iPad/iPhone tab bar.
+if (store.isTeacher()) {
+  document.body.classList.add("can-record");
+  const tab = document.querySelector('.tabbar [data-route="letters"]');
+  if (tab) {
+    tab.href = "#/record";
+    tab.dataset.route = "record";
+    tab.querySelector("[data-i18n]").dataset.i18n = "nav.record";
+  }
+}
 attachTooltips(document);
 document.querySelector("[data-profile-switch]").addEventListener("click", switchProfile);
 document.body.classList.toggle("is-teacher", store.isTeacher());

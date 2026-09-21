@@ -7,6 +7,7 @@ import { loadVocab, speakText } from "../core/vocab.js";
 import { wordState } from "../core/cards.js";
 import { haystack, matches } from "../core/search.js";
 import { deckName } from "./shared.js";
+import * as content from "../core/content.js";
 
 const TABS = ["1", "2", "3", "4", "special", "grammar", "traps"];
 const DECK_FILES = { "1": "najdi-stage1.csv", "2": "najdi-stage2.csv", "3": "najdi-stage3.csv", "4": "najdi-stage4-5.csv", special: "najdi-special.csv", grammar: "najdi-grammar.csv" };
@@ -20,15 +21,18 @@ const badge = id => {
   return STATE_KEY[st] ? `<span class="wstate ${st}">${st === "strong" || st === "learned" ? icon("check") : ""}${t(STATE_KEY[st])}</span>` : "";
 };
 
-const entry = e => `
+// Each word: tap to hear (her voice once recorded), and ✎ to correct it.
+const entry = e => `<div class="word-wrap">
+  <button type="button" class="word-edit" data-edit="${esc(e.id)}" aria-label="${esc(t("edit.button"))}" title="${esc(t("edit.button"))}">✎</button>
   <button class="phrase" data-say="${esc(speakText(e.ar))}">
     ${ar(e.ar, "phrase-ar")}
     <span class="phrase-t">${translit(e.say)} ${badge(e.id)} ${e.check ? flag({ check: true, checkNote: e.note }) : ""}${meanings(e)}
       ${e.toHer ? `<span class="to-her">${t("words.toHer")}: ${ar(e.toHer.ar)} ${translit(e.toHer.say)}</span>` : ""}
       ${e.reply ? `<span class="to-her">${t("words.reply")}: ${ar(e.reply.ar)} ${e.reply.say ? translit(e.reply.say) : ""}</span>` : ""}
-      ${e.note && !e.check ? `<span class="pnote">${rich(tx(e.note))}</span>` : ""}</span>
+      ${e.note && !e.check ? `<span class="pnote">${rich(tx(e.note))}</span>` : ""}
+      ${content.hasAudio(speakText(e.ar)) ? `<span class="her-voice">${icon("sound")}${t("record.herVoice")}</span>` : ""}</span>
     ${playIcon}
-  </button>`;
+  </button></div>`;
 
 const trapRow = tr => `
   <div class="phrase-row trap">

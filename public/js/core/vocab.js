@@ -4,18 +4,31 @@
 import { PHASES } from "../data/plan.js";
 import { PHRASES } from "../data/phrases.js";
 import { dateOfDay } from "./schedule.js";
+import * as content from "./content.js";
 
 let request = null;
 let loaded = null;
 export const loadVocab = () =>
   (request ??= fetch("data/vocab.json")
     .then(r => (r.ok ? r.json() : Promise.reject(new Error(`vocab.json: HTTP ${r.status}`))))
-    .then(v => (loaded = { vocab: v, notes: buildNotes(v) }))
+    .then(v => {
+      loaded = { vocab: v, notes: buildNotes(v) };
+      applyEdits();
+      return loaded;
+    })
     .catch(e => {
       request = null; // try again next time
       throw e;
     }));
 export const vocabNow = () => loaded;
+
+// Dima's corrections, laid over every word (and again whenever they change).
+function applyEdits() {
+  if (!loaded) return;
+  for (const s of loaded.vocab.stages) for (const t of s.topics) t.entries.forEach(content.apply);
+  loaded.notes.forEach(content.apply);
+}
+content.onChange(applyEdits);
 
 // id → when that deck opens. PHASES[1] is Stage 1, [2] Stage 2, [3] Stage 3, [4] Stage 4.
 export const DECKS = [

@@ -6,6 +6,10 @@
 // Tokens are an HMAC of the role with SYNC_KEY, so they never need storing. Each profile has its own saved progress:
 // Volodymyr's (student) is row "main", Dima's (teacher) is row "dima". Dima may also read his: GET ?who=student.
 // Nobody can write anyone else's. SYNC_KEY is a Worker secret, never in this repository.
+//   GET    /api/content          → { edits, audio }      Dima's corrections and which words she has recorded
+//   PUT    /api/edits/<id>       ← { ar?, say?, en?, uk?, msa?, checked? }   a correction to one word (either profile)
+//   DELETE /api/edits/<id>       back to the original
+//   GET    /api/audio/<key>      → her recording        PUT (raw audio, Dima only) · DELETE (Dima only)
 // Everything else is served straight from the assets.
 
 const MAX_BYTES = 1_000_000; // a year of study logs is well under 100 KB
@@ -61,6 +65,8 @@ async function ensureTables(db) {
   await db.batch([
     db.prepare("CREATE TABLE IF NOT EXISTS progress (id TEXT PRIMARY KEY, data TEXT NOT NULL, updated_at INTEGER NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS snapshots (day TEXT PRIMARY KEY, data TEXT NOT NULL, saved_at INTEGER NOT NULL)"),
+    db.prepare("CREATE TABLE IF NOT EXISTS edits (id TEXT PRIMARY KEY, data TEXT NOT NULL, by TEXT NOT NULL, updated_at INTEGER NOT NULL)"),
+    db.prepare("CREATE TABLE IF NOT EXISTS audio (key TEXT PRIMARY KEY, type TEXT NOT NULL, data BLOB NOT NULL, updated_at INTEGER NOT NULL)"),
   ]);
   tablesReady = true;
 }
@@ -108,11 +114,79 @@ async function progress(request, env) {
   return json({ error: "method-not-allowed" }, 405);
 }
 
+const MAX_AUDIO = 600_000; // a few seconds of speech is ~30 KB
+const ID = /^[a-z0-9]{1,16}$/;
+const FIELDS = ["ar", "say", "en", "uk", "msa"];
+
+// Dima's corrections and recordings: shared by both profiles, so his site shows her versions.
+async function content(request, env, url) {
+  if (!env.DB || !env.SYNC_KEY) return json({ error: "not-configured" }, 503);
+  const role = await roleOf(request, env);
+  if (!role) return json({ error: "wrong-key" }, 401);
+  await ensureTables(env.DB);
+  const [, kind, id] = url.pathname.match(/^\/api\/(content|edits|audio)\/?([^/]*)$/) ?? [];
+  const m = request.method;
+
+  if (kind === "content" && m === "GET") {
+    const [edits, audio] = await Promise.all([
+      env.DB.prepare("SELECT id, data, by, updated_at FROM edits").all(),
+      env.DB.prepare("SELECT key, updated_at FROM audio").all(),
+    ]);
+    return json({
+      edits: Object.fromEntries(edits.results.map(r => [r.id, { ...JSON.parse(r.data), by: r.by, at: r.updated_at }])),
+      audio: Object.fromEntries(audio.results.map(r => [r.key, r.updated_at])),
+    });
+  }
+  if (!kind || kind === "content" || !ID.test(id)) return json({ error: "not-found" }, 404);
+
+  if (kind === "edits") {
+    if (m === "DELETE") {
+      await env.DB.prepare("DELETE FROM edits WHERE id = ?1").bind(id).run();
+      return json({ ok: true });
+    }
+    if (m !== "PUT") return json({ error: "method-not-allowed" }, 405);
+    let body;
+    try {
+      body = await request.json();
+    } catch {
+      return json({ error: "bad-json" }, 400);
+    }
+    const data = {};
+    for (const f of FIELDS) if (typeof body?.[f] === "string" && body[f].trim()) data[f] = body[f].trim().slice(0, 300);
+    if (typeof body?.checked === "boolean") data.checked = body.checked;
+    await env.DB.prepare("INSERT INTO edits (id, data, by, updated_at) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(id) DO UPDATE SET data = excluded.data, by = excluded.by, updated_at = excluded.updated_at")
+      .bind(id, JSON.stringify(data), role, Date.now()).run();
+    return json({ ok: true, data });
+  }
+
+  // audio
+  if (m === "GET") {
+    const row = await env.DB.prepare("SELECT type, data FROM audio WHERE key = ?1").bind(id).first();
+    if (!row) return json({ error: "not-found" }, 404);
+    return new Response(row.data, { headers: { "content-type": row.type, "cache-control": "private, max-age=31536000, immutable" } });
+  }
+  if (role !== "teacher") return json({ error: "only-dima-records" }, 403); // the voice to learn from is hers
+  if (m === "DELETE") {
+    await env.DB.prepare("DELETE FROM audio WHERE key = ?1").bind(id).run();
+    return json({ ok: true });
+  }
+  if (m !== "PUT") return json({ error: "method-not-allowed" }, 405);
+  const type = (request.headers.get("content-type") ?? "").split(";")[0];
+  if (!/^audio\/[\w.+-]+$/.test(type)) return json({ error: "not-audio" }, 415);
+  const buf = await request.arrayBuffer();
+  if (!buf.byteLength || buf.byteLength > MAX_AUDIO) return json({ error: "too-large" }, 413);
+  const at = Date.now();
+  await env.DB.prepare("INSERT INTO audio (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(key) DO UPDATE SET type = excluded.type, data = excluded.data, updated_at = excluded.updated_at")
+    .bind(id, type, buf, at).run();
+  return json({ ok: true, at });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === "/api/progress") return progress(request, env);
     if (url.pathname === "/api/login") return login(request, env);
+    if (/^\/api\/(content|edits|audio)(\/|$)/.test(url.pathname)) return content(request, env, url);
     return env.ASSETS.fetch(request);
   },
 };
