@@ -91,7 +91,7 @@ export function scene(time) {
       }).join("")
     : "";
   const sky = time === "night"
-    ? `<g class="a-moon"><circle cx="1085" cy="70" r="30" class="a-moon-glow"/><path d="M1096,48 a26,26 0 1 0 8,44 a21,21 0 1 1 -8,-44z"/></g>`
+    ? `<g class="a-moon"><circle cx="1085" cy="70" r="34" class="a-moon-glow"/><g transform="translate(1085 70) scale(2.3) rotate(-18) translate(-24 -24)"><path d="M28.07 13.69A12.5 12.5 0 1 0 28.07 34.31A10.6 10.6 0 1 1 28.07 13.69Z"/></g></g>`
     : `<circle class="a-sun-glow" cx="1080" cy="${time === "day" ? 64 : 150}" r="64"/><circle class="a-sun" cx="1080" cy="${time === "day" ? 64 : 150}" r="30"/>`;
 
   // Riyadh's towers far away: Kingdom Centre (the arch with a bridge) and Al Faisaliah (the golden sphere).
