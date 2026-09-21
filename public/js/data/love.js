@@ -1,0 +1,57 @@
+// Love, in her dialect. Every text is in four languages: ar (Najdi, written the way Saudis text it), en, uk, msa.
+// check = not verified by a native speaker yet (shown as "check with tutor" where it's taught).
+// tests/love.test.mjs checks that nothing is missing.
+
+// Shown to Dima every time she comes in (core/welcome.js): the headline, then one compliment, a new one each time.
+export const LOVE_HEADLINE = {
+  ar: "أحبك موت يا شيختي",
+  en: "I love you so fucking much, my ma'am",
+  uk: "Я кохаю тебе до нестями, моя пані",
+  msa: "أحبّكِ حتى الموت يا سيّدتي",
+};
+
+export const COMPLIMENTS = [
+  { ar: "يا أذكى وأحلى بنت في الدنيا", en: "The smartest, most beautiful girl in the world", uk: "Найрозумніша й найгарніша дівчина на світі", msa: "يا أذكى وأجمل فتاة في الدنيا" },
+  { ar: "جمالك يذبح وعقلك يجنن", en: "Your beauty is killer and your mind is incredible", uk: "Твоя краса вбиває, а розум — неймовірний", msa: "جمالكِ فاتن وعقلكِ مذهل", check: true },
+  { ar: "ما شاء الله عليك، حلوة وذكية وقلبك طيب", en: "Mashallah — beautiful, smart, and such a kind heart", uk: "Машаллах — гарна, розумна і з таким добрим серцем", msa: "ما شاء الله عليكِ، جميلة وذكية وطيبة القلب" },
+  { ar: "عيونك أحلى شي شفته بحياتي", en: "Your eyes are the most beautiful thing I've ever seen", uk: "Твої очі — найгарніше, що я бачив у житті", msa: "عيناكِ أجمل ما رأيتُ في حياتي" },
+  { ar: "كل يوم أتعلم منك شي جديد يا أذكى معلمة", en: "Every day I learn something new from you, my brilliant teacher", uk: "Щодня я вчуся в тебе чогось нового, моя найрозумніша вчителько", msa: "كلّ يوم أتعلّم منكِ شيئًا جديدًا يا أذكى معلّمة" },
+  { ar: "ضحكتك تنور الدنيا", en: "Your smile lights up the world", uk: "Твоя усмішка освітлює світ", msa: "ضحكتكِ تُنير الدنيا" },
+  { ar: "انتي أحلى من القمر", en: "You're more beautiful than the moon", uk: "Ти гарніша за місяць", msa: "أنتِ أجمل من القمر" },
+  { ar: "عقلك كنز وجمالك ما له مثيل", en: "Your mind is a treasure and your beauty has no equal", uk: "Твій розум — скарб, а твоїй красі немає рівних", msa: "عقلكِ كنز وجمالكِ لا مثيل له" },
+  { ar: "محظوظ فيك يا أحلى نصيب", en: "I'm so lucky to have you — the best thing fate ever gave me", uk: "Мені так пощастило з тобою — ти найкращий дарунок долі", msa: "أنا محظوظ بكِ يا أجمل نصيب" },
+  { ar: "ذكية لدرجة تخوف وحلوة لدرجة تجنن", en: "Scary smart and crazy beautiful", uk: "Розумна аж страшно й гарна до нестями", msa: "ذكية إلى حدٍّ مخيف وجميلة إلى حدّ الجنون" },
+  { ar: "اللي يشوفك يقول سبحان الخالق", en: "Anyone who sees you says “Glory to the Creator”", uk: "Хто тебе побачить, каже: «Хвала Творцеві»", msa: "من يراكِ يقول: سبحان الخالق" },
+  { ar: "كلامك عسل وعقلك ذهب", en: "Your words are honey and your mind is gold", uk: "Твої слова — мед, а розум — золото", msa: "كلامكِ عسل وعقلكِ ذهب" },
+  { ar: "انتي نور عيوني", en: "You're the light of my eyes", uk: "Ти — світло моїх очей", msa: "أنتِ نور عينيّ" },
+  { ar: "أحب طريقة تفكيرك", en: "I love the way you think", uk: "Я кохаю те, як ти думаєш", msa: "أحبّ طريقة تفكيركِ" },
+  { ar: "لما تشرحين لي تصيرين أحلى وأحلى", en: "When you explain things to me, you get more and more beautiful", uk: "Коли ти мені щось пояснюєш, ти стаєш ще гарнішою", msa: "حين تشرحين لي تصبحين أجمل وأجمل" },
+  { ar: "يا حلوة يا عاقلة يا فاهمة", en: "My beautiful, wise, clever girl", uk: "Моя гарна, мудра, тямуща", msa: "يا جميلة يا عاقلة يا فاهمة" },
+  { ar: "الله يحفظك لي يا أجمل وأذكى إنسانة عرفتها", en: "May God keep you for me — the most beautiful and smartest person I've ever known", uk: "Нехай Бог береже тебе для мене — найгарнішу й найрозумнішу людину, яку я знаю", msa: "حفظكِ الله لي يا أجمل وأذكى إنسانة عرفتُها" },
+  { ar: "كل ما أشوفك أحبك أكثر", en: "Every time I see you, I love you more", uk: "Щоразу, як я тебе бачу, кохаю ще більше", msa: "كلّما رأيتكِ أحببتكِ أكثر" },
+  { ar: "انتي مب بس حلوة، انتي عبقرية", en: "You're not just beautiful — you're a genius", uk: "Ти не просто гарна — ти геній", msa: "لستِ جميلة فحسب، بل عبقرية" },
+  { ar: "يا شيخة البنات", en: "Queen of all girls", uk: "Королева всіх дівчат", msa: "يا سيّدة البنات" },
+  { ar: "حلاك غير", en: "Your beauty is something else", uk: "Твоя краса — щось особливе", msa: "جمالكِ مختلف", check: true },
+  { ar: "ذكاك يبهرني كل يوم", en: "Your intelligence amazes me every day", uk: "Твій розум вражає мене щодня", msa: "ذكاؤكِ يبهرني كلّ يوم" },
+  { ar: "يا روحي، انتي أحلى هدية من الله", en: "My soul, you're the most beautiful gift from God", uk: "Душе моя, ти найкращий дарунок від Бога", msa: "يا روحي، أنتِ أجمل هديّة من الله" },
+  { ar: "عيونك تسحر", en: "Your eyes are enchanting", uk: "Твої очі чарують", msa: "عيناكِ ساحرتان" },
+  { ar: "أفتخر فيك", en: "I'm proud of you", uk: "Я пишаюся тобою", msa: "أفتخر بكِ" },
+  { ar: "انتي الحلا كله", en: "You are all the beauty there is", uk: "Ти — вся краса на світі", msa: "أنتِ الجمال كلّه" },
+  { ar: "انتي أذكى مني بواجد", en: "You're way smarter than me", uk: "Ти набагато розумніша за мене", msa: "أنتِ أذكى منّي بكثير" },
+  { ar: "الله خلقك وأبدع", en: "God made you, and made you perfect", uk: "Бог створив тебе досконалою", msa: "خلقكِ الله فأبدع" },
+  { ar: "قلبك أبيض وعقلك كبير", en: "Your heart is pure and your mind is brilliant", uk: "Серце в тебе чисте, а розум великий", msa: "قلبكِ أبيض وعقلكِ كبير" },
+  { ar: "يا زينك", en: "How beautiful you are", uk: "Яка ж ти гарна", msa: "ما أجملكِ" },
+  { ar: "ما أشبع منك", en: "I can never get enough of you", uk: "Мені тебе ніколи не досить", msa: "لا أشبع منكِ" },
+  { ar: "كل شي فيك حلو", en: "Everything about you is beautiful", uk: "Усе в тобі прекрасне", msa: "كلّ شيءٍ فيكِ جميل" },
+  { ar: "تدرين إنك أحلى شي صار لي؟", en: "Do you know you're the best thing that ever happened to me?", uk: "Знаєш, що ти — найкраще, що зі мною сталося?", msa: "أتعلمين أنّكِ أجمل ما حدث لي؟" },
+  { ar: "حبيبتي الذكية الحلوة", en: "My smart, beautiful love", uk: "Моя розумна, гарна кохана", msa: "حبيبتي الذكية الجميلة" },
+  { ar: "انتي معلمتي وحبيبتي وكل دنياي", en: "You're my teacher, my love and my whole world", uk: "Ти моя вчителька, моя кохана і весь мій світ", msa: "أنتِ معلّمتي وحبيبتي وكلّ دنياي" },
+  { ar: "الله لا يحرمني منك", en: "May God never take you away from me", uk: "Нехай Бог ніколи не забирає тебе від мене", msa: "لا حرمني الله منكِ" },
+  { ar: "وجهك صبح وضحكتك عيد", en: "Your face is the morning and your smile is a holiday", uk: "Твоє обличчя — ранок, а усмішка — свято", msa: "وجهكِ صباح وضحكتكِ عيد", check: true },
+  { ar: "صوتك أحلى من أي أغنية", en: "Your voice is sweeter than any song", uk: "Твій голос кращий за будь-яку пісню", msa: "صوتكِ أجمل من أيّ أغنية" },
+  { ar: "ما فيه أحد مثلك", en: "There's no one like you", uk: "Немає нікого, як ти", msa: "لا أحد مثلكِ" },
+  { ar: "حلوة من برا ومن جوا", en: "Beautiful inside and out", uk: "Гарна і зовні, і всередині", msa: "جميلة من الخارج والداخل" },
+  { ar: "أذكى عقل وأحلى عيون", en: "The smartest mind and the most beautiful eyes", uk: "Найрозумніша голова й найгарніші очі", msa: "أذكى عقلٍ وأجمل عينين" },
+  { ar: "يا بعد عمري", en: "You mean more to me than my own life", uk: "Ти дорожча мені за власне життя", msa: "يا من هي أغلى من عمري" },
+  { ar: "أتعلم العربي عشان أقول لك: انتي أحلى وأذكى وحدة بالدنيا", en: "I'm learning Arabic to tell you: you're the most beautiful and smartest girl in the world", uk: "Я вчу арабську, щоб сказати тобі: ти найгарніша й найрозумніша на світі", msa: "أتعلّم العربية لأقول لكِ: أنتِ أجمل وأذكى فتاة في الدنيا" },
+];

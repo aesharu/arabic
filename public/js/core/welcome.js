@@ -2,7 +2,8 @@
 // The first time a profile is chosen on a device, its name must be written (Volodymyr / Володимир / فولوديمير,
 // Dima / Діма / ديما). That signs in to cloud save (worker /api/login): Volodymyr's progress is saved in the database;
 // Dima's sign-in can only read it.
-// Then: a greeting, her or his name in gold, and five seconds of oud.
+// Then: a greeting, her or his name in gold, and five seconds of oud. Dima gets "I love you" with hearts and a
+// compliment, a different one every time (data/love.js).
 // It is a friendly door, not a lock: anyone who reads this file can see the name. "Log out" in the menu forgets the sign-in.
 import { lang } from "./i18n.js";
 import { STRINGS } from "../i18n/strings.js";
@@ -10,9 +11,11 @@ import { scene } from "./art.js";
 import { play, LENGTH } from "./music.js";
 import * as store from "./store.js";
 import * as sync from "./sync.js";
+import { LOVE_HEADLINE, COMPLIMENTS } from "../data/love.js";
 
 const LOGINS = "najdi-logins"; // localStorage: { student?, teacher? } → cloud token ("local" when the cloud couldn't be reached)
 const GREETED = "najdi-welcomed"; // sessionStorage: "reload" = a profile was just chosen, don't greet twice
+const LOVE_NEXT = "najdi-love-next"; // localStorage: which compliment Dima sees next time
 const NAMES = {
   student: ["volodymyr", "volodimir", "volodia", "volodya", "володимир", "володя", "فولوديمير"],
   teacher: ["dima", "deema", "dema", "діма", "дима", "ديما", "ديمه", "ديمة"],
@@ -73,6 +76,24 @@ const skyStars = () =>
     const r = i % 9 === 0 ? 2.2 : i % 4 === 0 ? 1.5 : 1;
     return `<circle cx="${x}" cy="${y}" r="${r}" style="animation-delay:${((i * 7) % 23) / 5}s"${i % 3 ? "" : ' class="tw"'}/>`;
   }).join("")}</svg>`;
+
+const HEART = `<svg class="wl-heart" viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2C5.4 16 1 12.2 1 7.3 1 3.9 3.6 1.3 6.8 1.3c2.1 0 4 1.1 5.2 2.8 1.2-1.7 3.1-2.8 5.2-2.8 3.2 0 5.8 2.6 5.8 6 0 4.9-4.4 8.7-11 13.9z"/></svg>`;
+
+// "I love you" and the next compliment, in Arabic with English beneath.
+function loveWords() {
+  const i = (storage("local", s => +s.getItem(LOVE_NEXT)) || 0) % COMPLIMENTS.length;
+  storage("local", s => s.setItem(LOVE_NEXT, String(i + 1)));
+  const c = COMPLIMENTS[i];
+  return `<h1 class="wl-title wl-love" id="wl-title">
+      <span class="wl-ar" lang="ar" dir="rtl">${HEART}<span>${LOVE_HEADLINE.ar}</span>${HEART}</span>
+      <span class="wl-en" lang="en">${LOVE_HEADLINE.en}</span>
+    </h1>
+    <p class="wl-line wl-compliment"><span class="wl-ar" lang="ar" dir="rtl">${c.ar}</span><span class="wl-en" lang="en">${c.en}</span></p>`;
+}
+
+// Hearts rising across the whole sky, for her.
+const heartsRain = () =>
+  `<div class="wl-hearts" aria-hidden="true">${Array.from({ length: 22 }, (_, i) => `<i style="--x:${(i * 47) % 100}%;--d:${((i * 13) % 30) / 10}s;--s:${0.6 + ((i * 7) % 9) / 10};--t:${5 + ((i * 11) % 5)}s"></i>`).join("")}</div>`;
 
 const sparks = () =>
   Array.from({ length: 16 }, (_, i) => `<i style="--x:${((i * 53) % 100) - 50}px;--d:${((i * 37) % 17) / 10}s;--s:${0.6 + ((i * 29) % 10) / 10}"></i>`).join("");
@@ -157,13 +178,16 @@ export function welcome() {
     const name = STRINGS[profile === "student" ? "profile.volodymyr" : "profile.dima"].najdi;
     nameEl.textContent = name;
     nameEl.classList.toggle("is-long", name.length > 5);
-    stage.innerHTML = `${three(greetingKey, "h1", "wl-title", "wl-title")}${three(lineKey, "p", "wl-line")}`;
+    const love = profile === "teacher";
+    stage.innerHTML = love ? loveWords() : `${three(greetingKey, "h1", "wl-title", "wl-title")}${three(lineKey, "p", "wl-line")}`;
+    el.classList.toggle("is-love", love);
+    if (love) el.querySelector(".wl-glow").insertAdjacentHTML("afterend", heartsRain());
     el.classList.add("is-open");
     const skip = el.querySelector(".wl-skip");
     skip.hidden = false;
     skip.addEventListener("click", leave);
     skip.focus({ preventScroll: true });
-    timer = setTimeout(leave, LENGTH * 1000 + 300);
+    timer = setTimeout(leave, love ? 9500 : LENGTH * 1000 + 300); // time to read the compliment
   }
 
   function choose() {

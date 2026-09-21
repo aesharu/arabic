@@ -208,3 +208,39 @@ html[data-welcome] body:has(.welcome.is-day) { background: #C7E3E6; }
 .is-day .wl-skip { background: rgba(255, 255, 255, .7); }
 .is-day.is-open .wl-scene .a-vent { fill: var(--art-vent); }
 .is-day.is-open .wl-scene .a-door-paint { fill: #F4C24D; }
+
+/* Dima: "I love you" with hearts — the sparks become hearts, the headline beats softly */
+.wl-love .wl-ar { display: inline-flex; align-items: center; gap: 12px; color: #FFF2F4; }
+.is-day .wl-love .wl-ar { color: #7A1330; }
+.wl-heart { width: .7em; height: .7em; flex: 0 0 auto; fill: #F0506E; filter: drop-shadow(0 0 10px rgba(240, 80, 110, .55)); }
+.is-open .wl-love .wl-heart { animation: wl-beat 1.3s .9s ease-in-out infinite; }
+@keyframes wl-beat { 0%, 60%, 100% { transform: scale(1); } 15% { transform: scale(1.25); } 30% { transform: scale(.95); } 45% { transform: scale(1.15); } }
+.wl-love .wl-en { font-style: italic; }
+.wl-compliment .wl-ar { font-size: clamp(22px, 3.4vh, 28px); max-width: 22em; text-align: center; }
+.wl-compliment .wl-en { max-width: 30em; text-align: center; }
+.is-love .wl-sparks i {
+  width: 14px; height: 13px; border-radius: 0; box-shadow: none; background: #F0506E;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.2C5.4 16 1 12.2 1 7.3 1 3.9 3.6 1.3 6.8 1.3c2.1 0 4 1.1 5.2 2.8 1.2-1.7 3.1-2.8 5.2-2.8 3.2 0 5.8 2.6 5.8 6 0 4.9-4.4 8.7-11 13.9z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.2C5.4 16 1 12.2 1 7.3 1 3.9 3.6 1.3 6.8 1.3c2.1 0 4 1.1 5.2 2.8 1.2-1.7 3.1-2.8 5.2-2.8 3.2 0 5.8 2.6 5.8 6 0 4.9-4.4 8.7-11 13.9z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.is-love .wl-sparks i:nth-child(3n) { background: #F7C8D0; }
+.is-love .wl-sparks i:nth-child(4n) { background: var(--wl-gold-2); }
+.is-love.is-open .wl-sparks i { animation-duration: 4.2s; animation-iteration-count: 2; }
+@media (prefers-reduced-motion: reduce) { .is-open .wl-love .wl-heart { animation: none; } }
+.wl-hearts { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.wl-hearts i {
+  position: absolute; left: var(--x); bottom: -30px; width: calc(22px * var(--s)); height: calc(20px * var(--s)); opacity: 0; background: #F0506E;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.2C5.4 16 1 12.2 1 7.3 1 3.9 3.6 1.3 6.8 1.3c2.1 0 4 1.1 5.2 2.8 1.2-1.7 3.1-2.8 5.2-2.8 3.2 0 5.8 2.6 5.8 6 0 4.9-4.4 8.7-11 13.9z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21.2C5.4 16 1 12.2 1 7.3 1 3.9 3.6 1.3 6.8 1.3c2.1 0 4 1.1 5.2 2.8 1.2-1.7 3.1-2.8 5.2-2.8 3.2 0 5.8 2.6 5.8 6 0 4.9-4.4 8.7-11 13.9z'/%3E%3C/svg%3E") center / contain no-repeat;
+  animation: wl-float var(--t) var(--d) ease-in infinite;
+}
+.wl-hearts i:nth-child(3n) { background: #F7A8B8; }
+.wl-hearts i:nth-child(5n) { background: #E9C46A; }
+@keyframes wl-float {
+  0% { opacity: 0; transform: translate(0, 0) rotate(-10deg); }
+  10% { opacity: .75; }
+  50% { transform: translate(18px, -50vh) rotate(8deg); }
+  100% { opacity: 0; transform: translate(-12px, -105vh) rotate(-6deg); }
+}
+@media (prefers-reduced-motion: reduce) { .wl-hearts { display: none; } }
+.is-love .wl-center { position: relative; z-index: 1; }
