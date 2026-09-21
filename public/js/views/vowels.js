@@ -14,7 +14,7 @@ export default {
             <p>${esc(tx(s.intro))}</p>
             ${s.rows.map(r => `
               <button class="vrow" data-say="${esc(r.ar)}">${ar(r.ar)}
-                <span class="t"><b>${esc(r.name)}</b><span>${rich(tx(r.text))}</span></span>${playIcon}</button>`).join("")}
+                <span class="t"><b>${esc(tx(r.name))}</b><span>${rich(tx(r.text))}</span></span>${playIcon}</button>`).join("")}
           </section>`).join("")}
       </div>`;
   },

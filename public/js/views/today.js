@@ -1,11 +1,12 @@
 import * as store from "../core/store.js";
-import { todayKey, longDate, addDays, diffDays } from "../core/dates.js";
-import { planFor, phaseTitle, TOTAL_DAYS, weekNumber, streak, totals } from "../core/schedule.js";
+import { todayKey, longDate, addDays, diffDays, format } from "../core/dates.js";
+import { planFor, phaseTitle, TOTAL_DAYS, weekNumber, streak, totals, allTasksTicked } from "../core/schedule.js";
 import { t, tx, tu, num, locale } from "../core/i18n.js";
-import { esc, rich, ar, flag, meanings, playIcon, pageHead } from "../core/dom.js";
+import { esc, rich, ar, translit, flag, meanings, playIcon, pageHead } from "../core/dom.js";
 import { START, GOAL, DAILY_GOAL_MIN } from "../config.js";
 import { PHRASES } from "../data/phrases.js";
 import { GROUPS } from "../data/letters.js";
+import { journeyParapet, ring, TOTAL_WEEKS } from "./shared.js";
 
 const MAX_SESSION_MIN = 240; // a forgotten timer never logs more than 4 hours
 
@@ -37,6 +38,19 @@ function stopTimer() {
 
 const stat = (label, value, unit) => `<div><dt>${label}</dt><dd>${value} <small>${unit}</small></dd></div>`;
 
+// Minutes for each of the last 14 days, as small columns with a tooltip each.
+function last14(date) {
+  const log = store.get().log;
+  const days = Array.from({ length: 14 }, (_, i) => addDays(date, i - 13));
+  const max = Math.max(DAILY_GOAL_MIN, ...days.map(d => log[d]?.min ?? 0));
+  return `<div class="mini-bars" dir="ltr">${days.map(d => {
+    const min = d < START ? 0 : log[d]?.min ?? 0;
+    const title = format(d, { weekday: "short", day: "numeric", month: "short" }, locale());
+    return `<span class="${min ? "" : "zero"}" style="height:${Math.max(6, (min / max) * 100)}%" tabindex="0"
+      data-tip="${esc(title)}" data-rows="${esc(`${t("min", { n: min })}||`)}"></span>`;
+  }).join("")}</div>`;
+}
+
 export default {
   titleKey: "today.title",
   mount(root, { signal }) {
@@ -51,6 +65,7 @@ export default {
       const e = store.entry(date);
       const { n, phase, focus, group, tasks } = plan;
       const ticked = tasks.filter(task => e.tasks.includes(task.id)).length;
+      const nextId = tasks.find(task => !e.tasks.includes(task.id))?.id;
       const planned = tasks.reduce((sum, task) => sum + task.min, 0);
       const ph = phrasesFor(n);
       const yesterday = addDays(date, -1);
@@ -58,13 +73,14 @@ export default {
       const hours = tot.minutes / 60;
       const days = streak(s.log, date);
       const left = Math.max(0, diffDays(date, GOAL));
-      const pctDay = Math.min(100, (e.min / DAILY_GOAL_MIN) * 100);
-      const pctAll = Math.min(100, (n / TOTAL_DAYS) * 100);
+      const week = weekNumber(date);
 
       root.innerHTML = `
         ${pageHead(`${t("day.n", { n })} <span class="of">${t("day.of", { total: TOTAL_DAYS })}</span>`,
-                   `${esc(tx(phaseTitle(phase)))} · ${t("week.n", { n: weekNumber(date) })}`,
-                   esc(longDate(date, locale())))}
+                   `${esc(tx(phaseTitle(phase)))} · ${t("week.n", { n: week })}`,
+                   esc(longDate(date, locale())), "has-parapet")}
+        ${journeyParapet(date)}
+        <p class="parapet-caption">${t("today.weekOf", { n: week, total: TOTAL_WEEKS })}</p>
         <div class="today">
           <div class="today-main">
             <section class="panel">
@@ -72,12 +88,13 @@ export default {
                 <h2>${t("today.focus")}</h2>
                 <span class="muted">${t("today.doneOf", { done: ticked, total: tasks.length, min: planned })}</span>
               </div>
+              <span class="meter" aria-hidden="true"><span style="width:${((ticked / tasks.length) * 100).toFixed(1)}%"></span></span>
               <p class="focus">${rich(tx(focus))}</p>
               ${group !== null ? `<a class="focus-letters" href="#/letters/${group + 1}" aria-label="${esc(t("today.openGroup", { n: group + 1 }))}">${ar(GROUPS[group].letters.map(l => l.char).join(" "))}</a>` : ""}
               <ul class="tasks">
                 ${tasks.map(task => {
                   const done = e.tasks.includes(task.id);
-                  return `<li class="task${done ? " is-done" : ""}">
+                  return `<li class="task${done ? " is-done" : ""}${task.id === nextId ? " is-next" : ""}">
                     <label><input type="checkbox" data-task="${task.id}"${done ? " checked" : ""}>
                       <span class="task-text">${rich(tx(task.text))}</span></label>
                     <span class="task-min">${t("min", { n: task.min })}</span>
@@ -85,6 +102,7 @@ export default {
                   </li>`;
                 }).join("")}
               </ul>
+              ${allTasksTicked(date, e) ? `<p class="day-done"><span aria-hidden="true">✓</span> ${esc(t("today.dayDone"))}</p>` : ""}
               ${phase.weekly.length ? `<div class="weekly"><b>${t("today.everyWeek")}</b><ul>${phase.weekly.map(w => `<li>${esc(tx(w))}</li>`).join("")}</ul></div>` : ""}
             </section>
 
@@ -94,7 +112,7 @@ export default {
                 ${ph.list.map(p => `
                   <button class="phrase" data-say="${esc(p.speak ?? p.ar)}">
                     ${ar(p.ar, "phrase-ar")}
-                    <span class="phrase-t"><b>${esc(p.tr)}</b> ${flag(p)}${meanings(p)}
+                    <span class="phrase-t">${translit(p.tr)} ${flag(p)}${meanings(p)}
                       ${p.note ? `<span class="pnote">${rich(tx(p.note))}</span>` : ""}</span>
                     ${playIcon}
                   </button>`).join("")}
@@ -105,9 +123,13 @@ export default {
           <aside class="today-side">
             <section class="panel timer">
               <h2>${t("today.studyTime")}</h2>
-              <p class="clock" id="clock">${s.timer ? clock(Date.now() - s.timer.start) : t("min", { n: e.min })}</p>
-              <p class="muted">${s.timer ? t("today.running", { min: e.min }) : t("today.logged", { goal: DAILY_GOAL_MIN })}</p>
-              <span class="meter" aria-hidden="true"><span style="width:${pctDay}%"></span></span>
+              <div class="ring-wrap">
+                ${ring(e.min / DAILY_GOAL_MIN)}
+                <div>
+                  <p class="clock" id="clock">${s.timer ? clock(Date.now() - s.timer.start) : t("min", { n: e.min })}</p>
+                  <p class="muted small">${s.timer ? t("today.running", { min: e.min }) : t("today.logged", { goal: DAILY_GOAL_MIN })}</p>
+                </div>
+              </div>
               <button class="btn btn-primary" data-timer>${s.timer ? t("today.stop") : t("today.start")}</button>
               <div class="btn-row" role="group" aria-label="${esc(t("today.adjust"))}">
                 <button class="btn" data-add="-10">−10</button>
@@ -118,13 +140,14 @@ export default {
 
             <section class="panel stats">
               <h2>${t("today.journey")}</h2>
-              <dl>
+              <dl class="stat-pairs">
                 ${stat(t("today.streak"), days, tu("unit.days", days))}
                 ${stat(t("today.studied"), tot.days, tu("unit.days", tot.days))}
                 ${stat(t("today.total"), num(hours, 1), tu("unit.hours", hours, { minimumFractionDigits: 1 }))}
                 ${stat(t("today.toGo"), left, tu("unit.days", left))}
               </dl>
-              <span class="meter" aria-hidden="true"><span style="width:${pctAll.toFixed(1)}%"></span></span>
+              <h3>${t("today.last14")}</h3>
+              ${last14(date)}
               <p class="muted small">${esc(t("today.finish", { n, total: TOTAL_DAYS, date: longDate(GOAL, locale()) }))}</p>
               ${yesterday >= START && !store.entry(yesterday).min ? `
                 <div class="nudge">
@@ -145,6 +168,7 @@ export default {
       if (id) {
         store.toggleTask(todayKey(), id);
         render();
+        root.querySelector(`[data-task="${id}"]`)?.focus();
       }
     }, { signal });
 

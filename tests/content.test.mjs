@@ -42,10 +42,14 @@ test("three phrases on each of the 14 Script days", () => {
 });
 
 // The rule from CLAUDE.md: every word and phrase in Najdi (ar + tr), MSA, English and Ukrainian;
-// every other text in English and Ukrainian.
+// every other text in English, Ukrainian, Najdi and MSA.
+// Interface-style content texts: { en, uk, najdi, msa }, each in the right script.
 const both = (v, what) => {
-  assert.ok(v && typeof v === "object", `${what}: needs { en, uk }`);
-  assert.ok(v.en?.trim() && v.uk?.trim(), `${what}: English or Ukrainian missing`);
+  assert.ok(v && typeof v === "object", `${what}: needs { en, uk, najdi, msa }`);
+  for (const l of ["en", "uk", "najdi", "msa"]) assert.ok(v[l]?.trim(), `${what}: ${l} missing`);
+  if (!/\p{L}/u.test(v.en)) return; // "—", "~320": nothing to translate
+  assert.match(v.najdi, /[\u0600-\u06FF]/, `${what}: Najdi should be in Arabic script`);
+  assert.match(v.msa, /[\u0600-\u06FF]/, `${what}: MSA should be in Arabic script`);
 };
 const four = (item, what) => {
   for (const f of ["ar", "tr", "msa", "en", "uk"]) assert.ok(item[f]?.trim(), `${what}: "${f}" missing`);
@@ -65,7 +69,7 @@ test("every word and phrase is in all four languages", () => {
   }
 });
 
-test("every letter, vowel row and plan text is in English and Ukrainian", () => {
+test("every letter, vowel row and plan text is in all four languages", () => {
   for (const g of GROUPS) {
     both(g.title, "group title");
     both(g.note, "group note");
@@ -79,7 +83,10 @@ test("every letter, vowel row and plan text is in English and Ukrainian", () => 
   for (const s of VOWEL_SECTIONS) {
     both(s.title, "vowel section");
     both(s.intro, "vowel intro");
-    s.rows.forEach(r => both(r.text, `vowel ${r.ar}`));
+    s.rows.forEach(r => {
+      both(r.text, `vowel ${r.ar}`);
+      both(r.name, `vowel name ${r.ar}`);
+    });
   }
   for (const [n, d] of Object.entries(SCRIPT_DAYS)) {
     both(d.focus, `day ${n} focus`);

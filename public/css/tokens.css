@@ -1,10 +1,11 @@
-/* Najdi mud-brick palette with a painted-door teal accent. Light by default, dark follows the system
-   unless a theme is chosen in the sidebar (data-theme on <html>). */
+/* Themes. Light (mud-brick walls, painted-door teal) is the default; dark follows the system unless a theme is
+   picked in the sidebar; "saudi" is the flag's green and white. The chosen theme sits on <html data-theme>. */
 :root {
   --bg: #DCC8A6;
   --surface: #EBDEC6;
   --surface-2: #E2D0B0;
   --tile: #C39B69;
+  --trim: #C39B69;          /* the zigzag parapet */
   --ink: #2A1C10;
   --muted: #66503A;
   --accent: #1D5A5C;
@@ -14,34 +15,53 @@
   --good: #2F6B3A;
   --bad: #9A2F1F;
   --flag: #8A5A00;
-  /* one colour per phase, used on the calendar and the plan */
-  --p1: #1D5A5C;
-  --p2: #8B3A1C;
-  --p3: #8A6414;
-  --p4: #4F6B2F;
-  --p5: #5E4B82;
-  --p6: #2F5580;
+  --sidebar-bg: var(--surface);
+  --sidebar-ink: var(--ink);
+  --sidebar-muted: var(--muted);
+  --nav-on-bg: var(--ink);
+  --nav-on-ink: var(--bg);
+  /* charts: one hue light→dark for the six stages (validated as an ordinal ramp) */
+  --r1: #6FA5A2; --r2: #4E8E8C; --r3: #357878; --r4: #1D5A5C; --r5: #134649; --r6: #0B3335;
+  --viz-bar: var(--accent);
+  --viz-deemph: #BFAE92;
+  --viz-grid: rgba(42, 28, 16, .14);
+  --viz-future: #D2BC95;
 
   --font-ui: "Alegreya Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-ui-ar: "Alegreya Sans", "Noto Kufi Arabic", "Geeza Pro", system-ui, sans-serif;
   --font-ar: "Noto Naskh Arabic", "Geeza Pro", "Arabic Typesetting", "Traditional Arabic", serif;
   --radius: 16px;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #1B140E; --surface: #261D15; --surface-2: #30251B; --tile: #4B3723; --ink: #EFE3CC; --muted: #B39B7C;
+  :root:not([data-theme]) {
+    --bg: #1B140E; --surface: #261D15; --surface-2: #30251B; --tile: #4B3723; --trim: #4B3723; --ink: #EFE3CC; --muted: #B39B7C;
     --accent: #3F8D8D; --accent-ink: #0F0B07; --hard: #E0925F; --line: rgba(239, 227, 204, .16);
     --good: #7CC08A; --bad: #EE8A76; --flag: #E3B55B;
-    --p1: #3F8D8D; --p2: #E0925F; --p3: #D9A84E; --p4: #9BBF6A; --p5: #A99BD0; --p6: #7FA6D9;
+    --r1: #2F6E6D; --r2: #3C8584; --r3: #529C9A; --r4: #6DB3B0; --r5: #8FC8C4; --r6: #B5DDD9;
+    --viz-bar: #4F9C9B; --viz-deemph: #6B5A45; --viz-grid: rgba(239, 227, 204, .12); --viz-future: #3A2C1F;
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #1B140E; --surface: #261D15; --surface-2: #30251B; --tile: #4B3723; --ink: #EFE3CC; --muted: #B39B7C;
+  --bg: #1B140E; --surface: #261D15; --surface-2: #30251B; --tile: #4B3723; --trim: #4B3723; --ink: #EFE3CC; --muted: #B39B7C;
   --accent: #3F8D8D; --accent-ink: #0F0B07; --hard: #E0925F; --line: rgba(239, 227, 204, .16);
   --good: #7CC08A; --bad: #EE8A76; --flag: #E3B55B;
-  --p1: #3F8D8D; --p2: #E0925F; --p3: #D9A84E; --p4: #9BBF6A; --p5: #A99BD0; --p6: #7FA6D9;
+  --r1: #2F6E6D; --r2: #3C8584; --r3: #529C9A; --r4: #6DB3B0; --r5: #8FC8C4; --r6: #B5DDD9;
+  --viz-bar: #4F9C9B; --viz-deemph: #6B5A45; --viz-grid: rgba(239, 227, 204, .12); --viz-future: #3A2C1F;
   color-scheme: dark;
+}
+
+/* Saudi flag: green #006C35 and white. The sidebar is the flag field; pages are white on a green-tinted ground. */
+:root[data-theme="saudi"] {
+  --bg: #F1F6F3; --surface: #FFFFFF; --surface-2: #E6F0EA; --tile: #D3E7DB; --trim: #006C35; --ink: #0B2E1C; --muted: #4B6656;
+  --accent: #006C35; --accent-ink: #FFFFFF; --hard: #9A3412; --line: rgba(11, 46, 28, .14);
+  --good: #006C35; --bad: #B42318; --flag: #8A5A00;
+  --sidebar-bg: #006C35; --sidebar-ink: #FFFFFF; --sidebar-muted: rgba(255, 255, 255, .78);
+  --nav-on-bg: #FFFFFF; --nav-on-ink: #006C35;
+  --r1: #6DB38D; --r2: #3F9A69; --r3: #1C8350; --r4: #006C35; --r5: #00562A; --r6: #003F1F;
+  --viz-bar: #006C35; --viz-deemph: #B9CDBF; --viz-grid: rgba(11, 46, 28, .1); --viz-future: #DCEAE1;
+  color-scheme: light;
 }

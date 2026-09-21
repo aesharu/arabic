@@ -1,0 +1,3933 @@
+{
+ "generated": "npm run vocab",
+ "stages": [
+  {
+   "id": "1",
+   "topics": [
+    {
+     "id": "1.1",
+     "title": {
+      "en": "Questions",
+      "uk": "Запитання",
+      "najdi": "الأسئلة",
+      "msa": "أدوات الاستفهام"
+     },
+     "entries": [
+      {
+       "ar": "وش",
+       "say": "wesh",
+       "en": "what",
+       "note": {
+        "en": "The Najdi word",
+        "uk": "Саме наджді",
+        "najdi": "الكلمة النجدية",
+        "msa": "الكلمة النجدية"
+       },
+       "check": false,
+       "msa": "ماذا",
+       "uk": "що"
+      },
+      {
+       "ar": "وين",
+       "say": "wēn",
+       "en": "where",
+       "check": false,
+       "msa": "أين",
+       "uk": "де"
+      },
+      {
+       "ar": "متى",
+       "say": "mita",
+       "en": "when",
+       "check": false,
+       "msa": "متى",
+       "uk": "коли"
+      },
+      {
+       "ar": "ليش",
+       "say": "lēsh",
+       "en": "why",
+       "check": false,
+       "msa": "لماذا",
+       "uk": "чому"
+      },
+      {
+       "ar": "كيف",
+       "say": "kēf",
+       "en": "how",
+       "check": false,
+       "msa": "كيف",
+       "uk": "як"
+      },
+      {
+       "ar": "مين",
+       "say": "mīn",
+       "en": "who",
+       "note": {
+        "en": "Also منهو *minhu*",
+        "uk": "Також منهو *minhu*",
+        "najdi": "ويقولون بعد منهو *minhu*",
+        "msa": "ويُقال أيضًا منهو *minhu*"
+       },
+       "check": true,
+       "msa": "مَن",
+       "uk": "хто"
+      },
+      {
+       "ar": "كم",
+       "say": "kam",
+       "en": "how much / many",
+       "check": false,
+       "msa": "كم",
+       "uk": "скільки"
+      },
+      {
+       "ar": "أي",
+       "say": "ay",
+       "en": "which",
+       "check": false,
+       "msa": "أيّ",
+       "uk": "який"
+      },
+      {
+       "ar": "وش فيك؟",
+       "say": "wesh fīk?",
+       "en": "what's wrong?",
+       "check": false,
+       "msa": "ما بك؟",
+       "uk": "що з тобою?"
+      },
+      {
+       "ar": "وش لونك؟",
+       "say": "wesh lōnik?",
+       "en": "how are you?",
+       "note": {
+        "en": "Najdi classic, lit. \"what's your colour\"",
+        "uk": "Класика наджді, досл. «який твій колір»",
+        "najdi": "نجدية أصيلة، حرفيًا «وش لونك»",
+        "msa": "عبارة نجدية أصيلة، معناها الحرفي «ما لونك»"
+       },
+       "check": false,
+       "msa": "كيف حالك؟",
+       "uk": "як ти?"
+      }
+     ]
+    },
+    {
+     "id": "1.2",
+     "title": {
+      "en": "Yes, no, reactions",
+      "uk": "Так, ні, реакції",
+      "najdi": "إيه ولا والردود",
+      "msa": "نعم ولا والردود"
+     },
+     "entries": [
+      {
+       "ar": "إيه",
+       "say": "ēh",
+       "en": "yes",
+       "note": {
+        "en": "Careful: in Egyptian إيه means \"what\"",
+        "uk": "Обережно: у єгипетській إيه означає «що»",
+        "najdi": "انتبه: بالمصري «إيه» يعني «وش»",
+        "msa": "انتبه: «إيه» في المصرية تعني «ماذا»"
+       },
+       "check": true,
+       "msa": "نعم",
+       "uk": "так"
+      },
+      {
+       "ar": "لا",
+       "say": "la",
+       "en": "no",
+       "check": false,
+       "msa": "لا",
+       "uk": "ні"
+      },
+      {
+       "ar": "أكيد",
+       "say": "akīd",
+       "en": "sure",
+       "check": false,
+       "msa": "بالتأكيد",
+       "uk": "звісно"
+      },
+      {
+       "ar": "طيب / طب",
+       "say": "ṭayyib / ṭab",
+       "en": "okay, well",
+       "check": false,
+       "msa": "حسنًا",
+       "uk": "окей, ну"
+      },
+      {
+       "ar": "زين",
+       "say": "zēn",
+       "en": "good, okay",
+       "check": false,
+       "msa": "جيد",
+       "uk": "добре, гаразд"
+      },
+      {
+       "ar": "تمام",
+       "say": "tamām",
+       "en": "all good",
+       "check": false,
+       "msa": "على ما يرام",
+       "uk": "усе добре"
+      },
+      {
+       "ar": "خلاص",
+       "say": "khalāṣ",
+       "en": "done, enough",
+       "check": false,
+       "msa": "انتهى، يكفي",
+       "uk": "усе, досить"
+      },
+      {
+       "ar": "يلا",
+       "say": "yalla",
+       "en": "come on, let's go",
+       "check": false,
+       "msa": "هيا بنا",
+       "uk": "давай, ходімо"
+      },
+      {
+       "ar": "والله؟",
+       "say": "wallah?",
+       "en": "really?",
+       "check": false,
+       "msa": "حقًّا؟",
+       "uk": "справді?"
+      },
+      {
+       "ar": "صدق؟",
+       "say": "ṣidg?",
+       "en": "seriously?",
+       "check": false,
+       "msa": "أحقًّا؟",
+       "uk": "серйозно?"
+      },
+      {
+       "ar": "معليش",
+       "say": "maʿlēsh",
+       "en": "sorry / never mind",
+       "check": false,
+       "msa": "آسف / لا بأس",
+       "uk": "вибач / нічого страшного"
+      },
+      {
+       "ar": "ما عليه",
+       "say": "ma ʿalēh",
+       "en": "it's okay",
+       "check": false,
+       "msa": "لا بأس",
+       "uk": "усе гаразд"
+      },
+      {
+       "ar": "ولا يهمك",
+       "say": "wala yhimmik",
+       "en": "no worries",
+       "check": false,
+       "msa": "لا تقلق",
+       "uk": "не переймайся"
+      },
+      {
+       "ar": "أبشر / أبشري",
+       "say": "abshir / abshiri",
+       "en": "consider it done (to him / to her)",
+       "note": {
+        "en": "Very Saudi",
+        "uk": "Дуже по-саудівськи",
+        "najdi": "سعودية مرة",
+        "msa": "سعودية جدًا"
+       },
+       "check": false,
+       "msa": "حاضر",
+       "uk": "вважай, що зроблено (до нього / до неї)"
+      },
+      {
+       "ar": "يمكن",
+       "say": "yimkin",
+       "en": "maybe",
+       "check": false,
+       "msa": "ربما",
+       "uk": "можливо"
+      },
+      {
+       "ar": "مدري",
+       "say": "madri",
+       "en": "dunno",
+       "check": false,
+       "msa": "لا أدري",
+       "uk": "не знаю"
+      },
+      {
+       "ar": "ترى",
+       "say": "tara",
+       "en": "you know, look…",
+       "note": {
+        "en": "Softener at the start of a sentence",
+        "uk": "Пом'якшувач на початку речення",
+        "najdi": "تلطّف بداية الكلام",
+        "msa": "تُلطّف بداية الجملة"
+       },
+       "check": false,
+       "msa": "اعلم أنّ",
+       "uk": "знаєш, слухай…"
+      },
+      {
+       "ar": "يعني",
+       "say": "yaʿni",
+       "en": "I mean, like",
+       "check": false,
+       "msa": "أعني",
+       "uk": "тобто, типу"
+      },
+      {
+       "ar": "بس",
+       "say": "bass",
+       "en": "but / just / enough",
+       "check": false,
+       "msa": "لكن / فقط / يكفي",
+       "uk": "але / просто / досить"
+      },
+      {
+       "ar": "عادي",
+       "say": "ʿādi",
+       "en": "normal, it's fine",
+       "note": {
+        "en": "Hugely common",
+        "uk": "Дуже поширене",
+        "najdi": "منتشرة مرة",
+        "msa": "شائعة جدًا"
+       },
+       "check": false,
+       "msa": "عادي، لا بأس",
+       "uk": "нормально, нічого страшного"
+      }
+     ]
+    },
+    {
+     "id": "1.3",
+     "title": {
+      "en": "Greetings and courtesy",
+      "uk": "Привітання та ввічливість",
+      "najdi": "السلام والمجاملة",
+      "msa": "التحيات والمجاملات"
+     },
+     "entries": [
+      {
+       "ar": "السلام عليكم",
+       "say": "as-salāmu ʿalēkum",
+       "en": "hello",
+       "check": false,
+       "msa": "السلام عليكم",
+       "uk": "привіт (досл. «мир вам»)"
+      },
+      {
+       "ar": "وعليكم السلام",
+       "say": "wa ʿalēkum as-salām",
+       "en": "reply",
+       "check": false,
+       "msa": "وعليكم السلام",
+       "uk": "відповідь: «і вам мир»"
+      },
+      {
+       "ar": "هلا",
+       "say": "hala",
+       "en": "hi",
+       "check": false,
+       "msa": "أهلًا",
+       "uk": "привіт"
+      },
+      {
+       "ar": "هلا والله",
+       "say": "hala wallah",
+       "en": "hi!!",
+       "note": {
+        "en": "Warm",
+        "uk": "Тепле привітання",
+        "najdi": "ترحيب دافي",
+        "msa": "تحية حارّة"
+       },
+       "check": false,
+       "msa": "أهلًا وسهلًا",
+       "uk": "приві-іт!"
+      },
+      {
+       "ar": "يا هلا",
+       "say": "ya hala",
+       "en": "welcome",
+       "check": false,
+       "msa": "أهلًا بك",
+       "uk": "ласкаво просимо"
+      },
+      {
+       "ar": "مرحبا",
+       "say": "marḥaba",
+       "en": "hello",
+       "check": false,
+       "msa": "مرحبًا",
+       "uk": "привіт, вітаю"
+      },
+      {
+       "ar": "صباح الخير",
+       "say": "ṣabāḥ al-khēr",
+       "en": "good morning",
+       "check": false,
+       "msa": "صباح الخير",
+       "uk": "доброго ранку"
+      },
+      {
+       "ar": "صباح النور",
+       "say": "ṣabāḥ an-nūr",
+       "en": "reply",
+       "check": false,
+       "msa": "صباح النور",
+       "uk": "відповідь на «доброго ранку»"
+      },
+      {
+       "ar": "مساء الخير",
+       "say": "masāʾ al-khēr",
+       "en": "good evening",
+       "check": false,
+       "msa": "مساء الخير",
+       "uk": "добрий вечір"
+      },
+      {
+       "ar": "مساء النور",
+       "say": "masāʾ an-nūr",
+       "en": "reply",
+       "check": false,
+       "msa": "مساء النور",
+       "uk": "відповідь на «добрий вечір»"
+      },
+      {
+       "ar": "كيفك؟",
+       "say": "kēfik?",
+       "en": "how are you?",
+       "note": {
+        "en": "Same to him and her",
+        "uk": "Однаково до нього й до неї",
+        "najdi": "نفسها له ولها",
+        "msa": "بالصيغة نفسها للمذكر والمؤنث"
+       },
+       "check": false,
+       "msa": "كيف حالك؟",
+       "uk": "як ти?"
+      },
+      {
+       "ar": "وش أخبارك؟",
+       "say": "wesh akhbārik?",
+       "en": "what's new?",
+       "check": false,
+       "msa": "ما أخبارك؟",
+       "uk": "що нового?"
+      },
+      {
+       "ar": "الحمد لله",
+       "say": "al-ḥamdu lillāh",
+       "en": "good, thank God",
+       "note": {
+        "en": "Standard answer",
+        "uk": "Стандартна відповідь",
+        "najdi": "الرد المعتاد",
+        "msa": "الرد المعتاد"
+       },
+       "check": false,
+       "msa": "الحمد لله",
+       "uk": "добре, слава Богу"
+      },
+      {
+       "ar": "بخير",
+       "say": "bikhēr",
+       "en": "fine",
+       "check": false,
+       "msa": "بخير",
+       "uk": "добре"
+      },
+      {
+       "ar": "شكراً",
+       "say": "shukran",
+       "en": "thanks",
+       "check": false,
+       "msa": "شكرًا",
+       "uk": "дякую"
+      },
+      {
+       "ar": "تسلمين",
+       "say": "tislamīn",
+       "en": "thanks",
+       "note": {
+        "en": "To her",
+        "uk": "До неї",
+        "najdi": "لها",
+        "msa": "لمخاطبة المؤنث"
+       },
+       "check": false,
+       "msa": "شكرًا لكِ",
+       "uk": "дякую (до неї)"
+      },
+      {
+       "ar": "تسلم",
+       "say": "tislam",
+       "en": "thanks",
+       "note": {
+        "en": "To him — what she'll say to you",
+        "uk": "До нього — так вона казатиме тобі",
+        "najdi": "له — هي بتقولها لك",
+        "msa": "لمخاطبة المذكر — ستقولها هي لك"
+       },
+       "check": false,
+       "msa": "شكرًا لكَ",
+       "uk": "дякую (до нього)"
+      },
+      {
+       "ar": "الله يسلمك",
+       "say": "allah yisallimik",
+       "en": "reply to thanks",
+       "check": false,
+       "msa": "عفوًا",
+       "uk": "відповідь на подяку"
+      },
+      {
+       "ar": "العفو",
+       "say": "al-ʿafw",
+       "en": "you're welcome",
+       "check": false,
+       "msa": "عفوًا",
+       "uk": "нема за що"
+      },
+      {
+       "ar": "الله يعطيك العافية",
+       "say": "allah yiʿṭīk al-ʿāfya",
+       "en": "\"God give you strength\"",
+       "note": {
+        "en": "When she's worked or done something",
+        "uk": "Коли вона попрацювала чи щось зробила",
+        "najdi": "لما تشتغل أو تسوي شي",
+        "msa": "حين تعمل أو تنجز شيئًا"
+       },
+       "check": false,
+       "msa": "أعطاك الله العافية",
+       "uk": "«дай Боже сили»"
+      },
+      {
+       "ar": "الله يعافيك",
+       "say": "allah yʿāfīk",
+       "en": "reply",
+       "check": false,
+       "msa": "عافاك الله",
+       "uk": "відповідь: «і тобі здоров'я»"
+      },
+      {
+       "ar": "تصبحين على خير",
+       "say": "tiṣbiḥīn ʿala khēr",
+       "en": "good night",
+       "note": {
+        "en": "To her",
+        "uk": "До неї",
+        "najdi": "لها",
+        "msa": "لمخاطبة المؤنث"
+       },
+       "check": false,
+       "msa": "تصبحين على خير",
+       "uk": "на добраніч (до неї)"
+      },
+      {
+       "ar": "وانتي من أهله",
+       "say": "w inti min ahlah",
+       "en": "reply to good night",
+       "note": {
+        "en": "To her; she says وانت to you",
+        "uk": "До неї; тобі вона скаже وانت",
+        "najdi": "لها؛ وهي تقول لك «وانت»",
+        "msa": "لمخاطبة المؤنث؛ وتقول لك هي «وأنت»"
+       },
+       "check": false,
+       "msa": "وأنتِ من أهله",
+       "uk": "відповідь на «на добраніч»"
+      },
+      {
+       "ar": "مع السلامة",
+       "say": "maʿ as-salāma",
+       "en": "bye",
+       "check": false,
+       "msa": "مع السلامة",
+       "uk": "бувай"
+      },
+      {
+       "ar": "في أمان الله",
+       "say": "fi amān allah",
+       "en": "bye (warm)",
+       "check": false,
+       "msa": "في أمان الله",
+       "uk": "бувай (тепло)"
+      },
+      {
+       "ar": "إن شاء الله",
+       "say": "in shāʾ allah",
+       "en": "hopefully / I will",
+       "check": false,
+       "msa": "إن شاء الله",
+       "uk": "сподіваюсь / якщо Бог дасть"
+      },
+      {
+       "ar": "ما شاء الله",
+       "say": "mā shāʾ allah",
+       "en": "wow, great",
+       "note": {
+        "en": "Praise that also wards off the evil eye",
+        "uk": "Похвала, яка ще й захищає від пристріту",
+        "najdi": "مدح ويحمي من العين بعد",
+        "msa": "مديح يقي من العين أيضًا"
+       },
+       "check": false,
+       "msa": "ما شاء الله",
+       "uk": "ого, чудово"
+      }
+     ]
+    },
+    {
+     "id": "1.4",
+     "title": {
+      "en": "Time",
+      "uk": "Час",
+      "najdi": "الوقت",
+      "msa": "الوقت"
+     },
+     "entries": [
+      {
+       "ar": "الحين",
+       "say": "al-ḥīn",
+       "en": "now",
+       "check": false,
+       "msa": "الآن",
+       "uk": "зараз"
+      },
+      {
+       "ar": "اليوم",
+       "say": "al-yōm",
+       "en": "today",
+       "check": false,
+       "msa": "اليوم",
+       "uk": "сьогодні"
+      },
+      {
+       "ar": "بكرة",
+       "say": "bukra",
+       "en": "tomorrow",
+       "check": false,
+       "msa": "غدًا",
+       "uk": "завтра"
+      },
+      {
+       "ar": "أمس",
+       "say": "ams",
+       "en": "yesterday",
+       "check": false,
+       "msa": "أمس",
+       "uk": "учора"
+      },
+      {
+       "ar": "بعدين",
+       "say": "baʿdēn",
+       "en": "later",
+       "check": false,
+       "msa": "لاحقًا",
+       "uk": "пізніше"
+      },
+      {
+       "ar": "قبل",
+       "say": "gabl",
+       "en": "before",
+       "check": false,
+       "msa": "قبل",
+       "uk": "до, перед"
+      },
+      {
+       "ar": "بعد",
+       "say": "baʿad",
+       "en": "after",
+       "check": false,
+       "msa": "بعد",
+       "uk": "після"
+      },
+      {
+       "ar": "توّ",
+       "say": "taww",
+       "en": "just now",
+       "check": false,
+       "msa": "قبل قليل",
+       "uk": "щойно"
+      },
+      {
+       "ar": "دايم",
+       "say": "dāyim",
+       "en": "always",
+       "check": false,
+       "msa": "دائمًا",
+       "uk": "завжди"
+      },
+      {
+       "ar": "أحياناً",
+       "say": "aḥyānan",
+       "en": "sometimes",
+       "check": false,
+       "msa": "أحيانًا",
+       "uk": "іноді"
+      },
+      {
+       "ar": "أبد",
+       "say": "abad",
+       "en": "never, not at all (with ما)",
+       "check": false,
+       "msa": "أبدًا",
+       "uk": "ніколи, зовсім ні (з ما)"
+      },
+      {
+       "ar": "الصبح",
+       "say": "aṣ-ṣubḥ",
+       "en": "morning",
+       "check": false,
+       "msa": "الصباح",
+       "uk": "ранок"
+      },
+      {
+       "ar": "الظهر",
+       "say": "aẓ-ẓuhr",
+       "en": "noon",
+       "check": false,
+       "msa": "الظهر",
+       "uk": "полудень"
+      },
+      {
+       "ar": "العصر",
+       "say": "al-ʿaṣr",
+       "en": "afternoon",
+       "check": false,
+       "msa": "العصر",
+       "uk": "пообідній час"
+      },
+      {
+       "ar": "الليل",
+       "say": "al-lēl",
+       "en": "night",
+       "check": false,
+       "msa": "الليل",
+       "uk": "ніч"
+      },
+      {
+       "ar": "الليلة",
+       "say": "al-lēla",
+       "en": "tonight",
+       "check": false,
+       "msa": "الليلة",
+       "uk": "сьогодні ввечері"
+      },
+      {
+       "ar": "ساعة",
+       "say": "sāʿa",
+       "en": "hour, o'clock",
+       "check": false,
+       "msa": "ساعة",
+       "uk": "година"
+      },
+      {
+       "ar": "دقيقة",
+       "say": "dagīga",
+       "en": "minute",
+       "check": false,
+       "msa": "دقيقة",
+       "uk": "хвилина"
+      },
+      {
+       "ar": "أسبوع",
+       "say": "usbūʿ",
+       "en": "week",
+       "check": false,
+       "msa": "أسبوع",
+       "uk": "тиждень"
+      },
+      {
+       "ar": "شهر",
+       "say": "shahr",
+       "en": "month",
+       "check": false,
+       "msa": "شهر",
+       "uk": "місяць"
+      },
+      {
+       "ar": "سنة",
+       "say": "sana",
+       "en": "year",
+       "check": false,
+       "msa": "سنة",
+       "uk": "рік"
+      }
+     ]
+    },
+    {
+     "id": "1.5",
+     "title": {
+      "en": "Small words that glue everything",
+      "uk": "Маленькі слова, що все з'єднують",
+      "najdi": "كلمات صغيرة تربط الكلام",
+      "msa": "كلمات صغيرة تربط الكلام"
+     },
+     "entries": [
+      {
+       "ar": "هذا",
+       "say": "hādha",
+       "en": "this (m)",
+       "check": false,
+       "msa": "هذا",
+       "uk": "цей"
+      },
+      {
+       "ar": "هذي",
+       "say": "hādhi",
+       "en": "this (f)",
+       "check": false,
+       "msa": "هذه",
+       "uk": "ця"
+      },
+      {
+       "ar": "هذولا",
+       "say": "hādhōla",
+       "en": "these",
+       "check": false,
+       "msa": "هؤلاء",
+       "uk": "ці"
+      },
+      {
+       "ar": "ذاك / ذيك",
+       "say": "dhāk / dhīk",
+       "en": "that (m / f)",
+       "check": false,
+       "msa": "ذلك / تلك",
+       "uk": "той / та"
+      },
+      {
+       "ar": "هنا / هنيّا",
+       "say": "hina / hnayya",
+       "en": "here",
+       "check": false,
+       "msa": "هنا",
+       "uk": "тут"
+      },
+      {
+       "ar": "هناك",
+       "say": "hnāk",
+       "en": "there",
+       "check": false,
+       "msa": "هناك",
+       "uk": "там"
+      },
+      {
+       "ar": "فيه",
+       "say": "fīh",
+       "en": "there is",
+       "check": false,
+       "msa": "يوجد",
+       "uk": "є (існує)"
+      },
+      {
+       "ar": "عندي",
+       "say": "ʿindi",
+       "en": "I have",
+       "check": false,
+       "msa": "عندي / لديّ",
+       "uk": "у мене є"
+      },
+      {
+       "ar": "مع",
+       "say": "maʿ",
+       "en": "with",
+       "check": false,
+       "msa": "مع",
+       "uk": "з (разом із)"
+      },
+      {
+       "ar": "في / بـ",
+       "say": "fi / bi-",
+       "en": "in",
+       "note": {
+        "en": "بالبيت *bil-bēt* — at home",
+        "uk": "بالبيت *bil-bēt* — вдома",
+        "najdi": "بالبيت — في البيت",
+        "msa": "بالبيت — في المنزل"
+       },
+       "check": false,
+       "msa": "في",
+       "uk": "в, у"
+      },
+      {
+       "ar": "على",
+       "say": "ʿala",
+       "en": "on",
+       "check": false,
+       "msa": "على",
+       "uk": "на"
+      },
+      {
+       "ar": "من",
+       "say": "min",
+       "en": "from",
+       "check": false,
+       "msa": "من",
+       "uk": "з, від"
+      },
+      {
+       "ar": "لين",
+       "say": "lēn",
+       "en": "until",
+       "check": false,
+       "msa": "حتى",
+       "uk": "доки, до"
+      },
+      {
+       "ar": "عشان",
+       "say": "ʿashān",
+       "en": "because, so that",
+       "check": false,
+       "msa": "لأنّ / لكي",
+       "uk": "бо, щоб"
+      },
+      {
+       "ar": "و",
+       "say": "w",
+       "en": "and",
+       "check": false,
+       "msa": "و",
+       "uk": "і"
+      },
+      {
+       "ar": "أو",
+       "say": "aw",
+       "en": "or",
+       "check": false,
+       "msa": "أو",
+       "uk": "або"
+      },
+      {
+       "ar": "كل",
+       "say": "kill",
+       "en": "all, every",
+       "check": false,
+       "msa": "كل",
+       "uk": "усі, кожен"
+      },
+      {
+       "ar": "شي",
+       "say": "shay",
+       "en": "thing, something",
+       "check": false,
+       "msa": "شيء",
+       "uk": "річ, щось"
+      },
+      {
+       "ar": "شوي",
+       "say": "shwayy",
+       "en": "a little",
+       "check": false,
+       "msa": "قليلًا",
+       "uk": "трохи"
+      },
+      {
+       "ar": "حيل",
+       "say": "ḥēl",
+       "en": "very",
+       "note": {
+        "en": "Najdi",
+        "uk": "Наджді",
+        "najdi": "نجدية",
+        "msa": "نجدية"
+       },
+       "check": false,
+       "msa": "جدًّا",
+       "uk": "дуже"
+      },
+      {
+       "ar": "مرّة",
+       "say": "marra",
+       "en": "very / once",
+       "note": {
+        "en": "مرة حلو — really nice",
+        "uk": "مرة حلو — дуже гарно",
+        "najdi": "مرة حلو — حلو مرة",
+        "msa": "مرة حلو — جميل جدًا"
+       },
+       "check": false,
+       "msa": "جدًّا / مرة",
+       "uk": "дуже / один раз"
+      },
+      {
+       "ar": "كثير",
+       "say": "kithīr",
+       "en": "a lot",
+       "check": false,
+       "msa": "كثيرًا",
+       "uk": "багато"
+      },
+      {
+       "ar": "كذا",
+       "say": "kidha",
+       "en": "like this, so",
+       "check": false,
+       "msa": "هكذا",
+       "uk": "ось так"
+      },
+      {
+       "ar": "مثل",
+       "say": "mithl",
+       "en": "like (similar to)",
+       "check": false,
+       "msa": "مثل",
+       "uk": "як (схожий на)"
+      },
+      {
+       "ar": "بعد",
+       "say": "baʿad",
+       "en": "also",
+       "note": {
+        "en": "وأنا بعد — me too",
+        "uk": "وأنا بعد — і я теж",
+        "najdi": "وأنا بعد — وأنا بعد",
+        "msa": "وأنا بعد — وأنا أيضًا"
+       },
+       "check": false,
+       "msa": "أيضًا",
+       "uk": "також"
+      }
+     ]
+    },
+    {
+     "id": "1.6",
+     "title": {
+      "en": "The 30 core verbs",
+      "uk": "30 основних дієслів",
+      "najdi": "أهم 30 فعل",
+      "msa": "الأفعال الثلاثون الأساسية"
+     },
+     "entries": [
+      {
+       "ar": "أبي",
+       "say": "abi",
+       "en": "want",
+       "toHer": {
+        "ar": "تبين",
+        "say": "tibīn"
+       },
+       "check": false,
+       "msa": "أريد",
+       "uk": "хотіти"
+      },
+      {
+       "ar": "أحب",
+       "say": "aḥibb",
+       "en": "love, like",
+       "toHer": {
+        "ar": "تحبين",
+        "say": "tḥibbīn"
+       },
+       "check": false,
+       "msa": "أحبّ",
+       "uk": "любити, подобатися"
+      },
+      {
+       "ar": "أروح",
+       "say": "arūḥ",
+       "en": "go",
+       "toHer": {
+        "ar": "تروحين",
+        "say": "tirūḥīn"
+       },
+       "check": false,
+       "msa": "أذهب",
+       "uk": "іти"
+      },
+      {
+       "ar": "أجي",
+       "say": "aji",
+       "en": "come",
+       "toHer": {
+        "ar": "تجين",
+        "say": "tijīn"
+       },
+       "check": false,
+       "msa": "آتي",
+       "uk": "приходити"
+      },
+      {
+       "ar": "أسوي",
+       "say": "asawwi",
+       "en": "do, make",
+       "toHer": {
+        "ar": "تسوين",
+        "say": "tsawwīn"
+       },
+       "check": false,
+       "msa": "أفعل",
+       "uk": "робити"
+      },
+      {
+       "ar": "أقول",
+       "say": "agūl",
+       "en": "say",
+       "toHer": {
+        "ar": "تقولين",
+        "say": "tgūlīn"
+       },
+       "check": false,
+       "msa": "أقول",
+       "uk": "казати"
+      },
+      {
+       "ar": "أشوف",
+       "say": "ashūf",
+       "en": "see",
+       "toHer": {
+        "ar": "تشوفين",
+        "say": "tshūfīn"
+       },
+       "check": false,
+       "msa": "أرى",
+       "uk": "бачити"
+      },
+      {
+       "ar": "أعرف",
+       "say": "aʿrif",
+       "en": "know",
+       "toHer": {
+        "ar": "تعرفين",
+        "say": "tiʿrifīn"
+       },
+       "check": false,
+       "msa": "أعرف",
+       "uk": "знати"
+      },
+      {
+       "ar": "أفهم",
+       "say": "afham",
+       "en": "understand",
+       "toHer": {
+        "ar": "تفهمين",
+        "say": "tifhamīn"
+       },
+       "check": false,
+       "msa": "أفهم",
+       "uk": "розуміти"
+      },
+      {
+       "ar": "آكل",
+       "say": "ākil",
+       "en": "eat",
+       "toHer": {
+        "ar": "تاكلين",
+        "say": "tākilīn"
+       },
+       "check": false,
+       "msa": "آكل",
+       "uk": "їсти"
+      },
+      {
+       "ar": "أشرب",
+       "say": "ashrab",
+       "en": "drink",
+       "toHer": {
+        "ar": "تشربين",
+        "say": "tishrabīn"
+       },
+       "check": false,
+       "msa": "أشرب",
+       "uk": "пити"
+      },
+      {
+       "ar": "أنام",
+       "say": "anām",
+       "en": "sleep",
+       "toHer": {
+        "ar": "تنامين",
+        "say": "tnāmīn"
+       },
+       "check": false,
+       "msa": "أنام",
+       "uk": "спати"
+      },
+      {
+       "ar": "أصحى",
+       "say": "aṣḥa",
+       "en": "wake up",
+       "toHer": {
+        "ar": "تصحين",
+        "say": "tiṣḥīn"
+       },
+       "check": false,
+       "msa": "أستيقظ",
+       "uk": "прокидатися"
+      },
+      {
+       "ar": "أشتغل",
+       "say": "ashtaghil",
+       "en": "work",
+       "toHer": {
+        "ar": "تشتغلين",
+        "say": "tishtaghlīn"
+       },
+       "check": false,
+       "msa": "أعمل",
+       "uk": "працювати"
+      },
+      {
+       "ar": "أدرس",
+       "say": "adris",
+       "en": "study",
+       "toHer": {
+        "ar": "تدرسين",
+        "say": "tidrisīn"
+       },
+       "check": false,
+       "msa": "أدرس",
+       "uk": "навчатися"
+      },
+      {
+       "ar": "أتكلم",
+       "say": "atkallam",
+       "en": "speak",
+       "toHer": {
+        "ar": "تتكلمين",
+        "say": "titkallamīn"
+       },
+       "check": false,
+       "msa": "أتكلّم",
+       "uk": "говорити"
+      },
+      {
+       "ar": "أسولف",
+       "say": "asōlif",
+       "en": "chat, talk",
+       "toHer": {
+        "ar": "تسولفين",
+        "say": "tsōlfīn"
+       },
+       "check": false,
+       "msa": "أتحدّث",
+       "uk": "балакати, розмовляти"
+      },
+      {
+       "ar": "أكلم",
+       "say": "akallim",
+       "en": "call, talk to",
+       "toHer": {
+        "ar": "تكلمين",
+        "say": "tkallimīn"
+       },
+       "check": false,
+       "msa": "أكلّم",
+       "uk": "дзвонити, говорити з кимось"
+      },
+      {
+       "ar": "أرسل",
+       "say": "arsil",
+       "en": "send",
+       "toHer": {
+        "ar": "ترسلين",
+        "say": "tirsilīn"
+       },
+       "check": false,
+       "msa": "أرسل",
+       "uk": "надсилати"
+      },
+      {
+       "ar": "أنتظر",
+       "say": "antiẓir",
+       "en": "wait",
+       "toHer": {
+        "ar": "تنتظرين",
+        "say": "tintiẓrīn"
+       },
+       "check": false,
+       "msa": "أنتظر",
+       "uk": "чекати"
+      },
+      {
+       "ar": "أجلس",
+       "say": "ajlis",
+       "en": "sit, stay",
+       "toHer": {
+        "ar": "تجلسين",
+        "say": "tijilsīn"
+       },
+       "check": false,
+       "msa": "أجلس",
+       "uk": "сидіти, лишатися"
+      },
+      {
+       "ar": "أطلع",
+       "say": "aṭlaʿ",
+       "en": "go out",
+       "toHer": {
+        "ar": "تطلعين",
+        "say": "tiṭlaʿīn"
+       },
+       "check": false,
+       "msa": "أخرج",
+       "uk": "виходити"
+      },
+      {
+       "ar": "أرجع",
+       "say": "arjaʿ",
+       "en": "come back",
+       "toHer": {
+        "ar": "ترجعين",
+        "say": "tirjaʿīn"
+       },
+       "check": false,
+       "msa": "أعود",
+       "uk": "повертатися"
+      },
+      {
+       "ar": "أدوّر",
+       "say": "adawwir",
+       "en": "look for",
+       "toHer": {
+        "ar": "تدورين",
+        "say": "tdawwrīn"
+       },
+       "check": false,
+       "msa": "أبحث",
+       "uk": "шукати"
+      },
+      {
+       "ar": "أحس",
+       "say": "aḥiss",
+       "en": "feel",
+       "toHer": {
+        "ar": "تحسين",
+        "say": "tḥissīn"
+       },
+       "check": false,
+       "msa": "أشعر",
+       "uk": "відчувати"
+      },
+      {
+       "ar": "أشتاق",
+       "say": "ashtāg",
+       "en": "miss (someone)",
+       "toHer": {
+        "ar": "تشتاقين",
+        "say": "tishtāgīn"
+       },
+       "check": false,
+       "msa": "أشتاق",
+       "uk": "сумувати (за кимось)"
+      },
+      {
+       "ar": "أقدر",
+       "say": "agdar",
+       "en": "can",
+       "toHer": {
+        "ar": "تقدرين",
+        "say": "tigdarīn"
+       },
+       "check": false,
+       "msa": "أستطيع",
+       "uk": "могти"
+      },
+      {
+       "ar": "أعطي",
+       "say": "aʿṭi",
+       "en": "give",
+       "toHer": {
+        "ar": "تعطين",
+        "say": "tiʿṭīn"
+       },
+       "check": false,
+       "msa": "أعطي",
+       "uk": "давати"
+      },
+      {
+       "ar": "آخذ",
+       "say": "ākhidh",
+       "en": "take",
+       "toHer": {
+        "ar": "تاخذين",
+        "say": "tākhdhīn"
+       },
+       "check": false,
+       "msa": "آخذ",
+       "uk": "брати"
+      },
+      {
+       "ar": "أتعلم",
+       "say": "atʿallam",
+       "en": "learn",
+       "toHer": {
+        "ar": "تتعلمين",
+        "say": "titʿallamīn"
+       },
+       "check": false,
+       "msa": "أتعلّم",
+       "uk": "вчитися"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2",
+   "topics": [
+    {
+     "id": "2.1",
+     "title": {
+      "en": "How you feel",
+      "uk": "Як ти почуваєшся",
+      "najdi": "وش تحس فيه",
+      "msa": "المشاعر والأحوال"
+     },
+     "entries": [
+      {
+       "ar": "تعبان",
+       "say": "taʿbān",
+       "en": "tired",
+       "check": false,
+       "msa": "متعب",
+       "uk": "втомлений"
+      },
+      {
+       "ar": "نعسان",
+       "say": "naʿsān",
+       "en": "sleepy",
+       "check": false,
+       "msa": "نعسان",
+       "uk": "сонний"
+      },
+      {
+       "ar": "جوعان",
+       "say": "jūʿān",
+       "en": "hungry",
+       "check": false,
+       "msa": "جائع",
+       "uk": "голодний"
+      },
+      {
+       "ar": "عطشان",
+       "say": "ʿaṭshān",
+       "en": "thirsty",
+       "check": false,
+       "msa": "عطشان",
+       "uk": "спраглий"
+      },
+      {
+       "ar": "مبسوط",
+       "say": "mabsūṭ",
+       "en": "happy",
+       "check": false,
+       "msa": "سعيد",
+       "uk": "щасливий"
+      },
+      {
+       "ar": "مستانس",
+       "say": "mistānis",
+       "en": "having fun, content",
+       "note": {
+        "en": "Very Saudi",
+        "uk": "Дуже по-саудівськи",
+        "najdi": "سعودية مرة",
+        "msa": "سعودية جدًا"
+       },
+       "check": false,
+       "msa": "مستمتع",
+       "uk": "задоволений, мені добре"
+      },
+      {
+       "ar": "فرحان",
+       "say": "farḥān",
+       "en": "glad",
+       "check": false,
+       "msa": "فرحان",
+       "uk": "радий"
+      },
+      {
+       "ar": "زعلان",
+       "say": "zaʿlān",
+       "en": "upset (with someone)",
+       "check": false,
+       "msa": "مستاء",
+       "uk": "ображений (на когось)"
+      },
+      {
+       "ar": "معصب",
+       "say": "miʿaṣṣib",
+       "en": "angry",
+       "check": false,
+       "msa": "غاضب",
+       "uk": "злий, сердитий"
+      },
+      {
+       "ar": "طفشان",
+       "say": "ṭafshān",
+       "en": "bored",
+       "note": {
+        "en": "Very Saudi",
+        "uk": "Дуже по-саудівськи",
+        "najdi": "سعودية مرة",
+        "msa": "سعودية جدًا"
+       },
+       "check": false,
+       "msa": "ضَجِر",
+       "uk": "знуджений"
+      },
+      {
+       "ar": "حزين",
+       "say": "ḥazīn",
+       "en": "sad",
+       "check": false,
+       "msa": "حزين",
+       "uk": "сумний"
+      },
+      {
+       "ar": "مشغول",
+       "say": "mashghūl",
+       "en": "busy",
+       "check": false,
+       "msa": "مشغول",
+       "uk": "зайнятий"
+      },
+      {
+       "ar": "فاضي",
+       "say": "fāẓi",
+       "en": "free, not busy",
+       "check": false,
+       "msa": "متفرّغ",
+       "uk": "вільний"
+      },
+      {
+       "ar": "مريض",
+       "say": "marīẓ",
+       "en": "sick",
+       "check": false,
+       "msa": "مريض",
+       "uk": "хворий"
+      },
+      {
+       "ar": "خايف",
+       "say": "khāyif",
+       "en": "scared",
+       "check": false,
+       "msa": "خائف",
+       "uk": "наляканий"
+      },
+      {
+       "ar": "متوتر",
+       "say": "mitwattir",
+       "en": "stressed",
+       "check": false,
+       "msa": "متوتّر",
+       "uk": "напружений, у стресі"
+      },
+      {
+       "ar": "مرتاح",
+       "say": "mirtāḥ",
+       "en": "relaxed",
+       "check": false,
+       "msa": "مرتاح",
+       "uk": "розслаблений"
+      },
+      {
+       "ar": "مشتاق",
+       "say": "mishtāg",
+       "en": "missing someone",
+       "check": false,
+       "msa": "مشتاق",
+       "uk": "сумую (за кимось)"
+      }
+     ]
+    },
+    {
+     "id": "2.2",
+     "title": {
+      "en": "Food and drink",
+      "uk": "Їжа та напої",
+      "najdi": "الأكل والشرب",
+      "msa": "الطعام والشراب"
+     },
+     "entries": [
+      {
+       "ar": "أكل",
+       "say": "akl",
+       "en": "food",
+       "check": false,
+       "msa": "طعام",
+       "uk": "їжа"
+      },
+      {
+       "ar": "فطور",
+       "say": "fṭūr",
+       "en": "breakfast",
+       "check": false,
+       "msa": "فطور",
+       "uk": "сніданок"
+      },
+      {
+       "ar": "غدا",
+       "say": "ghada",
+       "en": "lunch",
+       "note": {
+        "en": "The main meal",
+        "uk": "Головна трапеза дня",
+        "najdi": "الوجبة الرئيسية",
+        "msa": "الوجبة الرئيسية"
+       },
+       "check": false,
+       "msa": "غداء",
+       "uk": "обід"
+      },
+      {
+       "ar": "عشا",
+       "say": "ʿasha",
+       "en": "dinner",
+       "check": false,
+       "msa": "عشاء",
+       "uk": "вечеря"
+      },
+      {
+       "ar": "قهوة",
+       "say": "gahwa",
+       "en": "coffee",
+       "note": {
+        "en": "Usually Arabic coffee with cardamom",
+        "uk": "Зазвичай арабська кава з кардамоном",
+        "najdi": "غالبًا قهوة عربية بالهيل",
+        "msa": "غالبًا القهوة العربية بالهيل"
+       },
+       "check": false,
+       "msa": "قهوة",
+       "uk": "кава"
+      },
+      {
+       "ar": "شاهي",
+       "say": "shāhi",
+       "en": "tea",
+       "note": {
+        "en": "Saudi word",
+        "uk": "Саудівське слово",
+        "najdi": "كلمة سعودية",
+        "msa": "كلمة سعودية"
+       },
+       "check": false,
+       "msa": "شاي",
+       "uk": "чай"
+      },
+      {
+       "ar": "موية",
+       "say": "mōya",
+       "en": "water",
+       "note": {
+        "en": "also ماي *māy*",
+        "uk": "також ماي *māy*",
+        "najdi": "ويقولون بعد ماي *māy*",
+        "msa": "ويُقال أيضًا ماي *māy*"
+       },
+       "check": true,
+       "msa": "ماء",
+       "uk": "вода"
+      },
+      {
+       "ar": "حليب",
+       "say": "ḥalīb",
+       "en": "milk",
+       "check": false,
+       "msa": "حليب",
+       "uk": "молоко"
+      },
+      {
+       "ar": "عصير",
+       "say": "ʿaṣīr",
+       "en": "juice",
+       "check": false,
+       "msa": "عصير",
+       "uk": "сік"
+      },
+      {
+       "ar": "تمر",
+       "say": "tamr",
+       "en": "dates",
+       "check": false,
+       "msa": "تمر",
+       "uk": "фініки"
+      },
+      {
+       "ar": "رز",
+       "say": "rizz",
+       "en": "rice",
+       "check": false,
+       "msa": "أرز",
+       "uk": "рис"
+      },
+      {
+       "ar": "كبسة",
+       "say": "kabsa",
+       "en": "kabsa",
+       "note": {
+        "en": "Rice and meat, the national dish",
+        "uk": "Рис із м'ясом, національна страва",
+        "najdi": "رز ولحم، الأكلة الوطنية",
+        "msa": "أرز ولحم، الطبق الوطني"
+       },
+       "check": false,
+       "msa": "كبسة",
+       "uk": "кабса (рис із м'ясом)"
+      },
+      {
+       "ar": "لحم",
+       "say": "laḥam",
+       "en": "meat",
+       "check": false,
+       "msa": "لحم",
+       "uk": "м'ясо"
+      },
+      {
+       "ar": "دجاج",
+       "say": "dijāj",
+       "en": "chicken",
+       "check": false,
+       "msa": "دجاج",
+       "uk": "курка"
+      },
+      {
+       "ar": "سمك",
+       "say": "samak",
+       "en": "fish",
+       "check": false,
+       "msa": "سمك",
+       "uk": "риба"
+      },
+      {
+       "ar": "خبز",
+       "say": "khubz",
+       "en": "bread",
+       "check": false,
+       "msa": "خبز",
+       "uk": "хліб"
+      },
+      {
+       "ar": "بيض",
+       "say": "bēẓ",
+       "en": "eggs",
+       "check": false,
+       "msa": "بيض",
+       "uk": "яйця"
+      },
+      {
+       "ar": "جبن",
+       "say": "jibn",
+       "en": "cheese",
+       "check": false,
+       "msa": "جبن",
+       "uk": "сир"
+      },
+      {
+       "ar": "خضار",
+       "say": "khuẓār",
+       "en": "vegetables",
+       "check": false,
+       "msa": "خضروات",
+       "uk": "овочі"
+      },
+      {
+       "ar": "فواكه",
+       "say": "fawākih",
+       "en": "fruit",
+       "check": false,
+       "msa": "فواكه",
+       "uk": "фрукти"
+      },
+      {
+       "ar": "سلطة",
+       "say": "salaṭa",
+       "en": "salad",
+       "check": false,
+       "msa": "سلطة",
+       "uk": "салат"
+      },
+      {
+       "ar": "حلا",
+       "say": "ḥala",
+       "en": "dessert, sweets",
+       "note": {
+        "en": "Saudi word",
+        "uk": "Саудівське слово",
+        "najdi": "كلمة سعودية",
+        "msa": "كلمة سعودية"
+       },
+       "check": false,
+       "msa": "حلوى",
+       "uk": "десерт, солодощі"
+      },
+      {
+       "ar": "مطعم",
+       "say": "maṭʿam",
+       "en": "restaurant",
+       "check": false,
+       "msa": "مطعم",
+       "uk": "ресторан"
+      },
+      {
+       "ar": "طلب",
+       "say": "ṭalab",
+       "en": "order",
+       "check": false,
+       "msa": "طلب",
+       "uk": "замовлення"
+      },
+      {
+       "ar": "لذيذ",
+       "say": "ladhīdh",
+       "en": "delicious",
+       "check": false,
+       "msa": "لذيذ",
+       "uk": "смачний"
+      },
+      {
+       "ar": "حار",
+       "say": "ḥārr",
+       "en": "hot, spicy",
+       "check": false,
+       "msa": "حارّ",
+       "uk": "гарячий, гострий"
+      },
+      {
+       "ar": "بارد",
+       "say": "bārid",
+       "en": "cold",
+       "check": false,
+       "msa": "بارد",
+       "uk": "холодний"
+      },
+      {
+       "ar": "حالي",
+       "say": "ḥāli",
+       "en": "sweet (taste)",
+       "check": false,
+       "msa": "حلو المذاق",
+       "uk": "солодкий (на смак)"
+      },
+      {
+       "ar": "مالح",
+       "say": "māliḥ",
+       "en": "salty",
+       "check": false,
+       "msa": "مالح",
+       "uk": "солоний"
+      },
+      {
+       "ar": "أطبخ / تطبخين",
+       "say": "aṭbakh / tiṭbakhīn",
+       "en": "I cook / you cook (her)",
+       "check": false,
+       "msa": "أطبخ / تطبخين",
+       "uk": "я готую / ти готуєш (до неї)"
+      },
+      {
+       "ar": "وش تبين تاكلين؟",
+       "say": "wesh tibīn tākilīn?",
+       "en": "what do you want to eat?",
+       "check": false,
+       "msa": "ماذا تريدين أن تأكلي؟",
+       "uk": "що ти хочеш їсти?"
+      },
+      {
+       "ar": "أكلتي؟",
+       "say": "akalti?",
+       "en": "have you eaten? (her)",
+       "check": false,
+       "msa": "هل أكلتِ؟",
+       "uk": "ти вже поїла?"
+      }
+     ]
+    },
+    {
+     "id": "2.3",
+     "title": {
+      "en": "Home, phone, day",
+      "uk": "Дім, телефон, день",
+      "najdi": "البيت والجوال واليوم",
+      "msa": "المنزل والهاتف واليوم"
+     },
+     "entries": [
+      {
+       "ar": "بيت",
+       "say": "bēt",
+       "en": "house, home",
+       "check": false,
+       "msa": "بيت / منزل",
+       "uk": "дім, оселя"
+      },
+      {
+       "ar": "غرفة",
+       "say": "ghurfa",
+       "en": "room",
+       "check": false,
+       "msa": "غرفة",
+       "uk": "кімната"
+      },
+      {
+       "ar": "مطبخ",
+       "say": "maṭbakh",
+       "en": "kitchen",
+       "check": false,
+       "msa": "مطبخ",
+       "uk": "кухня"
+      },
+      {
+       "ar": "سرير",
+       "say": "sarīr",
+       "en": "bed",
+       "check": false,
+       "msa": "سرير",
+       "uk": "ліжко"
+      },
+      {
+       "ar": "جوال",
+       "say": "jawwāl",
+       "en": "mobile phone",
+       "note": {
+        "en": "Saudi word",
+        "uk": "Саудівське слово",
+        "najdi": "كلمة سعودية",
+        "msa": "كلمة سعودية"
+       },
+       "check": false,
+       "msa": "هاتف محمول",
+       "uk": "мобільний телефон"
+      },
+      {
+       "ar": "شاحن",
+       "say": "shāḥin",
+       "en": "charger",
+       "check": false,
+       "msa": "شاحن",
+       "uk": "зарядка"
+      },
+      {
+       "ar": "رسالة",
+       "say": "risāla",
+       "en": "message",
+       "check": false,
+       "msa": "رسالة",
+       "uk": "повідомлення"
+      },
+      {
+       "ar": "فويس",
+       "say": "fōys",
+       "en": "voice note",
+       "note": {
+        "en": "very common slang",
+        "uk": "дуже поширений сленг",
+        "najdi": "عامية منتشرة مرة",
+        "msa": "عامية شائعة جدًا"
+       },
+       "check": true,
+       "msa": "رسالة صوتية",
+       "uk": "голосове повідомлення"
+      },
+      {
+       "ar": "صورة",
+       "say": "ṣūra",
+       "en": "photo",
+       "check": false,
+       "msa": "صورة",
+       "uk": "фото"
+      },
+      {
+       "ar": "مكالمة",
+       "say": "mukālama",
+       "en": "call",
+       "check": false,
+       "msa": "مكالمة",
+       "uk": "дзвінок"
+      },
+      {
+       "ar": "شغل",
+       "say": "shughl",
+       "en": "work",
+       "check": false,
+       "msa": "عمل",
+       "uk": "робота"
+      },
+      {
+       "ar": "دوام",
+       "say": "dawām",
+       "en": "working hours, shift",
+       "note": {
+        "en": "بالدوام — at work",
+        "uk": "بالدوام — на роботі",
+        "najdi": "بالدوام — في الشغل",
+        "msa": "بالدوام — في العمل"
+       },
+       "check": false,
+       "msa": "ساعات العمل",
+       "uk": "робочий час, зміна"
+      },
+      {
+       "ar": "جامعة",
+       "say": "jāmʿa",
+       "en": "university",
+       "check": false,
+       "msa": "جامعة",
+       "uk": "університет"
+      },
+      {
+       "ar": "سيارة",
+       "say": "sayyāra",
+       "en": "car",
+       "check": false,
+       "msa": "سيارة",
+       "uk": "машина"
+      },
+      {
+       "ar": "طريق",
+       "say": "ṭarīg",
+       "en": "road",
+       "check": false,
+       "msa": "طريق",
+       "uk": "дорога"
+      },
+      {
+       "ar": "سوق",
+       "say": "sūg",
+       "en": "market, shopping",
+       "check": false,
+       "msa": "سوق",
+       "uk": "ринок, покупки"
+      },
+      {
+       "ar": "مول",
+       "say": "mōl",
+       "en": "mall",
+       "check": false,
+       "msa": "مركز تسوّق",
+       "uk": "торговий центр"
+      },
+      {
+       "ar": "نادي",
+       "say": "nādi",
+       "en": "gym",
+       "check": false,
+       "msa": "نادٍ رياضي",
+       "uk": "спортзал"
+      },
+      {
+       "ar": "سفر",
+       "say": "safar",
+       "en": "travel",
+       "check": false,
+       "msa": "سفر",
+       "uk": "подорож"
+      }
+     ]
+    },
+    {
+     "id": "2.4",
+     "title": {
+      "en": "Family and people",
+      "uk": "Родина та люди",
+      "najdi": "الأهل والناس",
+      "msa": "العائلة والناس"
+     },
+     "entries": [
+      {
+       "ar": "أهل",
+       "say": "ahl",
+       "en": "family",
+       "note": {
+        "en": "أهلي — my family",
+        "uk": "أهلي — моя родина",
+        "najdi": "أهلي — عيلتي",
+        "msa": "أهلي — عائلتي"
+       },
+       "check": false,
+       "msa": "أهل / عائلة",
+       "uk": "родина"
+      },
+      {
+       "ar": "أبوي",
+       "say": "abūy",
+       "en": "my dad",
+       "check": false,
+       "msa": "أبي",
+       "uk": "мій тато"
+      },
+      {
+       "ar": "أمي",
+       "say": "ummi",
+       "en": "my mom",
+       "check": false,
+       "msa": "أمي",
+       "uk": "моя мама"
+      },
+      {
+       "ar": "أخوي",
+       "say": "akhūy",
+       "en": "my brother",
+       "check": false,
+       "msa": "أخي",
+       "uk": "мій брат"
+      },
+      {
+       "ar": "أختي",
+       "say": "ukhti",
+       "en": "my sister",
+       "check": false,
+       "msa": "أختي",
+       "uk": "моя сестра"
+      },
+      {
+       "ar": "عيال",
+       "say": "ʿiyāl",
+       "en": "kids / guys",
+       "check": false,
+       "msa": "أطفال / شباب",
+       "uk": "діти / хлопці"
+      },
+      {
+       "ar": "ولد",
+       "say": "walad",
+       "en": "boy, son",
+       "check": false,
+       "msa": "ولد / ابن",
+       "uk": "хлопчик, син"
+      },
+      {
+       "ar": "بنت",
+       "say": "bint",
+       "en": "girl, daughter",
+       "check": false,
+       "msa": "فتاة / ابنة",
+       "uk": "дівчина, донька"
+      },
+      {
+       "ar": "جدي / جدتي",
+       "say": "jaddi / jaddati",
+       "en": "grandpa / grandma",
+       "check": true,
+       "msa": "جدّي / جدّتي",
+       "uk": "дідусь / бабуся"
+      },
+      {
+       "ar": "عمي / خالي",
+       "say": "ʿammi / khāli",
+       "en": "my uncle (dad's / mom's side)",
+       "check": false,
+       "msa": "عمّي / خالي",
+       "uk": "мій дядько (по батькові / по матері)"
+      },
+      {
+       "ar": "صديق / صديقة",
+       "say": "ṣadīg / ṣadīga",
+       "en": "friend (m / f)",
+       "check": false,
+       "msa": "صديق / صديقة",
+       "uk": "друг / подруга"
+      },
+      {
+       "ar": "الربع",
+       "say": "ar-rabʿ",
+       "en": "the guys, the crew",
+       "note": {
+        "en": "Najdi/Gulf",
+        "uk": "Наджді / Перська затока",
+        "najdi": "نجدي / خليجي",
+        "msa": "نجدية / خليجية"
+       },
+       "check": false,
+       "msa": "الأصحاب",
+       "uk": "друзяки, компанія"
+      },
+      {
+       "ar": "ناس",
+       "say": "nās",
+       "en": "people",
+       "check": false,
+       "msa": "ناس",
+       "uk": "люди"
+      }
+     ]
+    },
+    {
+     "id": "2.5",
+     "title": {
+      "en": "Describing things",
+      "uk": "Опис речей",
+      "najdi": "وصف الأشياء",
+      "msa": "وصف الأشياء"
+     },
+     "entries": [
+      {
+       "ar": "كبير / صغير",
+       "say": "kbīr / ṣghīr",
+       "en": "big / small",
+       "check": false,
+       "msa": "كبير / صغير",
+       "uk": "великий / малий"
+      },
+      {
+       "ar": "حلو / حلوة",
+       "say": "ḥilw / ḥilwa",
+       "en": "nice, pretty",
+       "check": false,
+       "msa": "جميل / جميلة",
+       "uk": "гарний / гарна"
+      },
+      {
+       "ar": "جميل",
+       "say": "jamīl",
+       "en": "beautiful",
+       "check": false,
+       "msa": "جميل",
+       "uk": "прекрасний"
+      },
+      {
+       "ar": "شين",
+       "say": "shēn",
+       "en": "bad, ugly",
+       "note": {
+        "en": "Najdi/Gulf",
+        "uk": "Наджді / Перська затока",
+        "najdi": "نجدي / خليجي",
+        "msa": "نجدية / خليجية"
+       },
+       "check": false,
+       "msa": "سيّئ / قبيح",
+       "uk": "поганий, негарний"
+      },
+      {
+       "ar": "جديد / قديم",
+       "say": "jidīd / gadīm",
+       "en": "new / old",
+       "check": false,
+       "msa": "جديد / قديم",
+       "uk": "новий / старий"
+      },
+      {
+       "ar": "سهل / صعب",
+       "say": "sahl / ṣaʿb",
+       "en": "easy / hard",
+       "check": false,
+       "msa": "سهل / صعب",
+       "uk": "легкий / важкий"
+      },
+      {
+       "ar": "غالي / رخيص",
+       "say": "ghāli / rkhīṣ",
+       "en": "expensive / cheap",
+       "note": {
+        "en": "غالي also means \"dear\"",
+        "uk": "غالي також означає «любий»",
+        "najdi": "«غالي» بعد يعني «عزيز»",
+        "msa": "«غالي» تعني أيضًا «عزيز»"
+       },
+       "check": false,
+       "msa": "غالٍ / رخيص",
+       "uk": "дорогий / дешевий"
+      },
+      {
+       "ar": "قريب / بعيد",
+       "say": "garīb / baʿīd",
+       "en": "near / far",
+       "check": false,
+       "msa": "قريب / بعيد",
+       "uk": "близько / далеко"
+      },
+      {
+       "ar": "حر / برد",
+       "say": "ḥarr / bard",
+       "en": "hot weather / cold weather",
+       "check": false,
+       "msa": "حرّ / برد",
+       "uk": "спека / холод"
+      },
+      {
+       "ar": "أول / آخر",
+       "say": "awwal / ākhir",
+       "en": "first / last",
+       "check": false,
+       "msa": "أوّل / آخر",
+       "uk": "перший / останній"
+      },
+      {
+       "ar": "مهم",
+       "say": "muhimm",
+       "en": "important",
+       "check": false,
+       "msa": "مهمّ",
+       "uk": "важливий"
+      },
+      {
+       "ar": "غريب",
+       "say": "gharīb",
+       "en": "strange",
+       "check": false,
+       "msa": "غريب",
+       "uk": "дивний"
+      },
+      {
+       "ar": "كثير / قليل",
+       "say": "kithīr / galīl",
+       "en": "a lot / a little",
+       "check": false,
+       "msa": "كثير / قليل",
+       "uk": "багато / мало"
+      }
+     ]
+    },
+    {
+     "id": "2.6",
+     "title": {
+      "en": "Numbers and days",
+      "uk": "Числа та дні тижня",
+      "najdi": "الأرقام والأيام",
+      "msa": "الأعداد وأيام الأسبوع"
+     },
+     "entries": [
+      {
+       "ar": "واحد",
+       "say": "wāḥid",
+       "en": "1",
+       "msa": "واحد",
+       "uk": "один (1)"
+      },
+      {
+       "ar": "سبعة",
+       "say": "sabʿa",
+       "en": "7",
+       "msa": "سبعة",
+       "uk": "сім (7)"
+      },
+      {
+       "ar": "ثنين",
+       "say": "thnēn",
+       "en": "2",
+       "msa": "اثنان",
+       "uk": "два (2)"
+      },
+      {
+       "ar": "ثمانية",
+       "say": "thamānya",
+       "en": "8",
+       "msa": "ثمانية",
+       "uk": "вісім (8)"
+      },
+      {
+       "ar": "ثلاثة",
+       "say": "thalātha",
+       "en": "3",
+       "msa": "ثلاثة",
+       "uk": "три (3)"
+      },
+      {
+       "ar": "تسعة",
+       "say": "tisʿa",
+       "en": "9",
+       "msa": "تسعة",
+       "uk": "дев'ять (9)"
+      },
+      {
+       "ar": "أربعة",
+       "say": "arbaʿa",
+       "en": "4",
+       "msa": "أربعة",
+       "uk": "чотири (4)"
+      },
+      {
+       "ar": "عشرة",
+       "say": "ʿashara",
+       "en": "10",
+       "msa": "عشرة",
+       "uk": "десять (10)"
+      },
+      {
+       "ar": "خمسة",
+       "say": "khamsa",
+       "en": "5",
+       "msa": "خمسة",
+       "uk": "п'ять (5)"
+      },
+      {
+       "ar": "عشرين",
+       "say": "ʿishrīn",
+       "en": "20",
+       "msa": "عشرون",
+       "uk": "двадцять (20)"
+      },
+      {
+       "ar": "ستة",
+       "say": "sitta",
+       "en": "6",
+       "msa": "ستة",
+       "uk": "шість (6)"
+      },
+      {
+       "ar": "مية / ألف",
+       "say": "miya / alf",
+       "en": "100 / 1000",
+       "msa": "مئة / ألف",
+       "uk": "сто / тисяча (100 / 1000)"
+      },
+      {
+       "ar": "السبت",
+       "say": "as-sabt",
+       "en": "Sat",
+       "msa": "السبت",
+       "uk": "субота"
+      },
+      {
+       "ar": "الأحد",
+       "say": "al-aḥad",
+       "en": "Sun",
+       "msa": "الأحد",
+       "uk": "неділя"
+      },
+      {
+       "ar": "الاثنين",
+       "say": "al-ithnēn",
+       "en": "Mon",
+       "msa": "الاثنين",
+       "uk": "понеділок"
+      },
+      {
+       "ar": "الثلاثاء",
+       "say": "ath-thalāthāʾ",
+       "en": "Tue",
+       "msa": "الثلاثاء",
+       "uk": "вівторок"
+      },
+      {
+       "ar": "الأربعاء",
+       "say": "al-arbiʿāʾ",
+       "en": "Wed",
+       "msa": "الأربعاء",
+       "uk": "середа"
+      },
+      {
+       "ar": "الخميس",
+       "say": "al-khamīs",
+       "en": "Thu",
+       "msa": "الخميس",
+       "uk": "четвер"
+      },
+      {
+       "ar": "الجمعة",
+       "say": "al-jumʿa",
+       "en": "Fri",
+       "msa": "الجمعة",
+       "uk": "пʼятниця"
+      }
+     ]
+    },
+    {
+     "id": "2.7",
+     "title": {
+      "en": "Your world",
+      "uk": "Твій світ",
+      "najdi": "عالمك",
+      "msa": "عالمك"
+     },
+     "entries": [
+      {
+       "ar": "أوكرانيا",
+       "say": "ukrānya",
+       "en": "Ukraine",
+       "check": false,
+       "msa": "أوكرانيا",
+       "uk": "Україна"
+      },
+      {
+       "ar": "أوروبا",
+       "say": "ūrubba",
+       "en": "Europe",
+       "check": true,
+       "msa": "أوروبا",
+       "uk": "Європа"
+      },
+      {
+       "ar": "الشتا",
+       "say": "ash-shita",
+       "en": "winter",
+       "check": false,
+       "msa": "الشتاء",
+       "uk": "зима"
+      },
+      {
+       "ar": "ثلج",
+       "say": "thalj",
+       "en": "snow",
+       "check": false,
+       "msa": "ثلج",
+       "uk": "сніг"
+      },
+      {
+       "ar": "مطر",
+       "say": "maṭar",
+       "en": "rain",
+       "check": false,
+       "msa": "مطر",
+       "uk": "дощ"
+      },
+      {
+       "ar": "شغلي",
+       "say": "shughli",
+       "en": "my work",
+       "check": false,
+       "msa": "عملي",
+       "uk": "моя робота"
+      },
+      {
+       "ar": "دراستي",
+       "say": "dirāsti",
+       "en": "my studies",
+       "check": false,
+       "msa": "دراستي",
+       "uk": "моє навчання"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "3",
+   "topics": [
+    {
+     "id": "3.1",
+     "title": {
+      "en": "Checking in",
+      "uk": "Спитати, як вона",
+      "najdi": "تطمّن عليها",
+      "msa": "الاطمئنان عليها"
+     },
+     "entries": [
+      {
+       "ar": "وش تسوين؟",
+       "say": "wesh tsawwīn?",
+       "en": "what are you doing?",
+       "check": false,
+       "msa": "ماذا تفعلين؟",
+       "uk": "що ти робиш?"
+      },
+      {
+       "ar": "وينك؟",
+       "say": "wēnik?",
+       "en": "where are you?",
+       "check": false,
+       "msa": "أين أنتِ؟",
+       "uk": "де ти?"
+      },
+      {
+       "ar": "نمتي زين؟",
+       "say": "nimti zēn?",
+       "en": "did you sleep well?",
+       "check": false,
+       "msa": "هل نمتِ جيدًا؟",
+       "uk": "ти добре спала?"
+      },
+      {
+       "ar": "كيف كان يومك؟",
+       "say": "kēf kān yōmik?",
+       "en": "how was your day?",
+       "check": false,
+       "msa": "كيف كان يومكِ؟",
+       "uk": "як минув твій день?"
+      },
+      {
+       "ar": "وش صار؟",
+       "say": "wesh ṣār?",
+       "en": "what happened?",
+       "check": false,
+       "msa": "ماذا حدث؟",
+       "uk": "що сталося?"
+      },
+      {
+       "ar": "صار شي؟",
+       "say": "ṣār shay?",
+       "en": "did something happen?",
+       "check": false,
+       "msa": "هل حدث شيء؟",
+       "uk": "щось сталося?"
+      },
+      {
+       "ar": "فاضية؟",
+       "say": "fāẓya?",
+       "en": "are you free?",
+       "check": false,
+       "msa": "هل أنتِ متفرّغة؟",
+       "uk": "ти вільна?"
+      },
+      {
+       "ar": "أنا بالدوام",
+       "say": "ana bid-dawām",
+       "en": "I'm at work",
+       "check": false,
+       "msa": "أنا في العمل",
+       "uk": "я на роботі"
+      },
+      {
+       "ar": "توني صحيت",
+       "say": "tawwni ṣiḥēt",
+       "en": "I just woke up",
+       "check": false,
+       "msa": "استيقظت للتوّ",
+       "uk": "я щойно прокинувся(-лася)"
+      },
+      {
+       "ar": "توني خلصت",
+       "say": "tawwni khallaṣt",
+       "en": "I just finished",
+       "check": false,
+       "msa": "انتهيت للتوّ",
+       "uk": "я щойно закінчив(-ла)"
+      },
+      {
+       "ar": "بنام",
+       "say": "banām",
+       "en": "I'm going to sleep",
+       "check": false,
+       "msa": "سأنام",
+       "uk": "я йду спати"
+      },
+      {
+       "ar": "برجع بعد ساعة",
+       "say": "barjaʿ baʿad sāʿa",
+       "en": "I'll be back in an hour",
+       "check": false,
+       "msa": "سأعود بعد ساعة",
+       "uk": "повернуся за годину"
+      },
+      {
+       "ar": "أكلمك بعدين",
+       "say": "akallimik baʿdēn",
+       "en": "I'll call you later",
+       "check": false,
+       "msa": "سأكلّمكِ لاحقًا",
+       "uk": "подзвоню тобі пізніше"
+      },
+      {
+       "ar": "لحظة",
+       "say": "laḥẓa",
+       "en": "one moment",
+       "check": false,
+       "msa": "لحظة",
+       "uk": "хвилинку"
+      },
+      {
+       "ar": "دقيقة وأرجع",
+       "say": "dagīga w arjaʿ",
+       "en": "one minute, I'll be back",
+       "check": false,
+       "msa": "دقيقة وأعود",
+       "uk": "хвилинку, зараз повернуся"
+      },
+      {
+       "ar": "قاعد أشتغل",
+       "say": "gāʿid ashtaghil",
+       "en": "I'm working right now",
+       "check": false,
+       "msa": "أعمل الآن",
+       "uk": "я зараз працюю"
+      },
+      {
+       "ar": "ما بعد أكلت",
+       "say": "ma baʿad akalt",
+       "en": "I haven't eaten yet",
+       "check": false,
+       "msa": "لم آكل بعد",
+       "uk": "я ще не їв(-ла)"
+      }
+     ]
+    },
+    {
+     "id": "3.2",
+     "title": {
+      "en": "Affection",
+      "uk": "Ніжні слова",
+      "najdi": "الكلام الحلو",
+      "msa": "كلمات المودّة"
+     },
+     "entries": [
+      {
+       "ar": "اشتقت لك",
+       "say": "ishtagt lik",
+       "en": "I missed you",
+       "check": false,
+       "msa": "اشتقت إليكِ",
+       "uk": "я скучив(-ла) за тобою"
+      },
+      {
+       "ar": "مشتاق لك",
+       "say": "mishtāg lik",
+       "en": "I miss you",
+       "note": {
+        "en": "Said by a man",
+        "uk": "Так каже чоловік",
+        "najdi": "يقولها الرجّال",
+        "msa": "يقولها الرجل"
+       },
+       "check": false,
+       "msa": "أنا مشتاق إليكِ",
+       "uk": "я сумую за тобою"
+      },
+      {
+       "ar": "أحبك",
+       "say": "aḥibbik",
+       "en": "I love you",
+       "check": false,
+       "msa": "أحبّكِ",
+       "uk": "я тебе кохаю"
+      },
+      {
+       "ar": "حبيبتي",
+       "say": "ḥabībti",
+       "en": "my love",
+       "check": false,
+       "msa": "حبيبتي",
+       "uk": "кохана моя"
+      },
+      {
+       "ar": "يا عمري",
+       "say": "ya ʿumri",
+       "en": "my life",
+       "check": false,
+       "msa": "يا عمري",
+       "uk": "життя моє"
+      },
+      {
+       "ar": "يا قلبي",
+       "say": "ya galbi",
+       "en": "my heart",
+       "check": false,
+       "msa": "يا قلبي",
+       "uk": "серце моє"
+      },
+      {
+       "ar": "فديتك",
+       "say": "fidētik",
+       "en": "sweetheart (lit. \"I'd give myself for you\")",
+       "check": false,
+       "msa": "فديتكِ بنفسي",
+       "uk": "люба моя (досл. «віддав би себе за тебе»)"
+      },
+      {
+       "ar": "يا بعد حيي",
+       "say": "ya baʿad ḥayyi",
+       "en": "endearment",
+       "note": {
+        "en": "check",
+        "uk": "перевірити",
+        "najdi": "تأكد منها",
+        "msa": "تحتاج إلى تحقّق"
+       },
+       "check": true,
+       "msa": "يا عزيزتي",
+       "uk": "мила моя (пестливе звертання)"
+      },
+      {
+       "ar": "ودي أشوفك",
+       "say": "widdi ashūfik",
+       "en": "I wish I could see you",
+       "check": false,
+       "msa": "أتمنى أن أراكِ",
+       "uk": "хотілося б тебе побачити"
+      },
+      {
+       "ar": "انتي أحلى شي",
+       "say": "inti aḥla shay",
+       "en": "you're the best thing",
+       "check": false,
+       "msa": "أنتِ أجمل شيء",
+       "uk": "ти — найкраще, що є"
+      },
+      {
+       "ar": "الله يحفظك",
+       "say": "allah yiḥfaẓik",
+       "en": "God keep you safe",
+       "check": false,
+       "msa": "حفظكِ الله",
+       "uk": "бережи тебе Бог"
+      },
+      {
+       "ar": "تبين شي؟",
+       "say": "tibīn shay?",
+       "en": "do you need anything?",
+       "check": false,
+       "msa": "هل تحتاجين شيئًا؟",
+       "uk": "тобі щось потрібно?"
+      }
+     ]
+    },
+    {
+     "id": "3.3",
+     "title": {
+      "en": "Reacting and repairing",
+      "uk": "Реакції та непорозуміння",
+      "najdi": "الردود وتصليح سوء الفهم",
+      "msa": "الردود وتصحيح سوء الفهم"
+     },
+     "entries": [
+      {
+       "ar": "يا حليلك",
+       "say": "ya ḥalīlik",
+       "en": "aww, how sweet",
+       "check": true,
+       "msa": "ما ألطفكِ",
+       "uk": "ой, яка ти мила"
+      },
+      {
+       "ar": "معك حق",
+       "say": "maʿik ḥagg",
+       "en": "you're right",
+       "check": false,
+       "msa": "معكِ حق",
+       "uk": "ти права"
+      },
+      {
+       "ar": "أنا معك",
+       "say": "ana maʿik",
+       "en": "I agree with you",
+       "check": false,
+       "msa": "أنا أوافقكِ",
+       "uk": "я з тобою погоджуюся"
+      },
+      {
+       "ar": "لا تزعلين",
+       "say": "la tizʿalīn",
+       "en": "don't be upset",
+       "check": false,
+       "msa": "لا تنزعجي",
+       "uk": "не ображайся"
+      },
+      {
+       "ar": "آسف",
+       "say": "āsif",
+       "en": "sorry",
+       "note": {
+        "en": "Said by a man",
+        "uk": "Так каже чоловік",
+        "najdi": "يقولها الرجّال",
+        "msa": "يقولها الرجل"
+       },
+       "check": false,
+       "msa": "آسف",
+       "uk": "вибач"
+      },
+      {
+       "ar": "سامحيني",
+       "say": "sāmḥīni",
+       "en": "forgive me",
+       "check": false,
+       "msa": "سامحيني",
+       "uk": "пробач мені"
+      },
+      {
+       "ar": "ما فهمت",
+       "say": "ma fhimt",
+       "en": "I didn't understand",
+       "check": false,
+       "msa": "لم أفهم",
+       "uk": "я не зрозумів(-ла)"
+      },
+      {
+       "ar": "عيدي",
+       "say": "ʿīdi",
+       "en": "say it again",
+       "check": false,
+       "msa": "أعيدي",
+       "uk": "повтори"
+      },
+      {
+       "ar": "شوي شوي",
+       "say": "shwayy shwayy",
+       "en": "slowly, please",
+       "check": false,
+       "msa": "ببطء من فضلك",
+       "uk": "повільніше, будь ласка"
+      },
+      {
+       "ar": "وش معنى…؟",
+       "say": "wesh maʿna…?",
+       "en": "what does … mean?",
+       "check": false,
+       "msa": "ما معنى…؟",
+       "uk": "що означає…?"
+      },
+      {
+       "ar": "كيف أقول…؟",
+       "say": "kēf agūl…?",
+       "en": "how do I say …?",
+       "note": {
+        "en": "Your most useful sentence",
+        "uk": "Твоє найкорисніше речення",
+        "najdi": "أنفع جملة عندك",
+        "msa": "أنفع جملة لديك"
+       },
+       "check": false,
+       "msa": "كيف أقول…؟",
+       "uk": "як сказати…?"
+      },
+      {
+       "ar": "علميني",
+       "say": "ʿallimīni",
+       "en": "teach me",
+       "check": false,
+       "msa": "علّميني",
+       "uk": "навчи мене"
+      },
+      {
+       "ar": "ماني فاهم",
+       "say": "māni fāhim",
+       "en": "I'm not getting it",
+       "check": false,
+       "msa": "لستُ فاهمًا",
+       "uk": "я не розумію"
+      }
+     ]
+    },
+    {
+     "id": "3.4",
+     "title": {
+      "en": "Plans",
+      "uk": "Плани",
+      "najdi": "الخطط",
+      "msa": "الخطط"
+     },
+     "entries": [
+      {
+       "ar": "وش ودك تسوين؟",
+       "say": "wesh widdik tsawwīn?",
+       "en": "what would you like to do?",
+       "check": false,
+       "msa": "ماذا تودّين أن تفعلي؟",
+       "uk": "що б ти хотіла робити?"
+      },
+      {
+       "ar": "متى فاضية؟",
+       "say": "mita fāẓya?",
+       "en": "when are you free?",
+       "check": false,
+       "msa": "متى تكونين متفرّغة؟",
+       "uk": "коли ти вільна?"
+      },
+      {
+       "ar": "نتكلم الليلة؟",
+       "say": "nitkallam al-lēla?",
+       "en": "shall we talk tonight?",
+       "check": false,
+       "msa": "هل نتحدث الليلة؟",
+       "uk": "поговоримо сьогодні ввечері?"
+      },
+      {
+       "ar": "بكرة إن شاء الله",
+       "say": "bukra in shāʾ allah",
+       "en": "tomorrow, hopefully",
+       "check": false,
+       "msa": "غدًا إن شاء الله",
+       "uk": "завтра, якщо Бог дасть"
+      },
+      {
+       "ar": "يمديك؟",
+       "say": "yimdīk?",
+       "en": "do you have time? can you manage?",
+       "note": {
+        "en": "Very Najdi",
+        "uk": "Дуже характерне для наджді",
+        "najdi": "نجدية مرة",
+        "msa": "نجدية جدًا"
+       },
+       "check": true,
+       "msa": "هل لديكِ وقت؟",
+       "uk": "встигнеш? маєш час?"
+      },
+      {
+       "ar": "ما يمدي",
+       "say": "ma yimdi",
+       "en": "there's no time",
+       "check": true,
+       "msa": "لا يوجد وقت",
+       "uk": "немає часу, не встигнемо"
+      },
+      {
+       "ar": "يصير؟",
+       "say": "yṣīr?",
+       "en": "is that okay? possible?",
+       "check": false,
+       "msa": "هل يمكن؟",
+       "uk": "можна? так нормально?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "special",
+   "topics": [
+    {
+     "id": "7",
+     "title": {
+      "en": "Phrases for special moments",
+      "uk": "Фрази для особливих моментів",
+      "najdi": "عبارات المناسبات",
+      "msa": "عبارات المناسبات الخاصة"
+     },
+     "entries": [
+      {
+       "ar": "رمضان كريم",
+       "say": "ramaḍān karīm",
+       "en": "Ramadan greeting",
+       "reply": {
+        "ar": "الله أكرم",
+        "say": "allah akram",
+        "en": ""
+       },
+       "check": false,
+       "msa": "رمضان كريم",
+       "uk": "привітання з Рамаданом"
+      },
+      {
+       "ar": "رمضان مبارك",
+       "say": "ramaḍān mbārak",
+       "en": "Ramadan greeting",
+       "reply": {
+        "ar": "علينا وعليك",
+        "say": "ʿalēna w ʿalēk",
+        "en": ""
+       },
+       "check": true,
+       "msa": "رمضان مبارك",
+       "uk": "привітання з Рамаданом"
+      },
+      {
+       "ar": "عيدك مبارك",
+       "say": "ʿīdik mbārak",
+       "en": "Eid greeting (to her)",
+       "reply": null,
+       "check": false,
+       "msa": "عيدكِ مبارك",
+       "uk": "привітання зі святом Ід (до неї)"
+      },
+      {
+       "ar": "كل عام وانتي بخير",
+       "say": "kill ʿām w inti bkhēr",
+       "en": "Eid / birthday (to her)",
+       "reply": {
+        "ar": "وانت بخير",
+        "say": "w int bkhēr",
+        "en": ""
+       },
+       "check": false,
+       "msa": "كل عام وأنتِ بخير",
+       "uk": "зі святом / з днем народження (до неї)"
+      },
+      {
+       "ar": "عساك من عواده",
+       "say": "ʿasāk min ʿuwwādah",
+       "en": "Eid wish",
+       "reply": null,
+       "check": true,
+       "msa": "أعاده الله عليكِ بالخير",
+       "uk": "побажання на Ід"
+      },
+      {
+       "ar": "الله يشفيك",
+       "say": "allah yishfīk",
+       "en": "when she's sick",
+       "reply": null,
+       "check": false,
+       "msa": "شفاكِ الله",
+       "uk": "коли вона хворіє («хай Бог зцілить»)"
+      },
+      {
+       "ar": "سلامات",
+       "say": "salāmāt",
+       "en": "\"get well\" (quick)",
+       "reply": {
+        "ar": "الله يسلمك",
+        "say": ""
+       },
+       "check": false,
+       "msa": "سلامتكِ",
+       "uk": "«одужуй» (коротко)"
+      },
+      {
+       "ar": "مبروك",
+       "say": "mabrūk",
+       "en": "congratulations",
+       "reply": {
+        "ar": "الله يبارك فيك",
+        "say": "allah ybārik fīk",
+        "en": ""
+       },
+       "check": false,
+       "msa": "مبارك / تهانينا",
+       "uk": "вітаю!"
+      },
+      {
+       "ar": "الله يرحمه",
+       "say": "allah yirḥamah",
+       "en": "when someone has died",
+       "reply": null,
+       "check": false,
+       "msa": "رحمه الله",
+       "uk": "коли хтось помер («Боже, змилуйся над ним»)"
+      },
+      {
+       "ar": "بالتوفيق",
+       "say": "bit-tōfīg",
+       "en": "good luck",
+       "reply": null,
+       "check": false,
+       "msa": "بالتوفيق",
+       "uk": "успіхів!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "grammar",
+   "topics": [
+    {
+     "id": "5.1",
+     "title": {
+      "en": "Pronouns",
+      "uk": "Займенники",
+      "najdi": "الضماير",
+      "msa": "الضمائر"
+     },
+     "entries": [
+      {
+       "ar": "أنا",
+       "say": "ana",
+       "en": "I",
+       "check": false,
+       "msa": "أنا",
+       "uk": "я"
+      },
+      {
+       "ar": "انت",
+       "say": "int",
+       "en": "you (to a man)",
+       "check": false,
+       "msa": "أنتَ",
+       "uk": "ти (до чоловіка)"
+      },
+      {
+       "ar": "انتي",
+       "say": "inti",
+       "en": "you (to a woman)",
+       "check": false,
+       "msa": "أنتِ",
+       "uk": "ти (до жінки)"
+      },
+      {
+       "ar": "هو",
+       "say": "hu",
+       "en": "he",
+       "check": false,
+       "msa": "هو",
+       "uk": "він"
+      },
+      {
+       "ar": "هي",
+       "say": "hi",
+       "en": "she",
+       "check": false,
+       "msa": "هي",
+       "uk": "вона"
+      },
+      {
+       "ar": "حنا",
+       "say": "ḥinna",
+       "en": "we",
+       "check": false,
+       "msa": "نحن",
+       "uk": "ми"
+      },
+      {
+       "ar": "انتو",
+       "say": "intu",
+       "en": "you all",
+       "check": false,
+       "msa": "أنتم",
+       "uk": "ви"
+      },
+      {
+       "ar": "هم",
+       "say": "hum",
+       "en": "they",
+       "check": false,
+       "msa": "هم",
+       "uk": "вони"
+      }
+     ]
+    },
+    {
+     "id": "5.2",
+     "title": {
+      "en": "\"My, your, her\"",
+      "uk": "«Мій, твій, її»",
+      "najdi": "«لي، لك، لها»",
+      "msa": "ضمائر الملكية"
+     },
+     "entries": [
+      {
+       "ar": "بيتي",
+       "say": "bēti",
+       "en": "my house",
+       "note": {
+        "en": "ـي -i — my",
+        "uk": "ـي -i — мій",
+        "najdi": "ـي -i — لي",
+        "msa": "ـي -i — ضمير المتكلم"
+       },
+       "check": false,
+       "msa": "بيتي",
+       "uk": "мій дім"
+      },
+      {
+       "ar": "بيتك",
+       "say": "bētik",
+       "en": "your house",
+       "note": {
+        "en": "ـك -ik — your (him or her)",
+        "uk": "ـك -ik — твій (до нього чи до неї)",
+        "najdi": "ـك -ik — لك (له أو لها)",
+        "msa": "ـك -ik — ضمير المخاطَب للمذكر والمؤنث"
+       },
+       "check": false,
+       "msa": "بيتك",
+       "uk": "твій дім"
+      },
+      {
+       "ar": "بيته",
+       "say": "bētah",
+       "en": "his house",
+       "note": {
+        "en": "ـه -ah / -ih — his",
+        "uk": "ـه -ah / -ih — його",
+        "najdi": "ـه -ah / -ih — له",
+        "msa": "ـه -ah / -ih — ضمير الغائب"
+       },
+       "check": false,
+       "msa": "بيته",
+       "uk": "його дім"
+      },
+      {
+       "ar": "بيتها",
+       "say": "bētha",
+       "en": "her house",
+       "note": {
+        "en": "ـها -ha — her",
+        "uk": "ـها -ha — її",
+        "najdi": "ـها -ha — لها",
+        "msa": "ـها -ha — ضمير الغائبة"
+       },
+       "check": false,
+       "msa": "بيتها",
+       "uk": "її дім"
+      },
+      {
+       "ar": "بيتنا",
+       "say": "bētna",
+       "en": "our house",
+       "note": {
+        "en": "ـنا -na — our",
+        "uk": "ـنا -na — наш",
+        "najdi": "ـنا -na — لنا",
+        "msa": "ـنا -na — ضمير المتكلمين"
+       },
+       "check": false,
+       "msa": "بيتنا",
+       "uk": "наш дім"
+      },
+      {
+       "ar": "بيتكم",
+       "say": "bētkum",
+       "en": "your (all) house",
+       "note": {
+        "en": "ـكم -kum — your (all)",
+        "uk": "ـكم -kum — ваш",
+        "najdi": "ـكم -kum — لكم",
+        "msa": "ـكم -kum — ضمير المخاطَبين"
+       },
+       "check": false,
+       "msa": "بيتكم",
+       "uk": "ваш дім"
+      },
+      {
+       "ar": "بيتهم",
+       "say": "bēthum",
+       "en": "their house",
+       "note": {
+        "en": "ـهم -hum — their",
+        "uk": "ـهم -hum — їхній",
+        "najdi": "ـهم -hum — لهم",
+        "msa": "ـهم -hum — ضمير الغائبين"
+       },
+       "check": false,
+       "msa": "بيتهم",
+       "uk": "їхній дім"
+      },
+      {
+       "ar": "تحبني؟",
+       "say": "tḥibbīni?",
+       "en": "do you love me?",
+       "note": {
+        "en": "ـني -ni — me (after a verb)",
+        "uk": "ـني -ni — мене (після дієслова)",
+        "najdi": "ـني -ni — أنا (بعد الفعل)",
+        "msa": "ـني -ni — ضمير المتكلم بعد الفعل"
+       },
+       "check": false,
+       "msa": "هل تحبّينني؟",
+       "uk": "ти мене кохаєш?"
+      }
+     ]
+    },
+    {
+     "id": "5.4",
+     "title": {
+      "en": "Present tense",
+      "uk": "Теперішній час",
+      "najdi": "المضارع",
+      "msa": "الفعل المضارع"
+     },
+     "entries": [
+      {
+       "ar": "أروح",
+       "say": "arūḥ",
+       "en": "I go",
+       "check": false,
+       "msa": "أذهب",
+       "uk": "я йду"
+      },
+      {
+       "ar": "تروح",
+       "say": "tirūḥ",
+       "en": "you go (m)",
+       "check": false,
+       "msa": "تذهبُ",
+       "uk": "ти йдеш (до чоловіка)"
+      },
+      {
+       "ar": "تروحين",
+       "say": "tirūḥīn",
+       "en": "you go (f)",
+       "check": false,
+       "msa": "تذهبين",
+       "uk": "ти йдеш (до жінки)"
+      },
+      {
+       "ar": "يروح",
+       "say": "yirūḥ",
+       "en": "he goes",
+       "check": false,
+       "msa": "يذهب",
+       "uk": "він іде"
+      },
+      {
+       "ar": "تروح",
+       "say": "tirūḥ",
+       "en": "she goes",
+       "check": false,
+       "msa": "تذهبُ هي",
+       "uk": "вона йде"
+      },
+      {
+       "ar": "نروح",
+       "say": "nirūḥ",
+       "en": "we go",
+       "check": false,
+       "msa": "نذهب",
+       "uk": "ми йдемо"
+      },
+      {
+       "ar": "تروحون",
+       "say": "tirūḥūn",
+       "en": "you all go",
+       "check": false,
+       "msa": "تذهبون",
+       "uk": "ви йдете"
+      },
+      {
+       "ar": "يروحون",
+       "say": "yirūḥūn",
+       "en": "they go",
+       "check": false,
+       "msa": "يذهبون",
+       "uk": "вони йдуть"
+      }
+     ]
+    },
+    {
+     "id": "5.5",
+     "title": {
+      "en": "Past tense",
+      "uk": "Минулий час",
+      "najdi": "الماضي",
+      "msa": "الفعل الماضي"
+     },
+     "entries": [
+      {
+       "ar": "رحت",
+       "say": "riḥt",
+       "en": "I went",
+       "check": false,
+       "msa": "ذهبتُ",
+       "uk": "я пішов(-ла)"
+      },
+      {
+       "ar": "رحت",
+       "say": "riḥt",
+       "en": "you went (m)",
+       "check": false,
+       "msa": "ذهبتَ",
+       "uk": "ти пішов"
+      },
+      {
+       "ar": "رحتي",
+       "say": "riḥti",
+       "en": "you went (f)",
+       "check": false,
+       "msa": "ذهبتِ",
+       "uk": "ти пішла"
+      },
+      {
+       "ar": "راح",
+       "say": "rāḥ",
+       "en": "he went",
+       "check": false,
+       "msa": "ذهب",
+       "uk": "він пішов"
+      },
+      {
+       "ar": "راحت",
+       "say": "rāḥat",
+       "en": "she went",
+       "check": false,
+       "msa": "ذهبت",
+       "uk": "вона пішла"
+      },
+      {
+       "ar": "رحنا",
+       "say": "riḥna",
+       "en": "we went",
+       "check": false,
+       "msa": "ذهبنا",
+       "uk": "ми пішли"
+      },
+      {
+       "ar": "رحتو",
+       "say": "riḥtu",
+       "en": "you all went",
+       "check": false,
+       "msa": "ذهبتم",
+       "uk": "ви пішли"
+      },
+      {
+       "ar": "راحوا",
+       "say": "rāḥaw",
+       "en": "they went",
+       "check": true,
+       "msa": "ذهبوا",
+       "uk": "вони пішли"
+      }
+     ]
+    },
+    {
+     "id": "5.6",
+     "title": {
+      "en": "Want, will, am doing",
+      "uk": "Хочу, буду, зараз роблю",
+      "najdi": "أبي، بـ، قاعد",
+      "msa": "الرغبة والمستقبل والاستمرار"
+     },
+     "entries": [
+      {
+       "ar": "أبي أنام",
+       "say": "abi anām",
+       "en": "I want to sleep",
+       "note": {
+        "en": "أبي + verb",
+        "uk": "أبي + дієслово",
+        "najdi": "أبي + فعل",
+        "msa": "أبي + فعل"
+       },
+       "check": false,
+       "msa": "أريد أن أنام",
+       "uk": "я хочу спати"
+      },
+      {
+       "ar": "تبين تاكلين؟",
+       "say": "tibīn tākilīn?",
+       "en": "do you want to eat?",
+       "note": {
+        "en": "تبين + verb (to her)",
+        "uk": "تبين + дієслово (до неї)",
+        "najdi": "تبين + فعل (لها)",
+        "msa": "تبين + فعل (للمؤنث)"
+       },
+       "check": false,
+       "msa": "هل تريدين أن تأكلي؟",
+       "uk": "хочеш їсти?"
+      },
+      {
+       "ar": "ودي أشوفك",
+       "say": "widdi ashūfik",
+       "en": "I'd love to see you",
+       "note": {
+        "en": "ودي + verb",
+        "uk": "ودي + дієслово",
+        "najdi": "ودي + فعل",
+        "msa": "ودي + فعل"
+       },
+       "check": false,
+       "msa": "أودّ أن أراكِ",
+       "uk": "дуже хочу тебе побачити"
+      },
+      {
+       "ar": "بنام",
+       "say": "banām",
+       "en": "I'm going to sleep",
+       "note": {
+        "en": "ب + verb = future",
+        "uk": "ب + дієслово = майбутній час",
+        "najdi": "ب + فعل = المستقبل",
+        "msa": "ب + فعل = المستقبل"
+       },
+       "check": false,
+       "msa": "سأنام",
+       "uk": "я йду спати"
+      },
+      {
+       "ar": "قاعد أشتغل",
+       "say": "gāʿid ashtaghil",
+       "en": "I'm working (right now)",
+       "note": {
+        "en": "قاعد + verb = right now",
+        "uk": "قاعد + дієслово = просто зараз",
+        "najdi": "قاعد + فعل = الحين",
+        "msa": "قاعد + فعل = الاستمرار الآن"
+       },
+       "check": false,
+       "msa": "أعمل الآن",
+       "uk": "я зараз працюю"
+      },
+      {
+       "ar": "قاعدة تطبخ",
+       "say": "gāʿda tiṭbakh",
+       "en": "she's cooking",
+       "note": {
+        "en": "قاعدة + verb (her)",
+        "uk": "قاعدة + дієслово (про неї)",
+        "najdi": "قاعدة + فعل (لها)",
+        "msa": "قاعدة + فعل (للمؤنث)"
+       },
+       "check": false,
+       "msa": "إنها تطبخ الآن",
+       "uk": "вона зараз готує"
+      }
+     ]
+    },
+    {
+     "id": "5.7",
+     "title": {
+      "en": "Saying no",
+      "uk": "Заперечення",
+      "najdi": "النفي",
+      "msa": "النفي"
+     },
+     "entries": [
+      {
+       "ar": "ما أدري → مدري",
+       "say": "ma adri → madri",
+       "en": "I don't know",
+       "note": {
+        "en": "ما + verb",
+        "uk": "ما + дієслово",
+        "najdi": "ما + فعل",
+        "msa": "ما + فعل"
+       },
+       "check": false,
+       "msa": "لا أدري",
+       "uk": "не знаю"
+      },
+      {
+       "ar": "ما فهمت",
+       "say": "ma fhimt",
+       "en": "I didn't understand",
+       "note": {
+        "en": "ما + verb",
+        "uk": "ما + дієслово",
+        "najdi": "ما + فعل",
+        "msa": "ما + فعل"
+       },
+       "check": false,
+       "msa": "لم أفهم",
+       "uk": "я не зрозумів(-ла)"
+      },
+      {
+       "ar": "مب زين",
+       "say": "mub zēn",
+       "en": "not good",
+       "note": {
+        "en": "مب + adjective/noun",
+        "uk": "مب + прикметник / іменник",
+        "najdi": "مب + صفة / اسم",
+        "msa": "مب + صفة أو اسم"
+       },
+       "check": false,
+       "msa": "ليس جيدًا",
+       "uk": "недобре"
+      },
+      {
+       "ar": "ماني فاهم",
+       "say": "māni fāhim",
+       "en": "I'm not getting it",
+       "note": {
+        "en": "ماني + adjective",
+        "uk": "ماني + прикметник",
+        "najdi": "ماني + صفة",
+        "msa": "ماني + صفة"
+       },
+       "check": false,
+       "msa": "لستُ فاهمًا",
+       "uk": "я не розумію"
+      },
+      {
+       "ar": "لا تزعلين",
+       "say": "la tizʿalīn",
+       "en": "don't be upset (to her)",
+       "note": {
+        "en": "لا + verb = don't!",
+        "uk": "لا + дієслово = не роби!",
+        "najdi": "لا + فعل = لا تسوي!",
+        "msa": "لا + فعل = النهي"
+       },
+       "check": false,
+       "msa": "لا تنزعجي",
+       "uk": "не ображайся (до неї)"
+      },
+      {
+       "ar": "ما فيه مشكلة",
+       "say": "ma fīh mushkila",
+       "en": "there's no problem",
+       "note": {
+        "en": "ما فيه",
+        "uk": "ما فيه",
+        "najdi": "ما فيه",
+        "msa": "ما فيه"
+       },
+       "check": false,
+       "msa": "لا توجد مشكلة",
+       "uk": "нема проблем"
+      }
+     ]
+    },
+    {
+     "id": "5.9",
+     "title": {
+      "en": "Time words that change meaning",
+      "uk": "Слова часу, що змінюють зміст",
+      "najdi": "كلمات وقت تغيّر المعنى",
+      "msa": "ظروف زمان تغيّر المعنى"
+     },
+     "entries": [
+      {
+       "ar": "توني صحيت",
+       "say": "tawwni ṣiḥēt",
+       "en": "I just woke up",
+       "note": {
+        "en": "توّ + ending — taww-",
+        "uk": "توّ + закінчення — taww-",
+        "najdi": "توّ + ضمير — taww-",
+        "msa": "توّ + ضمير متصل — taww-"
+       },
+       "check": false,
+       "msa": "استيقظت للتوّ",
+       "uk": "я щойно прокинувся(-лася)"
+      },
+      {
+       "ar": "وأنا بعد",
+       "say": "w ana baʿad",
+       "en": "me too",
+       "note": {
+        "en": "بعد — baʿad",
+        "uk": "بعد — baʿad",
+        "najdi": "بعد — baʿad",
+        "msa": "بعد — baʿad"
+       },
+       "check": false,
+       "msa": "وأنا أيضًا",
+       "uk": "і я теж"
+      },
+      {
+       "ar": "ما بعد أكلت",
+       "say": "ma baʿad akalt",
+       "en": "I haven't eaten yet",
+       "note": {
+        "en": "ما بعد — ma baʿad",
+        "uk": "ما بعد — ma baʿad",
+        "najdi": "ما بعد — ma baʿad",
+        "msa": "ما بعد — ma baʿad"
+       },
+       "check": false,
+       "msa": "لم آكل بعد",
+       "uk": "я ще не їв(-ла)"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "traps": [
+  {
+   "wrong": {
+    "ar": "إزيك",
+    "say": "izzayyak",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egyptian",
+    "uk": "єгипетська",
+    "najdi": "مصري",
+    "msa": "المصرية"
+   },
+   "right": {
+    "ar": "كيفك",
+    "say": "kēfik"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "عامل إيه",
+    "say": "ʿāmil ēh",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egyptian",
+    "uk": "єгипетська",
+    "najdi": "مصري",
+    "msa": "المصرية"
+   },
+   "right": {
+    "ar": "وش لونك",
+    "say": "wesh lōnik"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "إيه",
+    "say": "ēh",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egyptian",
+    "uk": "єгипетська",
+    "najdi": "مصري",
+    "msa": "المصرية"
+   },
+   "right": {
+    "ar": "وش",
+    "say": "wesh"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "شو",
+    "say": "shu",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Levantine",
+    "uk": "левантійська",
+    "najdi": "شامي",
+    "msa": "الشامية"
+   },
+   "right": {
+    "ar": "وش",
+    "say": "wesh"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "فين",
+    "say": "fēn",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egyptian",
+    "uk": "єгипетська",
+    "najdi": "مصري",
+    "msa": "المصرية"
+   },
+   "right": {
+    "ar": "وين",
+    "say": "wēn"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "عايز / بدي",
+    "say": "ʿāyiz / biddi",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egypt / Levant",
+    "uk": "Єгипет / Левант",
+    "najdi": "مصري / شامي",
+    "msa": "المصرية / الشامية"
+   },
+   "right": {
+    "ar": "أبي",
+    "say": "abi"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "دلوقتي / هلق",
+    "say": "dilwaʾti / halla",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egypt / Levant",
+    "uk": "Єгипет / Левант",
+    "najdi": "مصري / شامي",
+    "msa": "المصرية / الشامية"
+   },
+   "right": {
+    "ar": "الحين",
+    "say": "al-ḥīn"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "كويس",
+    "say": "kwayyis",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egyptian",
+    "uk": "єгипетська",
+    "najdi": "مصري",
+    "msa": "المصرية"
+   },
+   "right": {
+    "ar": "زين",
+    "say": "zēn"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "وحشتني",
+    "say": "waḥashtini",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egyptian",
+    "uk": "єгипетська",
+    "najdi": "مصري",
+    "msa": "المصرية"
+   },
+   "right": {
+    "ar": "اشتقت لك",
+    "say": "ishtagt lik"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "ليه",
+    "say": "lēh",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egyptian",
+    "uk": "єгипетська",
+    "najdi": "مصري",
+    "msa": "المصرية"
+   },
+   "right": {
+    "ar": "ليش",
+    "say": "lēsh"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "كمان",
+    "say": "kamān",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egypt / Levant",
+    "uk": "Єгипет / Левант",
+    "najdi": "مصري / شامي",
+    "msa": "المصرية / الشامية"
+   },
+   "right": {
+    "ar": "بعد",
+    "say": "baʿad"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "مش",
+    "say": "mish",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Egypt / Levant",
+    "uk": "Єгипет / Левант",
+    "najdi": "مصري / شامي",
+    "msa": "المصرية / الشامية"
+   },
+   "right": {
+    "ar": "مب / ما",
+    "say": "mub / ma"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "دحين",
+    "say": "daḥḥīn",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Hijazi (Jeddah)",
+    "uk": "хіджазька (Джидда)",
+    "najdi": "حجازي (جدة)",
+    "msa": "الحجازية (جدة)"
+   },
+   "right": {
+    "ar": "الحين",
+    "say": "al-ḥīn"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "إيش",
+    "say": "ēsh",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Hijazi",
+    "uk": "хіджазька",
+    "najdi": "حجازي",
+    "msa": "الحجازية"
+   },
+   "right": {
+    "ar": "وش",
+    "say": "wesh"
+   }
+  }
+ ]
+}

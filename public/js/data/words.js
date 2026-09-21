@@ -95,7 +95,7 @@ export const WORDS = [
 
   // + the extras — ء ة ى (Day 13)
   { ar: "قهوة", tr: "gahwa", msa: "قهوة", en: "coffee", uk: "кава" },
-  { ar: "موية", tr: "mōya", msa: "ماء", en: "water", uk: "вода", check: true, checkNote: { en: "Also ماي (māy).", uk: "Також ماي (māy)." } },
+  { ar: "موية", tr: "mōya", msa: "ماء", en: "water", uk: "вода", check: true, checkNote: { en: "Also ماي (māy).", uk: "Також ماي (māy).", najdi: "ويقولون بعد «ماي» (māy).", msa: "ويُقال أيضًا «ماي» (māy)." } },
   { ar: "بكرة", tr: "bukra", msa: "غداً", en: "tomorrow", uk: "завтра" },
   { ar: "سيارة", tr: "sayyāra", msa: "سيارة", en: "car", uk: "машина" },
   { ar: "ترى", tr: "tara", msa: "اعلم أن", en: "you know, look… — a softener at the start of a sentence", uk: "знаєш, слухай… — пом'якшувач на початку речення" },
@@ -104,5 +104,5 @@ export const WORDS = [
   { ar: "صورة", tr: "ṣūra", msa: "صورة", en: "photo", uk: "фото" },
   { ar: "رسالة", tr: "risāla", msa: "رسالة", en: "message", uk: "повідомлення" },
   { ar: "إيه", tr: "ēh", msa: "نعم", en: "yes", uk: "так", check: true,
-    checkNote: { en: "Careful: in Egyptian إيه means “what”.", uk: "Обережно: у єгипетській إيه означає «що»." } },
+    checkNote: { en: "Careful: in Egyptian إيه means “what”.", uk: "Обережно: у єгипетській إيه означає «що».", najdi: "انتبه: بالمصري «إيه» يعني «وش».", msa: "انتبه: «إيه» في المصرية تعني «ماذا»." } },
 ];

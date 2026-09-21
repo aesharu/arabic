@@ -6,7 +6,7 @@ const defaults = () => ({
   version: 2,
   prefs: { theme: "auto", lang: "en" },
   script: { group: 0, done: [], quiz: [0] }, // letter groups marked done / selected for the quiz
-  log: {}, // "YYYY-MM-DD" → { min: minutes studied, tasks: ids of ticked tasks }
+  log: {}, // "YYYY-MM-DD" → { min: minutes studied, tasks: ids of ticked tasks, quiz?: { right, total } }
   timer: null, // { start: epoch ms, date: "YYYY-MM-DD" } while the study timer runs
 });
 
@@ -46,7 +46,7 @@ function editEntry(date, fn) {
   update(s => {
     const e = (s.log[date] ??= { min: 0, tasks: [] });
     fn(e);
-    if (!e.min && !e.tasks.length) delete s.log[date];
+    if (!e.min && !e.tasks.length && !e.quiz?.total) delete s.log[date];
   });
 }
 
@@ -58,6 +58,13 @@ export const toggleTask = (date, id) =>
 export const addMinutes = (date, n) =>
   editEntry(date, e => {
     e.min = Math.max(0, Math.min(24 * 60, e.min + n));
+  });
+
+export const logQuiz = (date, right) =>
+  editEntry(date, e => {
+    const q = (e.quiz ??= { right: 0, total: 0 });
+    q.total++;
+    if (right) q.right++;
   });
 
 export function exportJson() {

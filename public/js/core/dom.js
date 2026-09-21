@@ -1,14 +1,19 @@
-import { t, tx, lang, other } from "./i18n.js";
+import { t, tx, lang, isArabic } from "./i18n.js";
 
 export const esc = s =>
   String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-// English or Ukrainian text that may contain Arabic words: escapes it and gives each Arabic run the Arabic font.
+// Interface text that may contain Arabic words: escapes it and, in English/Ukrainian, gives each Arabic run the
+// Arabic font. In the Arabic interfaces the whole text is already Arabic, so it stays as is.
 const ARABIC_RUN = /[؀-ۿ](?:[؀-ۿً-ْ ،]*[؀-ۿ])?/g;
-export const rich = text => esc(text).replace(ARABIC_RUN, m => `<span class="ar ar-in" lang="ar">${m}</span>`);
+export const rich = text => (isArabic() ? esc(text) : esc(text).replace(ARABIC_RUN, m => `<span class="ar ar-in" lang="ar">${m}</span>`));
 
-// Arabic text always goes through here so it gets the Arabic font and right-to-left direction.
+// Arabic learning content always goes through here: Naskh font, right-to-left.
 export const ar = (text, cls = "") => `<span class="ar${cls ? " " + cls : ""}" lang="ar">${esc(text)}</span>`;
+
+// Latin text (transliteration, English, Ukrainian) kept left-to-right inside an Arabic interface.
+export const lat = (text, cls = "", l = "") => `<bdi class="lat${cls ? " " + cls : ""}" dir="ltr"${l ? ` lang="${l}"` : ""}>${esc(text)}</bdi>`;
+export const translit = text => lat(text, "tr");
 
 // Visible "check with tutor" badge for content that still needs a native speaker's OK.
 export const flag = item =>
@@ -18,18 +23,22 @@ export const flagNote = item => (item.check && item.checkNote ? `<p class="flag-
 
 // "UA", not "UK", so English readers don't read it as United Kingdom.
 const SHORT = { en: "EN", uk: "UA" };
+const meaningLine = (item, l, cls) => `<span class="${cls}" lang="${l}" dir="ltr"><i>${SHORT[l]}</i> ${esc(item[l])}</span>`;
 
-// The four languages of a word or phrase, after its Najdi Arabic: meaning in the interface language,
-// meaning in the other one, and the formal-Arabic (MSA) equivalent.
-export const meanings = item => `
-  <span class="m1" lang="${lang()}">${esc(item[lang()])}</span>
-  <span class="m2" lang="${other()}"><i>${SHORT[other()]}</i> ${esc(item[other()])}</span>
-  <span class="msa"><i title="${esc(t("lab.msaHint"))}">${t("lab.msa")}</i> ${ar(item.msa)}</span>`;
+// The languages of a word or phrase after its Najdi Arabic: English and Ukrainian meanings (the interface
+// language first) and the formal-Arabic (MSA) equivalent.
+export function meanings(item) {
+  const l = lang();
+  const lines = l === "en" || l === "uk"
+    ? `<span class="m1" lang="${l}">${esc(item[l])}</span>${meaningLine(item, l === "en" ? "uk" : "en", "m2")}`
+    : `${meaningLine(item, "en", "m1")}${meaningLine(item, "uk", "m2")}`;
+  return `${lines}<span class="msa"><i title="${esc(t("lab.msaHint"))}">${t("lab.msa")}</i> ${ar(item.msa)}</span>`;
+}
 
 export const playIcon = `<span class="play" aria-hidden="true">▶</span>`;
 
-export const pageHead = (title, sub = "", eyebrow = "") => `
-  <header class="page-head">
+export const pageHead = (title, sub = "", eyebrow = "", cls = "") => `
+  <header class="page-head${cls ? " " + cls : ""}">
     ${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ""}
     <h1>${title}</h1>
     ${sub ? `<p class="sub">${sub}</p>` : ""}

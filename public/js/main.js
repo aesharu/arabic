@@ -3,10 +3,12 @@ import { say, canSpeak } from "./core/speech.js";
 import * as store from "./core/store.js";
 import { todayKey } from "./core/dates.js";
 import { dayNumber, phaseFor, phaseTitle, TOTAL_DAYS } from "./core/schedule.js";
-import { t, tx, lang, setLang } from "./core/i18n.js";
+import { t, tx, lang, meta, isArabic, setLang } from "./core/i18n.js";
 import { esc } from "./core/dom.js";
+import { attachTooltips } from "./core/charts.js";
 
 import today from "./views/today.js";
+import progress from "./views/progress.js";
 import calendar from "./views/calendar.js";
 import plan from "./views/plan.js";
 import letters from "./views/letters.js";
@@ -14,10 +16,11 @@ import vowels from "./views/vowels.js";
 import reading from "./views/reading.js";
 import quiz from "./views/quiz.js";
 import phrases from "./views/phrases.js";
+import words from "./views/words.js";
 
 // Each view is { titleKey, mount(root, { params, signal }) }. Listeners a view adds with
 // { signal } are removed automatically when you leave it.
-const routes = { today, calendar, plan, letters, vowels, reading, quiz, phrases };
+const routes = { today, progress, calendar, plan, letters, vowels, reading, quiz, phrases, words };
 const view = document.getElementById("view");
 let controller = null;
 let current = { name: "today", params: [] };
@@ -29,13 +32,21 @@ document.addEventListener("click", e => {
   const el = e.target.closest("[data-say]");
   if (el) say(el.dataset.say);
 });
+attachTooltips(document);
 
 // Sidebar texts in index.html name their string with a data-i18n attribute.
 function translateShell() {
-  document.documentElement.lang = lang();
+  const m = meta();
+  document.documentElement.lang = m.html;
+  document.documentElement.dir = m.dir;
   document.querySelectorAll("[data-i18n]").forEach(el => (el.textContent = t(el.dataset.i18n)));
   document.querySelectorAll("[data-i18n-label]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nLabel)));
   document.querySelectorAll("[data-lang]").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang()));
+  document.querySelectorAll("[data-set-theme]").forEach(b => {
+    const name = t(`theme.${b.dataset.setTheme}`);
+    b.title = name;
+    b.setAttribute("aria-label", name);
+  });
 }
 
 function renderDayPill() {
@@ -50,19 +61,20 @@ function renderDayPill() {
     : `<b>${t("pill.soon")}</b>`;
 }
 
-const THEMES = ["auto", "light", "dark"];
-const themeButton = document.getElementById("theme");
 function applyTheme() {
   const theme = store.get().prefs.theme;
   if (theme === "auto") delete document.documentElement.dataset.theme;
   else document.documentElement.dataset.theme = theme;
-  themeButton.textContent = t("theme.label", { name: t(`theme.${theme}`) });
+  document.querySelectorAll("[data-set-theme]").forEach(b => b.setAttribute("aria-pressed", b.dataset.setTheme === theme));
 }
-themeButton.addEventListener("click", () => {
+document.querySelector(".themes").addEventListener("click", e => {
+  const b = e.target.closest("[data-set-theme]");
+  if (!b) return;
   store.update(s => {
-    s.prefs.theme = THEMES[(THEMES.indexOf(s.prefs.theme) + 1) % THEMES.length];
+    s.prefs.theme = b.dataset.setTheme;
   });
   applyTheme();
+  show(current.name, current.params); // charts read theme colours
 });
 
 function show(name, params) {
@@ -76,6 +88,8 @@ function show(name, params) {
   document.title = `${t(routes[name].titleKey)} · Najdi`;
   renderDayPill();
   routes[name].mount(view, { params, signal: controller.signal });
+  // The Arabic interfaces are Claude's translation: say so on every page until a native speaker has checked them.
+  if (isArabic()) view.insertAdjacentHTML("afterbegin", `<p class="ar-banner">${esc(t("ar.banner"))}</p>`);
 }
 
 document.querySelector(".langs").addEventListener("click", e => {
@@ -83,7 +97,6 @@ document.querySelector(".langs").addEventListener("click", e => {
   if (!b || b.dataset.lang === lang()) return;
   setLang(b.dataset.lang);
   translateShell();
-  applyTheme();
   show(current.name, current.params);
 });
 

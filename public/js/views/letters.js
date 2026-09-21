@@ -1,7 +1,7 @@
 import * as store from "../core/store.js";
 import { scheduledGroup } from "../core/schedule.js";
 import { t, tx } from "../core/i18n.js";
-import { esc, rich, ar, flag, flagNote, meanings, playIcon, pageHead } from "../core/dom.js";
+import { esc, rich, ar, lat, translit, flag, flagNote, meanings, playIcon, pageHead } from "../core/dom.js";
 import { GROUPS, formsOf } from "../data/letters.js";
 
 export function groupChips({ isOn, done, scheduled }) {
@@ -18,15 +18,15 @@ const card = l => `
     <div class="top">
       <button class="glyph ar" lang="ar" data-say="${esc(l.nameAr)}" aria-label="${esc(t("letters.hearName", { name: l.name }))}">${esc(l.char)}</button>
       <div class="meta">
-        <div class="name"><b>${esc(l.name)}</b>${ar(l.nameAr)}
+        <div class="name"><b>${lat(l.name)}</b>${ar(l.nameAr)}
           ${l.hard ? `<span class="tag h">${t("letters.newSound")}</span>` : ""}${l.nonJoining ? `<span class="tag nc">${t("letters.nonJoining")}</span>` : ""}</div>
         <p class="sound">${rich(tx(l.sound))}</p>
-        <p class="ua"><span>${t("lab.ua")}</span>${esc(l.ua)}</p>
+        <p class="ua"><span>${t("lab.ua")}</span><bdi lang="uk">${esc(l.ua)}</bdi></p>
       </div>
     </div>
     <div class="forms">${formsOf(l).map(([f, key]) => `<div>${ar(f)}<small>${t(key)}</small></div>`).join("")}</div>
     <button class="ex" data-say="${esc(l.example.ar)}">${ar(l.example.ar)}
-      <span class="t"><b>${esc(l.example.tr)}</b> ${flag(l)}${meanings(l.example)}</span>${playIcon}</button>
+      <span class="t">${translit(l.example.tr)} ${flag(l)}${meanings(l.example)}</span>${playIcon}</button>
     ${flagNote(l)}
     ${l.najdi ? `<div class="najdi"><b>${t("lab.najdi")}</b> ${rich(tx(l.najdi))}</div>` : ""}
   </article>`;

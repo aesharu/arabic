@@ -14,11 +14,12 @@ export function phaseFor(date) {
   return PHASES.find(p => date >= p.start && date <= p.end) ?? PHASES.at(-1);
 }
 
-// "Script" / "Stage 1 · Core" — in both languages: { en, uk }
-export const phaseTitle = p => {
-  const title = l => (p.label[l] === p.name[l] ? p.name[l] : `${p.label[l]} · ${p.name[l]}`);
-  return { en: title("en"), uk: title("uk") };
-};
+const LANGS = ["en", "uk", "najdi", "msa"];
+const byLang = fn => Object.fromEntries(LANGS.map(l => [l, fn(l)]));
+
+// "Script" / "Stage 1 · Core" — in every language: { en, uk, najdi, msa }
+export const phaseTitle = p => byLang(l => (p.label[l] === p.name[l] ? p.name[l] : `${p.label[l]} · ${p.name[l]}`));
+const GOAL_PREFIX = { en: "Goal of this stage", uk: "Мета етапу", najdi: "هدف المرحلة", msa: "هدف المرحلة" };
 
 export function planFor(date) {
   const phase = phaseFor(date);
@@ -27,18 +28,22 @@ export function planFor(date) {
   const day = SCRIPT_DAYS[n];
   return day
     ? { n, phase, focus: day.focus, group: day.group, tasks: day.tasks }
-    : { n, phase, focus: { en: `Goal of this stage: ${phase.canDo.en}`, uk: `Мета етапу: ${phase.canDo.uk}` }, group: null, tasks: phase.routine };
+    : { n, phase, focus: byLang(l => `${GOAL_PREFIX[l]}: ${phase.canDo[l]}`), group: null, tasks: phase.routine };
 }
 
-const isActive = e => !!e && (e.min > 0 || e.tasks?.length > 0);
+const isActive = e => !!e && (e.min > 0 || e.tasks?.length > 0 || e.quiz?.total > 0);
+
+export const allTasksTicked = (date, e) => {
+  const tasks = planFor(date).tasks;
+  return tasks.length > 0 && tasks.every(t => e?.tasks?.includes(t.id));
+};
 
 // "done" = all tasks ticked or the daily minutes goal reached.
 export function dayStatus(date, log, today = todayKey()) {
   if (date < START) return "before";
   if (date > today) return "future";
   const e = log[date];
-  const tasks = planFor(date).tasks;
-  const allTicked = tasks.length > 0 && tasks.every(t => e?.tasks?.includes(t.id));
+  const allTicked = allTasksTicked(date, e);
   if (allTicked || (e?.min ?? 0) >= DAILY_GOAL_MIN) return "done";
   if (isActive(e)) return "partial";
   return date === today ? "open" : "missed";
@@ -57,7 +62,23 @@ export function streak(log, today = todayKey()) {
 
 export function totals(log) {
   const days = Object.values(log).filter(isActive);
-  return { days: days.length, minutes: days.reduce((sum, e) => sum + (e.min || 0), 0) };
+  const sum = f => days.reduce((n, e) => n + (f(e) || 0), 0);
+  return {
+    days: days.length,
+    minutes: sum(e => e.min),
+    tasks: sum(e => e.tasks?.length),
+    quizRight: sum(e => e.quiz?.right),
+    quizTotal: sum(e => e.quiz?.total),
+  };
+}
+
+// Heat level of a day for the calendar: 0 nothing · 1 some · 2 30+ min · 3 goal met · 4 90+ min.
+export function heatLevel(entry, allTicked) {
+  const min = entry?.min ?? 0;
+  if (min >= 90) return 4;
+  if (min >= DAILY_GOAL_MIN || allTicked) return 3;
+  if (min >= 30) return 2;
+  return isActive(entry) ? 1 : 0;
 }
 
 // Letter group the schedule says you're on today (0–5), or 5 once the alphabet is finished.

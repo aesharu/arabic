@@ -1,7 +1,7 @@
 import { todayKey, shortDate } from "../core/dates.js";
 import { dayNumber, dateOfDay } from "../core/schedule.js";
 import { t, tx, locale } from "../core/i18n.js";
-import { esc, rich, ar, flag, flagNote, meanings, playIcon, pageHead, reviewNote } from "../core/dom.js";
+import { esc, rich, ar, translit, flag, flagNote, meanings, playIcon, pageHead, reviewNote } from "../core/dom.js";
 import { PHRASES } from "../data/phrases.js";
 
 export default {
@@ -22,7 +22,7 @@ export default {
               <div class="phrase-row">
                 <button class="phrase" data-say="${esc(p.speak ?? p.ar)}">
                   ${ar(p.ar, "phrase-ar")}
-                  <span class="phrase-t"><b>${esc(p.tr)}</b> ${flag(p)}${meanings(p)}
+                  <span class="phrase-t">${translit(p.tr)} ${flag(p)}${meanings(p)}
                     ${p.note ? `<span class="pnote">${rich(tx(p.note))}</span>` : ""}</span>
                   ${playIcon}
                 </button>

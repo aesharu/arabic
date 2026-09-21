@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Najdi — spoken Riyadh Arabic</title>
-<meta name="description" content="Volodia's Najdi Arabic study site: today's tasks, a 15-month calendar, the alphabet trainer and phrases.">
+<meta name="description" content="Volodia's Najdi Arabic study site: today's tasks, a 15-month calendar, progress charts, the alphabet trainer, phrases and Anki cards — in English, Ukrainian, Najdi and formal Arabic.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231D5A5C'/%3E%3Ctext x='50' y='70' font-size='62' text-anchor='middle' fill='%23F2E9D6' font-family='serif'%3E%D9%86%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Alegreya+Sans:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Kufi+Arabic:wght@400;600;700;800&family=Alegreya+Sans:wght@400;500;700;800&display=swap">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/components.css">
@@ -16,8 +16,9 @@
   // Apply the saved theme and language before the first paint, so the page doesn't flash.
   try {
     const p = JSON.parse(localStorage.getItem("najdi-v2") || "{}").prefs || {};
-    if (p.theme === "light" || p.theme === "dark") document.documentElement.dataset.theme = p.theme;
-    if (p.lang === "uk") document.documentElement.lang = "uk";
+    if (["light", "dark", "saudi"].includes(p.theme)) document.documentElement.dataset.theme = p.theme;
+    if (p.lang === "najdi" || p.lang === "msa") { document.documentElement.dir = "rtl"; document.documentElement.lang = "ar"; }
+    else if (p.lang === "uk") document.documentElement.lang = "uk";
   } catch {}
 </script>
 <script type="module" src="js/main.js"></script>
@@ -30,6 +31,7 @@
     <nav data-i18n-label="nav.main" aria-label="Main">
       <p class="navhead" data-i18n="nav.plan">Plan</p>
       <a href="#/today" data-route="today" data-i18n="nav.today">Today</a>
+      <a href="#/progress" data-route="progress" data-i18n="nav.progress">Progress</a>
       <a href="#/calendar" data-route="calendar" data-i18n="nav.calendar">Calendar</a>
       <a href="#/plan" data-route="plan" data-i18n="nav.thePlan">The plan</a>
       <p class="navhead" data-i18n="nav.script">Script</p>
@@ -39,13 +41,23 @@
       <a href="#/quiz" data-route="quiz" data-i18n="nav.quiz">Quiz</a>
       <p class="navhead" data-i18n="nav.speak">Speak</p>
       <a href="#/phrases" data-route="phrases" data-i18n="nav.phrases">Phrases</a>
+      <a href="#/words" data-route="words" data-i18n="nav.words">Words</a>
     </nav>
     <div class="sidebar-foot">
+      <p class="foot-label" data-i18n="lang.label">Language</p>
       <div class="langs" role="group" data-i18n-label="lang.label" aria-label="Language">
         <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang="uk" lang="uk" aria-pressed="false">УКР</button>
+        <button type="button" data-lang="najdi" lang="ar-SA" aria-pressed="false">نجدي</button>
+        <button type="button" data-lang="msa" lang="ar" aria-pressed="false">فصحى</button>
       </div>
-      <button class="theme" id="theme" type="button">Theme</button>
+      <p class="foot-label" data-i18n="theme.label">Theme</p>
+      <div class="themes" role="group" data-i18n-label="theme.label" aria-label="Theme">
+        <button type="button" data-set-theme="auto" style="--sw: linear-gradient(135deg, #DCC8A6 50%, #1B140E 50%)"></button>
+        <button type="button" data-set-theme="light" style="--sw: #DCC8A6"></button>
+        <button type="button" data-set-theme="dark" style="--sw: #1B140E"></button>
+        <button type="button" data-set-theme="saudi" style="--sw: linear-gradient(135deg, #006C35 50%, #FFFFFF 50%)"></button>
+      </div>
     </div>
   </aside>
   <main id="view" tabindex="-1">

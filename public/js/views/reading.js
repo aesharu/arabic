@@ -1,7 +1,7 @@
 import * as store from "../core/store.js";
 import { learnedLetters, lettersIn } from "../core/schedule.js";
 import { t } from "../core/i18n.js";
-import { esc, ar, flag, flagNote, meanings, playIcon, pageHead, reviewNote, shuffle } from "../core/dom.js";
+import { esc, ar, translit, flag, flagNote, meanings, playIcon, pageHead, reviewNote, shuffle } from "../core/dom.js";
 import { WORDS } from "../data/words.js";
 
 // View settings survive page switches until reload.
@@ -38,7 +38,7 @@ export default {
               <button class="word-ar" data-reveal="${i}" aria-expanded="${open}">${ar(w.ar)}</button>
               <div class="word-back"${open ? "" : " hidden"}>
                 <button class="word-say" data-say="${esc(w.ar)}" aria-label="${esc(t("lab.hear", { what: w.tr }))}">${playIcon}</button>
-                <div><b>${esc(w.tr)}</b> ${flag(w)}${meanings(w)}</div>
+                <div>${translit(w.tr)} ${flag(w)}${meanings(w)}</div>
               </div>
               ${open ? flagNote(w) : ""}
             </article>`;

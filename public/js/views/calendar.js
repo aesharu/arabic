@@ -1,7 +1,7 @@
 import * as store from "../core/store.js";
 import { todayKey, longDate, format, monthKey, addMonths, daysInMonth, weekdayMon, addDays } from "../core/dates.js";
-import { planFor, phaseFor, phaseTitle, dayStatus, TOTAL_DAYS, weekNumber } from "../core/schedule.js";
-import { t, tx, locale } from "../core/i18n.js";
+import { planFor, phaseTitle, dayStatus, heatLevel, allTasksTicked, TOTAL_DAYS, weekNumber } from "../core/schedule.js";
+import { t, tx, locale, isArabic } from "../core/i18n.js";
 import { esc, rich, pageHead } from "../core/dom.js";
 import { START, GOAL, DAILY_GOAL_MIN } from "../config.js";
 import { PHASES } from "../data/plan.js";
@@ -15,7 +15,8 @@ function monthsInPlan() {
 }
 
 // Mon … Sun in the current language (START is a Monday).
-const weekdays = () => Array.from({ length: 7 }, (_, i) => format(addDays("2026-09-21", i), { weekday: "short" }, locale()));
+const weekdays = () => Array.from({ length: 7 }, (_, i) => format(addDays("2026-09-21", i), { weekday: isArabic() ? "narrow" : "short" }, locale()));
+const STAGE_STARTS = new Set(PHASES.map(p => p.start));
 
 function renderMonth(m, log, today, selected, wd) {
   const cells = wd.map(d => `<span class="cal-wd">${esc(d)}</span>`);
@@ -27,11 +28,15 @@ function renderMonth(m, log, today, selected, wd) {
       continue;
     }
     const st = dayStatus(date, log, today);
-    const cls = ["cal-day", `p${phaseFor(date).id}`, `s-${st}`, date === today && "is-today", date === selected && "is-selected"]
+    const level = date > today ? 0 : heatLevel(log[date], allTasksTicked(date, log[date]));
+    const cls = ["cal-day", level && `l${level}`, `s-${st}`, STAGE_STARTS.has(date) && "stage-start", date === today && "is-today", date === selected && "is-selected"]
       .filter(Boolean).join(" ");
     cells.push(`<button class="${cls}" data-date="${date}" aria-label="${esc(longDate(date, locale()))}: ${esc(status(st))}"${date === selected ? ` aria-pressed="true"` : ""}>${d}</button>`);
   }
-  return `<section class="month"><h3>${esc(format(`${m}-01`, { month: "long", year: "numeric" }, locale()))}</h3><div class="cal-grid">${cells.join("")}</div></section>`;
+  const last = `${m}-${String(daysInMonth(m)).padStart(2, "0")}`;
+  const stages = PHASES.filter(p => p.start <= last && p.end >= `${m}-01`).map(p => tx(phaseTitle(p)));
+  return `<section class="month"><h3>${esc(format(`${m}-01`, { month: "long", year: "numeric" }, locale()))}</h3>
+    <p class="stage-names">${esc(stages.join(" · "))}</p><div class="cal-grid">${cells.join("")}</div></section>`;
 }
 
 function renderDetail(date, log, today) {
@@ -83,13 +88,11 @@ export default {
       root.innerHTML = `
         ${pageHead(t("cal.title"), esc(t("cal.sub", { start: longDate(START, locale()), goal: longDate(GOAL, locale()) })))}
         <div class="legend" aria-label="${esc(t("cal.legend"))}">
-          ${PHASES.map(p => `<span><i class="sw p${p.id}"></i>${esc(tx(phaseTitle(p)))}</span>`).join("")}
-        </div>
-        <div class="legend">
-          <span><i class="dot s-done"></i>${t("cal.legendDone", { min: DAILY_GOAL_MIN })}</span>
-          <span><i class="dot s-partial"></i>${status("partial")}</span>
-          <span><i class="dot s-missed"></i>${status("missed")}</span>
-          <span><i class="ring"></i>${t("nav.today")}</span>
+          <span>${t("cal.less")} <span class="heat-scale" dir="ltr">${[0, 1, 2, 3, 4].map(l => `<i class="heat-key l${l}"></i>`).join("")}</span> ${t("cal.more")}</span>
+          <span><i class="heat-key l3"></i>${t("cal.legendDone", { min: DAILY_GOAL_MIN })}</span>
+          <span><i class="miss-key"></i>${status("missed")}</span>
+          <span><i class="ring-key"></i>${t("nav.today")}</span>
+          <span><i class="stage-key"></i>${t("cal.stageStart")}</span>
         </div>
         <div class="cal-layout">
           <div class="months">${monthsInPlan().map(m => renderMonth(m, log, today, selected, wd)).join("")}</div>
