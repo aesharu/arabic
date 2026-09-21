@@ -55,3 +55,218 @@ export const COMPLIMENTS = [
   { ar: "يا بعد عمري", en: "You mean more to me than my own life", uk: "Ти дорожча мені за власне життя", msa: "يا من هي أغلى من عمري" },
   { ar: "أتعلم العربي عشان أقول لك: انتي أحلى وأذكى وحدة بالدنيا", en: "I'm learning Arabic to tell you: you're the most beautiful and smartest girl in the world", uk: "Я вчу арабську, щоб сказати тобі: ти найгарніша й найрозумніша на світі", msa: "أتعلّم العربية لأقول لكِ: أنتِ أجمل وأذكى فتاة في الدنيا" },
 ];
+
+// ---------- "To her ♥": the phrase book (views/love.js, the Cards deck "love", the Record page) ----------
+// Each phrase: [Najdi, pronunciation, English, Ukrainian, MSA, extra?]
+//   extra.plan   copied from NAJDI-PLAN.md as it is (not flagged unless the plan marks it ⚠: extra.check)
+//   extra.north  the northern form "Arabic|pronunciation" (-ich to a woman), where it differs
+//   extra.note   { en, uk, najdi, msa }
+// Everything not from the plan carries "check with tutor" until Dima ticks it.
+const ENVY = { en: "Say it with a compliment — in Saudi culture it keeps the evil eye away.", uk: "Кажи це разом із компліментом — у саудівській культурі це оберігає від лихого ока.", najdi: "قلها مع المدح عشان العين.", msa: "تُقال مع المديح درءًا للعين." };
+const HIM = { en: "To a man — what she may say to you", uk: "До чоловіка — так вона може сказати тобі", najdi: "للرجال — ممكن تقولها لك", msa: "لمخاطبة المذكّر — قد تقولها لك" };
+
+const SECTIONS = [
+  { id: "names", title: { en: "Pet names", uk: "Ласкаві слова", najdi: "كلمات الدلع", msa: "ألفاظ التحبّب" }, items: [
+    ["حبيبتي", "ḥabībti", "my love", "кохана моя", "حبيبتي", { plan: true }],
+    ["يا عمري", "ya ʿumri", "my life", "життя моє", "يا عمري", { plan: true }],
+    ["يا قلبي", "ya galbi", "my heart", "серденько моє", "يا قلبي", { plan: true }],
+    ["فديتك", "fidētik", "sweetheart (lit. “I'd give myself for you”)", "люба моя (досл. «віддав би себе за тебе»)", "فداكِ نفسي", { plan: true, north: "فديتچ|fidētich" }],
+    ["يا بعد حيي", "ya baʿad ḥayyi", "my dearest", "найдорожча моя", "يا أغلى الناس", { plan: true, check: true }],
+    ["يا روحي", "ya rūḥi", "my soul", "душа моя", "يا روحي"],
+    ["يا عيوني", "ya ʿyūni", "my darling (lit. “my eyes”)", "мій скарбе (досл. «очі мої»)", "يا عينيّ"],
+    ["يا بعد عمري", "ya baʿad ʿumri", "dearer to me than my own life", "дорожча за моє життя", "يا أغلى من عمري"],
+    ["يا الغالية", "ya al-ghālya", "my precious one", "моя дорогоцінна", "يا غالية"],
+    ["يا نور عيني", "ya nūr ʿēni", "light of my eyes", "світло моїх очей", "يا نور عيني"],
+    ["يا شيختي", "ya shēkhti", "my lady, my queen", "моя пані, моя королево", "يا سيّدتي"],
+    ["يا قمر", "ya gamar", "beautiful (lit. “moon”)", "красуне (досл. «місяцю»)", "يا قمر"],
+    ["يا حياتي", "ya ḥayāti", "my life", "життя моє", "يا حياتي"],
+    ["يا دنيتي", "ya dinyiti", "my whole world", "увесь мій світ", "يا دنياي"],
+  ] },
+  { id: "love", title: { en: "I love you", uk: "Я тебе кохаю", najdi: "أحبك", msa: "أحبّكِ" }, items: [
+    ["أحبك", "aḥibbik", "I love you", "я тебе кохаю", "أحبّكِ", { plan: true, north: "أحبچ|aḥibbich" }],
+    ["أحبك واجد", "aḥibbik wājid", "I love you so much", "я тебе дуже кохаю", "أحبّكِ كثيرًا", { north: "أحبچ واجد|aḥibbich wājid" }],
+    ["أحبك موت", "aḥibbik mōt", "I love you to death", "кохаю тебе до нестями", "أحبّكِ حتى الموت", { north: "أحبچ موت|aḥibbich mōt" }],
+    ["أموت فيك", "amūt fīk", "I'm crazy about you (lit. “I die in you”)", "я без тями від тебе", "أنا مغرم بكِ", { north: "أموت فيچ|amūt fīch" }],
+    ["قلبي لك", "galbi lik", "my heart is yours", "моє серце — твоє", "قلبي لكِ", { north: "قلبي لچ|galbi lich" }],
+    ["انتي كل شي بحياتي", "inti kill shay b-ḥayāti", "you're everything in my life", "ти — усе в моєму житті", "أنتِ كلّ شيءٍ في حياتي"],
+    ["ما أقدر أعيش بدونك", "ma agdar aʿīsh bdūnik", "I can't live without you", "я не можу жити без тебе", "لا أستطيع العيش بدونكِ", { north: "ما أقدر أعيش بدونچ|ma agdar aʿīsh bdūnich" }],
+    ["انتي لي وأنا لك", "inti li w ana lik", "you're mine and I'm yours", "ти моя, а я твій", "أنتِ لي وأنا لكِ", { north: "انتي لي وأنا لچ|inti li w ana lich" }],
+    ["حبك غيرني", "ḥubbik ghayyarni", "loving you changed me", "кохання до тебе змінило мене", "حبّكِ غيّرني", { north: "حبچ غيرني|ḥubbich ghayyarni" }],
+    ["أحبك أكثر من أمس وأقل من بكرة", "aḥibbik akthar min ams w agall min bukra", "I love you more than yesterday and less than tomorrow", "кохаю тебе більше, ніж учора, і менше, ніж завтра", "أحبّكِ أكثر من الأمس وأقلّ من الغد"],
+    ["تحبني؟", "tḥibbīni?", "do you love me?", "ти мене кохаєш?", "هل تحبّينني؟", { plan: true }],
+    ["وأنا أحبك أكثر", "w ana aḥibbik akthar", "and I love you more", "а я кохаю тебе ще більше", "وأنا أحبّكِ أكثر"],
+    ["انتي أحلى شي", "inti aḥla shay", "you're the best thing", "ти — найкраще, що є", "أنتِ أجمل شيء", { plan: true }],
+    ["ما أبي أحد غيرك", "ma abi aḥad ghērik", "I don't want anyone but you", "мені не потрібен ніхто, крім тебе", "لا أريد أحدًا غيركِ", { north: "ما أبي أحد غيرچ|ma abi aḥad ghērich" }],
+  ] },
+  { id: "miss", title: { en: "Missing her", uk: "Сумую за нею", najdi: "الشوق", msa: "الشوق" }, items: [
+    ["اشتقت لك", "ishtagt lik", "I missed you", "я скучив за тобою", "اشتقتُ إليكِ", { plan: true, north: "اشتقت لچ|ishtagt lich" }],
+    ["مشتاق لك", "mishtāg lik", "I miss you (said by a man)", "я сумую за тобою (каже чоловік)", "أنا مشتاق إليكِ", { plan: true }],
+    ["ودي أشوفك", "widdi ashūfik", "I wish I could see you", "як би я хотів тебе побачити", "أتمنّى أن أراكِ", { plan: true, north: "ودي أشوفچ|widdi ashūfich" }],
+    ["وحشتيني", "waḥashtīni", "I missed you (lit. “you made me lonely”)", "мені тебе бракувало", "اشتقتُ إليكِ"],
+    ["متى أشوفك؟", "mita ashūfik?", "when will I see you?", "коли я тебе побачу?", "متى أراكِ؟"],
+    ["أفكر فيك طول الوقت", "afakkir fīk ṭūl al-wagt", "I think about you all the time", "я весь час думаю про тебе", "أفكّر فيكِ طوال الوقت"],
+    ["أعد الأيام لين أشوفك", "aʿidd al-ayyām lēn ashūfik", "I'm counting the days until I see you", "я рахую дні, поки тебе побачу", "أعدّ الأيام حتى أراكِ"],
+    ["أبي أسمع صوتك", "abi asmaʿ ṣōtik", "I want to hear your voice", "хочу почути твій голос", "أريد أن أسمع صوتكِ"],
+    ["وحشني صوتك", "waḥashni ṣōtik", "I miss your voice", "я скучив за твоїм голосом", "اشتقتُ إلى صوتكِ"],
+    ["كلميني", "kallimīni", "call me", "подзвони мені", "كلّميني"],
+    ["أرسلي لي فويس", "arsili li fōys", "send me a voice note", "надішли мені голосове", "أرسلي لي رسالةً صوتية"],
+  ] },
+  { id: "beauty", title: { en: "Her beauty", uk: "Її краса", najdi: "جمالها", msa: "جمالها" }, items: [
+    ["انتي حلوة", "inti ḥilwa", "you're beautiful", "ти гарна", "أنتِ جميلة"],
+    ["ما شاء الله عليك", "ma shāʾ allah ʿalēk", "wow, God has willed it (with every compliment)", "машаллах (з кожним компліментом)", "ما شاء الله عليكِ", { north: "ما شاء الله عليچ|ma shāʾ allah ʿalēch", note: ENVY }],
+    ["شكلك يجنن", "shaklik yjannin", "you look amazing", "ти виглядаєш неймовірно", "مظهركِ رائع"],
+    ["طالعة حلوة اليوم", "ṭālʿa ḥilwa al-yōm", "you look beautiful today", "ти сьогодні гарна", "تبدين جميلةً اليوم"],
+    ["عيونك حلوة", "ʿyūnik ḥilwa", "your eyes are beautiful", "у тебе гарні очі", "عيناكِ جميلتان"],
+    ["عيونك تسحر", "ʿyūnik tisḥar", "your eyes are enchanting", "твої очі чарують", "عيناكِ ساحرتان"],
+    ["ضحكتك تجنن", "ẓiḥkatik tjannin", "your laugh is gorgeous", "твій сміх чудовий", "ضحكتكِ رائعة"],
+    ["صوتك حلو", "ṣōtik ḥilu", "your voice is lovely", "у тебе чудовий голос", "صوتكِ جميل"],
+    ["شعرك حلو", "shaʿrik ḥilu", "your hair is beautiful", "у тебе гарне волосся", "شعركِ جميل"],
+    ["انتي أحلى وحدة شفتها", "inti aḥla waḥda shiftaha", "you're the most beautiful girl I've ever seen", "ти найгарніша дівчина, яку я бачив", "أنتِ أجمل فتاةٍ رأيتُها"],
+    ["يا زينك", "ya zēnik", "how beautiful you are", "яка ж ти гарна", "ما أجملكِ", { north: "يا زينچ|ya zēnich" }],
+    ["كشختك حلوة", "kashkhatik ḥilwa", "you look so stylish", "ти так гарно вбрана", "أناقتكِ جميلة"],
+    ["الله خلقك وأبدع", "allah khalagik w abdaʿ", "God made you perfect", "Бог створив тебе досконалою", "خلقكِ الله فأبدع"],
+  ] },
+  { id: "mind", title: { en: "Her mind and heart", uk: "Її розум і серце", najdi: "عقلها وقلبها", msa: "عقلها وقلبها" }, items: [
+    ["انتي ذكية", "inti dhakiyya", "you're smart", "ти розумна", "أنتِ ذكية"],
+    ["انتي فاهمة", "inti fāhma", "you really get things", "ти тямуща", "أنتِ فاهمة"],
+    ["عقلك كبير", "ʿaglik kibīr", "you're brilliant (lit. “your mind is big”)", "ти дуже розумна (досл. «у тебе великий розум»)", "عقلكِ كبير"],
+    ["أحب طريقة تفكيرك", "aḥibb ṭarīgat tafkīrik", "I love the way you think", "мені подобається, як ти думаєш", "أحبّ طريقة تفكيركِ"],
+    ["انتي أحسن معلمة", "inti aḥsan mʿallima", "you're the best teacher", "ти найкраща вчителька", "أنتِ أفضل معلّمة"],
+    ["تعلمت منك واجد", "tʿallamt minnik wājid", "I've learned so much from you", "я так багато навчився в тебе", "تعلّمتُ منكِ كثيرًا"],
+    ["قلبك طيب", "galbik ṭayyib", "you have a kind heart", "у тебе добре серце", "قلبكِ طيّب"],
+    ["أفتخر فيك", "aftakhir fīk", "I'm proud of you", "я пишаюся тобою", "أفتخر بكِ", { north: "أفتخر فيچ|aftakhir fīch" }],
+    ["انتي قوية", "inti gawiyya", "you're strong", "ти сильна", "أنتِ قويّة"],
+    ["كلامك صح", "kalāmik ṣaḥḥ", "you're right about that", "ти правильно кажеш", "كلامكِ صحيح"],
+  ] },
+  { id: "daynight", title: { en: "Good morning, good night", uk: "Доброго ранку, на добраніч", najdi: "صباحها وليلها", msa: "تحيّات الصباح والمساء" }, items: [
+    ["صباح الخير يا قلبي", "ṣabāḥ al-khēr ya galbi", "good morning, my heart", "доброго ранку, серденько", "صباح الخير يا قلبي"],
+    ["صباح الورد", "ṣabāḥ al-ward", "good morning (lit. “morning of roses”)", "доброго ранку (досл. «ранок троянд»)", "صباح الورد"],
+    ["صباحك سكر", "ṣabāḥik sukkar", "a sugar-sweet morning to you", "солодкого тобі ранку", "صباحكِ سكّر"],
+    ["صحيتي؟", "ṣiḥīti?", "are you awake?", "ти вже прокинулась?", "هل استيقظتِ؟"],
+    ["كلميني أول ما تصحين", "kallimīni awwal ma tiṣḥīn", "call me as soon as you wake up", "подзвони мені, щойно прокинешся", "كلّميني حالما تستيقظين"],
+    ["تصبحين على خير", "tiṣbiḥīn ʿala khēr", "good night", "на добраніч", "تصبحين على خير", { note: { en: "Reply: وانت من أهله w int min ahlah", uk: "Відповідь: وانت من أهله w int min ahlah", najdi: "الرد: وانت من أهله", msa: "الرد: وأنت من أهله" } }],
+    ["نامي زين", "nāmi zēn", "sleep well", "спи добре", "نامي جيدًا"],
+    ["أحلام سعيدة", "aḥlām saʿīda", "sweet dreams", "солодких снів", "أحلامًا سعيدة"],
+    ["بحلم فيك", "baḥlam fīk", "I'll dream of you", "я снитиму тебе", "سأحلم بكِ"],
+  ] },
+  { id: "care", title: { en: "Taking care of her", uk: "Турбота про неї", najdi: "الاهتمام فيها", msa: "الاهتمام بها" }, items: [
+    ["نمتي زين؟", "nimti zēn?", "did you sleep well?", "ти добре спала?", "هل نمتِ جيدًا؟", { plan: true }],
+    ["أكلتي؟", "akalti?", "have you eaten?", "ти поїла?", "هل أكلتِ؟"],
+    ["طمنيني عليك", "ṭammnīni ʿalēk", "let me know you're okay", "дай знати, що з тобою все гаразд", "طمئنيني عليكِ"],
+    ["انتبهي لنفسك", "intabhi l-nafsik", "take care of yourself", "бережи себе", "اعتني بنفسكِ"],
+    ["لا تتعبين نفسك", "la titʿibīn nafsik", "don't wear yourself out", "не перевтомлюйся", "لا تُتعبي نفسكِ"],
+    ["وش فيك؟", "wesh fīk?", "what's wrong?", "що з тобою?", "ما بكِ؟", { north: "وش فيچ؟|wesh fīch?" }],
+    ["أنا هنا عشانك", "ana hina ʿashānik", "I'm here for you", "я тут заради тебе", "أنا هنا من أجلكِ"],
+    ["سلامتك يا قلبي", "salāmtik ya galbi", "get well soon, my heart", "одужуй, серденько", "سلامتكِ يا قلبي"],
+    ["الله يحفظك", "allah yiḥfaẓik", "God keep you safe", "бережи тебе Боже", "حفظكِ الله", { plan: true }],
+    ["تبين شي؟", "tibīn shay?", "do you need anything?", "тобі щось потрібно?", "هل تحتاجين شيئًا؟", { plan: true }],
+  ] },
+  { id: "flirt", title: { en: "Flirting", uk: "Фліртувати", najdi: "الغزل", msa: "الغزل" }, items: [
+    ["ليش مستحية؟", "lēsh mistaḥya?", "why are you shy?", "чого ти соромишся?", "لماذا أنتِ خجولة؟"],
+    ["تغارين؟", "tighārīn?", "are you jealous?", "ти ревнуєш?", "هل تغارين؟"],
+    ["انتي لي وبس", "inti li w bass", "you're mine, only mine", "ти моя, тільки моя", "أنتِ لي وحدي"],
+    ["سرقتي قلبي", "sragti galbi", "you stole my heart", "ти вкрала моє серце", "سرقتِ قلبي"],
+    ["قلبي يدق لما أشوفك", "galbi ydigg lamma ashūfik", "my heart races when I see you", "моє серце калатає, коли я тебе бачу", "قلبي يخفق حين أراكِ"],
+    ["تدرين إنك حلوة؟", "tidrīn innik ḥilwa?", "do you know you're beautiful?", "ти знаєш, що ти гарна?", "أتعلمين أنّكِ جميلة؟"],
+    ["وش هالحلا؟", "wesh hal-ḥala?", "where did all this beauty come from?", "звідки стільки краси?", "ما كلّ هذا الجمال؟"],
+    ["لا تطالعيني كذا", "la tṭālʿīni kidha", "don't look at me like that", "не дивись на мене так", "لا تنظري إليّ هكذا"],
+    ["تذبحيني", "tidhbaḥīni", "you're killing me (you're too cute)", "ти мене вбиваєш (ти занадто мила)", "أنتِ تقتلينني بجمالكِ"],
+    ["يا حلو زعلك", "ya ḥilu zaʿalik", "you're cute even when you're upset", "ти мила, навіть коли сердишся", "ما أجملكِ وأنتِ غاضبة"],
+    ["ابتسمي", "ibtismi", "smile", "усміхнись", "ابتسمي"],
+  ] },
+  { id: "sorry", title: { en: "Sorry and making up", uk: "Вибачення й примирення", najdi: "الاعتذار والمراضاة", msa: "الاعتذار والمصالحة" }, items: [
+    ["آسف", "āsif", "sorry (said by a man)", "вибач (каже чоловік)", "آسف", { plan: true }],
+    ["سامحيني", "sāmḥīni", "forgive me", "пробач мені", "سامحيني", { plan: true }],
+    ["لا تزعلين", "la tizʿalīn", "don't be upset", "не ображайся", "لا تحزني", { plan: true }],
+    ["معك حق", "maʿik ḥagg", "you're right", "ти маєш рацію", "معكِ حقّ", { plan: true }],
+    ["ما قصدت", "ma gaṣadt", "I didn't mean it", "я не хотів", "لم أقصد"],
+    ["حقك علي", "ḥaggik ʿalayy", "it's on me — I owe you (a warm apology)", "моя провина, пробач (тепле вибачення)", "الحقّ عليّ"],
+    ["الغلط مني", "al-ghalaṭ minni", "the mistake was mine", "помилка моя", "الخطأ منّي"],
+    ["زعلانة مني؟", "zaʿlāna minni?", "are you upset with me?", "ти на мене ображаєшся?", "هل أنتِ غاضبة منّي؟"],
+    ["وش أسوي عشان ترضين؟", "wesh asawwi ʿashān tirẓīn?", "what can I do to make it up to you?", "що мені зробити, щоб ти не сердилась?", "ماذا أفعل لكي ترضي؟"],
+    ["ما أحب أشوفك زعلانة", "ma aḥibb ashūfik zaʿlāna", "I hate seeing you upset", "мені боляче бачити тебе засмученою", "لا أحبّ أن أراكِ حزينة"],
+    ["صافي؟", "ṣāfi?", "are we okay now?", "ми помирились?", "هل تصالحنا؟"],
+  ] },
+  { id: "close", title: { en: "Close to you", uk: "Ближче до тебе", najdi: "قربك", msa: "القُرب" }, items: [
+    ["تعالي جنبي", "taʿāli jambi", "come sit next to me", "іди сядь біля мене", "تعالي بجانبي"],
+    ["قربي مني", "garrbi minni", "come closer", "підійди ближче", "اقتربي منّي"],
+    ["خليك قريبة", "khallīk grība", "stay close", "будь поруч", "ابقي قريبة"],
+    ["أبي أمسك يدك", "abi amsik yaddik", "I want to hold your hand", "хочу тримати тебе за руку", "أريد أن أمسك يدكِ"],
+    ["ودي أضمك الحين", "widdi aẓimmik al-ḥīn", "I wish I could hold you right now", "як би я хотів зараз тебе обійняти", "أتمنّى أن أضمّكِ الآن"],
+    ["أبي بوسة", "abi bōsa", "I want a kiss", "хочу поцілунок", "أريد قُبلة"],
+    ["عطيني بوسة", "ʿaṭīni bōsa", "give me a kiss", "поцілуй мене", "أعطيني قُبلة"],
+    ["ريحتك تجنن", "rīḥtik tjannin", "you smell amazing", "ти неймовірно пахнеш", "رائحتكِ رائعة"],
+    ["انتي تجننيني", "inti tjanninīni", "you drive me crazy", "ти зводиш мене з розуму", "أنتِ تُجنّنينني"],
+    ["ما أقدر أقاوم", "ma agdar agāwim", "I can't resist you", "я не можу встояти", "لا أستطيع المقاومة"],
+    ["لا تبعدين عني", "la tibʿidīn ʿanni", "don't go far from me", "не віддаляйся від мене", "لا تبتعدي عنّي"],
+    ["ودي أنام بحضنك", "widdi anām b-ḥuẓnik", "I wish I could fall asleep in your arms", "як би я хотів заснути в твоїх обіймах", "أتمنّى أن أنام في حضنكِ"],
+    ["أبيك", "abīk", "I want you", "я хочу тебе", "أريدكِ", { north: "أبيچ|abīch" }],
+    ["انتي فتنة", "inti fitna", "you're irresistible", "ти спокуслива", "أنتِ فاتنة"],
+  ] },
+  { id: "future", title: { en: "Our future", uk: "Наше майбутнє", najdi: "مستقبلنا", msa: "مستقبلنا" }, items: [
+    ["أبي أتزوجك", "abi atzawwajik", "I want to marry you", "я хочу одружитися з тобою", "أريد أن أتزوّجكِ", { north: "أبي أتزوجچ|abi atzawwajich" }],
+    ["تتزوجيني؟", "titzawwajīni?", "will you marry me?", "ти вийдеш за мене?", "هل تتزوّجينني؟"],
+    ["انتي بتصيرين زوجتي", "inti bitṣīrīn zōjti", "you're going to be my wife", "ти будеш моєю дружиною", "ستصبحين زوجتي"],
+    ["أبي أعيش عمري كله معك", "abi aʿīsh ʿumri killah maʿik", "I want to spend my whole life with you", "я хочу прожити з тобою все життя", "أريد أن أعيش عمري كلّه معكِ", { north: "أبي أعيش عمري كله معچ|abi aʿīsh ʿumri killah maʿich" }],
+    ["أنا جاد", "ana jādd", "I'm serious", "я серйозно", "أنا جادّ"],
+    ["أبي أتعرف على أهلك", "abi atʿarraf ʿala ahalik", "I want to meet your family", "я хочу познайомитися з твоєю родиною", "أريد أن أتعرّف على أهلكِ"],
+    ["أتعلم العربي عشانك", "atʿallam al-ʿarabi ʿashānik", "I'm learning Arabic for you", "я вчу арабську заради тебе", "أتعلّم العربية من أجلكِ"],
+    ["ودي يكون عندنا بيت", "widdi ykūn ʿindana bēt", "I'd love for us to have a home", "я мрію, щоб у нас був дім", "أتمنّى أن يكون لنا بيت"],
+    ["كم ودك عيال؟", "kam widdik ʿiyāl?", "how many children would you like?", "скільки дітей ти хотіла б?", "كم طفلًا تريدين؟"],
+    ["إن شاء الله نكون مع بعض على طول", "in shāʾ allah nkūn maʿ baʿaẓ ʿala ṭūl", "God willing, we'll be together forever", "дасть Бог, ми будемо разом завжди", "إن شاء الله نكون معًا دائمًا"],
+    ["أوعدك", "awʿidik", "I promise you", "обіцяю тобі", "أعدكِ", { north: "أوعدچ|awʿidich" }],
+  ] },
+  { id: "family", title: { en: "Meeting her family", uk: "Знайомство з її родиною", najdi: "مع أهلها", msa: "مع أهلها" }, items: [
+    ["حياك الله", "ḥayyāk allah", "welcome (to a man)", "ласкаво просимо (до чоловіка)", "حيّاك الله"],
+    ["الله يحييك", "allah yḥayyīk", "the reply to “welcome”", "відповідь на привітання", "حيّاك الله"],
+    ["كيف حالك يا عم؟", "kēf ḥālak ya ʿamm?", "how are you, sir? (to her father; lit. “uncle”)", "як ваші справи? (до її батька; досл. «дядьку»)", "كيف حالك يا عمّ؟"],
+    ["كيف حالك يا خالة؟", "kēf ḥālik ya khāla?", "how are you, ma'am? (to her mother; lit. “aunt”)", "як ваші справи? (до її мами; досл. «тітонько»)", "كيف حالكِ يا خالة؟"],
+    ["تشرفت بمعرفتك", "tsharraft b-maʿriftak", "it's an honor to meet you (to a man)", "для мене честь познайомитися з вами (до чоловіка)", "تشرّفتُ بمعرفتك"],
+    ["الله يعطيك العافية", "allah yaʿṭīk al-ʿāfya", "God give you strength (thanks to someone who worked or hosted)", "дай вам Боже сили (подяка тому, хто працював чи приймав)", "أعطاك الله العافية"],
+    ["تسلم يدك", "tislam yaddik", "bless your hands (after a meal someone cooked)", "золоті руки (після страви, яку хтось приготував)", "سلمت يداكِ"],
+    ["ما قصرتوا", "ma gaṣṣartu", "you've been so generous (lit. “you didn't fall short”)", "ви такі гостинні (досл. «ви нічого не пошкодували»)", "لم تقصّروا"],
+    ["الله يخلف عليكم", "allah yikhlif ʿalēkum", "may God repay you (after being hosted)", "нехай Бог вам віддячить (після гостини)", "أخلف الله عليكم"],
+    ["بس، الله يعطيك العافية", "bass, allah yaʿṭīk al-ʿāfya", "that's enough, thank you (with Saudi coffee)", "досить, дякую (коли пригощають саудівською кавою)", "يكفي، أعطاك الله العافية", { note: { en: "Gently shake your small coffee cup from side to side: it means “no more, thank you”.", uk: "Легенько похитай чашечкою з боку в бік — це означає «більше не треба, дякую».", najdi: "هز الفنجال يعني كفاية.", msa: "هزّ الفنجان يعني الاكتفاء." } }],
+    ["عساكم بخير", "ʿasākum bkhēr", "I hope you're all well", "сподіваюся, у вас усе добре", "أرجو أن تكونوا بخير"],
+    ["أبي الحلال", "abi al-ḥalāl", "I want to do this properly — to marry", "я хочу все по-чесному — одружитися", "أريد الزواج الحلال"],
+    ["جيت أطلب القرب منكم", "jīt aṭlub al-gurb minkum", "I've come to ask to join your family (to ask for her hand)", "я прийшов просити стати вашою ріднею (просити її руки)", "جئتُ أطلب مصاهرتكم"],
+    ["علموني عاداتكم", "ʿallimūni ʿādātkum", "teach me your customs", "навчіть мене ваших звичаїв", "علّموني عاداتكم"],
+  ] },
+  { id: "hers", title: { en: "What she may say to you", uk: "Що вона може сказати тобі", najdi: "اللي ممكن تقوله لك", msa: "ما قد تقوله لك" }, items: [
+    ["وحشتني", "waḥashtni", "I missed you (to a man)", "я скучила за тобою", "اشتقتُ إليك", { note: HIM }],
+    ["مشتاقة لك", "mishtāga lak", "I miss you (said by a woman)", "я сумую за тобою (каже жінка)", "أنا مشتاقة إليك"],
+    ["وش تسوي؟", "wesh tsawwi?", "what are you doing? (to a man)", "що робиш? (до чоловіка)", "ماذا تفعل؟", { note: HIM }],
+    ["انتبه لنفسك", "intabih l-nafsak", "take care of yourself (to a man)", "бережи себе (до чоловіка)", "انتبه لنفسك", { note: HIM }],
+    ["لا تتأخر", "la titʾakhkhar", "don't be late (to a man)", "не запізнюйся (до чоловіка)", "لا تتأخّر", { note: HIM }],
+    ["تصبح على خير", "tiṣbaḥ ʿala khēr", "good night (to a man)", "на добраніч (до чоловіка)", "تصبح على خير", { note: HIM }],
+    ["يا حليلك", "ya ḥalīlik", "aww, how sweet", "ой, який ти милий", "ما ألطفك", { plan: true, check: true }],
+    ["صدق؟", "ṣidg?", "really?", "справді?", "حقًّا؟"],
+    ["والله؟", "wallah?", "really? (lit. “by God?”)", "та ну? (досл. «клянешся?»)", "أحقًّا؟"],
+    ["وأنا بعد", "w ana baʿad", "me too", "я теж", "وأنا أيضًا", { plan: true }],
+  ] },
+];
+
+const fnv = s => {
+  let h = 0x811c9dc5;
+  for (const ch of s) h = Math.imul(h ^ ch.codePointAt(0), 0x01000193) >>> 0;
+  return h.toString(36);
+};
+
+// As objects: { id, section, ar, say, en, uk, msa, north?, note?, check }. The id follows the Arabic, so a card
+// keeps its progress when phrases are added or moved.
+export const LOVE = SECTIONS.map(s => ({
+  ...s,
+  items: s.items.map(([ar, say, en, uk, msa, x = {}]) => {
+    const [nAr, nSay] = x.north?.split("|") ?? [];
+    return { id: `lv.${fnv(ar)}`, section: s.id, ar, say, en, uk, msa, north: nAr ? { ar: nAr, say: nSay } : null, note: x.note ?? null, check: x.plan ? Boolean(x.check) : true };
+  }),
+}));
+export const LOVE_ITEMS = LOVE.flatMap(s => s.items);
+
+// Shown at the top of the page.
+export const LOVE_INTRO = {
+  en: "Everything here is said to her. In the north — around Hafar al-Batin — many people say “your” to a woman with -ich (چ): أحبچ aḥibbich rather than أحبك aḥibbik, and to a man with -ak. Both are understood all over Saudi Arabia; say it the way she does.",
+  uk: "Усе тут звернено до неї. На півночі — біля Хафр-ель-Батіну — до жінки часто кажуть «твій» із закінченням -ich (چ): أحبچ aḥibbich замість أحبك aḥibbik, а до чоловіка — -ak. Обидва варіанти розуміють по всій Саудівській Аравії; кажи так, як каже вона.",
+  najdi: "كل الكلام هنا موجّه لها. في الشمال — عند حفر الباطن — كثير يقولون للبنت «چ»: أحبچ بدل أحبك، وللرجال «ـك» مفتوحة. الثنتين مفهومة بكل السعودية؛ قلها مثل ما تقولها هي.",
+  msa: "كلّ العبارات هنا موجّهة إليها. في الشمال — قرب حفر الباطن — يُخاطَب المؤنث كثيرًا بـ«چ»: أحبچ بدل أحبك، والمذكر بالفتح. وكلاهما مفهوم في أنحاء السعودية؛ فقلها كما تقولها هي.",
+};

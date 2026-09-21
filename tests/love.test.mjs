@@ -21,3 +21,18 @@ test("Dima's welcome: the headline and at least 40 different compliments, in fou
   LOVE.COMPLIMENTS.forEach((c, i) => checkLine(c, `compliment ${i + 1}`));
   assert.equal(new Set(LOVE.COMPLIMENTS.map(c => c.ar)).size, LOVE.COMPLIMENTS.length, "a compliment is repeated");
 });
+
+test("the phrase book: four languages, unique, and every unflagged phrase is in NAJDI-PLAN.md word for word", async () => {
+  const { readFileSync } = await import("node:fs");
+  const plan = readFileSync(new URL("../NAJDI-PLAN.md", import.meta.url), "utf8").split("\n");
+  assert.ok(LOVE.LOVE_ITEMS.length >= 120);
+  assert.equal(new Set(LOVE.LOVE_ITEMS.map(x => x.id)).size, LOVE.LOVE_ITEMS.length, "two phrases share an id");
+  for (const l of LOVE.LOVE) for (const f of ["en", "uk", "najdi", "msa"]) assert.ok(l.title[f], `section ${l.id}: title ${f}`);
+  for (const x of LOVE.LOVE_ITEMS) {
+    checkLine(x, `phrase ${x.section}`);
+    assert.ok(x.say && /[a-z]/.test(x.say), `${x.ar}: pronunciation`);
+    if (x.north) assert.match(x.north.ar, /چ/, `${x.ar}: the northern form should have چ`);
+    if (!x.check) assert.ok(plan.some(line => line.includes(x.ar) && line.includes(x.say)), `${x.ar} (${x.say}) is not flagged but isn't in the plan`);
+  }
+  for (const f of ["en", "uk", "najdi", "msa"]) assert.ok(LOVE.LOVE_INTRO[f]);
+});

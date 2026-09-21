@@ -11,6 +11,7 @@ export const STRINGS = {
   "nav.thePlan": { en: "The plan", uk: "План навчання", najdi: "الخطة كاملة", msa: "خطة التعلّم" },
   "nav.progress": { en: "Progress", uk: "Прогрес", najdi: "وين وصلت", msa: "التقدّم" },
   "nav.script": { en: "Script", uk: "Письмо", najdi: "الكتابة", msa: "الكتابة" },
+  "nav.love": { en: "To her ♥", uk: "Для неї ♥", najdi: "كلام الحب ♥", msa: "عبارات الحب ♥" },
   "nav.letters": { en: "Letters", uk: "Літери", najdi: "الحروف", msa: "الحروف" },
   "nav.vowels": { en: "Vowels", uk: "Голосні", najdi: "الحركات", msa: "الحركات" },
   "nav.reading": { en: "Reading", uk: "Читання", najdi: "القراية", msa: "القراءة" },
@@ -276,6 +277,17 @@ export const STRINGS = {
   "progress.goal": { en: "goal", uk: "мета", najdi: "الهدف", msa: "الهدف" },
 
   // Letters
+  "love.title": { en: "To her ♥", uk: "Для неї ♥", najdi: "كلام الحب ♥", msa: "عبارات الحب ♥" },
+  "love.sub": {
+    en: "What to say to her — love, missing her, compliments, flirting, making up, your future and her family. In her dialect.",
+    uk: "Що сказати їй — кохання, туга, компліменти, флірт, примирення, ваше майбутнє та її родина. Її діалектом.",
+    najdi: "وش تقول لها — الحب والشوق والمدح والغزل والمراضاة ومستقبلكم وأهلها. بلهجتها.",
+    msa: "ما تقوله لها — الحبّ والشوق والمديح والغزل والمصالحة ومستقبلكما وأهلها. بلهجتها.",
+  },
+  "love.north": { en: "North:", uk: "Північ:", najdi: "بالشمال:", msa: "في الشمال:" },
+  "love.study": { en: "Study them as cards", uk: "Вчити як картки", najdi: "ذاكرها بالكروت", msa: "ادرسها بالبطاقات" },
+  "love.hide": { en: "Hide the meanings", uk: "Сховати переклад", najdi: "خبّ المعنى", msa: "إخفاء المعاني" },
+  "love.sections": { en: "Sections", uk: "Розділи", najdi: "الأقسام", msa: "الأقسام" },
   "letters.title": { en: "Letters", uk: "Літери", najdi: "الحروف", msa: "الحروف" },
   "letters.sub": {
     en: "28 letters in 12 days, learned by shape rather than alphabet order. Click a big letter to hear its name, or a word to hear it said.",
@@ -755,6 +767,7 @@ export const STRINGS = {
   "cards.allDoneToday": { en: "All done for today", uk: "На сьогодні все", najdi: "خلّصت كروت اليوم", msa: "أنهيت بطاقات اليوم" },
   "cards.waiting": { en: "Cards waiting: {n}", uk: "Карток чекає: {n}", najdi: "كروت تنتظرك: {n}", msa: "بطاقات بانتظارك: {n}" },
   "cards.decks": { en: "Decks", uk: "Колоди", najdi: "المجموعات", msa: "المجموعات" },
+  "cards.deckLove": { en: "To her ♥", uk: "Для неї ♥", najdi: "كلام الحب ♥", msa: "عبارات الحب ♥" },
   "cards.deckPhrases": { en: "Script weeks · daily phrases", uk: "Тижні письма · фрази дня", najdi: "أسابيع الكتابة · عبارات اليوم", msa: "أسبوعا الكتابة · العبارات اليومية" },
   "cards.allDecks": { en: "All decks", uk: "Усі колоди", najdi: "كل المجموعات", msa: "جميع المجموعات" },
   "cards.study": { en: "Study", uk: "Вчити", najdi: "ذاكر", msa: "ادرس" },

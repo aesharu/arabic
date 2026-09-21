@@ -34,6 +34,7 @@ const ICONS = {
   pause: `<path d="M8.5 5v14M15.5 5v14"/>`,
   more: `<circle cx="5.5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="18.5" cy="12" r="1.6" fill="currentColor"/>`,
   close: `<path d="M6 6l12 12M18 6L6 18"/>`,
+  heart: `<path d="M12 20.5C6 15.8 3 12.6 3 8.9 3 6.2 5.1 4 7.7 4c1.7 0 3.2.9 4.3 2.3C13.1 4.9 14.6 4 16.3 4 18.9 4 21 6.2 21 8.9c0 3.7-3 6.9-9 11.6z"/>`,
   mic: `<rect x="9" y="2.8" width="6" height="11.4" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5v3.5M8.5 21h7"/>`,
   stop: `<rect x="6.5" y="6.5" width="11" height="11" rx="2.2" fill="currentColor"/>`,
   slow: `<path d="M3.5 15.5a7.5 6.8 0 0 1 15 0z"/><path d="M8 15.5l1.8-3.6h3.4l1.8 3.6M6.5 15.5v2.8M15.5 15.5v2.8M18.5 13.4c.6-1.4 1.6-2.2 2.6-2 .6.2.8.9.4 1.5-.5.8-1.6 1.2-3 1.2"/>`,

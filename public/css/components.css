@@ -1191,3 +1191,20 @@ html[dir="rtl"] .lt-table th { letter-spacing: 0; }
   .lt-ex { grid-column: 1 / -1; grid-row: 4; border-top: 1px solid var(--line) !important; padding-top: 4px !important; }
   .lt-exbtn { width: 100%; display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; gap: 10px; }
 }
+
+/* To her ♥ (#/love) */
+.lv-intro p { display: flex; gap: 10px; align-items: flex-start; }
+.lv-intro p .i { flex: 0 0 auto; width: 22px; height: 22px; color: #D63A5E; fill: color-mix(in srgb, #D63A5E 20%, transparent); margin-top: 3px; }
+.lv-jump { margin: 0 0 8px; }
+.lv-jump small { opacity: .7; margin-inline-start: 4px; }
+.lv-section { scroll-margin-top: 80px; margin: 22px 0 0; }
+.lv-north { display: block; margin-top: 3px; font-size: 14.5px; color: var(--muted); }
+.lv-north i { font-style: normal; font-weight: 800; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; margin-inline-end: 6px; }
+.lv-north .ar { font-size: 19px; }
+.lv-sections.is-hidden .gr-mean, .lv-sections.is-hidden .gr-msa, .lv-sections.is-hidden .pnote { visibility: hidden; }
+.nav-love .i { color: #F7A8B8; }
+.lv-phrase .phrase-ar { flex: 0 1 auto; max-width: 100%; min-width: 0; }
+.lv-phrase .gr-mean { display: block; font-weight: 800; font-size: 17px; }
+.lv-phrase .gr-msa { display: block; margin-top: 2px; color: var(--muted); font-size: 14px; }
+.lv-phrase .gr-msa i { font-style: normal; font-weight: 800; font-size: 11.5px; letter-spacing: .04em; margin-inline-end: 6px; }
+.lv-phrase .gr-msa .ar { font-size: 18px; }

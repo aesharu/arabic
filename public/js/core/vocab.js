@@ -3,6 +3,7 @@
 // A deck opens on the day its stage starts, so new cards follow the plan — unless "open every deck" is on.
 import { PHASES } from "../data/plan.js";
 import { PHRASES } from "../data/phrases.js";
+import { LOVE_ITEMS } from "../data/love.js";
 import { dateOfDay } from "./schedule.js";
 import * as content from "./content.js";
 
@@ -33,6 +34,7 @@ content.onChange(applyEdits);
 // id → when that deck opens. PHASES[1] is Stage 1, [2] Stage 2, [3] Stage 3, [4] Stage 4.
 export const DECKS = [
   { id: "phrases", opens: PHASES[0].start },
+  { id: "love", opens: PHASES[0].start }, // what to say to her — open from the first day
   { id: "1", opens: PHASES[1].start },
   { id: "grammar", opens: PHASES[1].start },
   { id: "2", opens: PHASES[2].start },
@@ -78,7 +80,9 @@ export function buildNotes(vocab) {
       topicTitle: twin?.topicTitle,
     });
   }
-  for (const d of DECKS.slice(1)) {
+  // To her ♥ (data/love.js): open from Day 1.
+  for (const x of LOVE_ITEMS) add({ ...x, deck: "love", opens: OPENS.love, topicTitle: null });
+  for (const d of DECKS.filter(d => !["phrases", "love"].includes(d.id))) {
     for (const e of all.filter(x => x.deck === d.id)) add({ ...e, opens: OPENS[d.id] });
   }
   return notes;

@@ -23,6 +23,7 @@ import cards from "./views/cards.js";
 import words from "./views/words.js";
 import phrases from "./views/phrases.js";
 import letters from "./views/letters.js";
+import love from "./views/love.js";
 import vowels from "./views/vowels.js";
 import reading from "./views/reading.js";
 import quiz from "./views/quiz.js";
@@ -37,8 +38,8 @@ import { openEditor } from "./core/editor.js";
 
 // Each view is { titleKey, mount(root, { params, signal }) }. Listeners a view adds with
 // { signal } are removed automatically when you leave it.
-const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record, grammar, lessons, saudi, review };
-const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound", grammar: "reading", lessons: "plan", saudi: "star", review: "check" };
+const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record, grammar, lessons, saudi, review, love };
+const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound", grammar: "reading", lessons: "plan", saudi: "star", review: "check", love: "heart" };
 const view = document.getElementById("view");
 const motion = !matchMedia("(prefers-reduced-motion: reduce)").matches;
 let controller = null;
