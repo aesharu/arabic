@@ -9,6 +9,11 @@ import * as store from "../core/store.js";
 import { CITIES, PRAYERS, around, qibla, hijriParts, saudiToday } from "../core/prayer.js";
 import { STORIES, REGIONS, FACTS, OCCASIONS } from "../data/saudi.js";
 import { speakText } from "../core/vocab.js";
+import * as content from "../core/content.js";
+
+// Every word can be corrected in edit mode (ids sa.<story>x<n>).
+for (const s of STORIES) s.words.forEach((w, i) => (w.id = `sa.${s.id}x${i}`));
+content.register(STORIES.flatMap(s => s.words));
 
 const DAY = 864e5;
 const cityNow = () => CITIES.find(c => c.id === store.get().prefs.city) ?? CITIES[0];
@@ -55,10 +60,10 @@ function compass(bearing) {
   </svg>`;
 }
 
-const wordBtn = w => `<button class="phrase" data-say="${esc(speakText(w.ar))}">${ar(w.ar, "phrase-ar")}
+const wordBtn = w => (content.apply(w), `<button class="phrase" data-say="${esc(speakText(w.ar))}" data-edit-id="${w.id}">${ar(w.ar, "phrase-ar")}
   <span class="phrase-t">${translit(w.say)} ${w.check ? flag({ check: true }) : ""}
     <span class="gr-mean">${esc(tx({ en: w.en, uk: w.uk, najdi: w.en, msa: w.en }))}</span>
-    <span class="gr-msa"><i>${t("lab.msa")}</i> ${ar(w.msa)}</span></span>${playIcon}</button>`;
+    <span class="gr-msa"><i>${t("lab.msa")}</i> ${ar(w.msa)}</span></span>${playIcon}</button>`);
 
 export default {
   titleKey: "saudi.title",

@@ -43,11 +43,13 @@ Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
 
 - **Saudi life** `#/saudi` (`data/saudi.js`, `core/prayer.js`, `views/saudi.js`): Hijri date (Umm al-Qura via Intl), prayer times + next-prayer countdown + Qibla compass for Riyadh, Buraidah, Ha'il, Sakaka, Arar, Tabuk (calculated in the browser; `tests/saudi.test.mjs` checks Riyadh), the year's occasions, 19 culture stories (region tags all / Najd / north) with words to hear (flagged unless in the plan), 15 facts.
 
+- **Edit mode + Suggestions** (`core/editmode.js`, `core/editor.js`, `views/review.js`; "✎ Edit texts" in the menu): tap any text — every `t()` / `tx()` output remembers its source while editing (`i18n.js` `sourceOf`); words, conversation lines, grammar examples and Saudi words open the word editor (`data-edit` / `data-edit-id`). Overrides: `s.<string key>`, `x.<fnv of English>`, or the item id, in D1 `edits`. Dima's saves go to D1 `suggestions` (pending; she sees them already); Volodymyr approves/rejects on `#/review` (badge count in the menu); his own edits go live directly.
+
 ## Next (in this order)
 
 0. **Conversations for weeks 19–21 and 27–67** (weeks 3–18 and 22–26 are written; the Record page has a Conversations tab). Same rules: plan words, "to her" forms, every line flagged until Dima ticks it.
 1. Tell Volodymyr which recordings/corrections exist; a script to export `edits` from D1 as proposed changes to NAJDI-PLAN.md.
-2. **Edit mode for Dima (in progress, asked 21 Sept):** she taps any text on the site (UI strings via `t()`, content via `tx()`, words, lines), edits all four languages, sends it as a suggestion; Volodymyr approves/rejects on a Suggestions page; approved = the site's text for both. Then: next prayer + fact of the day on Today and the welcome screen.
+2. Next prayer + fact of the day on Today and the welcome screen. Make the Phrases/Today phrase items and letter names editable in edit mode too (they use data/phrases.js / letters.js directly).
 3. Optional PIN for Volodymyr's sign-in (right now the name is the password; offered, not asked for yet).
 4. `npm run pdf`: `scripts/print-pdf.mjs`, Playwright with the installed Chrome, waits for `body[data-print-ready]`, writes to `print/pdf/` (gitignored).
 5. Progress page: cards answered per day, plus the words-known meter.

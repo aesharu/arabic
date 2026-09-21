@@ -42,6 +42,7 @@
 <link rel="modulepreload" href="js/core/content.js">
 <link rel="modulepreload" href="js/core/dates.js">
 <link rel="modulepreload" href="js/core/dom.js">
+<link rel="modulepreload" href="js/core/editmode.js">
 <link rel="modulepreload" href="js/core/editor.js">
 <link rel="modulepreload" href="js/core/i18n.js">
 <link rel="modulepreload" href="js/core/music.js">
@@ -76,6 +77,7 @@
 <link rel="modulepreload" href="js/views/progress.js">
 <link rel="modulepreload" href="js/views/quiz.js">
 <link rel="modulepreload" href="js/views/reading.js">
+<link rel="modulepreload" href="js/views/review.js">
 <link rel="modulepreload" href="js/views/saudi.js">
 <link rel="modulepreload" href="js/views/record.js">
 <link rel="modulepreload" href="js/views/shared.js">
@@ -103,6 +105,7 @@
     <nav data-i18n-label="nav.main" aria-label="Main">
       <p class="navhead" data-i18n="nav.plan">Plan</p>
       <a href="#/today" data-route="today"><span data-i18n="nav.today">Today</span></a>
+      <a href="#/review" data-route="review" class="nav-review"><span data-i18n="nav.review">Suggestions</span><span class="navcount rv-count" hidden></span></a>
       <a href="#/progress" data-route="progress"><span data-i18n="nav.progress">Progress</span></a>
       <a href="#/calendar" data-route="calendar"><span data-i18n="nav.calendar">Calendar</span></a>
       <a href="#/plan" data-route="plan"><span data-i18n="nav.thePlan">The plan</span></a>
@@ -122,6 +125,7 @@
       <a href="#/quiz" data-route="quiz"><span data-i18n="nav.quiz">Quiz</span></a>
     </nav>
     <div class="sidebar-foot">
+      <button type="button" class="edit-toggle" data-edit-mode aria-pressed="false"><span aria-hidden="true">✎</span> <span data-i18n="edit.mode">Edit texts</span></button>
       <button type="button" class="profile-switch" data-profile-switch><span class="ps-who"></span><span class="ps-do" data-i18n="profile.switch">Switch profile</span></button>
       <div class="langs" role="group" data-i18n-label="lang.label" aria-label="Language">
         <button type="button" data-lang="en" lang="en" aria-pressed="true"><span class="lang-sign lang-flag" aria-hidden="true"><span>🇺🇸</span></span>EN</button>

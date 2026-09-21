@@ -5,6 +5,7 @@ import * as store from "./store.js";
 
 let edits = {};
 let audio = {}; // key → time recorded
+let suggestions = []; // Dima's changes waiting for Volodymyr: { sid, target, data, before, at }
 let loaded = null;
 const listeners = new Set();
 export const onChange = fn => (listeners.add(fn), () => listeners.delete(fn));
@@ -29,6 +30,7 @@ export function load() {
     .then(d => {
       edits = d.edits ?? {};
       audio = d.audio ?? {};
+      suggestions = d.suggestions ?? [];
       changed();
     })
     .catch(() => {})
@@ -41,12 +43,21 @@ export function load() {
 const extra = new Map();
 export const register = list => list.forEach(e => extra.set(e.id, e));
 export const registered = id => extra.get(id);
-export const editOf = id => edits[id];
+// What a target shows: the approved edit, and — in Dima's profile — her own suggestion on top, so she sees it.
+function effective(id) {
+  const mine = store.isTeacher() ? suggestions.find(x => x.target === id) : null;
+  return mine ? { ...edits[id], ...mine.data } : edits[id];
+}
+export const editOf = id => effective(id);
+export const pending = () => suggestions;
+export const pendingFor = id => suggestions.find(x => x.target === id);
+// A text anywhere on the site, if it has been changed: "s.<string key>" or "x.<hash>" (see core/i18n.js).
+export const textOf = (id, l) => effective(id)?.[l];
 export const FIELDS = ["ar", "say", "en", "uk", "msa"];
 
 // Lay the corrections over a word (keeps the plan's version in .orig).
 export function apply(entry) {
-  const e = edits[entry.id];
+  const e = effective(entry.id);
   if (!e && !entry.orig) return entry;
   entry.orig ??= Object.fromEntries(FIELDS.map(f => [f, entry[f]]).concat([["check", entry.check]]));
   for (const f of FIELDS) entry[f] = e?.[f] ?? entry.orig[f];
@@ -55,15 +66,36 @@ export function apply(entry) {
   return entry;
 }
 
-export async function saveEdit(id, data) {
-  const r = await fetch(`api/edits/${id}`, { method: "PUT", headers: { ...auth(), "content-type": "application/json" }, body: JSON.stringify(data) });
+// Volodymyr's changes go live; Dima's become a suggestion (the server decides by who is signed in).
+export async function saveEdit(id, data, before = null) {
+  const r = await fetch(`api/edits/${encodeURIComponent(id)}`, { method: "PUT", headers: { ...auth(), "content-type": "application/json" }, body: JSON.stringify({ ...data, before }) });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  edits[id] = { ...(await r.json()).data, by: store.profile(), at: Date.now() };
+  const res = await r.json();
+  if (res.pending) suggestions = [...suggestions.filter(x => x.target !== id), { sid: res.sid, target: id, data: res.data, before, at: Date.now() }];
+  else edits[id] = { ...res.data, by: store.profile(), at: Date.now() };
+  changed();
+  return res;
+}
+
+export async function decide(sid, action) {
+  const r = await fetch(`api/suggestions/${sid}`, { method: "POST", headers: { ...auth(), "content-type": "application/json" }, body: JSON.stringify({ action }) });
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const res = await r.json();
+  const s = suggestions.find(x => x.sid === sid);
+  suggestions = suggestions.filter(x => x.sid !== sid);
+  if (action === "approve" && s) edits[s.target] = { ...res.data, by: "teacher", at: Date.now() };
+  changed();
+}
+
+export async function withdraw(sid) {
+  const r = await fetch(`api/suggestions/${sid}`, { method: "DELETE", headers: auth() });
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  suggestions = suggestions.filter(x => x.sid !== sid);
   changed();
 }
 
 export async function revertEdit(id) {
-  const r = await fetch(`api/edits/${id}`, { method: "DELETE", headers: auth() });
+  const r = await fetch(`api/edits/${encodeURIComponent(id)}`, { method: "DELETE", headers: auth() });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   delete edits[id];
   changed();

@@ -1008,3 +1008,35 @@ html[dir="rtl"] .deck-study .i { transform: scaleX(-1); }
 .sa-facts { display: grid; gap: 8px; padding-inline-start: 22px; font-size: 16.5px; }
 @media (max-width: 1000px) { .sa-top { grid-template-columns: 1fr 1fr; } .sa-qibla { grid-column: 1 / -1; } }
 @media (max-width: 620px) { .sa-top { grid-template-columns: 1fr; } }
+
+/* Edit mode: every text can be tapped; a bar at the bottom says so */
+body.editing main *:where(h1, h2, h3, h4, p, li, a, button, span, b, small, em, td, th, summary, label, dt, dd):hover,
+body.editing .sidebar nav a:hover { outline: 2px dashed var(--accent); outline-offset: 2px; cursor: text; border-radius: 4px; }
+body.editing .word-wrap:hover { outline: 2px dashed var(--art-brass); outline-offset: 3px; border-radius: 16px; }
+.edit-bar {
+  position: fixed; z-index: 55; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); translate: -50% 0;
+  display: flex; align-items: center; gap: 12px; max-width: calc(100vw - 24px); padding: 10px 12px 10px 16px; border-radius: 999px;
+  background: var(--ink); color: var(--bg); box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .5);
+}
+.edit-bar > span:nth-child(2) { display: grid; line-height: 1.25; font-size: 14.5px; }
+.edit-bar small { opacity: .75; }
+.edit-bar .btn { background: var(--bg); color: var(--ink); border-color: transparent; min-height: 38px; padding: 6px 16px; }
+.edit-bar-dot { width: 10px; height: 10px; border-radius: 50%; background: #F4C24D; box-shadow: 0 0 0 4px rgba(244, 194, 77, .3); animation: rec-pulse 1.4s ease-in-out infinite; }
+@media (max-width: 860px) { .edit-bar { bottom: calc(80px + env(safe-area-inset-bottom)); } }
+.editor-msg.is-good { color: var(--accent); font-weight: 800; }
+.editor-field textarea { padding: 10px 12px; border: 2px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font: inherit; font-size: 16px; font-weight: 400; resize: vertical; }
+.editor-field textarea[dir="rtl"] { font-family: var(--font-ar); font-size: 19px; }
+
+/* Suggestions (review) */
+.rv-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.rv-kind { margin: 0 0 8px; font-weight: 800; }
+.rv-table { width: 100%; border-collapse: collapse; }
+.rv-table th, .rv-table td { padding: 6px 8px; text-align: start; vertical-align: top; border-top: 1px solid var(--line); }
+.rv-table thead th { border-top: 0; color: var(--muted); font-size: 13px; }
+.rv-table tbody th { width: 22%; color: var(--muted); font-size: 14px; }
+.rv-before { color: var(--muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--bad) 60%, transparent); }
+.rv-after { font-weight: 800; }
+.rv-arrow { color: var(--muted); width: 1%; }
+.rv-table .ar { font-size: 20px; }
+.rv-checked { display: flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 800; }
+.rv-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }

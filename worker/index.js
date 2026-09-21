@@ -7,8 +7,11 @@
 // Volodymyr's (student) is row "main", Dima's (teacher) is row "dima". Dima may also read his: GET ?who=student.
 // Nobody can write anyone else's. SYNC_KEY is a Worker secret, never in this repository.
 //   GET    /api/content          → { edits, audio }      Dima's corrections and which words she has recorded
-//   PUT    /api/edits/<id>       ← { ar?, say?, en?, uk?, msa?, checked? }   a correction to one word (either profile)
-//   DELETE /api/edits/<id>       back to the original
+//   PUT    /api/edits/<id>       ← { ar?, say?, en?, uk?, najdi?, msa?, checked?, before? }  a correction to a word, a line
+//                                  or any text on the site ("s.<string key>", "x.<hash>"). Volodymyr's goes live at once;
+//                                  Dima's becomes a suggestion that waits for him.
+//   DELETE /api/edits/<id>       back to the original (Volodymyr)
+//   POST   /api/suggestions/<n>  ← { action: "approve" | "reject" }  (Volodymyr) · DELETE: Dima withdraws her own
 //   GET    /api/audio/<key>      → her recording        PUT (raw audio, Dima only) · DELETE (Dima only)
 // Everything else is served straight from the assets.
 
@@ -67,6 +70,7 @@ async function ensureTables(db) {
     db.prepare("CREATE TABLE IF NOT EXISTS snapshots (day TEXT PRIMARY KEY, data TEXT NOT NULL, saved_at INTEGER NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS edits (id TEXT PRIMARY KEY, data TEXT NOT NULL, by TEXT NOT NULL, updated_at INTEGER NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS audio (key TEXT PRIMARY KEY, type TEXT NOT NULL, data BLOB NOT NULL, updated_at INTEGER NOT NULL)"),
+    db.prepare("CREATE TABLE IF NOT EXISTS suggestions (sid INTEGER PRIMARY KEY AUTOINCREMENT, target TEXT NOT NULL, data TEXT NOT NULL, before TEXT, by TEXT NOT NULL, created INTEGER NOT NULL, status TEXT NOT NULL DEFAULT 'pending')"),
   ]);
   tablesReady = true;
 }
@@ -115,8 +119,14 @@ async function progress(request, env) {
 }
 
 const MAX_AUDIO = 600_000; // a few seconds of speech is ~30 KB
-const ID = /^[a-z0-9]{1,16}$/;
-const FIELDS = ["ar", "say", "en", "uk", "msa"];
+const ID = /^[a-zA-Z0-9._:-]{1,80}$/;
+const FIELDS = ["ar", "say", "en", "uk", "najdi", "msa"];
+const clean = body => {
+  const data = {};
+  for (const f of FIELDS) if (typeof body?.[f] === "string" && body[f].trim()) data[f] = body[f].trim().slice(0, 2000);
+  if (typeof body?.checked === "boolean") data.checked = body.checked;
+  return data;
+};
 
 // Dima's corrections and recordings: shared by both profiles, so his site shows her versions.
 async function content(request, env, url) {
@@ -124,23 +134,57 @@ async function content(request, env, url) {
   const role = await roleOf(request, env);
   if (!role) return json({ error: "wrong-key" }, 401);
   await ensureTables(env.DB);
-  const [, kind, id] = url.pathname.match(/^\/api\/(content|edits|audio)\/?([^/]*)$/) ?? [];
+  const [, kind, id] = url.pathname.match(/^\/api\/(content|edits|audio|suggestions)\/?([^/]*)$/) ?? [];
   const m = request.method;
 
   if (kind === "content" && m === "GET") {
-    const [edits, audio] = await Promise.all([
+    const [edits, audio, sugg] = await Promise.all([
       env.DB.prepare("SELECT id, data, by, updated_at FROM edits").all(),
       env.DB.prepare("SELECT key, updated_at FROM audio").all(),
+      env.DB.prepare("SELECT sid, target, data, before, by, created FROM suggestions WHERE status = 'pending' ORDER BY sid").all(),
     ]);
     return json({
       edits: Object.fromEntries(edits.results.map(r => [r.id, { ...JSON.parse(r.data), by: r.by, at: r.updated_at }])),
       audio: Object.fromEntries(audio.results.map(r => [r.key, r.updated_at])),
+      suggestions: sugg.results.map(r => ({ sid: r.sid, target: r.target, data: JSON.parse(r.data), before: r.before ? JSON.parse(r.before) : null, by: r.by, at: r.created })),
     });
   }
   if (!kind || kind === "content" || !ID.test(id)) return json({ error: "not-found" }, 404);
 
+  if (kind === "suggestions") {
+    const row = await env.DB.prepare("SELECT sid, target, data, by, status FROM suggestions WHERE sid = ?1").bind(+id).first();
+    if (!row || row.status !== "pending") return json({ error: "not-found" }, 404);
+    if (m === "DELETE") {
+      if (role !== "teacher") return json({ error: "forbidden" }, 403);
+      await env.DB.prepare("UPDATE suggestions SET status = 'withdrawn' WHERE sid = ?1").bind(row.sid).run();
+      return json({ ok: true });
+    }
+    if (m !== "POST") return json({ error: "method-not-allowed" }, 405);
+    if (role !== "student") return json({ error: "only-volodymyr-approves" }, 403);
+    let body = {};
+    try {
+      body = await request.json();
+    } catch {}
+    if (body.action === "approve") {
+      const live = await env.DB.prepare("SELECT data FROM edits WHERE id = ?1").bind(row.target).first();
+      const merged = { ...(live ? JSON.parse(live.data) : {}), ...JSON.parse(row.data) };
+      await env.DB.batch([
+        env.DB.prepare("INSERT INTO edits (id, data, by, updated_at) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(id) DO UPDATE SET data = excluded.data, by = excluded.by, updated_at = excluded.updated_at")
+          .bind(row.target, JSON.stringify(merged), row.by, Date.now()),
+        env.DB.prepare("UPDATE suggestions SET status = 'approved' WHERE sid = ?1").bind(row.sid),
+      ]);
+      return json({ ok: true, data: merged });
+    }
+    if (body.action === "reject") {
+      await env.DB.prepare("UPDATE suggestions SET status = 'rejected' WHERE sid = ?1").bind(row.sid).run();
+      return json({ ok: true });
+    }
+    return json({ error: "bad-action" }, 400);
+  }
+
   if (kind === "edits") {
     if (m === "DELETE") {
+      if (role !== "student") return json({ error: "forbidden" }, 403);
       await env.DB.prepare("DELETE FROM edits WHERE id = ?1").bind(id).run();
       return json({ ok: true });
     }
@@ -151,9 +195,15 @@ async function content(request, env, url) {
     } catch {
       return json({ error: "bad-json" }, 400);
     }
-    const data = {};
-    for (const f of FIELDS) if (typeof body?.[f] === "string" && body[f].trim()) data[f] = body[f].trim().slice(0, 300);
-    if (typeof body?.checked === "boolean") data.checked = body.checked;
+    const data = clean(body);
+    if (role === "teacher") {
+      // Dima suggests; Volodymyr decides. One open suggestion per target: a new one replaces her older one.
+      const before = body?.before && typeof body.before === "object" ? JSON.stringify(clean(body.before)) : null;
+      await env.DB.prepare("UPDATE suggestions SET status = 'replaced' WHERE target = ?1 AND status = 'pending'").bind(id).run();
+      const res = await env.DB.prepare("INSERT INTO suggestions (target, data, before, by, created) VALUES (?1, ?2, ?3, 'teacher', ?4)")
+        .bind(id, JSON.stringify(data), before, Date.now()).run();
+      return json({ ok: true, pending: true, sid: res.meta?.last_row_id ?? null, data });
+    }
     await env.DB.prepare("INSERT INTO edits (id, data, by, updated_at) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(id) DO UPDATE SET data = excluded.data, by = excluded.by, updated_at = excluded.updated_at")
       .bind(id, JSON.stringify(data), role, Date.now()).run();
     return json({ ok: true, data });
@@ -186,7 +236,7 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === "/api/progress") return progress(request, env);
     if (url.pathname === "/api/login") return login(request, env);
-    if (/^\/api\/(content|edits|audio)(\/|$)/.test(url.pathname)) return content(request, env, url);
+    if (/^\/api\/(content|edits|audio|suggestions)(\/|$)/.test(url.pathname)) return content(request, env, url);
     return env.ASSETS.fetch(request);
   },
 };

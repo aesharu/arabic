@@ -1,8 +1,12 @@
-// Correct a word: Najdi Arabic, pronunciation, English, Ukrainian and MSA, and "this is correct Najdi" (which removes
-// the check-with-tutor flag). Saved to the cloud for both profiles (core/content.js); the plan file is untouched.
+// Change something on the site, in a dialog:
+//   openEditor(id)                a word or a conversation line — Najdi, pronunciation, English, Ukrainian, MSA, and
+//                                 "this is correct Najdi" (removes the check-with-tutor flag)
+//   openTextEditor(target, src)   any text on the site (a menu item, a heading, a lesson) — English, Ukrainian, Najdi, MSA
+// Volodymyr's changes go live; Dima's are sent to him as suggestions (core/content.js). The plan file is untouched.
 import { t } from "./i18n.js";
 import { esc } from "./dom.js";
 import * as content from "./content.js";
+import * as store from "./store.js";
 import { vocabNow } from "./vocab.js";
 
 function find(id) {
@@ -12,33 +16,40 @@ function find(id) {
   return v.notes.find(n => n.id === id) ?? v.vocab.stages.flatMap(s => s.topics.flatMap(tp => tp.entries)).find(e => e.id === id) ?? null;
 }
 
-const FIELD_META = [
+const WORD_FIELDS = [
   ["ar", "edit.ar", "rtl", "ar"],
   ["say", "edit.say", "ltr", "en"],
   ["en", "edit.en", "ltr", "en"],
   ["uk", "edit.uk", "ltr", "uk"],
   ["msa", "edit.msa", "rtl", "ar"],
 ];
+const TEXT_FIELDS = [
+  ["en", "edit.en", "ltr", "en"],
+  ["uk", "edit.uk", "ltr", "uk"],
+  ["najdi", "edit.najdiUi", "rtl", "ar"],
+  ["msa", "edit.msa", "rtl", "ar"],
+];
 
-export function openEditor(id, onSaved) {
-  const e = find(id);
-  if (!e) return;
-  const orig = e.orig ?? e;
+// The dialog both editors share. fields: [name, label, dir, lang]; values: current; orig: before any change.
+function dialog({ title, fields, values, orig, extra = "", note = "", long = false, onSave, onRevert }) {
   const dlg = document.createElement("dialog");
   dlg.className = "editor";
   dlg.setAttribute("aria-labelledby", "editor-title");
+  const teacher = store.isTeacher();
   dlg.innerHTML = `<form method="dialog" class="editor-form">
-    <h2 id="editor-title">${t("edit.title")}</h2>
+    <h2 id="editor-title">${title}</h2>
     ${content.signedIn() ? "" : `<p class="editor-msg is-bad">${t("edit.signIn")}</p>`}
-    ${FIELD_META.map(([f, label, dir, lang]) => `<label class="editor-field"><span>${t(label)}</span>
-      <input name="${f}" dir="${dir}" lang="${lang}" value="${esc(e[f] ?? "")}" autocomplete="off" spellcheck="false">
-      ${orig[f] && orig[f] !== e[f] ? `<small>${esc(t("edit.original", { text: orig[f] }))}</small>` : ""}</label>`).join("")}
-    <label class="check"><input type="checkbox" name="checked"${content.editOf(id)?.checked ? " checked" : ""}><span>${t("edit.checked")}</span></label>
+    ${note ? `<p class="muted small">${note}</p>` : ""}
+    ${fields.map(([f, label, dir, lang]) => `<label class="editor-field"><span>${t(label)}</span>
+      ${long ? `<textarea name="${f}" dir="${dir}" lang="${lang}" rows="3" spellcheck="false">${esc(values[f] ?? "")}</textarea>`
+        : `<input name="${f}" dir="${dir}" lang="${lang}" value="${esc(values[f] ?? "")}" autocomplete="off" spellcheck="false">`}
+      ${orig[f] && orig[f] !== values[f] ? `<small>${esc(t("edit.original", { text: orig[f] }))}</small>` : ""}</label>`).join("")}
+    ${extra}
     <p class="editor-msg" aria-live="polite"></p>
     <div class="editor-actions">
-      <button type="submit" class="btn" value="save">${t("edit.save")}</button>
+      <button type="submit" class="btn" value="save">${t(teacher ? "edit.send" : "edit.save")}</button>
       <button type="button" class="btn btn-ghost" data-close>${t("edit.cancel")}</button>
-      ${content.editOf(id) ? `<button type="button" class="btn btn-ghost editor-revert" data-revert>${t("edit.revert")}</button>` : ""}
+      ${onRevert ? `<button type="button" class="btn btn-ghost editor-revert" data-revert>${t("edit.revert")}</button>` : ""}
     </div>
   </form>`;
   document.body.append(dlg);
@@ -52,33 +63,75 @@ export function openEditor(id, onSaved) {
   dlg.querySelector("[data-close]").addEventListener("click", close);
   dlg.querySelector("[data-revert]")?.addEventListener("click", async () => {
     try {
-      await content.revertEdit(id);
+      await onRevert();
       close();
-      onSaved?.();
     } catch {
       msg.textContent = t("edit.error");
     }
   });
   form.addEventListener("submit", async ev => {
     ev.preventDefault();
-    const data = { checked: form.checked.checked };
-    // Only what differs from the plan is stored, so later fixes to the plan still come through.
-    for (const [f] of FIELD_META) {
-      const v = form[f].value.trim();
-      if (v && v !== orig[f]) data[f] = v;
-    }
     const btn = form.querySelector('[type="submit"]');
     btn.disabled = true;
     msg.textContent = "";
     try {
-      await content.saveEdit(id, data);
-      close();
-      onSaved?.();
+      const res = await onSave(form);
+      if (res?.pending) {
+        msg.classList.add("is-good");
+        msg.textContent = t("edit.sent");
+        setTimeout(close, 1400);
+      } else close();
     } catch {
       msg.textContent = t("edit.error");
       btn.disabled = false;
     }
   });
   dlg.showModal();
-  form.ar.focus();
+  form.elements[0]?.focus();
+}
+
+export function openEditor(id) {
+  const e = find(id);
+  if (!e) return;
+  const orig = e.orig ?? e;
+  dialog({
+    title: t("edit.title"),
+    fields: WORD_FIELDS,
+    values: e,
+    orig,
+    extra: `<label class="check"><input type="checkbox" name="checked"${content.editOf(id)?.checked ? " checked" : ""}><span>${t("edit.checked")}</span></label>`,
+    onSave: form => {
+      const data = { checked: form.checked.checked };
+      // Only what differs from the plan is stored, so later fixes to the plan still come through.
+      for (const [f] of WORD_FIELDS) {
+        const v = form[f].value.trim();
+        if (v && v !== orig[f]) data[f] = v;
+      }
+      return content.saveEdit(id, data, Object.fromEntries(WORD_FIELDS.map(([f]) => [f, orig[f]])));
+    },
+    onRevert: !store.isTeacher() && content.editOf(id) ? () => content.revertEdit(id) : null,
+  });
+}
+
+export function openTextEditor(target, source) {
+  const orig = Object.fromEntries(TEXT_FIELDS.map(([f]) => [f, source[f] ?? ""]));
+  const values = Object.fromEntries(TEXT_FIELDS.map(([f]) => [f, content.textOf(target, f) ?? orig[f]]));
+  const long = TEXT_FIELDS.some(([f]) => (values[f] ?? "").length > 60);
+  dialog({
+    title: t("edit.textTitle"),
+    fields: TEXT_FIELDS,
+    values,
+    orig,
+    long,
+    note: TEXT_FIELDS.some(([f]) => /[{<]/.test(orig[f])) ? esc(t("edit.keepVars")) : "",
+    onSave: form => {
+      const data = {};
+      for (const [f] of TEXT_FIELDS) {
+        const v = form[f].value.trim();
+        if (v && v !== orig[f]) data[f] = v;
+      }
+      return content.saveEdit(target, data, orig);
+    },
+    onRevert: !store.isTeacher() && content.editOf(target) ? () => content.revertEdit(target) : null,
+  });
 }

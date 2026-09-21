@@ -30,13 +30,15 @@ import record from "./views/record.js";
 import grammar from "./views/grammar.js";
 import lessons from "./views/lessons.js";
 import saudi from "./views/saudi.js";
+import review from "./views/review.js";
+import * as editmode from "./core/editmode.js";
 import * as content from "./core/content.js";
 import { openEditor } from "./core/editor.js";
 
 // Each view is { titleKey, mount(root, { params, signal }) }. Listeners a view adds with
 // { signal } are removed automatically when you leave it.
-const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record, grammar, lessons, saudi };
-const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound", grammar: "reading", lessons: "plan", saudi: "star" };
+const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record, grammar, lessons, saudi, review };
+const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound", grammar: "reading", lessons: "plan", saudi: "star", review: "check" };
 const view = document.getElementById("view");
 const motion = !matchMedia("(prefers-reduced-motion: reduce)").matches;
 let controller = null;
@@ -68,9 +70,24 @@ document.addEventListener("click", e => {
   const el = e.target.closest("[data-say]");
   if (el) say(el.dataset.say);
 });
-// Dima's corrections and recordings: load them, and redraw pages that show words once they arrive.
-content.onChange(() => ["words", "cards"].includes(current.name) && !document.querySelector("dialog[open]") && show(current.name, current.params));
+// Corrections, suggestions and recordings: load them, and redraw the page (and the menu) when they change.
+function renderReviewCount() {
+  const n = content.pending().length;
+  document.querySelectorAll(".rv-count").forEach(el => {
+    el.hidden = n === 0;
+    el.textContent = String(n);
+  });
+}
+content.onChange(() => {
+  renderReviewCount();
+  translateShell();
+  if (!document.querySelector("dialog[open]") && !["record", "review", "lessons"].includes(current.name)) show(current.name, current.params);
+});
 content.load();
+editmode.start(() => {
+  translateShell();
+  show(current.name, current.params);
+});
 // Record is Dima's page: in the menu only in her profile, and in place of Letters on the iPad/iPhone tab bar.
 if (store.isTeacher()) {
   document.body.classList.add("can-record");
@@ -145,7 +162,7 @@ function renderNavCount() {
   if (!v) return;
   const c = cardCounts(v.notes);
   const n = c.fresh + c.learn + c.review;
-  document.querySelectorAll(".navcount").forEach(el => {
+  document.querySelectorAll(".navcount:not(.rv-count)").forEach(el => {
     el.hidden = n === 0;
     el.textContent = n > 99 ? "99+" : String(n);
     el.setAttribute("aria-label", t("cards.waiting", { n }));

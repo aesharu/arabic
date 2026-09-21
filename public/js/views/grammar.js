@@ -6,12 +6,17 @@ import { esc, rich, ar, translit, flag, playIcon, pageHead, shuffle } from "../c
 import { icon } from "../core/art.js";
 import { GRAMMAR } from "../data/grammar.js";
 import { speakText } from "../core/vocab.js";
+import * as content from "../core/content.js";
+
+// Every example can be corrected in edit mode (ids g<lesson>x<row>).
+for (const l of GRAMMAR) l.rows.forEach((r, i) => (r.id = `g${l.id}x${i}`));
+content.register(GRAMMAR.flatMap(l => l.rows));
 
 const meaning = r => tx({ en: r.en, uk: r.uk, najdi: r.en, msa: r.en });
 const second = r => tx({ en: r.uk, uk: r.en, najdi: r.uk, msa: r.uk });
 
-const exampleRow = r => `
-  <button class="phrase gr-row${r.her ? " is-her" : ""}" data-say="${esc(speakText(r.ar))}">
+const exampleRow = r => (content.apply(r), `
+  <button class="phrase gr-row${r.her ? " is-her" : ""}" data-say="${esc(speakText(r.ar))}" data-edit-id="${r.id}">
     ${ar(r.ar, "phrase-ar")}
     <span class="phrase-t">${translit(r.say)} ${r.check ? flag({ check: true, checkNote: r.note }) : ""}
       <span class="gr-mean">${esc(meaning(r))}</span>
@@ -20,7 +25,7 @@ const exampleRow = r => `
       ${r.her ? `<span class="gr-her">${icon("star")}${t("grammar.toHer")}</span>` : ""}
       ${r.note && !r.check ? `<span class="pnote">${rich(tx(r.note))}</span>` : ""}</span>
     ${playIcon}
-  </button>`;
+  </button>`);
 
 // A few questions: the meaning is shown, pick the Najdi. Options are always different words.
 function makeQuiz(lesson) {

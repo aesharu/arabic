@@ -1,6 +1,7 @@
 // Interface language: English, Ukrainian, Najdi Arabic or formal Arabic (MSA). Texts live in i18n/strings.js;
 // content data carries { en, uk, najdi, msa } values that tx() picks from. Arabic interfaces run right-to-left.
 import * as store from "./store.js";
+import * as content from "./content.js";
 import { STRINGS } from "../i18n/strings.js";
 
 export const LANGS = ["en", "uk", "najdi", "msa"];
@@ -19,6 +20,25 @@ export const setLang = l => store.update(s => { s.prefs.lang = l; });
 
 const fill = (s, vars) => (vars ? s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : s);
 
+// Edit mode (core/editmode.js): while it's on, every text shown remembers where it came from, so tapping it
+// can open the right thing to change. Changed texts come from core/content.js ("s.<key>" / "x.<hash>").
+let editing = false;
+const seen = new Map();
+const norm = s => String(s).replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+export function setEditing(on) {
+  editing = on;
+  seen.clear();
+}
+export const isEditing = () => editing;
+export const sourceOf = text => seen.get(norm(text));
+function remember(out, target, source) {
+  if (editing) {
+    const k = norm(out);
+    if (k && !seen.has(k)) seen.set(k, { target, source });
+  }
+  return out;
+}
+
 // t("today.focus") · t("day.n", { n: 3 })
 export function t(key, vars) {
   const entry = STRINGS[key];
@@ -26,7 +46,21 @@ export function t(key, vars) {
     console.warn(`Missing string: ${key}`);
     return key;
   }
-  return fill(entry[lang()] ?? entry.en, vars);
+  const raw = content.textOf(`s.${key}`, lang()) ?? entry[lang()] ?? entry.en;
+  return remember(fill(raw, vars), `s.${key}`, entry);
+}
+
+// Content texts are known by a hash of their English, so a change follows the text wherever it appears.
+const ids = new WeakMap();
+function idOf(v) {
+  let id = ids.get(v);
+  if (!id) {
+    let h = 0x811c9dc5;
+    for (const ch of String(v.en ?? JSON.stringify(v))) h = Math.imul(h ^ ch.codePointAt(0), 0x01000193) >>> 0;
+    id = `x.${h.toString(36)}`;
+    ids.set(v, id);
+  }
+  return id;
 }
 
 // The unit word for a count: tu("unit.days", 3) → "days" / "дні" / "أيام"
@@ -40,4 +74,8 @@ export const num = (n, digits = 0) =>
   n.toLocaleString(locale(), { minimumFractionDigits: digits, maximumFractionDigits: digits });
 
 // A content value — { en, uk, najdi, msa } — in the current language. Plain strings pass through.
-export const tx = v => (v && typeof v === "object" ? v[lang()] ?? v.en : v ?? "");
+export function tx(v) {
+  if (!v || typeof v !== "object") return v ?? "";
+  const id = idOf(v);
+  return remember(content.textOf(id, lang()) ?? v[lang()] ?? v.en ?? "", id, v);
+}
