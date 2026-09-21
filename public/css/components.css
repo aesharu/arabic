@@ -955,3 +955,56 @@ html[dir="rtl"] .deck-study .i { transform: scaleX(-1); }
 .deck-card .deck-size { display: block; line-height: 1.4; }
 .deck-card .deck-size .i { display: inline-block; width: 13px; height: 13px; vertical-align: -2px; }
 .deck-face { white-space: normal; overflow: visible; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.35; }
+
+/* Saudi life */
+.sa-top { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.sa-top h2, .sa-block > h2 { display: flex; align-items: center; gap: 8px; }
+.sa-hijri { margin: 4px 0 0; font-family: var(--font-ar); font-size: 30px; font-weight: 700; line-height: 1.4; color: var(--accent); }
+.sa-hijri-lat { margin: 0; font-weight: 800; font-size: 17px; }
+.sa-next { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 12px 0 0; padding: 10px 12px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.sa-next .i { color: var(--art-brass); }
+.city-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.city-chips button { min-height: 36px; padding: 5px 11px; border: 1.5px solid var(--line); border-radius: 999px; background: none; color: var(--ink); font-weight: 700; font-size: 14px; }
+.city-chips button[aria-pressed="true"] { background: var(--strong-bg); color: var(--strong-ink); border-color: transparent; }
+.pr-next { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: 0 0 8px; font-size: 18px; }
+.pr-next .ar { font-size: 22px; }
+.pr-next em { color: var(--accent); font-style: normal; font-weight: 800; }
+.pr-list { margin: 0 0 8px; padding: 0; list-style: none; display: grid; gap: 2px; }
+.pr-list li { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 8px; border-radius: 10px; }
+.pr-list li b { font-variant-numeric: tabular-nums; }
+.pr-name { display: flex; align-items: baseline; gap: 8px; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; text-align: start; }
+.pr-name .ar { font-size: 19px; }
+.pr-name span { color: var(--muted); font-size: 14px; }
+.pr-list .is-past { opacity: .55; }
+.pr-list .is-sun { font-style: italic; }
+.pr-list .is-prev { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.pr-list .is-next { background: color-mix(in srgb, var(--accent) 16%, transparent); font-weight: 800; }
+.qibla-compass { display: block; width: min(200px, 100%); margin: 0 auto; }
+.qc-face { fill: var(--art-paper); stroke: var(--art-rule); stroke-width: 1.5; }
+.qc-ticks line { stroke: var(--muted); stroke-width: 1; }
+.qc-n { fill: var(--ink); font-weight: 800; font-size: 11px; font-family: var(--font-ui); }
+.qc-arrow { fill: var(--accent); }
+.qc-tail { fill: var(--muted); opacity: .5; }
+.qc-kaaba { fill: #1b1b1b; }
+.qc-band { fill: #D4A437; }
+.qc-pin { fill: var(--ink); }
+.qibla-num { text-align: center; margin: 8px 0 2px; font-size: 17px; }
+.sa-block { margin: 26px 0; }
+.sa-year { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.sa-year li { display: grid; gap: 2px; padding: 12px 14px; border-radius: 14px; background: var(--surface); }
+.sa-year span { color: var(--muted); font-size: 14px; }
+.sa-year em { color: var(--accent); font-style: normal; font-weight: 800; }
+.sa-stories { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; align-items: start; }
+.sa-story summary { display: grid; gap: 4px; cursor: pointer; list-style: none; }
+.sa-story summary::-webkit-details-marker { display: none; }
+.sa-story summary h3 { margin: 0; font-size: 19px; letter-spacing: 0; text-transform: none; color: var(--ink); }
+.sa-story[open] summary { margin-bottom: 8px; }
+.sa-story p { font-size: 16.5px; line-height: 1.6; }
+.sa-story h4 { margin: 12px 0 6px; font-size: 14px; color: var(--muted); }
+.sa-tag { justify-self: start; padding: 2px 9px; border-radius: 999px; font-size: 12.5px; font-weight: 800; background: color-mix(in srgb, var(--ink) 8%, transparent); }
+.sa-tag.is-north { background: color-mix(in srgb, var(--art-brass) 30%, transparent); }
+.sa-tag.is-najd { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+.sa-words .phrase-t { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.sa-facts { display: grid; gap: 8px; padding-inline-start: 22px; font-size: 16.5px; }
+@media (max-width: 1000px) { .sa-top { grid-template-columns: 1fr 1fr; } .sa-qibla { grid-column: 1 / -1; } }
+@media (max-width: 620px) { .sa-top { grid-template-columns: 1fr; } }

@@ -41,16 +41,13 @@ Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
 
 - **Weekly lessons** `#/lessons` (`data/weeks.js`, `views/lessons.js`), weeks 3–67, "This week's lesson" link on Today: the stage goal, that week's words from the plan (big topics split over 2–3 weeks; review weeks), a grammar lesson, a speaking task per stage, and a short conversation (weeks 3–10 so far). Conversation lines are Claude-written — each flagged, ✎-correctable (ids `d<week>x<line>`). `tests/weeks.test.mjs` checks weeks, topics, four languages and dialect traps.
 
+- **Saudi life** `#/saudi` (`data/saudi.js`, `core/prayer.js`, `views/saudi.js`): Hijri date (Umm al-Qura via Intl), prayer times + next-prayer countdown + Qibla compass for Riyadh, Buraidah, Ha'il, Sakaka, Arar, Tabuk (calculated in the browser; `tests/saudi.test.mjs` checks Riyadh), the year's occasions, 19 culture stories (region tags all / Najd / north) with words to hear (flagged unless in the plan), 15 facts.
+
 ## Next (in this order)
 
 0. **Conversations for weeks 19–21 and 27–67** (weeks 3–18 and 22–26 are written; the Record page has a Conversations tab). Same rules: plan words, "to her" forms, every line flagged until Dima ticks it.
 1. Tell Volodymyr which recordings/corrections exist; a script to export `edits` from D1 as proposed changes to NAJDI-PLAN.md.
-2. **Prayer times and Qibla** (he asked on 21 Sept):
-   - today's five prayers for Riyadh, Umm al-Qura method (Fajr 18.5°, Isha = Maghrib + 90 min, 120 in Ramadan), Asr standard;
-   - the previous prayer and the next one with a countdown;
-   - a compass arrow to Mecca (≈244° from Riyadh, ≈790 km);
-   - on Today, plus a "next prayer" line on the welcome screen;
-   - names in four languages with pronunciation.
+2. **Edit mode for Dima (in progress, asked 21 Sept):** she taps any text on the site (UI strings via `t()`, content via `tx()`, words, lines), edits all four languages, sends it as a suggestion; Volodymyr approves/rejects on a Suggestions page; approved = the site's text for both. Then: next prayer + fact of the day on Today and the welcome screen.
 3. Optional PIN for Volodymyr's sign-in (right now the name is the password; offered, not asked for yet).
 4. `npm run pdf`: `scripts/print-pdf.mjs`, Playwright with the installed Chrome, waits for `body[data-print-ready]`, writes to `print/pdf/` (gitignored).
 5. Progress page: cards answered per day, plus the words-known meter.
