@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Node / Wrangler (local tools, never committed)
+node_modules/
+.wrangler/
+.dev.vars*
+.env*
+
+# Editors
+.vscode/
+.idea/

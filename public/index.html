@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Najdi — spoken Riyadh Arabic</title>
+<meta name="description" content="Volodia's Najdi Arabic study site: today's tasks, a 15-month calendar, the alphabet trainer and phrases.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231D5A5C'/%3E%3Ctext x='50' y='70' font-size='62' text-anchor='middle' fill='%23F2E9D6' font-family='serif'%3E%D9%86%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Alegreya+Sans:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<script>
+  // Apply a saved light/dark choice before the first paint, so the page doesn't flash.
+  try {
+    const t = JSON.parse(localStorage.getItem("najdi-v2") || "{}").prefs?.theme;
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch {}
+</script>
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="#/today">Najdi<span class="ar" lang="ar">نجدي</span></a>
+    <div class="daypill" id="daypill"></div>
+    <nav aria-label="Main">
+      <p class="navhead">Plan</p>
+      <a href="#/today" data-route="today">Today</a>
+      <a href="#/calendar" data-route="calendar">Calendar</a>
+      <a href="#/plan" data-route="plan">The plan</a>
+      <p class="navhead">Script</p>
+      <a href="#/letters" data-route="letters">Letters</a>
+      <a href="#/vowels" data-route="vowels">Vowels</a>
+      <a href="#/reading" data-route="reading">Reading</a>
+      <a href="#/quiz" data-route="quiz">Quiz</a>
+      <p class="navhead">Speak</p>
+      <a href="#/phrases" data-route="phrases">Phrases</a>
+    </nav>
+    <button class="theme" id="theme" type="button">Theme</button>
+  </aside>
+  <main id="view" tabindex="-1">
+    <noscript><p>This site needs JavaScript turned on.</p></noscript>
+  </main>
+</div>
+</body>
+</html>

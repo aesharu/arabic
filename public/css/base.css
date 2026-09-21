@@ -1,0 +1,162 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 17px;
+  line-height: 1.45;
+}
+.ar { font-family: var(--font-ar); direction: rtl; unicode-bidi: isolate; }
+.ar-in { font-size: 1.12em; line-height: 1; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:disabled { cursor: default; }
+a { color: var(--accent); font-weight: 700; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+[hidden] { display: none !important; }
+.muted { color: var(--muted); }
+.small { font-size: 15px; }
+kbd {
+  font: 700 12px/1 var(--font-ui);
+  padding: 3px 6px;
+  border: 1.5px solid var(--line);
+  border-radius: 5px;
+  color: var(--muted);
+}
+
+/* ---------- App shell: sidebar + page ---------- */
+.app {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px 18px 18px;
+  background: var(--surface);
+  border-right: 1.5px solid var(--line);
+}
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 0 8px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+.brand .ar { color: var(--accent); font-size: 27px; font-weight: 700; }
+
+.daypill {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 2px 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--bg);
+}
+.daypill b { font-size: 20px; font-weight: 800; }
+.daypill > span:not(.meter) { color: var(--muted); }
+.daypill .meter, .daypill small { grid-column: 1 / -1; }
+.daypill small { color: var(--muted); font-size: 14px; font-weight: 700; }
+
+nav { display: flex; flex-direction: column; gap: 2px; }
+.navhead {
+  margin: 12px 10px 4px;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+nav a {
+  padding: 8px 10px;
+  border-radius: 9px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+}
+nav a:hover { background: var(--surface-2); }
+nav a[aria-current="page"] { background: var(--ink); color: var(--bg); }
+
+.theme {
+  margin-top: auto;
+  padding: 8px 10px;
+  border: 1.5px solid var(--line);
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 700;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+main {
+  width: 100%;
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 36px 48px 72px;
+}
+main:focus, main:focus-visible { outline: none; }
+@media (min-width: 1700px) {
+  body { font-size: 18px; }
+  main { padding: 44px 64px 80px; }
+}
+
+/* ---------- Page heading with the zigzag mud-brick trim ---------- */
+.page-head { position: relative; padding-bottom: 22px; margin-bottom: 26px; }
+.page-head::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 10px;
+  background:
+    linear-gradient(135deg, transparent 50%, var(--tile) 50%) 0 0 / 14px 10px repeat-x,
+    linear-gradient(225deg, transparent 50%, var(--tile) 50%) 0 0 / 14px 10px repeat-x;
+  opacity: .9;
+}
+.eyebrow { margin: 0 0 6px; color: var(--muted); font-weight: 700; font-size: 16px; }
+h1 { margin: 0; font-size: 42px; font-weight: 800; letter-spacing: -.015em; line-height: 1.05; }
+h1 .of, h2 .of { color: var(--muted); font-weight: 700; font-size: .6em; }
+.sub { margin: 8px 0 0; max-width: 70ch; color: var(--muted); font-size: 18px; }
+h2 { margin: 0 0 8px; font-size: 22px; font-weight: 800; }
+h3 { margin: 0 0 6px; font-size: 15px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- Narrow windows: sidebar becomes a top bar ---------- */
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar {
+    z-index: 5;
+    height: auto;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 10px 16px;
+    padding: 12px 16px;
+    border-right: 0;
+    border-bottom: 1.5px solid var(--line);
+  }
+  .daypill { padding: 6px 10px; }
+  .daypill .meter, .daypill small { display: none; }
+  nav { flex-direction: row; width: 100%; overflow-x: auto; }
+  nav a { white-space: nowrap; }
+  .navhead { display: none; }
+  .theme { margin: 0 0 0 auto; }
+  main { padding: 24px 16px 56px; }
+  h1 { font-size: 34px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

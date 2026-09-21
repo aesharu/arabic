@@ -1,0 +1,47 @@
+/* Najdi mud-brick palette with a painted-door teal accent. Light by default, dark follows the system
+   unless a theme is chosen in the sidebar (data-theme on <html>). */
+:root {
+  --bg: #DCC8A6;
+  --surface: #EBDEC6;
+  --surface-2: #E2D0B0;
+  --tile: #C39B69;
+  --ink: #2A1C10;
+  --muted: #66503A;
+  --accent: #1D5A5C;
+  --accent-ink: #F2E9D6;
+  --hard: #8B3A1C;
+  --line: rgba(42, 28, 16, .18);
+  --good: #2F6B3A;
+  --bad: #9A2F1F;
+  --flag: #8A5A00;
+  /* one colour per phase, used on the calendar and the plan */
+  --p1: #1D5A5C;
+  --p2: #8B3A1C;
+  --p3: #8A6414;
+  --p4: #4F6B2F;
+  --p5: #5E4B82;
+  --p6: #2F5580;
+
+  --font-ui: "Alegreya Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-ar: "Noto Naskh Arabic", "Geeza Pro", "Arabic Typesetting", "Traditional Arabic", serif;
+  --radius: 16px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1B140E; --surface: #261D15; --surface-2: #30251B; --tile: #4B3723; --ink: #EFE3CC; --muted: #B39B7C;
+    --accent: #3F8D8D; --accent-ink: #0F0B07; --hard: #E0925F; --line: rgba(239, 227, 204, .16);
+    --good: #7CC08A; --bad: #EE8A76; --flag: #E3B55B;
+    --p1: #3F8D8D; --p2: #E0925F; --p3: #D9A84E; --p4: #9BBF6A; --p5: #A99BD0; --p6: #7FA6D9;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1B140E; --surface: #261D15; --surface-2: #30251B; --tile: #4B3723; --ink: #EFE3CC; --muted: #B39B7C;
+  --accent: #3F8D8D; --accent-ink: #0F0B07; --hard: #E0925F; --line: rgba(239, 227, 204, .16);
+  --good: #7CC08A; --bad: #EE8A76; --flag: #E3B55B;
+  --p1: #3F8D8D; --p2: #E0925F; --p3: #D9A84E; --p4: #9BBF6A; --p5: #A99BD0; --p6: #7FA6D9;
+  color-scheme: dark;
+}
