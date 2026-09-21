@@ -33,7 +33,7 @@ This project is my personal learning website: the tools I study with every day, 
 1. ✅ Project set up and restructured: `public/` site, `.gitignore`, `README.md`, git history.
 2. ✅ GitHub repository: https://github.com/aesharu/arabic
 3. ✅ Deployed to Cloudflare **Workers with static assets** as `arabic` → https://arabic.aesdvi.workers.dev. Deploy with `npx wrangler deploy` (Wrangler is logged in on this Mac). Auto-deploy on push is not connected yet — it needs the dashboard: Worker → Settings → Build → Connect.
-4. ✅ Cloud save: D1 database `arabic-db` (binding `DB`), API in `worker/index.js`, secret `SYNC_KEY` set with `wrangler secret put` — never commit it. Sign-in is by typing the profile's name on the welcome screen (`/api/login`); my progress is row `main`, Dima's is row `dima`.
+4. ✅ Cloud save: D1 database `arabic-db` (binding `DB`), API in `worker/index.js`, secret `SYNC_KEY` set with `wrangler secret put` — never commit it. Sign-in is by typing the profile's name on the welcome screen (`/api/login`); "Log out" in the menu forgets it. My progress is row `main`, Dima's is row `dima`. Dima's recordings, corrections and suggestions are in D1 too (see `STATUS.md`).
 
 Phases 2–4 of Part 9 of `NAJDI-PLAN.md` are built too (only `npm run pdf` is missing). Deploy in small parts as each is ready, so I can see it live.
 

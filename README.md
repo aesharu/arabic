@@ -1,6 +1,6 @@
 # Najdi — spoken Riyadh Arabic
 
-Volodia's study site for learning Najdi Arabic in 15 months (21 Sept 2026 → 31 Dec 2027): today's tasks, a calendar of the whole plan, Anki-style cards for 1,000+ words, a searchable word list, an alphabet trainer, reading practice, phrases and printable A4 practice sheets. The interface is in English, Ukrainian, Najdi Arabic and formal Arabic (MSA); every Arabic word is shown in Najdi, MSA, English and Ukrainian.
+Volodia's study site for learning Najdi Arabic in 15 months (21 Sept 2026 → 31 Dec 2027): today's tasks, a calendar of the whole plan, weekly lessons, grammar, Anki-style cards for 1,000+ words, a searchable word list, an alphabet trainer and full alphabet table, reading practice, phrases, Saudi life (Hijri date, prayer times, Qibla, culture) and printable A4 practice sheets. Dima, a native speaker, records the words in her own voice and corrects any text on the site; Volodymyr approves her changes. The interface is in English, Ukrainian, Najdi Arabic and formal Arabic (MSA); every Arabic word is shown in Najdi, MSA, English and Ukrainian.
 
 The curriculum and the plan's vocabulary come from [`NAJDI-PLAN.md`](NAJDI-PLAN.md); suggested extra words for Stages 4–5 are in [`NAJDI-WORDS.md`](NAJDI-WORDS.md) (flagged until a native speaker ticks them). What's built and what's next: [`STATUS.md`](STATUS.md).
 
@@ -18,12 +18,17 @@ public/                 the website — Cloudflare serves this folder as-is
     main.js             starts the app, sidebar, language and theme switches
     config.js           start date, finish date, daily goal
     core/               router, saved progress, cloud sync, dates, speech, translations, schedule logic,
-                        srs (Anki scheduling), cards (queues), vocab, search, timer, art (SVG scene and icons)
-    data/               letters, vowels, words, phrases, plan — the content
+                        srs (Anki scheduling), cards (queues), vocab, search, timer, art (SVG scene and icons),
+                        prayer (prayer times, Qibla, Hijri), toast (messages with Undo)
+      content.js        Dima's corrections, suggestions and recordings from the cloud, laid over the plan's words
+      editmode.js, editor.js   Edit mode: tap any text or word to change it (hers become suggestions)
+      studio.js, audiotools.js the voice studio: record, listen (also slowly), cut silence, save, undo
+    data/               letters, vowels, words, phrases, plan, grammar, weeks (lessons), saudi — the content
     i18n/strings.js     every interface text in English, Ukrainian, Najdi and MSA
     views/              one file per page
   css/welcome.css, js/core/welcome.js, js/core/music.js   the welcome screen, profiles and the synthesised oud greeting
-worker/index.js         the only server code: /api/login (sign in by name) and /api/progress (each profile's progress in D1)
+worker/index.js         the only server code: /api/login (sign in by name), /api/progress (each profile's progress),
+                        /api/content, /api/edits, /api/suggestions, /api/audio (corrections, suggestions, recordings) — all in D1
 scripts/build-vocab.mjs npm run vocab — builds public/data/vocab.json and the Anki decks from NAJDI-PLAN.md + NAJDI-WORDS.md
 data/                   MSA and Ukrainian meanings for the plan's vocabulary
 tests/                  checks for dates/plan logic, translations, vocabulary and content vs NAJDI-PLAN.md
@@ -35,7 +40,8 @@ No framework and no build step: plain HTML, CSS and JavaScript modules.
 ## Run it on your computer
 
 ```sh
-npm run dev      # then open http://localhost:8000
+npm run dev      # then open http://localhost:8000 (the site only; cloud save, edits and recordings need the Worker)
+npx wrangler dev --port 8788   # the site and the API with a local database (needs a .dev.vars with a test SYNC_KEY)
 npm test         # all checks must pass before every commit
 ```
 
@@ -45,7 +51,7 @@ npm test         # all checks must pass before every commit
 npm test && npx wrangler deploy
 ```
 
-The site is https://arabic.aesdvi.workers.dev. It opens with a welcome screen: choose Volodymyr (student) or Dima (teacher) and, the first time on a device, type the name — that signs in to cloud save. Progress is saved in the browser and in the D1 database `arabic-db`, one row per profile; Dima can also view Volodymyr's progress read-only. Tokens are derived from the Worker secret `SYNC_KEY`, which also still works as a key on its own (Calendar → Your data).
+The site is https://arabic.aesdvi.workers.dev. It opens with a welcome screen: choose Volodymyr (student) or Dima (teacher) and, the first time on a device, type the name — that signs in to cloud save. Progress is saved in the browser and in the D1 database `arabic-db`, one row per profile; Dima can also view Volodymyr's progress read-only. "Log out" in the menu forgets the sign-in on that device. Tokens are derived from the Worker secret `SYNC_KEY`, which also still works as a key on its own (Calendar → Your data).
 
 ## Content rules
 
