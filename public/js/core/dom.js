@@ -34,7 +34,7 @@ export function meanings(item) {
   const lines = l === "en" || l === "uk"
     ? `<span class="m1" lang="${l}">${esc(item[l])}</span>${meaningLine(item, l === "en" ? "uk" : "en", "m2")}`
     : `${meaningLine(item, "en", "m1")}${meaningLine(item, "uk", "m2")}`;
-  return `${lines}<span class="msa"><i title="${esc(t("lab.msaHint"))}">${t("lab.msa")}</i> ${ar(item.msa)}</span>`;
+  return lines; // formal Arabic (item.msa) stays in the data but isn't shown: the goal is her spoken dialect
 }
 
 export const playIcon = `<span class="play" aria-hidden="true">${icon("sound")}</span>`;

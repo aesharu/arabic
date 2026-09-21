@@ -63,8 +63,6 @@ export const STRINGS = {
     najdi: "ما تأكدنا إنها نجدية — اسأل واحد من أهلها.",
     msa: "لم يُتحقَّق بعد من أنها نجدية — اسأل متحدثًا أصليًا.",
   },
-  "lab.msa": { en: "Formal (MSA)", uk: "Формальна (MSA)", najdi: "الفصحى", msa: "الفصحى" },
-  "lab.msaHint": { en: "recognize it, don't say it", uk: "впізнавай, але не кажи", najdi: "افهمها بس لا تقولها", msa: "تعرّف عليها ولا تستخدمها في الكلام" },
   "lab.ua": { en: "UA", uk: "Укр.", najdi: "بالأوكراني", msa: "بالأوكرانية" },
   "lab.najdi": { en: "Najdi:", uk: "Наджді:", najdi: "نجدي:", msa: "النجدية:" },
   "lab.hear": { en: "Hear {what}", uk: "Почути {what}", najdi: "اسمع {what}", msa: "استمع إلى {what}" },

@@ -21,7 +21,6 @@ const exampleRow = r => (content.apply(r), `
     <span class="phrase-t">${translit(r.say)} ${r.check ? flag({ check: true, checkNote: r.note }) : ""}
       <span class="gr-mean">${esc(meaning(r))}</span>
       <span class="gr-mean-2">${esc(second(r))}</span>
-      <span class="gr-msa"><i title="${esc(t("lab.msaHint"))}">${t("lab.msa")}</i> ${ar(r.msa)}</span>
       ${r.her ? `<span class="gr-her">${icon("star")}${t("grammar.toHer")}</span>` : ""}
       ${r.note && !r.check ? `<span class="pnote">${rich(tx(r.note))}</span>` : ""}</span>
     ${playIcon}
@@ -74,7 +73,7 @@ export default {
       <p class="gr-back"><a href="#/grammar">${icon("back")} ${t("grammar.all")}</a></p>
       ${pageHead(tx(lesson.title), "", t("grammar.lessonN", { n: lesson.id }), "", "reading")}
       <section class="panel gr-intro"><p>${rich(tx(lesson.intro))}</p>
-        ${lesson.verb ? `<p class="gr-verb">${ar(lesson.verb.ar)} — ${esc(meaning(lesson.verb))} <span class="gr-msa"><i>${t("lab.msa")}</i> ${ar(lesson.verb.msa)}</span></p>` : ""}
+        ${lesson.verb ? `<p class="gr-verb">${ar(lesson.verb.ar)} — ${esc(meaning(lesson.verb))}</p>` : ""}
       </section>
       <h2>${t("grammar.examples")}</h2>
       <div class="vocab gr-rows">${lesson.rows.map(exampleRow).join("")}</div>

@@ -15,7 +15,6 @@ const word = w => (content.apply(w), `
     ${ar(w.ar, "phrase-ar")}
     <span class="phrase-t">${translit(w.say)} ${w.level ? `<span class="rude-tag${w.level === "very rude" ? " is-very" : ""}">${t(w.level === "very rude" ? "phrases.veryRude" : "phrases.rudeTag")}</span>` : ""}${w.level && !w.taught ? flag({ check: true }) : ""}
       <span class="gr-mean">${esc(tx({ en: w.en, uk: w.uk, najdi: w.en, msa: w.en }))}</span>
-      <span class="gr-msa"><i>${t("lab.msa")}</i> ${ar(w.msa)}</span>
       ${w.note ? `<span class="pnote">${esc(tx(w.note))}</span>` : ""}</span>
     ${playIcon}
   </button>`);

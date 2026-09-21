@@ -2,7 +2,7 @@
 
 ## Who I am and what this is
 
-I'm Volodia, a Ukrainian speaker (English as my second language) learning **Najdi Arabic** — the spoken dialect of Riyadh and central Saudi Arabia — from zero. Day 1 was **Monday 21 September 2026**; the plan runs 15 months to **31 December 2027**. My goal is comfortable everyday conversation, studying about 1–2 hours a day.
+I'm Volodia, a Ukrainian speaker (English as my second language) learning **her spoken dialect** — Dima's northern Najdi, as spoken around Hafar al-Batin — from zero, to talk with her and only her. Day 1 was **Monday 21 September 2026**; the plan runs 15 months to **31 December 2027**. My goal is comfortable everyday conversation, studying about 1–2 hours a day.
 
 This project is my personal learning website: the tools I study with every day, hosted on Cloudflare. I study on my computer. My girlfriend **Dima** — a Saudi, native Najdi speaker; I'm learning Najdi for her — uses it on her **iPad** and iPhone with her own profile (see `STATUS.md`). Every page must work on all three. I'm self-taught in code and work mostly through you, so **explain what you're doing in plain language before each step**, and tell me when something needs me to act (logins, accounts, clicking in a dashboard).
 
@@ -17,9 +17,9 @@ This project is my personal learning website: the tools I study with every day, 
 **Everything must ALWAYS be translated. Every time you change or add anything, translate it into every language below — never add or change text in only one language.**
 
 - **Interface text** (menus, buttons, instructions, notes): **English, Ukrainian, Najdi Arabic AND MSA.** My girlfriend reads English and Arabic and checks the site to help me; I read Ukrainian. Texts live in `public/js/i18n/strings.js` (all four side by side); content data uses `{ en, uk, najdi, msa }`. The Arabic interfaces run right-to-left.
-- **Every Arabic word, phrase and example**: **Najdi Arabic (with pronunciation), MSA (formal Arabic), English AND Ukrainian** — four languages. MSA is shown as "recognise it, don't say it".
+- **Every Arabic word, phrase and example**: **her Najdi (with pronunciation), English AND Ukrainian.** I don't want formal Arabic (MSA): it is **not shown** anywhere I study, and new content doesn't need it (older data files still carry an `msa` field — leave it, the tests check it there).
 - **Double- and triple-check every translation:**
-  1. Proofread each translation yourself — natural Ukrainian and English, correct Najdi and MSA.
+  1. Proofread each translation yourself — natural Ukrainian and English, correct Najdi (her dialect).
   2. Run `npm test` — it fails if any language is missing, if Ukrainian isn't in Cyrillic or MSA isn't in Arabic script, or if a Najdi word doesn't match `NAJDI-PLAN.md`.
   3. Tell me (in chat, not on the site) which translations you're unsure of, so she can check them. If a Najdi word itself is uncertain, use the "check with tutor" flag.
 - **No behind-the-scenes notes on the site.** My girlfriend uses it too: never show who translated what, file names like NAJDI-PLAN.md, or notes addressed to me about the build. Study content only.
@@ -50,7 +50,8 @@ Phases 2–4 of Part 9 of `NAJDI-PLAN.md` are built too (only `npm run pdf` is m
 
 ## Arabic content rules — important
 
-- Everything targets **spoken Najdi**, not Modern Standard Arabic. When the two differ, show the Najdi form and pronunciation (e.g. ق = "g" in Najdi: قهوة = gahwa). MSA appears only as a labelled extra.
+- Everything targets **her spoken dialect**: northern Najdi (Hafar al-Batin), the way she and young Saudis really talk today — not formal Arabic, not old-fashioned speech. Show the spoken form and pronunciation (e.g. ق = "g": قهوة = gahwa).
+- **Her words come first.** What she teaches me goes in `public/js/data/hers.js` (no flag — she's the native speaker). When her form differs from the plan's Riyadh form (she says شلونك, مو; the plan has وش لونك, مب), the site shows hers; propose the matching change to `NAJDI-PLAN.md` instead of editing it.
 - **Don't invent Najdi content confidently.** If you're not sure a word, phrase or pronunciation is genuinely Najdi (and not Egyptian, Levantine or formal Arabic), mark it with a visible "check with tutor" flag in the data so I can verify it with a native speaker.
 - Always keep the **"to her"** forms from the plan.
 - Arabic text must always render right-to-left and use a proper Arabic font with fallbacks.

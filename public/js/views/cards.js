@@ -63,7 +63,6 @@ function answerSide(n, kind) {
     ${arabic}
     <p class="study-say">${translit(n.say)} ${n.check ? flag({ check: true, checkNote: n.checkNote ?? n.note }) : ""}</p>
     ${kind === "r" ? `<p class="study-meaning" lang="${first}">${esc(n[first])}</p><p class="study-meaning-2" lang="${second}" dir="ltr"><i>${second === "uk" ? "UA" : "EN"}</i> ${esc(n[second])}</p>` : ""}
-    <p class="study-msa"><i title="${esc(t("lab.msaHint"))}">${t("lab.msa")}</i> ${ar(n.msa)}</p>
     ${extra}`;
 }
 

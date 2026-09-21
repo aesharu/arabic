@@ -26,7 +26,6 @@ const WORD_FIELDS = [
   ["say", "edit.say", "ltr", "en"],
   ["en", "edit.en", "ltr", "en"],
   ["uk", "edit.uk", "ltr", "uk"],
-  ["msa", "edit.msa", "rtl", "ar"],
 ];
 const TEXT_FIELDS = [
   ["en", "edit.en", "ltr", "en"],

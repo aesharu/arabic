@@ -53,8 +53,7 @@ const line = l => {
       <button type="button" class="word-edit" data-edit="${l.id}" aria-label="${esc(t("edit.button"))}">✎</button>
       <button class="phrase dl-bubble" data-say="${esc(speakText(l.ar))}">${ar(l.ar, "phrase-ar")}
         <span class="phrase-t">${translit(l.say)} ${l.check === false ? "" : flag({ check: true, checkNote: CHECK_NOTE })}
-          <span class="gr-mean">${esc(meaning(l))}</span><span class="gr-mean-2">${esc(second(l))}</span>
-          <span class="gr-msa"><i>${t("lab.msa")}</i> ${ar(l.msa)}</span></span>
+          <span class="gr-mean">${esc(meaning(l))}</span><span class="gr-mean-2">${esc(second(l))}</span></span>
         ${playIcon}</button></div></div>`;
 };
 

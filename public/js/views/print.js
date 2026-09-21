@@ -104,7 +104,7 @@ function cardSheets(list) {
     const slots = Array.from({ length: 8 }, (_, k) => cards[k]);
     const front = slots.map(c => `<div class="pcard">${c ? `<p lang="ar" dir="rtl">${esc(c.ar)}</p>` : ""}</div>`).join("");
     const mirrored = [0, 1, 2, 3].flatMap(r => [slots[r * 2 + 1], slots[r * 2]]);
-    const back = mirrored.map(c => `<div class="pcard back">${c ? `${lat(c.say, "tr")}${meaningLines(c)}<span class="pmsa" lang="ar" dir="rtl">${esc(c.msa)}</span>` : ""}</div>`).join("");
+    const back = mirrored.map(c => `<div class="pcard back">${c ? `${lat(c.say, "tr")}${meaningLines(c)}` : ""}</div>`).join("");
     out.push(sheet(esc(t("print.cardsFront")), `<div class="pcards">${front}</div>`, i * 2 + 1, pages.length * 2, "s-cards"));
     out.push(sheet(esc(t("print.cardsBack")), `<div class="pcards">${back}</div>`, i * 2 + 2, pages.length * 2, "s-cards"));
   });

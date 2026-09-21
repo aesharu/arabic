@@ -17,7 +17,6 @@ const phrase = x => (content.apply(x), `
     ${ar(x.ar, "phrase-ar")}
     <span class="phrase-t">${translit(x.say)} ${x.check ? flag({ check: true }) : ""}
       <span class="gr-mean">${esc(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }))}</span>
-      <span class="gr-msa"><i title="${esc(t("lab.msaHint"))}">${t("lab.msa")}</i> ${ar(x.msa)}</span>
       ${x.north ? `<span class="lv-north"><i>${t("love.north")}</i> ${ar(x.north.ar)} ${translit(x.north.say)}</span>` : ""}
       ${x.note ? `<span class="pnote">${esc(tx(x.note))}</span>` : ""}</span>
     ${playIcon}

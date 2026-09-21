@@ -62,8 +62,7 @@ function compass(bearing) {
 
 const wordBtn = w => (content.apply(w), `<button class="phrase" data-say="${esc(speakText(w.ar))}" data-edit-id="${w.id}">${ar(w.ar, "phrase-ar")}
   <span class="phrase-t">${translit(w.say)} ${w.check ? flag({ check: true }) : ""}
-    <span class="gr-mean">${esc(tx({ en: w.en, uk: w.uk, najdi: w.en, msa: w.en }))}</span>
-    <span class="gr-msa"><i>${t("lab.msa")}</i> ${ar(w.msa)}</span></span>${playIcon}</button>`);
+    <span class="gr-mean">${esc(tx({ en: w.en, uk: w.uk, najdi: w.en, msa: w.en }))}</span></span>${playIcon}</button>`);
 
 export default {
   titleKey: "saudi.title",
