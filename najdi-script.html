@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Najdi script — 12 days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#DCC8A6; --surface:#EBDEC6; --tile:#C39B69; --ink:#2A1C10; --muted:#66503A;
+  --accent:#1D5A5C; --accent-ink:#F2E9D6; --hard:#8B3A1C; --line:rgba(42,28,16,.18);
+  --good:#2F6B3A; --bad:#9A2F1F;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1B140E; --surface:#261D15; --tile:#4B3723; --ink:#EFE3CC; --muted:#B39B7C;
+    --accent:#3F8D8D; --accent-ink:#0F0B07; --hard:#E0925F; --line:rgba(239,227,204,.16);
+    --good:#7CC08A; --bad:#EE8A76;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1B140E; --surface:#261D15; --tile:#4B3723; --ink:#EFE3CC; --muted:#B39B7C;
+  --accent:#3F8D8D; --accent-ink:#0F0B07; --hard:#E0925F; --line:rgba(239,227,204,.16);
+  --good:#7CC08A; --bad:#EE8A76;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Alegreya Sans","Segoe UI",system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.45}
+.ar{font-family:"Noto Naskh Arabic","Geeza Pro","Arabic Typesetting","Traditional Arabic",serif;direction:rtl;unicode-bidi:isolate}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 48px}
+
+header{padding:22px 0 18px;position:relative}
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;
+  background:linear-gradient(135deg,transparent 50%,var(--tile) 50%) 0 0/14px 10px repeat-x,
+             linear-gradient(225deg,transparent 50%,var(--tile) 50%) 0 0/14px 10px repeat-x;opacity:.9}
+h1{margin:0;font-size:34px;font-weight:800;letter-spacing:-.01em;line-height:1.05}
+h1 .ar{font-size:30px;font-weight:700;margin-left:10px;color:var(--accent)}
+.sub{margin:6px 0 0;color:var(--muted);font-size:16px}
+
+.tabs{display:flex;gap:6px;margin:18px 0 14px;background:var(--surface);padding:4px;border-radius:12px}
+.tabs button{flex:1;border:0;background:transparent;padding:10px 6px;border-radius:9px;font-weight:700;font-size:16px;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1.5px solid var(--line);background:transparent;border-radius:999px;padding:6px 12px 5px;
+  display:flex;align-items:center;gap:8px;white-space:nowrap}
+.chip .d{font-size:14px;font-weight:700;color:var(--muted)}
+.chip .ar{font-size:20px;line-height:1}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.chip[aria-pressed="true"] .d{color:var(--bg);opacity:.75}
+.chip .ok{font-size:13px;font-weight:800;color:var(--good)}
+.chip[aria-pressed="true"] .ok{color:var(--bg)}
+
+.gintro{margin:6px 0 16px}
+.gintro h2{margin:0;font-size:22px;font-weight:800}
+.gintro p{margin:4px 0 0;color:var(--muted)}
+
+.card{background:var(--surface);border-radius:16px;margin:0 0 14px;overflow:hidden}
+.top{display:flex;gap:14px;padding:14px}
+.glyph{flex:0 0 96px;height:108px;border:0;border-radius:12px;background:var(--tile);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;font-size:74px;line-height:1;padding-bottom:10px}
+.meta{flex:1;min-width:0}
+.name{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.name b{font-size:22px;font-weight:800}
+.name .ar{font-size:20px;color:var(--muted)}
+.tag{font-size:13px;font-weight:700;padding:1px 8px;border-radius:6px;border:1.5px solid currentColor}
+.tag.h{color:var(--hard)}
+.tag.nc{color:var(--muted)}
+.sound{margin:4px 0 0}
+.ua{margin:6px 0 0;font-weight:700}
+.ua span{font-weight:400;color:var(--muted);margin-right:6px}
+
+.forms{display:flex;direction:rtl;border-top:1.5px solid var(--line)}
+.forms div{flex:1;text-align:center;padding:8px 4px 10px;border-left:1.5px solid var(--line)}
+.forms div:last-child{border-left:0}
+.forms .ar{font-size:36px;line-height:1.5;display:block}
+.forms small{display:block;direction:ltr;font-size:13px;color:var(--muted)}
+
+.ex{display:flex;align-items:center;gap:12px;width:100%;border:0;border-top:1.5px solid var(--line);
+  background:transparent;text-align:left;padding:10px 14px}
+.ex .ar{font-size:30px;line-height:1.4}
+.ex .t{flex:1}
+.ex .t b{display:block;font-size:17px}
+.ex .t span{color:var(--muted);font-size:15px}
+.play{flex:0 0 36px;height:36px;border-radius:50%;background:var(--ink);color:var(--bg);
+  display:flex;align-items:center;justify-content:center;font-size:13px}
+.no-tts .play{display:none}
+
+.najdi{background:var(--accent);color:var(--accent-ink);padding:10px 14px;font-size:16px}
+.najdi b{font-weight:800}
+
+.done{width:100%;border:2px solid var(--ink);background:transparent;border-radius:12px;padding:13px;font-weight:800;font-size:17px;margin-top:4px}
+.done[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+.vsec{background:var(--surface);border-radius:16px;padding:14px;margin:0 0 14px}
+.vsec h2{margin:0 0 4px;font-size:21px;font-weight:800}
+.vsec > p{margin:0 0 10px;color:var(--muted)}
+.vrow{display:flex;align-items:center;gap:14px;padding:9px 0;border-top:1.5px solid var(--line);width:100%;
+  background:transparent;border-left:0;border-right:0;border-bottom:0;text-align:left}
+.vrow .ar{flex:0 0 64px;text-align:center;font-size:38px;line-height:1.5}
+.vrow .t{flex:1}
+.vrow .t b{display:block}
+.vrow .t span{color:var(--muted);font-size:15px}
+
+.qhead{display:flex;justify-content:space-between;align-items:baseline;margin:4px 0 10px}
+.qhead p{margin:0;color:var(--muted)}
+.score{font-weight:800;font-size:18px}
+.qglyph{background:var(--tile);border-radius:18px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:12px}
+.qglyph .ar{font-size:110px;line-height:1.2}
+.qglyph small{color:var(--ink);opacity:.75;font-weight:700;font-size:14px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 8px;text-align:center}
+.opt b{display:block;font-size:22px}
+.opt span{font-size:14px;color:var(--muted)}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 18%,var(--surface))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 16%,var(--surface))}
+.fb{min-height:52px;margin:12px 0 0;font-size:16px}
+.next{width:100%;border:0;background:var(--ink);color:var(--bg);border-radius:12px;padding:14px;font-weight:800;font-size:17px}
+.next[hidden]{display:none}
+
+footer{margin-top:26px;color:var(--muted);font-size:15px}
+footer p{margin:0 0 8px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Najdi script<span class="ar" lang="ar">نجدي</span></h1>
+    <p class="sub">28 letters in 12 days, learned by shape rather than alphabet order. Two days per group.</p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="letters">Letters</button>
+    <button role="tab" aria-selected="false" data-tab="vowels">Vowels</button>
+    <button role="tab" aria-selected="false" data-tab="quiz">Quiz</button>
+  </div>
+
+  <main id="view"></main>
+
+  <footer>
+    <p>Tap a big letter to hear its name, or a word to hear it said. Your phone's voice speaks standard Arabic, so for ق trust the Najdi note, not the voice.</p>
+    <p>Write every letter by hand, in every form, until you stop hesitating. Your hand learns shapes faster than your eyes do.</p>
+  </footer>
+</div>
+
+<script>
+const G = [
+ {days:"1–2", title:"Alif and the boat letters", note:"ب ت ث ن ي share one body at the start and middle of a word. Only the dots tell them apart.", L:[
+  {c:"ا",n:"alif",an:"ألف",tr:"ā",s:"Long a, as in father.",ua:"а (довге)",nc:1,ex:["أبغى","abgha","I want"],nj:"أبغى is the Najdi “I want”. Formal Arabic says أريد — you won't need it."},
+  {c:"ب",n:"bāʾ",an:"باء",tr:"b",s:"b as in book.",ua:"б",ex:["باب","bāb","door"]},
+  {c:"ت",n:"tāʾ",an:"تاء",tr:"t",s:"t, clean and light.",ua:"т",ex:["تمر","tamr","dates"]},
+  {c:"ث",n:"thāʾ",an:"ثاء",tr:"th",s:"th as in think. Tongue tip between the teeth.",ua:"немає — язик між зубами",h:1,ex:["ثلاثة","thalātha","three"],nj:"Najdi keeps this sound. Egyptian turns it into t or s — don't copy them."},
+  {c:"ن",n:"nūn",an:"نون",tr:"n",s:"n. At the end of a word it drops into a bowl.",ua:"н",ex:["نور","nūr","light"]},
+  {c:"ي",n:"yāʾ",an:"ياء",tr:"y / ī",s:"y as in yes, or a long ee.",ua:"й, або довге і",ex:["يوم","yōm","day"],nj:"In Najdi, ay usually becomes ē and aw becomes ō. That's why يوم is yōm."}
+ ]},
+ {days:"3–4", title:"The hooks", note:"One shape, three sounds: dot below, no dot, dot above.", L:[
+  {c:"ج",n:"jīm",an:"جيم",tr:"j",s:"j as in jam.",ua:"дж",ex:["جمل","jamal","camel"]},
+  {c:"ح",n:"ḥāʾ",an:"حاء",tr:"ḥ",s:"A strong breathy h from deep in the throat, like fogging glasses but tighter.",ua:"немає",h:1,ex:["الحين","al-ḥīn","now"],nj:"الحين is pure Najdi. You'll hear it all day."},
+  {c:"خ",n:"khāʾ",an:"خاء",tr:"kh",s:"kh as in Bach.",ua:"х — точно як українське",ex:["خبز","khubz","bread"]}
+ ]},
+ {days:"5–6", title:"Letters that never join forward", note:"These never connect to the letter after them, so words break into pieces. ا is one of them too.", L:[
+  {c:"د",n:"dāl",an:"دال",tr:"d",s:"d.",ua:"д",nc:1,ex:["دار","dār","house"]},
+  {c:"ذ",n:"dhāl",an:"ذال",tr:"dh",s:"th as in this.",ua:"немає — дзвінке th",h:1,nc:1,ex:["ذهب","dhahab","gold"],nj:"Kept in Najdi, just like ث."},
+  {c:"ر",n:"rāʾ",an:"راء",tr:"r",s:"A tapped or rolled r.",ua:"р — ідеально як українське",nc:1,ex:["رز","rizz","rice"]},
+  {c:"ز",n:"zāy",an:"زاي",tr:"z",s:"z.",ua:"з",nc:1,ex:["زين","zēn","good, fine"],nj:"زين is the Najdi “okay / good”. Use it every day."},
+  {c:"و",n:"wāw",an:"واو",tr:"w / ū",s:"w as in wow, or a long oo.",ua:"англ. w, або довге у",nc:1,ex:["وين","wēn","where"]}
+ ]},
+ {days:"7–8", title:"Teeth and the first heavy letters", note:"س ش have teeth, ص ض have a loop. Heavy letters darken the vowels next to them.", L:[
+  {c:"س",n:"sīn",an:"سين",tr:"s",s:"s.",ua:"с",ex:["سلام","salām","hello, peace"]},
+  {c:"ش",n:"shīn",an:"شين",tr:"sh",s:"sh as in shop.",ua:"ш",ex:["وش","wesh","what?"],nj:"وش is the signature Najdi word. Other dialects say ايش or شو."},
+  {c:"ص",n:"ṣād",an:"صاد",tr:"ṣ",s:"A heavy s: tongue low, mouth full and rounded.",ua:"важке с",h:1,ex:["صباح","ṣabāḥ","morning"]},
+  {c:"ض",n:"ḍād",an:"ضاد",tr:"ḍ",s:"A heavy d.",ua:"важке д",h:1,ex:["ضيف","ḍēf","guest"],nj:"In Najdi, ض and ظ sound the same: a heavy th as in this."}
+ ]},
+ {days:"9–10", title:"The throat letters", note:"The hardest two days. Go slow and say every sound out loud.", L:[
+  {c:"ط",n:"ṭāʾ",an:"طاء",tr:"ṭ",s:"A heavy t.",ua:"важке т",h:1,ex:["طيب","ṭayyib","okay, good"]},
+  {c:"ظ",n:"ẓāʾ",an:"ظاء",tr:"ẓ",s:"A heavy th as in this.",ua:"немає",h:1,ex:["ظهر","ẓuhr","noon"]},
+  {c:"ع",n:"ʿayn",an:"عين",tr:"ʿ",s:"Squeeze the throat and voice through it, like the very start of a gag, gently.",ua:"немає",h:1,ex:["عيال","ʿiyāl","kids, guys"],nj:"عيال means kids — and between friends, “guys”."},
+  {c:"غ",n:"ghayn",an:"غين",tr:"gh",s:"A gargled r, like the French r in Paris.",ua:"дзвінке х, як гаркаве р",h:1,ex:["غالي","ghālī","expensive, dear"]}
+ ]},
+ {days:"11–12", title:"The last six", note:"Mostly friendly sounds — and ق, the most Najdi letter of all.", L:[
+  {c:"ف",n:"fāʾ",an:"فاء",tr:"f",s:"f.",ua:"ф",ex:["فلوس","flūs","money"]},
+  {c:"ق",n:"qāf",an:"قاف",tr:"q → g",s:"In Najdi, g as in go. In formal Arabic, a deep k from the throat.",ua:"англ. g у «go» — не українське г",ex:["قهوة","gahwa","coffee"],nj:"The biggest Najdi tell. قال is gāl, قهوة is gahwa."},
+  {c:"ك",n:"kāf",an:"كاف",tr:"k",s:"k.",ua:"к",ex:["كيف","kēf","how"],nj:"In traditional Najdi you may hear ك as ц in some words. Recognise it, don't copy it yet."},
+  {c:"ل",n:"lām",an:"لام",tr:"l",s:"A light l, tongue tip on the teeth.",ua:"л, але світліше",ex:["ليش","lēsh","why"]},
+  {c:"م",n:"mīm",an:"ميم",tr:"m",s:"m.",ua:"м",ex:["موية","mōya","water"]},
+  {c:"ه",n:"hāʾ",an:"هاء",tr:"h",s:"A light breath, as in hello.",ua:"м'якше за українське г — просто видих",ex:["هلا","hala","hi!"],nj:"هلا and هلا والله are everyday Najdi greetings."}
+ ]}
+];
+const ALL = G.flatMap((g,gi)=>g.L.map(l=>({...l,gi})));
+const T = "ـ";
+function forms(l){
+  return l.nc
+    ? [[l.c,"alone"],[T+l.c,"joined from right"]]
+    : [[l.c+T,"start"],[T+l.c+T,"middle"],[T+l.c,"end"],[l.c,"alone"]];
+}
+
+/* storage */
+const KEY="najdi-script-v1";
+let S={tab:"letters",g:0,done:[],quiz:[0]};
+try{const r=localStorage.getItem(KEY); if(r) S={...S,...JSON.parse(r)};}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* speech */
+let arVoice=null;
+const hasTTS = "speechSynthesis" in window;
+if(!hasTTS) document.body.classList.add("no-tts");
+function pickVoice(){
+  if(!hasTTS) return;
+  const v=speechSynthesis.getVoices();
+  arVoice=v.find(x=>/^ar[-_]SA/i.test(x.lang))||v.find(x=>/^ar/i.test(x.lang))||null;
+}
+if(hasTTS){pickVoice(); speechSynthesis.onvoiceschanged=pickVoice;}
+function say(t){
+  if(!hasTTS) return;
+  try{speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang="ar-SA"; if(arVoice) u.voice=arVoice; u.rate=.8; speechSynthesis.speak(u);}catch(e){}
+}
+
+const view=document.getElementById("view");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function chips(sel,multi){
+  return `<div class="chips" role="group" aria-label="Day groups">${G.map((g,i)=>{
+    const on = multi ? sel.includes(i) : sel===i;
+    const ok = S.done.includes(i) ? `<span class="ok" aria-label="done">✓</span>` : "";
+    return `<button class="chip" data-g="${i}" aria-pressed="${on}"><span class="d">Days ${g.days}</span><span class="ar" lang="ar">${g.L.map(l=>l.c).join(" ")}</span>${ok}</button>`;
+  }).join("")}</div>`;
+}
+
+function renderLetters(){
+  const g=G[S.g];
+  view.innerHTML = chips(S.g,false) + `
+  <div class="gintro"><h2>${esc(g.title)}</h2><p>${esc(g.note)}</p></div>
+  ${g.L.map(l=>`
+   <article class="card">
+     <div class="top">
+       <button class="glyph ar" lang="ar" data-say="${l.an}" aria-label="Hear the name ${esc(l.n)}">${l.c}</button>
+       <div class="meta">
+         <div class="name"><b>${esc(l.n)}</b><span class="ar" lang="ar">${l.an}</span>
+           ${l.h?'<span class="tag h">new sound</span>':''}${l.nc?'<span class="tag nc">never joins forward</span>':''}</div>
+         <p class="sound">${esc(l.s)}</p>
+         <p class="ua"><span>UA</span>${esc(l.ua)}</p>
+       </div>
+     </div>
+     <div class="forms">${forms(l).map(f=>`<div><span class="ar" lang="ar">${f[0]}</span><small>${f[1]}</small></div>`).join("")}</div>
+     <button class="ex" data-say="${l.ex[0]}"><span class="ar" lang="ar">${l.ex[0]}</span><span class="t"><b>${esc(l.ex[1])}</b><span>${esc(l.ex[2])}</span></span><span class="play" aria-hidden="true">▶</span></button>
+     ${l.nj?`<div class="najdi"><b>Najdi:</b> ${esc(l.nj)}</div>`:""}
+   </article>`).join("")}
+  <button class="done" data-done="${S.g}" aria-pressed="${S.done.includes(S.g)}">${S.done.includes(S.g)?`Days ${g.days} done ✓`:`Mark days ${g.days} done`}</button>`;
+}
+
+const VOW=[
+ {h:"Short vowels",p:"Small marks above or below a letter. Practise with them now — everyday writing leaves them out, so later you'll read without them.",r:[
+  ["بَ","fatḥa","ba — short а"],["بِ","kasra","bi — short і"],["بُ","ḍamma","bu — short у"],
+  ["بْ","sukūn","b — no vowel at all"],["بّ","shadda","bb — say the letter twice as long"]]},
+ {h:"Long vowels",p:"Three letters double as long vowels.",r:[
+  ["بَا","alif","bā — long а"],["بِي","yāʾ","bī — long і"],["بُو","wāw","bū — long у"],
+  ["زين","Najdi ē","zēn — ay becomes ē"],["يوم","Najdi ō","yōm — aw becomes ō"]]},
+ {h:"Four extras you'll meet on day one",p:"Not full letters, but everywhere.",r:[
+  ["ء","hamza","A catch in the throat, like the break in uh-oh."],
+  ["ة","tāʾ marbūṭa","Word-ending -a, as in قهوة gahwa."],
+  ["ى","alif maqṣūra","Also a word-ending -a, as in أبغى abgha."],
+  ["لا","lām-alif","ل + ا always fuse into this shape. It means “no”."]]}
+];
+function renderVowels(){
+  view.innerHTML = VOW.map(s=>`<section class="vsec"><h2>${esc(s.h)}</h2><p>${esc(s.p)}</p>
+   ${s.r.map(r=>`<button class="vrow" data-say="${r[0]}"><span class="ar" lang="ar">${r[0]}</span><span class="t"><b>${esc(r[1])}</b><span>${esc(r[2])}</span></span><span class="play" aria-hidden="true">▶</span></button>`).join("")}
+  </section>`).join("");
+}
+
+/* quiz */
+let Q=null, score={r:0,t:0};
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function newQ(){
+  if(!S.quiz.length) S.quiz=[0];
+  const pool=ALL.filter(l=>S.quiz.includes(l.gi));
+  const ans=pool[Math.floor(Math.random()*pool.length)];
+  const fs=forms(ans); const f=fs[Math.floor(Math.random()*fs.length)];
+  const same=shuffle(pool.filter(l=>l!==ans));
+  const rest=shuffle(ALL.filter(l=>l!==ans&&!same.includes(l)));
+  const opts=shuffle([ans,...[...same,...rest].slice(0,3)]);
+  Q={ans,f,opts,picked:null};
+}
+function renderQuiz(){
+  if(!Q) newQ();
+  view.innerHTML = `<p style="margin:0 0 8px;color:var(--muted)">Pick which groups to test.</p>${chips(S.quiz,true)}
+   <div class="qhead"><p>What sound is this?</p><span class="score">${score.r} / ${score.t}</span></div>
+   <div class="qglyph"><span class="ar" lang="ar">${Q.f[0]}</span><small>${Q.f[1]} form</small></div>
+   <div class="opts">${Q.opts.map((o,i)=>{
+     let cls="opt"; if(Q.picked!==null){ if(o===Q.ans) cls+=" right"; else if(i===Q.picked) cls+=" wrong"; }
+     return `<button class="${cls}" data-opt="${i}" ${Q.picked!==null?"disabled":""}><b>${esc(o.tr)}</b><span>${esc(o.n)}</span></button>`;
+   }).join("")}</div>
+   <div class="fb" aria-live="polite">${Q.picked===null?"":(Q.opts[Q.picked]===Q.ans?`Right — <b>${esc(Q.ans.n)}</b>. ${esc(Q.ans.s)}`:`That's <b>${esc(Q.ans.n)}</b>. ${esc(Q.ans.s)}`)}</div>
+   <button class="next" ${Q.picked===null?"hidden":""}>Next letter</button>`;
+}
+
+function render(){
+  document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===S.tab));
+  ({letters:renderLetters,vowels:renderVowels,quiz:renderQuiz})[S.tab]();
+}
+
+document.querySelector(".tabs").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  S.tab=b.dataset.tab; save(); render(); window.scrollTo(0,0);
+});
+view.addEventListener("click",e=>{
+  const t=e.target.closest("button"); if(!t) return;
+  if(t.dataset.say){ say(t.dataset.say); return; }
+  if(t.dataset.g!==undefined){
+    const i=+t.dataset.g;
+    if(S.tab==="letters"){ S.g=i; save(); render(); }
+    else { S.quiz = S.quiz.includes(i) ? S.quiz.filter(x=>x!==i) : [...S.quiz,i];
+           if(!S.quiz.length) S.quiz=[i]; save(); newQ(); render(); }
+    return;
+  }
+  if(t.dataset.done!==undefined){
+    const i=+t.dataset.done;
+    if(S.done.includes(i)) S.done=S.done.filter(x=>x!==i);
+    else { S.done=[...S.done,i]; if(!S.quiz.includes(i)) S.quiz=[...S.quiz,i]; }
+    save(); render(); return;
+  }
+  if(t.dataset.opt!==undefined && Q && Q.picked===null){
+    Q.picked=+t.dataset.opt; score.t++; if(Q.opts[Q.picked]===Q.ans) score.r++;
+    say(Q.ans.an); render(); return;
+  }
+  if(t.classList.contains("next")){ newQ(); render(); }
+});
+render();
+</script>
+</body>
+</html>
