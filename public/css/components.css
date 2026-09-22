@@ -1483,3 +1483,33 @@ html[dir="rtl"] .ch-end .i:last-child { transform: scaleX(-1); }
   .vb-table tbody th { width: auto; }
   .vb-big .ar { font-size: 36px; }
 }
+
+/* ---------- Talk about yourself (views/me.js) ---------- */
+.me-grid { display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 28px; align-items: start; }
+.me-form { position: sticky; top: 16px; display: grid; gap: 12px; padding: 18px; border-radius: 18px; background: var(--surface); border: 1.5px solid var(--line); }
+.me-form > label { display: grid; gap: 4px; font-weight: 800; font-size: 14.5px; }
+.me-form select, .me-form input[type="number"] { min-height: 44px; padding: 6px 10px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font: inherit; font-size: 16px; font-weight: 600; }
+.me-form fieldset { margin: 0; padding: 0; border: 0; }
+.me-form legend { margin-bottom: 6px; font-weight: 800; font-size: 14.5px; }
+.me-checks { display: flex; flex-wrap: wrap; gap: 6px; }
+.me-checks label { display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 4px 10px; border: 1.5px solid var(--line); border-radius: 99px; font-size: 14.5px; font-weight: 700; cursor: pointer; }
+.me-checks label:has(input:checked) { background: var(--strong-bg); border-color: var(--strong-bg); color: var(--strong-ink); }
+.me-checks input { width: 16px; height: 16px; margin: 0; accent-color: var(--accent); }
+.me-out { margin: 0 0 28px; }
+.me-out h2 { margin-top: 0; }
+.me-lines { display: grid; gap: 8px; }
+.me-lines .phrase.is-playing { outline: 2.5px solid var(--accent); outline-offset: 2px; }
+.me-qa { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.me-qa > li { display: grid; gap: 6px; padding: 10px; border-radius: 18px; background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.me-a { padding-inline-start: 22px; }
+@media (max-width: 1000px) {
+  .me-grid { grid-template-columns: 1fr; }
+  .me-form { position: static; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
+  .me-form fieldset { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .me-out .phrase { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 10px; }
+  .me-out .phrase .phrase-ar { grid-column: 1 / -1; min-width: 0; font-size: 26px; text-align: right; }
+  .me-out .phrase .play { grid-column: 2; grid-row: 2; width: 42px; min-width: 42px; height: 42px; }
+  .me-a { padding-inline-start: 10px; }
+}
