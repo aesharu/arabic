@@ -2,7 +2,7 @@
 // her voice instead of the computer's. Only her profile can record (the server enforces it too).
 // A word opens in the voice studio (core/studio.js): record, listen, cut, save — and ‹ › to the next word.
 // Words she records while here stay in the list (marked ✓) even under "Not recorded yet", until she leaves the deck.
-//   #/record/<deck>   deck = phrases · 1 · grammar · 2 · special · 3 · 4
+//   #/record/<deck>   deck = phrases · hers · love · 1 · grammar · 2 · special · 3 · 4 · talk · chats · stories
 import { t, tx, num } from "../core/i18n.js";
 import { SLOW } from "../core/audiotools.js";
 import { esc, ar, translit, pageHead } from "../core/dom.js";
@@ -14,11 +14,12 @@ import { deckName } from "./shared.js";
 import { DIALOGUES } from "../data/weeks.js";
 import { CHAT_LINES } from "../data/chats.js";
 import { openStudio, spoken } from "../core/studio.js";
+import { loadStories } from "./stories.js";
 
 // The weekly conversations, recordable line by line (their ids match the lesson pages' ✎).
 const TALK = Object.entries(DIALOGUES).flatMap(([w, lines]) => lines.map((l, i) => ({ ...l, id: `d${w}x${i}`, deck: "talk" })));
 const CHATS = CHAT_LINES.map(l => ({ ...l, deck: "chats" }));
-const deckLabel = d => (d === "talk" ? t("lessons.conversation") : d === "chats" ? t("nav.chats") : deckName(d));
+const deckLabel = d => (d === "talk" ? t("lessons.conversation") : d === "chats" ? t("nav.chats") : d === "stories" ? t("nav.stories") : deckName(d));
 
 let onlyTodo = true; // kept while she moves between decks
 const textOf = spoken;
@@ -31,7 +32,7 @@ export default {
     let shown = [];
     const doneHere = new Set(); // recorded during this visit: they stay in view
 
-    const deckIds = [...DECKS.map(d => d.id), "talk", "chats"];
+    const deckIds = [...DECKS.map(d => d.id), "talk", "chats", "stories"];
     const pick = () => {
       if (deckIds.includes(params[0])) return params[0];
       return deckIds.find(d => notes.some(n => n.deck === d && !content.hasAudio(textOf(n)))) ?? deckIds[0];
@@ -101,8 +102,9 @@ export default {
       } else if (open && content.hasAudio(textOf(n))) content.playRecording(textOf(n)).catch(() => {});
     }, { signal });
 
-    Promise.all([loadVocab(), content.load()]).then(([v]) => {
-      notes = [...v.notes, ...TALK.map(content.apply), ...CHATS.map(content.apply)];
+    Promise.all([loadVocab(), content.load(), loadStories().catch(() => ({ STORY_LINES: [] }))]).then(([v, , S]) => {
+      const stories = S.STORY_LINES.map(l => ({ ...content.apply(l), deck: "stories" }));
+      notes = [...v.notes, ...TALK.map(content.apply), ...CHATS.map(content.apply), ...stories];
       render();
     }, () => {});
     const off = content.onChange(render);
