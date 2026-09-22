@@ -34,14 +34,14 @@ export const sayWords = say => String(say ?? "").split(/\s+/).map(w => w.replace
 // The pieces a word can be built from, and how the page names them (strings gl.<key>).
 const PREFIXES = [
   ["وبال", ["w", "b", "al"]], ["ولل", ["w", "l", "al"]], ["وال", ["w", "al"]], ["فال", ["f", "al"]], ["بال", ["b", "al"]],
-  ["كال", ["k", "al"]], ["لل", ["l", "al"]], ["ال", ["al"]], ["وب", ["w", "b"]], ["ول", ["w", "l"]],
+  ["كال", ["k", "al"]], ["لل", ["l", "al"]], ["وهال", ["w", "hal"]], ["هال", ["hal"]], ["ال", ["al"]], ["وب", ["w", "b"]], ["ول", ["w", "l"]],
   ["و", ["w"]], ["ف", ["f"]], ["ب", ["b"]], ["ل", ["l"]], ["", []],
 ];
 const SUFFIXES = [["كم", "kum"], ["هم", "hum"], ["ها", "ha"], ["نا", "na"], ["ني", "ni"], ["ي", "i"], ["ك", "k2"], ["ه", "h"], ["", null]];
 // Endings on nouns and adjectives: سعودية = سعودي + feminine; مبسوطين = مبسوط + plural; سيارات = سيارة + plural.
 const ENDINGS = [["تين", "two", "ه"], ["ين", "pl", ""], ["ات", "pl", "ه"], ["ات", "pl", ""], ["ه", "fem", ""]];
 const PIECE_AR = {
-  w: "و", f: "فـ", b: "بـ", l: "لـ", al: "الـ", k: "كـ", will: "بـ",
+  w: "و", f: "فـ", b: "بـ", l: "لـ", al: "الـ", hal: "هالـ", k: "كـ", will: "بـ",
   i: "ـي", ni: "ـني", k2: "ـك", h: "ـه", ha: "ـها", na: "ـنا", kum: "ـكم", hum: "ـهم",
   two: "ـين", pl: "ـين / ـات", fem: "ـة",
 };
