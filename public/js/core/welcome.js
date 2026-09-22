@@ -184,13 +184,25 @@ function profileCard(id, last) {
   </button>`;
 }
 
-export function welcome() {
+// Today's special day in Saudi Arabia (or the one asked for with ?holiday=…), or null. Never stops the welcome screen.
+function specialDay() {
+  try {
+    return HOLIDAYS.find(o => o.id === new URLSearchParams(location.search).get("holiday")) ?? holidayOn(saudiToday());
+  } catch {
+    return null;
+  }
+}
+let greetedDay = ""; // the Saudi date whose special greeting was shown while this page has been open
+
+// direct: the site is already open (it stayed open overnight) — go straight to the day's greeting for this profile.
+export function welcome({ direct = false } = {}) {
+  if (direct) document.documentElement.dataset.welcome = "1";
   if (!document.documentElement.dataset.welcome) return; // set before the first paint by index.html
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lastProfile = storage("local", s => s.getItem("najdi-profile"));
   const startedAs = store.profile();
-  const preview = new URLSearchParams(location.search).get("holiday");
-  const holiday = HOLIDAYS.find(o => o.id === preview) ?? holidayOn(saudiToday());
+  const holiday = specialDay();
+  if (direct && !holiday) return void delete document.documentElement.dataset.welcome;
 
   const el = document.createElement("div");
   const h = new Date().getHours();
@@ -238,6 +250,7 @@ export function welcome() {
 
   // The moment: music, the star draws itself in gold, the name appears, the fort's windows light up.
   function celebrate(profile, greetingKey, lineKey) {
+    if (holiday) greetedDay = saudiToday();
     chosen = profile;
     store.setProfile(profile);
     // Cloud save follows the profile: this device now reads (and, for Volodymyr, saves) with that profile's token.
@@ -327,7 +340,28 @@ export function welcome() {
   document.addEventListener("keydown", e => {
     if (e.key === "Escape" && el.classList.contains("is-open") && el.isConnected) leave();
   });
-  choose();
+  if (direct) celebrate(startedAs);
+  else choose();
+}
+
+// The iPad and iPhone keep the site open for days, so "opening" it can just bring back yesterday's page. So:
+// coming back to the site on a new day reloads it — fresh, with the welcome screen and the day's greeting, the same
+// as opening it new (unless something is open mid-way, like the voice studio; progress and the timer are saved
+// either way). And if the site is open when midnight in Saudi Arabia brings a special day, its greeting comes in.
+export function keepWatch() {
+  const opened = { saudi: saudiToday(), local: new Date().toDateString() };
+  const busy = () => !!document.querySelector("dialog[open]"); // the voice studio or a correction being written
+  const check = returning => {
+    if (document.hidden) return;
+    const newDay = saudiToday() !== opened.saudi || new Date().toDateString() !== opened.local;
+    if (returning && newDay && !busy()) return location.reload();
+    if (!specialDay() || greetedDay === saudiToday() || busy() || document.querySelector(".welcome")) return;
+    welcome({ direct: true });
+  };
+  document.addEventListener("visibilitychange", () => check(true));
+  addEventListener("pageshow", e => e.persisted && check(true));
+  addEventListener("focus", () => check(true));
+  setInterval(() => check(false), 60e3);
 }
 
 // "Switch profile" in the menu: show the welcome screen again.

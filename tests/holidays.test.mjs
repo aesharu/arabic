@@ -3,7 +3,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { HOLIDAYS, holidayOn } from "../public/js/data/holidays.js";
+import { HOLIDAYS, holidayOn, HIJRI_DATES, HIJRI_DATES_UNTIL } from "../public/js/data/holidays.js";
+import { hijriParts } from "../public/js/core/prayer.js";
 import { OCCASIONS } from "../public/js/data/saudi.js";
 
 const plan = readFileSync(new URL("../NAJDI-PLAN.md", import.meta.url), "utf8");
@@ -59,5 +60,32 @@ test("what he says to her is the plan's own phrase, or it carries the tutor flag
   for (const h of HOLIDAYS) {
     const inPlan = h.sayToHer.ar.split("، ").every(part => plan.includes(`| ${part.replace(/ يا ديما$/, "")} |`));
     if (!inPlan) assert.ok(h.check, `${h.id}: «${h.sayToHer.ar}» isn't in the plan — flag it`);
+  }
+});
+
+test("the written-out Hijri dates are the Umm al-Qura calendar's, one a year with no gaps", () => {
+  const first = { newyear: [1, 1], ramadan: [9, 1], fitr: [10, 1], arafah: [12, 9], adha: [12, 10] };
+  for (const [id, dates] of Object.entries(HIJRI_DATES)) {
+    assert.ok(HOLIDAYS.some(h => h.id === id), id);
+    dates.forEach((d, i) => {
+      const h = hijriParts(new Date(`${d}T12:00:00Z`));
+      assert.deepEqual([h.month, h.day], first[id], `${id} ${d}`);
+      if (i) assert.ok((Date.parse(d) - Date.parse(dates[i - 1])) / 864e5 >= 353 && (Date.parse(d) - Date.parse(dates[i - 1])) / 864e5 <= 356, `${id}: a year missing before ${d}`);
+    });
+    // the list reaches past the date where the calendar takes over
+    const next = new Date(Date.parse(dates.at(-1)) + 356 * 864e5).toISOString().slice(0, 10);
+    assert.ok(next >= HIJRI_DATES_UNTIL, `${id}: the list stops too early`);
+  }
+});
+
+test("every day from now to the end of the list: the list and the calendar agree", () => {
+  const byCalendar = key => {
+    const h = hijriParts(new Date(`${key}T12:00:00Z`));
+    return HOLIDAYS.find(o => (o.greg ? key.slice(5) === o.greg : h.month === o.hijri[0] && h.day >= o.hijri[1] && h.day < o.hijri[1] + o.hijri[2]))?.id ?? null;
+  };
+  for (let t = Date.parse("2026-09-01T12:00:00Z"); ; t += 864e5) {
+    const key = new Date(t).toISOString().slice(0, 10);
+    if (key >= HIJRI_DATES_UNTIL) break;
+    assert.equal(at(key), byCalendar(key), key);
   }
 });

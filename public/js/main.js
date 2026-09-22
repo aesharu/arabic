@@ -11,7 +11,7 @@ import { attachTooltips, fitCharts } from "./core/charts.js";
 import { loadVocab, vocabNow } from "./core/vocab.js";
 import { counts as cardCounts } from "./core/cards.js";
 import * as sync from "./core/sync.js";
-import { welcome, switchProfile, logOut } from "./core/welcome.js";
+import { welcome, keepWatch, switchProfile, logOut } from "./core/welcome.js";
 import { chime } from "./core/music.js";
 
 import today from "./views/today.js";
@@ -356,6 +356,7 @@ store.subscribe(() => {
 
 translateShell();
 welcome();
+keepWatch();
 renderCloudPill();
 renderTimerPill();
 sync.start(() => show(current.name, current.params)); // re-render if another computer had newer progress

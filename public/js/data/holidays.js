@@ -130,8 +130,37 @@ export const HOLIDAYS = [
   },
 ];
 
+// Day 1 of each Hijri occasion by the Umm al-Qura calendar (the one Saudi Arabia uses), written out so the iPad never
+// has to work it out — and so a date can be corrected here by hand if the moon is sighted a day earlier or later
+// than the calendar says. tests/holidays.test.mjs checks every date against the calendar.
+export const HIJRI_DATES = {
+  ramadan: ["2027-02-08", "2028-01-28", "2029-01-16", "2030-01-05", "2030-12-26", "2031-12-16", "2032-12-04"],
+  fitr: ["2027-03-09", "2028-02-26", "2029-02-14", "2030-02-04", "2031-01-24", "2032-01-14", "2033-01-03"],
+  arafah: ["2027-05-15", "2028-05-04", "2029-04-23", "2030-04-12", "2031-04-01", "2032-03-21", "2033-03-11"],
+  adha: ["2027-05-16", "2028-05-05", "2029-04-24", "2030-04-13", "2031-04-02", "2032-03-22", "2033-03-12"],
+  newyear: ["2027-06-06", "2028-05-25", "2029-05-14", "2030-05-04", "2031-04-23", "2032-04-11"],
+};
+export const HIJRI_DATES_UNTIL = "2033-03-01"; // after this, the browser's own Umm al-Qura calendar is asked
+
+const plus = (key, n) => new Date(Date.parse(`${key}T12:00:00Z`) + n * 864e5).toISOString().slice(0, 10);
+
+// Month and day by the browser's Umm al-Qura calendar — or null if this browser doesn't have it (never a wrong guess).
+function hijriOf(key) {
+  try {
+    if (new Intl.DateTimeFormat("en-u-ca-islamic-umalqura").resolvedOptions().calendar !== "islamic-umalqura") return null;
+    return hijriParts(new Date(`${key}T12:00:00Z`));
+  } catch {
+    return null;
+  }
+}
+
 // The special day on a Saudi date ("YYYY-MM-DD"), or null. Her birthday comes first (it falls in Ramadan in 2027).
 export function holidayOn(key) {
-  const h = hijriParts(new Date(`${key}T12:00:00Z`));
-  return HOLIDAYS.find(o => o.greg ? key.slice(5) === o.greg : h.month === o.hijri[0] && h.day >= o.hijri[1] && h.day < o.hijri[1] + o.hijri[2]) ?? null;
+  const listed = key < HIJRI_DATES_UNTIL;
+  const h = listed ? null : hijriOf(key);
+  return HOLIDAYS.find(o => {
+    if (o.greg) return key.slice(5) === o.greg;
+    if (listed) return HIJRI_DATES[o.id].some(d => key >= d && key < plus(d, o.hijri[2]));
+    return h !== null && h.month === o.hijri[0] && h.day >= o.hijri[1] && h.day < o.hijri[1] + o.hijri[2];
+  }) ?? null;
 }
