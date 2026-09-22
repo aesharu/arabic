@@ -1218,6 +1218,7 @@ html[dir="rtl"] .lt-table th { letter-spacing: 0; }
 
 /* Her birthday (#/birthday) — his profile only */
 body.is-teacher .nav-bday,
+body.is-teacher .nav-speak,
 body.is-teacher .nav-stats { display: none; }
 .bd-count { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 0 0 16px; }
 .bd-days { display: grid; gap: 2px; padding: 18px 20px; border-radius: var(--radius); background: linear-gradient(135deg, #7A1330, #D63A5E); color: #FFF4F6; }
@@ -1910,3 +1911,39 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
 
 .her-tools { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 18px; }
 .her-tools .btn { flex: 1 1 200px; justify-content: center; }
+
+/* Speak it back (views/speak.js): her take above, his below, and the two shapes to compare at a glance. */
+.sp-card { display: grid; gap: 16px; }
+.sp-count { display: flex; justify-content: space-between; gap: 10px; margin: 0; color: var(--muted); font-size: 14px; }
+.sp-count b { color: var(--accent); }
+.sp-word { text-align: center; display: grid; gap: 4px; justify-items: center; }
+.sp-ar { font-size: clamp(30px, 6vw, 46px); line-height: 1.5; }
+.sp-say { color: var(--muted); font-size: 17px; }
+.sp-mean { font-size: 17px; font-weight: 600; }
+.sp-side { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: grid; gap: 10px; }
+.sp-side-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; font-size: 14px; }
+.sp-mine { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+.sp-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.sp-btns .btn { flex: 0 1 auto; }
+.sp-note { display: flex; gap: 6px; align-items: flex-start; margin: 0; color: var(--muted); font-size: 13.5px; }
+.sp-note .i { flex: 0 0 auto; width: 16px; height: 16px; margin-top: 2px; color: var(--flag); }
+.sp-empty { margin: 0; color: var(--muted); font-size: 14px; }
+/* The shape of a take: one bar per slice of the sound. */
+.sp-wave { display: flex; align-items: center; gap: 2px; height: 52px; direction: ltr; }
+.sp-wave i { flex: 1; border-radius: 2px; background: var(--muted); opacity: .65; }
+.sp-wave.is-her i { background: var(--accent); opacity: .85; }
+.sp-wave.is-mine i { background: var(--ink); opacity: .55; }
+.sp-level { display: block; height: 52px; border-radius: 8px; background: color-mix(in srgb, var(--accent) 18%, transparent); overflow: hidden; }
+.sp-level i { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left center; transition: transform .06s linear; }
+.sp-compare { width: 100%; justify-content: center; }
+.btn-stop { background: var(--bad); border-color: var(--bad); color: #fff; }
+.sp-nav { display: flex; justify-content: space-between; gap: 10px; }
+.sp-keys { margin: 0; text-align: center; }
+@media (max-width: 560px) {
+  .sp-btns .btn { flex: 1 1 130px; justify-content: center; }
+  .sp-keys { display: none; } /* no keyboard on the phone */
+}
+@media (min-width: 861px) {
+  .sp-card { grid-template-columns: 1fr 1fr; align-items: start; }
+  .sp-count, .sp-word, .sp-compare, .sp-nav, .sp-keys { grid-column: 1 / -1; }
+}

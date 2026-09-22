@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 22 Sept 2026 (night: Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
+Last updated: 22 Sept 2026 (night: Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
 
 ## Who uses it
 
@@ -103,6 +103,12 @@ Last updated: 22 Sept 2026 (night: Stats page, her one-minute recording card, he
   - **Never nags**: it doesn't come at all when she has already recorded five that day, when a special day is greeting her, or on top of another dialog.
   - **On every page**: under her teacher banner, the same two buttons (`.her-tools`) — the Record page used to be one menu item among thirty, and Edit a pencil in the corner.
   - `tests/i18n.test.mjs` checks all ten messages exist in all four languages (they're picked by name, so nothing else would catch a gap).
+
+- **Speak it back** `#/speak` (22 Sept, `views/speak.js`, `core/mic.js`, `core/mytakes.js`; **his profile only** — hers has the Record page; menu under Vocabulary after Practice): the first page where he *produces* the language instead of recognising it. Her recording (or the computer voice, clearly labeled as formal Arabic to copy the rhythm not the sounds), then **Say it**, then **Hear both, one after the other**. The two takes are drawn as bars with their lengths beside them — length and rhythm are honest feedback; nothing pretends to score his pronunciation. Tabs: **In her voice** (everything she has recorded — the real shadowing) and every deck. Keys: space records/stops, L listens, S slowly, C hears both, → next; takes stop by themselves after 12 s and are trimmed to the voice (`findVoice`).
+  - **His takes never leave the computer**: IndexedDB (`core/mytakes.js`), one take per phrase. Her recordings stay the only thing in the cloud.
+  - `core/mic.js` is a separate, smaller copy of the microphone handling — `core/studio.js` (hers, which uploads) is deliberately untouched.
+  - Counted in his progress as `log[day].speak` (merged as the larger of the two on sync); every tenth phrase of the day gets the Sadu burst.
+- **Fixed: her recordings would never have played back** (22 Sept, `worker/index.js`). D1 hands a BLOB back as a plain array of byte values, so `new Response(row.data)` sent an **empty body** — every `GET /api/audio/<key>` returned 0 bytes, and "bring it back" re-stored an array that is not a blob. Nobody had noticed because she has recorded nothing in production yet; her first recording would have saved and then played silence. Everything that reads audio out of the database now goes through `bytes()`. Proven locally: a real WAV uploaded, played back byte for byte, recorded over, and undone.
 
 ## Next (in this order)
 

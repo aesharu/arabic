@@ -28,7 +28,8 @@ const defaults = () => ({
   prefs: { theme: "auto", lang: "en" },
   script: { group: 0, done: [], quiz: [0] }, // letter groups marked done / selected for the quiz
   // "YYYY-MM-DD" → { min: minutes studied, tasks: ids of ticked tasks, quiz?: { right, total },
-  //                  cards?: { n: new cards seen, r: answers, a: "Again" answers } }
+  //                  cards?: { n: new cards seen, r: answers, a: "Again" answers },
+  //                  speak?: phrases said out loud on the Speak it back page }
   log: {},
   goals: { done: [] }, // the birthday plan's "I can…" goals ticked (views/birthday.js)
   reading: { done: [] }, // stories read: "st.<id>" (views/stories.js)
@@ -97,7 +98,7 @@ function editEntry(date, fn) {
   update(s => {
     const e = (s.log[date] ??= { min: 0, tasks: [] });
     fn(e);
-    if (!e.min && !e.tasks.length && !e.quiz?.total && !e.cards?.r) delete s.log[date];
+    if (!e.min && !e.tasks.length && !e.quiz?.total && !e.cards?.r && !e.speak) delete s.log[date];
   });
 }
 
@@ -109,6 +110,12 @@ export const toggleTask = (date, id) =>
 export const addMinutes = (date, n) =>
   editEntry(date, e => {
     e.min = Math.max(0, Math.min(24 * 60, e.min + n));
+  });
+
+// One phrase said out loud against her voice (views/speak.js).
+export const logSpoken = date =>
+  editEntry(date, e => {
+    e.speak = (e.speak ?? 0) + 1;
   });
 
 export const logQuiz = (date, right) =>

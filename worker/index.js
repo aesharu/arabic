@@ -205,6 +205,9 @@ async function progress(request, env) {
 }
 
 const MAX_AUDIO = 600_000; // a few seconds of speech is ~30 KB
+// D1 hands a BLOB back as a plain array of byte values, which is neither a body a Response can send nor
+// something bind() can store again. Everything that reads audio out of the database goes through this.
+const bytes = data => (data instanceof ArrayBuffer ? new Uint8Array(data) : ArrayBuffer.isView(data) ? data : new Uint8Array(data ?? []));
 const ID = /^[a-zA-Z0-9._:-]{1,80}$/;
 const FIELDS = ["ar", "say", "en", "uk", "najdi", "msa"];
 const clean = body => {
@@ -311,7 +314,7 @@ async function content(request, env, url) {
     if (!row) return table === "audio_prev" ? new Response(null, { status: 204 }) : json({ error: "not-found" }, 404); // 204: no earlier version
     // The page asks for ?v=<time recorded>, so each version has its own address and can be cached for good.
     const cache = table === "audio" && url.searchParams.has("v") ? "private, max-age=31536000, immutable" : "no-store";
-    return new Response(row.data, { headers: { "content-type": row.type, "cache-control": cache } });
+    return new Response(bytes(row.data), { headers: { "content-type": row.type, "cache-control": cache } });
   }
   if (role !== "teacher") return json({ error: "only-dima-records" }, 403); // the voice to learn from is hers
   // Before any change, what is there now becomes the previous version (or "none", so Undo can remove a first recording).
@@ -338,8 +341,8 @@ async function content(request, env, url) {
     await env.DB.batch([
       env.DB.prepare("DELETE FROM audio WHERE key = ?1").bind(id),
       env.DB.prepare("DELETE FROM audio_prev WHERE key = ?1").bind(id),
-      ...(prev ? [env.DB.prepare("INSERT INTO audio (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4)").bind(id, prev.type, prev.data, at)] : []),
-      ...(cur ? [env.DB.prepare("INSERT INTO audio_prev (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4)").bind(id, cur.type, cur.data, cur.updated_at)] : []),
+      ...(prev ? [env.DB.prepare("INSERT INTO audio (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4)").bind(id, prev.type, bytes(prev.data), at)] : []),
+      ...(cur ? [env.DB.prepare("INSERT INTO audio_prev (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4)").bind(id, cur.type, bytes(cur.data), cur.updated_at)] : []),
       log(env, role, prev ? "restore" : "unrecord", { key: id, text: said }),
       touchDay(env, role),
     ]);

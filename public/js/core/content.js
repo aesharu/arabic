@@ -128,6 +128,8 @@ async function urlFor(text) {
 }
 
 export const playRecording = async (text, rate = 1) => play(await urlFor(text), rate);
+// Her recording as an address, for drawing its shape beside his own take (views/speak.js).
+export const audioUrlFor = text => urlFor(text);
 
 // The version before the last change (for "bring it back"): an object URL, or null when there was none.
 export async function previousUrl(text) {

@@ -27,11 +27,13 @@ const cloudPart = s => ({ version: s.version, script: s.script, log: s.log, srs:
 function mergeDay(a = { min: 0, tasks: [] }, b = { min: 0, tasks: [] }) {
   const quiz = (a.quiz?.total ?? 0) >= (b.quiz?.total ?? 0) ? a.quiz : b.quiz;
   const cards = (a.cards?.r ?? 0) >= (b.cards?.r ?? 0) ? a.cards : b.cards;
+  const speak = Math.max(a.speak ?? 0, b.speak ?? 0);
   return {
     min: Math.max(a.min ?? 0, b.min ?? 0),
     tasks: [...new Set([...(a.tasks ?? []), ...(b.tasks ?? [])])],
     ...(quiz ? { quiz } : {}),
     ...(cards ? { cards } : {}),
+    ...(speak ? { speak } : {}),
   };
 }
 
