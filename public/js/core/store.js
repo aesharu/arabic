@@ -29,7 +29,8 @@ const defaults = () => ({
   script: { group: 0, done: [], quiz: [0] }, // letter groups marked done / selected for the quiz
   // "YYYY-MM-DD" → { min: minutes studied, tasks: ids of ticked tasks, quiz?: { right, total },
   //                  cards?: { n: new cards seen, r: answers, a: "Again" answers },
-  //                  speak?: phrases said out loud on the Speak it back page }
+  //                  speak?: phrases said out loud on the Speak it back page,
+  //                  write?: words typed in Arabic on the Write it page }
   log: {},
   goals: { done: [] }, // the birthday plan's "I can…" goals ticked (views/birthday.js)
   reading: { done: [] }, // stories read: "st.<id>" (views/stories.js)
@@ -98,7 +99,7 @@ function editEntry(date, fn) {
   update(s => {
     const e = (s.log[date] ??= { min: 0, tasks: [] });
     fn(e);
-    if (!e.min && !e.tasks.length && !e.quiz?.total && !e.cards?.r && !e.speak) delete s.log[date];
+    if (!e.min && !e.tasks.length && !e.quiz?.total && !e.cards?.r && !e.speak && !e.write) delete s.log[date];
   });
 }
 
@@ -116,6 +117,12 @@ export const addMinutes = (date, n) =>
 export const logSpoken = date =>
   editEntry(date, e => {
     e.speak = (e.speak ?? 0) + 1;
+  });
+
+// One word typed in Arabic (views/write.js).
+export const logWritten = date =>
+  editEntry(date, e => {
+    e.write = (e.write ?? 0) + 1;
   });
 
 export const logQuiz = (date, right) =>

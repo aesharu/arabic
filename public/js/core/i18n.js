@@ -78,6 +78,9 @@ export function cnt(key, n) {
   return n === 1 || n === 2 ? w : `${num(n)} ${w}`;
 }
 
+// A count with its word, the way each language says it: "7 words", "7 слів", "٧ كلمات" — and يومين, not "٢ يومين".
+export const said = (key, n) => (isArabic() ? cnt(key, n) : `${num(n)} ${tu(key, n)}`);
+
 // A number the way the current language writes it (1.5 / 1,5)
 export const num = (n, digits = 0) =>
   n.toLocaleString(locale(), { minimumFractionDigits: digits, maximumFractionDigits: digits });

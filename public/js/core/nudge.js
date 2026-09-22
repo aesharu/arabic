@@ -1,7 +1,7 @@
 // A word to Dima when she comes in: why her voice matters, and the two things only she can do —
 // record a word, or correct one. Her profile only, once per visit, and never when she has already
 // done her five for the day or when a special day is greeting her: nobody likes being asked twice.
-import { t, tu, cnt, num, isArabic } from "./i18n.js";
+import { t, said } from "./i18n.js";
 import { esc } from "./dom.js";
 import { icon } from "./art.js";
 import * as store from "./store.js";
@@ -32,8 +32,6 @@ function nextMessage() {
   store_(NEXT, String((i + 1) % MESSAGES));
   return `nudge.m${i + 1}`;
 }
-
-const said = (key, n) => (isArabic() ? cnt(key, n) : `${num(n)} ${tu(key, n)}`);
 
 export function show() {
   const times = content.audioTimes();

@@ -119,6 +119,8 @@ export default {
         ${tile(t("today.streak"), days, tu("unit.days", days))}
         ${tile(t("today.studied"), tot.days, tu("unit.days", tot.days))}
         ${tile(t("progress.tasksDone"), tot.tasks)}
+        ${tot.spoken ? tile(t("progress.spoken"), tot.spoken) : ""}
+        ${tot.written ? tile(t("progress.written"), tot.written) : ""}
         ${tile(t("progress.accuracy"), tot.quizTotal ? `${pct(tot.quizRight, tot.quizTotal)}%` : "—", tot.quizTotal ? t("progress.of", { n: tot.quizRight, total: tot.quizTotal }) : "")}
       </dl>
 

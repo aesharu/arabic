@@ -39,7 +39,7 @@ test("every key used in the code exists", () => {
 });
 
 test("every defined key is used somewhere", () => {
-  const dynamic = ["status.", "theme.", "cloud.status.", "cloud.short.", "st.step.", "st.stepSub.", "gl.", "pr.q.", "path.k.", "nudge.m"]; // built as t(`status.${s}`) etc.
+  const dynamic = ["status.", "theme.", "cloud.status.", "cloud.short.", "st.step.", "st.stepSub.", "gl.", "pr.q.", "path.k.", "nudge.m", "wr.v."]; // built as t(`status.${s}`) etc.
   for (const key of Object.keys(STRINGS)) {
     if (dynamic.some(p => key.startsWith(p))) continue;
     assert.ok(code.includes(`"${key}"`), `unused string: ${key}`);

@@ -43,6 +43,7 @@ import saudi from "./views/saudi.js";
 import review from "./views/review.js";
 import stats from "./views/stats.js";
 import speak from "./views/speak.js";
+import write from "./views/write.js";
 import * as editmode from "./core/editmode.js";
 import * as content from "./core/content.js";
 import { openEditor } from "./core/editor.js";
@@ -50,8 +51,8 @@ import { renderCulture, startCulture } from "./views/culture.js";
 
 // Each view is { titleKey, mount(root, { params, signal }) }. Listeners a view adds with
 // { signal } are removed automatically when you leave it.
-const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record, grammar, lessons, saudi, review, stats, speak, love, birthday, numbers, chats, stories, practice, verbs, me, path };
-const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound", grammar: "reading", lessons: "plan", saudi: "star", review: "check", stats: "progress", speak: "mic", love: "heart", birthday: "star", numbers: "timer", chats: "phrases", stories: "reading", practice: "quiz", verbs: "reading", me: "phrases", path: "plan" };
+const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record, grammar, lessons, saudi, review, stats, speak, write, love, birthday, numbers, chats, stories, practice, verbs, me, path };
+const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound", grammar: "reading", lessons: "plan", saudi: "star", review: "check", stats: "progress", speak: "mic", write: "pencil", love: "heart", birthday: "star", numbers: "timer", chats: "phrases", stories: "reading", practice: "quiz", verbs: "reading", me: "phrases", path: "plan" };
 const view = document.getElementById("view");
 const motion = !matchMedia("(prefers-reduced-motion: reduce)").matches;
 let controller = null;

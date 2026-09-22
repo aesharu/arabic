@@ -1219,6 +1219,7 @@ html[dir="rtl"] .lt-table th { letter-spacing: 0; }
 /* Her birthday (#/birthday) — his profile only */
 body.is-teacher .nav-bday,
 body.is-teacher .nav-speak,
+body.is-teacher .nav-write,
 body.is-teacher .nav-stats { display: none; }
 .bd-count { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 0 0 16px; }
 .bd-days { display: grid; gap: 2px; padding: 18px 20px; border-radius: var(--radius); background: linear-gradient(135deg, #7A1330, #D63A5E); color: #FFF4F6; }
@@ -1946,4 +1947,35 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
 @media (min-width: 861px) {
   .sp-card { grid-template-columns: 1fr 1fr; align-items: start; }
   .sp-count, .sp-word, .sp-compare, .sp-nav, .sp-keys { grid-column: 1 / -1; }
+}
+
+/* Write it in Arabic (views/write.js): the prompt, the box he types into, and the keyboard his Mac hasn't got. */
+.wr-card { display: grid; gap: 14px; justify-items: center; }
+.wr-mean { margin: 0; font-size: clamp(22px, 3.6vw, 30px); font-weight: 700; text-align: center; }
+.wr-hints { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.wr-say { margin: 0; color: var(--muted); font-size: 18px; }
+.wr-field { width: 100%; max-width: 420px; }
+.wr-in {
+  width: 100%; padding: 12px 16px; font-family: var(--font-ar, inherit); font-size: 30px; line-height: 1.6; text-align: center;
+  border: 2px solid var(--line); border-radius: 14px; background: var(--surface-2); color: var(--ink);
+}
+.wr-in:focus-visible { outline: none; border-color: var(--accent); }
+.wr-keys { display: grid; gap: 6px; width: 100%; max-width: 560px; direction: ltr; } /* the keys stay in the same places whatever the interface language */
+.wr-row { display: flex; gap: 5px; justify-content: center; }
+.wr-key {
+  flex: 1 1 0; min-width: 34px; min-height: 44px; padding: 4px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); color: var(--ink); font-size: 21px; font-family: var(--font-ar, inherit); cursor: pointer;
+}
+.wr-key:hover { background: var(--surface-2); }
+.wr-key:active { transform: translateY(1px); }
+.wr-row-wide { gap: 8px; }
+.wr-space { flex: 4 1 auto; font-size: 14px; font-family: inherit; color: var(--muted); }
+.wr-back { flex: 1 1 auto; font-size: 18px; }
+.wr-answer { display: inline-flex; gap: 2px; font-size: 34px; line-height: 1.6; }
+.wr-answer .is-missing { color: var(--bad); border-bottom: 3px solid var(--bad); }
+.wr-extra { display: block; margin-top: 4px; color: var(--muted); }
+.wr-fb { width: 100%; display: grid; gap: 12px; justify-items: center; }
+@media (max-width: 560px) {
+  .wr-key { min-width: 0; font-size: 19px; }
+  .wr-in { font-size: 26px; }
 }

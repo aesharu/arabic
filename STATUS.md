@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 22 Sept 2026 (night: Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
+Last updated: 22 Sept 2026 (night: Write it in Arabic, Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
 
 ## Who uses it
 
@@ -109,6 +109,13 @@ Last updated: 22 Sept 2026 (night: Speak it back, a real playback bug fixed, Sta
   - `core/mic.js` is a separate, smaller copy of the microphone handling — `core/studio.js` (hers, which uploads) is deliberately untouched.
   - Counted in his progress as `log[day].speak` (merged as the larger of the two on sync); every tenth phrase of the day gets the Sadu burst.
 - **Fixed: her recordings would never have played back** (22 Sept, `worker/index.js`). D1 hands a BLOB back as a plain array of byte values, so `new Response(row.data)` sent an **empty body** — every `GET /api/audio/<key>` returned 0 bytes, and "bring it back" re-stored an array that is not a blob. Nobody had noticed because she has recorded nothing in production yet; her first recording would have saved and then played silence. Everything that reads audio out of the database now goes through `bytes()`. Proven locally: a real WAV uploaded, played back byte for byte, recorded over, and undone.
+
+- **Write it in Arabic** `#/write` (22 Sept, `views/write.js`, `core/arabic.js`, test `tests/write.test.mjs`; menu under Vocabulary after Speak it back, hidden in her menu): the other half of producing the language — the meaning is shown and he types the word in Arabic script. **An on-screen keyboard in alphabet order** (his Mac has no Arabic layout; the keys keep the same places in every interface language). Ten a round, the same topics as Practice (`topics()` is now exported from `views/practice.js` and shared), best score per topic in `prefs.write`.
+  - **Forgiving marking** (`core/arabic.js`): vowel marks, tatweel and punctuation are ignored; أ إ آ = ا, ة = ه, ى = ي, ؤ = و, ئ = ي — those come back as "Right — this is how it's written:" with the exact spelling, not as a mistake. A real mistake shows the correct word with **the letters he left out underlined** and how many letters don't belong (a longest-common-run walk).
+  - "Hear it" plays her recording when there is one ("Hear Dima"); the pronunciation is a hint he can turn on.
+  - Counted as `log[day].write` (merged as the larger on sync), shown on Progress beside "Phrases spoken".
+- **A day spent only speaking or typing now counts as a day studied** (`isActive` in `core/schedule.js`): it keeps the streak and appears in the totals, like minutes, tasks, quizzes and cards.
+- **`said()` moved into `core/i18n.js`**: one place for "7 words" / "7 слів" / "٧ كلمات" and يومين-not-"٢ يومين"; Today, the pop-up and the typing page all use it.
 
 ## Next (in this order)
 

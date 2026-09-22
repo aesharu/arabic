@@ -4,7 +4,7 @@ import * as cards from "../core/cards.js";
 import { loadVocab, vocabNow } from "../core/vocab.js";
 import { todayKey, longDate, addDays, diffDays, format } from "../core/dates.js";
 import { planFor, phaseTitle, TOTAL_DAYS, weekNumber, streak, totals, allTasksTicked } from "../core/schedule.js";
-import { t, tx, tu, num, cnt, locale, lang, isArabic } from "../core/i18n.js";
+import { t, tx, tu, num, cnt, said, locale, lang, isArabic } from "../core/i18n.js";
 import { esc, rich, ar, lat, translit, flag, meanings, playIcon } from "../core/dom.js";
 import { icon, scene } from "../core/art.js";
 import { START, GOAL, DAILY_GOAL_MIN } from "../config.js";
@@ -82,8 +82,6 @@ function herWorld(now = Date.now()) {
 // five a day is what turns the computer voice off across the whole site. Her profile only.
 const FIVE = 5;
 const deckOrder = Object.fromEntries(DECKS.map((d, i) => [d.id, i]));
-// A count with its word, said the way each language says it: "7 words", "7 слів", كلمات ٧ — and يومين, not "2 يومين".
-const said = (key, n) => (isArabic() ? cnt(key, n) : `${num(n)} ${tu(key, n)}`);
 
 export function nextToRecord(notes, n = FIVE) {
   return notes

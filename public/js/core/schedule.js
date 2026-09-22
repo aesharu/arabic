@@ -31,7 +31,7 @@ export function planFor(date) {
     : { n, phase, focus: byLang(l => `${GOAL_PREFIX[l]}: ${phase.canDo[l]}`), group: null, tasks: phase.routine };
 }
 
-const isActive = e => !!e && (e.min > 0 || e.tasks?.length > 0 || e.quiz?.total > 0 || e.cards?.r > 0);
+const isActive = e => !!e && (e.min > 0 || e.tasks?.length > 0 || e.quiz?.total > 0 || e.cards?.r > 0 || e.speak > 0 || e.write > 0);
 
 export const allTasksTicked = (date, e) => {
   const tasks = planFor(date).tasks;
@@ -70,6 +70,8 @@ export function totals(log) {
     quizRight: sum(e => e.quiz?.right),
     quizTotal: sum(e => e.quiz?.total),
     cardAnswers: sum(e => e.cards?.r),
+    spoken: sum(e => e.speak), // phrases said out loud (views/speak.js)
+    written: sum(e => e.write), // words typed in Arabic (views/write.js)
   };
 }
 

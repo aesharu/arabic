@@ -16,11 +16,11 @@ import { deckName } from "./shared.js";
 import { celebrate } from "../core/celebrate.js";
 
 const ROUND = 10;
-const mean = x => tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en });
+export const mean = x => tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en });
 const best = () => store.get().prefs.practice ?? {};
 
-// Every topic as { id, title, group, entries }.
-function topics(vocab) {
+// Every topic as { id, title, group, entries }. The typing page (views/write.js) uses the same list.
+export function topics(vocab) {
   const out = [];
   for (const s of vocab.stages) {
     if (s.id === "grammar") continue;
