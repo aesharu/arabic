@@ -1873,3 +1873,16 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
   .sx-table th, .sx-table td { padding: 5px 4px; }
   .sx-table tbody th { width: 34%; font-size: 12.5px; }
 }
+
+/* "Five words, one minute" — the first thing Dima sees on her Today page (views/today.js). */
+.five { border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+.five-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.five-head h2 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 20px; }
+.five-head h2 .i { width: 22px; height: 22px; color: var(--accent); }
+.five-sub { margin: 10px 0 0; color: var(--muted); }
+.five-words { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; padding: 0; }
+.five-words li { display: grid; gap: 2px; padding: 8px 12px; border-radius: 12px; background: var(--surface-2); }
+.five-words .ar { font-size: 22px; }
+.five-words .lat { display: block; color: var(--muted); font-size: 13px; }
+.five-go { margin-top: 12px; }
+.five-foot { margin: 10px 0 0; color: var(--muted); font-size: 14px; }

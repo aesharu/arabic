@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 22 Sept 2026 (night: Stats page, special-day greetings, accessibility pass). Live: https://saudiarabic.online
+Last updated: 22 Sept 2026 (night: Stats page, her one-minute recording card, special-day greetings, accessibility pass). Live: https://saudiarabic.online
 
 ## Who uses it
 
@@ -95,6 +95,8 @@ Last updated: 22 Sept 2026 (night: Stats page, special-day greetings, accessibil
   - **What it shows**: last here (how long ago + the time), streak now, best streak, days on the site, time in total, times opened, words recorded, corrections, special days seen; minutes a day for the last 28 days; then a card per day — visits, minutes, first and last time — with every thing she did that day: opened the site, was greeted for a special day (named), recorded / recorded again / deleted / brought back a word (the word itself in Arabic), and each correction as was → now, field by field.
   - **How it's counted**: D1 tables `activity` (one row per thing done) and `visits` (one row per profile per Saudi day). The site only ever says "I opened it", "I'm still here" (a ping a minute, only while the page is visible) or "a special day greeted me" — **who** comes from the sign-in token and **when** from the server, so the iPad's clock can't change it. Two open tabs can't count double (a minute needs 45 s since the last sign of life); a tab left open all night adds at most 16 h. Recordings and corrections log themselves in the Worker as they are saved (`?text=` carries the Arabic so the page can name the word). Days are Saudi time (UTC+3).
   - Both profiles are recorded; the page shows hers.
+
+- **"Five words, one minute"** (22 Sept, `views/today.js` `fiveCard()` / `nextToRecord()`, strings `td.five*`): the first card on **Dima's** Today page — the Record page's 1,157 words are a wall, five is a favour. The next five unrecorded words (deck order, so her words and the everyday phrases first), a line written to her in feminine forms, **Record** opens the voice studio on those five in turn, and a meter of "{n} of 5 today". Underneath: how many words are in her voice and her days in a row — both worked out from the times of her recordings (`content.audioTimes()` → `activity.daysFromTimes` → `streaks`), so nothing new is stored. Counts are said the Arabic way (٧ كلمات، يومين — `cnt()`, not "2 يومين").
 
 ## Next (in this order)
 

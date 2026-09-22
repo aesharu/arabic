@@ -74,6 +74,9 @@ export function streaks(days) {
   return { current, longest, lastDay: sorted[sorted.length - 1] };
 }
 
+// Days made out of a list of moments (when each recording was saved), for streaks().
+export const daysFromTimes = times => [...new Set(times.map(saudiDay))].map(day => ({ day, opens: 1, minutes: 0 }));
+
 // Everything the Stats page shows at the top, for one profile.
 export function summarize(stats, who = "teacher") {
   const days = (stats.days ?? []).filter(d => d.who === who);

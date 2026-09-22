@@ -18,7 +18,9 @@ import { CITIES, around, saudiToday } from "../core/prayer.js";
 import { upcoming, leftText } from "./saudi.js";
 import { sceneSvg } from "../core/scenes.js";
 import * as content from "../core/content.js";
-import { spoken } from "../core/studio.js";
+import { spoken, openStudio } from "../core/studio.js";
+import { DECKS } from "../core/vocab.js";
+import { streaks, daysFromTimes, saudiDay } from "../core/activity.js";
 
 // New phrases on Days 1–14; after that, a rotating review of three.
 function phrasesFor(n) {
@@ -74,6 +76,43 @@ function herWorld(now = Date.now()) {
       <span class="hc-small">${translit(next.p.say)} · ${meanOf(next.p)} · ${esc(leftText(next.at - now))}</span>`, next.p.ar) : ""}
     ${occ ? tile("star", t("td.comingUp"), `<span class="hc-big">${ar(occ.o.name.najdi)}</span>
       <span class="hc-small">${translit(occ.o.say)} · ${meanOf(occ.o.name)} · <b>${esc(daysText(occ.days))}</b></span>`, occ.o.name.najdi) : ""}`;
+}
+
+// Her one minute: five words she hasn't said yet. A page with 1,157 words is a wall; five is a favour — and
+// five a day is what turns the computer voice off across the whole site. Her profile only.
+const FIVE = 5;
+const deckOrder = Object.fromEntries(DECKS.map((d, i) => [d.id, i]));
+// A count with its word, said the way each language says it: "7 words", "7 слів", كلمات ٧ — and يومين, not "2 يومين".
+const said = (key, n) => (isArabic() ? cnt(key, n) : `${num(n)} ${tu(key, n)}`);
+
+export function nextToRecord(notes, n = FIVE) {
+  return notes
+    .filter(x => !content.hasAudio(spoken(x)))
+    .sort((a, b) => (deckOrder[a.deck] ?? 99) - (deckOrder[b.deck] ?? 99))
+    .slice(0, n);
+}
+
+function fiveCard() {
+  const v = vocabNow();
+  if (!v || !content.signedIn()) return "";
+  const times = content.audioTimes();
+  const today = saudiDay(Date.now());
+  const todayCount = times.filter(at => saudiDay(at) === today).length;
+  const { current } = streaks(daysFromTimes(times));
+  const five = nextToRecord(v.notes);
+  const enough = todayCount >= FIVE;
+  return `<section class="panel five" data-five>
+    <div class="five-head">
+      <h2>${icon("mic")} ${esc(t("td.fiveTitle"))}</h2>
+      <span class="muted">${esc(t("td.fiveTodayCount", { n: num(Math.min(todayCount, FIVE)), total: num(FIVE) }))}</span>
+    </div>
+    <span class="meter" aria-hidden="true"><span style="width:${Math.min(100, (todayCount / FIVE) * 100)}%"></span></span>
+    <p class="five-sub">${esc(t(enough ? "td.fiveDone" : "td.fiveSub"))}</p>
+    ${five.length ? `<ul class="five-words">${five.map(x => `<li>${ar(x.ar)}${lat(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }))}</li>`).join("")}</ul>
+      <button type="button" class="btn btn-primary five-go" data-five-go>${icon("mic")} ${esc(t("td.fiveGo"))}</button>`
+    : `<p class="empty-note">${icon("check")} ${esc(t("record.allDone"))}</p>`}
+    <p class="five-foot">${esc(t("td.fiveTotal", { n: said("unit.words", times.length) }))}${current > 1 ? ` · <b>${esc(`${said("unit.days", current)} ${t("td.fiveRow")}`)}</b>` : ""}</p>
+  </section>`;
 }
 
 // Today's story: the next one he hasn't read (short stories are how she learns); in her profile, the next one to
@@ -190,6 +229,7 @@ export default {
             ${!store.isTeacher() && diffDays(START, date) < PATH.length * 7 ? (w => (p => `<a class="ls-today pa-today" href="#/path">${icon("plan")}<span><b>${esc(t("path.todayLink", { title: tx(w.title) }))}</b><small>${esc(t("path.todaySub", { done: num(p.done), total: num(p.total) }))}</small></span>${icon("arrow")}</a>`)(pathProgress(w)))(pathWeeks(false)[pathWeek(date)]) : ""}
             ${!store.isTeacher() && date <= BIRTHDAY ? `<a class="ls-today bd-today" href="#/birthday">${icon("heart")}<span><b>${esc(t("bday.todayLink", { n: num(diffDays(date, BIRTHDAY)) }))}</b><small>${esc(t("bday.todaySub"))}</small></span>${icon("arrow")}</a>` : ""}
             ${week >= 3 && week <= 67 ? `<a class="ls-today" href="#/lessons/${week}">${icon("plan")}<span><b>${t("lessons.thisWeek")}</b><small>${t("lessons.weekN", { n: week })}</small></span>${icon("arrow")}</a>` : ""}
+            ${store.isTeacher() ? `<div data-five-slot>${fiveCard()}</div>` : ""}
             <section class="panel">
               <div class="panel-head">
                 <h2>${t("today.focus")}</h2>
@@ -318,7 +358,23 @@ export default {
       if (slot) slot.innerHTML = storyCard(stories);
     };
     import("./stories.js").then(m => m.loadStories()).then(S => ((stories = S), fillStory()), () => {});
-    const offContent = content.onChange(fillStory);
+    const fillFive = () => {
+      const slot = !signal.aborted && root.querySelector("[data-five-slot]");
+      if (slot) slot.innerHTML = fiveCard();
+    };
+    const offContent = content.onChange(() => {
+      fillStory();
+      fillFive();
+    });
+
+    // "Five words, one minute": the studio opens on them, one after another.
+    root.addEventListener("click", e => {
+      if (!e.target.closest("[data-five-go]")) return;
+      const v = vocabNow();
+      if (!v) return;
+      const five = nextToRecord(v.notes);
+      if (five.length) openStudio(five, 0, { onClose: fillFive });
+    }, { signal });
     signal.addEventListener("abort", offContent);
     signal.addEventListener("abort", () => clearInterval(tick));
 
@@ -326,6 +382,8 @@ export default {
     if (!vocabNow()) loadVocab().then(() => {
       const slot = !signal.aborted && root.querySelector("[data-cards-panel]");
       if (slot) slot.innerHTML = cardsPanel();
+      fillFive();
     }, () => {});
+    content.load();
   },
 };

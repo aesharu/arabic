@@ -911,6 +911,24 @@ export const STRINGS = {
   "review.kindContent": { en: "Lesson text", uk: "Текст уроку", najdi: "كلام الدرس", msa: "نص الدرس" },
   "review.kindLine": { en: "Conversation line", uk: "Рядок розмови", najdi: "سطر من المحادثة", msa: "سطر من المحادثة" },
   "review.kindWord": { en: "Word", uk: "Слово", najdi: "كلمة", msa: "كلمة" },
+  // "Five words, one minute" — the card at the top of Dima's Today page. Written to her (feminine forms).
+  "td.fiveTitle": { en: "Five words, one minute", uk: "П'ять слів, одна хвилина", najdi: "خمس كلمات، دقيقة وحدة", msa: "خمس كلمات، دقيقة واحدة" },
+  "td.fiveSub": {
+    en: "Say each one once — that's all. Your voice is the one he learns from.",
+    uk: "Скажи кожне по разу — і все. Саме з твого голосу він вчиться.",
+    najdi: "قولي كل كلمة مرة وحدة، وبس. صوتك هو اللي يتعلم منه.",
+    msa: "قولي كل كلمة مرة واحدة، فقط. صوتكِ هو ما يتعلّم منه.",
+  },
+  "td.fiveDone": {
+    en: "All five done today. Thank you ♥",
+    uk: "Усі п'ять на сьогодні. Дякую ♥",
+    najdi: "خلّصتي الخمس اليوم. تسلمين ♥",
+    msa: "أنهيتِ الخمس اليوم. شكرًا لكِ ♥",
+  },
+  "td.fiveGo": { en: "Record", uk: "Записати", najdi: "سجّلي", msa: "سجّلي" },
+  "td.fiveTodayCount": { en: "{n} of {total} today", uk: "{n} з {total} сьогодні", najdi: "{n} من {total} اليوم", msa: "{n} من {total} اليوم" },
+  "td.fiveTotal": { en: "{n} in your voice", uk: "{n} твоїм голосом", najdi: "{n} بصوتك", msa: "{n} بصوتكِ" },
+  "td.fiveRow": { en: "in a row", uk: "поспіль", najdi: "ورا بعض", msa: "متتالية" },
   // Stats — Volodymyr's own page, behind the stats password: everything Dima has done on the site.
   "nav.stats": { en: "Stats", uk: "Статистика", najdi: "الإحصائيات", msa: "الإحصاءات" },
   "stats.title": { en: "Stats", uk: "Статистика", najdi: "الإحصائيات", msa: "الإحصاءات" },

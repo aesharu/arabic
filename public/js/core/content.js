@@ -111,6 +111,7 @@ export async function revertEdit(id) {
 
 // ---------- Recordings ----------
 export const hasAudio = text => Boolean(audio[audioKey(text)]);
+export const audioTimes = () => Object.values(audio); // when each recording was saved
 export const recordedCount = texts => texts.filter(hasAudio).length;
 const urls = new Map();
 
