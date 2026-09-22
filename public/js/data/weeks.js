@@ -12,8 +12,8 @@ const SCHEDULE = [
   [null, 1, "8"], [null, 1, "6"], [null, 1, "5"],
   // Stage 3 · weeks 22–36
   [["3.1"], 2, ["4", "1"]], [["3.2"], 1, "2"], [["3.3"], 1, "7"], [["3.4"], 1, "6"],
-  // talking about yourself and her world: countries and languages, jobs, free time, animals and nature (NAJDI-WORDS.md)
-  [["4.21"], 1, "5"], [["4.19"], 1, "9"], [["4.20"], 1, "3"], [["4.18"], 1, "8"], [null, 1, "4"], [null, 1, "2"], [null, 1, "7"], [null, 1, "6"], [null, 1, "5"], [null, 1, "1"],
+  // talking about yourself and her world: countries and languages, jobs, free time, animals and nature, how young Saudis talk (NAJDI-WORDS.md)
+  [["4.21"], 1, "5"], [["4.19"], 1, "9"], [["4.20"], 1, "3"], [["4.18"], 1, "8"], [["4.22"], 1, "4"], [null, 1, "2"], [null, 1, "7"], [null, 1, "6"], [null, 1, "5"], [null, 1, "1"],
   // Stage 4 · weeks 37–53
   [["4.1"], 3, ["5", "5", "9"]], [["4.2"], 2, ["4", "6"]], [["4.3"], 2, ["7", "3"]], [["4.4"], 2, ["9", "8"]], [["4.5"], 1, "4"], [["4.6"], 1, "6"], [["4.7"], 1, "2"],
   [["4.8"], 1, "5"], [["4.9"], 2, ["8", "6"]], [["4.10"], 1, "4"], [["4.11"], 1, "3"],
@@ -47,7 +47,7 @@ export const TASKS = {
   ],
   "3": [
     { en: "Send her a voice note about your day using three of this week's words.", uk: "Надішли їй голосове про свій день, використавши три слова цього тижня.", najdi: "أرسل لها فويس عن يومك، واستخدم ثلاث كلمات من كلمات هالأسبوع.", msa: "أرسل إليها رسالة صوتية عن يومك مستخدمًا ثلاث كلمات من كلمات هذا الأسبوع." },
-    { en: "Ask her to correct one thing per conversation — not everything.", uk: "Попроси її виправляти одну річ за розмову — не все.", najdi: "اطلب منها تصحّح لك شي واحد بكل سالفة — مب كل شي.", msa: "اطلب منها أن تصحّح لك أمرًا واحدًا في كل محادثة، لا كلّ شيء." },
+    { en: "Ask her to correct one thing per conversation — not everything.", uk: "Попроси її виправляти одну річ за розмову — не все.", najdi: "اطلب منها تصحّح لك شي واحد بكل سالفة — مو كل شي.", msa: "اطلب منها أن تصحّح لك أمرًا واحدًا في كل محادثة، لا كلّ شيء." },
   ],
   "4": [
     { en: "A 10-minute call mostly in Arabic — English only as a rescue.", uk: "10-хвилинна розмова переважно арабською — англійська лише на крайній випадок.", najdi: "مكالمة عشر دقايق أغلبها بالعربي — والإنجليزي بس إذا علقت.", msa: "مكالمة مدّتها عشر دقائق معظمها بالعربية، والإنجليزية للضرورة فقط." },
@@ -77,8 +77,8 @@ export const DIALOGUES = {
     L("her", "في أمان الله", "fi amān allah", "Bye, take care.", "Бувай, бережи себе.", "في أمان الله."),
   ],
   4: [
-    L("you", "وش لونك؟", "wesh lōnik?", "How are you?", "Як ти?", "كيف حالكِ؟"),
-    L("her", "زين، الحمد لله. وش أخبارك؟", "zēn, al-ḥamdu lillāh. wesh akhbārik?", "Good, thank God. What's new with you?", "Добре, слава Богу. Що в тебе нового?", "بخير والحمد لله. ما أخبارك؟"),
+    L("you", "شلونك؟", "shlōnik?", "How are you?", "Як ти?", "كيف حالكِ؟"),
+    L("her", "زين، الحمد لله. شخبارك؟", "zēn, al-ḥamdu lillāh. shakhbārak?", "Good, thank God. What's new with you?", "Добре, слава Богу. Що в тебе нового?", "بخير والحمد لله. ما أخبارك؟"),
     L("you", "تمام. وين انتي الحين؟", "tamām. wēn inti al-ḥīn?", "All good. Where are you now?", "Усе добре. Де ти зараз?", "كلّ شيء على ما يرام. أين أنتِ الآن؟"),
     L("her", "بالبيت.", "bil-bēt.", "At home.", "Вдома.", "في البيت."),
     L("you", "صدق؟ وأنا بعد!", "ṣidg? w ana baʿad!", "Really? Me too!", "Справді? Я теж!", "حقًّا؟ وأنا أيضًا!"),
@@ -121,7 +121,7 @@ export const DIALOGUES = {
   ],
   10: [
     L("you", "صباح الخير!", "ṣabāḥ al-khēr!", "Good morning!", "Доброго ранку!", "صباح الخير!"),
-    L("her", "صباح النور. توك صحيت؟", "ṣabāḥ an-nūr. tawwik ṣiḥēt?", "Good morning. Did you just wake up?", "Доброго ранку. Ти щойно прокинувся?", "صباح النور. هل استيقظتَ للتوّ؟"),
+    L("her", "صباح النور. توك صحيت؟", "ṣabāḥ an-nūr. tawwak ṣiḥēt?", "Good morning. Did you just wake up?", "Доброго ранку. Ти щойно прокинувся?", "صباح النور. هل استيقظتَ للتوّ؟"),
     L("you", "إيه، توني صحيت. وانتي؟", "ēh, tawwni ṣiḥēt. w inti?", "Yes, I just woke up. And you?", "Так, щойно прокинувся. А ти?", "نعم، استيقظتُ للتوّ. وأنتِ؟"),
     L("her", "صحيت الصبح، بس ما بعد أكلت.", "ṣiḥēt aṣ-ṣubḥ, bass ma baʿad akalt.", "I woke up early, but I haven't eaten yet.", "Я прокинулася зранку, але ще не їла.", "استيقظتُ صباحًا، لكنني لم آكل بعد."),
     L("you", "عادي، وأنا بعد.", "ʿādi, w ana baʿad.", "That's fine — same here.", "Нічого, я теж.", "لا بأس، وأنا كذلك."),
@@ -142,14 +142,14 @@ export const DIALOGUES = {
     L("her", "لذيذ!", "ladhīdh!", "Delicious!", "Смачно!", "لذيذ!"),
   ],
   13: [
-    L("her", "وينك؟", "wēnik?", "Where are you?", "Де ти?", "أين أنت؟"),
+    L("her", "وينك؟", "wēnak?", "Where are you?", "Де ти?", "أين أنت؟"),
     L("you", "بالبيت. توني رجعت من الشغل.", "bil-bēt. tawwni rjaʿt min ash-shughl.", "At home. I just got back from work.", "Удома. Щойно повернувся з роботи.", "في البيت. عدتُ للتوّ من العمل."),
-    L("her", "أرسلت لك فويس.", "arsalt lik fōys.", "I sent you a voice note.", "Я надіслала тобі голосове.", "أرسلتُ إليك رسالةً صوتية."),
+    L("her", "أرسلت لك فويس.", "arsalt lak fōys.", "I sent you a voice note.", "Я надіслала тобі голосове.", "أرسلتُ إليك رسالةً صوتية."),
     L("you", "زين، بسمعه الحين.", "zēn, basmaʿah al-ḥīn.", "OK, I'll listen to it now.", "Добре, зараз послухаю.", "حسنًا، سأستمع إليها الآن."),
     L("her", "وأرسل لي صورة!", "w arsil li ṣūra!", "And send me a photo!", "І надішли мені фото!", "وأرسل لي صورة!"),
   ],
   14: [
-    L("her", "كيف أهلك؟", "kēf ahlik?", "How's your family?", "Як твоя родина?", "كيف حال أهلك؟"),
+    L("her", "كيف أهلك؟", "kēf ahlak?", "How's your family?", "Як твоя родина?", "كيف حال أهلك؟"),
     L("you", "الحمد لله، بخير. أمي تسلم عليك.", "al-ḥamdu lillāh, bikhēr. ummi tsallim ʿalēk.", "Fine, thank God. My mom says hi.", "Добре, слава Богу. Мама передає тобі привіт.", "بخير والحمد لله. أمي تسلّم عليكِ."),
     L("her", "الله يسلمها! وأبوك؟", "allah ysallimha! w abūk?", "Say hi back! And your dad?", "Їй теж привіт! А тато?", "سلّمها الله! ووالدك؟"),
     L("you", "بخير. وأخوي بعد.", "bikhēr. w akhūy baʿad.", "Fine. My brother too.", "Добре. Брат теж.", "بخير. وأخي أيضًا."),
@@ -166,7 +166,7 @@ export const DIALOGUES = {
     L("you", "بعد ثلاثة أيام.", "baʿad thalātha ayyām.", "In three days.", "Через три дні.", "بعد ثلاثة أيام."),
     L("her", "الساعة كم؟", "as-sāʿa kam?", "What time?", "О котрій?", "في أيّ ساعة؟"),
     L("you", "الساعة خمسة العصر.", "as-sāʿa khamsa al-ʿaṣr.", "At five in the afternoon.", "О п'ятій по обіді.", "في الساعة الخامسة عصرًا."),
-    L("her", "زين، أنتظرك!", "zēn, antiẓrik!", "OK, I'll wait for you!", "Добре, чекаю на тебе!", "حسنًا، سأنتظرك!"),
+    L("her", "زين، أنتظرك!", "zēn, antiẓrak!", "OK, I'll wait for you!", "Добре, чекаю на тебе!", "حسنًا، سأنتظرك!"),
   ],
   17: [
     L("her", "وش الجو بأوكرانيا؟", "wesh al-jaw b-ukrānya?", "What's the weather like in Ukraine?", "Яка погода в Україні?", "كيف الطقس في أوكرانيا؟"),
@@ -198,7 +198,7 @@ export const DIALOGUES = {
     L("you", "اشتقت لك.", "ishtagt lik.", "I missed you.", "Я скучив за тобою.", "اشتقتُ إليكِ."),
     L("her", "وأنا بعد.", "w ana baʿad.", "Me too.", "Я теж.", "وأنا أيضًا."),
     L("you", "أحبك يا قلبي.", "aḥibbik ya galbi.", "I love you, my heart.", "Я кохаю тебе, серденько.", "أحبّكِ يا قلبي."),
-    L("her", "فديتك.", "fidētik.", "Sweetheart.", "Мій любий.", "فديتُك."),
+    L("her", "فديتك.", "fidētak.", "Sweetheart.", "Мій любий.", "فديتُك."),
     L("you", "الله يحفظك.", "allah yiḥfaẓik.", "God keep you safe.", "Бережи тебе Бог.", "حفظكِ الله."),
   ],
   25: [
@@ -206,7 +206,7 @@ export const DIALOGUES = {
     L("you", "وش معنى طفشان؟", "wesh maʿna ṭafshān?", "What does ṭafshān mean?", "Що означає ṭafshān?", "ما معنى «طفشان»؟"),
     L("her", "يعني ما عنده شي يسويه.", "yaʿni ma ʿindah shay ysawwīh.", "It means he's got nothing to do — bored.", "Тобто йому нема чого робити — нудно.", "يعني ليس لديه ما يفعله."),
     L("you", "آه! معك حق، أنا طفشان!", "āh! maʿik ḥagg, ana ṭafshān!", "Ah! You're right — I'm bored!", "А! Твоя правда, мені нудно!", "آه! معكِ حق، أنا ضجِر!"),
-    L("her", "يا حليلك!", "ya ḥalīlik!", "Aww, how sweet!", "Ой, який ти милий!", "ما ألطفك!"),
+    L("her", "يا حليلك!", "ya ḥalīlak!", "Aww, how sweet!", "Ой, який ти милий!", "ما ألطفك!"),
   ],
   26: [
     L("you", "متى فاضية؟", "mita fāẓya?", "When are you free?", "Коли ти вільна?", "متى تكونين متفرّغة؟"),

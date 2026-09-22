@@ -206,7 +206,7 @@ mkdirSync(new URL("public/data/", root), { recursive: true });
 mkdirSync(new URL("public/anki/", root), { recursive: true });
 writeFileSync(new URL("public/data/vocab.json", root), JSON.stringify(out, null, 1));
 
-// Anki: Najdi on the front; pronunciation, English, Ukrainian, formal Arabic, the "to her" form and notes on the back.
+// Anki: the Saudi word on the front; pronunciation, English, Ukrainian, formal Arabic, the "to her" form and notes on the back.
 const DECKS = { "1": "Stage 1 — Core", "2": "Stage 2 — Daily life", "3": "Stage 3 — Talking to her", "4": "Stages 4–5 — Her words (to check)", special: "Special moments", grammar: "Grammar patterns" };
 export const DECK_FILE = id => `najdi-${id === "4" ? "stage4-5" : /^\d$/.test(id) ? `stage${id}` : id}.csv`;
 const csv = v => `"${String(v).replace(/"/g, '""')}"`;
@@ -216,7 +216,7 @@ for (const s of out.stages) {
     "#separator:Comma",
     "#html:true",
     "#notetype:Basic",
-    `#deck:Najdi::${DECKS[s.id]}`,
+    `#deck:Saudi::${DECKS[s.id]}`,
     "#tags column:3",
   ];
   for (const t of s.topics) {

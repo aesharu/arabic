@@ -75,7 +75,7 @@ export function aboutMe(me = DEFAULT_ME, today) {
     siblings: siblings(+m.brothers || 0, +m.sisters || 0),
     food: food && line(`أكثر أكلة أحبها ${food.ar}.`, `akthar akla aḥibbha ${afterVowel(food.say)}.`, `My favorite food is ${food.en}.`, `Моя улюблена страва — ${food.uk}.`),
     learning: learning(today),
-    najdi: line("أحب اللهجة النجدية، وأتعلمها كل يوم.", "aḥibb al-lahja n-najdiyya, w-atʿallamha kill yōm.", "I love the Najdi dialect, and I study it every day.", "Я люблю наджді й вчу його щодня."),
+    najdi: line("أحب اللهجة السعودية، وأتعلمها كل يوم.", "aḥibb al-lahja s-saʿūdiyya, w-atʿallamha kill yōm.", "I love the Saudi dialect, and I study it every day.", "Я люблю саудівський діалект і вчу його щодня."),
   };
   const Q = (ar, say, en, uk) => line(ar, say, en, uk);
   const qa = [

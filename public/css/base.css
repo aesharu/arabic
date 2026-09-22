@@ -9,7 +9,7 @@ body {
   line-height: 1.45;
   font-synthesis-weight: none;
 }
-/* Arabic interface (Najdi or MSA): right-to-left, Kufi for Arabic text, Alegreya still for Latin. */
+/* Arabic interface (Saudi or MSA): right-to-left, Kufi for Arabic text, Alegreya still for Latin. */
 html[dir="rtl"] body { font-family: var(--font-ui-ar); line-height: 1.6; }
 .ar { font-family: var(--font-ar); direction: rtl; unicode-bidi: isolate; }
 .ar-in { font-size: 1.12em; line-height: 1; }
@@ -196,7 +196,7 @@ html[dir="rtl"] .foot-label { letter-spacing: 0; }
 .langs button[lang^="ar"] { font-family: "Noto Kufi Arabic", var(--font-ar); letter-spacing: 0; font-size: 13px; }
 .langs button[aria-pressed="true"] { background: var(--nav-on-bg); color: var(--nav-on-ink); }
 .langs button { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 7px 0 6px; font-weight: 800; }
-/* Each language wears a round badge: the flag, a heart for Najdi, ض (the letter only Arabic has) for formal Arabic */
+/* Each language wears a round badge: the flag, a heart for Saudi Arabic, ض (the letter only Arabic has) for formal Arabic */
 .lang-sign {
   display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; overflow: hidden;
   box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--sidebar-ink) 22%, transparent); transition: transform .2s ease, box-shadow .2s ease;

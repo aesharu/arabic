@@ -94,11 +94,11 @@ export const FOODS = [
 // Fixed questions and answers (to a man), and questions to ask her back.
 export const MORE_QA = [
   { q: ["وش رأيك بالسعودية؟", "wesh raʾyak bis-saʿūdiyya?", "What do you think of Saudi Arabia?", "Що ти думаєш про Саудівську Аравію?"],
-    a: ["حلوة حيل، وأهلها طيبين.", "ḥilwa ḥēl, w-ahalha ṭayybīn.", "It's lovely, and its people are kind.", "Вона дуже гарна, а люди добрі."] },
+    a: ["حلوة مرة، وأهلها طيبين.", "ḥilwa marra, w-ahalha ṭayybīn.", "It's lovely, and its people are kind.", "Вона дуже гарна, а люди добрі."] },
   { q: ["تحب القهوة العربية؟", "tḥibb al-gahwa l-ʿarabiyya?", "Do you like Arabic coffee?", "Ти любиш арабську каву?"],
-    a: ["إيه، أحبها واجد!", "ēh, aḥibbha wājid!", "Yes, I love it!", "Так, дуже люблю!"] },
+    a: ["إيه، أحبها مرة!", "ēh, aḥibbha marra!", "Yes, I love it!", "Так, дуже люблю!"] },
   { q: ["ليش تتعلم عربي؟", "lēsh titʿallam ʿarabi?", "Why are you learning Arabic?", "Чому ти вчиш арабську?"],
-    a: ["أحب اللهجة النجدية، وأبي أتكلم مع الناس هنا.", "aḥibb al-lahja n-najdiyya, w-abi atkallam maʿ an-nās hina.", "I love the Najdi dialect, and I want to talk with people here.", "Я люблю наджді й хочу говорити з людьми тут."] },
+    a: ["أحب اللهجة السعودية، وأبي أتكلم مع الناس هنا.", "aḥibb al-lahja s-saʿūdiyya, w-abi atkallam maʿ an-nās hina.", "I love the Saudi dialect, and I want to talk with people here.", "Я люблю саудівський діалект і хочу говорити з людьми тут."] },
 ];
 
 export const ASK_HER = [

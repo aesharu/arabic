@@ -79,7 +79,7 @@ export const PATH = [
     steps: ["pr:4.2", "gr:15", "st:sick", "st:cook", "st:lostphone", "ch:lesson", "ch:photo", "lv:flirt", "do:yesterday"] },
   { title: T("Feelings and opinions", "Почуття й думки", "المشاعر والرأي"),
     goal: T("You can say how you feel, ask how she feels, and say what you think.", "Ти можеш сказати, що відчуваєш, спитати її і сказати, що думаєш.", "تقدر تقول وش تحس، وتسألها وش تحس، وتقول رأيك."),
-    steps: ["pr:4.3", "pr:4.4", "gr:12", "vb:feel", "vb:miss", "st:grandma", "st:gift", "ch:upset", "ch:exam", "ch:fever", "lv:sorry", "do:feel"] },
+    steps: ["pr:4.3", "pr:4.4", "pr:4.22", "gr:12", "vb:feel", "vb:miss", "st:grandma", "st:gift", "ch:upset", "ch:exam", "ch:fever", "lv:sorry", "do:feel"] },
   { title: T("Her world: coffee, Ramadan, Eid, weddings", "Її світ: кава, Рамадан, Ід, весілля", "دنيتها: القهوة ورمضان والعيد والزواجات"),
     goal: T("You know the coffee manners and what to say in Ramadan, at Eid and at a wedding.", "Ти знаєш звичаї кави і що казати в Рамадан, на Ід і на весіллі.", "تعرف سنع القهوة ووش تقول برمضان وبالعيد وبالعرس."),
     steps: ["pr:4.7", "pr:4.8", "st:ramadan", "st:eid", "st:wedding", "st:oud", "ch:ramadan", "ch:eid", "ch:coffee", "lv:family"] },

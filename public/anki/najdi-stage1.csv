@@ -1,9 +1,9 @@
 #separator:Comma
 #html:true
 #notetype:Basic
-#deck:Najdi::Stage 1 — Core
+#deck:Saudi::Stage 1 — Core
 #tags column:3
-"<div dir=""rtl"" style=""font-size:2em"">وش</div>","<b>wesh</b><br>EN: what<br>UA: що<br>MSA: <span dir=""rtl"">ماذا</span><br><i>The Najdi word · Саме наджді</i>","stage-1 topic-1.1"
+"<div dir=""rtl"" style=""font-size:2em"">وش</div>","<b>wesh</b><br>EN: what<br>UA: що<br>MSA: <span dir=""rtl"">ماذا</span><br><i>The Saudi word · Саудівське слово</i>","stage-1 topic-1.1"
 "<div dir=""rtl"" style=""font-size:2em"">وين</div>","<b>wēn</b><br>EN: where<br>UA: де<br>MSA: <span dir=""rtl"">أين</span>","stage-1 topic-1.1"
 "<div dir=""rtl"" style=""font-size:2em"">متى</div>","<b>mita</b><br>EN: when<br>UA: коли<br>MSA: <span dir=""rtl"">متى</span>","stage-1 topic-1.1"
 "<div dir=""rtl"" style=""font-size:2em"">ليش</div>","<b>lēsh</b><br>EN: why<br>UA: чому<br>MSA: <span dir=""rtl"">لماذا</span>","stage-1 topic-1.1"
@@ -12,7 +12,7 @@
 "<div dir=""rtl"" style=""font-size:2em"">كم</div>","<b>kam</b><br>EN: how much / many<br>UA: скільки<br>MSA: <span dir=""rtl"">كم</span>","stage-1 topic-1.1"
 "<div dir=""rtl"" style=""font-size:2em"">أي</div>","<b>ay</b><br>EN: which<br>UA: який<br>MSA: <span dir=""rtl"">أيّ</span>","stage-1 topic-1.1"
 "<div dir=""rtl"" style=""font-size:2em"">وش فيك؟</div>","<b>wesh fīk?</b><br>EN: what's wrong?<br>UA: що з тобою?<br>MSA: <span dir=""rtl"">ما بك؟</span>","stage-1 topic-1.1"
-"<div dir=""rtl"" style=""font-size:2em"">وش لونك؟</div>","<b>wesh lōnik?</b><br>EN: how are you?<br>UA: як ти?<br>MSA: <span dir=""rtl"">كيف حالك؟</span><br><i>Najdi classic, lit. ""what's your color"" · Класика наджді, досл. «який твій колір»</i>","stage-1 topic-1.1"
+"<div dir=""rtl"" style=""font-size:2em"">شلونك؟</div>","<b>shlōnik?</b><br>EN: how are you?<br>UA: як ти?<br>MSA: <span dir=""rtl"">كيف حالك؟</span><br><i>Her word, lit. ""what's your colour""; older Riyadh: وش لونك · Її слово, досл. «який твій колір»; по-старому в Ер-Ріяді: وش لونك</i>","stage-1 topic-1.1"
 "<div dir=""rtl"" style=""font-size:2em"">إيه</div>","<b>ēh</b><br>EN: yes<br>UA: так<br>MSA: <span dir=""rtl"">نعم</span><br><i>Careful: in Egyptian إيه means ""what"" · Обережно: у єгипетській إيه означає «що»</i><br>⚠ check with tutor","stage-1 topic-1.2 check-with-tutor"
 "<div dir=""rtl"" style=""font-size:2em"">لا</div>","<b>la</b><br>EN: no<br>UA: ні<br>MSA: <span dir=""rtl"">لا</span>","stage-1 topic-1.2"
 "<div dir=""rtl"" style=""font-size:2em"">أكيد</div>","<b>akīd</b><br>EN: sure<br>UA: звісно<br>MSA: <span dir=""rtl"">بالتأكيد</span>","stage-1 topic-1.2"
@@ -33,6 +33,7 @@
 "<div dir=""rtl"" style=""font-size:2em"">يعني</div>","<b>yaʿni</b><br>EN: I mean, like<br>UA: тобто, типу<br>MSA: <span dir=""rtl"">أعني</span>","stage-1 topic-1.2"
 "<div dir=""rtl"" style=""font-size:2em"">بس</div>","<b>bass</b><br>EN: but / just / enough<br>UA: але / просто / досить<br>MSA: <span dir=""rtl"">لكن / فقط / يكفي</span>","stage-1 topic-1.2"
 "<div dir=""rtl"" style=""font-size:2em"">عادي</div>","<b>ʿādi</b><br>EN: normal, it's fine<br>UA: нормально, нічого страшного<br>MSA: <span dir=""rtl"">عادي، لا بأس</span><br><i>Hugely common · Дуже поширене</i>","stage-1 topic-1.2"
+"<div dir=""rtl"" style=""font-size:2em"">سلام</div>","<b>salām</b><br>EN: hi<br>UA: привіт<br>MSA: <span dir=""rtl"">السلام عليكم</span><br><i>Short for السلام عليكم · Коротко від السلام عليكم</i>","stage-1 topic-1.3"
 "<div dir=""rtl"" style=""font-size:2em"">السلام عليكم</div>","<b>as-salāmu ʿalēkum</b><br>EN: hello<br>UA: привіт (досл. «мир вам»)<br>MSA: <span dir=""rtl"">السلام عليكم</span>","stage-1 topic-1.3"
 "<div dir=""rtl"" style=""font-size:2em"">وعليكم السلام</div>","<b>wa ʿalēkum as-salām</b><br>EN: reply<br>UA: відповідь: «і вам мир»<br>MSA: <span dir=""rtl"">وعليكم السلام</span>","stage-1 topic-1.3"
 "<div dir=""rtl"" style=""font-size:2em"">هلا</div>","<b>hala</b><br>EN: hi<br>UA: привіт<br>MSA: <span dir=""rtl"">أهلًا</span>","stage-1 topic-1.3"
@@ -43,8 +44,8 @@
 "<div dir=""rtl"" style=""font-size:2em"">صباح النور</div>","<b>ṣabāḥ an-nūr</b><br>EN: reply<br>UA: відповідь на «доброго ранку»<br>MSA: <span dir=""rtl"">صباح النور</span>","stage-1 topic-1.3"
 "<div dir=""rtl"" style=""font-size:2em"">مساء الخير</div>","<b>masāʾ al-khēr</b><br>EN: good evening<br>UA: добрий вечір<br>MSA: <span dir=""rtl"">مساء الخير</span>","stage-1 topic-1.3"
 "<div dir=""rtl"" style=""font-size:2em"">مساء النور</div>","<b>masāʾ an-nūr</b><br>EN: reply<br>UA: відповідь на «добрий вечір»<br>MSA: <span dir=""rtl"">مساء النور</span>","stage-1 topic-1.3"
-"<div dir=""rtl"" style=""font-size:2em"">كيفك؟</div>","<b>kēfik?</b><br>EN: how are you?<br>UA: як ти?<br>MSA: <span dir=""rtl"">كيف حالك؟</span><br><i>Same to him and her · Однаково до нього й до неї</i>","stage-1 topic-1.3"
-"<div dir=""rtl"" style=""font-size:2em"">وش أخبارك؟</div>","<b>wesh akhbārik?</b><br>EN: what's new?<br>UA: що нового?<br>MSA: <span dir=""rtl"">ما أخبارك؟</span>","stage-1 topic-1.3"
+"<div dir=""rtl"" style=""font-size:2em"">كيفك؟</div>","<b>kēfik?</b><br>EN: how are you?<br>UA: як ти?<br>MSA: <span dir=""rtl"">كيف حالك؟</span><br><i>To her; to him kēfak · До неї; до нього — kēfak</i>","stage-1 topic-1.3"
+"<div dir=""rtl"" style=""font-size:2em"">شخبارك؟</div>","<b>shakhbārik?</b><br>EN: what's new? how are you?<br>UA: що нового? як ти?<br>MSA: <span dir=""rtl"">ما أخبارك؟</span><br><i>Her word · Її слово</i>","stage-1 topic-1.3"
 "<div dir=""rtl"" style=""font-size:2em"">الحمد لله</div>","<b>al-ḥamdu lillāh</b><br>EN: good, thank God<br>UA: добре, слава Богу<br>MSA: <span dir=""rtl"">الحمد لله</span><br><i>Standard answer · Стандартна відповідь</i>","stage-1 topic-1.3"
 "<div dir=""rtl"" style=""font-size:2em"">بخير</div>","<b>bikhēr</b><br>EN: fine<br>UA: добре<br>MSA: <span dir=""rtl"">بخير</span>","stage-1 topic-1.3"
 "<div dir=""rtl"" style=""font-size:2em"">شكراً</div>","<b>shukran</b><br>EN: thanks<br>UA: дякую<br>MSA: <span dir=""rtl"">شكرًا</span>","stage-1 topic-1.3"
@@ -100,8 +101,8 @@
 "<div dir=""rtl"" style=""font-size:2em"">كل</div>","<b>kill</b><br>EN: all, every<br>UA: усі, кожен<br>MSA: <span dir=""rtl"">كل</span>","stage-1 topic-1.5"
 "<div dir=""rtl"" style=""font-size:2em"">شي</div>","<b>shay</b><br>EN: thing, something<br>UA: річ, щось<br>MSA: <span dir=""rtl"">شيء</span>","stage-1 topic-1.5"
 "<div dir=""rtl"" style=""font-size:2em"">شوي</div>","<b>shwayy</b><br>EN: a little<br>UA: трохи<br>MSA: <span dir=""rtl"">قليلًا</span>","stage-1 topic-1.5"
-"<div dir=""rtl"" style=""font-size:2em"">حيل</div>","<b>ḥēl</b><br>EN: very<br>UA: дуже<br>MSA: <span dir=""rtl"">جدًّا</span><br><i>Najdi · Наджді</i>","stage-1 topic-1.5"
-"<div dir=""rtl"" style=""font-size:2em"">مرّة</div>","<b>marra</b><br>EN: very / once<br>UA: дуже / один раз<br>MSA: <span dir=""rtl"">جدًّا / مرة</span><br><i>مرة حلو — really nice · مرة حلو — дуже гарно</i>","stage-1 topic-1.5"
+"<div dir=""rtl"" style=""font-size:2em"">حيل</div>","<b>ḥēl</b><br>EN: very<br>UA: дуже<br>MSA: <span dir=""rtl"">جدًّا</span><br><i>Older Najdi — young people say مرة · Старе наджді — молодь каже مرة</i>","stage-1 topic-1.5"
+"<div dir=""rtl"" style=""font-size:2em"">مرّة</div>","<b>marra</b><br>EN: very / once<br>UA: дуже / один раз<br>MSA: <span dir=""rtl"">جدًّا / مرة</span><br><i>The everyday Saudi ""very"": حلو مرة — really nice · Щоденне саудівське «дуже»: حلو مرة — дуже гарно</i>","stage-1 topic-1.5"
 "<div dir=""rtl"" style=""font-size:2em"">كثير</div>","<b>kithīr</b><br>EN: a lot<br>UA: багато<br>MSA: <span dir=""rtl"">كثيرًا</span>","stage-1 topic-1.5"
 "<div dir=""rtl"" style=""font-size:2em"">كذا</div>","<b>kidha</b><br>EN: like this, so<br>UA: ось так<br>MSA: <span dir=""rtl"">هكذا</span>","stage-1 topic-1.5"
 "<div dir=""rtl"" style=""font-size:2em"">مثل</div>","<b>mithl</b><br>EN: like (similar to)<br>UA: як (схожий на)<br>MSA: <span dir=""rtl"">مثل</span>","stage-1 topic-1.5"

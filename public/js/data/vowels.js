@@ -28,8 +28,8 @@ export const VOWEL_SECTIONS = [
       { ar: "بَا", name: { en: "alif", uk: "аліф", najdi: "ألف", msa: "الألف" }, text: { en: "bā — long a", uk: "bā — довге а", najdi: "bā — ألف ممدودة", msa: "bā — مدّ بالألف" } },
       { ar: "بِي", name: { en: "yāʾ", uk: "йа", najdi: "ياء", msa: "الياء" }, text: { en: "bī — long i", uk: "bī — довге і", najdi: "bī — ياء ممدودة", msa: "bī — مدّ بالياء" } },
       { ar: "بُو", name: { en: "wāw", uk: "вав", najdi: "واو", msa: "الواو" }, text: { en: "bū — long u", uk: "bū — довге у", najdi: "bū — واو ممدودة", msa: "bū — مدّ بالواو" } },
-      { ar: "زين", name: { en: "Najdi ē", uk: "наджді ē", najdi: "ē النجدية", msa: "ē في النجدية" }, text: { en: "zēn — ay becomes ē", uk: "zēn — ay стає ē", najdi: "zēn — ay تصير ē", msa: "zēn — تتحول ay إلى ē" } },
-      { ar: "يوم", name: { en: "Najdi ō", uk: "наджді ō", najdi: "ō النجدية", msa: "ō في النجدية" }, text: { en: "yōm — aw becomes ō", uk: "yōm — aw стає ō", najdi: "yōm — aw تصير ō", msa: "yōm — تتحول aw إلى ō" } },
+      { ar: "زين", name: { en: "Saudi ē", uk: "саудівське ē", najdi: "ē السعودية", msa: "ē في اللهجة السعودية" }, text: { en: "zēn — ay becomes ē", uk: "zēn — ay стає ē", najdi: "zēn — ay تصير ē", msa: "zēn — تتحول ay إلى ē" } },
+      { ar: "يوم", name: { en: "Saudi ō", uk: "саудівське ō", najdi: "ō السعودية", msa: "ō في اللهجة السعودية" }, text: { en: "yōm — aw becomes ō", uk: "yōm — aw стає ō", najdi: "yōm — aw تصير ō", msa: "yōm — تتحول aw إلى ō" } },
     ],
   },
   {

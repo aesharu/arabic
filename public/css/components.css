@@ -793,7 +793,7 @@ html[dir="rtl"] .print-bar p { margin: 0 0 0 auto; }
 .editor-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .editor-revert { margin-inline-start: auto; }
 
-/* The computer voice owns up to not being Najdi */
+/* The computer voice owns up to not being Saudi */
 .voice-toast {
   position: fixed; z-index: 60; left: 0; right: 0; margin-inline: auto; width: max-content; bottom: calc(24px + env(safe-area-inset-bottom)); translate: 0 12px; max-width: min(520px, calc(100vw - 32px));
   padding: 10px 16px; border-radius: 12px; background: var(--ink); color: var(--bg); font-size: 14.5px; font-weight: 700; text-align: center;

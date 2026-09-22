@@ -212,7 +212,7 @@ const DRAW = {
   qalam: () => `${sky(90, 30)}
     <path class="ps-desk" d="M0,112 H480 V160 H0Z"/>
     <g transform="rotate(-4 300 92)"><rect class="a-paper-shadow" x="222" y="42" width="168" height="102" rx="4"/><rect class="a-paper" x="218" y="38" width="168" height="102" rx="4"/>
-      <text class="a-ar a-green ps-callig" x="302" y="102" text-anchor="middle">نجدي</text>
+      <text class="a-ar a-green ps-callig" x="302" y="102" text-anchor="middle">سعودي</text>
       <path class="a-rule" d="M234,116 H372 M234,128 H340"/></g>
     <g transform="rotate(32 426 88)"><path class="a-qalam" d="M420,38 h10 v88 h-10z"/><path class="a-qalam-tip" d="M420,126 h10 l-5,14z"/></g>
     <path class="a-ink-pot" d="M150,126 h26 v18 a5,5 0 0 1 -5,5 h-16 a5,5 0 0 1 -5,-5z"/><rect class="a-brass-dark" x="154" y="120" width="18" height="7" rx="2"/>

@@ -64,7 +64,7 @@ export const WORDS = [
   { ar: "عيال", tr: "ʿiyāl", msa: "أطفال", en: "kids / guys", uk: "діти / хлопці" },
 
   // + group 6 — ف ق ك ل م ه
-  { ar: "كيفك", tr: "kēfik", msa: "كيف حالك؟", en: "how are you? (same to him and her)", uk: "як ти? (однаково до нього й до неї)" },
+  { ar: "كيفك", tr: "kēfik", msa: "كيف حالكِ؟", en: "how are you? (to her; to him kēfak)", uk: "як ти? (до неї; до нього — kēfak)" },
   { ar: "الحين", tr: "al-ḥīn", msa: "الآن", en: "now", uk: "зараз" },
   { ar: "هلا", tr: "hala", msa: "أهلاً", en: "hi", uk: "привіт" },
   { ar: "ليش", tr: "lēsh", msa: "لماذا", en: "why", uk: "чому" },

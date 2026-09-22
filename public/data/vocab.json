@@ -21,10 +21,10 @@
        "say": "wesh",
        "en": "what",
        "note": {
-        "en": "The Najdi word",
-        "uk": "Саме наджді",
-        "najdi": "الكلمة النجدية",
-        "msa": "الكلمة النجدية"
+        "en": "The Saudi word",
+        "uk": "Саудівське слово",
+        "najdi": "الكلمة السعودية",
+        "msa": "الكلمة السعودية"
        },
        "check": false,
        "msa": "ماذا",
@@ -125,17 +125,17 @@
        "uk": "що з тобою?"
       },
       {
-       "id": "2dbxi3",
+       "id": "1wlml1f",
        "stage": "1",
        "topic": "1.1",
-       "ar": "وش لونك؟",
-       "say": "wesh lōnik?",
+       "ar": "شلونك؟",
+       "say": "shlōnik?",
        "en": "how are you?",
        "note": {
-        "en": "Najdi classic, lit. \"what's your color\"",
-        "uk": "Класика наджді, досл. «який твій колір»",
-        "najdi": "نجدية أصيلة، حرفيًا «وش لونك»",
-        "msa": "عبارة نجدية أصيلة، معناها الحرفي «ما لونك»"
+        "en": "Her word, lit. \"what's your colour\"; older Riyadh: وش لونك",
+        "uk": "Її слово, досл. «який твій колір»; по-старому в Ер-Ріяді: وش لونك",
+        "najdi": "كلمتها، حرفيًا «وش لونك»؛ أهل الرياض زمان يقولون: وش لونك",
+        "msa": "كلمتها، ومعناها الحرفي «ما لونك»؛ ويقول أهل الرياض قديمًا: وش لونك"
        },
        "check": false,
        "msa": "كيف حالك؟",
@@ -408,6 +408,23 @@
      },
      "entries": [
       {
+       "id": "15609jt",
+       "stage": "1",
+       "topic": "1.3",
+       "ar": "سلام",
+       "say": "salām",
+       "en": "hi",
+       "note": {
+        "en": "Short for السلام عليكم",
+        "uk": "Коротко від السلام عليكم",
+        "najdi": "اختصار «السلام عليكم»",
+        "msa": "اختصار «السلام عليكم»"
+       },
+       "check": false,
+       "msa": "السلام عليكم",
+       "uk": "привіт"
+      },
+      {
        "id": "1bf4xns",
        "stage": "1",
        "topic": "1.3",
@@ -531,25 +548,31 @@
        "say": "kēfik?",
        "en": "how are you?",
        "note": {
-        "en": "Same to him and her",
-        "uk": "Однаково до нього й до неї",
-        "najdi": "نفسها له ولها",
-        "msa": "بالصيغة نفسها للمذكر والمؤنث"
+        "en": "To her; to him kēfak",
+        "uk": "До неї; до нього — kēfak",
+        "najdi": "لها؛ وله: kēfak",
+        "msa": "للمخاطَبة؛ وللمخاطَب: kēfak"
        },
        "check": false,
        "msa": "كيف حالك؟",
        "uk": "як ти?"
       },
       {
-       "id": "11xbff",
+       "id": "f39l4g",
        "stage": "1",
        "topic": "1.3",
-       "ar": "وش أخبارك؟",
-       "say": "wesh akhbārik?",
-       "en": "what's new?",
+       "ar": "شخبارك؟",
+       "say": "shakhbārik?",
+       "en": "what's new? how are you?",
+       "note": {
+        "en": "Her word",
+        "uk": "Її слово",
+        "najdi": "كلمتها",
+        "msa": "كلمتها"
+       },
        "check": false,
        "msa": "ما أخبارك؟",
-       "uk": "що нового?"
+       "uk": "що нового? як ти?"
       },
       {
        "id": "10znn85",
@@ -1234,10 +1257,10 @@
        "say": "ḥēl",
        "en": "very",
        "note": {
-        "en": "Najdi",
-        "uk": "Наджді",
-        "najdi": "نجدية",
-        "msa": "نجدية"
+        "en": "Older Najdi — young people say مرة",
+        "uk": "Старе наджді — молодь каже مرة",
+        "najdi": "نجدي قديم — الشباب يقولون «مرة»",
+        "msa": "نجدية قديمة — ويقول الشباب «مرة»"
        },
        "check": false,
        "msa": "جدًّا",
@@ -1251,10 +1274,10 @@
        "say": "marra",
        "en": "very / once",
        "note": {
-        "en": "مرة حلو — really nice",
-        "uk": "مرة حلو — дуже гарно",
-        "najdi": "مرة حلو — حلو مرة",
-        "msa": "مرة حلو — جميل جدًا"
+        "en": "The everyday Saudi \"very\": حلو مرة — really nice",
+        "uk": "Щоденне саудівське «дуже»: حلو مرة — дуже гарно",
+        "najdi": "«مرة» السعودية اللي نقولها كل يوم: حلو مرة",
+        "msa": "«مرة» بمعنى جدًا في الكلام السعودي اليومي: حلو مرة"
        },
        "check": false,
        "msa": "جدًّا / مرة",
@@ -2780,10 +2803,10 @@
        "say": "ar-rabʿ",
        "en": "the guys, the crew",
        "note": {
-        "en": "Najdi/Gulf",
-        "uk": "Наджді / Перська затока",
-        "najdi": "نجدي / خليجي",
-        "msa": "نجدية / خليجية"
+        "en": "Also الشباب",
+        "uk": "Також الشباب",
+        "najdi": "بعد: الشباب",
+        "msa": "ويُقال أيضًا: الشباب"
        },
        "check": false,
        "msa": "الأصحاب",
@@ -2852,10 +2875,10 @@
        "say": "shēn",
        "en": "bad, ugly",
        "note": {
-        "en": "Najdi/Gulf",
-        "uk": "Наджді / Перська затока",
-        "najdi": "نجدي / خليجي",
-        "msa": "نجدية / خليجية"
+        "en": "Very Saudi",
+        "uk": "Дуже по-саудівськи",
+        "najdi": "سعودية مرة",
+        "msa": "سعودية جدًا"
        },
        "check": false,
        "msa": "سيّئ / قبيح",
@@ -3842,10 +3865,10 @@
        "say": "yimdīk?",
        "en": "do you have time? can you manage?",
        "note": {
-        "en": "Very Najdi",
-        "uk": "Дуже характерне для наджді",
-        "najdi": "نجدية مرة",
-        "msa": "نجدية جدًا"
+        "en": "Very Saudi",
+        "uk": "Дуже по-саудівськи",
+        "najdi": "سعودية مرة",
+        "msa": "سعودية جدًا"
        },
        "check": true,
        "msa": "هل لديكِ وقت؟",
@@ -6802,11 +6825,11 @@
        }
       },
       {
-       "id": "1lrk5fo",
+       "id": "1afzq5g",
        "stage": "4",
        "topic": "4.3",
-       "ar": "مب مشكلة",
-       "say": "mub mushkila",
+       "ar": "مو مشكلة",
+       "say": "mū mushkila",
        "en": "not a problem",
        "uk": "не проблема",
        "msa": "ليست مشكلة",
@@ -7040,11 +7063,11 @@
        }
       },
       {
-       "id": "1281l02",
+       "id": "13pzj76",
        "stage": "4",
        "topic": "4.3",
-       "ar": "مب لازم",
-       "say": "mub lāzim",
+       "ar": "مو لازم",
+       "say": "mū lāzim",
        "en": "not necessary",
        "uk": "не обов'язково",
        "msa": "ليس ضروريًا",
@@ -8428,13 +8451,13 @@
        }
       },
       {
-       "id": "1i5lxe1",
+       "id": "10bh579",
        "stage": "4",
        "topic": "4.4",
        "ar": "وش علومك؟",
        "say": "wesh ʿilūmik?",
-       "en": "what's your news? (very Najdi)",
-       "uk": "які новини?",
+       "en": "what's your news? (older, from the desert)",
+       "uk": "які новини? (старе, з пустелі)",
        "msa": "ما أخبارك؟",
        "check": true,
        "note": {
@@ -17659,6 +17682,306 @@
        }
       }
      ]
+    },
+    {
+     "id": "4.22",
+     "title": {
+      "en": "How young Saudis talk",
+      "uk": "Як говорить саудівська молодь",
+      "najdi": "كلام الشباب السعودي",
+      "msa": "لغة الشباب السعودي"
+     },
+     "entries": [
+      {
+       "id": "1lnp55t",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "مشكور / مشكورة",
+       "say": "mashkūr / mashkūra",
+       "en": "thanks (to him / to her)",
+       "uk": "дякую (йому / їй)",
+       "msa": "شكرًا لك / شكرًا لكِ",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "jba4v3",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "تكفى / تكفين",
+       "say": "tikfa / tikfīn",
+       "en": "please, I'm begging you (to him / to her)",
+       "uk": "будь ласка, дуже прошу (йому / їй)",
+       "msa": "أرجوك / أرجوكِ",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "13r19v0",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "سم / سمّي",
+       "say": "samm / sammi",
+       "en": "yes? I'm listening — when someone calls you (to him / to her)",
+       "uk": "так? слухаю — коли тебе кличуть (йому / їй)",
+       "msa": "نعم؟",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "hofvsb",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "تم",
+       "say": "tamm",
+       "en": "okay, done — the usual reply in chats",
+       "uk": "окей, домовились — звична відповідь у чатах",
+       "msa": "حسنًا، تمّ",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "198bmz7",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "على راسي",
+       "say": "ʿala rāsi",
+       "en": "gladly, with pleasure (lit. \"on my head\")",
+       "uk": "залюбки (досл. «на моїй голові»)",
+       "msa": "بكل سرور",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1swzh13",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "أجل",
+       "say": "ajal",
+       "en": "so, then, in that case",
+       "uk": "тоді, отже, у такому разі",
+       "msa": "إذن",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1erek4s",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "وش السالفة؟",
+       "say": "wesh as-sālfa?",
+       "en": "what's going on? what's the story?",
+       "uk": "що сталося? у чому справа?",
+       "msa": "ما القصة؟",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1fq2ewt",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "قسم بالله",
+       "say": "gasam billah",
+       "en": "I swear — honestly!",
+       "uk": "клянуся — чесно!",
+       "msa": "أُقسم بالله",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1ro12dj",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "يا شيخ / يا شيخة",
+       "say": "ya shēkh / ya shēkha",
+       "en": "come on! no way! (to him / to her)",
+       "uk": "та ну! не може бути! (йому / їй)",
+       "msa": "ما هذا الكلام!",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "h15zhe",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "طقطقة",
+       "say": "ṭagṭaga",
+       "en": "teasing, joking around",
+       "uk": "підколки, жарти",
+       "msa": "مزاح وسخرية",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "w7s4vq",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "لا تطقطقين علي",
+       "say": "la tṭagṭigīn ʿalay",
+       "en": "don't make fun of me (to her)",
+       "uk": "не підколюй мене (до неї)",
+       "msa": "لا تسخري منّي",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1haiwhe",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "وناسة",
+       "say": "wanāsa",
+       "en": "fun, a great time",
+       "uk": "весело, класно",
+       "msa": "متعة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "47tx6e",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "بزر",
+       "say": "bizir",
+       "en": "a little kid (also \"childish\", teasing)",
+       "uk": "мала дитина (і «як дитина», жартома)",
+       "msa": "طفل صغير",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1lmwhdw",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "تو الناس",
+       "say": "taww an-nās",
+       "en": "it's still early",
+       "uk": "ще рано",
+       "msa": "ما زال الوقت مبكرًا",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "ghg0de",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "عسى ما شر؟",
+       "say": "ʿasa ma sharr?",
+       "en": "nothing wrong, I hope? — when someone is ill or away",
+       "uk": "сподіваюся, нічого поганого? — коли хтось хворий чи зник",
+       "msa": "أرجو أن يكون خيرًا",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "mymxrw",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "إن شاء الله خير",
+       "say": "in shāʾ allah khēr",
+       "en": "hopefully it's good news",
+       "uk": "сподіваюся, на добре",
+       "msa": "خيرًا إن شاء الله",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1yvx7nq",
+       "stage": "4",
+       "topic": "4.22",
+       "ar": "الله يسعدك",
+       "say": "allah yisʿidik",
+       "en": "God make you happy — a warm thank-you",
+       "uk": "хай Бог дарує тобі щастя — тепла подяка",
+       "msa": "أسعدك الله",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      }
+     ]
     }
    ]
   },
@@ -17946,21 +18269,38 @@
        "uk": "мій дім"
       },
       {
-       "id": "gpuh5z",
+       "id": "anjcu4",
        "stage": "grammar",
        "topic": "5.2",
        "ar": "بيتك",
        "say": "bētik",
-       "en": "your house",
+       "en": "your house (to her)",
        "note": {
-        "en": "ـك -ik — your (him or her)",
-        "uk": "ـك -ik — твій (до нього чи до неї)",
-        "najdi": "ـك -ik — لك (له أو لها)",
-        "msa": "ـك -ik — ضمير المخاطَب للمذكر والمؤنث"
+        "en": "ـك -ik — your (to her)",
+        "uk": "ـك -ik — твій (до неї)",
+        "najdi": "ـك -ik — لها",
+        "msa": "ـك -ik — ضمير المخاطَبة"
        },
        "check": false,
-       "msa": "بيتك",
-       "uk": "твій дім"
+       "msa": "بيتُكِ",
+       "uk": "твій дім (до неї)"
+      },
+      {
+       "id": "32dqkv",
+       "stage": "grammar",
+       "topic": "5.2",
+       "ar": "بيتك",
+       "say": "bētak",
+       "en": "your house (to him)",
+       "note": {
+        "en": "ـك -ak — your (to him)",
+        "uk": "ـك -ak — твій (до нього)",
+        "najdi": "ـك -ak — له",
+        "msa": "ـك -ak — ضمير المخاطَب"
+       },
+       "check": false,
+       "msa": "بيتُكَ",
+       "uk": "твій дім (до нього)"
       },
       {
        "id": "5w4ss8",
@@ -18421,17 +18761,17 @@
        "uk": "я не зрозумів(-ла)"
       },
       {
-       "id": "64jr7g",
+       "id": "87zqe4",
        "stage": "grammar",
        "topic": "5.7",
-       "ar": "مب زين",
-       "say": "mub zēn",
+       "ar": "مو زين",
+       "say": "mū zēn",
        "en": "not good",
        "note": {
-        "en": "مب + adjective/noun",
-        "uk": "مب + прикметник / іменник",
-        "najdi": "مب + صفة / اسم",
-        "msa": "مب + صفة أو اسم"
+        "en": "مو + adjective/noun",
+        "uk": "مو + прикметник/іменник",
+        "najdi": "مو + صفة أو اسم",
+        "msa": "مو + صفة أو اسم"
        },
        "check": false,
        "msa": "ليس جيدًا",
@@ -18586,8 +18926,8 @@
     "msa": "المصرية"
    },
    "right": {
-    "ar": "وش لونك",
-    "say": "wesh lōnik"
+    "ar": "شلونك",
+    "say": "shlōnik"
    }
   },
   {
@@ -18756,8 +19096,144 @@
     "msa": "المصرية / الشامية"
    },
    "right": {
-    "ar": "مب / ما",
-    "say": "mub / ma"
+    "ar": "مو / ما",
+    "say": "mū / ma"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "أحبچ",
+    "say": "aḥibbich",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Kuwait / Iraq / Gulf",
+    "uk": "Кувейт / Ірак / Затока",
+    "najdi": "كويتي / عراقي / خليجي",
+    "msa": "الكويتية / العراقية / الخليجية"
+   },
+   "right": {
+    "ar": "أحبك",
+    "say": "aḥibbik"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "شلونچ",
+    "say": "shlōnich",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Kuwait / Iraq / Gulf",
+    "uk": "Кувейт / Ірак / Затока",
+    "najdi": "كويتي / عراقي / خليجي",
+    "msa": "الكويتية / العراقية / الخليجية"
+   },
+   "right": {
+    "ar": "شلونك",
+    "say": "shlōnik"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "وايد",
+    "say": "wāyid",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Kuwait / Emirates",
+    "uk": "Кувейт / Емірати",
+    "najdi": "كويتي / إماراتي",
+    "msa": "الكويتية / الإماراتية"
+   },
+   "right": {
+    "ar": "كثير / مرة",
+    "say": "kithīr / marra"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "چذي",
+    "say": "chidhi",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Kuwait / Iraq / Gulf",
+    "uk": "Кувейт / Ірак / Затока",
+    "najdi": "كويتي / عراقي / خليجي",
+    "msa": "الكويتية / العراقية / الخليجية"
+   },
+   "right": {
+    "ar": "كذا",
+    "say": "kidha"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "صج؟",
+    "say": "ṣij?",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Kuwait / Iraq / Gulf",
+    "uk": "Кувейт / Ірак / Затока",
+    "najdi": "كويتي / عراقي / خليجي",
+    "msa": "الكويتية / العراقية / الخليجية"
+   },
+   "right": {
+    "ar": "صدق؟",
+    "say": "ṣidg?"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "هسه",
+    "say": "hassa",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Iraq",
+    "uk": "Ірак",
+    "najdi": "عراقي",
+    "msa": "العراقية"
+   },
+   "right": {
+    "ar": "الحين",
+    "say": "al-ḥīn"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "شنو",
+    "say": "shinu",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Kuwait / Iraq / Gulf",
+    "uk": "Кувейт / Ірак / Затока",
+    "najdi": "كويتي / عراقي / خليجي",
+    "msa": "الكويتية / العراقية / الخليجية"
+   },
+   "right": {
+    "ar": "وش",
+    "say": "wesh"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "وياك",
+    "say": "wiyyāk",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Kuwait / Iraq / Gulf",
+    "uk": "Кувейт / Ірак / Затока",
+    "najdi": "كويتي / عراقي / خليجي",
+    "msa": "الكويتية / العراقية / الخليجية"
+   },
+   "right": {
+    "ar": "معك",
+    "say": "maʿik"
    }
   },
   {
@@ -18767,10 +19243,10 @@
     "en": ""
    },
    "dialect": {
-    "en": "Hijazi (Jeddah)",
-    "uk": "хіджазька (Джидда)",
-    "najdi": "حجازي (جدة)",
-    "msa": "الحجازية (جدة)"
+    "en": "Jeddah (west)",
+    "uk": "Джидда (захід)",
+    "najdi": "جدة (الغربية)",
+    "msa": "جدة (الغرب)"
    },
    "right": {
     "ar": "الحين",
@@ -18784,14 +19260,184 @@
     "en": ""
    },
    "dialect": {
-    "en": "Hijazi",
-    "uk": "хіджазька",
-    "najdi": "حجازي",
-    "msa": "الحجازية"
+    "en": "Jeddah (west)",
+    "uk": "Джидда (захід)",
+    "najdi": "جدة (الغربية)",
+    "msa": "جدة (الغرب)"
    },
    "right": {
     "ar": "وش",
     "say": "wesh"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "أريد",
+    "say": "urīd",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Formal Arabic",
+    "uk": "Формальна арабська",
+    "najdi": "فصحى",
+    "msa": "الفصحى"
+   },
+   "right": {
+    "ar": "أبي",
+    "say": "abi"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "ماذا",
+    "say": "mādha",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Formal Arabic",
+    "uk": "Формальна арабська",
+    "najdi": "فصحى",
+    "msa": "الفصحى"
+   },
+   "right": {
+    "ar": "وش",
+    "say": "wesh"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "لماذا",
+    "say": "limādha",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Formal Arabic",
+    "uk": "Формальна арабська",
+    "najdi": "فصحى",
+    "msa": "الفصحى"
+   },
+   "right": {
+    "ar": "ليش",
+    "say": "lēsh"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "الآن",
+    "say": "al-ān",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Formal Arabic",
+    "uk": "Формальна арабська",
+    "najdi": "فصحى",
+    "msa": "الفصحى"
+   },
+   "right": {
+    "ar": "الحين",
+    "say": "al-ḥīn"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "سوف أذهب",
+    "say": "sawfa adhhab",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Formal Arabic",
+    "uk": "Формальна арабська",
+    "najdi": "فصحى",
+    "msa": "الفصحى"
+   },
+   "right": {
+    "ar": "بروح",
+    "say": "barūḥ"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "جداً",
+    "say": "jiddan",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Formal Arabic",
+    "uk": "Формальна арабська",
+    "najdi": "فصحى",
+    "msa": "الفصحى"
+   },
+   "right": {
+    "ar": "مرة",
+    "say": "marra"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "ليس",
+    "say": "laysa",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Formal Arabic",
+    "uk": "Формальна арабська",
+    "najdi": "فصحى",
+    "msa": "الفصحى"
+   },
+   "right": {
+    "ar": "مو",
+    "say": "mū"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "هذه",
+    "say": "hādhihi",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Formal Arabic",
+    "uk": "Формальна арабська",
+    "najdi": "فصحى",
+    "msa": "الفصحى"
+   },
+   "right": {
+    "ar": "هذي",
+    "say": "hādhi"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "الذي",
+    "say": "alladhī",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Formal Arabic",
+    "uk": "Формальна арабська",
+    "najdi": "فصحى",
+    "msa": "الفصحى"
+   },
+   "right": {
+    "ar": "اللي",
+    "say": "illi"
+   }
+  },
+  {
+   "wrong": {
+    "ar": "لا أعرف",
+    "say": "lā aʿrif",
+    "en": ""
+   },
+   "dialect": {
+    "en": "Formal Arabic",
+    "uk": "Формальна арабська",
+    "najdi": "فصحى",
+    "msa": "الفصحى"
+   },
+   "right": {
+    "ar": "مدري",
+    "say": "madri"
    }
   }
  ]

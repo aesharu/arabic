@@ -1,16 +1,16 @@
-# Najdi Arabic — the plan
+# Saudi Arabic — the plan
 
-A 15-month plan to talk with one person, in her dialect, about everyday life. Not movies, not news, not formal Arabic. Riyadh Najdi, spoken.
+A 15-month plan to talk with one person, in her dialect, about everyday life. Not movies, not news, not formal Arabic, not other countries' Arabic. **Modern everyday Saudi** — the way young Saudis talk, the way she talks.
 
 **For Claude Code:** this file is the curriculum and the single source of truth for vocabulary. Instructions for what to build from it are in Part 9. Anything marked ⚠ is not fully verified — show it with a "check with tutor" flag and never present it as certain.
 
 ---
 
-## Part 1 — What Najdi is, in one page
+## Part 1 — What Saudi Arabic is, in one page
 
-Najdi is the Arabic of central Saudi Arabia. The **urban Riyadh variety is the prestige dialect of the whole country** — it's what Saudi TV, YouTube and social media mostly sound like, and everyone in Saudi Arabia understands it. That's what this plan teaches.
+Saudis don't call their everyday speech "Najdi" — they call it **Saudi** (سعودي). What young Saudis speak today — at home, on Snapchat and TikTok, in series, in voice notes — is one shared, modern Saudi. It grew mostly out of the speech of Riyadh and the centre (Najd), everyone in the country understands it, and it leaves out the old village and Bedouin forms. **That's what this plan teaches, the way she speaks it** (she's from Hafar al-Batin, in the north-east).
 
-Things that make Najdi *Najdi* (and different from the Egyptian/Levantine Arabic that dominates the internet):
+Things that make it Saudi (and different from the Egyptian, Levantine, Gulf and formal Arabic that fill the internet and the textbooks):
 
 | Feature | What it means for you |
 |---|---|
@@ -18,10 +18,11 @@ Things that make Najdi *Najdi* (and different from the Egyptian/Levantine Arabic
 | **ض and ظ are the same sound** | Both are a heavy *dh* (as in "this", but heavier). ضيف = *ẓēf*. |
 | **th and dh sounds are kept** | ثلاثة = *thalātha*, هذا = *hādha*. Egyptians turn these into t/s/d/z — don't copy them. |
 | **ay → ē, aw → ō** | زين = *zēn*, يوم = *yōm*, وين = *wēn*. |
-| **"your" is -ik for both men and women** | كيفك = *kēfik*, to him *and* to her. Older/regional forms like *-its* or *-ich* exist but many speakers avoid them. |
+| **"your": -ik to her, -ak to him** | كيفك = *kēfik* to her, *kēfak* to him — the same letter ك, only the vowel changes. The -ich form (أحبچ) is Gulf — Kuwait, Iraq, the Emirates, Qatar, Bahrain — not Saudi (Dima, 22 Sept 2026). |
 | **Verbs to a woman end in -īn** | تبي = *tibi* (you want, to him) → تبين = *tibīn* (to her). This is the ending you'll use most. |
 | **Future = ب- in front of the verb** | أروح *arūḥ* (I go) → بروح *barūḥ* (I'll go). |
-| **"What" = وش** | *wesh*. The single most recognizable Najdi word. |
+| **"What" = وش** | *wesh*. The most recognizable Saudi word (in Jeddah also إيش). |
+| **"Very" = مرة, "not" = مو** | حلو مرة *ḥilw marra* — really nice; مو زين *mū zēn* — not good. Older Najdi says حيل *ḥēl* and مب *mub* — recognize them. |
 | **Some sounds shift in old/rural speech** | ك can become *ts*, ج can become *y* in some families and regions. Recognize, don't copy. |
 
 Sources for these points are listed in Part 10.
@@ -64,18 +65,18 @@ At 1–2 hours a day. Dates assume a start of 21 September 2026.
 | Block | Time | What |
 |---|---|---|
 | Cards | 20 min | Review + 3–5 new words, always as sentences with audio |
-| Listening | 40 min | Her voice notes first. Then short Najdi vlogs/snaps if you want more. Half focused, half in the background. |
+| Listening | 40 min | Her voice notes first. Then short Saudi vlogs/snaps if you want more. Half focused, half in the background. |
 | Speaking | 30 min | Tutor session, or shadowing (repeat her voice notes out loud), or record a voice note back to her |
 
 ### A normal week
 
-- **2 tutor sessions** (45 min, Riyadh-born tutor, speaking only) — these replace that day's speaking block
+- **2 tutor sessions** (45 min, a Saudi tutor, speaking only) — these replace that day's speaking block
 - **1 review day** on the weekend: print next week's sheets, write every new word by hand three times
 - **Every day from week 3:** one small ritual with her in Arabic — a good-morning, a good-night, one question
 
 ### How she can help (without becoming your teacher)
 
-- Ask for **voice notes, not text.** Najdi is barely written; text quietly teaches you formal spellings and hides pronunciation.
+- Ask for **voice notes, not text.** Spoken Saudi is barely written; text quietly teaches you formal spellings and hides pronunciation.
 - Ask her for **one word a day** — any word she'd use. These become Stage 4–5.
 - Ask her to correct **one thing per conversation**, not everything.
 - The tutor handles grammar and drills. She's for real life.
@@ -123,7 +124,8 @@ Nine patterns. Learn them as examples, not rules.
 | Ending | Meaning | Example |
 |---|---|---|
 | ـي -i | my | بيتي *bēti* — my house |
-| ـك -ik | your (him **or** her) | بيتك *bētik* — your house |
+| ـك -ik | your (to her) | بيتك *bētik* — your house (to her) |
+| ـك -ak | your (to him) | بيتك *bētak* — your house (to him) |
 | ـه -ah / -ih | his | بيته *bētah* |
 | ـها -ha | her | بيتها *bētha* |
 | ـنا -na | our | بيتنا *bētna* |
@@ -179,7 +181,7 @@ Verbs ending in a vowel take **-ēt**: سويت *sawwēt* (I did), صحيت *ṣ
 | قاعد + verb = right now | قاعد أشتغل *gāʿid ashtaghil* | I'm working (right now) |
 | قاعدة + verb (her) | قاعدة تطبخ *gāʿda tiṭbakh* | she's cooking |
 
-Also heard: أبغى *abgha* = I want (same meaning, more pan-Saudi).
+Also heard: أبغى *abgha* = I want (same meaning, said all over Saudi, especially in the west).
 
 ### 5.7 Saying no
 
@@ -187,10 +189,12 @@ Also heard: أبغى *abgha* = I want (same meaning, more pan-Saudi).
 |---|---|---|
 | ما + verb | ما أدري *ma adri* → مدري *madri* | I don't know |
 | ما + verb | ما فهمت *ma fhimt* | I didn't understand |
-| مب + adjective/noun | مب زين *mub zēn* | not good |
+| مو + adjective/noun | مو زين *mū zēn* | not good |
 | ماني + adjective | ماني فاهم *māni fāhim* | I'm not getting it |
 | لا + verb = don't! | لا تزعلين *la tizʿalīn* | don't be upset (to her) |
 | ما فيه | ما فيه مشكلة *ma fīh mushkila* | there's no problem |
+
+Riyadh also says مب *mub* (and مهوب *muhub*) for مو — recognize it.
 
 ### 5.8 Have, there is
 
@@ -218,7 +222,7 @@ Organized by stage and topic. **"To her"** shows the form you'd use talking to a
 
 | Arabic | Say | Meaning | Note |
 |---|---|---|---|
-| وش | wesh | what | The Najdi word |
+| وش | wesh | what | The Saudi word |
 | وين | wēn | where | |
 | متى | mita | when | |
 | ليش | lēsh | why | |
@@ -227,7 +231,7 @@ Organized by stage and topic. **"To her"** shows the form you'd use talking to a
 | كم | kam | how much / many | |
 | أي | ay | which | |
 | وش فيك؟ | wesh fīk? | what's wrong? | |
-| وش لونك؟ | wesh lōnik? | how are you? | Najdi classic, lit. "what's your color" |
+| شلونك؟ | shlōnik? | how are you? | Her word, lit. "what's your colour"; older Riyadh: وش لونك |
 
 #### 1.2 Yes, no, reactions
 
@@ -258,6 +262,7 @@ Organized by stage and topic. **"To her"** shows the form you'd use talking to a
 
 | Arabic | Say | Meaning | Note |
 |---|---|---|---|
+| سلام | salām | hi | Short for السلام عليكم |
 | السلام عليكم | as-salāmu ʿalēkum | hello | |
 | وعليكم السلام | wa ʿalēkum as-salām | reply | |
 | هلا | hala | hi | |
@@ -268,8 +273,8 @@ Organized by stage and topic. **"To her"** shows the form you'd use talking to a
 | صباح النور | ṣabāḥ an-nūr | reply | |
 | مساء الخير | masāʾ al-khēr | good evening | |
 | مساء النور | masāʾ an-nūr | reply | |
-| كيفك؟ | kēfik? | how are you? | Same to him and her |
-| وش أخبارك؟ | wesh akhbārik? | what's new? | |
+| كيفك؟ | kēfik? | how are you? | To her; to him kēfak |
+| شخبارك؟ | shakhbārik? | what's new? how are you? | Her word |
 | الحمد لله | al-ḥamdu lillāh | good, thank God | Standard answer |
 | بخير | bikhēr | fine | |
 | شكراً | shukran | thanks | |
@@ -335,8 +340,8 @@ Organized by stage and topic. **"To her"** shows the form you'd use talking to a
 | كل | kill | all, every | |
 | شي | shay | thing, something | |
 | شوي | shwayy | a little | |
-| حيل | ḥēl | very | Najdi |
-| مرّة | marra | very / once | مرة حلو — really nice |
+| حيل | ḥēl | very | Older Najdi — young people say مرة |
+| مرّة | marra | very / once | The everyday Saudi "very": حلو مرة — really nice |
 | كثير | kithīr | a lot | |
 | كذا | kidha | like this, so | |
 | مثل | mithl | like (similar to) | |
@@ -482,7 +487,7 @@ Adjectives add **-a** for her: تعبان *taʿbān* (you, a man) → تعبان
 | جدي / جدتي | jaddi / jaddati | grandpa / grandma | ⚠ |
 | عمي / خالي | ʿammi / khāli | my uncle (dad's / mom's side) | |
 | صديق / صديقة | ṣadīg / ṣadīga | friend (m / f) | |
-| الربع | ar-rabʿ | the guys, the crew | Najdi/Gulf |
+| الربع | ar-rabʿ | the guys, the crew | Also الشباب |
 | ناس | nās | people | |
 
 #### 2.5 Describing things
@@ -492,7 +497,7 @@ Adjectives add **-a** for her: تعبان *taʿbān* (you, a man) → تعبان
 | كبير / صغير | kbīr / ṣghīr | big / small | |
 | حلو / حلوة | ḥilw / ḥilwa | nice, pretty | |
 | جميل | jamīl | beautiful | |
-| شين | shēn | bad, ugly | Najdi/Gulf |
+| شين | shēn | bad, ugly | Very Saudi |
 | جديد / قديم | jidīd / gadīm | new / old | |
 | سهل / صعب | sahl / ṣaʿb | easy / hard | |
 | غالي / رخيص | ghāli / rkhīṣ | expensive / cheap | غالي also means "dear" |
@@ -601,7 +606,7 @@ Learn these as whole pieces. All "you" forms here are to her.
 | متى فاضية؟ | mita fāẓya? | when are you free? | |
 | نتكلم الليلة؟ | nitkallam al-lēla? | shall we talk tonight? | |
 | بكرة إن شاء الله | bukra in shāʾ allah | tomorrow, hopefully | |
-| يمديك؟ | yimdīk? | do you have time? can you manage? | ⚠ Very Najdi |
+| يمديك؟ | yimdīk? | do you have time? can you manage? | ⚠ Very Saudi |
 | ما يمدي | ma yimdi | there's no time | ⚠ |
 | يصير؟ | yṣīr? | is that okay? possible? | |
 
@@ -621,7 +626,7 @@ Target topics, so the mix stays balanced:
 | Opinions and feelings, nuanced | 80 |
 | Her daily life — work/study, friends, routine | 80 |
 | Culture — Ramadan, Eid, weddings, family visits, coffee customs | 60 |
-| Places and going out in Riyadh | 50 |
+| Places and going out — her city, Riyadh | 50 |
 | Health and body basics | 40 |
 | Weather, seasons, home | 40 |
 | Whatever she talks about most | the rest |
@@ -647,15 +652,15 @@ Claude Code may suggest candidate words for these topics, but **every suggestion
 
 ---
 
-## Part 8 — Don't copy the internet: Egyptian and Levantine traps
+## Part 8 — Don't copy the internet: say it the Saudi way
 
-Most free Arabic online is Egyptian or Levantine. She'll understand them, but they'll sound foreign. Swap them.
+Most free Arabic online is Egyptian or Levantine, and most "Gulf Arabic" textbooks teach Kuwaiti or Emirati. She'll understand all of them, but they'll sound foreign. Swap them.
 
-| You'll see online | Dialect | Say instead (Najdi) |
+| You'll see online | Dialect | Say instead (Saudi) |
 |---|---|---|
 | إزيك *izzayyak* | Egyptian | كيفك *kēfik* |
-| عامل إيه *ʿāmil ēh* | Egyptian | وش لونك *wesh lōnik* |
-| إيه *ēh* = "what" | Egyptian | وش *wesh* (in Najdi إيه = yes!) |
+| عامل إيه *ʿāmil ēh* | Egyptian | شلونك *shlōnik* |
+| إيه *ēh* = "what" | Egyptian | وش *wesh* (in Saudi إيه = yes!) |
 | شو *shu* | Levantine | وش *wesh* |
 | فين *fēn* | Egyptian | وين *wēn* |
 | عايز *ʿāyiz* / بدي *biddi* | Egypt / Levant | أبي *abi* |
@@ -664,9 +669,29 @@ Most free Arabic online is Egyptian or Levantine. She'll understand them, but th
 | وحشتني *waḥashtini* | Egyptian | اشتقت لك *ishtagt lik* |
 | ليه *lēh* | Egyptian | ليش *lēsh* |
 | كمان *kamān* | Egypt / Levant | بعد *baʿad* |
-| مش *mish* | Egypt / Levant | مب *mub* / ما *ma* |
-| دحين *daḥḥīn* | Hijazi (Jeddah) | الحين *al-ḥīn* |
-| إيش *ēsh* | Hijazi | وش *wesh* |
+| مش *mish* | Egypt / Levant | مو *mū* / ما *ma* |
+| أحبچ *aḥibbich* | Kuwait / Iraq / Gulf | أحبك *aḥibbik* |
+| شلونچ *shlōnich* | Kuwait / Iraq / Gulf | شلونك *shlōnik* |
+| وايد *wāyid* | Kuwait / Emirates | كثير *kithīr* / مرة *marra* |
+| چذي *chidhi* | Kuwait / Iraq / Gulf | كذا *kidha* |
+| صج؟ *ṣij?* | Kuwait / Iraq / Gulf | صدق؟ *ṣidg?* |
+| هسه *hassa* | Iraq | الحين *al-ḥīn* |
+| شنو *shinu* | Kuwait / Iraq / Gulf | وش *wesh* ⚠ |
+| وياك *wiyyāk* | Kuwait / Iraq / Gulf | معك *maʿik* ⚠ |
+| دحين *daḥḥīn* | Jeddah (west) | الحين *al-ḥīn* |
+| إيش *ēsh* | Jeddah (west) | وش *wesh* |
+| أريد *urīd* | Formal Arabic | أبي *abi* |
+| ماذا *mādha* | Formal Arabic | وش *wesh* |
+| لماذا *limādha* | Formal Arabic | ليش *lēsh* |
+| الآن *al-ān* | Formal Arabic | الحين *al-ḥīn* |
+| سوف أذهب *sawfa adhhab* | Formal Arabic | بروح *barūḥ* |
+| جداً *jiddan* | Formal Arabic | مرة *marra* |
+| ليس *laysa* | Formal Arabic | مو *mū* |
+| هذه *hādhihi* | Formal Arabic | هذي *hādhi* |
+| الذي *alladhī* | Formal Arabic | اللي *illi* |
+| لا أعرف *lā aʿrif* | Formal Arabic | مدري *madri* |
+
+Jeddah speech is Saudi too — but she talks the way the centre and north do, so learn hers.
 
 ---
 
@@ -702,7 +727,7 @@ A page showing Part 3's roadmap with today's stage highlighted from the start da
 
 ### Content rules (repeat of CLAUDE.md, because they matter)
 
-- Najdi only. When unsure whether something is Najdi, Egyptian, Levantine, Hijazi or formal Arabic: mark ⚠. Never silently "fix" Arabic in this file — propose the change and let me decide.
+- Saudi only: modern everyday Saudi, the way young Saudis — and she — talk. When unsure whether something is Saudi or Gulf, Egyptian, Levantine or formal Arabic: mark ⚠. Never silently "fix" Arabic in this file — propose the change and let me decide.
 - Always keep the **to-her** forms. They're the point of this plan.
 
 ---
@@ -716,4 +741,5 @@ A page showing Part 3's roadmap with today's stage highlighted from the start da
 - **Riyadh future prefix ب-** (vs. راح elsewhere) — native-speaker discussion: https://forum.wordreference.com/threads/saudi-arabic-%D8%A3%D8%A8%D9%8A-%D8%A3%D8%A8%D8%BA%D9%89.2416319/
 - **Mo3jam — Najdi dictionary** (crowd-sourced; useful for checking words): https://en.mo3jam.com/dialect/Najdi
 - **Ingham, B. (1994).** *Najdi Arabic: Central Arabian.* John Benjamins. The standard academic grammar — for the tutor, not for you yet.
-- **Listening beyond her voice notes:** Najdi speakers post huge amounts of daily-life vlogs on Snapchat and TikTok — short, casual, real speech. Better fit than films for this plan.
+- **Saudi, not "Najdi":** Saudis call their everyday speech سعودي. The Najdi sources above describe the central speech that modern Saudi grew from — still the best written descriptions of it.
+- **Listening beyond her voice notes:** Saudis post huge amounts of daily-life vlogs on Snapchat and TikTok — short, casual, real speech. Better fit than films for this plan. Also: the فنجان (Fnjan) podcast by Thmanyah on YouTube — long, relaxed conversations in natural Saudi; and the Saudi cartoon comedy Masameer County (مسامير) on Netflix.

@@ -39,7 +39,7 @@ function sheet(title, body, n, total, cls = "") {
   return `<section class="sheet${cls ? " " + cls : ""}">
     <header class="sheet-head"><h2>${title}</h2><p>${esc(t("print.nameDate"))}</p></header>
     <div class="sheet-body">${body}</div>
-    <footer class="sheet-foot"><span translate="no">Najdi · <span lang="ar">نجدي</span></span><span>${num(n)} / ${num(total)}</span></footer>
+    <footer class="sheet-foot"><span translate="no">Saudi · <span lang="ar">سعودي</span></span><span>${num(n)} / ${num(total)}</span></footer>
   </section>`;
 }
 

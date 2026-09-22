@@ -5,8 +5,8 @@ Last updated: 22 Sept 2026 (evening: stories, practice, verbs, about me, your pa
 
 ## Who uses it
 
-- **Volodymyr (student)**: learns Najdi, mostly on his computer. His account is the real progress.
-- **Dima (teacher)**: his girlfriend, a Saudi native Najdi speaker, mostly on her **iPad** (also an iPhone). She has her own separate account, with every lesson open. She can do anything there, and it never touches his progress. She can also view his progress read-only. She's the one who can verify Najdi ("check with tutor" items).
+- **Volodymyr (student)**: learns everyday Saudi Arabic, mostly on his computer. His account is the real progress.
+- **Dima (teacher)**: his girlfriend, a Saudi native speaker (from Hafar al-Batin), mostly on her **iPad** (also an iPhone). She has her own separate account, with every lesson open. She can do anything there, and it never touches his progress. She can also view his progress read-only. She's the one who can verify Najdi ("check with tutor" items).
 
 ## Done and live
 
@@ -67,6 +67,12 @@ Last updated: 22 Sept 2026 (evening: stories, practice, verbs, about me, your pa
   - **A scene for every page** (`core/scenes.js`, 15 hand-drawn SVG scenes in the Today scene's style, colours from tokens so they follow the theme — sun by day, moon and stars in dark mode): goat-hair tent and fire (Stories), camels (Verbs), hooded falcon (Practice), souq stall with Arabic price tags (Numbers), Taif roses (To her ♥), coffee tray and dallah (About me, Phrases), the red Nafud with a track to a fort (Your path), a Najdi mud house (Grammar, Lessons), a majlis (Chats), a Sadu loom (Cards), a palm grove (Word list), spring in the desert with truffles (Progress), the crescent (Calendar, Her birthday), reed pen and calligraphy (Letters, Vowels, Reading, Quiz), Diriyah's towers (Saudi life, The plan). Each has its word to hear (بيت الشعر, الإبل, الصقر…), moves gently (fire, camels, falcon's plume, steam, smoke, cloud), and does something when tapped. On phones a slim strip under the title.
   - **Culture cards** (`data/culture.js`, `views/culture.js`, 22 true stories in four languages, under every page in `#culture` beside `#view`; Today shows a different one each day; "Another story"): the goat-hair tent, sawalif by the fire, Al Sadu (UNESCO 2020), falconry, camels, souq prices, the Hijri calendar, when the desert turns green, dates, desert truffles, mud houses, the majlis, Saudi coffee (2022), meeting people, oud and bakhoor, Taif roses, Nabati poetry, Al-Ardah (UNESCO 2015), calligraphy (2020–21), Hafar al-Batin, the Nafud, kashta. Each with a cropped scene picture and a word to hear (flagged).
   - **Texture and life**: a faint sand grain on the background; a Sadu band down the edge of the menu (computer); lists flow in when a page opens; cards lift under the mouse and press in on tap; a burst of Sadu colours (`core/celebrate.js`) for a story or chat read, a perfect story quiz or practice round, a path step ticked, every 5 verbs in a row. All motion off with "reduce motion".
+- **Saudi, not "Najdi"** (22 Sept, after Dima said Saudis call it Saudi and he should learn Saudi, modern and only Saudi):
+  - Renamed everywhere you see it: brand "Saudi · سعودي", page title, app name, language button سعودي, about 60 interface texts, alphabet notes, Anki decks (`Saudi::…`). Najd the region (mud houses, doors, Ardah, Qassim) keeps its name. File names (NAJDI-PLAN.md, the `najdi` language key) stay.
+  - Plan (approved): Part 1 rewritten as "What Saudi Arabic is"; شلونك (not وش لونك), شخبارك, سلام = short for السلام عليكم, مو (مب/مهوب = recognize); مرة is the everyday "very" (حيل = older); Part 8 now covers Gulf traps (أحبچ, وايد, چذي, صج, هسه, شنو ⚠, وياك ⚠), Jeddah forms and formal Arabic (أريد, ماذا, الآن, سوف, جداً, ليس, هذه, الذي…); sources list Fnjan and Masameer County.
+  - **Grammar fix**: "your" is **-ak to him, -ik to her** (the plan said -ik for both). Plan 5.2, lesson 2, كيفك notes fixed; 21 of her lines to him in chats and weekly conversations now use -ak (shlōnak, widdak, maʿak…, مسامحتك).
+  - Content: واجد → كثير/مرة, حيل → مرة in 29 story lines, chats, love, About me; the grandma story gains "she says حلو حيل, we say حلو مرة". Love: صباحك سكر (Levantine) → صبحك الله بالخير; صافي؟ → راضية عني؟.
+  - New topic **4.22 How young Saudis talk** (17 expressions, flagged): مشكور/مشكورة, تكفى/تكفين, سم/سمّي, تم, على راسي, أجل, وش السالفة؟, قسم بالله, يا شيخ/يا شيخة, طقطقة, وناسة, بزر, تو الناس, عسى ما شر؟… — week 29 and path week "Feelings and opinions".
 - **Round 2 of the look, and Dima's answers** (22 Sept):
   - **Dima: "your" to her is -ik** ("-ich is Gulf — Kuwait, Iraq, UAE, Qatar, Bahrain — in Saudi we use -ik"). The 21 "North: …چ" variants on To her ♥ are gone; the page intro now says -ik is Saudi and -ich is what you hear in the Gulf. `NAJDI-PLAN.md` already says -ik, so it needs no change.
   - **She likes the short stories and will voice them**: in her profile each story has **Record this story** (opens the voice studio on that story's lines, "3 of 8" count); the story list marks fully recorded stories with a mic; everyone then hears her voice in "Listen to all".
@@ -77,7 +83,7 @@ Last updated: 22 Sept 2026 (evening: stories, practice, verbs, about me, your pa
 
 ## Next (in this order)
 
-0. **Plan changes waiting for Volodymyr's OK** (her dialect vs the plan's Riyadh forms — propose, never edit silently): وش لونك → شلونك (and add شخبارك); مب → مو; السلام عليكم stays but سلام is the everyday hi. ✅ -ik vs -ich: Dima says -ik (done 22 Sept).
+0. ✅ Plan changes done 22 Sept (Saudi rename, شلونك, شخبارك, مو, سلام, -ak/-ik). Waiting on Dima: the 4.22 expressions, وحشتيني (Saudi or Egyptian?), واجد (does she say it?), البير vs قليب, خوخة.
 1. **Chats**: ✅ tap a word and 20 chats (22 Sept). More chats for B1 later. Weeks 19–21 and 27–67 conversations for the weekly lessons.
 2. ✅ **A1 by 21 Dec path** — built as Your path (`#/path`).
 3. Export Dima's edits from D1 as proposed NAJDI-PLAN.md / NAJDI-WORDS.md changes; ✅ next prayer on Today (fact of the day: the culture card); Phrases/letters editable in edit mode.

@@ -1,7 +1,7 @@
 #separator:Comma
 #html:true
 #notetype:Basic
-#deck:Najdi::Stage 3 — Talking to her
+#deck:Saudi::Stage 3 — Talking to her
 #tags column:3
 "<div dir=""rtl"" style=""font-size:2em"">وش تسوين؟</div>","<b>wesh tsawwīn?</b><br>EN: what are you doing?<br>UA: що ти робиш?<br>MSA: <span dir=""rtl"">ماذا تفعلين؟</span>","stage-3 topic-3.1"
 "<div dir=""rtl"" style=""font-size:2em"">وينك؟</div>","<b>wēnik?</b><br>EN: where are you?<br>UA: де ти?<br>MSA: <span dir=""rtl"">أين أنتِ؟</span>","stage-3 topic-3.1"
@@ -49,6 +49,6 @@
 "<div dir=""rtl"" style=""font-size:2em"">متى فاضية؟</div>","<b>mita fāẓya?</b><br>EN: when are you free?<br>UA: коли ти вільна?<br>MSA: <span dir=""rtl"">متى تكونين متفرّغة؟</span>","stage-3 topic-3.4"
 "<div dir=""rtl"" style=""font-size:2em"">نتكلم الليلة؟</div>","<b>nitkallam al-lēla?</b><br>EN: shall we talk tonight?<br>UA: поговоримо сьогодні ввечері?<br>MSA: <span dir=""rtl"">هل نتحدث الليلة؟</span>","stage-3 topic-3.4"
 "<div dir=""rtl"" style=""font-size:2em"">بكرة إن شاء الله</div>","<b>bukra in shāʾ allah</b><br>EN: tomorrow, hopefully<br>UA: завтра, якщо Бог дасть<br>MSA: <span dir=""rtl"">غدًا إن شاء الله</span>","stage-3 topic-3.4"
-"<div dir=""rtl"" style=""font-size:2em"">يمديك؟</div>","<b>yimdīk?</b><br>EN: do you have time? can you manage?<br>UA: встигнеш? маєш час?<br>MSA: <span dir=""rtl"">هل لديكِ وقت؟</span><br><i>Very Najdi · Дуже характерне для наджді</i><br>⚠ check with tutor","stage-3 topic-3.4 check-with-tutor"
+"<div dir=""rtl"" style=""font-size:2em"">يمديك؟</div>","<b>yimdīk?</b><br>EN: do you have time? can you manage?<br>UA: встигнеш? маєш час?<br>MSA: <span dir=""rtl"">هل لديكِ وقت؟</span><br><i>Very Saudi · Дуже по-саудівськи</i><br>⚠ check with tutor","stage-3 topic-3.4 check-with-tutor"
 "<div dir=""rtl"" style=""font-size:2em"">ما يمدي</div>","<b>ma yimdi</b><br>EN: there's no time<br>UA: немає часу, не встигнемо<br>MSA: <span dir=""rtl"">لا يوجد وقت</span><br>⚠ check with tutor","stage-3 topic-3.4 check-with-tutor"
 "<div dir=""rtl"" style=""font-size:2em"">يصير؟</div>","<b>yṣīr?</b><br>EN: is that okay? possible?<br>UA: можна? так нормально?<br>MSA: <span dir=""rtl"">هل يمكن؟</span>","stage-3 topic-3.4"

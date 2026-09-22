@@ -2,10 +2,10 @@
 // { en, uk, najdi, msa }.
 //   char, name, nameAr     the letter and its name
 //   translit               Latin spelling of the sound
-//   sound                  how to say it (Najdi first when it differs from formal Arabic)
+//   sound                  how to say it (Saudi first when it differs from formal Arabic)
 //   ua                     closest Ukrainian sound
-//   example                a Najdi word: ar + tr (Najdi pronunciation), msa (formal Arabic), en, uk
-//   najdi                  optional Najdi note
+//   example                a Saudi word: ar + tr (Saudi pronunciation), msa (formal Arabic), en, uk
+//   najdi                  optional note on Saudi speech
 //   hard                   a sound Ukrainian doesn't have
 //   nonJoining             never connects to the letter after it
 //   check, checkNote       needs a native speaker's OK (shown as "check with tutor")
@@ -25,10 +25,10 @@ export const GROUPS = [
         sound: { en: "Long a, as in father.", uk: "Довге а, як в англ. father.", najdi: "ألف ممدودة، مثل a في father.", msa: "ألف مدّ طويلة، كـ a في كلمة father الإنجليزية." },
         example: { ar: "أبغى", tr: "abgha", msa: "أريد", en: "I want", uk: "я хочу" },
         najdi: {
-          en: "Najdi mostly says أبي (abi) for “I want”; أبغى means the same and is more pan-Saudi. Formal Arabic says أريد — you won't need it.",
-          uk: "Для «я хочу» в наджді здебільшого кажуть أبي (abi); أبغى означає те саме й поширене по всій Саудівській Аравії. Формальне أريد тобі не знадобиться.",
-          najdi: "في النجدي أغلب الناس يقولون «أبي» (abi)؛ و«أبغى» نفس المعنى ومنتشرة في كل السعودية. «أريد» فصحى — ما بتحتاجها.",
-          msa: "يقول معظم النجديين «أبي» (abi) بمعنى أريد، و«أبغى» بالمعنى نفسه وهي أوسع انتشارًا في السعودية. أما «أريد» فهي الفصحى ولن تحتاجها.",
+          en: "She and most people in the centre and north say أبي (abi) for “I want”; أبغى means the same and is heard all over Saudi, especially in the west. Formal Arabic says أريد — you won't need it.",
+          uk: "Для «я хочу» вона й більшість людей у центрі й на півночі кажуть أبي (abi); أبغى означає те саме й чути по всій Саудівській Аравії, особливо на заході. Формальне أريد тобі не знадобиться.",
+          najdi: "هي وأغلب أهل الوسط والشمال يقولون «أبي» (abi)؛ و«أبغى» نفس المعنى وتنسمع بكل السعودية، خصوصًا بالغربية. «أريد» فصحى — ما بتحتاجها.",
+          msa: "تقول هي ومعظم أهل الوسط والشمال «أبي» (abi) بمعنى أريد، و«أبغى» بالمعنى نفسه وتُسمع في أنحاء السعودية، ولا سيما في الغرب. أما «أريد» فهي الفصحى ولن تحتاجها.",
         },
       },
       {
@@ -49,10 +49,10 @@ export const GROUPS = [
         },
         example: { ar: "ثلاثة", tr: "thalātha", msa: "ثلاثة", en: "three", uk: "три" },
         najdi: {
-          en: "Najdi keeps this sound. Egyptian turns it into t or s — don't copy them.",
-          uk: "Наджді зберігає цей звук. Єгиптяни перетворюють його на т або с — не копіюй їх.",
-          najdi: "النجدي يحافظ على هالصوت. المصريين يقلبونه ت أو س — لا تقلدهم.",
-          msa: "تحافظ النجدية على هذا الصوت، بينما يقلبه المصريون تاءً أو سينًا — فلا تقلّدهم.",
+          en: "Saudi Arabic keeps this sound. Egyptian turns it into t or s — don't copy them.",
+          uk: "Саудівська арабська зберігає цей звук. Єгиптяни перетворюють його на т або с — не копіюй їх.",
+          najdi: "السعودي يحافظ على هالصوت. المصريين يقلبونه ت أو س — لا تقلدهم.",
+          msa: "تحافظ اللهجة السعودية على هذا الصوت، بينما يقلبه المصريون تاءً أو سينًا — فلا تقلّدهم.",
         },
       },
       {
@@ -68,10 +68,10 @@ export const GROUPS = [
         sound: { en: "y as in yes, or a long ee.", uk: "й, як в англ. yes, або довге і.", najdi: "مثل y في yes، أو ياء ممدودة.", msa: "كـ y في yes، أو ياء مدّ طويلة." },
         example: { ar: "يوم", tr: "yōm", msa: "يوم", en: "day", uk: "день" },
         najdi: {
-          en: "In Najdi, ay usually becomes ē and aw becomes ō. That's why يوم is yōm.",
-          uk: "У наджді ay зазвичай стає ē, а aw — ō. Тому يوم звучить як yōm.",
-          najdi: "في النجدي ay غالبًا تصير ē، وaw تصير ō. عشان كذا «يوم» تنقال yōm.",
-          msa: "في النجدية تتحول ay غالبًا إلى ē، وaw إلى ō؛ ولهذا تُنطق «يوم» yōm.",
+          en: "In Saudi Arabic, ay usually becomes ē and aw becomes ō. That's why يوم is yōm.",
+          uk: "У саудівській ay зазвичай стає ē, а aw — ō. Тому يوم звучить як yōm.",
+          najdi: "في السعودي ay غالبًا تصير ē، وaw تصير ō. عشان كذا «يوم» تنقال yōm.",
+          msa: "في اللهجة السعودية تتحول ay غالبًا إلى ē، وaw إلى ō؛ ولهذا تُنطق «يوم» yōm.",
         },
       },
     ],
@@ -101,10 +101,10 @@ export const GROUPS = [
         },
         example: { ar: "الحين", tr: "al-ḥīn", msa: "الآن", en: "now", uk: "зараз" },
         najdi: {
-          en: "الحين is pure Najdi. You'll hear it all day.",
-          uk: "الحين — чиста наджді. Чутимеш це слово постійно.",
-          najdi: "«الحين» نجدية صافية. بتسمعها طول اليوم.",
-          msa: "«الحين» كلمة نجدية خالصة بمعنى الآن، وستسمعها طوال اليوم.",
+          en: "الحين is pure Saudi. You'll hear it all day.",
+          uk: "الحين — чисто саудівське слово. Чутимеш це слово постійно.",
+          najdi: "«الحين» سعودية صافية. بتسمعها طول اليوم.",
+          msa: "«الحين» كلمة سعودية خالصة بمعنى الآن، وستسمعها طوال اليوم.",
         },
       },
       {
@@ -130,17 +130,17 @@ export const GROUPS = [
         example: { ar: "دار", tr: "dār", msa: "دار", en: "house", uk: "дім" },
         check: true,
         checkNote: {
-          en: "The everyday Najdi word for “house” is usually بيت (bēt). Ask your tutor how دار is used.",
-          uk: "У повсякденній наджді «дім» — це зазвичай بيت (bēt). Спитай викладача, як уживають دار.",
-          najdi: "الكلمة اليومية للبيت في النجدي غالبًا «بيت» (bēt). اسأل المدرّس كيف تنستخدم «دار».",
-          msa: "الكلمة اليومية للمنزل في النجدية غالبًا «بيت» (bēt). اسأل المعلّم كيف تُستعمل «دار».",
+          en: "The everyday Saudi word for “house” is usually بيت (bēt). Ask your tutor how دار is used.",
+          uk: "У повсякденній саудівській «дім» — це зазвичай بيت (bēt). Спитай викладача, як уживають دار.",
+          najdi: "الكلمة اليومية للبيت في السعودي غالبًا «بيت» (bēt). اسأل المدرّس كيف تنستخدم «دار».",
+          msa: "الكلمة اليومية للمنزل في اللهجة السعودية غالبًا «بيت» (bēt). اسأل المعلّم كيف تُستعمل «دار».",
         },
       },
       {
         char: "ذ", name: "dhāl", nameAr: "ذال", translit: "dh", ua: "немає — дзвінке th", hard: true, nonJoining: true,
         sound: { en: "th as in this.", uk: "th, як в англ. this.", najdi: "مثل th في this.", msa: "كـ th في this." },
         example: { ar: "ذهب", tr: "dhahab", msa: "ذهب", en: "gold", uk: "золото" },
-        najdi: { en: "Kept in Najdi, just like ث.", uk: "У наджді зберігається, як і ث.", najdi: "باقية في النجدي، مثل الثاء.", msa: "محفوظة في النجدية كالثاء." },
+        najdi: { en: "Kept in Saudi Arabic, just like ث.", uk: "У саудівській зберігається, як і ث.", najdi: "باقية في السعودي، مثل الثاء.", msa: "محفوظة في اللهجة السعودية كالثاء." },
       },
       {
         char: "ر", name: "rāʾ", nameAr: "راء", translit: "r", ua: "р — ідеально як українське", nonJoining: true,
@@ -152,10 +152,10 @@ export const GROUPS = [
         sound: { en: "z.", uk: "з.", najdi: "زاي.", msa: "زاي." },
         example: { ar: "زين", tr: "zēn", msa: "جيد", en: "good, fine", uk: "добре" },
         najdi: {
-          en: "زين is the Najdi “okay / good”. Use it every day.",
-          uk: "زين — це «окей / добре» мовою наджді. Вживай щодня.",
-          najdi: "«زين» يعني تمام وحلو بالنجدي. قلها كل يوم.",
-          msa: "«زين» تعني في النجدية حسنًا أو جيد. استعملها كل يوم.",
+          en: "زين is the Saudi “okay / good”. Use it every day.",
+          uk: "زين — це «окей / добре» по-саудівськи. Вживай щодня.",
+          najdi: "«زين» يعني تمام وحلو بالسعودي. قلها كل يوم.",
+          msa: "«زين» تعني في اللهجة السعودية حسنًا أو جيد. استعملها كل يوم.",
         },
       },
       {
@@ -185,10 +185,10 @@ export const GROUPS = [
         sound: { en: "sh as in shop.", uk: "ш.", najdi: "مثل sh في shop.", msa: "كـ sh في shop." },
         example: { ar: "وش", tr: "wesh", msa: "ماذا", en: "what?", uk: "що?" },
         najdi: {
-          en: "وش is the signature Najdi word. Other dialects say ايش or شو.",
-          uk: "وش — фірмове слово наджді. Інші діалекти кажуть ايش або شو.",
-          najdi: "«وش» أشهر كلمة نجدية. اللهجات الثانية تقول «ايش» أو «شو».",
-          msa: "«وش» أشهر كلمة نجدية، أما اللهجات الأخرى فتقول «ايش» أو «شو».",
+          en: "وش is the signature Saudi word. Jeddah says إيش, the Levant شو.",
+          uk: "وش — фірмове саудівське слово. У Джидді кажуть إيش, у Леванті — شو.",
+          najdi: "«وش» أشهر كلمة سعودية. أهل جدة يقولون «إيش»، والشوام «شو».",
+          msa: "«وش» أشهر كلمة سعودية، ويقول أهل جدة «إيش» وأهل الشام «شو».",
         },
       },
       {
@@ -202,17 +202,17 @@ export const GROUPS = [
       {
         char: "ض", name: "ḍād", nameAr: "ضاد", translit: "ḍ → ẓ", ua: "важке дзвінке th (у формальній — важке д)", hard: true,
         sound: {
-          en: "In Najdi, a heavy th as in this — the same sound as ظ. Formal Arabic says a heavy d.",
-          uk: "У наджді — важке th, як в англ. this, той самий звук, що й ظ. У формальній арабській — важке д.",
-          najdi: "في النجدي نفس صوت الظاء: ذال ثقيلة. في الفصحى دال ثقيلة.",
-          msa: "في النجدية تُنطق كالظاء تمامًا: ذالًا مفخّمة، وفي الفصحى دالًا مفخّمة.",
+          en: "In Saudi Arabic, a heavy th as in this — the same sound as ظ. Formal Arabic says a heavy d.",
+          uk: "У саудівській — важке th, як в англ. this, той самий звук, що й ظ. У формальній арабській — важке д.",
+          najdi: "في السعودي نفس صوت الظاء: ذال ثقيلة. في الفصحى دال ثقيلة.",
+          msa: "في اللهجة السعودية تُنطق كالظاء تمامًا: ذالًا مفخّمة، وفي الفصحى دالًا مفخّمة.",
         },
         example: { ar: "ضيف", tr: "ẓēf", msa: "ضيف", en: "guest", uk: "гість" },
         najdi: {
-          en: "In Najdi, ض and ظ sound the same: a heavy th as in this. So ضيف is ẓēf, not ḍēf.",
-          uk: "У наджді ض і ظ звучать однаково: важке th, як в англ. this. Тож ضيف — це ẓēf, а не ḍēf.",
-          najdi: "في النجدي الضاد والظاء نفس الصوت. عشان كذا «ضيف» تنقال ẓēf مو ḍēf.",
-          msa: "الضاد والظاء في النجدية صوت واحد؛ ولذلك تُنطق «ضيف» ẓēf لا ḍēf.",
+          en: "In Saudi Arabic, ض and ظ sound the same: a heavy th as in this. So ضيف is ẓēf, not ḍēf.",
+          uk: "У саудівській ض і ظ звучать однаково: важке th, як в англ. this. Тож ضيف — це ẓēf, а не ḍēf.",
+          najdi: "في السعودي الضاد والظاء نفس الصوت. عشان كذا «ضيف» تنقال ẓēf مو ḍēf.",
+          msa: "الضاد والظاء في اللهجة السعودية صوت واحد؛ ولذلك تُنطق «ضيف» ẓēf لا ḍēf.",
         },
       },
     ],
@@ -264,10 +264,10 @@ export const GROUPS = [
     days: "11–12",
     title: { en: "The last six", uk: "Останні шість", najdi: "آخر ستة", msa: "الستة الأخيرة" },
     note: {
-      en: "Mostly friendly sounds — and ق, the most Najdi letter of all.",
-      uk: "Здебільшого прості звуки — і ق, найхарактерніша літера наджді.",
-      najdi: "أغلبها أصوات سهلة — ومعها القاف، أكثر حرف نجدي.",
-      msa: "معظمها أصوات سهلة — ومعها القاف، أكثر الحروف تمثيلًا للنجدية.",
+      en: "Mostly friendly sounds — and ق, the most Saudi letter of all.",
+      uk: "Здебільшого прості звуки — і ق, найхарактерніша саудівська літера.",
+      najdi: "أغلبها أصوات سهلة — ومعها القاف، أكثر حرف سعودي.",
+      msa: "معظمها أصوات سهلة — ومعها القاف، أكثر الحروف تمثيلًا للهجة السعودية.",
     },
     letters: [
       {
@@ -278,17 +278,17 @@ export const GROUPS = [
       {
         char: "ق", name: "qāf", nameAr: "قاف", translit: "q → g", ua: "ґ, як у «ґанок» — не українське г",
         sound: {
-          en: "In Najdi, g as in go. In formal Arabic, a deep k from the throat.",
-          uk: "У наджді — ґ, як у слові «ґанок». У формальній арабській — глибоке к з горла.",
-          najdi: "في النجدي تنقال g مثل go. في الفصحى قاف عميقة من الحلق.",
-          msa: "في النجدية تُنطق g كما في go، وفي الفصحى قافًا عميقة من أقصى الحلق.",
+          en: "In Saudi Arabic, g as in go. In formal Arabic, a deep k from the throat.",
+          uk: "У саудівській — ґ, як у слові «ґанок». У формальній арабській — глибоке к з горла.",
+          najdi: "في السعودي تنقال g مثل go. في الفصحى قاف عميقة من الحلق.",
+          msa: "في اللهجة السعودية تُنطق g كما في go، وفي الفصحى قافًا عميقة من أقصى الحلق.",
         },
         example: { ar: "قهوة", tr: "gahwa", msa: "قهوة", en: "coffee", uk: "кава" },
         najdi: {
-          en: "The biggest Najdi tell. قال is gāl, قهوة is gahwa.",
-          uk: "Найпомітніша ознака наджді. قال — це gāl, قهوة — gahwa.",
-          najdi: "أوضح علامة للنجدي. «قال» تنقال gāl، و«قهوة» gahwa.",
-          msa: "أوضح علامات النجدية: «قال» تُنطق gāl، و«قهوة» gahwa.",
+          en: "The biggest Saudi tell. قال is gāl, قهوة is gahwa.",
+          uk: "Найпомітніша ознака саудівської. قال — це gāl, قهوة — gahwa.",
+          najdi: "أوضح علامة للسعودي. «قال» تنقال gāl، و«قهوة» gahwa.",
+          msa: "أوضح علامات اللهجة السعودية: «قال» تُنطق gāl، و«قهوة» gahwa.",
         },
       },
       {
@@ -296,10 +296,10 @@ export const GROUPS = [
         sound: { en: "k.", uk: "к.", najdi: "كاف.", msa: "كاف." },
         example: { ar: "كيف", tr: "kēf", msa: "كيف", en: "how", uk: "як" },
         najdi: {
-          en: "In traditional Najdi you may hear ك as ц in some words. Recognize it, don't copy it yet.",
-          uk: "У традиційній наджді ك у деяких словах може звучати як ц. Впізнавай, але поки не копіюй.",
-          najdi: "في النجدي القديم ممكن تسمع الكاف «تس» في بعض الكلمات. افهمها بس لا تقلدها للحين.",
-          msa: "في النجدية التقليدية قد تسمع الكاف تُنطق «تس» في بعض الكلمات. تعرّف عليها لكن لا تقلّدها الآن.",
+          en: "In old village and Bedouin speech you may hear ك as ц in some words. Recognize it, don't copy it yet.",
+          uk: "У старій сільській і бедуїнській мові ك у деяких словах може звучати як ц. Впізнавай, але поки не копіюй.",
+          najdi: "في كلام الشياب والبدو زمان ممكن تسمع الكاف «تس» في بعض الكلمات. افهمها بس لا تقلدها للحين.",
+          msa: "في كلام كبار السن والبادية قد تسمع الكاف تُنطق «تس» في بعض الكلمات. تعرّف عليها لكن لا تقلّدها الآن.",
         },
       },
       {
@@ -318,10 +318,10 @@ export const GROUPS = [
         sound: { en: "A light breath, as in hello.", uk: "Легкий видих, як в англ. hello.", najdi: "نفَس خفيف، مثل h في hello.", msa: "نفَس خفيف، كـ h في hello." },
         example: { ar: "هلا", tr: "hala", msa: "أهلاً", en: "hi!", uk: "привіт!" },
         najdi: {
-          en: "هلا and هلا والله are everyday Najdi greetings.",
-          uk: "هلا і هلا والله — щоденні привітання наджді.",
-          najdi: "«هلا» و«هلا والله» تحيات نجدية كل يوم.",
-          msa: "«هلا» و«هلا والله» تحيتان نجديتان يوميتان.",
+          en: "هلا and هلا والله are everyday Saudi greetings.",
+          uk: "هلا і هلا والله — щоденні саудівські привітання.",
+          najdi: "«هلا» و«هلا والله» تحيات سعودية كل يوم.",
+          msa: "«هلا» و«هلا والله» تحيتان سعوديتان يوميتان.",
         },
       },
     ],

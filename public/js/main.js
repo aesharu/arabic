@@ -300,7 +300,7 @@ function show(name, params) {
     if (a.dataset.route === name) a.setAttribute("aria-current", "page");
     else a.removeAttribute("aria-current");
   });
-  document.title = `${t(routes[name].titleKey)} · Najdi`;
+  document.title = `${t(routes[name].titleKey)} · Saudi`;
   document.body.dataset.route = name;
   renderDayPill();
   routes[name].mount(view, { params, signal: controller.signal });

@@ -12,11 +12,11 @@ export const PHRASES = [
   { day: 1, ar: "وعليكم السلام", tr: "wa ʿalēkum as-salām", msa: "وعليكم السلام", en: "the reply", uk: "відповідь: «і вам мир»" },
   { day: 1, ar: "هلا والله", tr: "hala wallah", msa: "أهلاً وسهلاً", en: "hi!!", uk: "приві-іт!", note: { en: "Warm", uk: "Тепле привітання", najdi: "ترحيب دافي", msa: "تحية حارّة" } },
 
-  { day: 2, ar: "كيفك؟", tr: "kēfik?", msa: "كيف حالك؟", en: "how are you?", uk: "як ти?", note: { en: "Same to him and her", uk: "Однаково до нього й до неї", najdi: "نفسها له ولها", msa: "بالصيغة نفسها للمذكر والمؤنث" } },
+  { day: 2, ar: "كيفك؟", tr: "kēfik?", msa: "كيف حالك؟", en: "how are you?", uk: "як ти?", note: { en: "To her; to him it's kēfak", uk: "До неї; до нього — kēfak", najdi: "لها؛ وله تنقال kēfak", msa: "للمخاطَبة؛ وللمخاطَب تُنطق kēfak" } },
   { day: 2, ar: "الحمد لله", tr: "al-ḥamdu lillāh", msa: "الحمد لله", en: "good, thank God", uk: "добре, слава Богу", note: { en: "Standard answer", uk: "Стандартна відповідь", najdi: "الرد المعتاد", msa: "الرد المعتاد" } },
   { day: 2, ar: "بخير", tr: "bikhēr", msa: "بخير", en: "fine", uk: "добре" },
 
-  { day: 3, ar: "وش لونك؟", tr: "wesh lōnik?", msa: "كيف حالك؟", en: "how are you?", uk: "як ти?", note: { en: "Najdi classic, lit. “what's your color”", uk: "Класика наджді, досл. «який твій колір»", najdi: "نجدية أصيلة، حرفيًا «وش لونك»", msa: "عبارة نجدية أصيلة، معناها الحرفي «ما لونك»" } },
+  { day: 3, ar: "شلونك؟", tr: "shlōnik?", msa: "كيف حالك؟", en: "how are you?", uk: "як ти?", note: { en: "Her word, lit. “what's your colour”; older Riyadh speech: وش لونك", uk: "Її слово, досл. «який твій колір»; по-старому в Ер-Ріяді: وش لونك", najdi: "كلمتها، حرفيًا «وش لونك»؛ أهل الرياض زمان يقولون: وش لونك", msa: "كلمتها، ومعناها الحرفي «ما لونك»؛ ويقول أهل الرياض قديمًا: وش لونك" } },
   { day: 3, ar: "صباح الخير", tr: "ṣabāḥ al-khēr", msa: "صباح الخير", en: "good morning", uk: "доброго ранку" },
   { day: 3, ar: "صباح النور", tr: "ṣabāḥ an-nūr", msa: "صباح النور", en: "the reply", uk: "відповідь на «доброго ранку»" },
 

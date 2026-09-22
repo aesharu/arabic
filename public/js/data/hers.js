@@ -2,7 +2,7 @@
 // Shown first on the Phrases page and as the Cards deck "hers" (open from Day 1). Add each new one she teaches here.
 // Every text in four languages: ar (as she says it), say (pronunciation), en, uk, msa, note?.
 export const HER_WORDS = [
-  { ar: "سلام", say: "salām", en: "hi (lit. “peace”) — the everyday greeting", uk: "привіт (досл. «мир») — звичайне привітання", msa: "السلام عليكم" },
+  { ar: "سلام", say: "salām", en: "hi — short for السلام عليكم (lit. “peace”)", uk: "привіт — коротко від السلام عليكم (досл. «мир»)", msa: "السلام عليكم" },
   { ar: "شخبارك؟", say: "shakhbārik?", en: "how are you? what's new? (lit. “what's your news?”)", uk: "як ти? що нового? (досл. «які твої новини?»)", msa: "ما أخبارك؟" },
   { ar: "شلونك؟", say: "shlōnik?", en: "how are you? (lit. “what's your color?”)", uk: "як ти? (досл. «який твій колір?»)", msa: "كيف حالك؟",
     note: { en: "In Riyadh also وش لونك wesh lōnik.", uk: "У Ер-Ріяді також وش لونك wesh lōnik.", najdi: "أهل الرياض يقولون بعد: وش لونك.", msa: "ويقول أهل الرياض أيضًا: وش لونك." } },

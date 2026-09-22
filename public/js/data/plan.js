@@ -10,10 +10,10 @@ const four = (en, uk, najdi, msa) => ({ en, uk, najdi, msa });
 const each = (parts, fn) => four(fn(parts.en, "en"), fn(parts.uk, "uk"), fn(parts.najdi, "najdi"), fn(parts.msa, "msa"));
 
 const HOW_FIRST = four(
-  "hear each letter, say it out loud, read the Najdi notes",
-  "послухай кожну літеру, скажи її вголос, прочитай примітки про наджді",
-  "اسمع كل حرف، قوله بصوت عالي، واقرا ملاحظات النجدي",
-  "استمع إلى كل حرف، وانطقه بصوت عالٍ، واقرأ ملاحظات النجدية",
+  "hear each letter, say it out loud, read the Saudi notes",
+  "послухай кожну літеру, скажи її вголос, прочитай саудівські примітки",
+  "اسمع كل حرف، قوله بصوت عالي، واقرا ملاحظات السعودي",
+  "استمع إلى كل حرف، وانطقه بصوت عالٍ، واقرأ ملاحظات اللهجة السعودية",
 );
 const HOW_SECOND = four(
   "cover the forms row and name each form from memory",
@@ -53,10 +53,10 @@ const task = {
     "المحادثة: انطق عبارات اليوم بصوت عالٍ، كل واحدة عشر مرات، حتى تخرج دون تفكير",
   ) }),
   listen: () => ({ id: "listen", min: 15, text: four(
-    "Listen: 15 minutes of Najdi — her voice notes, or daily-life vlogs on Snapchat or TikTok. Don't try to understand yet; get used to the sound",
-    "Аудіювання: 15 хвилин наджді — її голосові або щоденні влоги в Snapchat чи TikTok. Поки не намагайся зрозуміти — просто звикай до звучання",
-    "استماع: 15 دقيقة نجدي — فويساتها، أو فلوقات يومية في سناب أو تيك توك. لا تحاول تفهم الحين؛ بس تعوّد على الصوت",
-    "الاستماع: 15 دقيقة من النجدية — رسائلها الصوتية أو مقاطع الحياة اليومية على سناب شات أو تيك توك. لا تحاول الفهم الآن، بل اعتد على الصوت",
+    "Listen: 15 minutes of Saudi Arabic — her voice notes, or daily-life vlogs on Snapchat or TikTok. Don't try to understand yet; get used to the sound",
+    "Аудіювання: 15 хвилин саудівської — її голосові або щоденні влоги в Snapchat чи TikTok. Поки не намагайся зрозуміти — просто звикай до звучання",
+    "استماع: 15 دقيقة سعودي — فويساتها، أو فلوقات يومية في سناب أو تيك توك. لا تحاول تفهم الحين؛ بس تعوّد على الصوت",
+    "الاستماع: 15 دقيقة من اللهجة السعودية — رسائلها الصوتية أو مقاطع الحياة اليومية على سناب شات أو تيك توك. لا تحاول الفهم الآن، بل اعتد على الصوت",
   ) }),
   tutor: () => ({ id: "tutor", min: 15, text: four(
     "Find a Riyadh-born tutor (speaking only, 45 min) and book two sessions a week, starting Monday 5 October",
@@ -90,7 +90,7 @@ export const SCRIPT_DAYS = {
   8: { group: 3, focus: four("Heavy vs light: hear the difference between س and ص", "Важкі й легкі: почуй різницю між س і ص", "الثقيل والخفيف: اسمع الفرق بين السين والصاد", "المفخّم والمرقّق: استمع إلى الفرق بين السين والصاد"), tasks: [...secondDay(3), task.tutor()] },
   9: { group: 4, focus: four("ط ظ ع غ — the throat letters. Slowest days of the plan; that's normal", "ط ظ ع غ — горлові літери. Найповільніші дні плану, і це нормально", "ط ظ ع غ — حروف الحلق. أبطأ أيام الخطة، وهذا عادي", "ط ظ ع غ — الحروف الحلقية. أبطأ أيام الخطة، وهذا طبيعي"), tasks: firstDay(4) },
   10: { group: 4, focus: four("ع and غ out loud until they stop feeling strange", "ع і غ вголос, доки вони не перестануть здаватися дивними", "العين والغين بصوت عالي لين ما عادت غريبة عليك", "العين والغين بصوت عالٍ حتى تألفهما"), tasks: secondDay(4) },
-  11: { group: 5, focus: four("ف ق ك ل م ه — and ق, which is g in Najdi", "ف ق ك ل م ه — і ق, яка в наджді звучить як ґ", "ف ق ك ل م ه — والقاف، اللي تنقال g بالنجدي", "ف ق ك ل م ه — والقاف التي تُنطق g في النجدية"), tasks: firstDay(5) },
+  11: { group: 5, focus: four("ف ق ك ل م ه — and ق, which is g in Saudi Arabic", "ف ق ك ل م ه — і ق, яка в саудівській звучить як ґ", "ف ق ك ل م ه — والقاف، اللي تنقال g بالسعودي", "ف ق ك ل م ه — والقاف التي تُنطق g في اللهجة السعودية"), tasks: firstDay(5) },
   12: { group: 5, focus: four("Group 6 again. You now know all 28 letters", "Знову група 6. Тепер ти знаєш усі 28 літер", "المجموعة 6 مرة ثانية. الحين تعرف الـ28 حرف كلها", "المجموعة 6 مجددًا. أصبحت تعرف الحروف الثمانية والعشرين كلها"), tasks: secondDay(5) },
   13: { group: null, focus: four("The four extras — ء ة ى لا — and a full review", "Чотири додаткові знаки — ء ة ى لا — і повне повторення", "الأربع الإضافية — ء ة ى لا — ومراجعة كاملة", "العلامات الأربع — ء ة ى لا — ومراجعة شاملة"), tasks: [
     { id: "quiz", min: 15, href: "#/quiz", text: four("Quiz: all six groups", "Тест: усі шість груп", "اختبار: كل المجموعات الست", "اختبار: المجموعات الست كلها") },
@@ -116,10 +116,10 @@ const DAY_BLOCKS = [
     "البطاقات: مراجعة، ثم 3–5 كلمات جديدة — دائمًا في جمل كاملة مع الصوت",
   ) },
   { id: "listening", min: 40, text: four(
-    "Listening: her voice notes first, then short Najdi vlogs or snaps. Half focused, half in the background",
-    "Аудіювання: спершу її голосові, потім короткі влоги чи снепи наджді. Половину уважно, половину фоном",
-    "استماع: فويساتها أول، وبعدين فلوقات أو سنابات نجدية قصيرة. نصها بتركيز ونصها بالخلفية",
-    "الاستماع: رسائلها الصوتية أولًا، ثم مقاطع نجدية قصيرة. نصف الوقت بتركيز ونصفه في الخلفية",
+    "Listening: her voice notes first, then short Saudi vlogs or snaps. Half focused, half in the background",
+    "Аудіювання: спершу її голосові, потім короткі саудівські влоги чи снепи. Половину уважно, половину фоном",
+    "استماع: فويساتها أول، وبعدين فلوقات أو سنابات سعودية قصيرة. نصها بتركيز ونصها بالخلفية",
+    "الاستماع: رسائلها الصوتية أولًا، ثم مقاطع سعودية قصيرة. نصف الوقت بتركيز ونصفه في الخلفية",
   ) },
   { id: "speaking", min: 30, text: four(
     "Speaking: tutor session, or shadow her voice notes out loud, or record a voice note back to her",

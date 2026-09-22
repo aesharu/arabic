@@ -42,7 +42,7 @@ test("one Anki deck per stage, one card per entry", () => {
     const file = new URL(`public/anki/${files[s.id]}`, root);
     assert.ok(existsSync(file), `${files[s.id]} missing`);
     const lines = readFileSync(file, "utf8").trim().split("\n");
-    assert.ok(lines[0].startsWith("#separator") && lines.some(l => l.startsWith("#deck:Najdi::")), "Anki headers missing");
+    assert.ok(lines[0].startsWith("#separator") && lines.some(l => l.startsWith("#deck:Saudi::")), "Anki headers missing");
     const cards = lines.filter(l => !l.startsWith("#")).length;
     assert.equal(cards, s.topics.reduce((n, t) => n + t.entries.length, 0), `${files[s.id]}: card count`);
   }

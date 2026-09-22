@@ -125,7 +125,7 @@ export function exportJson() {
 
 export function importJson(text) {
   const data = JSON.parse(text);
-  if (!data || typeof data !== "object" || !data.log) throw new Error("This doesn't look like a Najdi backup file.");
+  if (!data || typeof data !== "object" || !data.log) throw new Error("This doesn't look like a backup file from this site.");
   const { sync, ...rest } = data;
   update(s => Object.assign(s, merge({ ...rest, sync: s.sync })));
 }

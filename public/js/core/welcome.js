@@ -132,7 +132,7 @@ export function welcome() {
     ${day ? "" : skyStars()}
     <div class="wl-glow" aria-hidden="true"></div>
     <div class="wl-center">
-      <p class="wl-brand" translate="no"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 38 L10 13 H30 L32 38 Z"/><path d="M10 13 l2.5-5 2.5 5 2.5-5 2.5 5 2.5-5 2.5 5 2.5-5 2.5 5z"/></svg><span>Najdi</span><span lang="ar">نجدي</span></p>
+      <p class="wl-brand" translate="no"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 38 L10 13 H30 L32 38 Z"/><path d="M10 13 l2.5-5 2.5 5 2.5-5 2.5 5 2.5-5 2.5 5 2.5-5 2.5 5z"/></svg><span>Saudi</span><span lang="ar">سعودي</span></p>
       <div class="wl-medal">
         ${star()}
         <p class="wl-name" lang="ar" dir="rtl" translate="no"></p>

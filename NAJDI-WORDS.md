@@ -1,13 +1,13 @@
-# Najdi words for Stages 4–5 — to check with a native speaker
+# Saudi words for Stages 4–5 — to check with a native speaker
 
-`NAJDI-PLAN.md` lists the first ~350 words and says the last ~500 should come from her, her voice notes and the tutor. Until they do, this file holds **candidate words** so the site can reach 1000: everyday, high-frequency Riyadh Najdi, arranged by the plan's Stage 4–5 target topics (Part 6).
+`NAJDI-PLAN.md` lists the first ~350 words and says the last ~500 should come from her, her voice notes and the tutor. Until they do, this file holds **candidate words** so the site can reach 1000: everyday, high-frequency modern Saudi — the way young Saudis talk — arranged by the plan's Stage 4–5 target topics (Part 6).
 
 **Every word here is a suggestion, not a verified fact.** The site shows each one with a "check with tutor" flag until it's marked checked.
 
 How to check them (her, or the tutor):
 
-- Read a table and put **✓** in the *Checked* column for every word that is right, natural Riyadh speech.
-- If a word is wrong or sounds Egyptian/Levantine/formal, write the Najdi form next to it. Don't delete rows — Volodia will fix them with Claude and re-run `npm run vocab`.
+- Read a table and put **✓** in the *Checked* column for every word that is right, natural everyday Saudi.
+- If a word is wrong or sounds Egyptian, Levantine, Gulf (Kuwaiti) or formal, write the Saudi form next to it. Don't delete rows — Volodia will fix them with Claude and re-run `npm run vocab`.
 - *Say* uses the plan's pronunciation key (Part 4): ā ī ū long vowels, ē ō, ḥ, ʿ, kh, gh, **g for ق**, th, dh, ṣ ṭ **ẓ for ض/ظ**, double letters held longer.
 - Forms marked *(to her)* are what he says to a woman — the point of the plan.
 
@@ -199,7 +199,7 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | أحسن | aḥsan | better | краще | أفضل | |
 | أحسن شي | aḥsan shay | the best thing | найкраще | أفضل شيء | |
 | أسوأ | aswaʾ | worse, the worst | гірше, найгірше | أسوأ | |
-| مب مشكلة | mub mushkila | not a problem | не проблема | ليست مشكلة | |
+| مو مشكلة | mū mushkila | not a problem | не проблема | ليست مشكلة | |
 | يجنن | yjannin | amazing (lit. "drives you crazy") | неймовірно, чудово | رائع جدًا | |
 | خرافي | khurāfi | fantastic | фантастично | مذهل | |
 | روعة | rawʿa | wonderful | чудово | رائع | |
@@ -213,7 +213,7 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | مستحيل | mustaḥīl | impossible, no way | неможливо, нізащо | مستحيل | |
 | ممكن | mumkin | possible; could I…? | можливо; можна? | ممكن | |
 | لازم | lāzim | must, have to | треба, мушу | يجب | |
-| مب لازم | mub lāzim | not necessary | не обов'язково | ليس ضروريًا | |
+| مو لازم | mū lāzim | not necessary | не обов'язково | ليس ضروريًا | |
 | يا ليت | ya lēt | if only, I wish | якби ж то | يا ليت | |
 | صراحة | ṣarāḥa | honestly | чесно кажучи | بصراحة | |
 | فعلاً | fiʿlan | really, indeed | справді | فعلًا | |
@@ -299,7 +299,7 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | الله يحييك | allah yḥayyīk | reply to "welcome" | відповідь на «ласкаво просимо» | الله يحييك | |
 | هلا فيك | hala fīk | hi to you too | і тобі привіт | أهلًا بك | |
 | أهلين | ahlēn | hi there | привітик | أهلًا | |
-| وش علومك؟ | wesh ʿilūmik? | what's your news? (very Najdi) | які новини? | ما أخبارك؟ | |
+| وش علومك؟ | wesh ʿilūmik? | what's your news? (older, from the desert) | які новини? (старе, з пустелі) | ما أخبارك؟ | |
 | عساك طيبة | ʿasāk ṭayba | hope you're well (to her) | сподіваюся, у тебе все добре | أرجو أن تكوني بخير | |
 
 ## 4.5 Her daily life — work, study, friends | Її день — робота, навчання, друзі | يومها — الشغل والدراسة والصديقات | حياتها اليومية — العمل والدراسة والصديقات
@@ -916,3 +916,25 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | أتكلم ثلاث لغات | atkallam thalāth lughāt | I speak three languages | я говорю трьома мовами | أتحدّث ثلاث لغات | |
 | وش لغتك الأم؟ | wesh lughatak al-umm? | what's your mother tongue? | яка твоя рідна мова? | ما لغتك الأم؟ | |
 | لغتي الأم الأوكراني | lughati l-umm al-ukrāni | my mother tongue is Ukrainian | моя рідна мова — українська | لغتي الأم هي الأوكرانية | |
+
+## 4.22 How young Saudis talk | Як говорить саудівська молодь | كلام الشباب السعودي | لغة الشباب السعودي
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| مشكور / مشكورة | mashkūr / mashkūra | thanks (to him / to her) | дякую (йому / їй) | شكرًا لك / شكرًا لكِ | |
+| تكفى / تكفين | tikfa / tikfīn | please, I'm begging you (to him / to her) | будь ласка, дуже прошу (йому / їй) | أرجوك / أرجوكِ | |
+| سم / سمّي | samm / sammi | yes? I'm listening — when someone calls you (to him / to her) | так? слухаю — коли тебе кличуть (йому / їй) | نعم؟ | |
+| تم | tamm | okay, done — the usual reply in chats | окей, домовились — звична відповідь у чатах | حسنًا، تمّ | |
+| على راسي | ʿala rāsi | gladly, with pleasure (lit. "on my head") | залюбки (досл. «на моїй голові») | بكل سرور | |
+| أجل | ajal | so, then, in that case | тоді, отже, у такому разі | إذن | |
+| وش السالفة؟ | wesh as-sālfa? | what's going on? what's the story? | що сталося? у чому справа? | ما القصة؟ | |
+| قسم بالله | gasam billah | I swear — honestly! | клянуся — чесно! | أُقسم بالله | |
+| يا شيخ / يا شيخة | ya shēkh / ya shēkha | come on! no way! (to him / to her) | та ну! не може бути! (йому / їй) | ما هذا الكلام! | |
+| طقطقة | ṭagṭaga | teasing, joking around | підколки, жарти | مزاح وسخرية | |
+| لا تطقطقين علي | la tṭagṭigīn ʿalay | don't make fun of me (to her) | не підколюй мене (до неї) | لا تسخري منّي | |
+| وناسة | wanāsa | fun, a great time | весело, класно | متعة | |
+| بزر | bizir | a little kid (also "childish", teasing) | мала дитина (і «як дитина», жартома) | طفل صغير | |
+| تو الناس | taww an-nās | it's still early | ще рано | ما زال الوقت مبكرًا | |
+| عسى ما شر؟ | ʿasa ma sharr? | nothing wrong, I hope? — when someone is ill or away | сподіваюся, нічого поганого? — коли хтось хворий чи зник | أرجو أن يكون خيرًا | |
+| إن شاء الله خير | in shāʾ allah khēr | hopefully it's good news | сподіваюся, на добре | خيرًا إن شاء الله | |
+| الله يسعدك | allah yisʿidik | God make you happy — a warm thank-you | хай Бог дарує тобі щастя — тепла подяка | أسعدك الله | |

@@ -1,7 +1,7 @@
 {
-  "name": "Najdi — spoken Riyadh Arabic",
-  "short_name": "Najdi",
-  "description": "Learn Najdi Arabic in 15 months: daily plan, cards, 1000 words, the alphabet and phrases.",
+  "name": "Saudi — everyday Saudi Arabic",
+  "short_name": "Saudi",
+  "description": "Learn everyday Saudi Arabic — the way young Saudis talk — in 15 months: daily plan, cards, 1000 words, the alphabet and phrases.",
   "start_url": "./#/today",
   "scope": "./",
   "display": "standalone",

@@ -20,7 +20,7 @@ const second = r => tx({ en: r.uk, uk: r.en, najdi: r.uk, msa: r.uk });
 const CHECK_NOTE = {
   en: "A practice conversation, not from the plan — Dima checks each line.",
   uk: "Тренувальна розмова, не з плану — Діма перевіряє кожен рядок.",
-  najdi: "محادثة للتمرين، مب من الخطة — ديما تراجع كل سطر.",
+  najdi: "محادثة للتمرين، مو من الخطة — ديما تراجع كل سطر.",
   msa: "محادثة تدريبية ليست من الخطة — تراجع ديما كلّ سطر.",
 };
 
