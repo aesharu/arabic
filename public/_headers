@@ -1,0 +1,7 @@
+# Fonts and icons never change, so the iPad and the computer keep them instead of asking again on every visit.
+# Pages, scripts and styles still check for a new version every time (the default), so a deploy shows at once.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/icons/*
+  Cache-Control: public, max-age=604800

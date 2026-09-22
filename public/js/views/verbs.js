@@ -35,7 +35,7 @@ function verbCard(v) {
   return `<section class="vb-card">
     <div class="vb-head">
       <button type="button" class="vb-big" data-say="${esc(v.now.ar)}">${ar(v.now.ar)}${playIcon}</button>
-      <div><p class="vb-mean">${mean(v)}</p><p class="muted">${translit(v.now.say)} · ${ar(v.he.ar)} ${translit(v.he.say)} ${flag(v)}</p></div>
+      <div><h2 class="vb-mean">${mean(v)}</h2><p class="muted">${translit(v.now.say)} · ${ar(v.he.ar)} ${translit(v.he.say)} ${flag(v)}</p></div>
     </div>
     ${v.note ? `<p class="callout"><span>${rich(tx(v.note))}</span></p>` : ""}
     ${table(v)}

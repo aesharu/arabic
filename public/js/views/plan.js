@@ -51,7 +51,7 @@ export default {
                 <p class="muted">${t("plan.meta", { when: esc(tx(p.when)), start: date(p.start), end: date(p.end), words: esc(tx(p.words)) })}</p>
               </div>
             </div>
-            ${isNow ? `<span class="meter" aria-label="${esc(t("plan.dayInStage", { n: into, len }))}"><span style="width:${((into / len) * 100).toFixed(1)}%"></span></span>` : ""}
+            ${isNow ? `<span class="meter" role="img" aria-label="${esc(t("plan.dayInStage", { n: into, len }))}"><span style="width:${((into / len) * 100).toFixed(1)}%"></span></span>` : ""}
             <p class="phase-focus">${esc(t("plan.canDo", { text: lowerFirst(tx(p.canDo)) }))}</p>
             ${p.note ? `<p class="muted">${esc(tx(p.note))}</p>` : ""}
           </li>`;

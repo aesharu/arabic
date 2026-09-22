@@ -69,6 +69,15 @@ export function tu(key, n, opts) {
   return forms[new Intl.PluralRules(meta().plural, opts).select(n)] ?? forms.other;
 }
 
+// A count inside a sentence: in Arabic the number with its word, the way it's said — one and two by the word alone
+// (ساعة، ساعتين), the number only from three up (3 ساعات، 11 ساعة); in English and Ukrainian just the number,
+// since their texts carry a short unit ("in {h} h").
+export function cnt(key, n) {
+  if (meta().plural !== "ar") return num(n);
+  const w = tu(key, n);
+  return n === 1 || n === 2 ? w : `${num(n)} ${w}`;
+}
+
 // A number the way the current language writes it (1.5 / 1,5)
 export const num = (n, digits = 0) =>
   n.toLocaleString(locale(), { minimumFractionDigits: digits, maximumFractionDigits: digits });

@@ -194,6 +194,7 @@ export default {
     }
     const toolbar = `
       <div class="print-bar">
+        <h1 class="visually-hidden">${t("print.title")}</h1>
         <a class="btn btn-ghost" href="#/print">${icon("back")} ${t("print.title")}</a>
         <p class="muted">${t("print.barHint")}</p>
         <button class="btn btn-primary" data-print>${icon("print")} ${t("print.print")}</button>

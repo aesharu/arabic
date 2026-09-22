@@ -2,7 +2,7 @@
 // occasions, culture stories (with the north first among equals) and facts.
 //   #/saudi            everything
 //   #/saudi/<region>   stories from one region: najd · north
-import { t, tx, num, locale, lang } from "../core/i18n.js";
+import { t, tx, num, cnt, locale, lang } from "../core/i18n.js";
 import { esc, rich, ar, translit, flag, playIcon, pageHead } from "../core/dom.js";
 import { icon } from "../core/art.js";
 import * as store from "../core/store.js";
@@ -25,7 +25,9 @@ const gregLong = d => new Intl.DateTimeFormat(locale(), { weekday: "long", day: 
 export function leftText(ms) {
   const m = Math.max(0, Math.round(ms / 60e3));
   const h = Math.floor(m / 60);
-  return h ? t("saudi.inHours", { h, m: m % 60 }) : t("saudi.inMin", { m });
+  const mm = cnt("unit.minutes", m % 60);
+  if (h && !(m % 60)) return t("saudi.inH", { h: cnt("unit.hours", h) });
+  return h ? t("saudi.inHours", { h: cnt("unit.hours", h), m: mm }) : t("saudi.inMin", { m: mm });
 }
 
 // The next date of each occasion, within the coming ~13 months.
@@ -44,7 +46,7 @@ export function upcoming(from = saudiToday()) {
   return [...found.values()].sort((a, b) => a.days - b.days);
 }
 
-const daysText = n => (n === 0 ? t("saudi.isToday") : n === 1 ? t("saudi.tomorrow") : t("saudi.inDays", { n: num(n) }));
+const daysText = n => (n === 0 ? t("saudi.isToday") : n === 1 ? t("saudi.tomorrow") : t("saudi.inDays", { n: cnt("unit.days", n) }));
 
 // A compass: N at the top, the arrow turned to the Kaaba's bearing.
 function compass(bearing) {
@@ -116,7 +118,7 @@ export default {
 
         <section class="sa-block"><h2>${t("saudi.stories")}</h2>
           <div class="tabs" role="group" aria-label="${esc(t("saudi.stories"))}">${Object.entries(REGIONS).map(([id, name]) =>
-            `<a href="#/saudi/${id}" aria-selected="${id === region}">${esc(tx(name))}</a>`).join("")}</div>
+            `<a href="#/saudi/${id}"${id === region ? ' aria-current="page"' : ""}>${esc(tx(name))}</a>`).join("")}</div>
           <div class="sa-stories">${shown.map(s => `<details class="panel sa-story" id="story-${s.id}">
             <summary><span class="sa-tag is-${s.region}">${esc(tx(REGIONS[s.region]))}</span><h3>${esc(tx(s.title))}</h3></summary>
             <p>${rich(tx(s.body))}</p>

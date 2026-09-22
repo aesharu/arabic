@@ -10,9 +10,9 @@
 html[dir="rtl"] .sheet { font-family: var(--font-ui-ar); }
 .sheet-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8mm; padding-bottom: 2.5mm; margin-bottom: 3mm; border-bottom: .7mm solid #006C35; }
 .sheet-head h2 { margin: 0; font-size: 13pt; color: #0B2E1C; }
-.sheet-head p { margin: 0; color: #777; font-size: 9.5pt; white-space: nowrap; }
+.sheet-head p { margin: 0; color: #6b6b6b; font-size: 9.5pt; white-space: nowrap; }
 .sheet-body { flex: 1; min-height: 0; }
-.sheet-foot { display: flex; justify-content: space-between; padding-top: 1.5mm; border-top: .3mm solid #ddd; color: #999; font-size: 8pt; }
+.sheet-foot { display: flex; justify-content: space-between; padding-top: 1.5mm; border-top: .3mm solid #ddd; color: #6b6b6b; font-size: 8pt; }
 .sheet-foot [lang="ar"] { font-family: var(--font-ar); }
 
 /* A guideline row: solid baseline where the Arabic sits, a dashed line for the height of a tooth */
@@ -47,12 +47,12 @@ html[dir="rtl"] .cell[data-form]::before { font-family: var(--font-ui-ar); direc
 .tw-meta { position: absolute; top: 1.2mm; inset-inline-end: 0; display: flex; flex-direction: column; align-items: flex-start; max-width: 70mm; font-family: var(--font-ui); font-size: 9pt; line-height: 1.2; direction: ltr; text-align: left; }
 .tw-meta .tr { font-size: 10.5pt; }
 .pm1 { color: #222; }
-.pm2 { color: #777; font-size: 8.5pt; }
+.pm2 { color: #6b6b6b; font-size: 8.5pt; }
 
 /* 3. Fold and test */
 .fold-line { position: relative; height: 5mm; margin: 0 0 1mm; text-align: center; }
 .fold-line::before { content: ""; position: absolute; top: 0; bottom: -250mm; left: 50%; border-left: .3mm dashed #b8b8b8; }
-.fold-line span { position: relative; padding: 0 2mm; background: #fff; color: #999; font-size: 8pt; }
+.fold-line span { position: relative; padding: 0 2mm; background: #fff; color: #6b6b6b; font-size: 8pt; }
 .fold { width: 100%; border-collapse: collapse; table-layout: fixed; }
 .fold td { height: 15.6mm; padding: 0 5mm; border-bottom: .25mm solid #e4e4e4; vertical-align: middle; }
 .fold-meaning { display: table-cell; font-size: 10pt; line-height: 1.25; }
@@ -110,7 +110,7 @@ html[dir="rtl"] .cell[data-form]::before { font-family: var(--font-ui-ar); direc
 .ps-ar li { padding-inline-start: 1mm; }
 .ps-ar li::marker { font-family: var(--font-ui); font-size: 9pt; color: #999; }
 .ps-cut { position: relative; margin: 3mm 0 2mm; text-align: center; border-top: .3mm dashed #b8b8b8; height: 0; }
-.ps-cut span { position: relative; top: -2.2mm; padding: 0 2mm; background: #fff; color: #999; font-size: 8pt; }
+.ps-cut span { position: relative; top: -2.2mm; padding: 0 2mm; background: #fff; color: #6b6b6b; font-size: 8pt; }
 .ps-key { margin: 0; padding: 0 0 0 6mm; font-size: 9pt; line-height: 1.25; direction: ltr; text-align: left; columns: 2; column-gap: 8mm; }
 .ps-key li { break-inside: avoid; margin-bottom: 1.4mm; }
 .ps-key .tr { display: block; font-size: 9.5pt; }

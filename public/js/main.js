@@ -64,6 +64,8 @@ const moreButton = document.querySelector("[data-menu-open]");
 function setMenu(open) {
   document.body.classList.toggle("menu-open", open);
   moreButton.setAttribute("aria-expanded", open);
+  // While the sheet is open, the page behind it can't be reached with Tab (the tab bar stays, so "More" closes it again).
+  for (const el of [document.querySelector("main"), ...document.querySelector(".sidebar").children]) if (el.id !== "menu") el.inert = open;
   if (open) document.querySelector("#menu nav a")?.focus();
 }
 moreButton.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
@@ -209,9 +211,13 @@ function renderCloudPill({ state } = sync.getStatus()) {
 }
 sync.onStatus(renderCloudPill);
 
-// The browser's own bar takes the page's background color.
+// The browser's own bar takes the color of what's under it: on the iPad and iPhone the green top bar, so Safari's
+// bar and the site's run together; on the computer the page's background.
 const themeMeta = document.querySelector('meta[name="theme-color"]');
-const paintThemeColor = () => themeMeta.setAttribute("content", getComputedStyle(document.body).backgroundColor);
+const topBar = matchMedia("(max-width: 860px)");
+const paintThemeColor = () =>
+  themeMeta.setAttribute("content", getComputedStyle(topBar.matches ? document.querySelector(".sidebar") : document.body).backgroundColor);
+topBar.addEventListener("change", paintThemeColor);
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
   paintThemeColor();
   show(current.name, current.params); // charts and the sky read theme colors
@@ -313,6 +319,19 @@ function show(name, params) {
   teacherBanner();
   requestAnimationFrame(() => fitCharts(view));
 }
+
+// Phones: a long row of choices scrolls sideways in one line (css: .tabs, .chips, .lv-jump). Whenever the page
+// redraws, the chosen one is brought to the middle of its row, so you always see where you are.
+function showChosen() {
+  for (const row of view.querySelectorAll(".tabs, .chips, .lv-jump")) {
+    if (row.scrollWidth <= row.clientWidth) continue;
+    const on = row.querySelector('[aria-selected="true"], [aria-current="page"], [aria-pressed="true"]');
+    if (!on) continue;
+    const a = on.getBoundingClientRect(), r = row.getBoundingClientRect();
+    row.scrollLeft += a.left + a.width / 2 - (r.left + r.width / 2);
+  }
+}
+new MutationObserver(() => requestAnimationFrame(showChosen)).observe(view, { childList: true });
 let resizeTimer = 0;
 addEventListener("resize", () => {
   clearTimeout(resizeTimer);

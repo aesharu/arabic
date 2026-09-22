@@ -4,6 +4,10 @@
 // Dima's sign-in can only read it.
 // Then: a greeting, her or his name in gold, and five seconds of oud. Dima gets "I love you" with hearts and a
 // compliment, a different one every time (data/love.js).
+// On a special day (data/holidays.js: National Day, Founding Day, Ramadan, the Eids, her birthday…) the screen is
+// dressed for it — fireworks and green-lit towers, or Ramadan lanterns — and the greeting is the day's: for her, a
+// wish with her name; for him, the same greeting and what to say to her that day. It stays until "Come in".
+// To see it on any other day: add ?holiday=national (or founding, ramadan, fitr, arafah, adha, newyear, birthday).
 // It is a friendly door, not a lock: anyone who reads this file can see the name. "Log out" in the menu forgets the sign-in.
 import { lang } from "./i18n.js";
 import { STRINGS } from "../i18n/strings.js";
@@ -12,6 +16,9 @@ import { play, LENGTH } from "./music.js";
 import * as store from "./store.js";
 import * as sync from "./sync.js";
 import { LOVE_HEADLINE, COMPLIMENTS } from "../data/love.js";
+import { HOLIDAYS, holidayOn } from "../data/holidays.js";
+import { saudiToday } from "./prayer.js";
+import { say } from "./speech.js";
 
 const LOGINS = "najdi-logins"; // localStorage: { student?, teacher? } → cloud token ("local" when the cloud couldn't be reached)
 const GREETED = "najdi-welcomed"; // sessionStorage: "reload" = a profile was just chosen, don't greet twice
@@ -40,8 +47,8 @@ function three(key, tag, cls, id = "") {
   const s = STRINGS[key];
   return `<${tag} class="${cls}"${id ? ` id="${id}"` : ""}>
     <span class="wl-ar" lang="ar" dir="rtl">${s[arLang()]}</span>
-    <span class="wl-en" lang="en">${s.en}</span>
-    <span class="wl-uk" lang="uk">${s.uk}</span>
+    <span class="wl-en" lang="en" dir="ltr">${s.en}</span>
+    <span class="wl-uk" lang="uk" dir="ltr">${s.uk}</span>
   </${tag}>`;
 }
 
@@ -86,9 +93,9 @@ function loveWords() {
   const c = COMPLIMENTS[i];
   return `<h1 class="wl-title wl-love" id="wl-title">
       <span class="wl-ar" lang="ar" dir="rtl">${HEART}<span>${LOVE_HEADLINE.ar}</span>${HEART}</span>
-      <span class="wl-en" lang="en">${LOVE_HEADLINE.en}</span>
+      <span class="wl-en" lang="en" dir="ltr">${LOVE_HEADLINE.en}</span>
     </h1>
-    <p class="wl-line wl-compliment"><span class="wl-ar" lang="ar" dir="rtl">${c.ar}</span><span class="wl-en" lang="en">${c.en}</span></p>`;
+    <p class="wl-line wl-compliment"><span class="wl-ar" lang="ar" dir="rtl">${c.ar}</span><span class="wl-en" lang="en" dir="ltr">${c.en}</span></p>`;
 }
 
 // Hearts rising across the whole sky, for her.
@@ -97,6 +104,68 @@ const heartsRain = () =>
 
 const sparks = () =>
   Array.from({ length: 16 }, (_, i) => `<i style="--x:${((i * 53) % 100) - 50}px;--d:${((i * 37) % 17) / 10}s;--s:${0.6 + ((i * 29) % 10) / 10}"></i>`).join("");
+
+// ---------- Special days ----------
+const PLAY = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 19V5L7.5 9.5z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`;
+const COLORS = { green: ["#3DDC84", "#F6EEDC", "#E2B04A"], eid: ["#E2B04A", "#F8E3A6", "#F28AA6", "#8FD3FF"], birthday: ["#F28AA6", "#E2B04A", "#F8E3A6"] };
+
+// Fireworks over the whole sky: bursts of rays that open, drift and fade, one after another.
+function fireworks(look) {
+  const colors = COLORS[look];
+  const spots = [[180, 150], [760, 110], [470, 70], [880, 260], [90, 330], [620, 230], [320, 250], [960, 60]];
+  return `<svg class="hol-fw" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${spots.map(([x, y], i) => {
+    const c = colors[i % colors.length];
+    const R = 54 + ((i * 17) % 40);
+    const rays = Array.from({ length: 18 }, (_, k) => {
+      const a = (k / 18) * Math.PI * 2;
+      const [cx, cy] = [Math.cos(a), Math.sin(a)];
+      return `<path d="M${(x + cx * R * 0.25).toFixed(1)} ${(y + cy * R * 0.25).toFixed(1)}L${(x + cx * R).toFixed(1)} ${(y + cy * R).toFixed(1)}"/><circle cx="${(x + cx * R * 1.1).toFixed(1)}" cy="${(y + cy * R * 1.1).toFixed(1)}" r="2.2"/>`;
+    }).join("");
+    return `<g class="fw" style="--c:${c};--d:${((i * 0.73) % 4.4).toFixed(2)}s;transform-origin:${x}px ${y}px">${rays}</g>`;
+  }).join("")}</svg>`;
+}
+
+// Ramadan: lanterns hanging from the top of the sky, swaying a little.
+function lanterns() {
+  const lamp = (x, len, s, i) => `<g class="lantern" style="--d:${(i * 0.6).toFixed(1)}s;transform-origin:${x}px 0px">
+    <path class="l-cord" d="M${x} 0V${len}"/>
+    <g transform="translate(${x} ${len}) scale(${s})">
+      <path class="l-metal" d="M-6 0h12l4 8h-20z"/><path class="l-glass" d="M-12 8h24l-3 30h-18z"/>
+      <path class="l-frame" d="M-12 8h24M-3 8l-1.5 30M3 8l1.5 30M-12 8l3 30M12 8l-3 30"/><path class="l-metal" d="M-10 38h20l-4 8h-12z"/>
+      <circle class="l-light" cy="23" r="7"/>
+    </g></g>`;
+  return `<svg class="hol-lanterns" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+    ${[[90, 70, 1.3], [240, 130, 1], [400, 50, 1.5], [610, 110, 1.1], [780, 60, 1.4], [930, 140, 1]].map(([x, len, s], i) => lamp(x, len, s, i)).join("")}</svg>`;
+}
+
+// The day's words: the greeting large with its pronunciation and meaning; then for her a wish with her name,
+// for him what to say to her (tap to hear it) and what she'll answer; one line about the day; "Come in".
+function holidayWords(h, profile) {
+  const her = profile === "teacher";
+  const phrase = p => `<span class="wl-ar" lang="ar" dir="rtl">${p.ar}</span>${her ? "" : `<span class="hol-say" lang="ar-Latn" dir="ltr" translate="no">${p.say}</span>`}
+    <span class="wl-en" lang="${latLang()}" dir="ltr">${p[latLang()]}</span>`;
+  const title = (!her && h.titleV) || h.title;
+  const fact = her ? h.fact : h.factV ?? h.fact;
+  const learn = h.sayToHer && `<div class="hol-learn">
+      <p class="hol-lead">${two("hol.sayIt")}</p>
+      <button type="button" class="hol-phrase" data-hol-say="${h.sayToHer.ar}">
+        <span class="wl-ar" lang="ar" dir="rtl">${h.sayToHer.ar}</span>
+        <span class="hol-say" lang="ar-Latn" dir="ltr" translate="no">${h.sayToHer.say}</span>
+        <span class="hol-mean" dir="ltr">${h.sayToHer[latLang()]}</span>
+        <span class="hol-play">${PLAY}</span>
+      </button>
+      ${h.reply ? `<p class="hol-reply" dir="ltr">${STRINGS["hol.reply"][latLang()]}: <span lang="ar" dir="rtl">${h.reply.ar}</span> <i>${h.reply.say}</i> — ${h.reply[latLang()]}</p>` : ""}
+      ${h.check ? `<p class="hol-check">${STRINGS["flag.label"][latLang()]}</p>` : ""}
+    </div>`;
+  return `<p class="hol-name"><span lang="ar" dir="rtl">${h.name[arLang()]}</span><span dir="ltr">${h.name[latLang()]}</span></p>
+    <h1 class="wl-title hol-title" id="wl-title">${phrase(title)}</h1>
+    ${her ? `<p class="wl-line hol-line">${phrase(h.toHer)}</p>` : learn}
+    ${fact ? `<p class="hol-fact" lang="${lang() === "uk" ? "uk" : lang() === "en" ? "en" : "ar"}" dir="auto">${fact[lang()]}</p>` : ""}
+    <div class="hol-actions">
+      ${!her && h.id === "birthday" ? `<button type="button" class="hol-more" data-hol-go="#/birthday">${two("hol.wishes")}</button>` : ""}
+      <button type="button" class="wl-btn" data-hol-in>${two(her ? "welcome.go" : "hol.in")}</button>
+    </div>`;
+}
 
 // A profile to choose: name in Arabic, English and Ukrainian, the role, and what the role means.
 function profileCard(id, last) {
@@ -120,17 +189,20 @@ export function welcome() {
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lastProfile = storage("local", s => s.getItem("najdi-profile"));
   const startedAs = store.profile();
+  const preview = new URLSearchParams(location.search).get("holiday");
+  const holiday = HOLIDAYS.find(o => o.id === preview) ?? holidayOn(saudiToday());
 
   const el = document.createElement("div");
   const h = new Date().getHours();
-  const day = h >= 6 && h < 18; // the sun is up in Riyadh roughly 6:00–18:00
-  el.className = `welcome ${day ? "is-day" : "is-night"}`;
+  const day = !holiday && h >= 6 && h < 18; // the sun is up in Riyadh roughly 6:00–18:00; special days are always a festive night
+  el.className = `welcome ${day ? "is-day" : "is-night"}${holiday ? ` is-holiday h-${holiday.look}` : ""}`;
   el.setAttribute("role", "dialog");
   el.setAttribute("aria-modal", "true");
   el.setAttribute("aria-labelledby", "wl-title");
   el.innerHTML = `
     ${day ? "" : skyStars()}
     <div class="wl-glow" aria-hidden="true"></div>
+    ${!holiday ? "" : COLORS[holiday.look] ? fireworks(holiday.look) : holiday.look === "ramadan" ? lanterns() : ""}
     <div class="wl-center">
       <p class="wl-brand" translate="no"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 38 L10 13 H30 L32 38 Z"/><path d="M10 13 l2.5-5 2.5 5 2.5-5 2.5 5 2.5-5 2.5 5 2.5-5 2.5 5z"/></svg><span>Saudi</span><span lang="ar">سعودي</span></p>
       <div class="wl-medal">
@@ -178,11 +250,23 @@ export function welcome() {
     const name = STRINGS[profile === "student" ? "profile.volodymyr" : "profile.dima"].najdi;
     nameEl.textContent = name;
     nameEl.classList.toggle("is-long", name.length > 5);
-    const love = profile === "teacher";
-    stage.innerHTML = love ? loveWords() : `${three(greetingKey, "h1", "wl-title", "wl-title")}${three(lineKey, "p", "wl-line")}`;
+    const love = profile === "teacher" && (!holiday || holiday.look === "birthday");
+    if (holiday) {
+      stage.innerHTML = holidayWords(holiday, profile);
+      stage.querySelector("[data-hol-in]").addEventListener("click", leave);
+      stage.querySelector("[data-hol-say]")?.addEventListener("click", e => say(e.currentTarget.dataset.holSay, { tap: true }));
+      stage.querySelector("[data-hol-go]")?.addEventListener("click", e => {
+        location.hash = e.currentTarget.dataset.holGo;
+        leave();
+      });
+    } else stage.innerHTML = profile === "teacher" ? loveWords() : `${three(greetingKey, "h1", "wl-title", "wl-title")}${three(lineKey, "p", "wl-line")}`;
     el.classList.toggle("is-love", love);
     if (love) el.querySelector(".wl-glow").insertAdjacentHTML("afterend", heartsRain());
     el.classList.add("is-open");
+    if (holiday) {
+      stage.querySelector("[data-hol-in]").focus({ preventScroll: true });
+      return; // a special day stays until "Come in"
+    }
     const skip = el.querySelector(".wl-skip");
     skip.hidden = false;
     skip.addEventListener("click", leave);

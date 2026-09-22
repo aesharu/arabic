@@ -65,6 +65,11 @@
 .parapet-labels span { position: absolute; top: 0; white-space: nowrap; }
 /* The Script stage is only two weeks wide: its label sits on a second line so it never runs into Stage 1 */
 .parapet-labels span:first-child { top: 18px; }
+.parapet-labels .is-now { color: var(--ink); }
+@media (max-width: 560px) {
+  .parapet-labels span:not(.is-now, [data-short=""]) { font-size: 0; }
+  .parapet-labels span:not(.is-now, [data-short=""])::before { content: attr(data-short); content: attr(data-short) / ""; font-size: 13px; }
+}
 .parapet-caption { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
 
 /* ---------- Stat tiles ---------- */
@@ -344,7 +349,7 @@ html[dir="rtl"] { --end-side: left; }
 .cal-layout { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 18px; align-items: start; margin-top: 18px; }
 .months { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
 .month { background: var(--surface); border-radius: 14px; padding: 12px; }
-.month h3 { margin: 0; color: var(--ink); letter-spacing: 0; text-transform: none; font-size: 17px; }
+.month h2 { margin: 0; color: var(--ink); letter-spacing: 0; text-transform: none; font-size: 17px; }
 .month .stage-names { margin: 0 0 8px; font-size: 13px; color: var(--muted); font-weight: 700; }
 .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
 .cal-wd { text-align: center; font-size: 12px; font-weight: 800; color: var(--muted); padding-bottom: 2px; }
@@ -706,8 +711,8 @@ html[dir="rtl"] .study-kind { letter-spacing: 0; text-transform: none; }
 .search input { flex: 1; min-width: 0; padding: 12px 0; border: 0; background: transparent; color: var(--ink); font-size: 17px; outline: none; }
 .search input::placeholder { color: var(--muted); opacity: .85; }
 .tabs a { padding: 8px 14px; border-radius: 9px; color: var(--muted); font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; }
-.tabs a[aria-selected="true"] { background: var(--strong-bg); color: var(--strong-ink); }
-.tabs a:hover:not([aria-selected="true"]) { background: var(--surface-2); color: var(--ink); }
+.tabs a[aria-selected="true"], .tabs a[aria-current="page"] { background: var(--strong-bg); color: var(--strong-ink); }
+.tabs a:hover:not([aria-selected="true"], [aria-current="page"]) { background: var(--surface-2); color: var(--ink); }
 .topic { content-visibility: auto; contain-intrinsic-size: auto 600px; }
 .topic h2 .muted { font-weight: 700; }
 .wstate { display: inline-flex; align-items: center; gap: 3px; margin: 0 4px; padding: 1px 7px; border-radius: 6px; font-size: 12.5px; font-weight: 800; vertical-align: 2px; background: var(--surface-2); color: var(--muted); }
@@ -778,6 +783,11 @@ html[dir="rtl"] .print-bar p { margin: 0 0 0 auto; }
   background: color-mix(in srgb, var(--surface-2) 80%, transparent); color: var(--muted); font-size: 17px; cursor: pointer; opacity: .75;
 }
 .word-edit:hover, .word-edit:focus-visible { opacity: 1; color: var(--ink); }
+/* Phones: the cards are narrow, so ✎ gets its own strip at the start instead of sitting on the Arabic word */
+@media (max-width: 760px) {
+  .word-wrap > .phrase { padding-inline-start: 52px; }
+  .word-wrap > .word-edit { top: 50%; translate: 0 -50%; }
+}
 .her-voice { display: inline-flex; align-items: center; gap: 5px; margin-top: 4px; color: var(--accent); font-size: 13.5px; font-weight: 800; }
 .her-voice .i { width: 15px; height: 15px; }
 .editor { width: min(520px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 0; border-radius: 20px; background: var(--surface); color: var(--ink); box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .45); }
@@ -912,7 +922,7 @@ html[dir="rtl"] .st-actions .i { transform: scaleX(-1); }
 /* A toast with an Undo button can be pressed */
 .voice-toast.has-action.is-on { pointer-events: auto; display: flex; align-items: center; gap: 14px; }
 .voice-toast button { flex: 0 0 auto; min-height: 36px; padding: 4px 14px; border: 0; border-radius: 8px; background: var(--bg); color: var(--ink); font: inherit; font-weight: 800; cursor: pointer; }
-.tabs a small { margin-inline-start: 6px; font-weight: 700; opacity: .75; }
+.tabs a small { margin-inline-start: 6px; font-weight: 700; }
 
 /* Grammar lessons */
 .gr-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
@@ -1059,7 +1069,7 @@ html[dir="rtl"] .deck-study .i { transform: scaleX(-1); }
 .pr-name { display: flex; align-items: baseline; gap: 8px; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; text-align: start; }
 .pr-name .ar { font-size: 19px; }
 .pr-name span { color: var(--muted); font-size: 14px; }
-.pr-list .is-past { opacity: .55; }
+.pr-list .is-past, .pr-list .is-past .pr-name span { color: var(--muted); }
 .pr-list .is-sun { font-style: italic; }
 .pr-list .is-prev { background: color-mix(in srgb, var(--ink) 6%, transparent); }
 .pr-list .is-next { background: color-mix(in srgb, var(--accent) 16%, transparent); font-weight: 800; }
@@ -1297,7 +1307,7 @@ html[dir="rtl"] .bd-go .i { transform: scaleX(-1); }
   background: var(--surface); color: var(--ink); box-shadow: 0 1px 1px rgba(0, 0, 0, .08); }
 .is-him .ch-bubble { background: var(--strong-bg); color: var(--strong-ink); border-end-end-radius: 6px; }
 .is-her .ch-bubble, .is-other .ch-bubble { border-end-start-radius: 6px; }
-.ch-who { font-size: 12.5px; font-weight: 800; color: #B0284C; }
+.ch-who { font-size: 12.5px; font-weight: 800; color: var(--her-name); }
 .is-other .ch-who { color: var(--accent); }
 .ch-ar { font-size: 24px; line-height: 1.55; direction: rtl; text-align: right; }
 .ch-say, .ch-mean { display: none; font-size: 14.5px; }
@@ -1800,4 +1810,24 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
   .td-story-go { grid-column: 1 / -1; justify-content: center; }
   .td-story-text > b { font-size: 18px; }
   .td-story-ar { font-size: 21px; }
+}
+
+/* iPhone: a long row of choices (word-list stages, To her sections, letter groups) stays one line and scrolls
+   sideways, instead of stacking four rows deep above the words; the edges fade to show there's more. */
+@media (max-width: 560px) {
+  .tabs, .chips, .lv-jump { flex-wrap: nowrap; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scrollbar-width: none;
+    padding-inline: 18px; -webkit-mask-image: linear-gradient(to right, transparent, #000 18px, #000 calc(100% - 18px), transparent); mask-image: linear-gradient(to right, transparent, #000 18px, #000 calc(100% - 18px), transparent); }
+  .tabs::-webkit-scrollbar, .chips::-webkit-scrollbar, .lv-jump::-webkit-scrollbar { display: none; }
+  :is(.tabs, .chips, .lv-jump) > * { flex: 0 0 auto; scroll-snap-align: center; white-space: nowrap; }
+}
+
+/* Touch screens (her iPad and iPhone): everything you tap is at least 44 px. Buttons grow; small things inside a line
+   of text (a prayer name, a verb form, "Open") keep their look and get a bigger invisible edge to tap instead. */
+@media (pointer: coarse) {
+  .btn, .chip, .tabs a, .tabs button, .scene-cap, .city-chips button, .city-chips a { min-height: 44px; }
+  .sky-toggle, .bd-go { min-width: 44px; min-height: 44px; }
+  .edit-fab { min-height: 44px; }
+  .pa-box, .pr-name, .vb-form, .task-go, a.small, .table-details summary, .check input, .task input, .detail-tasks input { position: relative; }
+  .pa-box::after, .pr-name::after, .vb-form::after, .task-go::after, a.small::after, .table-details summary::after { content: ""; position: absolute; inset: -8px; }
+  .task input, .check input, .detail-tasks input { width: 24px; height: 24px; }
 }

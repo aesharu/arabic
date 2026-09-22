@@ -113,8 +113,13 @@ export function parapet({ weeks, label, stageLabels }) {
     x += tw;
     return el;
   }).join("");
+  // The stage you're in is marked; on phones the others show just their number (data-short) so they never collide.
+  const nowStage = weeks.find(w => w.state.startsWith("now"))?.stage;
   const labels = stageLabels
-    ? `<div class="parapet-labels">${starts.map(s => `<span style="left:${((s.x / PW) * 100).toFixed(2)}%">${esc(stageLabels[s.stage - 1])}</span>`).join("")}</div>`
+    ? `<div class="parapet-labels">${starts.map(s => {
+      const text = stageLabels[s.stage - 1];
+      return `<span style="left:${((s.x / PW) * 100).toFixed(2)}%"${s.stage === nowStage ? ' class="is-now"' : ""} data-short="${esc(text.match(/\d+/)?.[0] ?? "")}">${esc(text)}</span>`;
+    }).join("")}</div>`
     : "";
   return `
     <div class="parapet" dir="ltr">

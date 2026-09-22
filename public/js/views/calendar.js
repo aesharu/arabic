@@ -46,7 +46,7 @@ function renderMonth(m, log, today, selected, wd) {
   for (let d = 1; d <= daysInMonth(m); d++) {
     const date = `${m}-${String(d).padStart(2, "0")}`;
     if (date < START || date > GOAL) {
-      cells.push(`<span class="cal-day is-out">${d}</span>`);
+      cells.push(`<span class="cal-day is-out" aria-hidden="true"></span>`);
       continue;
     }
     const st = dayStatus(date, log, today);
@@ -57,7 +57,7 @@ function renderMonth(m, log, today, selected, wd) {
   }
   const last = `${m}-${String(daysInMonth(m)).padStart(2, "0")}`;
   const stages = PHASES.filter(p => p.start <= last && p.end >= `${m}-01`).map(p => tx(phaseTitle(p)));
-  return `<section class="month"><h3>${esc(format(`${m}-01`, { month: "long", year: "numeric" }, locale()))}</h3>
+  return `<section class="month"><h2>${esc(format(`${m}-01`, { month: "long", year: "numeric" }, locale()))}</h2>
     <p class="stage-names">${esc(stages.join(" · "))}</p><div class="cal-grid">${cells.join("")}</div></section>`;
 }
 
@@ -118,7 +118,7 @@ export default {
         </div>
         <div class="cal-layout">
           <div class="months">${monthsInPlan().map(m => renderMonth(m, log, today, selected, wd)).join("")}</div>
-          <aside class="panel detail" aria-live="polite">${renderDetail(selected, log, today)}</aside>
+          <div class="panel detail" aria-live="polite">${renderDetail(selected, log, today)}</div>
         </div>
         <section class="panel backup">
           <h2>${t("cal.data")}</h2>

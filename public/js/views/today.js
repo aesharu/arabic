@@ -4,7 +4,7 @@ import * as cards from "../core/cards.js";
 import { loadVocab, vocabNow } from "../core/vocab.js";
 import { todayKey, longDate, addDays, diffDays, format } from "../core/dates.js";
 import { planFor, phaseTitle, TOTAL_DAYS, weekNumber, streak, totals, allTasksTicked } from "../core/schedule.js";
-import { t, tx, tu, num, locale, lang, isArabic } from "../core/i18n.js";
+import { t, tx, tu, num, cnt, locale, lang, isArabic } from "../core/i18n.js";
 import { esc, rich, ar, lat, translit, flag, meanings, playIcon } from "../core/dom.js";
 import { icon, scene } from "../core/art.js";
 import { START, GOAL, DAILY_GOAL_MIN } from "../config.js";
@@ -50,7 +50,7 @@ const TZ = "Asia/Riyadh";
 let occasions = { day: "", list: [] }; // upcoming() walks the calendar day by day: once a day is enough
 const clockAt = at => new Intl.DateTimeFormat(locale(), { hour: "2-digit", minute: "2-digit", hourCycle: "h23", timeZone: TZ }).format(at);
 const meanOf = x => lat(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }));
-const daysText = n => (n === 0 ? t("saudi.isToday") : n === 1 ? t("saudi.tomorrow") : t("saudi.inDays", { n: num(n) }));
+const daysText = n => (n === 0 ? t("saudi.isToday") : n === 1 ? t("saudi.tomorrow") : t("saudi.inDays", { n: cnt("unit.days", n) }));
 
 function herWorld(now = Date.now()) {
   const day = saudiToday(now);
@@ -108,7 +108,7 @@ function last14(date) {
   return `<div class="mini-bars" dir="ltr">${days.map(d => {
     const min = d < START ? 0 : log[d]?.min ?? 0;
     const title = format(d, { weekday: "short", day: "numeric", month: "short" }, locale());
-    return `<span class="${min ? "" : "zero"}" style="height:${Math.max(6, (min / max) * 100)}%" tabindex="0"
+    return `<span class="${min ? "" : "zero"}" style="height:${Math.max(6, (min / max) * 100)}%" role="img" tabindex="0"
       data-tip="${esc(title)}" data-rows="${esc(`${t("min", { n: min })}||`)}" aria-label="${esc(`${title}: ${t("min", { n: min })}`)}"></span>`;
   }).join("")}</div>`;
 }
@@ -229,7 +229,7 @@ export default {
             </section>
           </div>
 
-          <aside class="today-side">
+          <div class="today-side">
             <div data-cards-panel>${cardsPanel()}</div>
 
             <section class="panel timer${run ? " is-running" : ""}">
@@ -270,7 +270,7 @@ export default {
                   </div>
                 </div>` : ""}
             </section>
-          </aside>
+          </div>
         </div>`;
       fillStory();
     };
