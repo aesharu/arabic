@@ -26,7 +26,7 @@ export default {
     const days = [...new Set(PHRASES.map(p => p.day))];
 
     root.innerHTML = `
-      ${pageHead(t("phrases.title"), t("phrases.sub"), "", "", "phrases")}
+      ${pageHead(t("phrases.title"), t("phrases.sub"), "", "", "coffee")}
       <p class="hint">${t("phrases.hint", { q: ar("ق", "ar-in") })}</p>
       <section class="pday hers">
         <h2>${t("phrases.hers")}</h2>

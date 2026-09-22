@@ -131,3 +131,44 @@
 :root[data-theme="saudi-dark"] .sky-dawn, :root[data-theme="dark"] .sky-dawn { --sky-top: #2A2330; --sky-bottom: #3F3438; --hero-ink: #F6EEE6; --hero-muted: #D9C8BD; }
 :root[data-theme="saudi-dark"] .sky-day, :root[data-theme="dark"] .sky-day { --sky-top: #0F2C2A; --sky-bottom: #1B4337; --hero-ink: #EEF6F1; --hero-muted: #BCD6C8; }
 :root[data-theme="saudi-dark"] .sky-dusk, :root[data-theme="dark"] .sky-dusk { --sky-top: #2B1A1E; --sky-bottom: #4A2E24; --hero-ink: #FBEFE3; --hero-muted: #E2C6AE; }
+
+/* ---------- Page scenes (core/scenes.js): sky, and the colours of her world ----------
+   --scene-night is 1 in the dark themes: stars and the moon come out, the sun goes. */
+:root {
+  --scene-top: #CDE5E6; --scene-bottom: #F7EFDD; --scene-night: 0;
+  --nafud-far: #EDBF8B; --nafud: #DD9657; --nafud-near: #C97A40;
+  --tent: #2B2420; --tent-line: #4B4038; --tent-in: #15100D; --rope: #7D6A55;
+  --flame: #F29A38; --flame-core: #FFD470; --fire-glow: rgba(255, 166, 64, .3); --lamp: #FFD470;
+  --rose: #D9577A; --rose-in: #9E2F52; --leaf: #3F8F5A; --stem: #3F7A4E; --hill: #BFD0AA;
+  --grass: #9BC67E; --grass-far: #C3DDA6; --flower-1: #F4D35E; --flower-2: #FFFFFF; --flower-3: #C58BD8; --truffle: #8C6A4A;
+  --plaster: #EFE2C8; --plaster-shade: #E2D0AC; --cushion: #7A2E2A; --armrest: #9E2A2B; --carpet: #8B3A2B; --carpet-line: #C7925A;
+  --falcon: #8C7058; --falcon-chest: #EBDfCA; --falcon-wing: #6B533F; --hood: #5A3A22; --beak: #3C3C3C;
+  --wood: #8C6A3F; --desk: #CBA777; --car: #F3EFE6; --car-glass: #9CC3CF; --wheel: #2A2A2A;
+  --spice-1: #E3A21A; --spice-2: #B83A1E; --spice-3: #6E8B3D; --spice-4: #8A5A2B; --bowl: #7A5A3A;
+  --tag: #FFFFFF; --tag-ink: #0B2E1C; --glass: rgba(255, 255, 255, .55); --glass-line: #8FB3B8; --rosewater: #F2B8C8;
+  --cloud: #FFFFFF; --rain: #7FA9C4;
+}
+:root[data-theme="light"] { --scene-top: #E9D6B2; --scene-bottom: #F6ECD8; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --scene-top: #04110B; --scene-bottom: #173A2B; --scene-night: 1;
+    --nafud-far: #5E3C22; --nafud: #6E4526; --nafud-near: #7C4E2B;
+    --tent-in: #070504; --rope: #5A4B3C; --fire-glow: rgba(255, 150, 50, .34);
+    --rose: #C54B6D; --leaf: #2F6E48; --stem: #2F5E3C; --hill: #1F3A2C; --grass: #2F5A35; --grass-far: #264A2E; --flower-2: #D9E6DC;
+    --plaster: #3A2E22; --plaster-shade: #30251B; --carpet: #5E2A20; --carpet-line: #8A6440;
+    --falcon: #6E5A48; --falcon-chest: #BDB09A; --falcon-wing: #4F3F31; --hood: #3E2816;
+    --wood: #5E4730; --desk: #4A3A28; --car: #C9C4B8; --car-glass: #5C7F8A; --bowl: #5A4430;
+    --tag: #E9E1CC; --glass: rgba(255, 255, 255, .22); --cloud: #3E5A4E; --rain: #5C8AA6;
+  }
+}
+:root[data-theme="saudi-dark"], :root[data-theme="dark"] {
+  --scene-top: #04110B; --scene-bottom: #173A2B; --scene-night: 1;
+  --nafud-far: #5E3C22; --nafud: #6E4526; --nafud-near: #7C4E2B;
+  --tent-in: #070504; --rope: #5A4B3C; --fire-glow: rgba(255, 150, 50, .34);
+  --rose: #C54B6D; --leaf: #2F6E48; --stem: #2F5E3C; --hill: #1F3A2C; --grass: #2F5A35; --grass-far: #264A2E; --flower-2: #D9E6DC;
+  --plaster: #3A2E22; --plaster-shade: #30251B; --carpet: #5E2A20; --carpet-line: #8A6440;
+  --falcon: #6E5A48; --falcon-chest: #BDB09A; --falcon-wing: #4F3F31; --hood: #3E2816;
+  --wood: #5E4730; --desk: #4A3A28; --car: #C9C4B8; --car-glass: #5C7F8A; --bowl: #5A4430;
+  --tag: #E9E1CC; --glass: rgba(255, 255, 255, .22); --cloud: #3E5A4E; --rain: #5C8AA6;
+}
+:root[data-theme="dark"] { --scene-top: #0E0906; --scene-bottom: #34261A; }

@@ -11,6 +11,7 @@ import { sayAll } from "../core/speech.js";
 import { dictionary } from "../core/dictionary.js";
 import { tappable, selection, paint } from "./tapword.js";
 import { loadVocab } from "../core/vocab.js";
+import { celebrate } from "../core/celebrate.js";
 
 // The stories are a big file: loaded the first time this page (or the Record page) needs them.
 let loading = null;
@@ -28,7 +29,7 @@ const badge = level => (BADGE[level] ? t(BADGE[level]) : level);
 function list(S) {
   const done = S.STORIES.filter(s => isRead(s.id)).length;
   const next = S.STORIES.find(s => !isRead(s.id));
-  return `${pageHead(t("st.title"), esc(t("st.sub")), "", "", "reading")}
+  return `${pageHead(t("st.title"), esc(t("st.sub")), "", "", "tent")}
     <p class="callout">${esc(t("st.tip"))}</p>
     <div class="st-top">
       <p class="st-count">${esc(t("st.count", { n: num(done), total: num(S.STORIES.length) }))}</p>
@@ -114,13 +115,13 @@ function story(S, s, d) {
 export default {
   titleKey: "st.title",
   async mount(root, { params, signal }) {
-    root.innerHTML = pageHead(t("st.title"), esc(t("words.loading")), "", "", "reading");
+    root.innerHTML = pageHead(t("st.title"), esc(t("words.loading")), "", "", "tent");
     let S;
     let vocab = null;
     try {
       [S, { vocab }] = await Promise.all([loadStories(), loadVocab().catch(() => ({ vocab: null }))]);
     } catch {
-      root.innerHTML = pageHead(t("st.title"), esc(t("st.loadError")), "", "", "reading");
+      root.innerHTML = pageHead(t("st.title"), esc(t("st.loadError")), "", "", "tent");
       return;
     }
     if (signal.aborted) return;
@@ -188,6 +189,7 @@ export default {
         got[+q.dataset.q] = q.dataset.a === "1";
         answers.set(s.id, got);
         root.querySelector("[data-quiz]").innerHTML = quiz(s);
+        if (s.quiz.every((x, i) => got[i] === x.answer)) celebrate(root.querySelector(".st-score"));
         return;
       }
       if (e.target.closest("[data-retry]")) {
@@ -207,6 +209,7 @@ export default {
         b.classList.toggle("btn-primary", !now);
         b.setAttribute("aria-pressed", now);
         b.innerHTML = `${icon("check")} ${t(now ? "chats.isRead" : "chats.read")}`;
+        if (now) celebrate(b);
       }
     }, { signal });
     document.addEventListener("keydown", e => {

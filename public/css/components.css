@@ -1558,3 +1558,165 @@ html[dir="rtl"] .pa-step > a > .i { transform: scaleX(-1); }
 .st-text.is-hidden { position: relative; cursor: pointer; }
 .st-text.is-hidden .st-flow, .st-text.is-hidden .st-lines { filter: blur(9px); user-select: none; pointer-events: none; }
 @media (prefers-reduced-transparency: reduce) { .st-text.is-hidden .st-flow, .st-text.is-hidden .st-lines { filter: none; opacity: 0; } }
+
+/* ---------- Page scenes (core/scenes.js) ---------- */
+.page-head.has-scene { align-items: center; }
+.scene-card { position: relative; flex: 0 1 460px; min-width: 300px; margin: 0 0 6px; aspect-ratio: 3 / 1; border-radius: 20px; overflow: hidden; background: var(--scene-bottom); box-shadow: 0 0 0 1px var(--line), 0 10px 28px -18px rgba(0, 0, 0, .45); isolation: isolate; }
+.pscene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: pointer; }
+.scene-cap { position: absolute; inset-inline-start: 10px; top: 10px; z-index: 1; display: inline-flex; align-items: center; gap: 8px; max-width: calc(100% - 20px); min-height: 40px; padding: 3px 4px 3px 12px; border: 0; border-radius: 99px;
+  background: color-mix(in srgb, var(--surface) 86%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--ink); font: inherit; text-align: start; box-shadow: 0 4px 14px -6px rgba(0, 0, 0, .35); cursor: pointer; transition: transform .15s ease, background-color .15s ease; }
+html[dir="rtl"] .scene-cap { padding: 3px 12px 3px 4px; }
+.scene-cap:hover { background: var(--surface); }
+.scene-cap:active { transform: scale(.97); }
+.scene-cap .ar { font-size: 21px; line-height: 1.2; }
+.scene-say { color: var(--muted); font-size: 14px; font-weight: 800; white-space: nowrap; }
+.scene-mean { overflow: hidden; font-size: 13.5px; font-weight: 700; white-space: nowrap; text-overflow: ellipsis; }
+.scene-cap .play { flex: 0 0 auto; width: 32px; height: 32px; }
+
+.ps-sky-top { stop-color: var(--scene-top); }
+.ps-sky-bottom { stop-color: var(--scene-bottom); }
+.ps-night { opacity: var(--scene-night); }
+.ps-day { opacity: calc(1 - var(--scene-night)); }
+.pscene .a-moon path { fill: var(--art-moon); }
+.ps-nafud-far { fill: var(--nafud-far); } .ps-nafud { fill: var(--nafud); } .ps-nafud-near { fill: var(--nafud-near); }
+.ps-tent { fill: var(--tent); } .ps-tent-line { stroke: var(--tent-line); stroke-width: 1.4; fill: none; } .ps-tent-in { fill: var(--tent-in); }
+.ps-rope { stroke: var(--rope); stroke-width: 1; fill: none; } .ps-rope-dark { stroke: var(--tent); stroke-width: 1.2; fill: none; }
+.ps-lamp { fill: var(--lamp); } .ps-lamp-glow { fill: var(--lamp); opacity: .22; }
+.ps-glow { fill: var(--fire-glow); } .ps-log { fill: var(--art-trunk); }
+.ps-flame { fill: var(--flame); } .ps-flame-core { fill: var(--flame-core); }
+.ps-sadu-red { fill: var(--sadu-red); } .ps-sadu-cream { fill: var(--sadu-cream); } .ps-sadu-dark { fill: var(--sadu-dark); } .ps-sadu-green { fill: var(--sadu-green); }
+.ps-camel { fill: var(--art-wall-shade); } .ps-saddle { fill: var(--sadu-red); } .ps-saddle-band { fill: var(--sadu-cream); }
+.ps-tail { stroke: var(--art-wall-shade); stroke-width: 2; fill: none; stroke-linecap: round; }
+.ps-tracks { fill: none; stroke: var(--art-wall-shade); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; opacity: .6; }
+.ps-pole { stroke: var(--wood); stroke-width: 4; stroke-linecap: round; fill: none; }
+.ps-falcon { fill: var(--falcon); } .ps-falcon-chest { fill: var(--falcon-chest); } .ps-falcon-wing { fill: var(--falcon-wing); }
+.ps-falcon-spot { stroke: var(--falcon-wing); stroke-width: 1.6; stroke-linecap: round; }
+.ps-hood { fill: var(--hood); } .ps-hood-band { fill: var(--art-brass); } .ps-plume { fill: var(--sadu-red); }
+.ps-beak { fill: var(--beak); } .ps-malar { fill: none; stroke: var(--hood); stroke-width: 2.2; stroke-linecap: round; }
+.ps-wing-line { fill: none; stroke: var(--falcon); stroke-width: 1.2; opacity: .7; } .ps-talon { stroke: var(--beak); stroke-width: 1.8; stroke-linecap: round; }
+.ps-leash { fill: none; stroke: var(--sadu-red); stroke-width: 1.6; }
+.ps-awning { fill: var(--sadu-red); } .ps-awning-2 { fill: var(--sadu-cream); } .ps-awning-edge { stroke: var(--sadu-dark); stroke-width: 2; }
+.ps-wood { fill: var(--wood); } .ps-bowl { fill: var(--bowl); } .ps-basket { fill: var(--art-trunk); } .ps-basket-line { stroke: var(--art-trunk-line); stroke-width: 1.4; fill: none; }
+.ps-spice-1 { fill: var(--spice-1); } .ps-spice-2 { fill: var(--spice-2); } .ps-spice-3 { fill: var(--spice-3); } .ps-spice-4 { fill: var(--spice-4); }
+.ps-tag-stick { stroke: var(--wood); stroke-width: 1.4; } .ps-tag-card { fill: var(--tag); stroke: var(--line); }
+.ps-tag-text { font-family: var(--font-ar); font-size: 11px; font-weight: 700; fill: var(--tag-ink); }
+.ps-hill { fill: var(--hill); } .ps-stem { fill: none; stroke: var(--stem); stroke-width: 1.8; } .ps-leaf { fill: var(--leaf); }
+.ps-rose { fill: var(--rose); } .ps-rose-in { fill: none; stroke: var(--rose-in); stroke-width: 1.3; stroke-linecap: round; }
+.ps-heart { fill: var(--rose); }
+.ps-glass { fill: var(--glass); stroke: var(--glass-line); stroke-width: 1; } .ps-glass-in { fill: var(--rosewater); opacity: .8; } .ps-cork { fill: var(--art-trunk); }
+.ps-pour { fill: none; stroke: var(--art-brass); stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 5 4; }
+.ps-carpet { fill: var(--carpet); } .ps-carpet-line { stroke: var(--carpet-line); stroke-width: 2; stroke-dasharray: 8 5; }
+.ps-car-body { fill: var(--car); } .ps-car-glass { fill: var(--car-glass); } .ps-wheel { fill: var(--wheel); }
+.ps-spout { fill: var(--wood); }
+.ps-plaster { fill: var(--plaster); } .ps-plaster-shade { fill: var(--plaster-shade); }
+.ps-window rect { fill: var(--scene-top); stroke: var(--wood); stroke-width: 3; } .ps-window-bar { stroke: var(--wood); stroke-width: 2.5; }
+.ps-light { fill: var(--lamp); opacity: calc(.14 - var(--scene-night) * .08); }
+.ps-cushion { fill: var(--cushion); } .ps-armrest { fill: var(--armrest); } .ps-armrest-band { stroke: var(--sadu-cream); stroke-width: 2; }
+.ps-smoke { fill: none; stroke: var(--art-steam); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 60; }
+.ps-warp { stroke: var(--sadu-cream); stroke-width: 1.2; opacity: .8; }
+.ps-wool-red { fill: var(--sadu-red); } .ps-wool-cream { fill: var(--sadu-cream); } .ps-wool-line { fill: none; stroke: rgba(0, 0, 0, .25); stroke-width: 1.2; }
+.ps-grass { fill: var(--grass); } .ps-grass-far { fill: var(--grass-far); }
+.ps-flower-1 { fill: var(--flower-1); } .ps-flower-2 { fill: var(--flower-2); } .ps-flower-3 { fill: var(--flower-3); }
+.ps-truffle { fill: var(--truffle); } .ps-truffle-line { fill: none; stroke: rgba(0, 0, 0, .3); stroke-width: 1; }
+.ps-cloud path:first-child { fill: var(--cloud); } .ps-rain { fill: none; stroke: var(--rain); stroke-width: 1.8; stroke-linecap: round; }
+.ps-crescent-moon { fill: var(--art-brass); }
+.ps-desk { fill: var(--desk); } .ps-callig { font-size: 52px; }
+
+/* Movement: gentle, and none at all with "reduce motion". Tapping a scene (.is-play) makes it do something. */
+@media (prefers-reduced-motion: no-preference) {
+  .ps-flame, .ps-flame-core { transform-box: fill-box; transform-origin: 50% 100%; animation: ps-flicker 1.6s ease-in-out infinite; }
+  .ps-flame-core { animation-duration: 1.1s; }
+  .ps-glow { animation: ps-glow 2.4s ease-in-out infinite; }
+  .ps-walk { animation: ps-bob 1.4s ease-in-out infinite; }
+  .ps-plume { transform-box: fill-box; transform-origin: 50% 100%; animation: ps-sway 3.2s ease-in-out infinite; }
+  .ps-heart { transform-box: fill-box; animation: ps-rise 6s ease-in infinite; opacity: 0; }
+  .ps-pour, .pscene .a-steam { animation: ps-flow 1.2s linear infinite; }
+  .pscene .a-steam { stroke-dasharray: 4 5; }
+  .ps-smoke { animation: ps-smoke 4s ease-in-out infinite; }
+  .ps-cloud { animation: ps-drift 14s ease-in-out infinite alternate; }
+  .ps-rain { stroke-dasharray: 3 9; animation: ps-flow .9s linear infinite; }
+  .ps-lamp-glow { animation: ps-glow 3s ease-in-out infinite; }
+  .ps-wing { transform-box: fill-box; transform-origin: 30% 10%; transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+  .ps-yarn { transform-box: fill-box; transform-origin: 50% 50%; }
+  .scene-card.is-play .ps-flame { animation-duration: .45s; }
+  .scene-card.is-play .ps-walk { animation-duration: .45s; }
+  .scene-card.is-play .ps-wing { transform: rotate(-28deg); }
+  .scene-card.is-play .ps-heart { animation-duration: 1.6s; }
+  .scene-card.is-play .ps-yarn { animation: ps-roll .8s ease-out; }
+  .scene-card.is-play .pscene { animation: ps-pop .5s ease-out; }
+}
+@keyframes ps-flicker { 0%, 100% { transform: scale(1, 1); } 30% { transform: scale(.93, 1.08); } 60% { transform: scale(1.05, .94); } }
+@keyframes ps-glow { 50% { opacity: .55; } }
+@keyframes ps-bob { 50% { transform: translateY(-1.8px); } }
+@keyframes ps-sway { 50% { transform: rotate(9deg); } }
+@keyframes ps-rise { 0% { opacity: 0; transform: translateY(20px); } 20% { opacity: .9; } 100% { opacity: 0; transform: translateY(-26px); } }
+@keyframes ps-flow { to { stroke-dashoffset: -18; } }
+@keyframes ps-smoke { 0% { stroke-dashoffset: 60; opacity: 0; } 30% { opacity: .9; } 100% { stroke-dashoffset: -60; opacity: 0; } }
+@keyframes ps-drift { to { transform: translateX(-26px); } }
+@keyframes ps-roll { 50% { transform: translateX(10px) rotate(160deg); } }
+@keyframes ps-pop { 40% { transform: scale(1.02); } }
+
+@media (max-width: 1100px) {
+  .scene-card { flex-basis: 340px; min-width: 260px; }
+  .scene-mean { display: none; }
+}
+@media (max-width: 700px) {
+  .page-head.has-scene { flex-direction: column; align-items: stretch; gap: 14px; }
+  .page-head.has-scene .scene-card { flex: 0 0 auto; width: 100%; min-width: 0; aspect-ratio: auto; height: 112px; margin: 0; border-radius: 16px; }
+  .page-head.has-scene .scene-mean { display: inline; }
+}
+@media (max-width: 420px) {
+  .page-head.has-scene .scene-mean { display: none; }
+}
+
+/* ---------- Culture card (views/culture.js): a true story about her world, under every page ---------- */
+.culture-slot { margin-top: 40px; }
+.culture { max-width: 940px; overflow: hidden; border-radius: 22px; border: 1.5px solid var(--line);
+  background: color-mix(in srgb, var(--art-sand-far) 24%, var(--surface)); }
+.culture .sadu { height: 14px; }
+.culture-body { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 22px; align-items: start; padding: 20px 22px 22px; }
+.culture-pic { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 18px; background: var(--scene-bottom); box-shadow: 0 0 0 1px var(--line); }
+.culture-kind { display: flex; align-items: center; gap: 6px; margin: 0; color: var(--hard); font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.culture-kind .i { width: 16px; height: 16px; }
+.culture h2 { margin: 4px 0 8px; font-size: 26px; }
+.culture-text > p:not(.culture-kind) { max-width: 68ch; margin: 0; font-size: 17px; line-height: 1.62; }
+.culture-text .ar-in { font-size: 1.15em; }
+.culture-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 14px; }
+.culture-word { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 4px 6px 4px 14px; border: 0; border-radius: 99px;
+  background: var(--surface); box-shadow: 0 0 0 1.5px var(--line); color: var(--ink); font: inherit; text-align: start; cursor: pointer; transition: box-shadow .15s ease, transform .15s ease; }
+html[dir="rtl"] .culture-word { padding: 4px 14px 4px 6px; }
+.culture-word:hover { box-shadow: 0 0 0 1.5px var(--accent); }
+.culture-word:active { transform: scale(.97); }
+.culture-word .ar { font-size: 23px; line-height: 1.3; }
+.culture-word span { color: var(--muted); font-size: 14px; font-weight: 800; }
+.culture-word small { font-size: 13.5px; font-weight: 700; }
+.culture-next { margin-inline-start: auto; }
+@media (max-width: 700px) {
+  .culture-body { grid-template-columns: 1fr; gap: 14px; padding: 14px 14px 16px; }
+  .culture-pic { aspect-ratio: 5 / 2; }
+  .culture h2 { font-size: 22px; }
+  .culture-text > p:not(.culture-kind) { font-size: 16.5px; }
+  .culture-next { margin-inline-start: 0; }
+}
+
+/* ---------- Life: lists flow in when a page opens, cards lift under the pointer, a burst for finishing ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list, .lv-sections > .lv-section) > *,
+  #view.is-entering .culture { animation: enter-rise .5s cubic-bezier(.2, .7, .2, 1) both; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(2) { animation-delay: .04s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(3) { animation-delay: .08s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(4) { animation-delay: .12s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(5) { animation-delay: .16s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(6) { animation-delay: .2s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(n+7) { animation-delay: .24s; }
+  .scene-card { animation: enter-scene .6s cubic-bezier(.2, .7, .2, 1) both; }
+  :is(.ch-card, .gr-card, .vb-list a, .pa-step > a, .culture-word, .scene-cap) { transition: transform .18s cubic-bezier(.2, .7, .2, 1), box-shadow .18s ease, background-color .15s ease; }
+  .btn:active, .opt:not(:disabled):active, .ch-card:active, .gr-card:active { transform: scale(.975); }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  :is(.ch-card, .gr-card):hover { transform: translateY(-2px); box-shadow: 0 12px 24px -16px rgba(0, 0, 0, .4), 0 0 0 1px var(--line); }
+  .vb-list a:hover { transform: translateY(-2px); }
+}
+@keyframes enter-rise { from { opacity: 0; transform: translateY(10px); } }
+@keyframes enter-scene { from { opacity: 0; transform: translateY(6px) scale(.985); } }
+.confetti { position: fixed; z-index: 1000; width: 9px; height: 9px; border-radius: 1.5px; pointer-events: none; box-shadow: 0 0 0 1px rgba(0, 0, 0, .12); }

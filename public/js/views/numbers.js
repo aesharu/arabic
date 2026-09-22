@@ -59,7 +59,7 @@ export default {
         <button type="button" class="btn" data-time>${t("nums.another")}</button></div>`;
     };
 
-    root.innerHTML = `${pageHead(t("nums.title"), esc(t("nums.sub")), "", "", "calendar")}
+    root.innerHTML = `${pageHead(t("nums.title"), esc(t("nums.sub")), "", "", "souq")}
       <section class="panel nm-maker">
         <h2>${t("nums.maker")}</h2>
         <div class="nm-input"><input type="number" inputmode="numeric" min="0" max="1000000" value="${current}" aria-label="${esc(t("nums.maker"))}">

@@ -56,7 +56,7 @@ export default {
   titleKey: "me.title",
   mount(root, { signal }) {
     let stop = null;
-    root.innerHTML = `${pageHead(t("me.title"), esc(t("me.sub")), "", "", "phrases")}
+    root.innerHTML = `${pageHead(t("me.title"), esc(t("me.sub")), "", "", "coffee")}
       <p class="callout">${icon("heart")}<span>${esc(t("me.family"))}</span></p>
       <div class="me-grid">${form(me())}<div data-out>${output(aboutMe(me()))}</div></div>`;
     const out = root.querySelector("[data-out]");

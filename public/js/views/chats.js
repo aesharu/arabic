@@ -11,6 +11,7 @@ import { CHATS, CHAT_LINES } from "../data/chats.js";
 import { loadVocab } from "../core/vocab.js";
 import { dictionary } from "../core/dictionary.js";
 import { tappable, selection, paint } from "./tapword.js";
+import { celebrate } from "../core/celebrate.js";
 
 content.register(CHAT_LINES); // ✎ in edit mode
 
@@ -22,7 +23,7 @@ const mean = x => esc(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }));
 
 function list() {
   const done = read();
-  return `${pageHead(t("chats.title"), esc(t("chats.sub")), "", "", "phrases")}
+  return `${pageHead(t("chats.title"), esc(t("chats.sub")), "", "", "majlis")}
     <p class="callout">${esc(t("chats.tip"))}</p>
     <ol class="ch-list">${CHATS.map(c => `<li><a class="ch-card" href="#/chats/${c.id}">
       <span class="ch-level">${c.level}</span>
@@ -97,7 +98,9 @@ export default {
           st.reading = { done: [...set] };
           if (was) st.prefs.chatsRead = (st.prefs.chatsRead ?? []).filter(x => x !== c.id);
         });
-        return render();
+        render();
+        if (read().includes(c.id)) celebrate(root.querySelector("[data-read]"));
+        return;
       }
       const b = e.target.closest("[data-line]");
       if (b) b.closest(".ch-msg").classList.toggle("is-open"); // and main.js plays it

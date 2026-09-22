@@ -26,7 +26,7 @@ export default {
   titleKey: "love.title",
   mount(root, { params, signal }) {
     const render = () => {
-      root.innerHTML = `${pageHead(t("love.title"), esc(t("love.sub")), "", "", "finish")}
+      root.innerHTML = `${pageHead(t("love.title"), esc(t("love.sub")), "", "", "roses")}
         <section class="panel lv-intro"><p>${icon("heart")} ${esc(tx(LOVE_INTRO))}</p>
           <div class="btn-row">
             <a class="btn btn-primary" href="#/cards/study/love">${icon("cards")} ${t("love.study")}</a>

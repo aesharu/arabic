@@ -47,18 +47,18 @@ export const icon = (name, cls = "") =>
   `<svg class="i${cls ? " " + cls : ""}" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[name]}</svg>`;
 
 // ---------- Building blocks ----------
-const tri = (x, y, w, h) => `M${x},${y}l${w / 2},${-h}l${w / 2},${h}z`;
+export const tri = (x, y, w, h) => `M${x},${y}l${w / 2},${-h}l${w / 2},${h}z`;
 // A row of Najdi crenellations (sharafat) along a wall top: small triangles with a notch step.
-const crenels = (x, y, width, w = 10, h = 9) => {
+export const crenels = (x, y, width, w = 10, h = 9) => {
   let d = "";
   for (let cx = x; cx + w <= x + width + 0.1; cx += w) d += tri(cx, y, w, h);
   return d;
 };
 // Triangular vents in a row — the little openings of Najdi mud walls.
-const vents = (x, y, n, gap = 12, w = 5, h = 6) => Array.from({ length: n }, (_, i) => tri(x + i * gap, y, w, h)).join("");
+export const vents = (x, y, n, gap = 12, w = 5, h = 6) => Array.from({ length: n }, (_, i) => tri(x + i * gap, y, w, h)).join("");
 
 // A date palm: a gently curved trunk, a crown of fronds, and hanging dates.
-function palm(x, base, height, lean = 0, scale = 1) {
+export function palm(x, base, height, lean = 0, scale = 1) {
   const top = { x: x + lean, y: base - height };
   const trunk = `M${x - 4 * scale},${base} C${x - 3 * scale},${base - height * 0.5} ${top.x - 2 * scale},${top.y + height * 0.25} ${top.x - 1.6 * scale},${top.y} L${top.x + 1.6 * scale},${top.y} C${top.x + 2.5 * scale},${top.y + height * 0.25} ${x + 3 * scale},${base - height * 0.5} ${x + 4 * scale},${base} Z`;
   const rings = Array.from({ length: Math.floor(height / (7 * scale)) }, (_, i) => {
@@ -141,7 +141,7 @@ export function scene(time) {
 }
 
 // ---------- Small illustrations for page headings (160×120) ----------
-const dallah = (x = 0, y = 0, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})">
+export const dallah = (x = 0, y = 0, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})">
   <ellipse class="a-shadow" cx="72" cy="110" rx="26" ry="4"/>
   <path class="a-brass" d="M50,106 C44,92 48,78 60,72 L84,72 C96,78 100,92 94,106 Z"/>
   <path class="a-brass-shade" d="M80,72 L84,72 C96,78 100,92 94,106 L84,106 C90,94 88,80 80,72 Z"/>
@@ -154,7 +154,7 @@ const dallah = (x = 0, y = 0, s = 1) => `<g transform="translate(${x} ${y}) scal
   <path class="a-brass-dark" fill="none" stroke-width="5" stroke-linecap="round" d="M60,58 C38,56 36,86 52,94"/>
   <path class="a-shine" d="M58,80 C56,88 57,96 60,101 L63,101 C61,95 60,88 62,81 Z"/>
 </g>`;
-const finjal = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})">
+export const finjal = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})">
   <path class="a-cup" d="M0,0 h18 l-2.5,11 h-13z"/><path class="a-cup-band" d="M.6,3 h16.8 l-.4,2 h-16z"/>
   <path class="a-steam" d="M6,-4 c-3,-4 3,-6 0,-11 M12,-4 c-3,-4 3,-6 0,-11"/></g>`;
 

@@ -19,7 +19,7 @@ export default {
     const phrase = `${ar("وش تسوين؟", "ar-in")} ${translit("wesh tsawwīn?")}`;
 
     root.innerHTML = `
-      ${pageHead(t("plan.title"), t("plan.sub"), t("plan.eyebrow", { start: date(START), goal: date(GOAL) }), "", "plan")}
+      ${pageHead(t("plan.title"), t("plan.sub"), t("plan.eyebrow", { start: date(START), goal: date(GOAL) }), "", "diriyah")}
 
       <div class="plan-intro">
         <section class="panel">

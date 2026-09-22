@@ -45,7 +45,7 @@ export default {
   titleKey: "words.title",
   mount(root, { params, signal }) {
     const tab = TABS.includes(params[0]) ? params[0] : "1";
-    root.innerHTML = pageHead(t("words.title"), esc(t("words.loading")), "", "", "words");
+    root.innerHTML = pageHead(t("words.title"), esc(t("words.loading")), "", "", "palms");
 
     let vocab = null;
     const results = () => {
@@ -73,7 +73,7 @@ export default {
     const render = () => {
       const total = vocab.stages.reduce((n, s) => n + count(s), 0);
       root.innerHTML = `
-        ${pageHead(t("words.title"), esc(t("words.sub", { n: num(total) })), "", "", "words")}
+        ${pageHead(t("words.title"), esc(t("words.sub", { n: num(total) })), "", "", "palms")}
         <div class="words-tools">
           <label class="search">${icon("search")}<span class="visually-hidden">${t("words.search")}</span>
             <input type="search" name="q" value="${esc(query)}" placeholder="${esc(t("words.searchHint"))}" autocomplete="off" spellcheck="false" data-search></label>
@@ -135,7 +135,7 @@ export default {
       // Switching tabs re-draws the page; keep the keyboard focus on the tab you're on.
       if ((document.activeElement === document.body || !document.activeElement) && params[0]) root.querySelector(`#tab-${tab}`)?.focus({ preventScroll: true });
     }).catch(() => {
-      if (!signal.aborted) root.innerHTML = pageHead(t("words.title"), esc(t("words.loadError")), "", "", "words");
+      if (!signal.aborted) root.innerHTML = pageHead(t("words.title"), esc(t("words.loadError")), "", "", "palms");
     });
   },
 };

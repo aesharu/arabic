@@ -8,6 +8,7 @@ import { icon } from "../core/art.js";
 import { say } from "../core/speech.js";
 import { VERBS } from "../data/verbs.js";
 import { PERSONS, conjugate, patterns } from "../core/verbs.js";
+import { celebrate } from "../core/celebrate.js";
 
 const TENSES = ["now", "past", "will"];
 let tense = "now"; // the column shown on narrow screens
@@ -88,7 +89,7 @@ export default {
     if (!tensesOf(v).includes(tense)) tense = "now";
 
     const render = () => {
-      root.innerHTML = `${pageHead(t("vb.title"), esc(t("vb.sub", { n: num(VERBS.length) })), "", "", "reading")}
+      root.innerHTML = `${pageHead(t("vb.title"), esc(t("vb.sub", { n: num(VERBS.length) })), "", "", "camels")}
         <p class="callout"><span>${rich(t("vb.pattern"))}</span></p>
         <div class="vb-list" role="group" aria-label="${esc(t("vb.pick"))}">${VERBS.map(x => `<a href="#/verbs/${x.id}"${x === v ? ' aria-current="page"' : ""}>${ar(x.now.ar)}<small>${esc(tx({ en: x.en, uk: x.ukInf, najdi: x.en, msa: x.en }))}</small></a>`).join("")}</div>
         ${verbCard(v)}
@@ -105,6 +106,7 @@ export default {
       score.run = ok ? score.run + 1 : 0;
       say(q.right.ar);
       paintDrill();
+      if (ok && score.run > 0 && score.run % 5 === 0) celebrate(root.querySelector(".vb-drill .pr-verdict"));
     };
     const again = () => {
       q = newQuestion(v);

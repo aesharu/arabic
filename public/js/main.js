@@ -43,6 +43,7 @@ import review from "./views/review.js";
 import * as editmode from "./core/editmode.js";
 import * as content from "./core/content.js";
 import { openEditor } from "./core/editor.js";
+import { renderCulture, startCulture } from "./views/culture.js";
 
 // Each view is { titleKey, mount(root, { params, signal }) }. Listeners a view adds with
 // { signal } are removed automatically when you leave it.
@@ -77,6 +78,18 @@ document.addEventListener("keydown", e => e.key === "Escape" && document.body.cl
 document.addEventListener("click", e => {
   const ed = e.target.closest("[data-edit]");
   if (ed) return openEditor(ed.dataset.edit, () => show(current.name, current.params));
+  // Tap a page's scene and it does something small (core/scenes.js).
+  const scenePic = e.target.closest(".pscene");
+  if (scenePic) {
+    const card = scenePic.closest(".scene-card, .culture-pic");
+    if (!card) return;
+    card.classList.remove("is-play");
+    void card.offsetWidth; // restart the animation on a quick second tap
+    card.classList.add("is-play");
+    clearTimeout(card.playTimer);
+    card.playTimer = setTimeout(() => card.classList.remove("is-play"), 1600);
+    return;
+  }
   const slow = e.target.closest("[data-say-slow]");
   if (slow) return say(slow.dataset.saySlow, { slow: true });
   const el = e.target.closest("[data-say]");
@@ -276,7 +289,10 @@ if (store.isTeacher()) {
   });
 }
 
+const cultureSlot = document.getElementById("culture");
+startCulture(cultureSlot, () => current);
 function show(name, params) {
+  const samePageRedraw = name === current.name && JSON.stringify(params) === JSON.stringify(current.params) && cultureSlot.innerHTML;
   controller?.abort();
   controller = new AbortController();
   current = { name, params };
@@ -288,6 +304,12 @@ function show(name, params) {
   document.body.dataset.route = name;
   renderDayPill();
   routes[name].mount(view, { params, signal: controller.signal });
+  if (!samePageRedraw) {
+    renderCulture(cultureSlot, name);
+    view.classList.add("is-entering"); // lists flow in once, when the page opens
+    clearTimeout(view.enterTimer);
+    view.enterTimer = setTimeout(() => view.classList.remove("is-entering"), 1100);
+  }
   teacherBanner();
   requestAnimationFrame(() => fitCharts(view));
 }

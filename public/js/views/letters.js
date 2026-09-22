@@ -54,7 +54,7 @@ const tableRow = (l, i) => `
   </tr>`;
 
 const table = () => `
-  ${pageHead(t("letters.tableTitle"), t("letters.tableSub"), "", "", "letters")}
+  ${pageHead(t("letters.tableTitle"), t("letters.tableSub"), "", "", "qalam")}
   <p class="lt-back"><a href="#/letters">${icon("back")} ${t("letters.byGroups")}</a></p>
   <table class="lt-table">
     <thead><tr><th class="lt-n">#</th><th>${t("letters.colLetter")}</th><th>${t("letters.colName")}</th><th>${t("letters.colSound")}</th><th>${t("lab.ua")}</th>
@@ -77,7 +77,7 @@ export default {
       const group = GROUPS[g];
       const isDone = done.includes(g);
       root.innerHTML = `
-        ${pageHead(t("letters.title"), t("letters.sub"), "", "", "letters")}
+        ${pageHead(t("letters.title"), t("letters.sub"), "", "", "qalam")}
         <p><a class="btn lt-all" href="#/letters/all">${icon("words")} ${t("letters.all")}</a></p>
         ${groupChips({ isOn: i => i === g, done, scheduled: scheduledGroup() })}
         <div class="gintro"><h2>${esc(tx(group.title))}</h2><p>${rich(tx(group.note))}</p></div>

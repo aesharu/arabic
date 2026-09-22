@@ -13,6 +13,7 @@ import { loadVocab, speakText } from "../core/vocab.js";
 import { HER_WORDS } from "../data/hers.js";
 import { LOVE } from "../data/love.js";
 import { deckName } from "./shared.js";
+import { celebrate } from "../core/celebrate.js";
 
 const ROUND = 10;
 const mean = x => tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en });
@@ -33,7 +34,7 @@ function topics(vocab) {
 function list(all) {
   const b = best();
   const groups = [...new Set(all.map(tp => tp.group))];
-  return `${pageHead(t("pr.title"), esc(t("pr.sub")), "", "", "quiz")}
+  return `${pageHead(t("pr.title"), esc(t("pr.sub")), "", "", "falcon")}
     ${groups.map(g => `<section class="st-step">
       <h2>${esc(g)}</h2>
       <ol class="ch-list pr-list">${all.filter(tp => tp.group === g).map(tp => `<li><a class="ch-card" href="#/practice/${tp.id}">
@@ -102,12 +103,12 @@ function finished(tp, round) {
 export default {
   titleKey: "pr.title",
   async mount(root, { params, signal }) {
-    root.innerHTML = pageHead(t("pr.title"), esc(t("words.loading")), "", "", "quiz");
+    root.innerHTML = pageHead(t("pr.title"), esc(t("words.loading")), "", "", "falcon");
     let vocab;
     try {
       ({ vocab } = await loadVocab());
     } catch {
-      root.innerHTML = pageHead(t("pr.title"), esc(t("st.loadError")), "", "", "quiz");
+      root.innerHTML = pageHead(t("pr.title"), esc(t("st.loadError")), "", "", "falcon");
       return;
     }
     if (signal.aborted) return;
@@ -149,6 +150,7 @@ export default {
       i++;
       if (i >= round.length) saveBest();
       render();
+      if (i >= round.length && round.every(q => q.options[q.answer] === q.e)) celebrate(root.querySelector(".pr-big"));
     };
     render();
 

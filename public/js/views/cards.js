@@ -71,7 +71,7 @@ export default {
   mount(root, { params, signal }) {
     const studying = params[0] === "study";
     const deck = studying && params[1] && DECKS.some(d => d.id === params[1]) ? params[1] : null;
-    root.innerHTML = pageHead(t("cards.title"), esc(t("cards.loading")), "", "", "cards");
+    root.innerHTML = pageHead(t("cards.title"), esc(t("cards.loading")), "", "", "sadu");
 
     let notes = [];
     let byId = new Map();
@@ -89,7 +89,7 @@ export default {
       const any = all.fresh + all.learn + all.review > 0;
       const susp = cards.suspendedCount();
       root.innerHTML = `
-        ${pageHead(t("cards.title"), t("cards.sub"), "", "", "cards")}
+        ${pageHead(t("cards.title"), t("cards.sub"), "", "", "sadu")}
         <section class="panel cards-hero">
           <div class="cards-today">
             <h2>${t("cards.today")}</h2>
@@ -328,7 +328,7 @@ export default {
         else renderDecks();
       })
       .catch(() => {
-        if (!signal.aborted) root.innerHTML = pageHead(t("cards.title"), esc(t("words.loadError")), "", "", "cards");
+        if (!signal.aborted) root.innerHTML = pageHead(t("cards.title"), esc(t("words.loadError")), "", "", "sadu");
       });
   },
 };

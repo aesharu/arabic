@@ -1,5 +1,6 @@
 import { t, tx, lang, isArabic } from "./i18n.js";
 import { icon, vignette } from "./art.js";
+import { hasScene, sceneSvg, SCENE_WORDS } from "./scenes.js";
 
 export const esc = s =>
   String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -39,15 +40,22 @@ export function meanings(item) {
 
 export const playIcon = `<span class="play" aria-hidden="true">${icon("sound")}</span>`;
 
-// A page's heading, with its small illustration (core/art.js) beside it.
+// A page's heading, with its picture: a scene of her world (core/scenes.js) with its word to hear, or a small
+// illustration (core/art.js).
+const sceneCard = name => {
+  const [word, say, en, uk] = SCENE_WORDS[name];
+  return `<figure class="scene-card" data-scene="${name}">${sceneSvg(name)}
+    <figcaption><button type="button" class="scene-cap" data-say="${esc(word)}">${ar(word)}<span class="scene-say">${translit(say)}</span><span class="scene-mean">${lat(tx({ en, uk, najdi: en, msa: en }))}</span>${playIcon}</button></figcaption>
+  </figure>`;
+};
 export const pageHead = (title, sub = "", eyebrow = "", cls = "", art = "") => `
-  <header class="page-head${cls ? " " + cls : ""}${art ? " has-art" : ""}">
+  <header class="page-head${cls ? " " + cls : ""}${hasScene(art) ? " has-scene" : art ? " has-art" : ""}">
     <div class="page-head-text">
       ${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ""}
       <h1>${title}</h1>
       ${sub ? `<p class="sub">${sub}</p>` : ""}
     </div>
-    ${art ? vignette(art) : ""}
+    ${hasScene(art) ? sceneCard(art) : art ? vignette(art) : ""}
   </header>`;
 
 export const shuffle = a => {

@@ -88,6 +88,9 @@
 <link rel="modulepreload" href="js/data/me.js">
 <link rel="modulepreload" href="js/core/verbs.js">
 <link rel="modulepreload" href="js/data/verbs.js">
+<link rel="modulepreload" href="js/core/scenes.js">
+<link rel="modulepreload" href="js/views/culture.js">
+<link rel="modulepreload" href="js/data/culture.js">
 <link rel="modulepreload" href="js/core/gloss.js">
 <link rel="modulepreload" href="js/core/dictionary.js">
 <link rel="modulepreload" href="js/data/glossary.js">
@@ -186,8 +189,11 @@
     <a href="#/letters" data-route="letters"><span data-i18n="nav.letters">Letters</span></a>
     <button type="button" class="tab-more" data-menu-open aria-expanded="false" aria-controls="menu"><span data-i18n="nav.more">More</span></button>
   </nav>
-  <main id="view" tabindex="-1">
-    <noscript><p>This site needs JavaScript turned on. Для цього сайту потрібно ввімкнути JavaScript.</p></noscript>
+  <main>
+    <div id="view" tabindex="-1">
+      <noscript><p>This site needs JavaScript turned on. Для цього сайту потрібно ввімкнути JavaScript.</p></noscript>
+    </div>
+    <aside id="culture" class="culture-slot" hidden></aside>
   </main>
 </div>
 </body>

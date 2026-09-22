@@ -64,7 +64,7 @@ function list(current) {
     if (!byStage.has(p.id)) byStage.set(p.id, { p, weeks: [] });
     byStage.get(p.id).weeks.push(w);
   }
-  return `${pageHead(t("lessons.title"), esc(t("lessons.sub")), "", "", "plan")}
+  return `${pageHead(t("lessons.title"), esc(t("lessons.sub")), "", "", "mudhouse")}
     <p class="callout">${icon("letters")} ${t("lessons.script")}</p>
     ${[...byStage.values()].map(({ p, weeks }) => `<section class="ls-stage"><h2>${esc(tx(phaseTitle(p)))}</h2>
       <ol class="ls-weeks">${weeks.map(w => `<li><a class="ls-week${w.week === current ? " is-now" : ""}${w.week < current ? " is-past" : ""}" href="#/lessons/${w.week}">
@@ -112,7 +112,7 @@ export default {
         <p class="gr-back"><a href="#/lessons">${icon("back")} ${t("lessons.all")}</a></p>
         ${pageHead(week.review ? t("lessons.review") : titles.join(" · ") || "…",
           esc(`${shortDate(startOf(week.week), locale())} – ${shortDate(addDays(startOf(week.week), 6), locale())}`),
-          `${t("lessons.weekN", { n: week.week })} · ${esc(tx(phaseTitle(phase)))}`, "", "plan")}
+          `${t("lessons.weekN", { n: week.week })} · ${esc(tx(phaseTitle(phase)))}`, "", "mudhouse")}
         <section class="panel ls-goal"><h2>${icon("star")} ${t("lessons.goal")}</h2><p>${rich(tx(phase.canDo))}</p></section>
 
         ${week.review ? "" : `<section class="ls-block"><div class="panel-head"><h2>1 · ${t("lessons.words")} <small class="muted">${num(words.length)}</small></h2>

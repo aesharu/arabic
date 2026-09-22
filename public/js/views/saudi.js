@@ -96,7 +96,7 @@ export default {
       const next = upcoming();
       const shown = STORIES.filter(s => region === "all" || s.region === region);
       root.innerHTML = `
-        ${pageHead(t("saudi.title"), esc(t("saudi.sub")), "", "", "phrases")}
+        ${pageHead(t("saudi.title"), esc(t("saudi.sub")), "", "", "diriyah")}
         <div class="sa-top">
           <section class="panel sa-today"><h2>${icon("calendar")} ${t("saudi.today")}</h2>
             <p class="sa-hijri" lang="ar" dir="rtl">${esc(hijriLong(todayD, "ar-SA"))}</p>

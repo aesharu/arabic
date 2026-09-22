@@ -44,7 +44,7 @@ const card = l => `<li><a class="gr-card" href="#/grammar/${l.id}">
   ${icon("arrow")}</a></li>`;
 
 function list() {
-  return `${pageHead(t("grammar.title"), esc(t("grammar.sub")), "", "", "reading")}
+  return `${pageHead(t("grammar.title"), esc(t("grammar.sub")), "", "", "mudhouse")}
     <ol class="gr-list">${PLAN_GRAMMAR.map(card).join("")}</ol>
     <h2 class="gr-more">${t("grammar.more")}</h2>
     <p class="muted">${esc(t("grammar.moreSub"))}</p>
@@ -79,7 +79,7 @@ export default {
 
     root.innerHTML = `
       <p class="gr-back"><a href="#/grammar">${icon("back")} ${t("grammar.all")}</a></p>
-      ${pageHead(tx(lesson.title), "", t("grammar.lessonN", { n: lesson.id, total: GRAMMAR.length }), "", "reading")}
+      ${pageHead(tx(lesson.title), "", t("grammar.lessonN", { n: lesson.id, total: GRAMMAR.length }), "", "mudhouse")}
       <section class="panel gr-intro"><p>${rich(tx(lesson.intro))}</p>
         ${lesson.verb ? `<p class="gr-verb">${ar(lesson.verb.ar)} — ${esc(meaning(lesson.verb))}</p>` : ""}
       </section>

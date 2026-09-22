@@ -17,6 +17,7 @@ import { GRAMMAR_A2 } from "../data/grammar2.js";
 import { LOVE } from "../data/love.js";
 import { A1_BY, BIRTHDAY } from "../data/birthday.js";
 import { loadStories } from "./stories.js";
+import { celebrate } from "../core/celebrate.js";
 
 const GRAMMAR = [...PLAN_GRAMMAR, ...GRAMMAR_A2];
 const day = key => format(key, { day: "numeric", month: "short" }, locale());
@@ -67,7 +68,7 @@ function week(w, ctx, open, current, readOnly) {
 export default {
   titleKey: "path.title",
   async mount(root, { params, signal }) {
-    root.innerHTML = pageHead(t("path.title"), esc(t("words.loading")), "", "", "plan");
+    root.innerHTML = pageHead(t("path.title"), esc(t("words.loading")), "", "", "nafud");
     const [S, V] = await Promise.all([loadStories().catch(() => ({ STORIES: [] })), loadVocab().catch(() => null)]);
     if (signal.aborted) return;
     const topics = new Map((V?.vocab.stages ?? []).flatMap(s => s.topics.map(tp => [tp.id, tp.title])));
@@ -84,7 +85,7 @@ export default {
         const p = progress(w);
         return { done: a.done + p.done, total: a.total + p.total };
       }, { done: 0, total: 0 });
-      root.innerHTML = `${pageHead(t("path.title"), esc(t(teacher ? "path.subTeacher" : "path.sub")), "", "", "plan")}
+      root.innerHTML = `${pageHead(t("path.title"), esc(t(teacher ? "path.subTeacher" : "path.sub")), "", "", "nafud")}
         <div class="pa-top">
           <div><b>${num(now + 1)}</b><span>${esc(t("path.weekOf", { total: num(list.length) }))}</span></div>
           ${!teacher && today <= A1_BY ? `<div><b>${num(diffDays(today, A1_BY))}</b><span>${esc(t("path.toA1"))}</span></div>` : ""}
@@ -104,6 +105,7 @@ export default {
       const open = [...root.querySelectorAll("details[open]")].map(d => d.id);
       render();
       root.querySelectorAll("details").forEach(d => (d.open = open.includes(d.id)));
+      if (stepDone(b.dataset.step)) celebrate(root.querySelector(`[data-step="${CSS.escape(b.dataset.step)}"]`));
     }, { signal });
   },
 };

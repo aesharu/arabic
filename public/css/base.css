@@ -229,7 +229,7 @@ main {
   margin: 0 auto;
   padding: 32px 44px 72px;
 }
-main:focus, main:focus-visible { outline: none; }
+main:focus, main:focus-visible, #view:focus, #view:focus-visible { outline: none; }
 @media (min-width: 1700px) {
   body { font-size: 18px; }
   main { padding: 40px 64px 80px; }
@@ -376,4 +376,15 @@ html[dir="rtl"] h3 { letter-spacing: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* ---------- Texture and the Sadu edge ---------- */
+/* A faint grain of sand over the page background. */
+body { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .52 0 0 0 0 .4 0 0 0 0 .24 .16 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+/* A band of Sadu weave down the edge of the menu (computer and iPad in landscape). */
+@media (min-width: 861px) {
+  .sidebar { border-inline-end: 0; padding-inline-end: 26px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='28' viewBox='0 0 14 28'%3E%3Crect width='14' height='28' fill='%239E2A2B'/%3E%3Cpath fill='%23231A14' d='M0 0h2v28H0zM12 0h2v28h-2z'/%3E%3Cpath fill='%23F3E7CF' d='M2 0l3 3.5L2 7l3 3.5L2 14l3 3.5L2 21l3 3.5L2 28zM12 0l-3 3.5L12 7l-3 3.5L12 14l-3 3.5L12 21l-3 3.5L12 28zM3.5 14L7 10l3.5 4L7 18z'/%3E%3Cpath fill='%23231A14' d='M5.5 14L7 12.4 8.5 14 7 15.6z'/%3E%3Cpath fill='%23006C35' d='M6.2 0h1.6v4H6.2zM6.2 24h1.6v4H6.2z'/%3E%3C/svg%3E");
+    background-repeat: repeat-y; background-size: 12px 24px; background-position: right top; }
+  html[dir="rtl"] .sidebar { background-position: left top; }
 }

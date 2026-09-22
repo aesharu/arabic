@@ -46,7 +46,7 @@ export default {
       const leftA1 = Math.max(0, diffDays(today, A1_BY));
       const a1 = goalList("a1");
       const a2 = goalList("a2");
-      root.innerHTML = `${pageHead(t("bday.title"), esc(t("bday.sub")), "", "", "finish")}
+      root.innerHTML = `${pageHead(t("bday.title"), esc(t("bday.sub")), "", "", "crescent")}
         <section class="bd-count">
           <div class="bd-days"><b>${num(left)}</b><span>${esc(t("bday.daysLeft"))}</span><small>${esc(longDate(BIRTHDAY, locale()))}</small></div>
           <div class="bd-days is-a1"><b>${num(leftA1)}</b><span>${esc(t("bday.daysA1"))}</span><small>${esc(longDate(A1_BY, locale()))}</small></div>
