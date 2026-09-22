@@ -118,6 +118,10 @@ Last updated: 22 Sept 2026 (night: Speak it back, a real playback bug fixed, Sta
 3. Export Dima's edits from D1 as proposed NAJDI-PLAN.md / NAJDI-WORDS.md changes; ✅ next prayer on Today (fact of the day: the culture card); Phrases/letters editable in edit mode.
 4. Optional PIN for Volodymyr's sign-in. `npm run pdf`. Progress: cards per day. Calendar arrow keys; backup restore confirm. `public/_headers`. More tests.
 
+## One recording is sitting in the cloud, kept
+
+`audio_prev` on production holds one take for **السلام عليكم** (`13u580c`, audio/mp4, 21 KB, saved 21 Sept 20:12 UTC — 23:12 Saudi), recorded through the studio with her token and then deleted or undone. `audio` itself is empty. Most likely explanation, now that the blob bug is known: it was recorded, it played back silence (the bug), and so it was thrown away. It can be brought back with "Earlier recording · Bring it back" in the studio for that word, or `POST /api/audio/13u580c {"action":"restore"}` with her token — **Volodymyr's call**, since it changes what the site plays.
+
 ## Waiting on Dima (native speaker)
 
 - All 678 Stage 4–5 words in `NAJDI-WORDS.md`: a ✓ in the last column removes the flag. Check these first: أحضّر, أشغّل, أسكّر, أصوّر, سناب.
