@@ -39,9 +39,19 @@ test("every key used in the code exists", () => {
 });
 
 test("every defined key is used somewhere", () => {
-  const dynamic = ["status.", "theme.", "cloud.status.", "cloud.short.", "st.step.", "st.stepSub.", "gl.", "pr.q.", "path.k."]; // built as t(`status.${s}`) etc.
+  const dynamic = ["status.", "theme.", "cloud.status.", "cloud.short.", "st.step.", "st.stepSub.", "gl.", "pr.q.", "path.k.", "nudge.m"]; // built as t(`status.${s}`) etc.
   for (const key of Object.keys(STRINGS)) {
     if (dynamic.some(p => key.startsWith(p))) continue;
     assert.ok(code.includes(`"${key}"`), `unused string: ${key}`);
   }
+});
+
+// The ten messages Dima sees when she comes in are picked as `nudge.m${i}` (core/nudge.js): all ten must be there.
+test("all ten of Dima's welcome messages exist, in every language", () => {
+  for (let i = 1; i <= 10; i++) {
+    const v = STRINGS[`nudge.m${i}`];
+    assert.ok(v, `nudge.m${i} is missing`);
+    for (const lang of ["en", "uk", "najdi", "msa"]) assert.ok(v[lang], `nudge.m${i}: ${lang} missing`);
+  }
+  assert.ok(!STRINGS["nudge.m11"], "there are eleven messages but core/nudge.js only shows ten");
 });

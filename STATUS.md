@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 22 Sept 2026 (night: Stats page, her one-minute recording card, special-day greetings, accessibility pass). Live: https://saudiarabic.online
+Last updated: 22 Sept 2026 (night: Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
 
 ## Who uses it
 
@@ -97,6 +97,12 @@ Last updated: 22 Sept 2026 (night: Stats page, her one-minute recording card, sp
   - Both profiles are recorded; the page shows hers.
 
 - **"Five words, one minute"** (22 Sept, `views/today.js` `fiveCard()` / `nextToRecord()`, strings `td.five*`): the first card on **Dima's** Today page — the Record page's 1,157 words are a wall, five is a favour. The next five unrecorded words (deck order, so her words and the everyday phrases first), a line written to her in feminine forms, **Record** opens the voice studio on those five in turn, and a meter of "{n} of 5 today". Underneath: how many words are in her voice and her days in a row — both worked out from the times of her recordings (`content.audioTimes()` → `activity.daysFromTimes` → `streaks`), so nothing new is stored. Counts are said the Arabic way (٧ كلمات، يومين — `cnt()`, not "2 يومين").
+
+- **Dima can't miss Record and Correct any more** (22 Sept, `core/nudge.js`, banner in `main.js`):
+  - **A word when she comes in**: after the welcome greeting, a pop-up in her profile with one of **ten** messages in turn (`nudge.m1`–`m10`, four languages, written to her — "Want Volodymyr to make you fall for him even more? Then help him learn to speak straight to your heart."), and two buttons: **سجّلي خمس كلمات** (→ `#/record`) and **صحّحي كلمة** (→ `#/words` with edit mode already on, so she sees the ✎ on every word). Underneath: how many words are in her voice and her days in a row. The next message is remembered in `najdi-nudge-next`.
+  - **Never nags**: it doesn't come at all when she has already recorded five that day, when a special day is greeting her, or on top of another dialog.
+  - **On every page**: under her teacher banner, the same two buttons (`.her-tools`) — the Record page used to be one menu item among thirty, and Edit a pencil in the corner.
+  - `tests/i18n.test.mjs` checks all ten messages exist in all four languages (they're picked by name, so nothing else would catch a gap).
 
 ## Next (in this order)
 

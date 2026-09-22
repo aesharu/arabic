@@ -20,6 +20,7 @@ import { HOLIDAYS, holidayOn } from "../data/holidays.js";
 import { saudiToday } from "./prayer.js";
 import { say } from "./speech.js";
 import * as activity from "./activity.js";
+import * as nudge from "./nudge.js";
 
 const LOGINS = "najdi-logins"; // localStorage: { student?, teacher? } → cloud token ("local" when the cloud couldn't be reached)
 const GREETED = "najdi-welcomed"; // sessionStorage: "reload" = a profile was just chosen, don't greet twice
@@ -247,6 +248,8 @@ export function welcome({ direct = false } = {}) {
     el.classList.add("is-leaving");
     setTimeout(() => el.remove(), reduced ? 0 : 900);
     document.getElementById("view")?.focus({ preventScroll: true });
+    // A word to Dima about why her voice matters — after the greeting, never on top of it.
+    setTimeout(() => nudge.maybeShow({ holiday: Boolean(holiday) }), reduced ? 0 : 950);
   }
 
   // The moment: music, the star draws itself in gold, the name appears, the fort's windows light up.

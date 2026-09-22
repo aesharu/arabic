@@ -911,6 +911,70 @@ export const STRINGS = {
   "review.kindContent": { en: "Lesson text", uk: "Текст уроку", najdi: "كلام الدرس", msa: "نص الدرس" },
   "review.kindLine": { en: "Conversation line", uk: "Рядок розмови", najdi: "سطر من المحادثة", msa: "سطر من المحادثة" },
   "review.kindWord": { en: "Word", uk: "Слово", najdi: "كلمة", msa: "كلمة" },
+  // The word to Dima when she comes in (core/nudge.js): ten of them, in turn. All written to her, feminine.
+  "nudge.m1": {
+    en: "Want Volodymyr to make you fall for him even more? Then help him learn to speak straight to your heart.",
+    uk: "Хочеш, щоб Володимир закохав тебе в себе ще дужче? Тоді допоможи йому вивчити мову, щоб говорити просто до твого серця.",
+    najdi: "تبين فولوديمير يخليك تحبينه أكثر؟ ساعديه يتعلم اللغة عشان يكلم قلبك على طول.",
+    msa: "أتريدين أن يجعلكِ فولوديمير تحبّينه أكثر؟ ساعديه على تعلّم اللغة ليخاطب قلبكِ مباشرة.",
+  },
+  "nudge.m2": {
+    en: "Five words in your voice today, and by the weekend he'll be saying them back to you.",
+    uk: "П'ять слів твоїм голосом сьогодні — і до вихідних він казатиме їх тобі у відповідь.",
+    najdi: "خمس كلمات بصوتك اليوم، ونهاية الأسبوع بيقولها لك هو.",
+    msa: "خمس كلمات بصوتكِ اليوم، وبنهاية الأسبوع سيقولها لكِ.",
+  },
+  "nudge.m3": {
+    en: "He is learning your language for one person only — you. Give him your voice to learn it from.",
+    uk: "Він вчить твою мову заради однієї людини — заради тебе. Дай йому свій голос, щоб учитися.",
+    najdi: "يتعلم لغتك عشان وحدة بس — انتي. عطيه صوتك يتعلم منه.",
+    msa: "يتعلّم لغتكِ من أجل شخص واحد فقط — أنتِ. امنحيه صوتكِ ليتعلّم منه.",
+  },
+  "nudge.m4": {
+    en: "The computer voice says it all wrong. Yours is the only one that teaches him how you really talk.",
+    uk: "Комп'ютерний голос говорить усе неправильно. Тільки твій навчить його, як ти говориш насправді.",
+    najdi: "صوت الجهاز ينطقها غلط. صوتك وحده يعلمه كيف تتكلمين بالضبط.",
+    msa: "صوت الجهاز ينطقها خطأً. صوتكِ وحده يعلّمه كيف تتحدّثين حقًّا.",
+  },
+  "nudge.m5": {
+    en: "One minute of your voice tonight is a whole week of his practice.",
+    uk: "Одна хвилина твого голосу сьогодні — це цілий тиждень його вправ.",
+    najdi: "دقيقة من صوتك الليلة تصير له أسبوع كامل تدريب.",
+    msa: "دقيقة من صوتكِ الليلة تعادل أسبوعًا كاملًا من تدريبه.",
+  },
+  "nudge.m6": {
+    en: "Picture the call where he answers you in Saudi without thinking. It starts with one word from you.",
+    uk: "Уяви дзвінок, де він відповідає тобі саудівською не задумуючись. Це починається з одного твого слова.",
+    najdi: "تخيلي مكالمة يرد عليك فيها بالسعودي من دون ما يفكر. تبدأ من كلمة وحدة منك.",
+    msa: "تخيّلي مكالمة يجيبكِ فيها بالسعودية دون تفكير. تبدأ بكلمة واحدة منكِ.",
+  },
+  "nudge.m7": {
+    en: "Say a word the way you say it — not the way a book says it. That's what he needs.",
+    uk: "Скажи слово так, як кажеш ти, а не як пишуть у книжці. Саме це йому потрібно.",
+    najdi: "قولي الكلمة مثل ما تقولينها انتي، مو مثل ما يقولها الكتاب. هذا اللي يحتاجه.",
+    msa: "قولي الكلمة كما تقولينها أنتِ، لا كما يقولها الكتاب. هذا ما يحتاجه.",
+  },
+  "nudge.m8": {
+    en: "He can read the letters now. Teach him how they sound in Hafar al-Batin.",
+    uk: "Він уже читає літери. Навчи його, як вони звучать у Хафар-ель-Батіні.",
+    najdi: "صار يقرا الحروف. علّميه كيف تنقال في حفر الباطن.",
+    msa: "صار يقرأ الحروف. علّميه كيف تُنطق في حفر الباطن.",
+  },
+  "nudge.m9": {
+    en: "If a word here is wrong, correct it — he is learning it exactly as it's written.",
+    uk: "Якщо тут якесь слово неправильне, виправ його — він вчить його точно таким, як написано.",
+    najdi: "إذا فيه كلمة هنا غلط، صحّحيها — هو يحفظها مثل ما هي مكتوبة بالضبط.",
+    msa: "إن كانت هنا كلمة خاطئة فصحّحيها — فهو يحفظها تمامًا كما كُتبت.",
+  },
+  "nudge.m10": {
+    en: "Every word you record is one more thing he can say to you.",
+    uk: "Кожне записане тобою слово — це ще одна річ, яку він зможе тобі сказати.",
+    najdi: "كل كلمة تسجلينها تصير كلمة زيادة يقدر يقولها لك.",
+    msa: "كل كلمة تسجّلينها تصبح كلمة أخرى يستطيع أن يقولها لكِ.",
+  },
+  "nudge.record": { en: "Record five words", uk: "Записати п'ять слів", najdi: "سجّلي خمس كلمات", msa: "سجّلي خمس كلمات" },
+  "nudge.correct": { en: "Correct a word", uk: "Виправити слово", najdi: "صحّحي كلمة", msa: "صحّحي كلمة" },
+  "nudge.later": { en: "Not now", uk: "Не зараз", najdi: "مو الحين", msa: "ليس الآن" },
   // "Five words, one minute" — the card at the top of Dima's Today page. Written to her (feminine forms).
   "td.fiveTitle": { en: "Five words, one minute", uk: "П'ять слів, одна хвилина", najdi: "خمس كلمات، دقيقة وحدة", msa: "خمس كلمات، دقيقة واحدة" },
   "td.fiveSub": {

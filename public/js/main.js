@@ -274,11 +274,21 @@ function teacherBanner() {
   const hint = hisError ? t("teacher.hisError") : !store.own().sync.key ? t("teacher.connect") : "";
   view.insertAdjacentHTML("afterbegin", `<div class="teacher-banner${w ? " is-watching" : ""}" role="note">${icon("star")}
     <span>${t(w ? "teacher.watching" : "teacher.banner")}${hint ? `<small>${hint}</small>` : ""}</span>
-    <button type="button" class="btn btn-ghost" data-watch>${t(w ? "teacher.backMine" : "teacher.seeHis")}</button></div>`);
+    <button type="button" class="btn btn-ghost" data-watch>${t(w ? "teacher.backMine" : "teacher.seeHis")}</button></div>
+    <div class="her-tools">
+      <a class="btn btn-primary" href="#/record">${icon("mic")} ${t("nudge.record")}</a>
+      <button type="button" class="btn" data-her-correct>${icon("pencil")} ${t("nudge.correct")}</button>
+    </div>`);
 }
 if (store.isTeacher()) {
   document.documentElement.style.overflowAnchor = "none"; // otherwise the browser scrolls to keep the page still and pushes the note off the top
   new MutationObserver(teacherBanner).observe(view, { childList: true });
+  // "Correct a word": the word list, with edit mode already on, so she can see what correcting means.
+  view.addEventListener("click", e => {
+    if (!e.target.closest("[data-her-correct]")) return;
+    location.hash = "#/words";
+    editmode.toggle(true);
+  });
   view.addEventListener("click", async e => {
     const b = e.target.closest("[data-watch]");
     if (!b) return;

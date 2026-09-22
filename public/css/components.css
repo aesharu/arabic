@@ -1886,3 +1886,27 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
 .five-words .lat { display: block; color: var(--muted); font-size: 13px; }
 .five-go { margin-top: 12px; }
 .five-foot { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+
+/* The word to Dima when she comes in (core/nudge.js), and the two things only she can do,
+   kept in reach at the top of every page in her profile. */
+.nudge::backdrop { background: color-mix(in srgb, var(--ink) 55%, transparent); backdrop-filter: blur(3px); }
+.nudge {
+  margin: auto; /* the browser centers a modal dialog only while it keeps its own margin */
+  max-width: 460px; width: calc(100% - 32px); padding: 0; border: 0; border-radius: 20px;
+  background: var(--surface); color: var(--ink); box-shadow: 0 24px 60px rgba(0, 0, 0, .28);
+}
+.nudge-body { padding: 26px 24px 20px; text-align: center; display: grid; gap: 14px; justify-items: center; }
+.nudge-heart { margin: 0; }
+.nudge-heart .i { width: 38px; height: 38px; color: var(--accent); }
+.nudge h2 { margin: 0; font-size: 21px; line-height: 1.4; font-weight: 700; }
+.nudge-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; }
+.nudge-actions .btn { flex: 1 1 180px; justify-content: center; }
+.nudge-later { color: var(--muted); }
+.nudge-foot { margin: 0; color: var(--muted); font-size: 14px; }
+@media (prefers-reduced-motion: no-preference) {
+  .nudge[open] { animation: nudge-in .32s cubic-bezier(.2, .7, .2, 1); }
+  @keyframes nudge-in { from { opacity: 0; transform: translateY(10px) scale(.97); } }
+}
+
+.her-tools { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 18px; }
+.her-tools .btn { flex: 1 1 200px; justify-content: center; }
