@@ -1,6 +1,6 @@
 # Najdi — spoken Riyadh Arabic
 
-Volodia's study site for learning Najdi Arabic in 15 months (21 Sept 2026 → 31 Dec 2027): today's tasks, a calendar of the whole plan, weekly lessons, grammar, Anki-style cards for 1,000+ words, a searchable word list, an alphabet trainer and full alphabet table, reading practice, phrases, Saudi life (Hijri date, prayer times, Qibla, culture) and printable A4 practice sheets. Dima, a native speaker, records the words in her own voice and corrects any text on the site; Volodymyr approves her changes. The interface is in English, Ukrainian, Najdi Arabic and formal Arabic (MSA); every Arabic word is shown in Najdi, MSA, English and Ukrainian.
+Volodia's study site for learning Dima's dialect — northern Najdi, as spoken around Hafar al-Batin — in 15 months (21 Sept 2026 → 31 Dec 2027): today's tasks, a calendar of the whole plan, weekly lessons, grammar, Anki-style cards for 1,000+ words, a searchable word list, an alphabet trainer and full alphabet table, "To her ♥" (love, compliments, her family, marriage), her own words, numbers and time, chats to read, reading practice, phrases, Saudi life (Hijri date, prayer times, Qibla, culture), a birthday goal page (his profile only) and printable A4 practice sheets. Formal Arabic (MSA) isn't shown. Dima, a native speaker, records the words in her own voice and corrects any text on the site; Volodymyr approves her changes. The interface is in English, Ukrainian, Najdi Arabic and formal Arabic (MSA); every Arabic word is shown in Najdi, MSA, English and Ukrainian.
 
 The curriculum and the plan's vocabulary come from [`NAJDI-PLAN.md`](NAJDI-PLAN.md); suggested extra words for Stages 4–5 are in [`NAJDI-WORDS.md`](NAJDI-WORDS.md) (flagged until a native speaker ticks them). What's built and what's next: [`STATUS.md`](STATUS.md).
 
@@ -23,7 +23,8 @@ public/                 the website — Cloudflare serves this folder as-is
       content.js        Dima's corrections, suggestions and recordings from the cloud, laid over the plan's words
       editmode.js, editor.js   Edit mode: tap any text or word to change it (hers become suggestions)
       studio.js, audiotools.js the voice studio: record, listen (also slowly), cut silence, save, undo
-    data/               letters, vowels, words, phrases, plan, grammar, weeks (lessons), saudi — the content
+    data/               letters, vowels, words, phrases, plan, grammar, weeks (lessons), saudi, love, hers (her words),
+                        numbers, chats, birthday — the content
     i18n/strings.js     every interface text in English, Ukrainian, Najdi and MSA
     views/              one file per page
   css/welcome.css, js/core/welcome.js, js/core/music.js   the welcome screen, profiles and the synthesised oud greeting

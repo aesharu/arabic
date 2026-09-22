@@ -120,6 +120,8 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | أدفع | adfaʿ | I pay | я плачу (гроші) | أدفع | |
 | أفتح | aftaḥ | I open | я відчиняю | أفتح | |
 | أسكّر | asakkir | I close | я зачиняю | أغلق | |
+| أعلّم | aʿallim | I teach | я навчаю | أعلّم | |
+| أقعد | agʿud | I sit; I stay | я сиджу; я залишаюся | أجلس، أبقى | |
 | أشغّل | ashaghghil | I turn on | я вмикаю | أشغّل | |
 | أطفي | aṭaffi | I turn off | я вимикаю | أُطفئ | |
 | أساعد | asāʿid | I help | я допомагаю | أساعد | |
@@ -444,6 +446,9 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | تقبل الله | tagabbal allah | may God accept (your fast / prayer) | нехай Бог прийме (твій піст, молитву) | تقبّل الله | |
 | منا ومنكم | minna w minkum | reply: "from us and from you" | відповідь: «і від нас, і від вас» | منّا ومنكم | |
 | زواج | zawāj | marriage, wedding | шлюб, весілля | زواج | |
+| زوج | zōj | husband | чоловік (у шлюбі) | زوج | |
+| زوجة / زوجتي | zōja / zōjti | wife / my wife | дружина / моя дружина | زوجة / زوجتي | |
+| خطيبتي | khaṭībti | my fiancée | моя наречена (заручена) | خطيبتي | |
 | عرس | ʿirs | wedding party | весілля (свято) | عُرس | |
 | ملكة | milka | marriage-contract ceremony | укладання шлюбного договору (мілка) | عقد القران | |
 | خطوبة | khuṭūba | engagement | заручини | خطوبة | |
@@ -468,6 +473,10 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | السعودية | as-saʿūdiyya | Saudi Arabia | Саудівська Аравія | السعودية | |
 | الدرعية | ad-dirʿiyya | Diriyah (the historic town) | Дірія (історичне місто) | الدرعية | |
 | الديرة | ad-dīra | hometown; the old town | рідне місто; старе місто | البلدة | |
+| حفر الباطن | ḥafar al-bāṭin | Hafar al-Batin (her city, in the north-east) | Хафр-ель-Батін (її місто на північному сході) | حفر الباطن | |
+| الشمال | ash-shimāl | the north | північ | الشمال | |
+| مدينة | madīna | city | місто | مدينة | |
+| مدرسة | madrasa | school | школа | مدرسة | |
 | حي | ḥayy | neighborhood | район | حيّ | |
 | شارع | shāriʿ | street | вулиця | شارع | |
 | كوفي | kōfi | café | кав'ярня | مقهى | |

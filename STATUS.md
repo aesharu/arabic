@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
+Last updated: 22 Sept 2026. Live: https://arabic.aesdvi.workers.dev
 
 ## Who uses it
 
@@ -59,14 +59,11 @@ Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
 
 ## Next (in this order)
 
-0. **Conversations for weeks 19–21 and 27–67** (weeks 3–18 and 22–26 are written; the Record page has a Conversations tab). Same rules: plan words, "to her" forms, every line flagged until Dima ticks it.
-1. Tell Volodymyr which recordings/corrections exist; a script to export `edits` from D1 as proposed changes to NAJDI-PLAN.md.
-2. Next prayer + fact of the day on Today and the welcome screen. (Maybe: recording from the Word list / lesson pages directly — for now via Edit → tap a word → Record.) Make the Phrases/Today phrase items and letter names editable in edit mode too (they use data/phrases.js / letters.js directly).
-3. Optional PIN for Volodymyr's sign-in (right now the name is the password; offered, not asked for yet).
-4. `npm run pdf`: `scripts/print-pdf.mjs`, Playwright with the installed Chrome, waits for `body[data-print-ready]`, writes to `print/pdf/` (gitignored).
-5. Progress page: cards answered per day, plus the words-known meter.
-6. Calendar: arrow keys between days. Backup restore: ask for confirmation and show an inline message instead of `alert()`. Letters: make the chips real links.
-7. `public/_headers`: security headers and CSP. Tests for `srs.js`, `cards.js`, `search.js`, `welcome.js` name matching and worker login.
+0. **Plan changes waiting for Volodymyr's OK** (her dialect vs the plan's Riyadh forms — propose, never edit silently): وش لونك → شلونك (and add شخبارك); مب → مو; السلام عليكم stays but سلام is the everyday hi; "your" to her -ik vs -ich — ask Dima which she says, then switch the site's "to her" forms if -ich.
+1. **Chats**: tap a word to see its meaning (glossary from vocab + her words + love); more chats (A2+). Weeks 19–21 and 27–67 conversations for the weekly lessons.
+2. **A1 by 21 Dec path**: reorder Today/lessons so the birthday goals come first (her words, love basics, numbers, the chats), rather than the plan's week-by-week Riyadh order.
+3. Export Dima's edits from D1 as proposed NAJDI-PLAN.md / NAJDI-WORDS.md changes; next prayer + fact of the day on Today; Phrases/letters editable in edit mode.
+4. Optional PIN for Volodymyr's sign-in. `npm run pdf`. Progress: cards per day. Calendar arrow keys; backup restore confirm. `public/_headers`. More tests.
 
 ## Waiting on Dima (native speaker)
 
@@ -76,6 +73,10 @@ Last updated: 21 Sept 2026. Live: https://arabic.aesdvi.workers.dev
   - Welcome screen: منهو هنا؟, مهوب هذا الاسم, and معلّمة vs أبلة.
   - Teacher banner: تشوفين, تسوّينه.
   - Ukrainian vocative "Дімо".
+  - To her ♥: 134 flagged phrases, esp. يا قمر (gamar?), وحشتيني, تذبحيني, كشختك, انتي فتنة, جيت أطلب القرب منكم, أبي الحلال; the -ich (چ) forms.
+  - Dima's welcome compliments (43): جمالك يذبح, حلاك غير, وجهك صبح وضحكتك عيد.
+  - Chats (12, all flagged); numbers 11–19 (احدعش … تسعطعش), ثلاث مية, time phrases (وثلث، ونص إلا خمس); her words' spelling (فولودكا).
+  - Birthday wishes (12 lines) — ask the tutor, not Dima (surprise).
   - Studio/slow wording: شوي شوي (Slow), شيليه (Discard), رجّعيه (Bring it back), اللي انحسمت (Decided), خليني هنا (Stay).
 
 ## Decisions made

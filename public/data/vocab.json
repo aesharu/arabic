@@ -5533,6 +5533,40 @@
        }
       },
       {
+       "id": "1rn2f53",
+       "stage": "4",
+       "topic": "4.2",
+       "ar": "أعلّم",
+       "say": "aʿallim",
+       "en": "I teach",
+       "uk": "я навчаю",
+       "msa": "أعلّم",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1eh2p2c",
+       "stage": "4",
+       "topic": "4.2",
+       "ar": "أقعد",
+       "say": "agʿud",
+       "en": "I sit; I stay",
+       "uk": "я сиджу; я залишаюся",
+       "msa": "أجلس، أبقى",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
        "id": "18x51ja",
        "stage": "4",
        "topic": "4.2",
@@ -10597,6 +10631,57 @@
        }
       },
       {
+       "id": "1dfj05e",
+       "stage": "4",
+       "topic": "4.8",
+       "ar": "زوج",
+       "say": "zōj",
+       "en": "husband",
+       "uk": "чоловік (у шлюбі)",
+       "msa": "زوج",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "fcz63e",
+       "stage": "4",
+       "topic": "4.8",
+       "ar": "زوجة / زوجتي",
+       "say": "zōja / zōjti",
+       "en": "wife / my wife",
+       "uk": "дружина / моя дружина",
+       "msa": "زوجة / زوجتي",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "8k2k3b",
+       "stage": "4",
+       "topic": "4.8",
+       "ar": "خطيبتي",
+       "say": "khaṭībti",
+       "en": "my fiancée",
+       "uk": "моя наречена (заручена)",
+       "msa": "خطيبتي",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
        "id": "xrtle4",
        "stage": "4",
        "topic": "4.8",
@@ -10922,6 +11007,74 @@
        "en": "hometown; the old town",
        "uk": "рідне місто; старе місто",
        "msa": "البلدة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1umgaan",
+       "stage": "4",
+       "topic": "4.9",
+       "ar": "حفر الباطن",
+       "say": "ḥafar al-bāṭin",
+       "en": "Hafar al-Batin (her city, in the north-east)",
+       "uk": "Хафр-ель-Батін (її місто на північному сході)",
+       "msa": "حفر الباطن",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1h7g0gy",
+       "stage": "4",
+       "topic": "4.9",
+       "ar": "الشمال",
+       "say": "ash-shimāl",
+       "en": "the north",
+       "uk": "північ",
+       "msa": "الشمال",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "kqi1zv",
+       "stage": "4",
+       "topic": "4.9",
+       "ar": "مدينة",
+       "say": "madīna",
+       "en": "city",
+       "uk": "місто",
+       "msa": "مدينة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1ovkrj8",
+       "stage": "4",
+       "topic": "4.9",
+       "ar": "مدرسة",
+       "say": "madrasa",
+       "en": "school",
+       "uk": "школа",
+       "msa": "مدرسة",
        "check": true,
        "note": {
         "en": "Suggested word — not yet checked by a native speaker",
