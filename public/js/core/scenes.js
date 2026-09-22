@@ -227,6 +227,89 @@ const DRAW = {
       ${palm(120, 140, 70, -6, 0.8)}${palm(390, 140, 78, 8, 0.85)}${palm(430, 142, 58, -4, 0.7)}
       <path class="a-ground" d="M0,138 C160,134 320,140 480,136 V160 H0Z"/>`;
   },
+
+  // Record: the rababa, the one-string fiddle of the desert, leaning by the fire — its sound rises. Tap: the bow plays.
+  rababa: () => `${sky(318, 28)}${dunes()}
+    <g class="ps-fire" transform="translate(104 0)">
+      <circle class="ps-glow" cx="0" cy="124" r="28"/>
+      <path class="ps-log" d="M-16,130 L14,122 L16,126 L-14,134 Z M-14,122 L16,130 L14,134 L-16,126 Z"/>
+      <path class="ps-flame" d="M0,126 C-9,118 -8,106 0,94 C4,104 12,108 8,119 C6,124 4,126 0,126Z"/>
+      <path class="ps-flame-core" d="M0,126 C-4,121 -4,114 0,107 C3,113 6,117 3,122 C2,125 1,126 0,126Z"/>
+    </g>
+    ${dallah(126, 92, 0.32)}${finjal(170, 128, 0.7)}
+    <path class="ps-carpet" d="M200,132 H472 V142 H200Z"/><path class="ps-carpet-line" d="M208,137 H464"/>
+    <path class="ps-cushion" d="M290,108 H366 V132 H290Z"/><rect class="ps-sadu-red" x="290" y="108" width="76" height="7"/>${saduRow(290, 115, 12, 6.3, 4)}
+    ${finjal(232, 126, 0.8)}
+    <g transform="translate(394 22) rotate(-8)">
+      <circle class="ps-wood" cx="0" cy="-2" r="3.6"/>
+      <path class="ps-wood" d="M-2.6,0 h5.2 v106 h-5.2z M-9,10 h18 v4.4 h-18z"/>
+      <path class="ps-tassel" d="M8,14 C12,22 9,30 13,38 M9,14 C14,20 13,26 16,32"/>
+      <rect class="ps-wood" x="-21" y="60" width="42" height="46" rx="3"/>
+      <rect class="ps-skin" x="-17" y="64" width="34" height="38" rx="2"/>
+      <path class="ps-wood" d="M-2,106 h4 v10 h-4z"/>
+      <path class="ps-string" d="M1,12 V104"/>
+      <path class="ps-sadu-dark" d="M-5,88 h10 v3 h-10z"/>
+    </g>
+    <g class="ps-bow"><path class="ps-bow-wood" d="M372,98 C384,80 416,68 440,72"/><path class="ps-bow-hair" d="M374,96 L438,74"/></g>
+    <g class="ps-waves" transform="translate(430 100)">
+      <path class="ps-wave" d="M0,-8 a9,9 0 0 1 0,16"/>
+      <path class="ps-wave" style="animation-delay:.5s" d="M7,-14 a16,16 0 0 1 0,28"/>
+      <path class="ps-wave" style="animation-delay:1s" d="M14,-20 a23,23 0 0 1 0,40"/>
+    </g>`,
+
+  // Suggestions: a painted Najdi door in a mud wall, a lantern beside it. Tap: the door swings open on a lit room.
+  door: () => {
+    const studs = [70, 82, 94, 106, 118, 130].map(y => `<circle class="ps-stud" cx="208" cy="${y}" r="1.3"/><circle class="ps-stud" cx="272" cy="${y}" r="1.3"/>`).join("");
+    const diamonds = [0, 1, 2, 3, 4].map(i => `<path class="${i % 2 ? "ps-sadu-green" : "ps-sadu-cream"}" d="M${214 + i * 13},83 l5,6 l-5,6 l-5,-6z"/>`).join("");
+    return `${sky(420, 30)}
+      <path class="a-wall" d="M0,54 H480 V136 H0Z"/><path class="a-wall" d="${crenels(0, 54, 480, 12, 9)}"/>
+      <path class="a-band" d="M0,66 h480 v3 h-480z"/>
+      <path class="a-vent" d="${vents(24, 86, 5, 16, 5, 6)}${vents(344, 86, 5, 16, 5, 6)}"/>
+      ${palm(440, 140, 90, -8, 0.9)}
+      <path class="a-band" d="M60,136 V120 H176 V136Z"/><rect class="ps-sadu-red" x="64" y="113" width="108" height="7" rx="2"/>${saduRow(64, 120, 18, 6, 3.5)}
+      ${finjal(140, 102, 0.8)}
+      <path class="a-band" d="M194,136 V54 H286 V136Z"/><path class="a-door-paint" d="${crenels(196, 54, 88, 8, 7)}"/>
+      <rect class="ps-door-in" x="204" y="62" width="72" height="74"/><rect class="ps-door-warm" x="204" y="62" width="72" height="74"/>
+      <circle class="ps-lamp-glow" cx="250" cy="86" r="16"/><path class="ps-wood" d="M250,62 v18"/><circle class="ps-lamp" cx="250" cy="84" r="3.4"/>
+      <path class="ps-cushion" d="M204,116 H276 V136 H204Z"/><rect class="ps-sadu-red" x="204" y="116" width="72" height="6"/>${saduRow(204, 122, 12, 6, 3.5)}
+      <path class="ps-carpet" d="M204,132 H276 V136 H204Z"/>
+      <g class="ps-door-leaf">
+        <rect class="ps-wood" x="204" y="62" width="72" height="74"/>
+        <path class="ps-door-plank" d="M222,62 V136 M240,62 V136 M258,62 V136"/>
+        <rect class="ps-door-blue" x="206" y="65" width="68" height="12"/>
+        <path class="a-door-paint" d="${Array.from({ length: 8 }, (_, i) => tri(207 + i * 8.25, 77, 8.25, 9)).join("")}"/>
+        <rect class="ps-sadu-red" x="206" y="78" width="68" height="3"/>
+        ${diamonds}
+        <rect class="ps-sadu-red" x="206" y="96" width="68" height="3"/>
+        <rect class="ps-door-small" x="222" y="104" width="36" height="32" rx="1"/>
+        <path class="a-door-paint" d="${Array.from({ length: 4 }, (_, i) => tri(224 + i * 8, 112, 8, 6)).join("")}"/>
+        <circle class="ps-knocker" cx="251" cy="122" r="3.6"/><circle class="ps-stud" cx="251" cy="118" r="1.4"/>
+        ${studs}
+      </g>
+      <path class="a-band" d="M194,136 h92 v4 h-92z"/>
+      <path class="ps-wood" d="M296,68 h16 v2.5 h-16z M303,70.5 v3"/>
+      <circle class="ps-lamp-glow" cx="304" cy="84" r="15"/>
+      <path class="a-brass-dark" d="${tri(296, 76, 16, 6)}"/><rect class="ps-lantern" x="298" y="76" width="12" height="15" rx="2"/><path class="a-brass-dark" d="M297,91 h14 v3 h-14z"/>
+      <path class="a-ground" d="M0,136 C160,134 320,139 480,135 V160 H0Z"/>`;
+  },
+
+  // Printables: a desert well — Hafar al-Batin is named after the wells dug in its valley. A camel drinks at the
+  // trough. Tap: the bucket comes up.
+  well: () => `${sky(404, 30)}${dunes()}
+    ${palm(58, 132, 82, -6, 0.85)}${palm(100, 134, 62, 6, 0.72)}
+    <path class="ps-pole" d="M214,108 L222,40 M302,108 L294,40"/>
+    <path class="ps-wood" d="M210,36 H306 V43 H210Z"/>
+    <path class="ps-rope-line" d="M267,50 C282,70 300,100 322,132"/>
+    <ellipse class="ps-well-hole" cx="258" cy="106" rx="44" ry="6"/>
+    <path class="ps-rope-line ps-bucket-rope" d="M250,50 V87"/>
+    <g class="ps-bucket"><path class="ps-dalw" d="M241,92 h18 l-3,15 h-12z"/><path class="ps-rope-line" d="M241,92 C244,86 256,86 259,92"/></g>
+    <path class="ps-stone" d="M206,106 A52,8 0 0 0 310,106 V136 H206Z"/>
+    <ellipse class="ps-stone-top" cx="258" cy="106" rx="52" ry="8"/><ellipse class="ps-well-hole" cx="258" cy="106" rx="43" ry="5"/>
+    <path class="ps-stone-line" d="M206,122 C240,126 276,126 310,122 M206,134 H310 M226,115 V124 M258,116 V125 M290,115 V124 M242,125 V134 M274,125 V134"/>
+    <g class="ps-pulley"><circle class="ps-wood" cx="258" cy="50" r="9"/><circle class="ps-sadu-dark" cx="258" cy="50" r="2.4"/><path class="ps-spoke" d="M258,42 V58 M250,50 H266"/></g>
+    <path class="ps-stone" d="M334,124 h58 v12 h-58z"/><rect class="ps-water" x="337" y="124" width="52" height="3.4" rx="1.7"/>
+    <g transform="translate(458 80) scale(-1 1)"><g class="ps-camel">${camel}</g></g>
+    <path class="a-ground" d="M0,136 C160,133 320,139 480,135 V160 H0Z"/>`,
 };
 
 // The word under each scene: [Najdi, pronunciation, English, Ukrainian].
@@ -246,12 +329,15 @@ export const SCENE_WORDS = {
   crescent: ["الهلال", "al-hilāl", "the new crescent moon", "молодий місяць"],
   qalam: ["القلم", "al-galam", "the pen", "перо, ручка"],
   diriyah: ["الدرعية", "ad-dirʿiyya", "Diriyah, the old capital", "Дірія, стара столиця"],
+  rababa: ["الربابة", "ar-rabāba", "the rababa, a desert fiddle", "ребаба, скрипка пустелі"],
+  door: ["الباب", "al-bāb", "the door — Najdi doors are painted", "двері — у Наджді їх розписують"],
+  well: ["البير", "al-bīr", "the well", "криниця"],
 };
 
 export const hasScene = name => Boolean(DRAW[name]);
 
 // Where the subject of each scene sits (x in the 480-wide box), for small square crops.
-const FOCUS = { tent: 280, camels: 190, falcon: 305, souq: 250, roses: 210, coffee: 230, nafud: 360, mudhouse: 268, majlis: 190, sadu: 150, palms: 280, spring: 205, crescent: 360, qalam: 300, diriyah: 260 };
+const FOCUS = { tent: 280, camels: 190, falcon: 305, souq: 250, roses: 210, coffee: 230, nafud: 360, mudhouse: 268, majlis: 190, sadu: 150, palms: 280, spring: 205, crescent: 360, qalam: 300, diriyah: 260, rababa: 400, door: 240, well: 300 };
 
 // The picture itself (no text inside it apart from Arabic digits and calligraphy that belong to the scene).
 // square: a crop around the subject, for small pictures.

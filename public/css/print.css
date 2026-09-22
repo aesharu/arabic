@@ -91,7 +91,7 @@ html[dir="rtl"] .cell[data-form]::before { font-family: var(--font-ui-ar); direc
 @media print {
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   html, body { background: #fff !important; color: #111 !important; }
-  .sidebar, .tabbar, .skip, .print-bar, .tooltip, .page-head .vignette { display: none !important; }
+  .sidebar, .tabbar, .skip, .print-bar, .tooltip, .page-head .vignette, .page-head .scene-card, #culture { display: none !important; }
   .app { display: block; }
   main { max-width: none; padding: 12mm !important; }
   body[data-route="print"] main { padding: 0 !important; }

@@ -31,7 +31,6 @@ test("the phrase book: four languages, unique, and every unflagged phrase is in 
   for (const x of LOVE.LOVE_ITEMS) {
     checkLine(x, `phrase ${x.section}`);
     assert.ok(x.say && /[a-z]/.test(x.say), `${x.ar}: pronunciation`);
-    if (x.north) assert.match(x.north.ar, /چ/, `${x.ar}: the northern form should have چ`);
     if (!x.check) assert.ok(plan.some(line => line.includes(x.ar) && line.includes(x.say)), `${x.ar} (${x.say}) is not flagged but isn't in the plan`);
   }
   for (const f of ["en", "uk", "najdi", "msa"]) assert.ok(LOVE.LOVE_INTRO[f]);

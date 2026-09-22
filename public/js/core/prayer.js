@@ -4,6 +4,7 @@
 // mosque's by a minute or two. Saudi Arabia is UTC+3 all year (no summer time).
 
 export const CITIES = [
+  { id: "hafar", lat: 28.4328, lng: 45.9708, name: { en: "Hafar al-Batin", uk: "Хафр-ель-Батін", najdi: "حفر الباطن", msa: "حفر الباطن" } },
   { id: "riyadh", lat: 24.7136, lng: 46.6753, name: { en: "Riyadh", uk: "Ер-Ріяд", najdi: "الرياض", msa: "الرياض" } },
   { id: "buraidah", lat: 26.326, lng: 43.975, name: { en: "Buraidah", uk: "Бурайда", najdi: "بريدة", msa: "بريدة" } },
   { id: "hail", lat: 27.5114, lng: 41.7208, name: { en: "Ha'il", uk: "Хаїль", najdi: "حايل", msa: "حائل" } },
@@ -49,8 +50,10 @@ function sun(jd) {
 }
 
 // Is this date in Ramadan (Umm al-Qura)? Isha is then two hours after Maghrib.
+let hijriFormat = null;
 export function hijriParts(date) {
-  const parts = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura-nu-latn", { day: "numeric", month: "numeric", year: "numeric", timeZone: "UTC" }).formatToParts(date);
+  hijriFormat ??= new Intl.DateTimeFormat("en-u-ca-islamic-umalqura-nu-latn", { day: "numeric", month: "numeric", year: "numeric", timeZone: "UTC" });
+  const parts = hijriFormat.formatToParts(date);
   const get = type => +parts.find(p => p.type === type)?.value;
   return { day: get("day"), month: get("month"), year: parseInt(parts.find(p => p.type === "year")?.value, 10) };
 }

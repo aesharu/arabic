@@ -4,6 +4,8 @@
 
 // ---------- Icons: 24×24, 1.8px strokes ----------
 const ICONS = {
+  moon: `<path d="M19.5 14.6A8 8 0 1 1 9.4 4.5a6.4 6.4 0 0 0 10.1 10.1z"/>`,
+  mosque: `<path d="M5.5 20.5V13a6.5 6.5 0 0 1 13 0v7.5M3 20.5h18M12 3v3.5M10 20.5v-3.5a2 2 0 0 1 4 0v3.5"/>`,
   today: `<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/>`,
   progress: `<path d="M3.5 20.5h17M6.5 20.5v-6M11 20.5V9.5M15.5 20.5v-8M20 20.5V4.5"/>`,
   calendar: `<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M14.6 13.2a3 3 0 1 0 .9 4.8 2.3 2.3 0 0 1-.9-4.8z" fill="currentColor" stroke="none"/>`,

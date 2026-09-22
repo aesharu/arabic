@@ -12,6 +12,7 @@ import { dictionary } from "../core/dictionary.js";
 import { tappable, selection, paint } from "./tapword.js";
 import { loadVocab } from "../core/vocab.js";
 import { celebrate } from "../core/celebrate.js";
+import { openStudio, spoken } from "../core/studio.js";
 
 // The stories are a big file: loaded the first time this page (or the Record page) needs them.
 let loading = null;
@@ -25,6 +26,10 @@ const readIds = () => store.get().reading?.done ?? [];
 const isRead = id => readIds().includes(`st.${id}`);
 const BADGE = { easy: "st.badgeEasy", A1: "", A2: "" };
 const badge = level => (BADGE[level] ? t(BADGE[level]) : level);
+// Dima can voice a whole story, line by line, in the voice studio; everyone then hears her in "Listen to all".
+const canRecord = () => store.isTeacher() && content.signedIn();
+const voiced = s => content.recordedCount(s.text.map(spoken));
+const voicedMark = s => (voiced(s) === s.text.length ? ` <span class="st-voiced" title="${esc(t("st.voiced"))}">${icon("mic")}<span class="visually-hidden">${t("st.voiced")}</span></span>` : "");
 
 function list(S) {
   const done = S.STORIES.filter(s => isRead(s.id)).length;
@@ -42,7 +47,7 @@ function list(S) {
         <ol class="ch-list">${S.STORIES.filter(s => s.level === level).map(s => `<li><a class="ch-card st-card" href="#/stories/${s.id}">
           <span class="ch-level st-lv-${level}">${esc(badge(level))}</span>
           <span class="ch-card-text"><b>${esc(tx(s.title))}</b>${ar(s.text[0].ar)}</span>
-          <span class="ch-count">${isRead(s.id) ? `${icon("check")} ` : ""}${esc(t("st.lines", { n: num(s.text.length) }))}</span>
+          <span class="ch-count">${isRead(s.id) ? `${icon("check")} ` : ""}${esc(t("st.lines", { n: num(s.text.length) }))}${voicedMark(s)}</span>
         </a></li>`).join("")}</ol>
       </section>`).join("")}`;
 }
@@ -96,6 +101,7 @@ function story(S, s, d) {
       <button type="button" class="btn" data-show="say" aria-pressed="${show.say}">${t("chats.say")}</button>
       <button type="button" class="btn" data-show="mean" aria-pressed="${show.mean}">${t("chats.mean")}</button>
       <button type="button" class="btn" data-show="hide" aria-pressed="${show.hide}">${icon("sound")} ${t("st.hide")}</button>
+      ${canRecord() ? `<button type="button" class="btn btn-primary" data-record>${icon("mic")} <span>${t("st.record")}</span> <small class="st-rec-n">${esc(t("st.recN", { n: num(voiced(s)), total: num(s.text.length) }))}</small></button>` : ""}
     </div>
     <p class="muted small">${esc(t(show.hide ? "st.hideHow" : "st.tapWord"))}</p>
     <article class="st-text lv-${s.level}${show.say || show.mean ? " is-lines" : ""}${show.hide ? " is-hidden" : ""}">${text(s, d)}</article>
@@ -119,7 +125,7 @@ export default {
     let S;
     let vocab = null;
     try {
-      [S, { vocab }] = await Promise.all([loadStories(), loadVocab().catch(() => ({ vocab: null }))]);
+      [S, { vocab }] = await Promise.all([loadStories(), loadVocab().catch(() => ({ vocab: null })), content.load().catch(() => {})]);
     } catch {
       root.innerHTML = pageHead(t("st.title"), esc(t("st.loadError")), "", "", "tent");
       return;
@@ -181,6 +187,12 @@ export default {
         listen.querySelector("span").textContent = t("st.stop");
         listen.setAttribute("aria-pressed", "true");
         stopListening = sayAll(s.text.map(l => l.ar), mark);
+        return;
+      }
+      if (e.target.closest("[data-record]") && canRecord()) {
+        const lines = s.text.map(l => ({ ...l, deck: "stories" }));
+        const first = lines.findIndex(l => !content.hasAudio(spoken(l)));
+        openStudio(lines, Math.max(first, 0), { onClose: render });
         return;
       }
       const q = e.target.closest("[data-q]");

@@ -57,7 +57,7 @@ export default {
     const render = () => {
       if (signal.aborted) return;
       const list = content.pending();
-      root.innerHTML = `${pageHead(t("review.title"), esc(t(store.isTeacher() ? "review.subDima" : "review.sub")), "", "", "print")}
+      root.innerHTML = `${pageHead(t("review.title"), esc(t(store.isTeacher() ? "review.subDima" : "review.sub")), "", "", "door")}
         ${list.length > 1 && !store.isTeacher() ? `<p><button type="button" class="btn" data-all>${icon("check")} ${t("review.approveAll", { n: list.length })}</button></p>` : ""}
         ${list.length ? `<ol class="rv-list${store.isTeacher() ? " is-mine" : ""}">${list.map(card).join("")}</ol>` : `<p class="empty-note">${icon("check")} ${t("review.none")}</p>`}
         ${content.decided().length ? `<h2 class="rv-history">${t("review.history")}</h2>

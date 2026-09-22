@@ -67,14 +67,20 @@ Last updated: 22 Sept 2026 (evening: stories, practice, verbs, about me, your pa
   - **A scene for every page** (`core/scenes.js`, 15 hand-drawn SVG scenes in the Today scene's style, colours from tokens so they follow the theme — sun by day, moon and stars in dark mode): goat-hair tent and fire (Stories), camels (Verbs), hooded falcon (Practice), souq stall with Arabic price tags (Numbers), Taif roses (To her ♥), coffee tray and dallah (About me, Phrases), the red Nafud with a track to a fort (Your path), a Najdi mud house (Grammar, Lessons), a majlis (Chats), a Sadu loom (Cards), a palm grove (Word list), spring in the desert with truffles (Progress), the crescent (Calendar, Her birthday), reed pen and calligraphy (Letters, Vowels, Reading, Quiz), Diriyah's towers (Saudi life, The plan). Each has its word to hear (بيت الشعر, الإبل, الصقر…), moves gently (fire, camels, falcon's plume, steam, smoke, cloud), and does something when tapped. On phones a slim strip under the title.
   - **Culture cards** (`data/culture.js`, `views/culture.js`, 22 true stories in four languages, under every page in `#culture` beside `#view`; Today shows a different one each day; "Another story"): the goat-hair tent, sawalif by the fire, Al Sadu (UNESCO 2020), falconry, camels, souq prices, the Hijri calendar, when the desert turns green, dates, desert truffles, mud houses, the majlis, Saudi coffee (2022), meeting people, oud and bakhoor, Taif roses, Nabati poetry, Al-Ardah (UNESCO 2015), calligraphy (2020–21), Hafar al-Batin, the Nafud, kashta. Each with a cropped scene picture and a word to hear (flagged).
   - **Texture and life**: a faint sand grain on the background; a Sadu band down the edge of the menu (computer); lists flow in when a page opens; cards lift under the mouse and press in on tap; a burst of Sadu colours (`core/celebrate.js`) for a story or chat read, a perfect story quiz or practice round, a path step ticked, every 5 verbs in a row. All motion off with "reduce motion".
+- **Round 2 of the look, and Dima's answers** (22 Sept):
+  - **Dima: "your" to her is -ik** ("-ich is Gulf — Kuwait, Iraq, UAE, Qatar, Bahrain — in Saudi we use -ik"). The 21 "North: …چ" variants on To her ♥ are gone; the page intro now says -ik is Saudi and -ich is what you hear in the Gulf. `NAJDI-PLAN.md` already says -ik, so it needs no change.
+  - **She likes the short stories and will voice them**: in her profile each story has **Record this story** (opens the voice studio on that story's lines, "3 of 8" count); the story list marks fully recorded stories with a mic; everyone then hears her voice in "Listen to all".
+  - **Three more scenes** (18 now): the rababa by the fire (Record — tap: the bow plays), a painted Najdi door with its small خوخة door (Suggestions — tap: it swings open on a lit majlis), a desert well with a camel at the trough (Printables — tap: the bucket comes up; Hafar al-Batin is named after its wells). Two more culture stories (24): the rababa, painted Najdi doors. Scenes and culture cards don't print.
+  - **Today, richer**: "Today in Hafar al-Batin" — the time in Saudi (and how far ahead of you), the Hijri date (Umm al-Qura), the next prayer in her city with how long until it, and the next occasion (National Day is 23 Sept) — each Arabic word to hear. Plus **Today's story** (his next unread story; in her profile, the next story to record).
+  - **Hafar al-Batin** added to the prayer-time cities (first, as her city; Fajr/Maghrib and the way to Mecca are tested).
 - **Fixed 21 Sept**: Progress page "today" marker was positioned against the whole window (`.stage-bar` had no `position: relative`) → a line down the left edge of the screen.
 
 ## Next (in this order)
 
-0. **Plan changes waiting for Volodymyr's OK** (her dialect vs the plan's Riyadh forms — propose, never edit silently): وش لونك → شلونك (and add شخبارك); مب → مو; السلام عليكم stays but سلام is the everyday hi; "your" to her -ik vs -ich — ask Dima which she says, then switch the site's "to her" forms if -ich.
+0. **Plan changes waiting for Volodymyr's OK** (her dialect vs the plan's Riyadh forms — propose, never edit silently): وش لونك → شلونك (and add شخبارك); مب → مو; السلام عليكم stays but سلام is the everyday hi. ✅ -ik vs -ich: Dima says -ik (done 22 Sept).
 1. **Chats**: ✅ tap a word and 20 chats (22 Sept). More chats for B1 later. Weeks 19–21 and 27–67 conversations for the weekly lessons.
 2. ✅ **A1 by 21 Dec path** — built as Your path (`#/path`).
-3. Export Dima's edits from D1 as proposed NAJDI-PLAN.md / NAJDI-WORDS.md changes; next prayer + fact of the day on Today; Phrases/letters editable in edit mode.
+3. Export Dima's edits from D1 as proposed NAJDI-PLAN.md / NAJDI-WORDS.md changes; ✅ next prayer on Today (fact of the day: the culture card); Phrases/letters editable in edit mode.
 4. Optional PIN for Volodymyr's sign-in. `npm run pdf`. Progress: cards per day. Calendar arrow keys; backup restore confirm. `public/_headers`. More tests.
 
 ## Waiting on Dima (native speaker)
@@ -85,7 +91,7 @@ Last updated: 22 Sept 2026 (evening: stories, practice, verbs, about me, your pa
   - Welcome screen: منهو هنا؟, مهوب هذا الاسم, and معلّمة vs أبلة.
   - Teacher banner: تشوفين, تسوّينه.
   - Ukrainian vocative "Дімо".
-  - To her ♥: 134 flagged phrases, esp. يا قمر (gamar?), وحشتيني, تذبحيني, كشختك, انتي فتنة, جيت أطلب القرب منكم, أبي الحلال; the -ich (چ) forms.
+  - To her ♥: 134 flagged phrases, esp. يا قمر (gamar?), وحشتيني, تذبحيني, كشختك, انتي فتنة, جيت أطلب القرب منكم, أبي الحلال.
   - Dima's welcome compliments (43): جمالك يذبح, حلاك غير, وجهك صبح وضحكتك عيد.
   - Chats (12, all flagged); numbers 11–19 (احدعش … تسعطعش), ثلاث مية, time phrases (وثلث، ونص إلا خمس); her words' spelling (فولودكا).
   - Birthday wishes (12 lines) — ask the tutor, not Dima (surprise).

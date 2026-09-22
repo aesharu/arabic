@@ -31,7 +31,8 @@ test("the north gets its own stories", () => {
 });
 
 test("prayer times for Riyadh are in the right order and the right hours", () => {
-  const t = prayerTimes("2026-09-21", CITIES[0]);
+  const riyadh = CITIES.find(c => c.id === "riyadh");
+  const t = prayerTimes("2026-09-21", riyadh);
   const h = d => (d.getUTCHours() + 3) % 24 + d.getUTCMinutes() / 60;
   const order = ["fajr", "sunrise", "dhuhr", "asr", "maghrib", "isha"].map(k => t[k].getTime());
   assert.deepEqual([...order].sort((a, b) => a - b), order);
@@ -39,6 +40,16 @@ test("prayer times for Riyadh are in the right order and the right hours", () =>
   assert.ok(h(t.dhuhr) > 11.5 && h(t.dhuhr) < 12, "Dhuhr around 11:45");
   assert.ok(h(t.maghrib) > 17.6 && h(t.maghrib) < 18, "Maghrib around 17:50");
   assert.equal((t.isha - t.maghrib) / 60e3, 90, "Isha 90 minutes after Maghrib outside Ramadan");
-  const q = qibla(CITIES[0]);
+  const q = qibla(riyadh);
   assert.ok(q.bearing > 240 && q.bearing < 248 && q.km > 750 && q.km < 830, "Mecca is west-south-west of Riyadh, ~790 km");
+});
+
+test("her city, Hafar al-Batin, is first: prayer times in order, Mecca to the south-west", () => {
+  assert.equal(CITIES[0].id, "hafar");
+  const t = prayerTimes("2026-09-22", CITIES[0]);
+  const h = d => (d.getUTCHours() + 3) % 24 + d.getUTCMinutes() / 60;
+  assert.ok(h(t.fajr) > 4.2 && h(t.fajr) < 4.6, "Fajr around 4:23");
+  assert.ok(h(t.maghrib) > 17.7 && h(t.maghrib) < 18, "Maghrib around 17:53");
+  const q = qibla(CITIES[0]);
+  assert.ok(q.bearing > 214 && q.bearing < 226 && q.km > 950 && q.km < 1040, "Mecca is south-west of Hafar al-Batin, ~1000 km");
 });

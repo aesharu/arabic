@@ -4,8 +4,8 @@ import * as cards from "../core/cards.js";
 import { loadVocab, vocabNow } from "../core/vocab.js";
 import { todayKey, longDate, addDays, diffDays, format } from "../core/dates.js";
 import { planFor, phaseTitle, TOTAL_DAYS, weekNumber, streak, totals, allTasksTicked } from "../core/schedule.js";
-import { t, tx, tu, num, locale } from "../core/i18n.js";
-import { esc, rich, ar, translit, flag, meanings, playIcon } from "../core/dom.js";
+import { t, tx, tu, num, locale, lang, isArabic } from "../core/i18n.js";
+import { esc, rich, ar, lat, translit, flag, meanings, playIcon } from "../core/dom.js";
 import { icon, scene } from "../core/art.js";
 import { START, GOAL, DAILY_GOAL_MIN } from "../config.js";
 import { PHRASES } from "../data/phrases.js";
@@ -14,6 +14,11 @@ import { journeyParapet, ring, TOTAL_WEEKS, wordsMeter } from "./shared.js";
 import { BIRTHDAY } from "../data/birthday.js";
 import { PATH } from "../data/path.js";
 import { weeks as pathWeeks, weekIndex as pathWeek, progress as pathProgress } from "../core/path.js";
+import { CITIES, around, saudiToday } from "../core/prayer.js";
+import { upcoming, leftText } from "./saudi.js";
+import { sceneSvg } from "../core/scenes.js";
+import * as content from "../core/content.js";
+import { spoken } from "../core/studio.js";
 
 // New phrases on Days 1–14; after that, a rotating review of three.
 function phrasesFor(n) {
@@ -37,6 +42,60 @@ const GREETING = {
   morning: { ar: "صباح الخير", say: "ṣabāḥ al-khēr", key: "today.greetMorning", reply: "صباح النور", replySay: "ṣabāḥ an-nūr" },
   evening: { ar: "مساء الخير", say: "masāʾ al-khēr", key: "today.greetEvening", reply: "مساء النور", replySay: "masāʾ an-nūr" },
 };
+
+// Her side of the world: the time in Saudi Arabia, the Hijri date, the next prayer in her city and the next
+// occasion — the Arabic words to hear.
+const HAFAR = CITIES.find(c => c.id === "hafar");
+const TZ = "Asia/Riyadh";
+let occasions = { day: "", list: [] }; // upcoming() walks the calendar day by day: once a day is enough
+const clockAt = at => new Intl.DateTimeFormat(locale(), { hour: "2-digit", minute: "2-digit", hourCycle: "h23", timeZone: TZ }).format(at);
+const meanOf = x => lat(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }));
+const daysText = n => (n === 0 ? t("saudi.isToday") : n === 1 ? t("saudi.tomorrow") : t("saudi.inDays", { n: num(n) }));
+
+function herWorld(now = Date.now()) {
+  const day = saudiToday(now);
+  if (occasions.day !== day) occasions = { day, list: upcoming(day) };
+  const noon = new Date(Date.parse(day) + 12 * 3600e3);
+  const hijri = { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" };
+  const hijriAr = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura-nu-latn", hijri).format(noon);
+  const hijriLat = new Intl.DateTimeFormat(`${isArabic() ? "en" : lang()}-u-ca-islamic-umalqura`, hijri).format(noon);
+  const { next } = around(HAFAR, now);
+  const occ = occasions.list[0];
+  const gap = 3 + new Date(now).getTimezoneOffset() / 60; // hours Saudi Arabia is ahead of this device
+  const hour = +new Intl.DateTimeFormat("en", { hour: "numeric", hourCycle: "h23", timeZone: TZ }).format(now);
+  const gapText = gap === 0 ? t("td.same") : t(gap > 0 ? "td.ahead" : "td.behind", { n: num(Math.abs(gap)) });
+  const tile = (iconName, label, body, say) => say
+    ? `<button type="button" class="hc-tile" data-say="${esc(say)}"><span class="hc-label">${icon(iconName)} ${label}</span>${body}${playIcon}</button>`
+    : `<div class="hc-tile"><span class="hc-label">${icon(iconName)} ${label}</span>${body}</div>`;
+  return `
+    ${tile(hour >= 6 && hour < 18 ? "today" : "moon", t("td.timeThere"), `<span class="hc-big hc-clock">${esc(clockAt(now))}</span><span class="hc-small">${esc(gapText)}</span>`)}
+    ${tile("calendar", t("td.hijri"), `<span class="hc-big hc-hijri">${ar(hijriAr)}</span><span class="hc-small">${lat(hijriLat)}</span>`, hijriAr.replace(/\s*هـ$/, ""))}
+    ${next ? tile("mosque", t("td.nextPrayer"), `<span class="hc-big">${ar(next.p.ar)} <span class="hc-time">${esc(clockAt(next.at))}</span></span>
+      <span class="hc-small">${translit(next.p.say)} · ${meanOf(next.p)} · ${esc(leftText(next.at - now))}</span>`, next.p.ar) : ""}
+    ${occ ? tile("star", t("td.comingUp"), `<span class="hc-big">${ar(occ.o.name.najdi)}</span>
+      <span class="hc-small">${translit(occ.o.say)} · ${meanOf(occ.o.name)} · <b>${esc(daysText(occ.days))}</b></span>`, occ.o.name.najdi) : ""}`;
+}
+
+// Today's story: the next one he hasn't read (short stories are how she learns); in her profile, the next one to
+// record in her voice.
+function storyCard(S) {
+  const teacher = store.isTeacher();
+  const read = new Set(store.get().reading?.done ?? []);
+  const voiced = s => content.recordedCount(s.text.map(spoken)) === s.text.length;
+  const done = S.STORIES.filter(s => (teacher ? voiced(s) : read.has(`st.${s.id}`))).length;
+  const s = S.STORIES.find(x => (teacher ? !voiced(x) : !read.has(`st.${x.id}`)));
+  if (!s) return "";
+  return `<a class="td-story" href="#/stories/${s.id}">
+    <span class="td-story-pic" aria-hidden="true">${sceneSvg("tent", { square: true })}</span>
+    <span class="td-story-text">
+      <span class="td-story-kind">${icon(teacher ? "mic" : "reading")} ${t(teacher ? "td.storyRec" : "td.story")} · ${esc(s.level === "easy" ? t("st.badgeEasy") : s.level)}</span>
+      <b>${esc(tx(s.title))}</b>
+      ${ar(s.text[0].ar, "td-story-ar")}
+      <span class="td-story-meta">${esc(t("st.lines", { n: num(s.text.length) }))} · ${esc(t(teacher ? "td.storiesVoiced" : "td.storiesRead", { n: num(done), total: num(S.STORIES.length) }))}</span>
+    </span>
+    <span class="btn btn-primary td-story-go">${teacher ? `${icon("mic")} ${t("st.record")}` : `${t("td.read")} ${icon("arrow", "flip-rtl")}`}</span>
+  </a>`;
+}
 
 const stat = (iconName, label, value, unit) =>
   `<div><dt>${icon(iconName)}${label}</dt><dd>${value} <small>${unit}</small></dd></div>`;
@@ -121,6 +180,11 @@ export default {
         ${journeyParapet(date)}
         <p class="parapet-caption">${t("today.weekOf", { n: week, total: TOTAL_WEEKS })}</p>
 
+        <section class="hc" aria-labelledby="hc-title">
+          <div class="hc-head"><h2 id="hc-title">${t("td.herCity")}</h2><a href="#/saudi" class="small">${t("nav.saudi")} ${icon("arrow", "flip-rtl")}</a></div>
+          <div class="hc-tiles" data-hc>${herWorld()}</div>
+        </section>
+
         <div class="today">
           <div class="today-main">
             ${!store.isTeacher() && diffDays(START, date) < PATH.length * 7 ? (w => (p => `<a class="ls-today pa-today" href="#/path">${icon("plan")}<span><b>${esc(t("path.todayLink", { title: tx(w.title) }))}</b><small>${esc(t("path.todaySub", { done: num(p.done), total: num(p.total) }))}</small></span>${icon("arrow")}</a>`)(pathProgress(w)))(pathWeeks(false)[pathWeek(date)]) : ""}
@@ -148,6 +212,8 @@ export default {
               ${allTasksTicked(date, e) ? `<p class="day-done">${icon("star")} ${esc(t("today.dayDone"))}</p>` : ""}
               ${phase.weekly.length ? `<div class="weekly"><b>${t("today.everyWeek")}</b><ul>${phase.weekly.map(w => `<li>${esc(tx(w))}</li>`).join("")}</ul></div>` : ""}
             </section>
+
+            <div class="td-story-slot" data-story-slot></div>
 
             <section class="panel">
               <div class="panel-head"><h2>${ph.label}</h2><a href="#/phrases">${t("today.allPhrases")}</a></div>
@@ -206,6 +272,7 @@ export default {
             </section>
           </aside>
         </div>`;
+      fillStory();
     };
 
     root.addEventListener("change", e => {
@@ -232,11 +299,27 @@ export default {
       root.querySelector(b.hasAttribute("data-timer") ? "[data-timer]" : `[data-add="${b.dataset.add}"]`)?.focus();
     }, { signal });
 
+    let minute = new Date().getMinutes();
     const tick = setInterval(() => {
       const run = timer.running();
       const el = document.getElementById("clock");
       if (run && el) el.textContent = timer.clock(Date.now() - run.start);
+      if (new Date().getMinutes() !== minute) {
+        minute = new Date().getMinutes();
+        const hc = root.querySelector("[data-hc]");
+        if (hc) hc.innerHTML = herWorld();
+      }
     }, 1000);
+
+    // The story card fills in once the stories are loaded (they're big, so they load after the page).
+    let stories = null;
+    const fillStory = () => {
+      const slot = !signal.aborted && stories && root.querySelector("[data-story-slot]");
+      if (slot) slot.innerHTML = storyCard(stories);
+    };
+    import("./stories.js").then(m => m.loadStories()).then(S => ((stories = S), fillStory()), () => {});
+    const offContent = content.onChange(fillStory);
+    signal.addEventListener("abort", offContent);
     signal.addEventListener("abort", () => clearInterval(tick));
 
     render();

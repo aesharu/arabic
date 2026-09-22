@@ -147,6 +147,7 @@
   --spice-1: #E3A21A; --spice-2: #B83A1E; --spice-3: #6E8B3D; --spice-4: #8A5A2B; --bowl: #7A5A3A;
   --tag: #FFFFFF; --tag-ink: #0B2E1C; --glass: rgba(255, 255, 255, .55); --glass-line: #8FB3B8; --rosewater: #F2B8C8;
   --cloud: #FFFFFF; --rain: #7FA9C4;
+  --stone: #CDBB9C; --stone-top: #DCCDB2; --stone-line: #A8946F; --water: #4F93AE; --door-blue: #2F6F8F; --skin: #F1E6CC;
 }
 :root[data-theme="light"] { --scene-top: #E9D6B2; --scene-bottom: #F6ECD8; }
 @media (prefers-color-scheme: dark) {
@@ -159,6 +160,7 @@
     --falcon: #6E5A48; --falcon-chest: #BDB09A; --falcon-wing: #4F3F31; --hood: #3E2816;
     --wood: #5E4730; --desk: #4A3A28; --car: #C9C4B8; --car-glass: #5C7F8A; --bowl: #5A4430;
     --tag: #E9E1CC; --glass: rgba(255, 255, 255, .22); --cloud: #3E5A4E; --rain: #5C8AA6;
+    --stone: #5E5142; --stone-top: #6E604E; --stone-line: #463C30; --water: #2F6377; --door-blue: #2A5468; --skin: #C9BC9F;
   }
 }
 :root[data-theme="saudi-dark"], :root[data-theme="dark"] {
@@ -170,5 +172,6 @@
   --falcon: #6E5A48; --falcon-chest: #BDB09A; --falcon-wing: #4F3F31; --hood: #3E2816;
   --wood: #5E4730; --desk: #4A3A28; --car: #C9C4B8; --car-glass: #5C7F8A; --bowl: #5A4430;
   --tag: #E9E1CC; --glass: rgba(255, 255, 255, .22); --cloud: #3E5A4E; --rain: #5C8AA6;
+    --stone: #5E5142; --stone-top: #6E604E; --stone-line: #463C30; --water: #2F6377; --door-blue: #2A5468; --skin: #C9BC9F;
 }
 :root[data-theme="dark"] { --scene-top: #0E0906; --scene-bottom: #34261A; }

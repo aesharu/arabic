@@ -329,13 +329,13 @@ export const FACTS = [
   { en: "Sadu patterns carry names: a row of triangles is often called “teeth”.", uk: "Візерунки саду мають назви: ряд трикутників часто називають «зубами».", najdi: "نقوش السدو لها أسماء: صف المثلثات كثير يسمّونه «ضروس».", msa: "لنقوش السدو أسماء: فصفّ المثلثات كثيرًا ما يُسمّى «الضروس»." },
 ];
 
-// The year's occasions: Hijri ones (found with the Umm al-Qura calendar) and Gregorian ones.
+// The year's occasions: Hijri ones (found with the Umm al-Qura calendar) and Gregorian ones. say: how the Arabic name sounds.
 export const OCCASIONS = [
-  { id: "ramadan", hijri: [9, 1], name: { en: "Ramadan begins", uk: "Початок Рамадану", najdi: "بداية رمضان", msa: "بداية شهر رمضان" } },
-  { id: "fitr", hijri: [10, 1], name: { en: "Eid al-Fitr", uk: "Ід аль-Фітр (свято розговіння)", najdi: "عيد الفطر", msa: "عيد الفطر" } },
-  { id: "arafah", hijri: [12, 9], name: { en: "Day of Arafah", uk: "День Арафат", najdi: "يوم عرفة", msa: "يوم عرفة" } },
-  { id: "adha", hijri: [12, 10], name: { en: "Eid al-Adha", uk: "Ід аль-Адха (свято жертвопринесення)", najdi: "عيد الأضحى", msa: "عيد الأضحى" } },
-  { id: "newyear", hijri: [1, 1], name: { en: "Islamic New Year", uk: "Ісламський Новий рік", najdi: "رأس السنة الهجرية", msa: "رأس السنة الهجرية" } },
-  { id: "founding", greg: [2, 22], name: { en: "Founding Day", uk: "День заснування", najdi: "يوم التأسيس", msa: "يوم التأسيس" } },
-  { id: "national", greg: [9, 23], name: { en: "National Day", uk: "Національний день", najdi: "اليوم الوطني", msa: "اليوم الوطني" } },
+  { id: "ramadan", hijri: [9, 1], say: "bidāyat ramaḍān", name: { en: "Ramadan begins", uk: "Початок Рамадану", najdi: "بداية رمضان", msa: "بداية شهر رمضان" } },
+  { id: "fitr", hijri: [10, 1], say: "ʿīd al-fiṭr", name: { en: "Eid al-Fitr", uk: "Ід аль-Фітр (свято розговіння)", najdi: "عيد الفطر", msa: "عيد الفطر" } },
+  { id: "arafah", hijri: [12, 9], say: "yōm ʿarafa", name: { en: "Day of Arafah", uk: "День Арафат", najdi: "يوم عرفة", msa: "يوم عرفة" } },
+  { id: "adha", hijri: [12, 10], say: "ʿīd al-aḍḥa", name: { en: "Eid al-Adha", uk: "Ід аль-Адха (свято жертвопринесення)", najdi: "عيد الأضحى", msa: "عيد الأضحى" } },
+  { id: "newyear", hijri: [1, 1], say: "rās as-sana al-hijriyya", name: { en: "Islamic New Year", uk: "Ісламський Новий рік", najdi: "رأس السنة الهجرية", msa: "رأس السنة الهجرية" } },
+  { id: "founding", greg: [2, 22], say: "yōm at-taʾsīs", name: { en: "Founding Day", uk: "День заснування", najdi: "يوم التأسيس", msa: "يوم التأسيس" } },
+  { id: "national", greg: [9, 23], say: "al-yōm al-waṭani", name: { en: "National Day", uk: "Національний день", najdi: "اليوم الوطني", msa: "اليوم الوطني" } },
 ];

@@ -1198,9 +1198,6 @@ html[dir="rtl"] .lt-table th { letter-spacing: 0; }
 .lv-jump { margin: 0 0 8px; }
 .lv-jump small { opacity: .7; margin-inline-start: 4px; }
 .lv-section { scroll-margin-top: 80px; margin: 22px 0 0; }
-.lv-north { display: block; margin-top: 3px; font-size: 14.5px; color: var(--muted); }
-.lv-north i { font-style: normal; font-weight: 800; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; margin-inline-end: 6px; }
-.lv-north .ar { font-size: 19px; }
 .lv-sections.is-hidden .gr-mean, .lv-sections.is-hidden .gr-msa, .lv-sections.is-hidden .pnote { visibility: hidden; }
 .nav-love .i { color: #F7A8B8; }
 .lv-phrase .phrase-ar { flex: 0 1 auto; max-width: 100%; min-width: 0; }
@@ -1621,6 +1618,17 @@ html[dir="rtl"] .scene-cap { padding: 3px 12px 3px 4px; }
 .ps-cloud path:first-child { fill: var(--cloud); } .ps-rain { fill: none; stroke: var(--rain); stroke-width: 1.8; stroke-linecap: round; }
 .ps-crescent-moon { fill: var(--art-brass); }
 .ps-desk { fill: var(--desk); } .ps-callig { font-size: 52px; }
+.ps-skin { fill: var(--skin); } .ps-string { stroke: var(--sadu-dark); stroke-width: .9; opacity: .75; }
+.ps-tassel { fill: none; stroke: var(--sadu-red); stroke-width: 1.6; stroke-linecap: round; }
+.ps-bow-wood { fill: none; stroke: var(--wood); stroke-width: 2.6; stroke-linecap: round; } .ps-bow-hair { stroke: var(--sadu-cream); stroke-width: 1; }
+.ps-wave { fill: none; stroke: var(--art-brass); stroke-width: 2; stroke-linecap: round; opacity: .55; }
+.ps-door-in { fill: var(--tent-in); } .ps-door-warm { fill: var(--lamp); opacity: .16; } .ps-door-plank { stroke: var(--art-trunk-line); stroke-width: 1; } .ps-door-blue { fill: var(--door-blue); }
+.ps-door-small { fill: none; stroke: var(--art-trunk-line); stroke-width: 1.4; }
+.ps-knocker { fill: none; stroke: var(--art-brass); stroke-width: 1.6; } .ps-stud { fill: var(--art-brass); }
+.ps-lantern { fill: var(--lamp); }
+.ps-stone { fill: var(--stone); } .ps-stone-top { fill: var(--stone-top); } .ps-stone-line { fill: none; stroke: var(--stone-line); stroke-width: 1.1; }
+.ps-well-hole { fill: var(--tent-in); } .ps-water { fill: var(--water); } .ps-dalw { fill: var(--art-trunk); }
+.ps-rope-line { fill: none; stroke: var(--rope); stroke-width: 1.3; } .ps-spoke { stroke: var(--art-trunk-line); stroke-width: 1.2; }
 
 /* Movement: gentle, and none at all with "reduce motion". Tapping a scene (.is-play) makes it do something. */
 @media (prefers-reduced-motion: no-preference) {
@@ -1644,6 +1652,18 @@ html[dir="rtl"] .scene-cap { padding: 3px 12px 3px 4px; }
   .scene-card.is-play .ps-heart { animation-duration: 1.6s; }
   .scene-card.is-play .ps-yarn { animation: ps-roll .8s ease-out; }
   .scene-card.is-play .pscene { animation: ps-pop .5s ease-out; }
+  .ps-wave { animation: ps-wave 2.4s ease-in-out infinite; }
+  .ps-water { animation: ps-glow 3s ease-in-out infinite; }
+  .ps-door-leaf { transform-box: fill-box; transform-origin: 0 50%; transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+  .ps-bucket, .ps-bucket-rope { transition: transform .7s cubic-bezier(.2, .8, .2, 1); }
+  .ps-bucket-rope { transform-box: fill-box; transform-origin: 50% 0; }
+  .ps-pulley { transform-box: fill-box; transform-origin: 50% 50%; }
+  .scene-card.is-play .ps-wave { animation-duration: .7s; }
+  .scene-card.is-play .ps-bow { animation: ps-bow .4s ease-in-out 4; }
+  .scene-card.is-play .ps-door-leaf { transform: scaleX(.3); }
+  .scene-card.is-play .ps-bucket { transform: translateY(-24px); }
+  .scene-card.is-play .ps-bucket-rope { transform: scaleY(.35); }
+  .scene-card.is-play .ps-pulley { animation: ps-spin .7s ease-out; }
 }
 @keyframes ps-flicker { 0%, 100% { transform: scale(1, 1); } 30% { transform: scale(.93, 1.08); } 60% { transform: scale(1.05, .94); } }
 @keyframes ps-glow { 50% { opacity: .55; } }
@@ -1655,6 +1675,9 @@ html[dir="rtl"] .scene-cap { padding: 3px 12px 3px 4px; }
 @keyframes ps-drift { to { transform: translateX(-26px); } }
 @keyframes ps-roll { 50% { transform: translateX(10px) rotate(160deg); } }
 @keyframes ps-pop { 40% { transform: scale(1.02); } }
+@keyframes ps-wave { 0%, 100% { opacity: .15; } 50% { opacity: .9; } }
+@keyframes ps-bow { 50% { transform: translate(12px, -4px); } }
+@keyframes ps-spin { to { transform: rotate(-360deg); } }
 
 @media (max-width: 1100px) {
   .scene-card { flex-basis: 340px; min-width: 260px; }
@@ -1701,14 +1724,14 @@ html[dir="rtl"] .culture-word { padding: 4px 14px 4px 6px; }
 
 /* ---------- Life: lists flow in when a page opens, cards lift under the pointer, a burst for finishing ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list, .lv-sections > .lv-section) > *,
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list, .hc-tiles, .lv-sections > .lv-section) > *,
   #view.is-entering .culture { animation: enter-rise .5s cubic-bezier(.2, .7, .2, 1) both; }
-  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(2) { animation-delay: .04s; }
-  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(3) { animation-delay: .08s; }
-  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(4) { animation-delay: .12s; }
-  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(5) { animation-delay: .16s; }
-  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(6) { animation-delay: .2s; }
-  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list) > :nth-child(n+7) { animation-delay: .24s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list, .hc-tiles) > :nth-child(2) { animation-delay: .04s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list, .hc-tiles) > :nth-child(3) { animation-delay: .08s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list, .hc-tiles) > :nth-child(4) { animation-delay: .12s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list, .hc-tiles) > :nth-child(5) { animation-delay: .16s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list, .hc-tiles) > :nth-child(6) { animation-delay: .2s; }
+  #view.is-entering :is(.ch-list, .gr-list, .vocab, .pa-weeks, .nm-grid, .me-lines, .me-qa, .vb-list, .words, .st-lines, .decks, .print-list, .hc-tiles) > :nth-child(n+7) { animation-delay: .24s; }
   .scene-card { animation: enter-scene .6s cubic-bezier(.2, .7, .2, 1) both; }
   :is(.ch-card, .gr-card, .vb-list a, .pa-step > a, .culture-word, .scene-cap) { transition: transform .18s cubic-bezier(.2, .7, .2, 1), box-shadow .18s ease, background-color .15s ease; }
   .btn:active, .opt:not(:disabled):active, .ch-card:active, .gr-card:active { transform: scale(.975); }
@@ -1720,3 +1743,61 @@ html[dir="rtl"] .culture-word { padding: 4px 14px 4px 6px; }
 @keyframes enter-rise { from { opacity: 0; transform: translateY(10px); } }
 @keyframes enter-scene { from { opacity: 0; transform: translateY(6px) scale(.985); } }
 .confetti { position: fixed; z-index: 1000; width: 9px; height: 9px; border-radius: 1.5px; pointer-events: none; box-shadow: 0 0 0 1px rgba(0, 0, 0, .12); }
+
+/* Stories: Dima's recorded ones, and her record button */
+.st-voiced { display: inline-flex; vertical-align: -3px; margin-inline-start: 6px; color: var(--accent); }
+.st-voiced svg { width: 16px; height: 16px; }
+.st-rec-n { font-weight: 600; opacity: .8; font-variant-numeric: tabular-nums; }
+
+/* Today: her city now — the time in Saudi, the Hijri date, the next prayer, the next occasion */
+.hc { margin: 20px 0 22px; }
+.hc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.hc-head h2 { margin: 0; font-size: 19px; }
+.hc-head a { font-weight: 700; }
+.hc-head a .i { width: 14px; height: 14px; vertical-align: -2px; }
+.hc-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.hc-tile { position: relative; display: grid; align-content: start; gap: 5px; min-width: 0; min-height: 118px; margin: 0; padding: 20px 16px 14px;
+  overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--ink); font: inherit; text-align: start; }
+.hc-tile::before { content: ""; position: absolute; inset: 0 0 auto; height: 6px; background: var(--sadu-red) linear-gradient(90deg, var(--sadu-cream) 0 50%, transparent 0) 0 2px / 7px 2px repeat-x; }
+button.hc-tile { cursor: pointer; padding-inline-end: 50px; }
+button.hc-tile .play { position: absolute; inset-inline-end: 12px; bottom: 12px; width: 36px; }
+.hc-label { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.hc-label .i { width: 16px; height: 16px; color: var(--accent); }
+.hc-big { font-size: 22px; font-weight: 800; line-height: 1.25; overflow-wrap: anywhere; }
+.hc-big .ar { font-size: 26px; font-weight: 700; }
+.hc-hijri .ar { white-space: nowrap; font-size: 24px; }
+.hc-clock { font-size: 30px; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.hc-time { font-size: 20px; font-variant-numeric: tabular-nums; color: var(--accent); white-space: nowrap; }
+.hc-small { color: var(--muted); font-size: 14px; line-height: 1.4; }
+.hc-small b { color: var(--hard); }
+@media (hover: hover) and (pointer: fine) { button.hc-tile:hover { border-color: var(--accent); } }
+@media (max-width: 1180px) { .hc-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) {
+  .hc-tiles { gap: 10px; }
+  .hc-tile { min-height: 0; padding: 18px 12px 12px; }
+  button.hc-tile { padding-inline-end: 12px; padding-bottom: 50px; }
+  .hc-big { font-size: 19px; } .hc-big .ar { font-size: 22px; } .hc-clock { font-size: 26px; } .hc-time { font-size: 17px; }
+  .hc-small { font-size: 13px; }
+  .hc-hijri .ar { white-space: normal; font-size: 21px; }
+}
+
+/* Today: the story of the day */
+.td-story-slot:empty { display: none; }
+.td-story { display: grid; grid-template-columns: 132px minmax(0, 1fr) auto; gap: 18px; align-items: center; margin: 0 0 18px; padding: 14px 18px 14px 14px;
+  border: 1.5px solid var(--line); border-radius: var(--radius); background: color-mix(in srgb, var(--art-sand-far) 24%, var(--surface)); color: var(--ink); text-decoration: none; }
+html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
+.td-story-pic { position: relative; display: block; aspect-ratio: 1; overflow: hidden; border-radius: 14px; background: var(--scene-bottom); }
+.td-story-text { display: grid; gap: 4px; min-width: 0; }
+.td-story-kind { display: flex; align-items: center; gap: 6px; color: var(--hard); font-size: 12.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.td-story-kind .i { width: 16px; height: 16px; }
+.td-story-text > b { font-size: 20px; line-height: 1.25; }
+.td-story-ar { justify-self: start; max-width: 100%; font-size: 24px; line-height: 1.6; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.td-story-meta { color: var(--muted); font-size: 14px; }
+@media (hover: hover) and (pointer: fine) { .td-story:hover { border-color: var(--accent); } }
+@media (max-width: 560px) {
+  .td-story { grid-template-columns: 84px minmax(0, 1fr); gap: 12px; padding: 12px; }
+  html[dir="rtl"] .td-story { padding: 12px; }
+  .td-story-go { grid-column: 1 / -1; justify-content: center; }
+  .td-story-text > b { font-size: 18px; }
+  .td-story-ar { font-size: 21px; }
+}

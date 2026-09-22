@@ -1,5 +1,5 @@
 // "To her ♥": what to say to her — love, missing her, compliments, flirting, making up, the future, her family —
-// in her dialect, with the northern -ich forms beside the Riyadh ones. Tap to hear (her voice once she's recorded it).
+// in her dialect. Tap to hear (her voice once she's recorded it).
 //   #/love
 import { t, tx } from "../core/i18n.js";
 import { esc, ar, translit, flag, playIcon, pageHead } from "../core/dom.js";
@@ -17,7 +17,6 @@ const phrase = x => (content.apply(x), `
     ${ar(x.ar, "phrase-ar")}
     <span class="phrase-t">${translit(x.say)} ${x.check ? flag({ check: true }) : ""}
       <span class="gr-mean">${esc(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }))}</span>
-      ${x.north ? `<span class="lv-north"><i>${t("love.north")}</i> ${ar(x.north.ar)} ${translit(x.north.say)}</span>` : ""}
       ${x.note ? `<span class="pnote">${esc(tx(x.note))}</span>` : ""}</span>
     ${playIcon}
   </button>`);

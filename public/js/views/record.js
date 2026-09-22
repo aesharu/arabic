@@ -27,7 +27,7 @@ const textOf = spoken;
 export default {
   titleKey: "record.title",
   mount(root, { params, signal }) {
-    root.innerHTML = pageHead(t("record.title"), esc(t("record.sub")), "", "", "phrases");
+    root.innerHTML = pageHead(t("record.title"), esc(t("record.sub")), "", "", "rababa");
     let notes = [];
     let shown = [];
     const doneHere = new Set(); // recorded during this visit: they stay in view
@@ -61,7 +61,7 @@ export default {
       shown = onlyTodo ? inDeck.filter(n => !content.hasAudio(textOf(n)) || doneHere.has(n.id)) : inDeck;
       const canRecord = store.isTeacher() && content.signedIn();
       const count = content.recordedCount(texts);
-      root.innerHTML = `${pageHead(t("record.title"), esc(t("record.sub")), "", "", "phrases")}
+      root.innerHTML = `${pageHead(t("record.title"), esc(t("record.sub")), "", "", "rababa")}
         ${!content.signedIn() ? `<p class="callout">${t("record.signIn")}</p>` : !store.isTeacher() ? `<p class="callout">${t("record.onlyDima")}</p>` : ""}
         <div class="rec-total"><b>${esc(t("record.count", { n: num(count), total: num(texts.length) }))}</b>
           <span class="meter" aria-hidden="true"><span style="width:${texts.length ? (count / texts.length) * 100 : 0}%"></span></span>

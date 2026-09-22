@@ -156,7 +156,7 @@ function index() {
     </article>`;
   const link = (href, label) => `<a class="btn btn-small" href="${href}">${label}</a>`;
   return `
-    ${pageHead(t("print.title"), t("print.sub"), "", "", "print")}
+    ${pageHead(t("print.title"), t("print.sub"), "", "", "well")}
     <div class="print-list">
       ${item("letters", t("print.lettersName"), t("print.lettersText"),
         GROUPS.map((g, i) => link(`#/print/letters/${i + 1}`, `${esc(t("letters.days", { days: g.days }))} <span lang="ar">${esc(g.letters.map(l => l.char).join(" "))}</span>`)).join("") + link("#/print/letters/all", esc(t("print.all"))))}
