@@ -338,6 +338,8 @@ export const STRINGS = {
   "st.listen": { en: "Listen to all", uk: "Слухати все", najdi: "اسمع الكل", msa: "استمع إلى الكل" },
   "st.stop": { en: "Stop", uk: "Зупинити", najdi: "وقّف", msa: "إيقاف" },
   "st.tapWord": { en: "Tap any word to see what it means and how it's built.", uk: "Натисни будь-яке слово, щоб побачити, що воно означає і з чого складається.", najdi: "اضغط أي كلمة تشوف معناها ومن وش مركّبة.", msa: "اضغط أي كلمة لترى معناها ومما تتكوّن." },
+  "st.hide": { en: "Listen first", uk: "Спершу послухай", najdi: "اسمع أول", msa: "استمع أولًا" },
+  "st.hideHow": { en: "The text is hidden: press “Listen to all” and try to understand by ear. Then tap the text to see it.", uk: "Текст сховано: натисни «Слухати все» й спробуй зрозуміти на слух. Потім торкнися тексту, щоб побачити його.", najdi: "الكلام مخفي: اضغط «اسمع الكل» وحاول تفهم بأذنك. وبعدين اضغط على الكلام تشوفه.", msa: "النص مخفي: اضغط «استمع إلى الكل» وحاول أن تفهم بالسمع، ثم اضغط على النص لتراه." },
   "st.hearSentence": { en: "Hear the sentence", uk: "Почути речення", najdi: "اسمع الجملة", msa: "استمع إلى الجملة" },
   "st.close": { en: "Close", uk: "Закрити", najdi: "سكّر", msa: "إغلاق" },
   "st.parts": { en: "Made of", uk: "Складається з", najdi: "مركّبة من", msa: "تتكوّن من" },

@@ -1555,3 +1555,6 @@ html[dir="rtl"] .pa-step > a > .i { transform: scaleX(-1); }
   .pa-top > div { min-width: calc(50% - 5px); flex: 1; }
 }
 .gr-more { margin: 32px 0 4px; }
+.st-text.is-hidden { position: relative; cursor: pointer; }
+.st-text.is-hidden .st-flow, .st-text.is-hidden .st-lines { filter: blur(9px); user-select: none; pointer-events: none; }
+@media (prefers-reduced-transparency: reduce) { .st-text.is-hidden .st-flow, .st-text.is-hidden .st-lines { filter: none; opacity: 0; } }

@@ -17,7 +17,7 @@ let loading = null;
 export const loadStories = () =>
   (loading ??= import("../data/stories.js").then(m => (content.register(m.STORY_LINES), m)).catch(e => ((loading = null), Promise.reject(e))));
 
-const show = { say: false, mean: false }; // kept while moving between stories
+const show = { say: false, mean: false, hide: false }; // kept while moving between stories; hide = "Listen first"
 const answers = new Map(); // story id → true/false answers given (until reload)
 const mean = x => lat(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en })); // English/Ukrainian, left to right even in Arabic
 const readIds = () => store.get().reading?.done ?? [];
@@ -94,9 +94,10 @@ function story(S, s, d) {
       <button type="button" class="btn" data-listen>${icon("sound")} <span>${t("st.listen")}</span></button>
       <button type="button" class="btn" data-show="say" aria-pressed="${show.say}">${t("chats.say")}</button>
       <button type="button" class="btn" data-show="mean" aria-pressed="${show.mean}">${t("chats.mean")}</button>
+      <button type="button" class="btn" data-show="hide" aria-pressed="${show.hide}">${icon("sound")} ${t("st.hide")}</button>
     </div>
-    <p class="muted small">${esc(t("st.tapWord"))}</p>
-    <article class="st-text lv-${s.level}${show.say || show.mean ? " is-lines" : ""}">${text(s, d)}</article>
+    <p class="muted small">${esc(t(show.hide ? "st.hideHow" : "st.tapWord"))}</p>
+    <article class="st-text lv-${s.level}${show.say || show.mean ? " is-lines" : ""}${show.hide ? " is-hidden" : ""}">${text(s, d)}</article>
     <aside class="st-panel" aria-live="polite" hidden></aside>
     <section class="st-words">
       <h2>${t("st.words")}</h2>
@@ -142,6 +143,12 @@ export default {
     signal.addEventListener("abort", () => stopListening?.());
 
     root.addEventListener("click", e => {
+      // "Listen first": the first tap on the hidden text shows it.
+      const hidden = e.target.closest(".st-text.is-hidden");
+      if (hidden) {
+        hidden.classList.remove("is-hidden");
+        return;
+      }
       const w = e.target.closest(".st-w");
       if (w) {
         selected = selection(s.text[+w.dataset.s], w, d);
