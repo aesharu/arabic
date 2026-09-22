@@ -166,14 +166,13 @@ function renderDayPill() {
     : `<b>${t("pill.soon")}</b>`;
 }
 
-// "Together for 172 days, 3:39:15" — floating above every page, ticking, his profile only.
+// "Together for 172 days, 3:39:15" — floating above every page, ticking, in both their profiles.
 // Tap it to read the same moment differently, and smaller each time: months and days → days → days alone.
 const TG_MODES = ["months", "days", "short"];
 const together = document.getElementById("together");
 const tgMode = () => (TG_MODES.includes(store.get().prefs.togetherMode) ? store.get().prefs.togetherMode : "months");
 
 function renderTogether() {
-  if (store.isTeacher()) return; // his counter; hers stays out of it until he says otherwise
   const e = elapsed(TOGETHER_SINCE);
   const mode = tgMode();
   const big = mode === "months" ? `${said("unit.months", e.months)} ${said("unit.days", e.restDays)}` : said("unit.days", e.days);
@@ -193,10 +192,8 @@ together.addEventListener("click", () => {
   });
   renderTogether();
 });
-if (!store.isTeacher()) {
-  renderTogether();
-  setInterval(renderTogether, 1000); // it keeps going, wherever you are on the site
-}
+renderTogether();
+setInterval(renderTogether, 1000); // it keeps going, wherever you are on the site
 
 // The study timer, visible from every page while it runs.
 const pill = document.getElementById("timerpill");
@@ -394,7 +391,7 @@ document.querySelector(".langs").addEventListener("click", e => {
   renderCloudPill();
   renderTimerPill();
   renderNavCount();
-  if (!store.isTeacher()) renderTogether();
+  renderTogether();
   show(current.name, current.params);
 });
 
