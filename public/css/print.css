@@ -100,3 +100,18 @@ html[dir="rtl"] .cell[data-form]::before { font-family: var(--font-ui-ar); direc
   .sheet:last-child { break-after: auto; }
   .panel, .phrase-row, .card, .word { break-inside: avoid; }
 }
+
+/* 6. Stories to read */
+.ps-story { display: flex; flex-direction: column; }
+.s-stories.lv-easy .ps-story { height: 50%; }
+.ps-story h3 { margin: 0 0 2mm; font-size: 12pt; color: #0B2E1C; }
+.ps-ar { margin: 0; padding: 0 7mm 0 0; font-family: var(--font-ar); font-size: 7.4mm; line-height: 1.75; color: #111; }
+.s-stories.lv-easy .ps-ar { font-size: 9mm; line-height: 1.6; }
+.ps-ar li { padding-inline-start: 1mm; }
+.ps-ar li::marker { font-family: var(--font-ui); font-size: 9pt; color: #999; }
+.ps-cut { position: relative; margin: 3mm 0 2mm; text-align: center; border-top: .3mm dashed #b8b8b8; height: 0; }
+.ps-cut span { position: relative; top: -2.2mm; padding: 0 2mm; background: #fff; color: #999; font-size: 8pt; }
+.ps-key { margin: 0; padding: 0 0 0 6mm; font-size: 9pt; line-height: 1.25; direction: ltr; text-align: left; columns: 2; column-gap: 8mm; }
+.ps-key li { break-inside: avoid; margin-bottom: 1.4mm; }
+.ps-key .tr { display: block; font-size: 9.5pt; }
+.ps-key .pm1, .ps-key .pm2 { display: block; }

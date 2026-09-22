@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 22 Sept 2026. Live: https://arabic.aesdvi.workers.dev
+Last updated: 22 Sept 2026 (evening: stories, practice, verbs, about me, your path, A2 grammar, 20 chats). Live: https://arabic.aesdvi.workers.dev
 
 ## Who uses it
 
@@ -12,7 +12,7 @@ Last updated: 22 Sept 2026. Live: https://arabic.aesdvi.workers.dev
 
 - **Phase 1**: `public/` site, GitHub (aesharu/arabic), Cloudflare Worker `arabic`, D1 `arabic-db`, secret `SYNC_KEY`.
 - **Phase 2 (vocabulary)**: `npm run vocab` builds `public/data/vocab.json` and the Anki CSVs from `NAJDI-PLAN.md` and `NAJDI-WORDS.md`. 1,157 entries, 810 flagged "check with tutor". Word list page with search in any language.
-- **Phase 3 (printables)**: `#/print` has letter tracing, word writing, fold-and-test, phrase cards and a weekly tracker, all A4 with self-hosted fonts. *Missing: `npm run pdf`.*
+- **Phase 3 (printables)**: `#/print` has letter tracing, word writing, fold-and-test, phrase cards, a weekly tracker and stories to read (22 Sept: one story a sheet, two of the very easy ones; pronunciation and meaning under a fold line), all A4 with self-hosted fonts. *Missing: `npm run pdf`.*
 - **Phase 4**: the Plan, Today (daily checklist), Calendar and Progress pages.
 - **Cards** `#/cards`: Anki SM-2 scheduling, in both directions (recognise, then say). Decks open by stage. Syncs to the cloud.
 - **Look**: Saudi green theme, a hand-drawn Najdi scene, Sadu weave, icons, page illustrations. The Today sky follows the theme: dark themes show the moon, light themes the sun, low at dawn and dusk.

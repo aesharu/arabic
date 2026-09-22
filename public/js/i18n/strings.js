@@ -1110,6 +1110,8 @@ export const STRINGS = {
     msa: "العربية يمينًا والمعنى يسارًا. اطوِ الورقة من المنتصف واختبر نفسك في الاتجاهين.",
   },
   "print.foldTitle": { en: "Fold and test", uk: "Склади й перевір", najdi: "اطوِ واختبر", msa: "اطوِ واختبر" },
+  "print.storiesName": { en: "Stories to read", uk: "Історії для читання", najdi: "قصص للقراية", msa: "قصص للقراءة" },
+  "print.storiesText": { en: "The stories on paper: the Arabic in large print, and under the dashed line how each sentence is said and what it means. Fold it back and read.", uk: "Історії на папері: арабський текст великим шрифтом, а під пунктиром — вимова й значення кожного речення. Загни низ і читай.", najdi: "القصص على ورق: العربي بخط كبير، وتحت الخط المقطّع نطق كل جملة ومعناها. اطوِ الورقة واقرا.", msa: "القصص على الورق: النص العربي بخط كبير، وتحت الخط المتقطّع نطق كل جملة ومعناها. اطوِ الورقة واقرأ." },
   "print.foldHere": { en: "fold here", uk: "склади тут", najdi: "اطوِ هنا", msa: "اطوِ هنا" },
   "print.cardsName": { en: "Phrase cards", uk: "Картки з фразами", najdi: "كروت العبارات", msa: "بطاقات العبارات" },
   "print.cardsText": {

@@ -6,6 +6,7 @@
 //   #/print/fold/<stage>             fold-and-test lists
 //   #/print/cards/<set>              phrase cards, 8 per sheet, backs mirrored for double-sided printing
 //   #/print/tracker/<week>           the weekly tracker
+//   #/print/stories/<easy | A1 | A2>  stories to read: the Arabic large, how it's said and what it means below
 import { todayKey, addDays, format } from "../core/dates.js";
 import { weekNumber } from "../core/schedule.js";
 import { t, tx, num, locale, lang } from "../core/i18n.js";
@@ -16,6 +17,7 @@ import { GROUPS, formsOf } from "../data/letters.js";
 import { PHRASES } from "../data/phrases.js";
 import { START } from "../config.js";
 import { deckName, TOTAL_WEEKS } from "./shared.js";
+import { loadStories } from "./stories.js";
 
 const chunk = (list, n) => Array.from({ length: Math.ceil(list.length / n) }, (_, i) => list.slice(i * n, i * n + n));
 const STAGES = ["1", "2", "3", "4", "special", "grammar"];
@@ -129,6 +131,21 @@ function trackerSheet(week) {
   );
 }
 
+// ---------- 6. Stories to read ----------
+// One story a sheet (two of the very easy ones): the Arabic, numbered, then — under a dashed line to fold back —
+// each sentence's pronunciation and meaning.
+function storySheets(S, level) {
+  const list = S.STORIES.filter(st => st.level === level);
+  const pages = chunk(list, level === "easy" ? 2 : 1);
+  const story = st => `<div class="ps-story">
+    <h3>${esc(tx(st.title))}</h3>
+    <ol class="ps-ar" dir="rtl" lang="ar">${st.text.map(l => `<li>${esc(l.ar)}</li>`).join("")}</ol>
+    <p class="ps-cut"><span>${esc(t("print.foldHere"))}</span></p>
+    <ol class="ps-key">${st.text.map(l => `<li>${lat(l.say, "tr")}${meaningLines(l)}</li>`).join("")}</ol>
+  </div>`;
+  return pages.map((group, i) => sheet(`${esc(t("print.storiesName"))} · ${esc(t(`st.step.${level}`))}`, group.map(story).join(""), i + 1, pages.length, `s-stories lv-${level}`)).join("");
+}
+
 // ---------- The list of printables ----------
 function index() {
   const w = Math.max(1, Math.min(TOTAL_WEEKS, weekNumber(todayKey())));
@@ -146,6 +163,7 @@ function index() {
       ${item("words", t("print.wordsName"), t("print.wordsText"), STAGES.map(s => link(`#/print/words/${s}`, esc(deckName(s)))).join(""))}
       ${item("reading", t("print.foldName"), t("print.foldText"), STAGES.map(s => link(`#/print/fold/${s}`, esc(deckName(s)))).join(""))}
       ${item("cards", t("print.cardsName"), t("print.cardsText"), CARD_SETS.map(s => link(`#/print/cards/${s}`, esc(deckName(s)))).join(""))}
+      ${item("reading", t("print.storiesName"), t("print.storiesText"), ["easy", "A1", "A2"].map(l => link(`#/print/stories/${l}`, esc(t(`st.step.${l}`)))).join(""))}
       ${item("calendar", t("print.trackerName"), t("print.trackerText"), `${link(`#/print/tracker/${w}`, esc(t("print.thisWeek", { n: w })))}${w < TOTAL_WEEKS ? link(`#/print/tracker/${w + 1}`, esc(t("print.nextWeek", { n: w + 1 }))) : ""}`)}
     </div>
     <section class="panel how-print">
@@ -196,6 +214,10 @@ export default {
     if (kind === "letters") return show(letterSheets(arg ?? "1"));
     if (kind === "tracker") return show(trackerSheet(Math.max(1, Math.min(TOTAL_WEEKS, +arg || weekNumber(todayKey())))));
     root.innerHTML = `${toolbar}<p class="muted">${esc(t("words.loading"))}</p>`;
+    if (kind === "stories") {
+      loadStories().then(S => show(storySheets(S, ["easy", "A1", "A2"].includes(arg) ? arg : "easy")), () => show(`<p>${esc(t("st.loadError"))}</p>`));
+      return;
+    }
     loadVocab().then(({ vocab }) => {
       if (kind === "cards" && arg === "phrases") return show(cardSheets(PHRASES.map(p => ({ ...p, say: p.tr }))));
       const stage = vocab.stages.find(s => s.id === arg) ?? vocab.stages[0];
