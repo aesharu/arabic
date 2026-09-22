@@ -64,7 +64,8 @@ export default {
       return `${tab === "4" ? `<p class="callout">${icon("star")} ${t("words.herNote")}</p>` : ""}
         ${stage.topics.map(topic => `
           <section class="topic">
-            <h2>${esc(tx(topic.title))} <span class="muted small">${num(topic.entries.length)}</span></h2>
+            <h2>${esc(tx(topic.title))} <span class="muted small">${num(topic.entries.length)}</span>
+              ${topic.entries.length >= 4 ? `<a class="btn btn-ghost topic-practice" href="#/practice/${topic.id}">${icon("quiz")} ${t("pr.practice")}</a>` : ""}</h2>
             <div class="vocab">${topic.entries.map(entry).join("")}</div>
           </section>`).join("")}`;
     };

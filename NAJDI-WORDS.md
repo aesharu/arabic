@@ -786,3 +786,133 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | فخم | fakhm | fancy, luxurious | розкішний | فخم | |
 | مختلف | mukhtalif | different | інший, відмінний | مختلف | |
 | مشهور | mashhūr | famous | відомий | مشهور | |
+
+## 4.18 Animals and nature | Тварини й природа | الحيوانات والطبيعة | الحيوانات والطبيعة
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| جمل | jamal | camel (male) | верблюд | جمل | |
+| ناقة | nāga | she-camel | верблюдиця | ناقة | |
+| إبل | ibil | camels (the herd) | верблюди (стадо) | إبل | |
+| حصان | ḥṣān | horse | кінь | حصان | |
+| خيل | khēl | horses | коні | خيل | |
+| خروف | kharūf | sheep, lamb | баран, ягня | خروف | |
+| غنم | ghanam | sheep (the flock) | вівці (отара) | غنم | |
+| عنز | ʿanz | goat | коза | ماعز | |
+| بقرة | bagara | cow | корова | بقرة | |
+| قطو / قطوة | giṭu / gaṭwa | cat (m / f) | кіт / кішка | قط / قطة | |
+| كلب | kalb | dog | собака | كلب | |
+| طير | ṭēr | bird | птах | طائر | |
+| حمامة | ḥamāma | pigeon, dove | голуб | حمامة | |
+| دجاجة | dijāja | hen | курка | دجاجة | |
+| ديك | dīk | rooster | півень | ديك | |
+| صقر | ṣagr | falcon | сокіл | صقر | |
+| ضب | ẓabb | spiny-tailed desert lizard | шипохвіст (пустельна ящірка) | ضبّ | |
+| ذيب | dhīb | wolf | вовк | ذئب | |
+| ثعلب | thaʿlab | fox | лисиця | ثعلب | |
+| أرنب | arnab | rabbit, hare | заєць, кролик | أرنب | |
+| غزال | ghazāl | gazelle | газель | غزال | |
+| حية | ḥayya | snake | змія | حيّة | |
+| عقرب | ʿagrab | scorpion | скорпіон | عقرب | |
+| فار | fār | mouse, rat | миша, щур | فأر | |
+| ذبانة | dhibbāna | a fly | муха | ذبابة | |
+| بعوض | baʿūẓ | mosquitoes | комарі | بعوض | |
+| نحلة | naḥla | bee | бджола | نحلة | |
+| الصحرا | aṣ-ṣaḥra | the desert (the sand sea) | пустеля | الصحراء | |
+| رمل | raml | sand | пісок | رمل | |
+| روضة | rōẓa | a green desert meadow (after rain) | пустельна лука (після дощу) | روضة | |
+| شجرة | shajara | tree | дерево | شجرة | |
+| نخلة | nakhla | palm tree | пальма | نخلة | |
+| وردة | warda | a rose, a flower | троянда, квітка | وردة | |
+| عشب | ʿishb | grass, green plants | трава | عشب | |
+| جبل | jabal | mountain | гора | جبل | |
+| وادي | wādi | valley, wadi | долина, ваді | وادٍ | |
+| بحر | baḥar | sea | море | بحر | |
+| نهر | nahar | river | річка | نهر | |
+| نجمة | najma | star | зірка | نجمة | |
+| قمر | gamar | moon | місяць | قمر | |
+| فقع | fagʿ | desert truffles | пустельні трюфелі | كمأة | |
+
+## 4.19 Jobs and work | Професії й робота | الوظايف والشغل | المهن والعمل
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| وظيفة | waẓīfa | job, position | посада, робота | وظيفة | |
+| مهندس | muhandis | engineer | інженер | مهندس | |
+| مبرمج | mubarmij | programmer | програміст | مبرمج | |
+| معلم / معلمة | mʿallim / mʿallma | teacher (m / f) | учитель / учителька | معلّم / معلّمة | |
+| ممرض / ممرضة | mumarriẓ / mumarriẓa | nurse (m / f) | медбрат / медсестра | ممرّض / ممرّضة | |
+| محامي | muḥāmi | lawyer | юрист, адвокат | محامٍ | |
+| محاسب | muḥāsib | accountant | бухгалтер | محاسب | |
+| شرطي | shurṭi | police officer | поліцейський | شرطي | |
+| عسكري | ʿaskari | soldier, in the military | військовий | عسكري | |
+| طيار | ṭayyār | pilot | пілот | طيّار | |
+| تاجر | tājir | businessman, trader | підприємець, торговець | تاجر | |
+| طباخ | ṭabbākh | cook, chef | кухар | طبّاخ | |
+| بياع | bayyāʿ | seller, shop assistant | продавець | بائع | |
+| راعي غنم | rāʿi ghanam | shepherd | пастух | راعي غنم | |
+| متقاعد | mitgāʿid | retired | на пенсії | متقاعد | |
+| وش تشتغل؟ | wesh tishtaghil? | what do you do (for work)? | ким ти працюєш? | ماذا تعمل؟ | |
+| وش تشتغلين؟ | wesh tishtaghlīn? | what do you do? (to her) | ким ти працюєш? (до неї) | ماذا تعملين؟ | |
+| أشتغل من البيت | ashtaghil min al-bēt | I work from home | я працюю з дому | أعمل من المنزل | |
+| أدور شغل | adawwir shughul | I'm looking for work | я шукаю роботу | أبحث عن عمل | |
+
+## 4.20 Free time and sport | Дозвілля й спорт | الهوايات والرياضة | الهوايات والرياضة
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| هواية | hwāya | hobby | хобі, захоплення | هواية | |
+| وقت فراغ | wagt farāgh | free time | вільний час | وقت فراغ | |
+| وش تسوي بوقت فراغك؟ | wesh tsawwi b-wagt farāghak? | what do you do in your free time? | що ти робиш у вільний час? | ماذا تفعل في وقت فراغك؟ | |
+| كورة | kōra | football; a ball | футбол; м'яч | كرة القدم | |
+| مباراة | mubārāh | match, game | матч | مباراة | |
+| فريق | farīg | team | команда | فريق | |
+| لاعب | lāʿib | player | гравець | لاعب | |
+| أشجع | ashajjiʿ | I support (a team), I cheer for | я вболіваю за | أشجّع | |
+| وش تشجع؟ | wesh tshajjiʿ? | which team do you support? | за кого вболіваєш? | أيّ فريق تشجّع؟ | |
+| سباحة | sibāḥa | swimming | плавання | سباحة | |
+| مشي | mashi | walking | ходьба | مشي | |
+| تصوير | taṣwīr | photography | фотографія | تصوير | |
+| رسم | rasim | drawing | малювання | رسم | |
+| قراية | grāya | reading | читання | قراءة | |
+| ألعاب | alʿāb | games | ігри | ألعاب | |
+| بلايستيشن | blēstēshin | PlayStation | PlayStation (ігрова приставка) | بلايستيشن | |
+| مقناص | magnāṣ | a hunting trip in the desert | мисливська поїздка в пустелю | رحلة صيد | |
+| هجن | hijin | racing camels; camel racing | бігові верблюди; верблюжі перегони | الهجن | |
+| سباق | sibāg | race | перегони | سباق | |
+| موسيقى | mūsīga | music | музика | موسيقى | |
+| أغنية | ughniya | song | пісня | أغنية | |
+| فلم | film | movie | фільм | فيلم | |
+| مسلسل | musalsal | TV series | серіал | مسلسل | |
+| أتفرج | atfarraj | I watch (TV, a match) | я дивлюся (телевізор, матч) | أشاهد | |
+
+## 4.21 Countries, languages and people | Країни, мови й люди | الدول واللغات والناس | الدول واللغات والشعوب
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| دولة | dawla | country, state | країна, держава | دولة | |
+| لغة | lugha | language | мова | لغة | |
+| أجنبي | ajnabi | foreigner; foreign | іноземець; іноземний | أجنبي | |
+| من وين أصلك؟ | min wēn aṣlak? | where are you originally from? | звідки ти родом? | من أين أصلك؟ | |
+| الكويت | al-kwēt | Kuwait | Кувейт | الكويت | |
+| العراق | al-ʿirāg | Iraq | Ірак | العراق | |
+| الأردن | al-urdun | Jordan | Йорданія | الأردن | |
+| مصر | maṣir | Egypt | Єгипет | مصر | |
+| الإمارات | al-imārāt | the UAE (the Emirates) | ОАЕ (Емірати) | الإمارات | |
+| قطر | giṭar | Qatar | Катар | قطر | |
+| البحرين | al-baḥrēn | Bahrain | Бахрейн | البحرين | |
+| عمان | ʿumān | Oman | Оман | عُمان | |
+| تركيا | turkiya | Turkey | Туреччина | تركيا | |
+| أمريكا | amrīka | America (the USA) | Америка (США) | أمريكا | |
+| بريطانيا | brīṭānya | Britain | Британія | بريطانيا | |
+| ألمانيا | almānya | Germany | Німеччина | ألمانيا | |
+| بولندا | bōlanda | Poland | Польща | بولندا | |
+| روسيا | rūsya | Russia | Росія | روسيا | |
+| كييف | kyīv | Kyiv | Київ | كييف | |
+| سعودي / سعودية | saʿūdi / saʿūdiyya | Saudi (m / f) | саудівець / саудівка | سعودي / سعودية | |
+| أوكراني / أوكرانية | ukrāni / ukrāniyya | Ukrainian (m / f) | українець / українка | أوكراني / أوكرانية | |
+| عربي | ʿarabi | Arabic; an Arab | арабська; араб | عربي | |
+| إنجليزي | ingilīzi | English | англійська | إنجليزي | |
+| أتكلم ثلاث لغات | atkallam thalāth lughāt | I speak three languages | я говорю трьома мовами | أتحدّث ثلاث لغات | |
+| وش لغتك الأم؟ | wesh lughatak al-umm? | what's your mother tongue? | яка твоя рідна мова? | ما لغتك الأم؟ | |
+| لغتي الأم الأوكراني | lughati l-umm al-ukrāni | my mother tongue is Ukrainian | моя рідна мова — українська | لغتي الأم هي الأوكرانية | |

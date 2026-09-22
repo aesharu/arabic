@@ -1397,3 +1397,42 @@ html[dir="rtl"] .ch-end .i:last-child { transform: scaleX(-1); }
   .st-panel-sent .btn { min-height: 40px; padding: 6px 12px; }
   .st-meaning .m1 { font-size: 17.5px; }
 }
+
+/* ---------- Practice by topic (views/practice.js) ---------- */
+.pr-list .ch-card-text small { font-size: 14px; font-weight: 700; }
+.pr-best { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 99px; background: var(--surface-2); color: var(--muted); font-size: 13.5px; font-weight: 800; }
+.pr-best.is-full { background: color-mix(in srgb, var(--good) 16%, var(--surface)); color: var(--good); }
+.pr-best .i { width: 15px; height: 15px; }
+.pr-top { display: flex; align-items: center; gap: 14px; max-width: 720px; margin: 0 0 12px; color: var(--muted); font-weight: 800; }
+.pr-top .meter { flex: 1; margin: 0; }
+.pr-card { max-width: 720px; padding: 20px 22px 22px; border-radius: 20px; background: var(--surface); border: 1.5px solid var(--line); }
+.pr-kind { margin: 0 0 10px; color: var(--muted); font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.pr-prompt { display: flex; align-items: center; justify-content: center; gap: 14px; width: 100%; margin: 0 0 16px; padding: 14px; border: 0; border-radius: 16px; background: var(--surface-2); color: var(--ink); font: inherit; cursor: pointer; }
+.pr-prompt .ar { font-size: 44px; line-height: 1.5; }
+.pr-mean { cursor: default; font-size: 25px; font-weight: 800; text-align: center; }
+.pr-listen { display: grid; place-items: center; width: 96px; height: 96px; margin: 4px auto 18px; border: 0; border-radius: 50%; background: var(--strong-bg); color: var(--strong-ink); cursor: pointer; }
+.pr-listen .i { width: 40px; height: 40px; }
+.pr-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.pr-opt { display: flex; align-items: center; gap: 10px; min-height: 64px; padding-inline-start: 44px; text-align: start; }
+.pr-opt kbd { top: 50%; transform: translateY(-50%); }
+.pr-opt b { font-size: 17px; line-height: 1.3; }
+.pr-opt:disabled { opacity: 1; color: var(--muted); cursor: default; }
+.pr-opt.right, .pr-opt.wrong { color: var(--ink); }
+.pr-opts.is-ar .pr-opt { flex-wrap: wrap; justify-content: flex-start; }
+.pr-opts.is-ar .pr-opt .ar { font-size: 27px; line-height: 1.4; }
+.pr-opts.is-ar .pr-opt > span:not(.ar) { flex-basis: 100%; margin-top: -4px; color: var(--muted); font-size: 14px; font-weight: 700; }
+.pr-fb { display: grid; gap: 10px; margin-top: 14px; }
+.pr-fb:empty { display: none; }
+.pr-verdict { display: inline-flex; align-items: center; gap: 6px; margin: 0; font-size: 18px; font-weight: 800; }
+.pr-verdict.is-right { color: var(--good); }
+.pr-verdict.is-wrong { color: var(--bad); }
+.pr-fb .btn { justify-self: start; }
+.pr-big { margin: 0 0 10px; font-size: 30px; font-weight: 800; }
+.pr-perfect { font-size: 18px; font-weight: 700; color: var(--good); }
+.pr-end .btn-row { margin-top: 16px; }
+.topic-practice { margin-inline-start: 8px; min-height: 36px; padding: 4px 12px; font-size: 15px; vertical-align: middle; }
+@media (max-width: 600px) {
+  .pr-card { padding: 16px 14px 18px; }
+  .pr-opts { grid-template-columns: 1fr; }
+  .pr-prompt .ar { font-size: 38px; }
+}

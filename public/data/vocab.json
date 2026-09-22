@@ -15745,6 +15745,1920 @@
        }
       }
      ]
+    },
+    {
+     "id": "4.18",
+     "title": {
+      "en": "Animals and nature",
+      "uk": "Тварини й природа",
+      "najdi": "الحيوانات والطبيعة",
+      "msa": "الحيوانات والطبيعة"
+     },
+     "entries": [
+      {
+       "id": "y3gdlg",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "جمل",
+       "say": "jamal",
+       "en": "camel (male)",
+       "uk": "верблюд",
+       "msa": "جمل",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "14e1ziq",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "ناقة",
+       "say": "nāga",
+       "en": "she-camel",
+       "uk": "верблюдиця",
+       "msa": "ناقة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "5k1k6e",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "إبل",
+       "say": "ibil",
+       "en": "camels (the herd)",
+       "uk": "верблюди (стадо)",
+       "msa": "إبل",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "whm52v",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "حصان",
+       "say": "ḥṣān",
+       "en": "horse",
+       "uk": "кінь",
+       "msa": "حصان",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "p08z9v",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "خيل",
+       "say": "khēl",
+       "en": "horses",
+       "uk": "коні",
+       "msa": "خيل",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "zf9hpw",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "خروف",
+       "say": "kharūf",
+       "en": "sheep, lamb",
+       "uk": "баран, ягня",
+       "msa": "خروف",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "ghzco2",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "غنم",
+       "say": "ghanam",
+       "en": "sheep (the flock)",
+       "uk": "вівці (отара)",
+       "msa": "غنم",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1ytozfv",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "عنز",
+       "say": "ʿanz",
+       "en": "goat",
+       "uk": "коза",
+       "msa": "ماعز",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1auzyc2",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "بقرة",
+       "say": "bagara",
+       "en": "cow",
+       "uk": "корова",
+       "msa": "بقرة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "yiwve6",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "قطو / قطوة",
+       "say": "giṭu / gaṭwa",
+       "en": "cat (m / f)",
+       "uk": "кіт / кішка",
+       "msa": "قط / قطة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1elmpw",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "كلب",
+       "say": "kalb",
+       "en": "dog",
+       "uk": "собака",
+       "msa": "كلب",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1wjqp1q",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "طير",
+       "say": "ṭēr",
+       "en": "bird",
+       "uk": "птах",
+       "msa": "طائر",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "cipe9c",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "حمامة",
+       "say": "ḥamāma",
+       "en": "pigeon, dove",
+       "uk": "голуб",
+       "msa": "حمامة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "mf1wr",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "دجاجة",
+       "say": "dijāja",
+       "en": "hen",
+       "uk": "курка",
+       "msa": "دجاجة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1l9kw01",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "ديك",
+       "say": "dīk",
+       "en": "rooster",
+       "uk": "півень",
+       "msa": "ديك",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "12kqxxy",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "صقر",
+       "say": "ṣagr",
+       "en": "falcon",
+       "uk": "сокіл",
+       "msa": "صقر",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "o451ln",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "ضب",
+       "say": "ẓabb",
+       "en": "spiny-tailed desert lizard",
+       "uk": "шипохвіст (пустельна ящірка)",
+       "msa": "ضبّ",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "yrorwj",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "ذيب",
+       "say": "dhīb",
+       "en": "wolf",
+       "uk": "вовк",
+       "msa": "ذئب",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1stbouw",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "ثعلب",
+       "say": "thaʿlab",
+       "en": "fox",
+       "uk": "лисиця",
+       "msa": "ثعلب",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "7gfarj",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "أرنب",
+       "say": "arnab",
+       "en": "rabbit, hare",
+       "uk": "заєць, кролик",
+       "msa": "أرنب",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1c7cr3m",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "غزال",
+       "say": "ghazāl",
+       "en": "gazelle",
+       "uk": "газель",
+       "msa": "غزال",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1jqzd5t",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "حية",
+       "say": "ḥayya",
+       "en": "snake",
+       "uk": "змія",
+       "msa": "حيّة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "r19lb4",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "عقرب",
+       "say": "ʿagrab",
+       "en": "scorpion",
+       "uk": "скорпіон",
+       "msa": "عقرب",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1mlhy06",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "فار",
+       "say": "fār",
+       "en": "mouse, rat",
+       "uk": "миша, щур",
+       "msa": "فأر",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "gvuwid",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "ذبانة",
+       "say": "dhibbāna",
+       "en": "a fly",
+       "uk": "муха",
+       "msa": "ذبابة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "zp7n2b",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "بعوض",
+       "say": "baʿūẓ",
+       "en": "mosquitoes",
+       "uk": "комарі",
+       "msa": "بعوض",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1707wpz",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "نحلة",
+       "say": "naḥla",
+       "en": "bee",
+       "uk": "бджола",
+       "msa": "نحلة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "e6y9hn",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "الصحرا",
+       "say": "aṣ-ṣaḥra",
+       "en": "the desert (the sand sea)",
+       "uk": "пустеля",
+       "msa": "الصحراء",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "mgjx8p",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "رمل",
+       "say": "raml",
+       "en": "sand",
+       "uk": "пісок",
+       "msa": "رمل",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1srk8lm",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "روضة",
+       "say": "rōẓa",
+       "en": "a green desert meadow (after rain)",
+       "uk": "пустельна лука (після дощу)",
+       "msa": "روضة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "tztd61",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "شجرة",
+       "say": "shajara",
+       "en": "tree",
+       "uk": "дерево",
+       "msa": "شجرة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "j337pq",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "نخلة",
+       "say": "nakhla",
+       "en": "palm tree",
+       "uk": "пальма",
+       "msa": "نخلة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1189wam",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "وردة",
+       "say": "warda",
+       "en": "a rose, a flower",
+       "uk": "троянда, квітка",
+       "msa": "وردة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "jo1ist",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "عشب",
+       "say": "ʿishb",
+       "en": "grass, green plants",
+       "uk": "трава",
+       "msa": "عشب",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1u2olxq",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "جبل",
+       "say": "jabal",
+       "en": "mountain",
+       "uk": "гора",
+       "msa": "جبل",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1kuy8wb",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "وادي",
+       "say": "wādi",
+       "en": "valley, wadi",
+       "uk": "долина, ваді",
+       "msa": "وادٍ",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1g8ete2",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "بحر",
+       "say": "baḥar",
+       "en": "sea",
+       "uk": "море",
+       "msa": "بحر",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "zi820b",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "نهر",
+       "say": "nahar",
+       "en": "river",
+       "uk": "річка",
+       "msa": "نهر",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "ww9213",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "نجمة",
+       "say": "najma",
+       "en": "star",
+       "uk": "зірка",
+       "msa": "نجمة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "sifozs",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "قمر",
+       "say": "gamar",
+       "en": "moon",
+       "uk": "місяць",
+       "msa": "قمر",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "zt8utx",
+       "stage": "4",
+       "topic": "4.18",
+       "ar": "فقع",
+       "say": "fagʿ",
+       "en": "desert truffles",
+       "uk": "пустельні трюфелі",
+       "msa": "كمأة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      }
+     ]
+    },
+    {
+     "id": "4.19",
+     "title": {
+      "en": "Jobs and work",
+      "uk": "Професії й робота",
+      "najdi": "الوظايف والشغل",
+      "msa": "المهن والعمل"
+     },
+     "entries": [
+      {
+       "id": "icddpr",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "وظيفة",
+       "say": "waẓīfa",
+       "en": "job, position",
+       "uk": "посада, робота",
+       "msa": "وظيفة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "klbj9s",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "مهندس",
+       "say": "muhandis",
+       "en": "engineer",
+       "uk": "інженер",
+       "msa": "مهندس",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "38pft2",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "مبرمج",
+       "say": "mubarmij",
+       "en": "programmer",
+       "uk": "програміст",
+       "msa": "مبرمج",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1yqlijw",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "معلم / معلمة",
+       "say": "mʿallim / mʿallma",
+       "en": "teacher (m / f)",
+       "uk": "учитель / учителька",
+       "msa": "معلّم / معلّمة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "62ohzb",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "ممرض / ممرضة",
+       "say": "mumarriẓ / mumarriẓa",
+       "en": "nurse (m / f)",
+       "uk": "медбрат / медсестра",
+       "msa": "ممرّض / ممرّضة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "24srbh",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "محامي",
+       "say": "muḥāmi",
+       "en": "lawyer",
+       "uk": "юрист, адвокат",
+       "msa": "محامٍ",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1jp5885",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "محاسب",
+       "say": "muḥāsib",
+       "en": "accountant",
+       "uk": "бухгалтер",
+       "msa": "محاسب",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "240j4d",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "شرطي",
+       "say": "shurṭi",
+       "en": "police officer",
+       "uk": "поліцейський",
+       "msa": "شرطي",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1nqhhyi",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "عسكري",
+       "say": "ʿaskari",
+       "en": "soldier, in the military",
+       "uk": "військовий",
+       "msa": "عسكري",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "zcqhju",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "طيار",
+       "say": "ṭayyār",
+       "en": "pilot",
+       "uk": "пілот",
+       "msa": "طيّار",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "watqdb",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "تاجر",
+       "say": "tājir",
+       "en": "businessman, trader",
+       "uk": "підприємець, торговець",
+       "msa": "تاجر",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1y5dz8d",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "طباخ",
+       "say": "ṭabbākh",
+       "en": "cook, chef",
+       "uk": "кухар",
+       "msa": "طبّاخ",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1e4pyry",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "بياع",
+       "say": "bayyāʿ",
+       "en": "seller, shop assistant",
+       "uk": "продавець",
+       "msa": "بائع",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1xbru48",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "راعي غنم",
+       "say": "rāʿi ghanam",
+       "en": "shepherd",
+       "uk": "пастух",
+       "msa": "راعي غنم",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "17cizog",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "متقاعد",
+       "say": "mitgāʿid",
+       "en": "retired",
+       "uk": "на пенсії",
+       "msa": "متقاعد",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "kfvu25",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "وش تشتغل؟",
+       "say": "wesh tishtaghil?",
+       "en": "what do you do (for work)?",
+       "uk": "ким ти працюєш?",
+       "msa": "ماذا تعمل؟",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "v2hkn7",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "وش تشتغلين؟",
+       "say": "wesh tishtaghlīn?",
+       "en": "what do you do? (to her)",
+       "uk": "ким ти працюєш? (до неї)",
+       "msa": "ماذا تعملين؟",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1aevd57",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "أشتغل من البيت",
+       "say": "ashtaghil min al-bēt",
+       "en": "I work from home",
+       "uk": "я працюю з дому",
+       "msa": "أعمل من المنزل",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1eeo9eo",
+       "stage": "4",
+       "topic": "4.19",
+       "ar": "أدور شغل",
+       "say": "adawwir shughul",
+       "en": "I'm looking for work",
+       "uk": "я шукаю роботу",
+       "msa": "أبحث عن عمل",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      }
+     ]
+    },
+    {
+     "id": "4.20",
+     "title": {
+      "en": "Free time and sport",
+      "uk": "Дозвілля й спорт",
+      "najdi": "الهوايات والرياضة",
+      "msa": "الهوايات والرياضة"
+     },
+     "entries": [
+      {
+       "id": "cjjxzi",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "هواية",
+       "say": "hwāya",
+       "en": "hobby",
+       "uk": "хобі, захоплення",
+       "msa": "هواية",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "11xwqg5",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "وقت فراغ",
+       "say": "wagt farāgh",
+       "en": "free time",
+       "uk": "вільний час",
+       "msa": "وقت فراغ",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "ozw3zi",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "وش تسوي بوقت فراغك؟",
+       "say": "wesh tsawwi b-wagt farāghak?",
+       "en": "what do you do in your free time?",
+       "uk": "що ти робиш у вільний час?",
+       "msa": "ماذا تفعل في وقت فراغك؟",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "2j4bri",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "كورة",
+       "say": "kōra",
+       "en": "football; a ball",
+       "uk": "футбол; м'яч",
+       "msa": "كرة القدم",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "uj0ww3",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "مباراة",
+       "say": "mubārāh",
+       "en": "match, game",
+       "uk": "матч",
+       "msa": "مباراة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1f00sag",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "فريق",
+       "say": "farīg",
+       "en": "team",
+       "uk": "команда",
+       "msa": "فريق",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1f6q28q",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "لاعب",
+       "say": "lāʿib",
+       "en": "player",
+       "uk": "гравець",
+       "msa": "لاعب",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "dp71ch",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "أشجع",
+       "say": "ashajjiʿ",
+       "en": "I support (a team), I cheer for",
+       "uk": "я вболіваю за",
+       "msa": "أشجّع",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "13l573p",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "وش تشجع؟",
+       "say": "wesh tshajjiʿ?",
+       "en": "which team do you support?",
+       "uk": "за кого вболіваєш?",
+       "msa": "أيّ فريق تشجّع؟",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "2l5zgq",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "سباحة",
+       "say": "sibāḥa",
+       "en": "swimming",
+       "uk": "плавання",
+       "msa": "سباحة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1lu2skl",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "مشي",
+       "say": "mashi",
+       "en": "walking",
+       "uk": "ходьба",
+       "msa": "مشي",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1jq2qa",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "تصوير",
+       "say": "taṣwīr",
+       "en": "photography",
+       "uk": "фотографія",
+       "msa": "تصوير",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1rzk66q",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "رسم",
+       "say": "rasim",
+       "en": "drawing",
+       "uk": "малювання",
+       "msa": "رسم",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1x5ujtk",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "قراية",
+       "say": "grāya",
+       "en": "reading",
+       "uk": "читання",
+       "msa": "قراءة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "i7c7kt",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "ألعاب",
+       "say": "alʿāb",
+       "en": "games",
+       "uk": "ігри",
+       "msa": "ألعاب",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1ktgg6p",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "بلايستيشن",
+       "say": "blēstēshin",
+       "en": "PlayStation",
+       "uk": "PlayStation (ігрова приставка)",
+       "msa": "بلايستيشن",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "ibi00a",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "مقناص",
+       "say": "magnāṣ",
+       "en": "a hunting trip in the desert",
+       "uk": "мисливська поїздка в пустелю",
+       "msa": "رحلة صيد",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "ws8nqy",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "هجن",
+       "say": "hijin",
+       "en": "racing camels; camel racing",
+       "uk": "бігові верблюди; верблюжі перегони",
+       "msa": "الهجن",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "8b5yfs",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "سباق",
+       "say": "sibāg",
+       "en": "race",
+       "uk": "перегони",
+       "msa": "سباق",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "3q3hlr",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "موسيقى",
+       "say": "mūsīga",
+       "en": "music",
+       "uk": "музика",
+       "msa": "موسيقى",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1o1awhg",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "أغنية",
+       "say": "ughniya",
+       "en": "song",
+       "uk": "пісня",
+       "msa": "أغنية",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1nf08qb",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "فلم",
+       "say": "film",
+       "en": "movie",
+       "uk": "фільм",
+       "msa": "فيلم",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "xgjj1z",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "مسلسل",
+       "say": "musalsal",
+       "en": "TV series",
+       "uk": "серіал",
+       "msa": "مسلسل",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "14de045",
+       "stage": "4",
+       "topic": "4.20",
+       "ar": "أتفرج",
+       "say": "atfarraj",
+       "en": "I watch (TV, a match)",
+       "uk": "я дивлюся (телевізор, матч)",
+       "msa": "أشاهد",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      }
+     ]
+    },
+    {
+     "id": "4.21",
+     "title": {
+      "en": "Countries, languages and people",
+      "uk": "Країни, мови й люди",
+      "najdi": "الدول واللغات والناس",
+      "msa": "الدول واللغات والشعوب"
+     },
+     "entries": [
+      {
+       "id": "8bp4us",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "دولة",
+       "say": "dawla",
+       "en": "country, state",
+       "uk": "країна, держава",
+       "msa": "دولة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "lcx2do",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "لغة",
+       "say": "lugha",
+       "en": "language",
+       "uk": "мова",
+       "msa": "لغة",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1bolvby",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "أجنبي",
+       "say": "ajnabi",
+       "en": "foreigner; foreign",
+       "uk": "іноземець; іноземний",
+       "msa": "أجنبي",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "19b8fbz",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "من وين أصلك؟",
+       "say": "min wēn aṣlak?",
+       "en": "where are you originally from?",
+       "uk": "звідки ти родом?",
+       "msa": "من أين أصلك؟",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "qv0vmu",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "الكويت",
+       "say": "al-kwēt",
+       "en": "Kuwait",
+       "uk": "Кувейт",
+       "msa": "الكويت",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1ollori",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "العراق",
+       "say": "al-ʿirāg",
+       "en": "Iraq",
+       "uk": "Ірак",
+       "msa": "العراق",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "ta7bnz",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "الأردن",
+       "say": "al-urdun",
+       "en": "Jordan",
+       "uk": "Йорданія",
+       "msa": "الأردن",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "gkgw9l",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "مصر",
+       "say": "maṣir",
+       "en": "Egypt",
+       "uk": "Єгипет",
+       "msa": "مصر",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "rlodk5",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "الإمارات",
+       "say": "al-imārāt",
+       "en": "the UAE (the Emirates)",
+       "uk": "ОАЕ (Емірати)",
+       "msa": "الإمارات",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1vtgm44",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "قطر",
+       "say": "giṭar",
+       "en": "Qatar",
+       "uk": "Катар",
+       "msa": "قطر",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "pi8bx1",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "البحرين",
+       "say": "al-baḥrēn",
+       "en": "Bahrain",
+       "uk": "Бахрейн",
+       "msa": "البحرين",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1swxgit",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "عمان",
+       "say": "ʿumān",
+       "en": "Oman",
+       "uk": "Оман",
+       "msa": "عُمان",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "8jw154",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "تركيا",
+       "say": "turkiya",
+       "en": "Turkey",
+       "uk": "Туреччина",
+       "msa": "تركيا",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "2q1zyj",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "أمريكا",
+       "say": "amrīka",
+       "en": "America (the USA)",
+       "uk": "Америка (США)",
+       "msa": "أمريكا",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1a19deg",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "بريطانيا",
+       "say": "brīṭānya",
+       "en": "Britain",
+       "uk": "Британія",
+       "msa": "بريطانيا",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "d2z6v2",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "ألمانيا",
+       "say": "almānya",
+       "en": "Germany",
+       "uk": "Німеччина",
+       "msa": "ألمانيا",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1ltdzhn",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "بولندا",
+       "say": "bōlanda",
+       "en": "Poland",
+       "uk": "Польща",
+       "msa": "بولندا",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "10q6hgj",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "روسيا",
+       "say": "rūsya",
+       "en": "Russia",
+       "uk": "Росія",
+       "msa": "روسيا",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "v54j4g",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "كييف",
+       "say": "kyīv",
+       "en": "Kyiv",
+       "uk": "Київ",
+       "msa": "كييف",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1dm0n76",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "سعودي / سعودية",
+       "say": "saʿūdi / saʿūdiyya",
+       "en": "Saudi (m / f)",
+       "uk": "саудівець / саудівка",
+       "msa": "سعودي / سعودية",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1ofw5z8",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "أوكراني / أوكرانية",
+       "say": "ukrāni / ukrāniyya",
+       "en": "Ukrainian (m / f)",
+       "uk": "українець / українка",
+       "msa": "أوكراني / أوكرانية",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "17ohio1",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "عربي",
+       "say": "ʿarabi",
+       "en": "Arabic; an Arab",
+       "uk": "арабська; араб",
+       "msa": "عربي",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "rgsewo",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "إنجليزي",
+       "say": "ingilīzi",
+       "en": "English",
+       "uk": "англійська",
+       "msa": "إنجليزي",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "1p06be0",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "أتكلم ثلاث لغات",
+       "say": "atkallam thalāth lughāt",
+       "en": "I speak three languages",
+       "uk": "я говорю трьома мовами",
+       "msa": "أتحدّث ثلاث لغات",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "7zcw59",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "وش لغتك الأم؟",
+       "say": "wesh lughatak al-umm?",
+       "en": "what's your mother tongue?",
+       "uk": "яка твоя рідна мова?",
+       "msa": "ما لغتك الأم؟",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      },
+      {
+       "id": "19o4nno",
+       "stage": "4",
+       "topic": "4.21",
+       "ar": "لغتي الأم الأوكراني",
+       "say": "lughati l-umm al-ukrāni",
+       "en": "my mother tongue is Ukrainian",
+       "uk": "моя рідна мова — українська",
+       "msa": "لغتي الأم هي الأوكرانية",
+       "check": true,
+       "note": {
+        "en": "Suggested word — not yet checked by a native speaker",
+        "uk": "Запропоноване слово — носій мови ще не перевірив",
+        "najdi": "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
+        "msa": "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد"
+       }
+      }
+     ]
     }
    ]
   },
