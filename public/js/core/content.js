@@ -4,6 +4,9 @@
 import * as store from "./store.js";
 import { play } from "./audiotools.js";
 
+// The Arabic goes with a recording's address so the Stats page can name the word, not just its key.
+const withText = (k, text) => `api/audio/${k}?text=${encodeURIComponent(String(text).slice(0, 300))}`;
+
 let edits = {};
 let audio = {}; // key → time recorded
 let suggestions = []; // Dima's changes waiting for Volodymyr: { sid, target, data, before, at }
@@ -133,7 +136,7 @@ export async function previousUrl(text) {
 
 export async function upload(text, blob) {
   const k = audioKey(text);
-  const r = await fetch(`api/audio/${k}`, { method: "PUT", headers: { ...auth(), "content-type": blob.type.split(";")[0] || "audio/mp4" }, body: blob });
+  const r = await fetch(withText(k, text), { method: "PUT", headers: { ...auth(), "content-type": blob.type.split(";")[0] || "audio/mp4" }, body: blob });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   audio[k] = (await r.json()).at;
   urls.set(`${k}.${audio[k]}`, URL.createObjectURL(blob)); // no need to download what was just recorded
@@ -142,7 +145,7 @@ export async function upload(text, blob) {
 
 export async function removeRecording(text) {
   const k = audioKey(text);
-  const r = await fetch(`api/audio/${k}`, { method: "DELETE", headers: auth() });
+  const r = await fetch(withText(k, text), { method: "DELETE", headers: auth() });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   delete audio[k];
   changed();
@@ -151,7 +154,7 @@ export async function removeRecording(text) {
 // Undo the last change to a recording (a new one, a replacement or a delete). Doing it again redoes it.
 export async function restoreRecording(text) {
   const k = audioKey(text);
-  const r = await fetch(`api/audio/${k}`, { method: "POST", headers: { ...auth(), "content-type": "application/json" }, body: JSON.stringify({ action: "restore" }) });
+  const r = await fetch(withText(k, text), { method: "POST", headers: { ...auth(), "content-type": "application/json" }, body: JSON.stringify({ action: "restore" }) });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   const { at } = await r.json();
   if (at) audio[k] = at;

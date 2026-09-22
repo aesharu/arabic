@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 22 Sept 2026 (night: special-day greetings, accessibility pass). Live: https://saudiarabic.online
+Last updated: 22 Sept 2026 (night: Stats page, special-day greetings, accessibility pass). Live: https://saudiarabic.online
 
 ## Who uses it
 
@@ -89,6 +89,12 @@ Last updated: 22 Sept 2026 (night: special-day greetings, accessibility pass). L
   - **Today, richer**: "Today in Hafar al-Batin" — the time in Saudi (and how far ahead of you), the Hijri date (Umm al-Qura), the next prayer in her city with how long until it, and the next occasion (National Day is 23 Sept) — each Arabic word to hear. Plus **Today's story** (his next unread story; in her profile, the next story to record).
   - **Hafar al-Batin** added to the prayer-time cities (first, as her city; Fajr/Maghrib and the way to Mecca are tested).
 - **Fixed 21 Sept**: Progress page "today" marker was positioned against the whole window (`.stage-bar` had no `position: relative`) → a line down the left edge of the screen.
+
+- **Stats** `#/stats` (`core/activity.js`, `views/stats.js`, worker `/api/activity` + `/api/stats`, test `tests/stats.test.mjs`; **his profile only** — hidden from the menu in hers and redirected; menu: Plan → after Her birthday): everything Dima does on the site.
+  - **Behind a password**: the page asks for it, the Worker checks it against the secret `STATS_PASS` (set with `wrangler secret put` — the number is not in the repo or in the site's code). Kept for the browser session only, so it asks again next time. Her token is refused even with the right password.
+  - **What it shows**: last here (how long ago + the time), streak now, best streak, days on the site, time in total, times opened, words recorded, corrections, special days seen; minutes a day for the last 28 days; then a card per day — visits, minutes, first and last time — with every thing she did that day: opened the site, was greeted for a special day (named), recorded / recorded again / deleted / brought back a word (the word itself in Arabic), and each correction as was → now, field by field.
+  - **How it's counted**: D1 tables `activity` (one row per thing done) and `visits` (one row per profile per Saudi day). The site only ever says "I opened it", "I'm still here" (a ping a minute, only while the page is visible) or "a special day greeted me" — **who** comes from the sign-in token and **when** from the server, so the iPad's clock can't change it. Two open tabs can't count double (a minute needs 45 s since the last sign of life); a tab left open all night adds at most 16 h. Recordings and corrections log themselves in the Worker as they are saved (`?text=` carries the Arabic so the page can name the word). Days are Saudi time (UTC+3).
+  - Both profiles are recorded; the page shows hers.
 
 ## Next (in this order)
 

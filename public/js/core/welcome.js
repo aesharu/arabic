@@ -19,6 +19,7 @@ import { LOVE_HEADLINE, COMPLIMENTS } from "../data/love.js";
 import { HOLIDAYS, holidayOn } from "../data/holidays.js";
 import { saudiToday } from "./prayer.js";
 import { say } from "./speech.js";
+import * as activity from "./activity.js";
 
 const LOGINS = "najdi-logins"; // localStorage: { student?, teacher? } → cloud token ("local" when the cloud couldn't be reached)
 const GREETED = "najdi-welcomed"; // sessionStorage: "reload" = a profile was just chosen, don't greet twice
@@ -259,6 +260,7 @@ export function welcome({ direct = false } = {}) {
       if (profile === startedAs) sync.connect(token);
       else store.update(s => { s.sync = { key: token, pushedAt: 0 }; }, { silent: true });
     }
+    activity.logVisit(holiday?.id); // the Stats page: who came in, when, and which special day greeted them
     stopMusic = play();
     const name = STRINGS[profile === "student" ? "profile.volodymyr" : "profile.dima"].najdi;
     nameEl.textContent = name;

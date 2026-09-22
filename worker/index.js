@@ -16,6 +16,11 @@
 //   GET    /api/audio/<key>      → her recording        PUT (raw audio, Dima only) · DELETE (Dima only)
 //                                  The version before the last change is kept: GET ?v=prev hears it, and
 //                                  POST ← { action: "restore" } swaps it back (Undo — works again to redo).
+//   POST   /api/activity        ← { kind, detail }  a note that this profile opened the site, is still on it
+//                                  ("ping", a minute of time), or saw a special day. The server sets who and when,
+//                                  so a device clock can't change it. Recordings and corrections log themselves below.
+//   GET    /api/stats            → { days, events }  everything Dima has done. Volodymyr only, and only with the
+//                                  stats password ("x-stats-key"), which lives in the Worker secret STATS_PASS.
 // Everything else is served straight from the assets.
 
 const MAX_BYTES = 1_000_000; // a year of study logs is well under 100 KB
@@ -75,8 +80,85 @@ async function ensureTables(db) {
     db.prepare("CREATE TABLE IF NOT EXISTS audio (key TEXT PRIMARY KEY, type TEXT NOT NULL, data BLOB NOT NULL, updated_at INTEGER NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS audio_prev (key TEXT PRIMARY KEY, type TEXT NOT NULL, data BLOB NOT NULL, updated_at INTEGER NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS suggestions (sid INTEGER PRIMARY KEY AUTOINCREMENT, target TEXT NOT NULL, data TEXT NOT NULL, before TEXT, by TEXT NOT NULL, created INTEGER NOT NULL, status TEXT NOT NULL DEFAULT 'pending')"),
+    // What each profile did, and when: one row per thing done (see log()) and one per day spent on the site.
+    db.prepare("CREATE TABLE IF NOT EXISTS activity (aid INTEGER PRIMARY KEY AUTOINCREMENT, who TEXT NOT NULL, kind TEXT NOT NULL, detail TEXT, at INTEGER NOT NULL)"),
+    db.prepare("CREATE TABLE IF NOT EXISTS visits (who TEXT NOT NULL, day TEXT NOT NULL, opens INTEGER NOT NULL DEFAULT 0, minutes INTEGER NOT NULL DEFAULT 0, first_at INTEGER NOT NULL, last_at INTEGER NOT NULL, PRIMARY KEY (who, day))"),
   ]);
   tablesReady = true;
+}
+
+// ---------- What each profile does, for the Stats page ----------
+// Times are the server's, and the day is Saudi time (UTC+3) — the day Dima was living when she did it.
+const RIYADH_OFFSET_MS = 3 * 60 * 60 * 1000;
+const saudiDay = at => new Date(at + RIYADH_OFFSET_MS).toISOString().slice(0, 10);
+const MAX_MINUTES_A_DAY = 16 * 60; // a tab left open all night can never add more than this
+
+// One thing done, kept with the time the server saw it.
+function log(env, who, kind, detail = null, at = Date.now()) {
+  return env.DB.prepare("INSERT INTO activity (who, kind, detail, at) VALUES (?1, ?2, ?3, ?4)")
+    .bind(who, kind, detail ? JSON.stringify(detail).slice(0, 4000) : null, at);
+}
+
+// Every visit and every minute on the site, day by day. add: 1 for an open, 0 for a minute still there.
+function touchDay(env, who, { opens = 0, minutes = 0 } = {}, at = Date.now()) {
+  return env.DB.prepare(`INSERT INTO visits (who, day, opens, minutes, first_at, last_at) VALUES (?1, ?2, ?3, ?4, ?5, ?5)
+     ON CONFLICT(who, day) DO UPDATE SET opens = opens + ?3, minutes = MIN(?6, minutes + ?4), last_at = ?5`)
+    .bind(who, saudiDay(at), opens, minutes, at, MAX_MINUTES_A_DAY);
+}
+
+// The site says "I opened it", "I'm still here" (a minute) or "I saw the special day". Nothing else is trusted:
+// who it is comes from the token, and the time from this server.
+async function activity(request, env) {
+  if (!env.DB || !env.SYNC_KEY) return json({ error: "not-configured" }, 503);
+  if (request.method !== "POST") return json({ error: "method-not-allowed" }, 405);
+  const who = await roleOf(request, env);
+  if (!who) return json({ error: "wrong-key" }, 401);
+  await ensureTables(env.DB);
+  let body = {};
+  try {
+    body = (await request.json()) ?? {};
+  } catch {}
+  const at = Date.now();
+  const detail = body.detail && typeof body.detail === "object" ? body.detail : null;
+
+  if (body.kind === "ping") {
+    // A minute counts only if the last sign of life was at least 45 s ago, so two open tabs can't count double.
+    const row = await env.DB.prepare("SELECT last_at FROM visits WHERE who = ?1 AND day = ?2").bind(who, saudiDay(at)).first();
+    if (row && at - row.last_at < 45_000) return json({ ok: true, counted: false });
+    await touchDay(env, who, { minutes: row ? 1 : 0, opens: row ? 0 : 1 }, at).run();
+    return json({ ok: true, counted: true });
+  }
+  if (body.kind === "visit") {
+    const hol = typeof detail?.holiday === "string" ? detail.holiday.slice(0, 40) : null;
+    await env.DB.batch([
+      touchDay(env, who, { opens: 1 }, at),
+      log(env, who, "visit", hol ? { holiday: hol } : null, at),
+      // A special day greeted her: worth its own line in the story of her week.
+      ...(hol ? [log(env, who, "holiday", { holiday: hol }, at)] : []),
+    ]);
+    return json({ ok: true });
+  }
+  return json({ error: "bad-kind" }, 400);
+}
+
+// Everything Dima has done — for Volodymyr's eyes, behind the stats password (Worker secret STATS_PASS).
+async function stats(request, env) {
+  if (!env.DB || !env.SYNC_KEY) return json({ error: "not-configured" }, 503);
+  if (request.method !== "GET") return json({ error: "method-not-allowed" }, 405);
+  const role = await roleOf(request, env);
+  if (role !== "student") return json({ error: "forbidden" }, 403);
+  if (!env.STATS_PASS) return json({ error: "no-password-set" }, 503);
+  if (!(await sameSecret(request.headers.get("x-stats-key") ?? "", env.STATS_PASS))) return json({ error: "wrong-password" }, 403);
+  await ensureTables(env.DB);
+  const [days, events] = await Promise.all([
+    env.DB.prepare("SELECT who, day, opens, minutes, first_at, last_at FROM visits ORDER BY day DESC LIMIT 400").all(),
+    env.DB.prepare("SELECT who, kind, detail, at FROM activity ORDER BY aid DESC LIMIT 500").all(),
+  ]);
+  return json({
+    now: Date.now(),
+    days: days.results.map(r => ({ who: r.who, day: r.day, opens: r.opens, minutes: r.minutes, first: r.first_at, last: r.last_at })),
+    events: events.results.map(r => ({ who: r.who, kind: r.kind, detail: r.detail ? JSON.parse(r.detail) : null, at: r.at })),
+  });
 }
 
 async function progress(request, env) {
@@ -163,7 +245,10 @@ async function content(request, env, url) {
     if (!row || row.status !== "pending") return json({ error: "not-found" }, 404);
     if (m === "DELETE") {
       if (role !== "teacher") return json({ error: "forbidden" }, 403);
-      await env.DB.prepare("UPDATE suggestions SET status = 'withdrawn' WHERE sid = ?1").bind(row.sid).run();
+      await env.DB.batch([
+        env.DB.prepare("UPDATE suggestions SET status = 'withdrawn' WHERE sid = ?1").bind(row.sid),
+        log(env, role, "withdraw", { target: row.target }),
+      ]);
       return json({ ok: true });
     }
     if (m !== "POST") return json({ error: "method-not-allowed" }, 405);
@@ -207,8 +292,11 @@ async function content(request, env, url) {
       // Dima suggests; Volodymyr decides. One open suggestion per target: a new one replaces her older one.
       const before = body?.before && typeof body.before === "object" ? JSON.stringify(clean(body.before)) : null;
       await env.DB.prepare("UPDATE suggestions SET status = 'replaced' WHERE target = ?1 AND status = 'pending'").bind(id).run();
+      const now = Date.now();
       const res = await env.DB.prepare("INSERT INTO suggestions (target, data, before, by, created) VALUES (?1, ?2, ?3, 'teacher', ?4)")
-        .bind(id, JSON.stringify(data), before, Date.now()).run();
+        .bind(id, JSON.stringify(data), before, now).run();
+      // For the Stats page: what she changed, from what to what.
+      await env.DB.batch([log(env, role, "correct", { target: id, data, before: before ? JSON.parse(before) : null }, now), touchDay(env, role, {}, now)]);
       return json({ ok: true, pending: true, sid: res.meta?.last_row_id ?? null, data });
     }
     await env.DB.prepare("INSERT INTO edits (id, data, by, updated_at) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(id) DO UPDATE SET data = excluded.data, by = excluded.by, updated_at = excluded.updated_at")
@@ -231,8 +319,11 @@ async function content(request, env, url) {
     env.DB.prepare("DELETE FROM audio_prev WHERE key = ?1").bind(id),
     env.DB.prepare("INSERT INTO audio_prev (key, type, data, updated_at) SELECT key, type, data, updated_at FROM audio WHERE key = ?1").bind(id),
   ];
+  // The page sends the word itself (?text=…) so the Stats page can say which word it was, not just its key.
+  const said = (url.searchParams.get("text") ?? "").slice(0, 300) || null;
   if (m === "DELETE") {
-    await env.DB.batch([...keepPrev(), env.DB.prepare("DELETE FROM audio WHERE key = ?1").bind(id)]);
+    await env.DB.batch([...keepPrev(), env.DB.prepare("DELETE FROM audio WHERE key = ?1").bind(id),
+      log(env, role, "unrecord", { key: id, text: said }), touchDay(env, role)]);
     return json({ ok: true });
   }
   if (m === "POST") {
@@ -249,6 +340,8 @@ async function content(request, env, url) {
       env.DB.prepare("DELETE FROM audio_prev WHERE key = ?1").bind(id),
       ...(prev ? [env.DB.prepare("INSERT INTO audio (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4)").bind(id, prev.type, prev.data, at)] : []),
       ...(cur ? [env.DB.prepare("INSERT INTO audio_prev (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4)").bind(id, cur.type, cur.data, cur.updated_at)] : []),
+      log(env, role, prev ? "restore" : "unrecord", { key: id, text: said }),
+      touchDay(env, role),
     ]);
     return json({ ok: true, at });
   }
@@ -258,10 +351,13 @@ async function content(request, env, url) {
   const buf = await request.arrayBuffer();
   if (!buf.byteLength || buf.byteLength > MAX_AUDIO) return json({ error: "too-large" }, 413);
   const at = Date.now();
+  const had = await env.DB.prepare("SELECT 1 AS yes FROM audio WHERE key = ?1").bind(id).first();
   await env.DB.batch([
     ...keepPrev(),
     env.DB.prepare("INSERT INTO audio (key, type, data, updated_at) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(key) DO UPDATE SET type = excluded.type, data = excluded.data, updated_at = excluded.updated_at")
       .bind(id, type, buf, at),
+    log(env, role, had ? "rerecord" : "record", { key: id, text: said, bytes: buf.byteLength }, at),
+    touchDay(env, role, {}, at),
   ]);
   return json({ ok: true, at });
 }
@@ -271,6 +367,8 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === "/api/progress") return progress(request, env);
     if (url.pathname === "/api/login") return login(request, env);
+    if (url.pathname === "/api/activity") return activity(request, env);
+    if (url.pathname === "/api/stats") return stats(request, env);
     if (/^\/api\/(content|edits|audio|suggestions)(\/|$)/.test(url.pathname)) return content(request, env, url);
     return env.ASSETS.fetch(request);
   },

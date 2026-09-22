@@ -1217,7 +1217,8 @@ html[dir="rtl"] .lt-table th { letter-spacing: 0; }
 .lv-phrase .gr-msa .ar { font-size: 18px; }
 
 /* Her birthday (#/birthday) — his profile only */
-body.is-teacher .nav-bday { display: none; }
+body.is-teacher .nav-bday,
+body.is-teacher .nav-stats { display: none; }
 .bd-count { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 0 0 16px; }
 .bd-days { display: grid; gap: 2px; padding: 18px 20px; border-radius: var(--radius); background: linear-gradient(135deg, #7A1330, #D63A5E); color: #FFF4F6; }
 .bd-days.is-a1 { background: var(--strong-bg); color: var(--strong-ink); }
@@ -1830,4 +1831,45 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
   .pa-box, .pr-name, .vb-form, .task-go, a.small, .table-details summary, .check input, .task input, .detail-tasks input { position: relative; }
   .pa-box::after, .pr-name::after, .vb-form::after, .task-go::after, a.small::after, .table-details summary::after { content: ""; position: absolute; inset: -8px; }
   .task input, .check input, .detail-tasks input { width: 24px; height: 24px; }
+}
+
+/* Stats — Volodymyr's page about Dima's days on the site (views/stats.js). Behind the password:
+   the tiles at the top, then the minutes chart, then one card per day with the things she did. */
+.sx-note { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.sx-note .muted { font-size: 14px; }
+.sx-lock { max-width: 420px; margin: 24px auto; text-align: center; display: grid; gap: 12px; justify-items: center; }
+.sx-lock h2 { margin: 0; }
+.sx-lock p { margin: 0; }
+.sx-lock-icon .i { width: 40px; height: 40px; color: var(--accent); }
+.sx-field { width: 100%; }
+.sx-field input { width: 100%; padding: 12px 14px; font-size: 20px; letter-spacing: .3em; text-align: center;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); color: var(--ink); }
+.sx-field input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sx-days { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 12px; }
+.sx-day-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.sx-day-head h3 { margin: 0; font-size: 18px; }
+.sx-day-head p { margin: 0; font-size: 14px; }
+.sx-events { list-style: none; margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; }
+.sx-ev { display: flex; align-items: flex-start; gap: 8px; font-size: 15px; }
+.sx-ev .i { width: 18px; height: 18px; flex: 0 0 auto; margin-top: 2px; color: var(--muted); }
+.sx-ev.is-rec .i, .sx-ev.is-correct .i { color: var(--accent); }
+.sx-ev.is-holiday .i { color: var(--flag); }
+.sx-time { flex: 0 0 auto; min-width: 62px; color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14px; }
+.sx-ev .ar { font-size: 19px; }
+.sx-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.sx-table th, .sx-table td { padding: 5px 8px; text-align: start; vertical-align: top; border-top: 1px solid var(--line); }
+.sx-table tbody th { width: 22%; color: var(--muted); font-size: 13.5px; font-weight: 600; }
+.sx-was { color: var(--muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--bad) 60%, transparent); }
+.sx-now { font-weight: 800; }
+.sx-table .ar { font-size: 19px; }
+.sx-checked { display: flex; align-items: center; gap: 6px; margin: 6px 0 0; color: var(--accent); font-weight: 700; font-size: 14px; }
+.sx-foot { margin-top: 24px; }
+/* "3 hours ago" is words, not a number: it needs less room than the big figures beside it. */
+.stat.sx-last dd { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.15; }
+
+@media (max-width: 560px) {
+  .sx-time { min-width: 0; }
+  .sx-ev > div, .sx-ev > span { min-width: 0; } /* the correction table shrinks instead of dropping to its own line */
+  .sx-table th, .sx-table td { padding: 5px 4px; }
+  .sx-table tbody th { width: 34%; font-size: 12.5px; }
 }
