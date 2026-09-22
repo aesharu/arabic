@@ -1,13 +1,16 @@
-// Grammar: the nine patterns from the plan, one lesson each — explanation, examples to hear, and a short quiz.
-//   #/grammar        all nine
-//   #/grammar/<n>    lesson n (1–9)
+// Grammar: the nine patterns from the plan, then more for A2 (data/grammar2.js) — one lesson each: explanation,
+// examples to hear, and a short quiz.
+//   #/grammar        all lessons
+//   #/grammar/<n>    lesson n (1–9 the plan's, 10– more for A2)
 import { t, tx } from "../core/i18n.js";
 import { esc, rich, ar, translit, flag, playIcon, pageHead, shuffle } from "../core/dom.js";
 import { icon } from "../core/art.js";
-import { GRAMMAR } from "../data/grammar.js";
+import { GRAMMAR as PLAN_GRAMMAR } from "../data/grammar.js";
+import { GRAMMAR_A2 } from "../data/grammar2.js";
 import { speakText } from "../core/vocab.js";
 import * as content from "../core/content.js";
 
+const GRAMMAR = [...PLAN_GRAMMAR, ...GRAMMAR_A2];
 // Every example can be corrected in edit mode (ids g<lesson>x<row>).
 for (const l of GRAMMAR) l.rows.forEach((r, i) => (r.id = `g${l.id}x${i}`));
 content.register(GRAMMAR.flatMap(l => l.rows));
@@ -35,12 +38,17 @@ function makeQuiz(lesson) {
   });
 }
 
+const card = l => `<li><a class="gr-card" href="#/grammar/${l.id}">
+  <span class="gr-num" aria-hidden="true">${l.id}</span>
+  <span><b>${esc(tx(l.title))}</b><span class="gr-peek">${l.rows.slice(0, 3).map(r => ar(r.ar)).join(" · ")}</span></span>
+  ${icon("arrow")}</a></li>`;
+
 function list() {
   return `${pageHead(t("grammar.title"), esc(t("grammar.sub")), "", "", "reading")}
-    <ol class="gr-list">${GRAMMAR.map(l => `<li><a class="gr-card" href="#/grammar/${l.id}">
-      <span class="gr-num" aria-hidden="true">${l.id}</span>
-      <span><b>${esc(tx(l.title))}</b><span class="gr-peek">${l.rows.slice(0, 3).map(r => ar(r.ar)).join(" · ")}</span></span>
-      ${icon("arrow")}</a></li>`).join("")}</ol>`;
+    <ol class="gr-list">${PLAN_GRAMMAR.map(card).join("")}</ol>
+    <h2 class="gr-more">${t("grammar.more")}</h2>
+    <p class="muted">${esc(t("grammar.moreSub"))}</p>
+    <ol class="gr-list">${GRAMMAR_A2.map(card).join("")}</ol>`;
 }
 
 export default {
@@ -71,7 +79,7 @@ export default {
 
     root.innerHTML = `
       <p class="gr-back"><a href="#/grammar">${icon("back")} ${t("grammar.all")}</a></p>
-      ${pageHead(tx(lesson.title), "", t("grammar.lessonN", { n: lesson.id }), "", "reading")}
+      ${pageHead(tx(lesson.title), "", t("grammar.lessonN", { n: lesson.id, total: GRAMMAR.length }), "", "reading")}
       <section class="panel gr-intro"><p>${rich(tx(lesson.intro))}</p>
         ${lesson.verb ? `<p class="gr-verb">${ar(lesson.verb.ar)} — ${esc(meaning(lesson.verb))}</p>` : ""}
       </section>

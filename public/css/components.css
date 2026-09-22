@@ -1554,3 +1554,4 @@ html[dir="rtl"] .pa-step > a > .i { transform: scaleX(-1); }
   .pa-kind { min-width: 0; flex-basis: 100%; }
   .pa-top > div { min-width: calc(50% - 5px); flex: 1; }
 }
+.gr-more { margin: 32px 0 4px; }
