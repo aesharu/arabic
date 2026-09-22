@@ -1126,10 +1126,10 @@ export const STRINGS = {
   "print.all": { en: "All six", uk: "Усі шість", najdi: "كل المجموعات", msa: "جميع المجموعات" },
   "print.wordsName": { en: "Word writing", uk: "Письмо слів", najdi: "كتابة الكلمات", msa: "كتابة الكلمات" },
   "print.wordsText": {
-    en: "Each word with its pronunciation and meaning, three gray copies to trace and a line to write it yourself.",
-    uk: "Кожне слово з вимовою та значенням, три сірі копії для обведення й рядок, щоб написати самому.",
-    najdi: "كل كلمة مع نطقها ومعناها، وثلاث نسخ رمادية تمشي عليها، وسطر تكتبها فيه بنفسك.",
-    msa: "كل كلمة مع نطقها ومعناها، وثلاث نسخ رمادية للتتبّع، وسطر لتكتبها بنفسك.",
+    en: "Eight words a sheet: how each is said and what it means above it, the word with gray copies to trace, and a line to write it yourself.",
+    uk: "Вісім слів на аркуші: над кожним — вимова й значення, далі слово із сірими копіями для обведення й рядок, щоб написати самому.",
+    najdi: "ثمان كلمات بالورقة: فوق كل كلمة نطقها ومعناها، وبعدين الكلمة مع نسخ رمادية تمشي عليها، وسطر تكتبها فيه بنفسك.",
+    msa: "ثماني كلمات في كل ورقة: فوق كل كلمة نطقها ومعناها، ثم الكلمة مع نسخ رمادية للتتبّع، وسطر لتكتبها بنفسك.",
   },
   "print.foldName": { en: "Fold and test", uk: "Склади й перевір", najdi: "اطوِ واختبر", msa: "اطوِ واختبر" },
   "print.foldText": {
@@ -1140,7 +1140,8 @@ export const STRINGS = {
   },
   "print.foldTitle": { en: "Fold and test", uk: "Склади й перевір", najdi: "اطوِ واختبر", msa: "اطوِ واختبر" },
   "print.storiesName": { en: "Stories to read", uk: "Історії для читання", najdi: "قصص للقراية", msa: "قصص للقراءة" },
-  "print.storiesText": { en: "The stories on paper: the Arabic in large print, and under the dashed line how each sentence is said and what it means. Fold it back and read.", uk: "Історії на папері: арабський текст великим шрифтом, а під пунктиром — вимова й значення кожного речення. Загни низ і читай.", najdi: "القصص على ورق: العربي بخط كبير، وتحت الخط المقطّع نطق كل جملة ومعناها. اطوِ الورقة واقرا.", msa: "القصص على الورق: النص العربي بخط كبير، وتحت الخط المتقطّع نطق كل جملة ومعناها. اطوِ الورقة واقرأ." },
+  "print.storiesText": { en: "One story a sheet: the Arabic in large print, lines to copy the sentence you like best, and at the foot of the page how each sentence is said and what it means. Fold it back and read.", uk: "Одна історія на аркуші: арабський текст великим шрифтом, рядки, щоб переписати улюблене речення, а внизу — вимова й значення кожного речення. Загни низ і читай.", najdi: "قصة بكل ورقة: العربي بخط كبير، وسطور تنسخ فيها الجملة اللي عجبتك، وتحت نطق كل جملة ومعناها. اطوِ الورقة واقرا.", msa: "قصة في كل ورقة: النص العربي بخط كبير، وسطور لنسخ الجملة التي أعجبتك، وفي أسفل الصفحة نطق كل جملة ومعناها. اطوِ الورقة واقرأ." },
+  "print.copySentence": { en: "Copy the sentence you like best:", uk: "Перепиши речення, яке найбільше сподобалося:", najdi: "انسخ الجملة اللي عجبتك أكثر:", msa: "انسخ الجملة التي أعجبتك أكثر:" },
   "print.foldHere": { en: "fold here", uk: "склади тут", najdi: "اطوِ هنا", msa: "اطوِ هنا" },
   "print.cardsName": { en: "Phrase cards", uk: "Картки з фразами", najdi: "كروت العبارات", msa: "بطاقات العبارات" },
   "print.cardsText": {

@@ -35,11 +35,12 @@ const row = (glyphs = "", cls = "") => `<div class="trow${cls ? " " + cls : ""}"
 const solid = text => `<span class="g solid" lang="ar">${esc(text)}</span>`;
 const grey = text => `<span class="g grey" lang="ar">${esc(text)}</span>`;
 
-function sheet(title, body, n, total, cls = "") {
+// date: a line to write the date on (practice sheets; not cards to cut up, nor the tracker, which has its dates).
+function sheet(title, body, n, total, cls = "", { date = true } = {}) {
   return `<section class="sheet${cls ? " " + cls : ""}">
-    <header class="sheet-head"><h2>${title}</h2><p>${esc(t("print.nameDate"))}</p></header>
+    <header class="sheet-head"><h2>${title}</h2>${date ? `<p>${esc(t("print.nameDate"))}</p>` : ""}</header>
     <div class="sheet-body">${body}</div>
-    <footer class="sheet-foot"><span translate="no">Saudi · <span lang="ar">سعودي</span></span><span>${num(n)} / ${num(total)}</span></footer>
+    <footer class="sheet-foot"><span translate="no">Saudi · <span lang="ar">سعودي</span></span><span dir="ltr">${num(n)} / ${num(total)}</span></footer>
   </section>`;
 }
 
@@ -67,15 +68,16 @@ function letterSheets(which) {
 }
 
 // ---------- 2. Word writing ----------
-// Long phrases get fewer tracing copies so each fits on one line.
-const copies = ar => (ar.length > 18 ? 1 : ar.length > 10 ? 2 : 3);
+// Each word: how it's said and what it means on a line of its own, lined up above the word; then the word in black
+// with grey copies to trace after it (as many as fit — fitRows() removes the ones that would run off the line);
+// then an empty line to write it yourself.
 function wordSheets(stage) {
-  const pages = stage.topics.flatMap(topic => chunk(topic.entries, 7).map(list => ({ topic, list })));
+  const pages = stage.topics.flatMap(topic => chunk(topic.entries, 8).map(list => ({ topic, list })));
   return pages.map((p, i) => sheet(
     `${esc(deckName(stage.id))} · ${esc(tx(p.topic.title))}`,
     p.list.map(e => `<div class="tword">
-      ${row(`${solid(e.ar)}<span class="tw-meta" dir="ltr">${lat(e.say, "tr")}${meaningLines(e)}</span>`, "tw-top")}
-      ${row(grey(e.ar).repeat(copies(e.ar)))}
+      <p class="tw-cap" dir="ltr">${lat(e.say, "tr")}${meaningLines(e)}</p>
+      ${row(solid(e.ar) + grey(e.ar).repeat(4), "fit")}
       ${row()}
     </div>`).join(""),
     i + 1, pages.length, "s-words",
@@ -103,12 +105,13 @@ function cardSheets(list) {
   const pages = chunk(list, 8);
   const out = [];
   pages.forEach((cards, i) => {
-    const slots = Array.from({ length: 8 }, (_, k) => cards[k]);
-    const front = slots.map(c => `<div class="pcard">${c ? `<p lang="ar" dir="rtl">${esc(c.ar)}</p>` : ""}</div>`).join("");
+    const slots = Array.from({ length: 8 }, (_, k) => cards[k] && { ...cards[k], n: i * 8 + k + 1 });
+    const no = c => `<span class="pc-n" dir="ltr">${num(c.n)}</span>`; // the same number front and back, to pair them after cutting
+    const front = slots.map(c => `<div class="pcard">${c ? `${no(c)}<p lang="ar" dir="rtl">${esc(c.ar)}</p>` : ""}</div>`).join("");
     const mirrored = [0, 1, 2, 3].flatMap(r => [slots[r * 2 + 1], slots[r * 2]]);
-    const back = mirrored.map(c => `<div class="pcard back">${c ? `${lat(c.say, "tr")}${meaningLines(c)}` : ""}</div>`).join("");
-    out.push(sheet(esc(t("print.cardsFront")), `<div class="pcards">${front}</div>`, i * 2 + 1, pages.length * 2, "s-cards"));
-    out.push(sheet(esc(t("print.cardsBack")), `<div class="pcards">${back}</div>`, i * 2 + 2, pages.length * 2, "s-cards"));
+    const back = mirrored.map(c => `<div class="pcard back">${c ? `${no(c)}${lat(c.say, "tr")}${meaningLines(c)}` : ""}</div>`).join("");
+    out.push(sheet(esc(t("print.cardsFront")), `<div class="pcards">${front}</div>`, i * 2 + 1, pages.length * 2, "s-cards", { date: false }));
+    out.push(sheet(esc(t("print.cardsBack")), `<div class="pcards">${back}</div>`, i * 2 + 2, pages.length * 2, "s-cards", { date: false }));
   });
   return out.join("");
 }
@@ -125,21 +128,22 @@ function trackerSheet(week) {
         ${box(t("print.trackMinutes"))}${box(t("print.trackWords"))}${box(t("print.trackVoice"))}
         <span class="tk-check"><i></i>${esc(t("print.trackTutor"))}</span></p>
       <p class="tk-label">${esc(t("print.trackSentence"))}</p>
-      ${row()}
+      ${row()}${row()}
     </div>`).join(""),
-    1, 1, "s-tracker",
+    1, 1, "s-tracker", { date: false },
   );
 }
 
 // ---------- 6. Stories to read ----------
-// One story a sheet (two of the very easy ones): the Arabic, numbered, then — under a dashed line to fold back —
-// each sentence's pronunciation and meaning.
+// One story a sheet: the Arabic, numbered (the very easy ones large, like a children's book), then — under a dashed
+// line to fold back — each sentence's pronunciation and meaning.
 function storySheets(S, level) {
   const list = S.STORIES.filter(st => st.level === level);
-  const pages = chunk(list, level === "easy" ? 2 : 1);
+  const pages = chunk(list, 1);
   const story = st => `<div class="ps-story">
     <h3>${esc(tx(st.title))}</h3>
     <ol class="ps-ar" dir="rtl" lang="ar">${st.text.map(l => `<li>${esc(l.ar)}</li>`).join("")}</ol>
+    <div class="ps-write optional"><p class="free-label">${esc(t("print.copySentence"))}</p>${row()}${row()}</div>
     <p class="ps-cut"><span>${esc(t("print.foldHere"))}</span></p>
     <ol class="ps-key">${st.text.map(l => `<li>${lat(l.say, "tr")}${meaningLines(l)}</li>`).join("")}</ol>
   </div>`;
@@ -170,6 +174,23 @@ function index() {
       <h2>${icon("print")} ${t("print.howTitle")}</h2>
       <ul class="checks"><li>${t("print.how1")}</li><li>${t("print.how2")}</li><li>${t("print.how3")}</li></ul>
     </section>`;
+}
+
+// Anything marked optional (the lines to copy a sentence under a story) goes if the sheet would overflow.
+function fitSheets(root) {
+  for (const body of root.querySelectorAll(".sheet-body")) {
+    const extra = [...body.querySelectorAll(".optional")];
+    while (extra.length && body.scrollHeight > body.clientHeight + 1) extra.pop().remove();
+  }
+}
+
+// A word and its grey copies share one line: drop copies from the end until the line fits (long phrases keep
+// one copy, or none — then the empty line under it is for tracing from the black one).
+function fitRows(root) {
+  for (const rowEl of root.querySelectorAll(".trow.fit")) {
+    const greys = [...rowEl.querySelectorAll(".g.grey")];
+    while (greys.length && rowEl.scrollWidth > rowEl.clientWidth + 1) greys.pop().remove();
+  }
 }
 
 // The baseline sits wherever the Arabic font puts it: measure it once and draw every guideline there.
@@ -205,6 +226,8 @@ export default {
       document.fonts.ready.then(() => {
         if (signal.aborted) return;
         measureBaseline(root);
+        fitRows(root);
+        fitSheets(root);
         document.body.dataset.printReady = "1"; // scripts/print-pdf.mjs waits for this
       });
     };
