@@ -12,6 +12,8 @@ import { PHRASES } from "../data/phrases.js";
 import { GROUPS } from "../data/letters.js";
 import { journeyParapet, ring, TOTAL_WEEKS, wordsMeter } from "./shared.js";
 import { BIRTHDAY } from "../data/birthday.js";
+import { PATH } from "../data/path.js";
+import { weeks as pathWeeks, weekIndex as pathWeek, progress as pathProgress } from "../core/path.js";
 
 // New phrases on Days 1–14; after that, a rotating review of three.
 function phrasesFor(n) {
@@ -121,6 +123,7 @@ export default {
 
         <div class="today">
           <div class="today-main">
+            ${!store.isTeacher() && diffDays(START, date) < PATH.length * 7 ? (w => (p => `<a class="ls-today pa-today" href="#/path">${icon("plan")}<span><b>${esc(t("path.todayLink", { title: tx(w.title) }))}</b><small>${esc(t("path.todaySub", { done: num(p.done), total: num(p.total) }))}</small></span>${icon("arrow")}</a>`)(pathProgress(w)))(pathWeeks(false)[pathWeek(date)]) : ""}
             ${!store.isTeacher() && date <= BIRTHDAY ? `<a class="ls-today bd-today" href="#/birthday">${icon("heart")}<span><b>${esc(t("bday.todayLink", { n: num(diffDays(date, BIRTHDAY)) }))}</b><small>${esc(t("bday.todaySub"))}</small></span>${icon("arrow")}</a>` : ""}
             ${week >= 3 && week <= 67 ? `<a class="ls-today" href="#/lessons/${week}">${icon("plan")}<span><b>${t("lessons.thisWeek")}</b><small>${t("lessons.weekN", { n: week })}</small></span>${icon("arrow")}</a>` : ""}
             <section class="panel">

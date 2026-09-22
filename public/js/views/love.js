@@ -24,7 +24,7 @@ const phrase = x => (content.apply(x), `
 
 export default {
   titleKey: "love.title",
-  mount(root, { signal }) {
+  mount(root, { params, signal }) {
     const render = () => {
       root.innerHTML = `${pageHead(t("love.title"), esc(t("love.sub")), "", "", "finish")}
         <section class="panel lv-intro"><p>${icon("heart")} ${esc(tx(LOVE_INTRO))}</p>
@@ -41,6 +41,7 @@ export default {
           </section>`).join("")}</div>`;
     };
     render();
+    if (params[0]) root.querySelector(`#lv-${CSS.escape(params[0])}`)?.scrollIntoView({ block: "start" }); // #/love/<section>, from Your path
     root.addEventListener("click", e => {
       const j = e.target.closest("[data-jump]");
       if (j) return root.querySelector(`#lv-${j.dataset.jump}`)?.scrollIntoView({ behavior: "smooth", block: "start" });

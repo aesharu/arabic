@@ -13,7 +13,8 @@ content.register(CHAT_LINES); // ✎ in edit mode
 
 // Shown for every message at once (kept while moving between chats).
 const show = { say: false, mean: false };
-const read = () => store.get().prefs.chatsRead ?? [];
+// Read chats: "ch.<id>" in reading.done (synced); older marks were kept on the device in prefs.chatsRead.
+const read = () => [...(store.get().prefs.chatsRead ?? []), ...(store.get().reading?.done ?? []).filter(x => x.startsWith("ch.")).map(x => x.slice(3))];
 const mean = x => esc(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }));
 
 function list() {
@@ -72,9 +73,11 @@ export default {
       }
       if (e.target.closest("[data-read]")) {
         store.update(st => {
-          const set = new Set(st.prefs.chatsRead ?? []);
-          set.has(c.id) ? set.delete(c.id) : set.add(c.id);
-          st.prefs.chatsRead = [...set];
+          const set = new Set(st.reading?.done ?? []);
+          const was = read().includes(c.id);
+          was ? set.delete(`ch.${c.id}`) : set.add(`ch.${c.id}`);
+          st.reading = { done: [...set] };
+          if (was) st.prefs.chatsRead = (st.prefs.chatsRead ?? []).filter(x => x !== c.id);
         });
         return render();
       }
