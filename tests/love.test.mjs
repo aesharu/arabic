@@ -57,3 +57,18 @@ test("her words and the rude words: four languages, pronunciation, a level for e
   for (const w of H.RUDE) assert.ok(["rude", "very rude"].includes(w.level), `${w.ar}: level`);
   assert.equal(new Set([...H.HER_WORDS, ...H.RUDE].map(w => w.id)).size, H.HER_WORDS.length + H.RUDE.length);
 });
+
+test("chats: every line in three languages with pronunciation; clean text for the voice", async () => {
+  const C = await import("../public/js/data/chats.js");
+  assert.ok(C.CHATS.length >= 10);
+  for (const c of C.CHATS) for (const f of ["en", "uk", "najdi", "msa"]) assert.ok(c.title[f], `${c.id} title ${f}`);
+  for (const l of C.CHAT_LINES) {
+    for (const f of ["who", "ar", "say", "en", "uk", "speak"]) assert.ok(l[f], `${l.id}: ${f}`);
+    assert.match(l.uk, /[Ѐ-ӿ]/, `${l.id}: Ukrainian`);
+    assert.doesNotMatch(l.speak, /[A-Za-z]|\p{Extended_Pictographic}/u, `${l.id}: what the voice reads`);
+    assert.ok(["him", "her", "other"].includes(l.who));
+    const words = l.ar.replace(/[؟?…!.،:]/g, " ").split(/\s+/);
+    for (const trap of ["شو", "فين", "عايز", "بدي", "كويس", "ليه", "كمان", "مش", "إيش", "هيك", "بحبك"]) assert.ok(!words.includes(trap), `${l.id}: ${trap}`);
+  }
+  assert.equal(new Set(C.CHAT_LINES.map(l => l.id)).size, C.CHAT_LINES.length);
+});

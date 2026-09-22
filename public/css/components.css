@@ -1281,3 +1281,33 @@ html[dir="rtl"] .bd-go .i { transform: scaleX(-1); }
 .nm-pin { fill: var(--accent); }
 .nm-time { flex: 1 1 260px; min-width: 0; }
 .nm-clockpanel h3 { margin-top: 10px; }
+
+/* Chats to read (#/chats) */
+.ch-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.ch-card { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px; background: var(--surface); color: var(--ink); text-decoration: none; }
+.ch-card:hover { background: var(--surface-2); }
+.ch-level { flex: 0 0 auto; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--strong-bg); color: var(--strong-ink); font-weight: 800; }
+.ch-card-text { flex: 1; min-width: 0; display: grid; }
+.ch-card-text .ar { font-size: 20px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ch-count { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 4px; color: var(--muted); font-size: 14px; font-weight: 700; }
+.ch-count .i { width: 16px; height: 16px; color: var(--accent); }
+.ch-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 6px; }
+.ch-thread { display: flex; flex-direction: column; gap: 8px; max-width: 720px; margin: 14px 0; padding: 16px 12px; border-radius: 20px; list-style: none;
+  background: color-mix(in srgb, var(--accent) 7%, var(--bg)); }
+.ch-msg { display: flex; }
+.ch-msg.is-him { justify-content: flex-end; }
+.ch-bubble { display: grid; gap: 2px; max-width: min(84%, 460px); padding: 8px 14px 10px; border: 0; border-radius: 18px; font: inherit; text-align: start; cursor: pointer;
+  background: var(--surface); color: var(--ink); box-shadow: 0 1px 1px rgba(0, 0, 0, .08); }
+.is-him .ch-bubble { background: var(--strong-bg); color: var(--strong-ink); border-end-end-radius: 6px; }
+.is-her .ch-bubble, .is-other .ch-bubble { border-end-start-radius: 6px; }
+.ch-who { font-size: 12.5px; font-weight: 800; color: #B0284C; }
+.is-other .ch-who { color: var(--accent); }
+.ch-ar { font-size: 24px; line-height: 1.55; direction: rtl; text-align: right; }
+.ch-say, .ch-mean { display: none; font-size: 14.5px; }
+.ch-say { opacity: .85; }
+.ch-mean { font-weight: 700; }
+.is-open .ch-say, .is-open .ch-mean, .show-say .ch-say, .show-mean .ch-mean { display: block; }
+.ch-end { display: flex; flex-wrap: wrap; gap: 8px; }
+html[dir="rtl"] .ch-end .i:last-child { transform: scaleX(-1); }
+.is-her .ch-bubble, .is-other .ch-bubble { background: var(--surface-2); border: 1px solid var(--line); }
+.ch-thread { background: var(--bg); border: 1.5px solid var(--line); }

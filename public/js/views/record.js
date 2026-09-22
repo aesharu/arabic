@@ -12,11 +12,13 @@ import * as content from "../core/content.js";
 import * as store from "../core/store.js";
 import { deckName } from "./shared.js";
 import { DIALOGUES } from "../data/weeks.js";
+import { CHAT_LINES } from "../data/chats.js";
 import { openStudio, spoken } from "../core/studio.js";
 
 // The weekly conversations, recordable line by line (their ids match the lesson pages' ✎).
 const TALK = Object.entries(DIALOGUES).flatMap(([w, lines]) => lines.map((l, i) => ({ ...l, id: `d${w}x${i}`, deck: "talk" })));
-const deckLabel = d => (d === "talk" ? t("lessons.conversation") : deckName(d));
+const CHATS = CHAT_LINES.map(l => ({ ...l, deck: "chats" }));
+const deckLabel = d => (d === "talk" ? t("lessons.conversation") : d === "chats" ? t("nav.chats") : deckName(d));
 
 let onlyTodo = true; // kept while she moves between decks
 const textOf = spoken;
@@ -29,7 +31,7 @@ export default {
     let shown = [];
     const doneHere = new Set(); // recorded during this visit: they stay in view
 
-    const deckIds = [...DECKS.map(d => d.id), "talk"];
+    const deckIds = [...DECKS.map(d => d.id), "talk", "chats"];
     const pick = () => {
       if (deckIds.includes(params[0])) return params[0];
       return deckIds.find(d => notes.some(n => n.deck === d && !content.hasAudio(textOf(n)))) ?? deckIds[0];
@@ -100,7 +102,7 @@ export default {
     }, { signal });
 
     Promise.all([loadVocab(), content.load()]).then(([v]) => {
-      notes = [...v.notes, ...TALK.map(content.apply)];
+      notes = [...v.notes, ...TALK.map(content.apply), ...CHATS.map(content.apply)];
       render();
     }, () => {});
     const off = content.onChange(render);
