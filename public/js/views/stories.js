@@ -3,13 +3,13 @@
 //   #/stories         all stories
 //   #/stories/<id>    one story
 import { t, tx, num } from "../core/i18n.js";
-import { esc, ar, lat, translit, flag, meanings, playIcon, pageHead } from "../core/dom.js";
+import { esc, ar, lat, translit, flag, playIcon, pageHead } from "../core/dom.js";
 import { icon } from "../core/art.js";
 import * as store from "../core/store.js";
 import * as content from "../core/content.js";
 import { sayAll } from "../core/speech.js";
-import { tokens, sayWords, norm } from "../core/gloss.js";
 import { dictionary } from "../core/dictionary.js";
+import { tappable, selection, paint } from "./tapword.js";
 import { loadVocab } from "../core/vocab.js";
 
 // The stories are a big file: loaded the first time this page (or the Record page) needs them.
@@ -46,28 +46,7 @@ function list(S) {
       </section>`).join("")}`;
 }
 
-// One sentence as tappable words. Words that make a phrase in the lists ("صباح الخير") are one button.
-function sentence(l, i, d) {
-  const parts = tokens(l.ar);
-  const words = parts.filter(p => p.w).map(p => p.w);
-  let html = "";
-  let wi = 0;
-  for (let k = 0; k < parts.length; k++) {
-    const p = parts[k];
-    if (p.sep !== undefined) {
-      html += esc(p.sep);
-      continue;
-    }
-    let n = d.phraseAt(words, wi)?.n ?? 1;
-    // Only words next to each other with nothing but spaces between them make a phrase.
-    for (let j = 1; j < n; j++) if (!/^\s+$/.test(parts[k + 2 * j - 1]?.sep ?? "")) n = j;
-    const text = parts.slice(k, k + 2 * n - 1).map(x => x.w ?? x.sep).join("");
-    html += `<button type="button" class="st-w" data-s="${i}" data-w="${wi}" data-n="${n}">${esc(text)}</button>`;
-    k += 2 * n - 2;
-    wi += n;
-  }
-  return `<span class="st-s ar" lang="ar" translate="no" data-edit-id="${l.id}">${html}</span>`;
-}
+const sentence = (l, i, d) => tappable(l, i, d);
 
 function text(s, d) {
   const lines = show.say || show.mean;
@@ -78,34 +57,6 @@ function text(s, d) {
         ${show.say ? `<p class="st-say">${translit(l.say)}</p>` : ""}
         ${show.mean ? `<p class="st-mean">${mean(l)}</p>` : ""}</div>
     </li>`).join("")}</ol>`;
-}
-
-// What a tapped word is: meaning (or, for a verb form, who and when + the word it comes from), its pieces, how
-// it's said, and the sentence it's in.
-function panel(sel) {
-  const { l, surface, pron, r } = sel;
-  const e = r?.e;
-  const short = mean;
-  const pieces = r?.parts?.length
-    ? `<p class="st-parts"><span class="st-lab">${t("st.parts")}</span> ${r.parts
-        .map(p => `<span class="st-part">${ar(p.ar)}<small>${p.e ? short(p.e) : esc(t(`gl.${p.key}`))}</small></span>`)
-        .join(`<span class="st-plus" aria-hidden="true">+</span>`)}</p>`
-    : "";
-  const form = r?.tense ? `<span class="st-form">${r.who ? `${esc(t(`gl.p.${r.who}`))} · ` : ""}${esc(t(`gl.t.${r.tense}`))}</span>` : "";
-  let what = `<p class="muted">${esc(t("st.noWord"))}</p>`;
-  if (e && r.via === "verb")
-    what = `<div class="st-meaning">${form}${r.parts.length ? "" : `<span class="st-base"><span class="st-lab">${t("st.base")}</span> ${ar(e.ar)} ${translit(e.say)} — ${short(e)}</span>`} ${flag(e)}</div>`;
-  else if (e) what = `<div class="st-meaning">${meanings(e)} ${form} ${flag(e)}</div>`;
-  return `<div class="st-panel-head">
-      <button type="button" class="st-big" data-say="${esc(surface)}">${ar(surface)}${playIcon}</button>
-      ${pron ? `<span class="st-pron">${translit(pron)}</span>` : ""}
-      <button type="button" class="st-x" data-close aria-label="${esc(t("st.close"))}">${icon("close")}</button>
-    </div>
-    ${what}${pieces}
-    <div class="st-panel-sent">
-      <button type="button" class="btn" data-say="${esc(l.ar)}">${icon("sound")} ${t("st.hearSentence")}</button>
-      <p>${translit(l.say)}<span>${mean(l)}</span></p>
-    </div>`;
 }
 
 function quiz(s) {
@@ -186,39 +137,14 @@ export default {
       stopListening?.();
       root.innerHTML = story(S, s, d);
     };
-    const paintPanel = () => {
-      const box = root.querySelector(".st-panel");
-      root.querySelectorAll(".st-w.is-sel").forEach(b => b.classList.remove("is-sel"));
-      if (!selected) return (box.hidden = true);
-      box.innerHTML = panel(selected);
-      box.hidden = false;
-      box.scrollTop = 0;
-      selected.buttons.forEach(b => b.classList.add("is-sel"));
-      // Keep the tapped word in sight above the panel.
-      const w = selected.buttons[0].getBoundingClientRect();
-      const top = box.getBoundingClientRect().top;
-      if (w.bottom > top - 8) window.scrollBy({ top: w.bottom - top + 28, behavior: "smooth" });
-    };
+    const paintPanel = () => paint(root, root.querySelector(".st-panel"), selected);
     render();
     signal.addEventListener("abort", () => stopListening?.());
 
     root.addEventListener("click", e => {
       const w = e.target.closest(".st-w");
       if (w) {
-        const l = s.text[+w.dataset.s];
-        const wi = +w.dataset.w;
-        const n = +w.dataset.n;
-        const words = tokens(l.ar).filter(p => p.w).map(p => p.w);
-        const said = sayWords(l.say);
-        const surface = words.slice(wi, wi + n).join(" ");
-        const phrase = n > 1 ? d.phraseAt(words, wi) : null;
-        selected = {
-          l,
-          surface,
-          pron: said.length === words.length ? said.slice(wi, wi + n).join(" ") : "",
-          r: phrase ? { e: phrase.e, parts: [] } : d.lookup(surface),
-          buttons: [w],
-        };
+        selected = selection(s.text[+w.dataset.s], w, d);
         return paintPanel();
       }
       if (e.target.closest("[data-close]")) {

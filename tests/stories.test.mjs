@@ -75,6 +75,23 @@ test("tap-a-word explains every word in every story", () => {
   assert.deepEqual(missing, []);
 });
 
+test("tap-a-word explains every word in every chat", async () => {
+  const { CHATS } = await import("../public/js/data/chats.js");
+  const vocab = JSON.parse(readFileSync(new URL("../public/data/vocab.json", import.meta.url), "utf8"));
+  const d = dictionary(vocab);
+  const missing = [];
+  for (const c of CHATS)
+    for (const l of c.lines) {
+      const ws = words(l.ar);
+      for (let i = 0; i < ws.length; i++) {
+        const p = d.phraseAt(ws, i);
+        if (p) i += p.n - 1;
+        else if (!d.lookup(ws[i])) missing.push(`${c.id}: ${ws[i]}`);
+      }
+    }
+  assert.deepEqual(missing, []);
+});
+
 test("the reading glossary: pronunciation, meanings in two languages, valid kinds", () => {
   for (const g of GLOSSARY) {
     for (const f of ["ar", "say", "en", "uk"]) assert.ok(g[f], `${g.ar}: ${f}`);

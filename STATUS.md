@@ -67,7 +67,7 @@ Last updated: 22 Sept 2026. Live: https://arabic.aesdvi.workers.dev
 ## Next (in this order)
 
 0. **Plan changes waiting for Volodymyr's OK** (her dialect vs the plan's Riyadh forms — propose, never edit silently): وش لونك → شلونك (and add شخبارك); مب → مو; السلام عليكم stays but سلام is the everyday hi; "your" to her -ik vs -ich — ask Dima which she says, then switch the site's "to her" forms if -ich.
-1. **Chats**: tap a word to see its meaning (reuse `core/gloss.js`); more chats (A2+). Weeks 19–21 and 27–67 conversations for the weekly lessons.
+1. **Chats**: ✅ tap a word (22 Sept, `views/tapword.js` shared with Stories; 100% of chat words explained, test). More chats (A2+). Weeks 19–21 and 27–67 conversations for the weekly lessons.
 2. ✅ **A1 by 21 Dec path** — built as Your path (`#/path`).
 3. Export Dima's edits from D1 as proposed NAJDI-PLAN.md / NAJDI-WORDS.md changes; next prayer + fact of the day on Today; Phrases/letters editable in edit mode.
 4. Optional PIN for Volodymyr's sign-in. `npm run pdf`. Progress: cards per day. Calendar arrow keys; backup restore confirm. `public/_headers`. More tests.
