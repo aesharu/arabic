@@ -919,6 +919,20 @@ export const STRINGS = {
   "review.kindContent": { en: "Lesson text", uk: "Текст уроку", najdi: "كلام الدرس", msa: "نص الدرس" },
   "review.kindLine": { en: "Conversation line", uk: "Рядок розмови", najdi: "سطر من المحادثة", msa: "سطر من المحادثة" },
   "review.kindWord": { en: "Word", uk: "Слово", najdi: "كلمة", msa: "كلمة" },
+  // "Together for" — the floating counter (main.js, core/together.js).
+  "tg.title": { en: "Together for", uk: "Разом уже", najdi: "مع بعض من", msa: "معًا منذ" },
+  "tg.tap": {
+    en: "Tap to change how it's counted",
+    uk: "Натисни, щоб змінити, як рахується",
+    najdi: "اضغط عشان تغيّر طريقة العد",
+    msa: "اضغط لتغيير طريقة العدّ",
+  },
+  "unit.months": {
+    en: { one: "month", other: "months" },
+    uk: { one: "місяць", few: "місяці", many: "місяців", other: "місяця" },
+    najdi: { zero: "شهر", one: "شهر", two: "شهرين", few: "شهور", many: "شهر", other: "شهر" },
+    msa: { zero: "شهر", one: "شهر", two: "شهران", few: "أشهر", many: "شهرًا", other: "شهر" },
+  },
   // Write it in Arabic (views/write.js): he types the word, with an on-screen keyboard.
   "nav.write": { en: "Write it in Arabic", uk: "Напиши арабською", najdi: "اكتبها بالعربي", msa: "اكتبها بالعربية" },
   "wr.title": { en: "Write it in Arabic", uk: "Напиши арабською", najdi: "اكتبها بالعربي", msa: "اكتبها بالعربية" },

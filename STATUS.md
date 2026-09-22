@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 22 Sept 2026 (night: Write it in Arabic, Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
+Last updated: 22 Sept 2026 (night: the "Together for" counter, Write it in Arabic, Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
 
 ## Who uses it
 
@@ -116,6 +116,10 @@ Last updated: 22 Sept 2026 (night: Write it in Arabic, Speak it back, a real pla
   - Counted as `log[day].write` (merged as the larger on sync), shown on Progress beside "Phrases spoken".
 - **A day spent only speaking or typing now counts as a day studied** (`isActive` in `core/schedule.js`): it keeps the streak and appears in the totals, like minutes, tasks, quizzes and cards.
 - **`said()` moved into `core/i18n.js`**: one place for "7 words" / "7 слів" / "٧ كلمات" and يومين-not-"٢ يومين"; Today, the pop-up and the typing page all use it.
+
+- **"Together for"** (22 Sept, `core/together.js`, the pill in `main.js`, `config.js` `TOGETHER_SINCE`, test `tests/together.test.mjs`): a small counter floating over every page, always ticking — **his profile only** (hidden in hers until he says otherwise; it also disappears behind the welcome screen and never prints). **Tap it and it reads the moment differently, and smaller each time**: `5 months 19 days · 3:39:15` → `172 days · 3:39:15` → `172 days`. The mode is remembered (`prefs.togetherMode`). It sits at the bottom on the far side from the menu (`inset-inline-end`, so it stays clear in Arabic too) and above the tab bar on the phone.
+  - The moment is **3 April 2026, 19:20** in `config.js` — the date is certain (both of his readings, 172 days and 5 months 19 days, land on it); **the time of day is a guess from when he asked**, so ask him and change that one line.
+  - Months are counted by the calendar, not in thirties, and a month that hasn't got the start's day stops at its last day (one month after 31 January is 28 February, not 3 March — the test covers it).
 
 ## Next (in this order)
 
