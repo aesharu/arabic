@@ -44,6 +44,10 @@ Last updated: 23 Sept 2026 (no more deadline: stages open by what you have done;
 
 - **Weekly lessons** `#/lessons` (`data/weeks.js`, `views/lessons.js`), weeks 3–67, "This week's lesson" link on Today: the stage goal, that week's words from the plan (big topics split over 2–3 weeks; review weeks), a grammar lesson, a speaking task per stage, and a short conversation — **all 65 weeks have one** (the last 44 written 23 Sept 2026: weeks 19–21, 27–67). Conversation lines are Claude-written — each flagged, ✎-correctable (ids `d<week>x<line>`). `tests/weeks.test.mjs` checks weeks, topics, both languages and dialect traps.
 
+- **Grammar to B1** (`data/grammar3.js`, `views/grammar.js`): twelve more lessons after the plan's nine and the A2 twelve — 29 in all. These are the ones CEFR B1 asks for and nothing earlier taught:
+  18 him/her/you on the end of the verb · 19 he said that… · 20 because / that's why / even though · 21 رايح، قاعد، ناسي (where things stand) · 22 صار / للحين / بعدني · 23 the name of the doing (السباحة، القراية) · 24 it got broken (انكسر) · 25 telling it in order (أول شي… المهم… آخر شي) · 26 asking nicely · 27 I wish, I should have · 28 how much (مرة، شوي، أبد) · 29 before / after / until / as soon as.
+  - Every lesson has at least one line said **to her**, every example is flagged "check with tutor", and `tests/grammar.test.mjs` checks each joining word B1 needs actually has a lesson.
+
 - **The course goes to B1** (23 Sept 2026, his decision): two stages added after Stage 5, so the route ends at the CEFR B1 threshold instead of at ~1,000 words (about A2).
   - **Stage 6 · Opinions and stories** — 1,400 words. Sentences start joining up: because, although, if, the one that, he said that.
   - **Stage 7 · On your own** — 2,000 words. B1: no English as a rescue, follows her family around the table, says what he hopes for and why.

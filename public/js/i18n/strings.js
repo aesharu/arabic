@@ -462,6 +462,11 @@ export const STRINGS = {
   "path.k.do": { en: "With Dima", najdi: "مع ديما" },
   "path.todayLink": { en: "This week on your path: {title}", najdi: "هالأسبوع في طريقك: {title}" },
   "path.todaySub": { en: "{done} of {total} steps done", najdi: "خلصت {done} من {total}" },
+  "grammar.b1": { en: "The B1 grammar: turning sentences into talk", najdi: "قواعد B1: من الجمل للسوالف" },
+  "grammar.b1Sub": {
+    en: "What you did it to, passing on what someone said, giving a reason, saying where things stand, joining two times. This is the step from answering to actually talking.",
+    najdi: "اللي سويت له الفعل، ونقل كلام غيرك، وإعطاء السبب، ووصف وضعك الحين، وربط وقتين. هذي النقلة من الجواب للسوالف.",
+  },
   "grammar.more": { en: "More for A2", najdi: "زيادة لـA2" },
   "grammar.moreSub": { en: "Patterns you'll need for A2 conversations: describing her, comparing, “mine”, must and can, “used to”, “if”, “the one who”. Every example still needs a tutor's check.", najdi: "قواعد تحتاجها لسوالف A2: توصفها، تقارن، «حقي»، لازم وأقدر، «كنت»، «إذا»، «اللي». كل مثال لازم يشوفه المدرّس." },
   "cu.north": { en: "From the north", najdi: "من الشمال" },

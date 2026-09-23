@@ -7,10 +7,11 @@ import { esc, rich, ar, translit, flag, playIcon, pageHead, shuffle } from "../c
 import { icon } from "../core/art.js";
 import { GRAMMAR as PLAN_GRAMMAR } from "../data/grammar.js";
 import { GRAMMAR_A2 } from "../data/grammar2.js";
+import { GRAMMAR_B1 } from "../data/grammar3.js";
 import { speakText } from "../core/vocab.js";
 import * as content from "../core/content.js";
 
-const GRAMMAR = [...PLAN_GRAMMAR, ...GRAMMAR_A2];
+const GRAMMAR = [...PLAN_GRAMMAR, ...GRAMMAR_A2, ...GRAMMAR_B1];
 // Every example can be corrected in edit mode (ids g<lesson>x<row>).
 for (const l of GRAMMAR) l.rows.forEach((r, i) => (r.id = `g${l.id}x${i}`));
 content.register(GRAMMAR.flatMap(l => l.rows));
@@ -46,7 +47,10 @@ function list() {
     <ol class="gr-list">${PLAN_GRAMMAR.map(card).join("")}</ol>
     <h2 class="gr-more">${t("grammar.more")}</h2>
     <p class="muted">${esc(t("grammar.moreSub"))}</p>
-    <ol class="gr-list">${GRAMMAR_A2.map(card).join("")}</ol>`;
+    <ol class="gr-list">${GRAMMAR_A2.map(card).join("")}</ol>
+    <h2 class="gr-more">${t("grammar.b1")}</h2>
+    <p class="muted">${esc(t("grammar.b1Sub"))}</p>
+    <ol class="gr-list">${GRAMMAR_B1.map(card).join("")}</ol>`;
 }
 
 export default {

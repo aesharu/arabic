@@ -14,12 +14,13 @@ import { CHATS } from "../data/chats.js";
 import { VERBS } from "../data/verbs.js";
 import { GRAMMAR as PLAN_GRAMMAR } from "../data/grammar.js";
 import { GRAMMAR_A2 } from "../data/grammar2.js";
+import { GRAMMAR_B1 } from "../data/grammar3.js";
 import { LOVE } from "../data/love.js";
 import { A1_BY, BIRTHDAY } from "../data/birthday.js";
 import { loadStories } from "./stories.js";
 import { celebrate } from "../core/celebrate.js";
 
-const GRAMMAR = [...PLAN_GRAMMAR, ...GRAMMAR_A2];
+const GRAMMAR = [...PLAN_GRAMMAR, ...GRAMMAR_A2, ...GRAMMAR_B1];
 const day = key => format(key, { day: "numeric", month: "short" }, locale());
 
 // What a step says and where it goes.
