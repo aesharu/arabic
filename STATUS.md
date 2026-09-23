@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 23 Sept 2026 (no more deadline: stages open by what you have done; the "Together for" counter, Write it in Arabic, Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
+Last updated: 24 Sept 2026 (every Arabic consonant now has its own Ukrainian letter — ҳ ғ ҫ ҙ ҙʹ сʹ тʹ ъ — so no two sounds are learned as one; B1 rung added to the plan ladder). Previously: 23 Sept 2026 (no more deadline: stages open by what you have done; the "Together for" counter, Write it in Arabic, Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
 
 ## Who uses it
 
@@ -62,12 +62,14 @@ Last updated: 23 Sept 2026 (no more deadline: stages open by what you have done;
   - `GOAL` moved to 2029-06-30 — the end of the *written route*, not a deadline; stages still open by words learned.
   - Research behind the numbers: B1 Arabic is ~1,500–2,000 words active, and B1 generally is ~350–400 guided hours (more for Arabic, an FSI Category IV language — the "everyday topics" milestone sits at 500–1,000 hours).
 
-- **The pronunciation in Ukrainian letters** (`core/ua.js`, `tests/ua.test.mjs`): under every Latin pronunciation, the same sounds written in Ukrainian — «аль-хамду ліллаг», «ґальбі», «шлонік?». Ukrainian carries sounds English spelling can only hint at, and nothing in it is silent.
-  - The map: ق = **ґ** (ґанок — the sound that makes Saudi sound Saudi) · خ, ح = **х** · ه, غ = **г** · ث س ص = **с** · ذ ز ظ ض = **з** · ت ط = **т** · ل before a consonant or at the end = **ль** (аль-бет, ґальбі) · ع, ء = **ʼ** · ya/yu/ye = я/ю/є. What Ukrainian can't keep apart, the Latin line above still shows.
+- **The pronunciation in Ukrainian letters** (`core/ua.js`, `tests/ua.test.mjs`): under every Latin pronunciation, the same sounds written in Ukrainian — «аль-ҳамду ліллаг», «ґальбі», «сʹабаҳ аль-хер», «ъалекум». Ukrainian carries sounds English spelling can only hint at, and nothing in it is silent.
+  - **One Ukrainian letter per Arabic consonant, no sharing** (24 Sept 2026 — he pushed back on the merges: "i learn the sound and it represents it but i say it correctly"). ق = **ґ** (ґанок) · خ = **х**, ح = **ҳ** · ه = **г**, غ = **ғ** · س = **с**, ث = **ҫ**, ص = **сʹ** · ز = **з**, ذ = **ҙ**, ظ and ض = **ҙʹ** (one sound in Saudi, whatever the Latin writes) · ت = **т**, ط = **тʹ** · ع = **ъ**, ء = **ʼ** · ل before a consonant or at the end = **ль** (аль-бет, ґальбі) · ya/yu/ye = я/ю/є.
+    Three rules: a **tail or bar** = the Arabic letter, not the Ukrainian one it grew from; a **tick** (ʹ, U+02B9) after с т ҙ = heavy; **ъ** = the squeeze of ع, **ʼ** = the clean catch of ء. Vowel length is the only thing it doesn't carry — the Latin line above does.
+  - **Only single codepoints the site's subset font actually has.** Combining accents (х̣, а̄) are *not* in it: they fall back to Times and break the line. Proven with `CSS.getPlatformFontsForNode` over headless Chrome — all 57 characters the scheme can produce are drawn by Alegreya Sans. ӏ (palochka) was rejected too: it renders as a lowercase l ("ӏалекум" reads "lалекум").
   - Worked out from the Latin pronunciation, so every word has one and they're all consistent. **Any word can be corrected by hand** — the ✎ form has a "How to say it, in Ukrainian letters" box, pre-filled with the worked-out spelling; a correction is stored like any other and wins from then on (`content.FIELDS`, D1 `edits`).
   - **On every pronunciation on the site** (23 Sept 2026): words, phrases, cards, stories, chats, weekly conversations, Speak, Write, Record, verbs, numbers, the About-me builder, Saudi life, love, her birthday, culture, the tap-a-word popup, the **alphabet table and the letter sounds**, the **vowels**, the **alphabet quiz**, the welcome/holiday screen, and the **printable sheets**. Checked live: every page's count of Ukrainian lines equals its count of pronunciations.
   - `tests/ua.test.mjs` has a coverage test that fails if any view prints a pronunciation without it — proven to bite by breaking one on purpose.
-  - The **Letters page** carries the key: ق = ґ · خ/ح = х · ه/غ = г · ث س ص = с · ذ ز ظ ض = з · ت ط = т · ل before a consonant = ль · ʼ = ع/ء, and how to correct one.
+  - The **Letters page** carries the key: every letter at a glance as a grid, then why each one is what it is (including that plain с for ث and з for ذ is how Egyptians and Lebanese say it, not Saudis), and how to correct one. `tests/ua.test.mjs` asserts no two Arabic consonants can ever come out as the same Ukrainian letter.
   - Only in his profile — Dima never sees it.
 
 - **Awards** `#/awards` (`core/game.js`, `views/awards.js`): points, ten levels, the fire and 33 awards, all worked out from progress that already exists — nothing extra to tick.

@@ -175,7 +175,7 @@ export const GROUPS = [
         example: { ar: "صباح", tr: "ṣabāḥ", en: "morning" },
       },
       {
-        char: "ض", name: "ḍād", nameAr: "ضاد", translit: "ḍ → ẓ", hard: true,
+        char: "ض", name: "ḍād", nameAr: "ضاد", translit: "ḍ → ẓ", ua: "ҙʹ", hard: true,
         sound: {
           en: "In Saudi Arabic, a heavy th as in this — the same sound as ظ. Formal Arabic says a heavy d.",
           najdi: "في السعودي نفس صوت الظاء: ذال ثقيلة. في الفصحى دال ثقيلة.",
@@ -239,7 +239,7 @@ export const GROUPS = [
         example: { ar: "فلوس", tr: "flūs", en: "money" },
       },
       {
-        char: "ق", name: "qāf", nameAr: "قاف", translit: "q → g",
+        char: "ق", name: "qāf", nameAr: "قاف", translit: "q → g", ua: "ґ",
         sound: {
           en: "In Saudi Arabic, g as in go. In formal Arabic, a deep k from the throat.",
           najdi: "في السعودي تنقال g مثل go. في الفصحى قاف عميقة من الحلق.",

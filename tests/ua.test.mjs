@@ -17,21 +17,26 @@ const LATIN = /[a-z]/i;
 
 test("the words he says most often, letter for letter", () => {
   const golden = {
-    "as-salāmu ʿalēkum": "ас-саламу ʼалекум",
-    "al-ḥamdu lillāh": "аль-хамду ліллаг",
+    "as-salāmu ʿalēkum": "ас-саламу ъалекум",
+    "al-ḥamdu lillāh": "аль-ҳамду ліллаг",
     "kēfik": "кефік",
     "shlōnik": "шлонік",
-    "ṣabāḥ al-khēr": "сабах аль-хер",
+    "ṣabāḥ al-khēr": "сʹабаҳ аль-хер",
+    "masāʾ al-khēr": "масаʼ аль-хер",
     "gahwa": "ґагва",
-    "ḥabībti": "хабібті",
+    "ḥabībti": "ҳабібті",
     "fidētik": "фідетік",
     "ya galbi": "я ґальбі",
     "bil-bēt": "біль-бет",
     "in shāʾ allah": "ін шаʼ аллаг",
     "yōm": "йом",
-    "thnēn": "снен",
-    "dhīb": "зіб",
-    "ghanam": "ганам",
+    "thnēn": "ҫнен",
+    "dhīb": "ҙіб",
+    "ghanam": "ғанам",
+    "ṭayyib": "тʹаййіб",
+    "fāẓya": "фаҙʹя",
+    "min faḍlik": "мін фаҙʹлік",
+    "tisʿa": "тісъа",
   };
   for (const [latin, ukrainian] of Object.entries(golden)) assert.equal(uaSay(latin), ukrainian, latin);
 });
@@ -43,11 +48,38 @@ test("ق is ґ and nothing else is — that is what makes it sound Saudi", () =>
   assert.ok(!uaSay("hala").includes("ґ"), "ه is not ق");
 });
 
-test("خ and ح are х; ه and غ are г", () => {
-  assert.equal(uaSay("khēr"), "хер");
-  assert.equal(uaSay("ḥilw"), "хільв");
-  assert.equal(uaSay("hala"), "гала");
-  assert.equal(uaSay("ghada"), "гада");
+// The whole point of the Ukrainian line: no two Arabic consonants may come out as the same letter, or he
+// would learn to say them the same. Every pair below is one he has to be able to tell apart by eye.
+test("no two Arabic consonants share a Ukrainian letter", () => {
+  const apart = [
+    ["خ kh", "ḥ ح"], ["ه h", "gh غ"], ["س s", "th ث"], ["س s", "ṣ ص"], ["th ث", "ṣ ص"],
+    ["ز z", "dh ذ"], ["ز z", "ẓ ظ"], ["dh ذ", "ẓ ظ"], ["ت t", "ṭ ط"], ["ع ʿ", "ʾ ء"],
+    ["g ق", "gh غ"], ["g ق", "ه h"], ["j ج", "ز z"],
+  ];
+  for (const [a, b] of apart) {
+    const [x, y] = [a, b].map(s => uaSay(s.replace(/[^a-zāīūēōḥṣṭẓḍḏṯġʿʾ]/gi, "")));
+    assert.notEqual(x, y, `${a} and ${b} both come out as "${x}"`);
+  }
+});
+
+test("each throat sound has its own letter", () => {
+  assert.equal(uaSay("khēr"), "хер", "خ is plain х");
+  assert.equal(uaSay("ḥilw"), "ҳільв", "ح is х with a tail");
+  assert.equal(uaSay("hala"), "гала", "ه is г");
+  assert.equal(uaSay("ghada"), "ғада", "غ is г with a bar");
+  assert.equal(uaSay("gahwa"), "ґагва", "ق is ґ");
+  assert.equal(uaSay("maʿa"), "маъа", "ع is the squeeze");
+  assert.equal(uaSay("masāʾ"), "масаʼ", "ء is the catch");
+});
+
+test("the tongue between the teeth, and the heavy ones", () => {
+  assert.equal(uaSay("thalātha"), "ҫалаҫа", "ث — never plain с, that is Egyptian");
+  assert.equal(uaSay("dhīb"), "ҙіб", "ذ — never plain з");
+  assert.equal(uaSay("ṣēf"), "сʹеф", "ص is the heavy с");
+  assert.equal(uaSay("ṭayyib"), "тʹаййіб", "ط is the heavy т");
+  assert.equal(uaSay("ẓēf"), "ҙʹеф", "ظ is the heavy ҙ");
+  assert.equal(uaSay("ramaḍān"), "рамаҙʹан", "ض sounds the same as ظ in Saudi, whatever the Latin writes");
+  assert.equal(uaSay("sēf"), "сеф", "and plain س stays plain — سيف is not صيف");
 });
 
 test("a light ل before a consonant or at the end reads as ль", () => {
@@ -61,7 +93,7 @@ test("a light ل before a consonant or at the end reads as ль", () => {
 test("y and a vowel become one Ukrainian letter", () => {
   assert.equal(uaSay("yalla"), "ялла");
   assert.equal(uaSay("yōm"), "йом");
-  assert.equal(uaSay("saʿūdiyya"), "саʼудійя");
+  assert.equal(uaSay("saʿūdiyya"), "саъудійя");
 });
 
 test("a name keeps its capital", () => {
@@ -71,7 +103,7 @@ test("a name keeps its capital", () => {
 
 test("spaces, hyphens and punctuation come through untouched", () => {
   assert.equal(uaSay("wesh tsawwīn al-yōm?"), "веш тсаввін аль-йом?");
-  assert.equal(uaSay("yalla, nirūḥ?"), "ялла, нірух?");
+  assert.equal(uaSay("yalla, nirūḥ?"), "ялла, ніруҳ?");
   assert.equal(uaSay(""), "");
   assert.equal(uaSay(undefined), "");
 });

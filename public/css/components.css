@@ -2111,3 +2111,9 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
 .ua-key p { margin: 10px 0 0; }
 .ua-key ul { margin: 10px 0 0; padding-inline-start: 20px; }
 .ua-key li { margin: 6px 0; color: var(--muted); }
+.ua-key .ua-tbl-h { font-weight: 700; color: var(--text); margin-top: 14px; }
+.ua-tbl { display: grid; grid-template-columns: repeat(auto-fit, minmax(62px, 1fr)); gap: 6px; padding: 0 !important; margin-top: 8px !important; list-style: none; }
+.ua-tbl li { display: flex; align-items: baseline; justify-content: center; gap: 6px; margin: 0 !important;
+  border: 1px solid var(--line); border-radius: 9px; padding: 6px 4px; background: var(--bg); }
+.ua-tbl b { font-size: 17px; font-weight: 700; color: var(--text); }
+.ua-tbl .ar { font-size: 16px; color: var(--muted); }

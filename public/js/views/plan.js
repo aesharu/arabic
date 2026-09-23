@@ -33,6 +33,7 @@ export default {
             <li>${t("plan.w150")}</li>
             <li>${t("plan.w500")}</li>
             <li>${t("plan.w1000")}</li>
+            <li>${t("plan.w1800")}</li>
           </ul>
         </section>
       </div>

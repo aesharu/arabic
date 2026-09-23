@@ -4,6 +4,7 @@ import { t, tx, num } from "../core/i18n.js";
 import { icon } from "../core/art.js";
 import { esc, rich, ar, lat, translit, flag, flagNote, meanings, playIcon, pageHead } from "../core/dom.js";
 import { GROUPS, formsOf } from "../data/letters.js";
+import { UA_KEY } from "../core/ua.js";
 
 export function groupChips({ isOn, done, scheduled }) {
   return `<div class="chips" role="group" aria-label="${esc(t("letters.groups"))}">${GROUPS.map((g, i) => `
@@ -45,18 +46,27 @@ const tableRow = (l, i) => `
     <td class="lt-char"><button class="lt-glyph ar" lang="ar" data-say="${esc(l.nameAr)}" aria-label="${esc(t("letters.hearName", { name: l.name }))}">${esc(l.char)}</button></td>
     <td class="lt-name"><b>${translit(l.name)}</b> ${ar(l.nameAr)}
       ${l.hard ? `<span class="tag h">${t("letters.newSound")}</span>` : ""}${l.nonJoining ? `<span class="tag nc">${t("letters.nonJoining")}</span>` : ""}</td>
-    <td class="lt-sound"><b>${translit(l.translit)}</b></td>
+    <td class="lt-sound"><b>${translit(l.translit, l.ua)}</b></td>
     ${shapes(l).map((f, k) => `<td class="lt-f" data-label="${esc(t(FORMS[k]))}">${ar(f)}</td>`).join("")}
     <td class="lt-ex"><button class="lt-exbtn" data-say="${esc(l.example.ar)}">${ar(l.example.ar)}
       <span>${translit(l.example.tr)} · ${esc(l.example.en)} ${flag(l)}</span></button></td>
   </tr>`;
 
 // The key to the Ukrainian line, on the page where the sounds are learned. Only in his profile, like the line itself.
+// The key names Arabic letters inside English sentences; each run of them is isolated so a full stop or a
+// bracket beside it can't reorder the line.
+const AR_RUN = /[\u0600-\u06FF]+(?:\s+[\u0600-\u06FF]+)*/g;
+const bidi = s => esc(s).replace(AR_RUN, m => `<bdi dir="rtl" lang="ar">${m}</bdi>`);
+
 const uaKey = () => (store.isTeacher() ? "" : `
   <details class="ua-key">
     <summary>${esc(t("ua.key"))}</summary>
-    <p>${esc(t("ua.keyIntro"))}</p>
-    <ul>${["ua.keyG", "ua.keyH", "ua.keyS", "ua.keyL", "ua.keyA"].map(k => `<li>${esc(t(k))}</li>`).join("")}</ul>
+    <p>${bidi(t("ua.keyIntro"))}</p>
+    <p class="ua-tbl-h">${esc(t("ua.keyTable"))}</p>
+    <ul class="ua-tbl">${UA_KEY.map(x => `
+      <li><b lang="uk" dir="ltr">${esc(x.ua)}</b>${ar(x.ar)}</li>`).join("")}</ul>
+    <ul>${["ua.keyG", "ua.keyTail", "ua.keyTh", "ua.keyHeavy", "ua.keyA", "ua.keyL", "ua.keyW", "ua.keyLong"]
+      .map(k => `<li>${bidi(t(k))}</li>`).join("")}</ul>
     <p class="muted small">${esc(t("ua.keyFix"))}</p>
   </details>`);
 
