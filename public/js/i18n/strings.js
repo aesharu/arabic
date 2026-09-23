@@ -552,6 +552,18 @@ export const STRINGS = {
   "letters.byGroups": { en: "Study them in groups", najdi: "ذاكرها بالمجموعات" },
   "letters.colLetter": { en: "Letter", najdi: "الحرف" },
   "letters.colName": { en: "Name", najdi: "الاسم" },
+  // The key to the Ukrainian pronunciation line (core/ua.js) — he studies alone, so it has to be explained once.
+  "ua.key": { en: "The Ukrainian line under every word — how to read it", najdi: "سطر الحروف الأوكرانية تحت كل كلمة — كيف تقراه" },
+  "ua.keyIntro": {
+    en: "Under every pronunciation there's the same sounds in Ukrainian letters, because Ukrainian gets several of them right that English spelling can only hint at — and nothing in it is silent.",
+    najdi: "تحت كل نطق فيه نفس الأصوات بالحروف الأوكرانية، لأن الأوكراني يضبط أصوات ما يقدر الإنجليزي يوصلها — وما فيه حرف ساكت.",
+  },
+  "ua.keyG": { en: "ق is ґ — a hard g, as in «ґанок», never the Ukrainian г. This one sound is what makes Saudi sound Saudi.", najdi: "ق تُكتب ґ — جيم قوية، مثل «ґанок»، مو г الأوكرانية. هذا الصوت هو اللي يخلي السعودي سعودي." },
+  "ua.keyH": { en: "خ and ح are both х, and ه and غ are both г. The Latin line above always shows which of the pair it is.", najdi: "خ و ح الثنتين х، و ه و غ الثنتين г. والسطر اللاتيني فوق يبيّن أيهما." },
+  "ua.keyS": { en: "ث س ص all read as с · ذ ز ظ ض all as з · ت ط both as т.", najdi: "ث س ص كلها с · ذ ز ظ ض كلها з · ت ط الثنتين т." },
+  "ua.keyL": { en: "ل before a consonant or at the end is ль, not л — аль-бет, ґальбі. Arabic's l is lighter than a Ukrainian one.", najdi: "ل قبل ساكن أو بآخر الكلمة تُكتب ль مو л — аль-бет، ґальбі. لام العربي أخف من اللام الأوكرانية." },
+  "ua.keyA": { en: "ʼ is ع or ء — the catch in the throat, written the way Ukrainian writes its own apostrophe.", najdi: "ʼ هي ع أو ء — وقفة الحلق، مكتوبة مثل ما يكتب الأوكراني الأبوستروف." },
+  "ua.keyFix": { en: "If one of them is wrong, tap ✎ on the word and fix it — your spelling wins from then on.", najdi: "إذا وحدة غلط، اضغط ✎ على الكلمة وصححها — وتصحيحك هو اللي يعتمد بعدها." },
   "letters.colSound": { en: "Sound", najdi: "الصوت" },
   "letters.colExample": { en: "Example", najdi: "مثال" },
   "letters.groups": { en: "Letter groups", najdi: "مجموعات الحروف" },

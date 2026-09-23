@@ -3,7 +3,7 @@ import { say } from "../core/speech.js";
 import { scheduledGroup } from "../core/schedule.js";
 import { todayKey } from "../core/dates.js";
 import { t, tx } from "../core/i18n.js";
-import { esc, rich, ar, lat, pageHead, shuffle, typing } from "../core/dom.js";
+import { esc, rich, ar, lat, translit, pageHead, shuffle, typing } from "../core/dom.js";
 import { ALL_LETTERS, formsOf } from "../data/letters.js";
 import { groupChips } from "./letters.js";
 
@@ -43,7 +43,7 @@ export default {
               let cls = "opt";
               if (answered && o === q.answer) cls += " right";
               else if (answered && i === q.picked) cls += " wrong";
-              return `<button class="${cls}" data-opt="${i}"${answered ? " disabled" : ""}><kbd>${i + 1}</kbd><b>${lat(o.translit)}</b><span>${lat(o.name)}</span></button>`;
+              return `<button class="${cls}" data-opt="${i}"${answered ? " disabled" : ""}><kbd>${i + 1}</kbd><b>${translit(o.translit)}</b><span>${translit(o.name)}</span></button>`;
             }).join("")}</div>
             <div class="fb" aria-live="polite">${answered ? `<b>${esc(t(right ? "quiz.right" : "quiz.wrong", { name: q.answer.name }))}</b> ${rich(tx(q.answer.sound))}` : ""}</div>
             <button class="next"${answered ? "" : " hidden"}>${t("quiz.next")} <kbd>Enter</kbd></button>

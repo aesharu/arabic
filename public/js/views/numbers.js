@@ -21,7 +21,7 @@ const numberCard = n => {
 
 const chip = n => {
   const s = spoken(n);
-  return `<button class="nm-chip" data-n="${n}" data-say="${esc(s.ar)}"><b>${num(n)}</b>${ar(s.ar)}<small>${esc(s.say)}</small></button>`;
+  return `<button class="nm-chip" data-n="${n}" data-say="${esc(s.ar)}"><b>${num(n)}</b>${ar(s.ar)}<small>${translit(s.say)}</small></button>`;
 };
 
 const row = x => `<button class="phrase lv-phrase" data-say="${esc(x.ar)}">${ar(x.ar, "phrase-ar")}

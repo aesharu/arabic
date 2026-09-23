@@ -2,6 +2,7 @@
 // when Dima asks him to say something back, so the mapping is pinned down word by word here: a change to
 // core/ua.js that moves any of these is a change he has to agree to.
 import { test } from "node:test";
+import { readFileSync, readdirSync } from "node:fs";
 import assert from "node:assert/strict";
 import { uaSay, hasSay } from "../public/js/core/ua.js";
 import { WORDS } from "../public/js/data/words.js";
@@ -108,7 +109,34 @@ test("no pronunciation uses a letter the Ukrainian line cannot say", () => {
 
 test("hasSay knows when there is something to read", () => {
   assert.ok(hasSay("kēfik"));
+  assert.ok(hasSay("ʿ"), "ع on its own is still a sound");
   assert.ok(!hasSay(""));
   assert.ok(!hasSay("؟"));
   assert.ok(!hasSay(undefined));
+});
+
+// He studies alone, so the Ukrainian line has to be on EVERY pronunciation, not most of them. Anything that
+// prints a pronunciation into the page must go through translit() (core/dom.js), which adds it. This catches
+// a new view that writes ${x.say} straight into the HTML and quietly loses the second line.
+test("no page prints a pronunciation without its Ukrainian line", () => {
+  const dir = new URL("../public/js/", import.meta.url).pathname;
+  const files = [...readdirSync(dir + "views").map(f => "views/" + f), "core/dom.js", "core/studio.js", "core/welcome.js", "core/nudge.js"]
+    .filter(f => f.endsWith(".js"));
+  // What a pronunciation may legitimately be used for without being shown as text.
+  const fine = /data-say|data-hol-say|aria-label|lab\.hear|speakText\(|data-show|show\.say|edit\.say|t\("|cls === "tr"/;
+  // A line that already calls translit(), ua() or uaSay() is showing the Ukrainian right there.
+  const covered = /translit\(|\bua\(|uaSay\(/;
+  const bad = [];
+  for (const f of files) {
+    const src = readFileSync(dir + f, "utf8");
+    src.split("\n").forEach((line, i) => {
+      for (const m of line.matchAll(/\$\{[^}]*\.(?:say|tr|translit)\b[^}]*\}/g)) {
+        if (fine.test(m[0]) || covered.test(line)) continue;
+        const before = line.slice(0, m.index).trimEnd();
+        if (before.endsWith('="') || before.endsWith("='")) continue; // inside an attribute
+        bad.push(`${f}:${i + 1}  ${m[0]}`);
+      }
+    });
+  }
+  assert.deepEqual(bad, [], `these print a pronunciation with no Ukrainian under it:\n  ${bad.join("\n  ")}`);
 });

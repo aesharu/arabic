@@ -25,7 +25,7 @@ const remember = pass => {
   } catch {}
 };
 
-const LABEL = { ar: "edit.ar", say: "edit.say", en: "edit.en", najdi: "edit.najdiUi" };
+const LABEL = { ar: "edit.ar", say: "edit.say", ua: "edit.ua", en: "edit.en", najdi: "edit.najdiUi" };
 const RTL = new Set(["ar", "najdi"]);
 const cell = (f, text) => (RTL.has(f) ? ar(text) : esc(text));
 

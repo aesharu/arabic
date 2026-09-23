@@ -71,4 +71,5 @@ export function uaSay(say) {
 }
 
 // True when a pronunciation is worth showing a Ukrainian line for (there is something to read).
-export const hasSay = say => /[a-zāīūēōḥṣṭẓḍḏṯġ]/i.test(String(say ?? ""));
+// ʿ and ʾ count: ع on its own is a sound — the catch in the throat that Ukrainian writes with an apostrophe.
+export const hasSay = say => /[a-zāīūēōḥṣṭẓḍḏṯġʿʾ]/i.test(String(say ?? ""));

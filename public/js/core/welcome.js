@@ -11,6 +11,7 @@
 // It is a friendly door, not a lock: anyone who reads this file can see the name. "Log out" in the menu forgets the sign-in.
 import { lang } from "./i18n.js";
 import { STRINGS } from "../i18n/strings.js";
+import { uaSay } from "./ua.js";
 import { scene } from "./art.js";
 import { play, LENGTH } from "./music.js";
 import * as store from "./store.js";
@@ -141,7 +142,9 @@ function lanterns() {
 // for him what to say to her (tap to hear it) and what she'll answer; one line about the day; "Come in".
 function holidayWords(h, profile) {
   const her = profile === "teacher";
-  const phrase = p => `<span class="wl-ar" lang="ar" dir="rtl">${p.ar}</span>${her ? "" : `<span class="hol-say" lang="ar-Latn" dir="ltr" translate="no">${p.say}</span>`}
+  // He reads the pronunciation twice — Latin, then Ukrainian letters, which get these sounds closer (core/ua.js).
+  const ua = say => `<span class="hol-ua" lang="uk" dir="ltr">${uaSay(say)}</span>`;
+  const phrase = p => `<span class="wl-ar" lang="ar" dir="rtl">${p.ar}</span>${her ? "" : `<span class="hol-say" lang="ar-Latn" dir="ltr" translate="no">${p.say}</span>${ua(p.say)}`}
     <span class="wl-en" lang="en" dir="ltr">${p.en}</span>`;
   const title = (!her && h.titleV) || h.title;
   const fact = her ? h.fact : h.factV ?? h.fact;
@@ -149,11 +152,11 @@ function holidayWords(h, profile) {
       <p class="hol-lead">${two("hol.sayIt")}</p>
       <button type="button" class="hol-phrase" data-hol-say="${h.sayToHer.ar}">
         <span class="wl-ar" lang="ar" dir="rtl">${h.sayToHer.ar}</span>
-        <span class="hol-say" lang="ar-Latn" dir="ltr" translate="no">${h.sayToHer.say}</span>
+        <span class="hol-say" lang="ar-Latn" dir="ltr" translate="no">${h.sayToHer.say}</span>${her ? "" : ua(h.sayToHer.say)}
         <span class="hol-mean" dir="ltr">${h.sayToHer.en}</span>
         <span class="hol-play">${PLAY}</span>
       </button>
-      ${h.reply ? `<p class="hol-reply" dir="ltr">${STRINGS["hol.reply"].en}: <span lang="ar" dir="rtl">${h.reply.ar}</span> <i>${h.reply.say}</i> — ${h.reply.en}</p>` : ""}
+      ${h.reply ? `<p class="hol-reply" dir="ltr">${STRINGS["hol.reply"].en}: <span lang="ar" dir="rtl">${h.reply.ar}</span> <i>${h.reply.say}</i>${her ? "" : ` <i lang="uk">${uaSay(h.reply.say)}</i>`} — ${h.reply.en}</p>` : ""}
       ${h.check ? `<p class="hol-check">${STRINGS["flag.label"].en}</p>` : ""}
     </div>`;
   return `<p class="hol-name"><span lang="ar" dir="rtl">${h.name.najdi}</span><span dir="ltr">${h.name.en}</span></p>

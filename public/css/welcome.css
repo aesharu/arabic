@@ -335,3 +335,6 @@ html[data-welcome] body:has(.welcome.is-day) { background: #C7E3E6; }
   .hol-lanterns .lantern { animation: none; }
   .hol-learn, .hol-fact { transition: none; }
 }
+
+/* The pronunciation in Ukrainian letters on the welcome screen (core/ua.js) — he reads it, she never sees it. */
+.hol-ua { display: block; font-size: 15px; color: var(--wl-muted); font-weight: 600; }

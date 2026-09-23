@@ -2104,3 +2104,10 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
 .sl-b1 p { margin: 10px 0 0; }
 .sl-b1 ul { margin: 8px 0 0; padding-inline-start: 20px; color: var(--muted); }
 .sl-b1 li { margin: 4px 0; }
+
+/* The key to the Ukrainian pronunciation line, on the Letters page. */
+.ua-key { margin: 0 0 18px; border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; background: var(--surface); }
+.ua-key summary { cursor: pointer; font-weight: 700; }
+.ua-key p { margin: 10px 0 0; }
+.ua-key ul { margin: 10px 0 0; padding-inline-start: 20px; }
+.ua-key li { margin: 6px 0; color: var(--muted); }

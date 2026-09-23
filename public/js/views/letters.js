@@ -19,7 +19,7 @@ const card = l => `
     <div class="top">
       <button class="glyph ar" lang="ar" data-say="${esc(l.nameAr)}" aria-label="${esc(t("letters.hearName", { name: l.name }))}">${esc(l.char)}</button>
       <div class="meta">
-        <div class="name"><b>${lat(l.name)}</b>${ar(l.nameAr)}
+        <div class="name"><b>${translit(l.name)}</b>${ar(l.nameAr)}
           ${l.hard ? `<span class="tag h">${t("letters.newSound")}</span>` : ""}${l.nonJoining ? `<span class="tag nc">${t("letters.nonJoining")}</span>` : ""}</div>
         <p class="sound">${rich(tx(l.sound))}</p>
       </div>
@@ -43,17 +43,27 @@ const tableRow = (l, i) => `
   <tr class="${l.hard ? "is-hard" : ""}">
     <td class="lt-n">${num(i + 1)}</td>
     <td class="lt-char"><button class="lt-glyph ar" lang="ar" data-say="${esc(l.nameAr)}" aria-label="${esc(t("letters.hearName", { name: l.name }))}">${esc(l.char)}</button></td>
-    <td class="lt-name"><b>${lat(l.name)}</b> ${ar(l.nameAr)}
+    <td class="lt-name"><b>${translit(l.name)}</b> ${ar(l.nameAr)}
       ${l.hard ? `<span class="tag h">${t("letters.newSound")}</span>` : ""}${l.nonJoining ? `<span class="tag nc">${t("letters.nonJoining")}</span>` : ""}</td>
-    <td class="lt-sound"><b>${esc(l.translit)}</b></td>
+    <td class="lt-sound"><b>${translit(l.translit)}</b></td>
     ${shapes(l).map((f, k) => `<td class="lt-f" data-label="${esc(t(FORMS[k]))}">${ar(f)}</td>`).join("")}
     <td class="lt-ex"><button class="lt-exbtn" data-say="${esc(l.example.ar)}">${ar(l.example.ar)}
       <span>${translit(l.example.tr)} · ${esc(l.example.en)} ${flag(l)}</span></button></td>
   </tr>`;
 
+// The key to the Ukrainian line, on the page where the sounds are learned. Only in his profile, like the line itself.
+const uaKey = () => (store.isTeacher() ? "" : `
+  <details class="ua-key">
+    <summary>${esc(t("ua.key"))}</summary>
+    <p>${esc(t("ua.keyIntro"))}</p>
+    <ul>${["ua.keyG", "ua.keyH", "ua.keyS", "ua.keyL", "ua.keyA"].map(k => `<li>${esc(t(k))}</li>`).join("")}</ul>
+    <p class="muted small">${esc(t("ua.keyFix"))}</p>
+  </details>`);
+
 const table = () => `
   ${pageHead(t("letters.tableTitle"), t("letters.tableSub"), "", "", "qalam")}
   <p class="lt-back"><a href="#/letters">${icon("back")} ${t("letters.byGroups")}</a></p>
+  ${uaKey()}
   <table class="lt-table">
     <thead><tr><th class="lt-n">#</th><th>${t("letters.colLetter")}</th><th>${t("letters.colName")}</th><th>${t("letters.colSound")}</th>
       ${FORMS.map(k => `<th class="lt-fh">${t(k)}</th>`).join("")}<th>${t("letters.colExample")}</th></tr></thead>
