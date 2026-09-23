@@ -2004,3 +2004,20 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
   .together { bottom: calc(76px + env(safe-area-inset-bottom)); max-width: calc(100% - 32px); }
 }
 @media print { .together { display: none; } }
+
+/* The six stages as a ladder (views/progress.js): what's behind you, the one you're on with what's left of it,
+   and what opens next. No dates — a stage is finished when its letters or its words are. */
+.stage-ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.sl-step { display: flex; align-items: flex-start; gap: 12px; padding: 10px 12px; border-radius: 12px; border: 1px solid transparent; }
+.sl-mark {
+  flex: 0 0 auto; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--surface-2); color: var(--muted); font-weight: 800; font-size: 14px;
+}
+.sl-mark .i { width: 17px; height: 17px; }
+.sl-body { flex: 1; display: grid; gap: 4px; min-width: 0; }
+.sl-body small { color: var(--muted); }
+.sl-step.is-done .sl-mark { background: var(--accent); color: var(--accent-ink); }
+.sl-step.is-now { background: color-mix(in srgb, var(--accent) 9%, transparent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.sl-step.is-now .sl-mark { background: var(--accent); color: var(--accent-ink); }
+.sl-step.is-later { opacity: .72; }
+.sl-next { margin: 12px 0 0; }

@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 22 Sept 2026 (night: the "Together for" counter, Write it in Arabic, Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
+Last updated: 23 Sept 2026 (no more deadline: stages open by what you have done; the "Together for" counter, Write it in Arabic, Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
 
 ## Who uses it
 
@@ -120,6 +120,16 @@ Last updated: 22 Sept 2026 (night: the "Together for" counter, Write it in Arabi
 - **"Together for"** (22 Sept, `core/together.js`, the pill in `main.js`, `config.js` `TOGETHER_SINCE`, test `tests/together.test.mjs`): a small counter floating over every page, always ticking, **in both their profiles** (hers reads «مع بعض من · ٥ شهور ١٩ يوم»; it disappears behind the welcome screen and never prints). **Tap it and it reads the moment differently, and smaller each time**: `5 months 19 days · 3:39:15` → `172 days · 3:39:15` → `172 days`. The mode is remembered (`prefs.togetherMode`). It sits at the bottom on the far side from the menu (`inset-inline-end`, so it stays clear in Arabic too) and above the tab bar on the phone.
   - The day is **3 April 2026** in `config.js`, counted **from midnight** (his choice: the day is what matters, so the clock part is the time since that day began).
   - Months are counted by the calendar, not in thirties, and a month that hasn't got the start's day stops at its last day (one month after 31 January is 28 February, not 3 March — the test covers it).
+
+- **No more fifteen-month deadline** (23 Sept, his decision: "Arabic is not easy at all, I'll study for a few years"). The plan is now a **route, not a clock**:
+  - **Stages open by what you've done** (`core/schedule.js`: `STAGE_GATE`, `stageNow`, `stageProgress`; `core/cards.js` `progressNow`). Script finishes when all six letter groups are marked done; every later stage when that stage's word count from the plan is **learned** (200 → 320 → 500 → 750 → 1,000, the same "learned" the Word list badges use). `phaseFor(date)` stays for the written route (the Plan page) and `planFor(date)` still answers by date when no progress is passed, so the curriculum tests keep their meaning.
+  - **Today's focus follows him too**: in the Script stage the fourteen planned days advance one step per day **actually studied**, and never sit on a letter group already marked done.
+  - **"Day 3 of 467" is gone everywhere** — the day pill, the Today hero, the Calendar day panel. What's left is `Day 3 · Script · 2 of 6 letter groups`, and "Left in this stage" counts words or letter groups, not days to a finish line. Strings `day.of`, `today.finish`, `today.weekOf`, `plan.eyebrow`, `cal.stageStart`, `progress.stageNow` deleted.
+  - **Progress**: the six stages are a **ladder** (`.stage-ladder`) — what's behind you, the one you're on with its meter and what's left, and what opens next ("opens when you've learned 320 words"). The panel is "Your stages", not "The 15 months". The rooftop parapet now **grows with the weeks studied** instead of drawing 67 weeks to a deadline.
+  - **Calendar**: runs from Day 1 to this month and one ahead, for as many years as it takes (`monthsSoFar`); each month shows what he did (`3 days · 3.3 h`) instead of which stage the dates fell in.
+  - **Decks open by stage, not by date** (`core/vocab.js` `stage:`, `core/cards.js` `openness()`): a locked deck says "opens at Stage 2 · Daily life". The Script-week phrases still arrive one a day — by **days studied**, not by the calendar.
+  - Every page was walked afterwards: all 28 render with no errors.
+  - **`NAJDI-PLAN.md` still describes 15 months with dates** — the site no longer treats them as deadlines. A wording change for Part 3 is waiting for him to approve.
 
 ## Next (in this order)
 

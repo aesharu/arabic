@@ -16,7 +16,7 @@ import { loadVocab } from "../core/vocab.js";
 import { GROUPS, formsOf } from "../data/letters.js";
 import { PHRASES } from "../data/phrases.js";
 import { START } from "../config.js";
-import { deckName, TOTAL_WEEKS } from "./shared.js";
+import { deckName, PLAN_WEEKS } from "./shared.js";
 import { loadStories } from "./stories.js";
 
 const chunk = (list, n) => Array.from({ length: Math.ceil(list.length / n) }, (_, i) => list.slice(i * n, i * n + n));
@@ -152,7 +152,7 @@ function storySheets(S, level) {
 
 // ---------- The list of printables ----------
 function index() {
-  const w = Math.max(1, Math.min(TOTAL_WEEKS, weekNumber(todayKey())));
+  const w = Math.max(1, Math.min(PLAN_WEEKS, weekNumber(todayKey())));
   const item = (iconName, title, text, links) => `
     <article class="print-item">
       <div class="pi-icon">${icon(iconName)}</div>
@@ -168,7 +168,7 @@ function index() {
       ${item("reading", t("print.foldName"), t("print.foldText"), STAGES.map(s => link(`#/print/fold/${s}`, esc(deckName(s)))).join(""))}
       ${item("cards", t("print.cardsName"), t("print.cardsText"), CARD_SETS.map(s => link(`#/print/cards/${s}`, esc(deckName(s)))).join(""))}
       ${item("reading", t("print.storiesName"), t("print.storiesText"), ["easy", "A1", "A2"].map(l => link(`#/print/stories/${l}`, esc(t(`st.step.${l}`)))).join(""))}
-      ${item("calendar", t("print.trackerName"), t("print.trackerText"), `${link(`#/print/tracker/${w}`, esc(t("print.thisWeek", { n: w })))}${w < TOTAL_WEEKS ? link(`#/print/tracker/${w + 1}`, esc(t("print.nextWeek", { n: w + 1 }))) : ""}`)}
+      ${item("calendar", t("print.trackerName"), t("print.trackerText"), `${link(`#/print/tracker/${w}`, esc(t("print.thisWeek", { n: w })))}${w < PLAN_WEEKS ? link(`#/print/tracker/${w + 1}`, esc(t("print.nextWeek", { n: w + 1 }))) : ""}`)}
     </div>
     <section class="panel how-print">
       <h2>${icon("print")} ${t("print.howTitle")}</h2>
@@ -236,7 +236,7 @@ export default {
     root.addEventListener("click", e => e.target.closest("[data-print]") && window.print(), { signal });
 
     if (kind === "letters") return show(letterSheets(arg ?? "1"));
-    if (kind === "tracker") return show(trackerSheet(Math.max(1, Math.min(TOTAL_WEEKS, +arg || weekNumber(todayKey())))));
+    if (kind === "tracker") return show(trackerSheet(Math.max(1, Math.min(PLAN_WEEKS, +arg || weekNumber(todayKey())))));
     root.innerHTML = `${toolbar}<p class="muted">${esc(t("words.loading"))}</p>`;
     if (kind === "stories") {
       loadStories().then(S => show(storySheets(S, ["easy", "A1", "A2"].includes(arg) ? arg : "easy")), () => show(`<p>${esc(t("st.loadError"))}</p>`));

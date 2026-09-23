@@ -8,6 +8,8 @@ import * as store from "./store.js";
 import { answer as schedule, newCard, isLearned, isMature } from "./srs.js";
 import { todayKey } from "./dates.js";
 import { DECKS } from "./vocab.js";
+import { totals, stageNow } from "./schedule.js";
+import { PHASES } from "../data/plan.js";
 
 const LEARN_AHEAD_MS = 20 * 60_000;
 
@@ -19,8 +21,16 @@ export const cardOf = id => cardsOf()[id];
 export const noteOfCard = cardId => cardId.slice(0, cardId.lastIndexOf("."));
 export const kindOf = cardId => cardId.slice(cardId.lastIndexOf(".") + 1); // "r" | "p"
 
-const isOpen = (note, today) => prefs().unlockAll || note.opens <= today;
-export const deckOpen = (deckId, today = todayKey()) => prefs().unlockAll || DECKS.find(d => d.id === deckId).opens <= today;
+// How far the decks are open: which stage he has reached, and how many days he has actually studied — the
+// Script-week phrases still arrive one a day, but by days studied, not by the calendar.
+export function openness(notes) {
+  const p = progressNow(notes);
+  return { stage: PHASES.indexOf(stageNow(p)), days: p.days };
+}
+const isOpen = (note, at) =>
+  prefs().unlockAll || (note.day ? note.day <= Math.max(1, at.days + 1) : (note.stage ?? 0) <= at.stage);
+export const deckOpen = (deckId, notes) =>
+  prefs().unlockAll || (DECKS.find(d => d.id === deckId)?.stage ?? 0) <= openness(notes).stage;
 
 // Cards introduced for the first time today, against the daily limit.
 export const newToday = (today = todayKey()) => store.get().log[today]?.cards?.n ?? 0;
@@ -39,6 +49,7 @@ export function queue(notes, { deck = null, now = Date.now(), today = todayKey()
   const later = [];
   const freshSay = [];
   const freshRecognize = [];
+  const at = openness(notes); // worked out once for the whole pass
   for (const n of notes) {
     if (deck && n.deck !== deck) continue;
     for (const kind of reverse ? ["r", "p"] : ["r"]) {
@@ -46,7 +57,7 @@ export function queue(notes, { deck = null, now = Date.now(), today = todayKey()
       const c = cards[id];
       if (c?.susp) continue;
       if (!c || c.s === 0) {
-        if (!isOpen(n, today)) continue;
+        if (!isOpen(n, at)) continue;
         if (kind === "r") freshRecognize.push(id);
         else {
           const twin = cards[`${n.id}.r`];
@@ -122,6 +133,18 @@ export const unsuspendAll = () =>
   });
 
 // How many words you know: learned = recognized after the learning steps, strong = three weeks or more.
+// What the stage gates look at (core/schedule.js): letter groups marked done, words learned, and the number
+// of days actually studied — never the calendar.
+export function progressNow(notes) {
+  const st = store.get();
+  return {
+    letters: new Set(st.script.done ?? []).size,
+    done: st.script.done ?? [],
+    words: notes ? wordStats(notes).learned : 0,
+    days: totals(st.log).days,
+  };
+}
+
 export function wordStats(notes) {
   const cards = cardsOf();
   let seen = 0, learned = 0, strong = 0;

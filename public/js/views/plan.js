@@ -2,7 +2,7 @@ import { todayKey, shortDate, diffDays } from "../core/dates.js";
 import { phaseFor, phaseTitle } from "../core/schedule.js";
 import { t, tx, locale } from "../core/i18n.js";
 import { esc, ar, translit, pageHead } from "../core/dom.js";
-import { START, GOAL } from "../config.js";
+import { START } from "../config.js";
 import { PHASES } from "../data/plan.js";
 
 // The roadmap (Parts 2–3 of the plan), with today's stage highlighted.
@@ -19,7 +19,7 @@ export default {
     const phrase = `${ar("وش تسوين؟", "ar-in")} ${translit("wesh tsawwīn?")}`;
 
     root.innerHTML = `
-      ${pageHead(t("plan.title"), t("plan.sub"), t("plan.eyebrow", { start: date(START), goal: date(GOAL) }), "", "diriyah")}
+      ${pageHead(t("plan.title"), t("plan.sub"), t("plan.route", { start: date(START) }), "", "diriyah")}
 
       <div class="plan-intro">
         <section class="panel">

@@ -2,15 +2,16 @@ import * as store from "../core/store.js";
 import * as timer from "../core/timer.js";
 import * as cards from "../core/cards.js";
 import { loadVocab, vocabNow } from "../core/vocab.js";
+import { progressNow } from "../core/cards.js";
 import { todayKey, longDate, addDays, diffDays, format } from "../core/dates.js";
-import { planFor, phaseTitle, TOTAL_DAYS, weekNumber, streak, totals, allTasksTicked } from "../core/schedule.js";
+import { planFor, phaseTitle, stageProgress, weekNumber, streak, totals, allTasksTicked } from "../core/schedule.js";
 import { t, tx, tu, num, cnt, said, locale, lang, isArabic } from "../core/i18n.js";
 import { esc, rich, ar, lat, translit, flag, meanings, playIcon } from "../core/dom.js";
 import { icon, scene } from "../core/art.js";
-import { START, GOAL, DAILY_GOAL_MIN } from "../config.js";
+import { START, DAILY_GOAL_MIN } from "../config.js";
 import { PHRASES } from "../data/phrases.js";
 import { GROUPS } from "../data/letters.js";
-import { journeyParapet, ring, TOTAL_WEEKS, wordsMeter } from "./shared.js";
+import { journeyParapet, ring, wordsMeter } from "./shared.js";
 import { BIRTHDAY } from "../data/birthday.js";
 import { PATH } from "../data/path.js";
 import { weeks as pathWeeks, weekIndex as pathWeek, progress as pathProgress } from "../core/path.js";
@@ -192,7 +193,7 @@ export default {
       const tot = totals(s.log);
       const hours = tot.minutes / 60;
       const days = streak(s.log, date);
-      const left = Math.max(0, diffDays(date, GOAL));
+      const sp = stageProgress(progressNow(vocabNow()?.notes));
       const week = weekNumber(date);
       const time = timeOfDay();
       const hour = new Date().getHours();
@@ -204,7 +205,7 @@ export default {
           ${scene(time)}
           <div class="hero-text">
             <p class="eyebrow">${esc(longDate(date, locale()))}</p>
-            <h1>${t("day.n", { n })} <span class="of">${t("day.of", { total: TOTAL_DAYS })}</span></h1>
+            <h1>${t("day.n", { n })}</h1>
             <p class="hero-sub">${esc(tx(phaseTitle(phase)))} · ${t("week.n", { n: week })}</p>
             <button class="greet" data-say="${esc(g.ar)}" aria-label="${esc(t("lab.hear", { what: g.say }))}">
               ${ar(g.ar, "greet-ar")}
@@ -215,7 +216,7 @@ export default {
           </div>
         </section>
         ${journeyParapet(date)}
-        <p class="parapet-caption">${t("today.weekOf", { n: week, total: TOTAL_WEEKS })}</p>
+        <p class="parapet-caption">${t("cal.week", { n: week })}</p>
 
         <section class="hc" aria-labelledby="hc-title">
           <div class="hc-head"><h2 id="hc-title">${t("td.herCity")}</h2><a href="#/saudi" class="small">${t("nav.saudi")} ${icon("arrow", "flip-rtl")}</a></div>
@@ -293,11 +294,11 @@ export default {
                 ${stat("flame", t("today.streak"), days, tu("unit.days", days))}
                 ${stat("calendar", t("today.studied"), tot.days, tu("unit.days", tot.days))}
                 ${stat("timer", t("today.total"), num(hours, 1), tu("unit.hours", hours, { minimumFractionDigits: 1 }))}
-                ${stat("plan", t("today.toGo"), left, tu("unit.days", left))}
+                ${stat("plan", t("today.toGo"), sp.left, sp.kind === "letters" ? tu("unit.groups", sp.left) : tu("unit.words", sp.left))}
               </dl>
               <h3>${t("today.last14")}</h3>
               ${last14(date)}
-              <p class="muted small">${esc(t("today.finish", { n, total: TOTAL_DAYS, date: longDate(GOAL, locale()) }))}</p>
+              <p class="muted small">${esc(t(`stage.gate.${sp.kind}`, { done: num(sp.done), need: num(sp.need) }))}</p>
               ${yesterday >= START && !store.entry(yesterday).min ? `
                 <div class="nudge">
                   <p>${t("today.yesterday")}</p>

@@ -1,15 +1,18 @@
 import * as store from "../core/store.js";
-import { todayKey, addDays, diffDays, format } from "../core/dates.js";
-import { dayNumber, phaseFor, phaseTitle, TOTAL_DAYS, streak, totals, learnedLetters, lettersIn } from "../core/schedule.js";
+import { todayKey, addDays, format } from "../core/dates.js";
+import { dayNumber, phaseTitle, stageProgress, STAGE_GATE, streak, totals, learnedLetters, lettersIn } from "../core/schedule.js";
 import { t, tx, tu, num, locale } from "../core/i18n.js";
 import { esc, pageHead } from "../core/dom.js";
+import { icon } from "../core/art.js";
 import { columns } from "../core/charts.js";
+import { progressNow } from "../core/cards.js";
+import { vocabNow, loadVocab } from "../core/vocab.js";
 import { START, DAILY_GOAL_MIN } from "../config.js";
 import { PHASES } from "../data/plan.js";
 import { GROUPS } from "../data/letters.js";
 import { WORDS } from "../data/words.js";
 import { PHRASES } from "../data/phrases.js";
-import { journeyParapet, minutesBetween, TOTAL_WEEKS } from "./shared.js";
+import { journeyParapet, minutesBetween, weeksSoFar } from "./shared.js";
 
 const day = key => format(key, { day: "numeric", month: "short" }, locale());
 const dayLong = key => format(key, { weekday: "short", day: "numeric", month: "short" }, locale());
@@ -34,13 +37,10 @@ export default {
     const today = todayKey();
     const s = store.get();
     const log = s.log;
-    const n = Math.max(1, Math.min(TOTAL_DAYS, dayNumber(today)));
+    const n = Math.max(1, dayNumber(today));
     const tot = totals(log);
     const hours = tot.minutes / 60;
     const days = streak(log, today);
-    const phase = phaseFor(today < START ? START : today);
-    const phaseLen = diffDays(phase.start, phase.end) + 1;
-    const phaseDay = Math.max(1, diffDays(phase.start, today) + 1);
     const table = { showTable: t("progress.showTable"), hideTable: t("progress.hideTable") };
 
     // Minutes per day, last 28 days
@@ -59,8 +59,8 @@ export default {
     });
 
     // Hours per week, every week so far
-    const weeksSoFar = Math.max(1, Math.min(TOTAL_WEEKS, Math.floor((n - 1) / 7) + 1));
-    const weekData = Array.from({ length: Math.max(weeksSoFar, 8) }, (_, i) => {
+    const weeksDone = weeksSoFar(today);
+    const weekData = Array.from({ length: Math.max(weeksDone, 8) }, (_, i) => {
       const start = addDays(START, i * 7);
       const end = addDays(start, 6);
       const h = start > today ? 0 : minutesBetween(start, end > today ? today : end) / 60;
@@ -97,24 +97,34 @@ export default {
     const readable = WORDS.filter(w => lettersIn(w.ar).every(c => known.has(c))).length;
     const phrasesMet = PHRASES.filter(p => p.day <= n).length;
 
-    // Stage bar: six segments sized by length, today's position marked
-    const span = TOTAL_DAYS;
-    const todayPos = pct(Math.min(span, n), span);
-    const stageBar = `
-      <div class="stage-bar" dir="ltr" role="img" aria-label="${esc(t("progress.journey"))}">
-        ${PHASES.map(p => {
-          const len = diffDays(p.start, p.end) + 1;
-          return `<div class="p${p.id}" style="flex:${len}" tabindex="0" data-tip="${esc(tx(phaseTitle(p)))}" data-rows="${esc(`${day(p.start)} – ${day(p.end)}||`)}"></div>`;
-        }).join("")}
-        <span class="today-mark" style="left:${todayPos}%"></span>
-      </div>
-      <div class="stage-names-row" dir="ltr">${PHASES.map(p => `<span style="flex:${diffDays(p.start, p.end) + 1}">${esc(tx(p.label))}</span>`).join("")}</div>`;
+    // The six stages as a ladder: what's behind you, the one you're on with how much is left, and what opens next.
+    // No dates — a stage is finished when its letter groups or its words are.
+    const sp = stageProgress(progressNow(vocabNow()?.notes));
+    const atIndex = PHASES.indexOf(sp.phase);
+    const gateText = p => {
+      const gate = STAGE_GATE[p.id];
+      return gate.letters ? t("stage.opensLetters", { need: num(gate.letters) }) : t("stage.opens", { need: num(gate.words) });
+    };
+    const stageLadder = `<ol class="stage-ladder">${PHASES.map((p, i) => {
+      const state = i < atIndex ? "done" : i === atIndex ? "now" : "later";
+      return `<li class="sl-step is-${state}">
+        <span class="sl-mark" aria-hidden="true">${state === "done" ? icon("check") : num(i + 1)}</span>
+        <span class="sl-body">
+          <b>${esc(tx(phaseTitle(p)))}</b>
+          ${state === "now"
+            ? `<span class="meter" role="meter" aria-valuemin="${sp.from}" aria-valuemax="${sp.need}" aria-valuenow="${sp.done}" aria-label="${esc(tx(phaseTitle(p)))}"><span style="width:${Math.max(0, Math.min(100, sp.pct)).toFixed(1)}%"></span></span>
+               <small>${esc(t(`stage.gate.${sp.kind}`, { done: num(sp.done), need: num(sp.need) }))}</small>`
+            : `<small>${esc(state === "done" ? tx(p.canDo) : gateText(p))}</small>`}
+        </span>
+      </li>`;
+    }).join("")}</ol>
+    ${sp.next ? `<p class="muted small sl-next">${esc(t("stage.next", { stage: tx(phaseTitle(sp.next)) }))} — ${esc(gateText(sp.phase))}</p>` : `<p class="muted small sl-next">${esc(t("stage.last"))}</p>`}`;
 
     root.innerHTML = `
       ${pageHead(t("progress.title"), t("progress.sub"), "", "has-parapet", "spring")}
       ${journeyParapet(today)}
       <dl class="stats-row">
-        ${tile(t("progress.journey"), t("day.n", { n }), t("day.of", { total: TOTAL_DAYS }), `<span class="meter" aria-hidden="true"><span style="width:${pct(n, TOTAL_DAYS)}%"></span></span>`, "hero")}
+        ${tile(t("progress.dayNow"), t("day.n", { n }), esc(tx(phaseTitle(sp.phase))), "", "hero")}
         ${tile(t("today.total"), num(hours, 1), tu("unit.hours", hours, { minimumFractionDigits: 1 }))}
         ${tile(t("today.streak"), days, tu("unit.days", days))}
         ${tile(t("today.studied"), tot.days, tu("unit.days", tot.days))}
@@ -127,8 +137,8 @@ export default {
       <div class="progress-grid">
         <section class="panel wide">
           <div class="panel-head"><h2>${t("progress.journey")}</h2>
-            <span class="muted">${esc(t("progress.stageNow", { n: phaseDay, len: phaseLen, stage: tx(phaseTitle(phase)) }))}</span></div>
-          ${stageBar}
+            <span class="muted">${esc(tx(phaseTitle(sp.phase)))}</span></div>
+          ${stageLadder}
         </section>
         <section class="panel wide">
           <div class="panel-head"><h2>${t("progress.minutesDay")}</h2><span class="muted">${t("progress.minutesSub", { goal: DAILY_GOAL_MIN })}</span></div>

@@ -1,6 +1,7 @@
 // The vocabulary as decks for the Cards page, in the order the plan teaches it. Words come from data/vocab.json
 // (built from NAJDI-PLAN.md and NAJDI-WORDS.md by `npm run vocab`); the Script-week phrases from data/phrases.js.
-// A deck opens on the day its stage starts, so new cards follow the plan — unless "open every deck" is on.
+// A deck opens when you reach its stage (core/schedule.js decides that from what you have done, not from the
+// date) — unless "open every deck" is on.
 import { PHASES } from "../data/plan.js";
 import { PHRASES } from "../data/phrases.js";
 import { LOVE_ITEMS } from "../data/love.js";
@@ -32,19 +33,19 @@ function applyEdits() {
 }
 content.onChange(applyEdits);
 
-// id → when that deck opens. PHASES[1] is Stage 1, [2] Stage 2, [3] Stage 3, [4] Stage 4.
+// id → the stage that opens it, as an index into PHASES. [0] is Script, [1] Stage 1, [2] Stage 2…
 export const DECKS = [
-  { id: "phrases", opens: PHASES[0].start },
-  { id: "hers", opens: PHASES[0].start }, // words she taught him — open from the first day
-  { id: "love", opens: PHASES[0].start }, // what to say to her — open from the first day
-  { id: "1", opens: PHASES[1].start },
-  { id: "grammar", opens: PHASES[1].start },
-  { id: "2", opens: PHASES[2].start },
-  { id: "special", opens: PHASES[2].start },
-  { id: "3", opens: PHASES[3].start },
-  { id: "4", opens: PHASES[4].start },
+  { id: "phrases", stage: 0 },
+  { id: "hers", stage: 0 }, // words she taught him — open from the first day
+  { id: "love", stage: 0 }, // what to say to her — open from the first day
+  { id: "1", stage: 1 },
+  { id: "grammar", stage: 1 },
+  { id: "2", stage: 2 },
+  { id: "special", stage: 2 },
+  { id: "3", stage: 3 },
+  { id: "4", stage: 4 },
 ];
-const OPENS = Object.fromEntries(DECKS.map(d => [d.id, d.opens]));
+const OPENS = Object.fromEntries(DECKS.map(d => [d.id, d.stage]));
 
 // The same word written with or without vowel marks, question marks or ellipses is still the same word.
 export const bare = ar => ar.replace(/[ً-ْـ؟?…!.،]/g, "").replace(/\s+/g, " ").trim();
@@ -58,7 +59,7 @@ function fnv(s) {
   return h.toString(36);
 }
 
-// Every card-able word once, in teaching order: { id, deck, opens, ar, say, en, uk, msa, note?, toHer?, reply?, check }
+// Every card-able word once, in teaching order: { id, deck, stage, ar, say, en, uk, msa, note?, toHer?, reply?, check }
 export function buildNotes(vocab) {
   const all = vocab.stages.flatMap(s => s.topics.flatMap(t => t.entries.map(e => ({ ...e, deck: s.id, topicTitle: t.title }))));
   const byBare = new Map();
@@ -77,16 +78,16 @@ export function buildNotes(vocab) {
   for (const p of PHRASES) {
     const twin = byBare.get(bare(p.ar));
     add({
-      id: twin?.id ?? fnv(`${p.ar}|${p.en}`), deck: "phrases", opens: dateOfDay(p.day), day: p.day,
+      id: twin?.id ?? fnv(`${p.ar}|${p.en}`), deck: "phrases", stage: 0, day: p.day,
       ar: p.ar, say: p.tr, en: p.en, uk: p.uk, msa: p.msa, note: p.note, check: !!p.check, checkNote: p.checkNote, speak: p.speak,
       topicTitle: twin?.topicTitle,
     });
   }
   // Her words (data/hers.js) and To her ♥ (data/love.js): open from Day 1.
-  for (const x of HER_WORDS) add({ ...x, deck: "hers", opens: OPENS.hers, check: false, topicTitle: null });
-  for (const x of LOVE_ITEMS) add({ ...x, deck: "love", opens: OPENS.love, topicTitle: null });
+  for (const x of HER_WORDS) add({ ...x, deck: "hers", stage: OPENS.hers, check: false, topicTitle: null });
+  for (const x of LOVE_ITEMS) add({ ...x, deck: "love", stage: OPENS.love, topicTitle: null });
   for (const d of DECKS.filter(d => !["phrases", "hers", "love"].includes(d.id))) {
-    for (const e of all.filter(x => x.deck === d.id)) add({ ...e, opens: OPENS[d.id] });
+    for (const e of all.filter(x => x.deck === d.id)) add({ ...e, stage: OPENS[d.id] });
   }
   return notes;
 }

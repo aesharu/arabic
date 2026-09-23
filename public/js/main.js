@@ -3,13 +3,13 @@ import { say, canSpeak } from "./core/speech.js";
 import * as store from "./core/store.js";
 import * as timer from "./core/timer.js";
 import { todayKey } from "./core/dates.js";
-import { dayNumber, phaseFor, phaseTitle, TOTAL_DAYS } from "./core/schedule.js";
-import { t, tx, lang, meta, setLang, said } from "./core/i18n.js";
+import { dayNumber, phaseTitle, stageProgress } from "./core/schedule.js";
+import { t, tx, num, lang, meta, setLang, said } from "./core/i18n.js";
 import { esc } from "./core/dom.js";
 import { icon } from "./core/art.js";
 import { attachTooltips, fitCharts } from "./core/charts.js";
 import { loadVocab, vocabNow } from "./core/vocab.js";
-import { counts as cardCounts } from "./core/cards.js";
+import { counts as cardCounts, progressNow } from "./core/cards.js";
 import * as sync from "./core/sync.js";
 import { welcome, keepWatch, switchProfile, logOut } from "./core/welcome.js";
 import * as activity from "./core/activity.js";
@@ -154,16 +154,15 @@ function translateShell() {
   });
 }
 
+// The day you're on, the stage you've reached, and how much of it is left — no deadline, no total.
 function renderDayPill() {
-  const date = todayKey();
-  const n = dayNumber(date);
-  const phase = phaseFor(date);
-  const pct = Math.min(100, Math.max(0, (n / TOTAL_DAYS) * 100));
-  document.getElementById("daypill").innerHTML = phase
-    ? `<b>${t("day.n", { n })}</b> <span>${t("day.of", { total: TOTAL_DAYS })}</span>
-       <span class="meter" aria-hidden="true"><span style="width:${pct.toFixed(1)}%"></span></span>
-       <small>${esc(tx(phaseTitle(phase)))}</small>`
-    : `<b>${t("pill.soon")}</b>`;
+  const n = dayNumber(todayKey());
+  const sp = stageProgress(progressNow(vocabNow()?.notes));
+  document.getElementById("daypill").innerHTML = n < 1
+    ? `<b>${t("pill.soon")}</b>`
+    : `<b>${t("day.n", { n })}</b> <span>${esc(tx(phaseTitle(sp.phase)))}</span>
+       <span class="meter" aria-hidden="true"><span style="width:${Math.min(100, Math.max(0, sp.pct)).toFixed(1)}%"></span></span>
+       <small>${esc(t(`stage.gate.${sp.kind}`, { done: num(sp.done), need: num(sp.need) }))}</small>`;
 }
 
 // "Together for 172 days, 3:39:15" — floating above every page, ticking, in both their profiles.
@@ -221,6 +220,7 @@ setInterval(() => timer.running() && renderTimerPill(), 1000);
 let countQueued = false;
 function renderNavCount() {
   countQueued = false;
+  renderDayPill(); // words learned can move the stage on
   const v = vocabNow();
   if (!v) return;
   const c = cardCounts(v.notes);

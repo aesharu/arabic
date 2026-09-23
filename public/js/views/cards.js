@@ -9,6 +9,8 @@ import { loadVocab, DECKS, speakText } from "../core/vocab.js";
 import { say } from "../core/speech.js";
 import { running as timerRunning } from "../core/timer.js";
 import { todayKey, addDays, shortDate } from "../core/dates.js";
+import { PHASES } from "../data/plan.js";
+import { phaseTitle } from "../core/schedule.js";
 import { t, tx, tu, num, lang, locale } from "../core/i18n.js";
 import { esc, rich, ar, translit, flag, pageHead, typing } from "../core/dom.js";
 import { icon, vignette } from "../core/art.js";
@@ -108,7 +110,7 @@ export default {
         <section class="panel">
           <div class="panel-head"><h2>${t("cards.decks")}</h2><span class="muted small">${t("cards.newPerDayNote", { n: p.newPerDay })}</span></div>
           <ul class="deck-grid">${DECKS.map((d, i) => {
-            const open = cards.deckOpen(d.id, today);
+            const open = cards.deckOpen(d.id, notes);
             const c = cards.counts(notes, { deck: d.id });
             const inDeck = notes.filter(n => n.deck === d.id);
             const has = c.fresh + c.learn + c.review > 0;
@@ -117,7 +119,7 @@ export default {
             return `<li><${has ? "a" : "div"} class="deck-card${open ? "" : " is-locked"}" ${go} style="--tilt:${i % 2 ? 1.2 : -1.2}deg">
               <span class="deck-face" lang="ar" translate="no">${esc(face)}</span>
               <span class="deck-name">${esc(deckName(d.id))}</span>
-              <span class="deck-size">${num(inDeck.length)} ${tu("unit.words", inDeck.length)}${open ? "" : ` · ${icon("lock")} ${esc(t("cards.opens", { date: shortDate(d.opens, locale()) }))}`}</span>
+              <span class="deck-size">${num(inDeck.length)} ${tu("unit.words", inDeck.length)}${open ? "" : ` · ${icon("lock")} ${esc(t("cards.opensAt", { stage: tx(phaseTitle(PHASES[d.stage])) }))}`}</span>
               <span class="deck-counts" aria-label="${esc(t("cards.new"))} ${c.fresh}, ${esc(t("cards.learning"))} ${c.learn}, ${esc(t("cards.due"))} ${c.review}">
                 <b class="c-new">${c.fresh}</b><b class="c-learn">${c.learn}</b><b class="c-due">${c.review}</b></span>
               ${has ? `<span class="deck-study">${t("cards.study")} ${icon("arrow")}</span>` : ""}

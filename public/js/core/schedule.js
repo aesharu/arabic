@@ -21,11 +21,52 @@ const byLang = fn => Object.fromEntries(LANGS.map(l => [l, fn(l)]));
 export const phaseTitle = p => byLang(l => (p.label[l] === p.name[l] ? p.name[l] : `${p.label[l]} · ${p.name[l]}`));
 const GOAL_PREFIX = { en: "Goal of this stage", uk: "Мета етапу", najdi: "هدف المرحلة", msa: "هدف المرحلة" };
 
-export function planFor(date) {
-  const phase = phaseFor(date);
+// ---------- Stages, opened by what you have done ----------
+// 23 Sept 2026: the fifteen-month deadline is gone — Arabic takes as long as it takes. A stage now opens when
+// the one before it is finished, not on a date: the Script stage when all six letter groups are marked done,
+// every later stage when that stage's word count from the plan is learned (the same "learned" the Word list
+// badges use). The dates in NAJDI-PLAN.md stay as the written route (phaseFor, the Plan page), not as a clock.
+export const STAGE_GATE = {
+  1: { letters: GROUPS.length }, // Script: the six letter groups
+  2: { words: 200 }, // Stage 1 · Core: 150 words + 50 phrases
+  3: { words: 320 }, // Stage 2 · Daily life
+  4: { words: 500 }, // Stage 3 · Talking to her
+  5: { words: 750 }, // Stage 4 · Her words
+  6: { words: 1000 }, // Stage 5 · Her words, deeper
+};
+
+// progress: { letters: groups marked done, words: words learned, days: days actually studied }
+export function stageNow({ letters = 0, words = 0 } = {}) {
+  if (letters < STAGE_GATE[PHASES[0].id].letters) return PHASES[0];
+  return PHASES.slice(1).find(p => words < STAGE_GATE[p.id].words) ?? PHASES.at(-1);
+}
+
+// Where you are inside the stage you're on, and what finishes it.
+export function stageProgress(progress = {}) {
+  const phase = stageNow(progress);
+  const i = PHASES.indexOf(phase);
+  const gate = STAGE_GATE[phase.id];
+  const kind = gate.letters ? "letters" : "words";
+  const need = gate.letters ?? gate.words;
+  const from = kind === "words" ? STAGE_GATE[PHASES[i - 1]?.id]?.words ?? 0 : 0;
+  const done = Math.max(from, Math.min(need, (kind === "letters" ? progress.letters : progress.words) ?? 0));
+  return { phase, next: PHASES[i + 1] ?? null, kind, done, need, from, left: need - done, pct: need > from ? ((done - from) / (need - from)) * 100 : 100 };
+}
+
+// Which of the plan's fourteen Script days to show: one step for each day actually studied, never sitting on a
+// letter group already marked done.
+function scriptStep({ days = 0, done = [] }) {
+  let step = Math.min(14, Math.max(1, days + 1));
+  while (step < 14 && done.includes(SCRIPT_DAYS[step].group)) step++;
+  return step;
+}
+
+// What to study. With `progress` the stage follows what you've done; without it, the written route by date.
+export function planFor(date, progress = null) {
+  const phase = progress ? stageNow(progress) : phaseFor(date);
   if (!phase) return null;
   const n = dayNumber(date);
-  const day = SCRIPT_DAYS[n];
+  const day = phase === PHASES[0] ? SCRIPT_DAYS[progress ? scriptStep(progress) : n] : progress ? null : SCRIPT_DAYS[n];
   return day
     ? { n, phase, focus: day.focus, group: day.group, tasks: day.tasks }
     : { n, phase, focus: byLang(l => `${GOAL_PREFIX[l]}: ${phase.canDo[l]}`), group: null, tasks: phase.routine };

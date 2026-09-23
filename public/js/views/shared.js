@@ -1,14 +1,19 @@
 // Pieces more than one page draws.
 import * as store from "../core/store.js";
 import { addDays, format } from "../core/dates.js";
-import { phaseFor, phaseTitle, TOTAL_DAYS } from "../core/schedule.js";
+import { phaseTitle, stageNow, dayNumber } from "../core/schedule.js";
+import { progressNow } from "../core/cards.js";
+import { vocabNow } from "../core/vocab.js";
 import { t, tx, tu, num, locale } from "../core/i18n.js";
 import { esc } from "../core/dom.js";
 import { parapet } from "../core/charts.js";
-import { START, GOAL } from "../config.js";
+import { START } from "../config.js";
 import { PHASES } from "../data/plan.js";
 
-export const TOTAL_WEEKS = Math.ceil(TOTAL_DAYS / 7);
+// How many weeks the parapet shows: every week studied so far, and always at least a season ahead to grow into.
+export const WEEKS_AHEAD = 8;
+export const PLAN_WEEKS = 67; // the weeks NAJDI-PLAN.md writes out, for numbering the printable tracker
+export const weeksSoFar = today => Math.max(1, Math.ceil(dayNumber(today) / 7));
 
 const shortDay = key => format(key, { day: "numeric", month: "short" }, locale());
 
@@ -20,21 +25,23 @@ export function minutesBetween(from, to) {
   return sum;
 }
 
-// The whole plan as a row of rooftop crenellations: past weeks filled in their stage's color, this week outlined.
+// The weeks you have studied, as a row of rooftop crenellations — it grows with you instead of counting down
+// to a date: every week so far, filled when you studied that week, plus a few empty ones ahead.
 export function journeyParapet(today) {
+  const stage = stageNow(progressNow(vocabNow()?.notes));
+  const upto = weeksSoFar(today);
   const weeks = [];
-  for (let n = 1; n <= TOTAL_WEEKS; n++) {
+  for (let n = 1; n <= upto + WEEKS_AHEAD; n++) {
     const start = addDays(START, (n - 1) * 7);
-    const end = addDays(start, 6) > GOAL ? GOAL : addDays(start, 6);
-    const phase = phaseFor(start);
+    const end = addDays(start, 6);
     const min = minutesBetween(start, end < today ? end : today);
-    const state = end < today ? "done" : start <= today ? "now" : "future";
+    const state = n < upto ? "done" : n === upto ? "now" : "future";
     weeks.push({
       n,
-      stage: phase.id,
+      stage: stage.id,
       state: `${state}${state === "done" && !min ? " empty" : ""}`,
       title: t("today.weekTip", { n, dates: `${shortDay(start)} – ${shortDay(end)}` }),
-      rows: [[t("today.weekMin", { min }), tx(phaseTitle(phase))]],
+      rows: [[t("today.weekMin", { min }), tx(phaseTitle(stage))]],
     });
   }
   return parapet({ weeks, label: t("progress.journey"), stageLabels: PHASES.map(p => tx(p.label)) });
