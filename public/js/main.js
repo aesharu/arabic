@@ -9,7 +9,7 @@ import { esc } from "./core/dom.js";
 import { icon } from "./core/art.js";
 import { attachTooltips, fitCharts } from "./core/charts.js";
 import { loadVocab, vocabNow } from "./core/vocab.js";
-import { counts as cardCounts, progressNow } from "./core/cards.js";
+import { counts as cardCounts, progressNow, wordStats } from "./core/cards.js";
 import * as sync from "./core/sync.js";
 import { welcome, keepWatch, switchProfile, logOut } from "./core/welcome.js";
 import * as activity from "./core/activity.js";
@@ -218,11 +218,23 @@ setInterval(() => timer.running() && renderTimerPill(), 1000);
 
 // Cards waiting today, on the Cards menu item — like the numbers beside Anki's decks.
 let countQueued = false;
+// A mark of how many words are known today, kept day by day so the years can show a line that only goes up.
+function noteWordsKnown(notes) {
+  if (store.isTeacher() || store.watching()) return;
+  const date = todayKey();
+  const known = wordStats(notes).learned;
+  if ((store.get().log[date]?.known ?? -1) === known) return;
+  store.update(s => {
+    (s.log[date] ??= { min: 0, tasks: [] }).known = known;
+  });
+}
+
 function renderNavCount() {
   countQueued = false;
   renderDayPill(); // words learned can move the stage on
   const v = vocabNow();
   if (!v) return;
+  noteWordsKnown(v.notes);
   const c = cardCounts(v.notes);
   const n = c.fresh + c.learn + c.review;
   document.querySelectorAll(".navcount:not(.rv-count)").forEach(el => {

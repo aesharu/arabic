@@ -64,3 +64,47 @@ test("day status and streak", () => {
   assert.equal(streak(log, "2026-09-23"), 2);
   assert.equal(streak(log, "2026-09-25"), 0);
 });
+
+// Statistics for a course measured in years (no deadline — 23 Sept 2026).
+import { longestStreak, bestDay, byMonth, habit, stageNow, stageProgress, STAGE_GATE } from "../public/js/core/schedule.js";
+
+const LOG = {
+  "2026-09-21": { min: 60, tasks: [] },
+  "2026-09-22": { min: 90, tasks: [] },
+  "2026-09-23": { min: 30, tasks: [] },
+  "2026-09-27": { min: 45, tasks: [] },
+  "2026-10-01": { min: 0, tasks: [], speak: 3 },
+};
+
+test("the longest run of days ever, not just the one running", () => {
+  assert.equal(longestStreak(LOG), 3);
+  assert.equal(longestStreak({}), 0);
+});
+
+test("the best day, and months with what was done in them", () => {
+  assert.deepEqual(bestDay(LOG), { date: "2026-09-22", min: 90 });
+  const months = byMonth(LOG);
+  assert.deepEqual(months.map(m => m.month), ["2026-09", "2026-10"]);
+  assert.equal(months[0].min, 225);
+  assert.equal(months[0].days, 4);
+  assert.equal(months[1].days, 1, "a day of only speaking still counts");
+});
+
+test("the habit: days studied out of days since Day 1", () => {
+  const h = habit(LOG, "2026-10-01");
+  assert.equal(h.since, 11);
+  assert.equal(h.days, 5);
+  assert.equal(Math.round(h.average), 45);
+});
+
+test("a stage opens when the one before it is finished, whatever the date", () => {
+  assert.equal(stageNow({ letters: 5, words: 900 }).label.en, "Script", "the letters come first");
+  assert.equal(stageNow({ letters: 6, words: 0 }).label.en, "Stage 1");
+  assert.equal(stageNow({ letters: 6, words: STAGE_GATE[2].words }).label.en, "Stage 2");
+  assert.equal(stageNow({ letters: 6, words: 99999 }), PHASES.at(-1));
+  const sp = stageProgress({ letters: 6, words: 260 });
+  assert.equal(sp.kind, "words");
+  assert.equal(sp.from, 200);
+  assert.equal(sp.need, 320);
+  assert.equal(sp.left, 60);
+});

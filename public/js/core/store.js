@@ -30,7 +30,8 @@ const defaults = () => ({
   // "YYYY-MM-DD" → { min: minutes studied, tasks: ids of ticked tasks, quiz?: { right, total },
   //                  cards?: { n: new cards seen, r: answers, a: "Again" answers },
   //                  speak?: phrases said out loud on the Speak it back page,
-  //                  write?: words typed in Arabic on the Write it page }
+  //                  write?: words typed in Arabic on the Write it page,
+  //                  known?: how many words were known that day (a daily mark, for the long charts) }
   log: {},
   goals: { done: [] }, // the birthday plan's "I can…" goals ticked (views/birthday.js)
   reading: { done: [] }, // stories read: "st.<id>" (views/stories.js)

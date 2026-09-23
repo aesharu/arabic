@@ -131,6 +131,11 @@ Last updated: 23 Sept 2026 (no more deadline: stages open by what you have done;
   - Every page was walked afterwards: all 28 render with no errors.
   - **`NAJDI-PLAN.md` still describes 15 months with dates** — the site no longer treats them as deadlines. A wording change for Part 3 is waiting for him to approve.
 
+- **Statistics for a course measured in years** (23 Sept, `core/schedule.js`: `longestStreak`, `bestDay`, `byMonth`, `habit`; tests in `tests/schedule.test.mjs`):
+  - **Calendar: a year at a glance** — one column a week, one square a day, a grid per year studied, with that year's days and hours beside it. It never draws past today. The month grids stay underneath.
+  - **Progress**: **Hours per month** (every month studied — the chart that matters over years) and **Words known** (how many words he knew at the end of each month). New tiles: longest streak ever, average minutes on a day studied, days kept up as a share of days since Day 1, and his best day.
+  - **Words known is recorded day by day** (`log[day].known`, written by `main.js` once a day when it changes, merged as the higher of the two on sync) — the line starts from 23 Sept 2026 and only grows.
+
 ## Next (in this order)
 
 0. ✅ Plan changes done 22 Sept (Saudi rename, شلونك, شخبارك, مو, سلام, -ak/-ik). Waiting on Dima: the 4.22 expressions, وحشتيني (Saudi or Egyptian?), واجد (does she say it?), البير vs قليب, خوخة.

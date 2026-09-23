@@ -116,6 +116,48 @@ export function totals(log) {
   };
 }
 
+// ---------- Statistics, for a course measured in years ----------
+// The longest run of days ever studied, not just the one running now.
+export function longestStreak(log) {
+  const days = Object.keys(log).filter(d => isActive(log[d])).sort();
+  let best = 0, run = 0, prev = "";
+  for (const d of days) {
+    run = prev && addDays(prev, 1) === d ? run + 1 : 1;
+    prev = d;
+    best = Math.max(best, run);
+  }
+  return best;
+}
+
+// The day the most minutes were studied: { date, min }.
+export function bestDay(log) {
+  let best = { date: "", min: 0 };
+  for (const [date, e] of Object.entries(log)) if ((e.min ?? 0) > best.min) best = { date, min: e.min };
+  return best;
+}
+
+// Minutes for each calendar month that has any: [{ month: "2026-09", min, days }], oldest first.
+export function byMonth(log) {
+  const months = new Map();
+  for (const [date, e] of Object.entries(log)) {
+    if (!isActive(e)) continue;
+    const m = date.slice(0, 7);
+    const row = months.get(m) ?? { month: m, min: 0, days: 0 };
+    row.min += e.min ?? 0;
+    row.days++;
+    months.set(m, row);
+  }
+  return [...months.values()].sort((a, b) => a.month.localeCompare(b.month));
+}
+
+// How the habit is going: days studied out of days since Day 1, and the average length of a day studied.
+export function habit(log, today = todayKey()) {
+  const since = Math.max(1, dayNumber(today));
+  const days = Object.values(log).filter(isActive).length;
+  const minutes = Object.values(log).reduce((n, e) => n + (e.min ?? 0), 0);
+  return { since, days, share: days / since, average: days ? minutes / days : 0 };
+}
+
 // Heat level of a day for the calendar: 0 nothing · 1 some · 2 30+ min · 3 goal met · 4 90+ min.
 export function heatLevel(entry, allTicked) {
   const min = entry?.min ?? 0;

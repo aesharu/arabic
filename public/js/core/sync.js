@@ -29,6 +29,7 @@ function mergeDay(a = { min: 0, tasks: [] }, b = { min: 0, tasks: [] }) {
   const cards = (a.cards?.r ?? 0) >= (b.cards?.r ?? 0) ? a.cards : b.cards;
   const speak = Math.max(a.speak ?? 0, b.speak ?? 0);
   const write = Math.max(a.write ?? 0, b.write ?? 0);
+  const known = Math.max(a.known ?? 0, b.known ?? 0); // words known that day — the higher mark wins
   return {
     min: Math.max(a.min ?? 0, b.min ?? 0),
     tasks: [...new Set([...(a.tasks ?? []), ...(b.tasks ?? [])])],
@@ -36,6 +37,7 @@ function mergeDay(a = { min: 0, tasks: [] }, b = { min: 0, tasks: [] }) {
     ...(cards ? { cards } : {}),
     ...(speak ? { speak } : {}),
     ...(write ? { write } : {}),
+    ...(known ? { known } : {}),
   };
 }
 

@@ -43,6 +43,41 @@ function monthsSoFar(today) {
 // Mon … Sun in the current language (START is a Monday).
 const weekdays = () => Array.from({ length: 7 }, (_, i) => format(addDays("2026-09-21", i), { weekday: isArabic() ? "narrow" : "short" }, locale()));
 
+// A whole year at a glance: one column a week, one square a day — the view that makes years readable.
+// Only the years that have been studied are drawn.
+function renderYear(year, log, today) {
+  const first = `${year}-01-01`;
+  const last = `${year}-12-31`;
+  const from = first < START ? START : first;
+  const to = last > today ? today : last;
+  if (from > to) return "";
+  // Start on the Monday of the first week, so every column is a week.
+  let cursor = addDays(from, -weekdayMon(from));
+  const weeks = [];
+  while (cursor <= to) {
+    const days = [];
+    for (let i = 0; i < 7; i++) {
+      const date = addDays(cursor, i);
+      const inside = date >= from && date <= to;
+      const e = inside ? log[date] : null;
+      const level = inside ? heatLevel(e, allTasksTicked(date, e)) : -1;
+      days.push({ date, level, min: e?.min ?? 0 });
+    }
+    weeks.push(days);
+    cursor = addDays(cursor, 7);
+  }
+  const total = Object.entries(log).reduce((n, [d, e]) => (d.slice(0, 4) === String(year) ? n + (e.min ?? 0) : n), 0);
+  const days = Object.entries(log).filter(([d, e]) => d.slice(0, 4) === String(year) && (e.min > 0 || e.tasks?.length)).length;
+  return `<section class="year">
+    <div class="year-head"><h3>${year}</h3><span class="muted">${esc(t("cal.monthSum", { days: num(days), hours: num(total / 60, 1) }))}</span></div>
+    <div class="year-grid" dir="ltr" role="img" aria-label="${esc(t("cal.yearLabel", { year, days: num(days) }))}">
+      ${weeks.map(w => `<span class="year-week">${w.map(d => d.level < 0
+        ? `<i class="year-day is-out"></i>`
+        : `<i class="year-day l${d.level}${d.date === today ? " is-today" : ""}" data-tip="${esc(longDate(d.date, locale()))}" data-rows="${esc(t("cal.logged", { min: d.min }).replace(/<[^>]+>/g, ""))}||"></i>`).join("")}</span>`).join("")}
+    </div>
+  </section>`;
+}
+
 function renderMonth(m, log, today, selected, wd) {
   const cells = wd.map(d => `<span class="cal-wd">${esc(d)}</span>`);
   for (let i = weekdayMon(`${m}-01`); i > 0; i--) cells.push(`<span></span>`);
@@ -120,6 +155,8 @@ export default {
           <span><i class="ring-key"></i>${t("nav.today")}</span>
         </div>
         <div class="cal-layout">
+          <div class="years">${[...new Set([START.slice(0, 4), ...Object.keys(log).map(d => d.slice(0, 4)), today.slice(0, 4)])]
+            .sort().map(y => renderYear(y, log, today)).join("")}</div>
           <div class="months">${monthsSoFar(today).map(m => renderMonth(m, log, today, selected, wd)).join("")}</div>
           <div class="panel detail" aria-live="polite">${renderDetail(selected, log, today)}</div>
         </div>

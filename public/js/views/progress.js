@@ -1,6 +1,6 @@
 import * as store from "../core/store.js";
 import { todayKey, addDays, format } from "../core/dates.js";
-import { dayNumber, phaseTitle, stageProgress, STAGE_GATE, streak, totals, learnedLetters, lettersIn } from "../core/schedule.js";
+import { dayNumber, phaseTitle, stageProgress, STAGE_GATE, streak, longestStreak, bestDay, byMonth, habit, totals, learnedLetters, lettersIn } from "../core/schedule.js";
 import { t, tx, tu, num, locale } from "../core/i18n.js";
 import { esc, pageHead } from "../core/dom.js";
 import { icon } from "../core/art.js";
@@ -120,15 +120,51 @@ export default {
     }).join("")}</ol>
     ${sp.next ? `<p class="muted small sl-next">${esc(t("stage.next", { stage: tx(phaseTitle(sp.next)) }))} — ${esc(gateText(sp.phase))}</p>` : `<p class="muted small sl-next">${esc(t("stage.last"))}</p>`}`;
 
+    // The long view: every month studied, and the words known at the end of each one.
+    const months = byMonth(log);
+    const wordsByMonth = {};
+    for (const [date, e] of Object.entries(log)) if (e.known) wordsByMonth[date.slice(0, 7)] = Math.max(wordsByMonth[date.slice(0, 7)] ?? 0, e.known);
+    const monthName = m => format(`${m}-01`, { month: "short", year: "2-digit" }, locale());
+    const monthChart = months.length ? columns({
+      label: t("progress.hoursMonth"),
+      data: months.map(m => ({ label: monthName(m.month), title: `${monthName(m.month)} · ${t("progress.daysStudied", { n: num(m.days) })}`, values: [Math.round((m.min / 60) * 10) / 10] })),
+      series: [{ name: t("progress.hours"), cls: "" }],
+      emptyText: t("progress.empty"),
+      tableHead: [t("progress.month"), t("progress.hours")],
+      showTable: t("progress.showTable"),
+      hideTable: t("progress.hideTable"),
+      width: 1180,
+      height: 200,
+    }) : "";
+    const knownMonths = Object.keys(wordsByMonth).sort();
+    const knownChart = knownMonths.length ? columns({
+      label: t("progress.wordsKnown"),
+      data: knownMonths.map(m => ({ label: monthName(m), title: monthName(m), values: [wordsByMonth[m]] })),
+      series: [{ name: t("progress.wordsKnown"), cls: "" }],
+      emptyText: t("progress.empty"),
+      tableHead: [t("progress.month"), t("progress.wordsKnown")],
+      showTable: t("progress.showTable"),
+      hideTable: t("progress.hideTable"),
+      width: 1180,
+      height: 200,
+    }) : "";
+    const hb = habit(log, today);
+    const bd = bestDay(log);
+    const best = longestStreak(log);
+
     root.innerHTML = `
       ${pageHead(t("progress.title"), t("progress.sub"), "", "has-parapet", "spring")}
       ${journeyParapet(today)}
       <dl class="stats-row">
-        ${tile(t("progress.dayNow"), t("day.n", { n }), esc(tx(phaseTitle(sp.phase))), "", "hero")}
+        ${tile(t("progress.dayNow"), t("day.n", { n }), "", `<p class="stat-note">${esc(tx(phaseTitle(sp.phase)))}</p>`, "hero")}
         ${tile(t("today.total"), num(hours, 1), tu("unit.hours", hours, { minimumFractionDigits: 1 }))}
         ${tile(t("today.streak"), days, tu("unit.days", days))}
         ${tile(t("today.studied"), tot.days, tu("unit.days", tot.days))}
         ${tile(t("progress.tasksDone"), tot.tasks)}
+        ${tile(t("progress.bestStreak"), best, tu("unit.days", best))}
+        ${tile(t("progress.average"), num(Math.round(hb.average)), t("progress.aDay"))}
+        ${tile(t("progress.share"), `${Math.round(hb.share * 100)}%`, t("progress.ofDays", { n: num(hb.since) }))}
+        ${bd.min ? tile(t("progress.bestDay"), num(bd.min), `${tu("unit.minutes", bd.min)} · ${esc(day(bd.date))}`) : ""}
         ${tot.spoken ? tile(t("progress.spoken"), tot.spoken) : ""}
         ${tot.written ? tile(t("progress.written"), tot.written) : ""}
         ${tile(t("progress.accuracy"), tot.quizTotal ? `${pct(tot.quizRight, tot.quizTotal)}%` : "—", tot.quizTotal ? t("progress.of", { n: tot.quizRight, total: tot.quizTotal }) : "")}
@@ -140,6 +176,14 @@ export default {
             <span class="muted">${esc(tx(phaseTitle(sp.phase)))}</span></div>
           ${stageLadder}
         </section>
+        ${months.length > 1 ? `<section class="panel wide">
+          <div class="panel-head"><h2>${t("progress.hoursMonth")}</h2><span class="muted">${t("progress.hoursMonthSub")}</span></div>
+          ${monthChart}
+        </section>` : ""}
+        ${knownMonths.length > 1 ? `<section class="panel wide">
+          <div class="panel-head"><h2>${t("progress.wordsKnown")}</h2><span class="muted">${t("progress.wordsKnownSub")}</span></div>
+          ${knownChart}
+        </section>` : ""}
         <section class="panel wide">
           <div class="panel-head"><h2>${t("progress.minutesDay")}</h2><span class="muted">${t("progress.minutesSub", { goal: DAILY_GOAL_MIN })}</span></div>
           ${minuteChart}
