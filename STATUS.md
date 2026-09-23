@@ -42,7 +42,7 @@ Last updated: 23 Sept 2026 (no more deadline: stages open by what you have done;
 
 - **Grammar** `#/grammar` (`data/grammar.js`, `views/grammar.js`): the plan's nine Part 5 patterns as lessons — explanation in both languages, examples to hear (her voice when recorded), "to her" forms marked, ⚠ flags kept, a 5-question quiz. `tests/grammar.test.mjs` checks every example against Part 5.
 
-- **Weekly lessons** `#/lessons` (`data/weeks.js`, `views/lessons.js`), weeks 3–67, "This week's lesson" link on Today: the stage goal, that week's words from the plan (big topics split over 2–3 weeks; review weeks), a grammar lesson, a speaking task per stage, and a short conversation (weeks 3–10 so far). Conversation lines are Claude-written — each flagged, ✎-correctable (ids `d<week>x<line>`). `tests/weeks.test.mjs` checks weeks, topics, both languages and dialect traps.
+- **Weekly lessons** `#/lessons` (`data/weeks.js`, `views/lessons.js`), weeks 3–67, "This week's lesson" link on Today: the stage goal, that week's words from the plan (big topics split over 2–3 weeks; review weeks), a grammar lesson, a speaking task per stage, and a short conversation — **all 65 weeks have one** (the last 44 written 23 Sept 2026: weeks 19–21, 27–67). Conversation lines are Claude-written — each flagged, ✎-correctable (ids `d<week>x<line>`). `tests/weeks.test.mjs` checks weeks, topics, both languages and dialect traps.
 
 - **Awards** `#/awards` (`core/game.js`, `views/awards.js`): points, ten levels, the fire and 33 awards, all worked out from progress that already exists — nothing extra to tick.
   - **Points**: 1 a minute · 2 a card answered · 3 a quiz answer right · 5 a phrase said out loud · 5 a word written in Arabic · 5 a task ticked · 25 for a day that counts as done.
