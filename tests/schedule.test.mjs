@@ -7,17 +7,20 @@ import { PHASES, SCRIPT_DAYS } from "../public/js/data/plan.js";
 import { ALL_LETTERS } from "../public/js/data/letters.js";
 import { WORDS } from "../public/js/data/words.js";
 
-test("Day 1 is Monday 21 September 2026; the plan runs to 31 December 2027", () => {
+test("Day 1 is Monday 21 September 2026; the written route runs to 30 June 2029", () => {
   assert.equal(START, "2026-09-21");
   assert.equal(weekdayMon(START), 0);
   assert.equal(dayNumber("2026-09-21"), 1);
-  assert.equal(TOTAL_DAYS, 467);
+  assert.equal(TOTAL_DAYS, 1014); // Day 1 to the end of the route to B1
   assert.equal(dateOfDay(TOTAL_DAYS), GOAL);
 });
 
 test("stages follow NAJDI-PLAN.md Part 3 with no gaps or overlaps", () => {
   assert.equal(PHASES[0].start, START);
   assert.equal(PHASES.at(-1).end, GOAL);
+  // The course ends at B1, and every stage says which CEFR level it stands at.
+  assert.equal(PHASES.at(-1).cefr, "B1");
+  assert.deepEqual(PHASES.map(p => p.cefr), ["", "A1", "A1", "A2", "A2", "A2+", "B1 →", "B1"]);
   for (let i = 1; i < PHASES.length; i++) assert.equal(addDays(PHASES[i - 1].end, 1), PHASES[i].start, PHASES[i].label);
   assert.equal(PHASES[0].end, "2026-10-04"); // Script: weeks 1–2
   assert.equal(PHASES[1].end, "2026-11-29"); // Stage 1: weeks 3–10

@@ -2092,3 +2092,15 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
 
 /* The pronunciation a second time, in Ukrainian letters (core/ua.js) — under the Latin one, quieter. */
 .tr-ua { display: block; color: var(--muted); font-size: .92em; font-weight: 600; letter-spacing: .01em; }
+
+/* The CEFR level beside a stage on the ladder, and the note explaining where the course ends. */
+.sl-cefr {
+  display: inline-block; margin-inline-start: 6px; padding: 1px 7px; border-radius: 99px;
+  background: var(--tile); color: var(--ink); font-size: 12px; font-weight: 800; letter-spacing: .03em;
+  vertical-align: middle;
+}
+.sl-b1 { margin-top: 14px; }
+.sl-b1 summary { cursor: pointer; font-weight: 700; color: var(--muted); }
+.sl-b1 p { margin: 10px 0 0; }
+.sl-b1 ul { margin: 8px 0 0; padding-inline-start: 20px; color: var(--muted); }
+.sl-b1 li { margin: 4px 0; }

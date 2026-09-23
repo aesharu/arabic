@@ -44,6 +44,14 @@ Last updated: 23 Sept 2026 (no more deadline: stages open by what you have done;
 
 - **Weekly lessons** `#/lessons` (`data/weeks.js`, `views/lessons.js`), weeks 3–67, "This week's lesson" link on Today: the stage goal, that week's words from the plan (big topics split over 2–3 weeks; review weeks), a grammar lesson, a speaking task per stage, and a short conversation — **all 65 weeks have one** (the last 44 written 23 Sept 2026: weeks 19–21, 27–67). Conversation lines are Claude-written — each flagged, ✎-correctable (ids `d<week>x<line>`). `tests/weeks.test.mjs` checks weeks, topics, both languages and dialect traps.
 
+- **The course goes to B1** (23 Sept 2026, his decision): two stages added after Stage 5, so the route ends at the CEFR B1 threshold instead of at ~1,000 words (about A2).
+  - **Stage 6 · Opinions and stories** — 1,400 words. Sentences start joining up: because, although, if, the one that, he said that.
+  - **Stage 7 · On your own** — 2,000 words. B1: no English as a rescue, follows her family around the table, says what he hopes for and why.
+  - Every stage now carries its CEFR level on the Progress ladder (— · A1 · A1 · A2 · A2 · A2+ · B1 → · B1), with a "What is B1" note that spells out the four things it means.
+  - B1 speaking tasks added for both stages (answer with a reason not a word; ten minutes of two Saudis talking; a whole call with no English; talk to someone who isn't her).
+  - `GOAL` moved to 2029-06-30 — the end of the *written route*, not a deadline; stages still open by words learned.
+  - Research behind the numbers: B1 Arabic is ~1,500–2,000 words active, and B1 generally is ~350–400 guided hours (more for Arabic, an FSI Category IV language — the "everyday topics" milestone sits at 500–1,000 hours).
+
 - **The pronunciation in Ukrainian letters** (`core/ua.js`, `tests/ua.test.mjs`): under every Latin pronunciation, the same sounds written in Ukrainian — «аль-хамду ліллаг», «ґальбі», «шлонік?». Ukrainian carries sounds English spelling can only hint at, and nothing in it is silent.
   - The map: ق = **ґ** (ґанок — the sound that makes Saudi sound Saudi) · خ, ح = **х** · ه, غ = **г** · ث س ص = **с** · ذ ز ظ ض = **з** · ت ط = **т** · ل before a consonant or at the end = **ль** (аль-бет, ґальбі) · ع, ء = **ʼ** · ya/yu/ye = я/ю/є. What Ukrainian can't keep apart, the Latin line above still shows.
   - Worked out from the Latin pronunciation, so every word has one and they're all consistent. **Any word can be corrected by hand** — the ✎ form has a "How to say it, in Ukrainian letters" box, pre-filled with the worked-out spelling; a correction is stored like any other and wins from then on (`content.FIELDS`, D1 `edits`).

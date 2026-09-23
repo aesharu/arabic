@@ -61,6 +61,18 @@ export const TASKS = {
     { en: "A 30-minute call in Arabic.", najdi: "مكالمة نص ساعة بالعربي." },
     { en: "Joke, disagree or explain a feeling — in Arabic.", najdi: "اضحك معها، أو اختلف معها، أو اشرح شعورك — بالعربي." },
   ],
+  // Stage 6 and 7 are the B1 work: not longer calls, but longer turns — reasons, stories, and holding your own
+  // when more than one person is talking.
+  "7": [
+    { en: "Answer every question with a reason, not just a word: not «إيه», but «إيه، لأن…».", najdi: "جاوب على كل سؤال بسبب مو بكلمة: مو «إيه» بس، قول «إيه، لأن…»." },
+    { en: "Tell her one thing that happened this week from start to finish — three sentences at least.", najdi: "احكِ لها شي صار لك هالأسبوع من أوله لآخره — ثلاث جمل على الأقل." },
+    { en: "Listen to two Saudis talking (a podcast, a show) for ten minutes and tell her what it was about.", najdi: "اسمع سعوديين يسولفون عشر دقايق، وبعدين علّمها عن وش كانوا يتكلمون." },
+  ],
+  "8": [
+    { en: "A whole call with no English at all — say it another way instead of switching.", najdi: "مكالمة كاملة بدون إنجليزي أبد — إذا علقت، قولها بطريقة ثانية بدل ما تبدّل اللغة." },
+    { en: "Talk to someone who isn't her: her friend, her brother, a shop, a taxi.", najdi: "تكلّم مع أحد غيرها: صاحبتها، أخوها، محل، تاكسي." },
+    { en: "Say what you hope for and why — a plan, next year, the two of you.", najdi: "قول وش تتمنى وليش — خطة، السنة الجاية، أنت وهي." },
+  ],
   review: { en: "Review week: go through every card due, and write each of this stage's hardest words by hand three times.", najdi: "أسبوع مراجعة: راجع كل الكروت، واكتب بيدك أصعب كلمات هالمرحلة ثلاث مرات." },
 };
 

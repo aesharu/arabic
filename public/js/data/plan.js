@@ -1,4 +1,4 @@
-// The 15-month roadmap. Mirrors NAJDI-PLAN.md Part 3 — that file is the source of truth, so change both together.
+// The route to B1. Mirrors NAJDI-PLAN.md Part 3 — that file is the source of truth, so change both together.
 // The two Script weeks are planned day by day (two days per letter group); from week 3 every day is the
 // plan's three blocks: cards, listening, speaking.
 // A task is { id, min, text, href? }. Every text is in both languages: { en, najdi }.
@@ -123,19 +123,19 @@ const WEEK = [
 
 // id picks the stage's step on the color ramp (p1–p6) on the calendar, plan and progress pages.
 export const PHASES = [
-  { id: 1, label: both("Script", "الكتابة"), name: both("Script", "الكتابة"),
+  { id: 1, cefr: "", label: both("Script", "الكتابة"), name: both("Script", "الكتابة"),
     when: both("Weeks 1–2", "الأسبوع 1–2"),
     start: "2026-09-21", end: "2026-10-04", words: both("—", "—", "—", "—"),
     canDo: both("Read any word slowly, write every letter in every form",
                 "تقرا أي كلمة على مهلك، وتكتب كل حرف بكل أشكاله"),
     routine: [], weekly: [] },
-  { id: 2, label: both("Stage 1", "المرحلة 1"), name: both("Core", "الأساس"),
+  { id: 2, cefr: "A1", label: both("Stage 1", "المرحلة 1"), name: both("Core", "الأساس"),
     when: both("Weeks 3–10", "الأسابيع 3–10"),
     start: "2026-10-05", end: "2026-11-29", words: both("150 + 50 phrases", "150 + 50 عبارة"),
     canDo: both("Greet her, ask and answer “how are you”, say what you're doing, say you don't understand",
                 "تسلّم عليها، تسأل وترد على «كيفك»، تقول وش قاعد تسوي، وتقول إنك ما فهمت"),
     routine: DAY_BLOCKS, weekly: WEEK },
-  { id: 3, label: both("Stage 2", "المرحلة 2"), name: both("Daily life", "الحياة اليومية"),
+  { id: 3, cefr: "A1", label: both("Stage 2", "المرحلة 2"), name: both("Daily life", "الحياة اليومية"),
     when: both("Months 3–5", "الشهور 3–5"),
     start: "2026-11-30", end: "2027-02-14", words: both("~320", "~320", "~320", "~320"),
     canDo: both("Talk about your day, food, family, what you'll do tomorrow — in short sentences",
@@ -143,13 +143,13 @@ export const PHASES = [
     note: both("Ramadan 2027 falls roughly early February to early March (check the exact dates nearer the time) — learn the special-moment phrases and use them with her.",
                "رمضان 2027 تقريبًا من أول فبراير لأول مارس (تأكد من التاريخ بالضبط لما يقرب) — تعلّم عبارات المناسبات وقلها لها."),
     routine: DAY_BLOCKS, weekly: WEEK },
-  { id: 4, label: both("Stage 3", "المرحلة 3"), name: both("Talking to her", "السوالف معها"),
+  { id: 4, cefr: "A2", label: both("Stage 3", "المرحلة 3"), name: both("Talking to her", "السوالف معها"),
     when: both("Months 5–8", "الشهور 5–8"),
     start: "2027-02-15", end: "2027-05-31", words: both("~500", "~500", "~500", "~500"),
     canDo: both("A 10-minute call mostly in Arabic, with English as a rescue",
                 "تسوي مكالمة 10 دقايق أغلبها بالعربي، والإنجليزي للطوارئ"),
     routine: DAY_BLOCKS, weekly: WEEK },
-  { id: 5, label: both("Stage 4", "المرحلة 4"), name: both("Her words", "كلماتها"),
+  { id: 5, cefr: "A2", label: both("Stage 4", "المرحلة 4"), name: both("Her words", "كلماتها"),
     when: both("Months 8–12", "الشهور 8–12"),
     start: "2027-06-01", end: "2027-09-30", words: both("~750", "~750", "~750", "~750"),
     canDo: both("Tell a story about your week in the past tense; follow her voice notes on familiar topics",
@@ -157,10 +157,29 @@ export const PHASES = [
     note: both("The new words come from her: her word of the day, lines from her voice notes, and every word your tutor corrects.",
                "الكلمات الجديدة تجي منها: كلمتها اليومية، وجمل من فويساتها، وكل كلمة يصححها المدرّس."),
     routine: DAY_BLOCKS, weekly: WEEK },
-  { id: 6, label: both("Stage 5", "المرحلة 5"), name: both("Her words, deeper", "كلماتها، أعمق"),
+  { id: 6, cefr: "A2+", label: both("Stage 5", "المرحلة 5"), name: both("Her words, deeper", "كلماتها، أعمق"),
     when: both("Months 12–15", "الشهور 12–15"),
     start: "2027-10-01", end: "2027-12-31", words: both("~1000", "~1000", "~1000", "~1000"),
     canDo: both("A 30-minute call in Arabic; joke, disagree, explain feelings simply",
                 "تسوي مكالمة 30 دقيقة بالعربي؛ تمزح وتختلف معها وتشرح مشاعرك ببساطة"),
+    routine: DAY_BLOCKS, weekly: WEEK },
+  // B1 needs about twice the words of a thousand, and the grammar that joins sentences together: why, although,
+  // if, the one that, he said that. These two stages are that work. (CEFR B1 — Council of Europe; 1,500–2,000
+  // words active for Arabic at B1.)
+  { id: 7, cefr: "B1 →", label: both("Stage 6", "المرحلة 6"), name: both("Opinions and stories", "الآراء والسوالف"),
+    when: both("Months 16–23", "الشهور 16–23"),
+    start: "2028-01-01", end: "2028-08-31", words: both("~1400", "~1400"),
+    canDo: both("Say why you think something and back it up; tell a story with a beginning, a middle and an end; follow two Saudis talking about something you know",
+                "تقول ليش تفكر كذا وتعلل كلامك؛ تحكي سالفة من أولها لآخرها؛ وتتابع سعوديين يسولفون عن شي تعرفه"),
+    note: both("This is where sentences start joining up: because, although, if, the one that, he said that. Short answers become real answers.",
+               "هنا تبدأ الجمل ترتبط: لأن، مع إن، لو، اللي، قال إن. وتصير إجاباتك جمل كاملة مو كلمة وحدة."),
+    routine: DAY_BLOCKS, weekly: WEEK },
+  { id: 8, cefr: "B1", label: both("Stage 7", "المرحلة 7"), name: both("On your own", "على حسابك"),
+    when: both("Months 24–33", "الشهور 24–33"),
+    start: "2028-09-01", end: "2029-06-30", words: both("~2000", "~2000"),
+    canDo: both("Handle any everyday situation in Saudi on your own, follow her family around the table, and say what you hope for and why — B1",
+                "تتصرف بأي موقف يومي بالسعودية لحالك، وتتابع أهلها وهم يسولفون على السفرة، وتقول وش تتمنى وليش — مستوى B1"),
+    note: both("B1 is the level where you stop needing English as a rescue. Not perfect — you'll still search for words — but you get through the day on your own.",
+               "B1 هو المستوى اللي ما تحتاج فيه الإنجليزي كطوق نجاة. مو كمال — بتدوّر على كلمات — لكن تعدّي يومك لحالك."),
     routine: DAY_BLOCKS, weekly: WEEK },
 ];

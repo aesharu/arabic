@@ -50,6 +50,17 @@ export const STRINGS = {
     en: "{done} of {need} words learned",
     najdi: "{done} من {need} كلمة محفوظة",
   },
+  // The CEFR ladder: what B1 actually means, in his words (Council of Europe B1 descriptor).
+  "cefr.what": { en: "What is B1, and where does this course end?", najdi: "وش يعني B1، ووين تنتهي هالخطة؟" },
+  "cefr.b1Means": {
+    en: "B1 is the level where you stop needing English as a rescue. The whole course is built to get you there — every stage above is a step on that road.",
+    najdi: "B1 هو المستوى اللي ما تحتاج فيه الإنجليزي كطوق نجاة. كل الخطة مبنية توصلك له — وكل مرحلة فوق خطوة بالطريق.",
+  },
+  "cefr.b1a": { en: "You follow the main points when Saudis talk about everyday things, at normal speed.", najdi: "تفهم زبدة الكلام لما السعوديين يسولفون عن أمور يومية، وبسرعتهم الطبيعية." },
+  "cefr.b1b": { en: "You get through any everyday situation in Saudi Arabia on your own.", najdi: "تتصرف بأي موقف يومي بالسعودية لحالك." },
+  "cefr.b1c": { en: "You tell a story about something that happened — a beginning, a middle and an end.", najdi: "تحكي سالفة صارت لك — من أولها لوسطها لآخرها." },
+  "cefr.b1d": { en: "You say what you hope for, what you think, and why.", najdi: "تقول وش تتمنى، ووش رايك، وليش." },
+  "cefr.b1Words": { en: "B1 in Arabic asks for roughly 1,500–2,000 words you can actually use. This course ends at 2,000.", najdi: "مستوى B1 بالعربي يبي تقريبًا ١٥٠٠–٢٠٠٠ كلمة تقدر تستخدمها فعلًا. وهالخطة تنتهي عند ٢٠٠٠." },
   "stage.next": { en: "Next: {stage}", najdi: "اللي بعده: {stage}" },
   "stage.opens": {
     en: "opens when you've learned {need} words",

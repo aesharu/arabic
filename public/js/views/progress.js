@@ -118,7 +118,7 @@ export default {
       return `<li class="sl-step is-${state}">
         <span class="sl-mark" aria-hidden="true">${state === "done" ? icon("check") : num(i + 1)}</span>
         <span class="sl-body">
-          <b>${esc(tx(phaseTitle(p)))}</b>
+          <b>${esc(tx(phaseTitle(p)))}${p.cefr ? ` <span class="sl-cefr" dir="ltr">${esc(p.cefr)}</span>` : ""}</b>
           ${state === "now"
             ? `<span class="meter" role="meter" aria-valuemin="${sp.from}" aria-valuemax="${sp.need}" aria-valuenow="${sp.done}" aria-label="${esc(tx(phaseTitle(p)))}"><span style="width:${Math.max(0, Math.min(100, sp.pct)).toFixed(1)}%"></span></span>
                <small>${esc(t(`stage.gate.${sp.kind}`, { done: num(sp.done), need: num(sp.need) }))}</small>`
@@ -126,7 +126,12 @@ export default {
         </span>
       </li>`;
     }).join("")}</ol>
-    ${sp.next ? `<p class="muted small sl-next">${esc(t("stage.next", { stage: tx(phaseTitle(sp.next)) }))} — ${esc(gateText(sp.phase))}</p>` : `<p class="muted small sl-next">${esc(t("stage.last"))}</p>`}`;
+    ${sp.next ? `<p class="muted small sl-next">${esc(t("stage.next", { stage: tx(phaseTitle(sp.next)) }))} — ${esc(gateText(sp.phase))}</p>` : `<p class="muted small sl-next">${esc(t("stage.last"))}</p>`}
+    <details class="sl-b1"><summary>${esc(t("cefr.what"))}</summary>
+      <p>${esc(t("cefr.b1Means"))}</p>
+      <ul><li>${esc(t("cefr.b1a"))}</li><li>${esc(t("cefr.b1b"))}</li><li>${esc(t("cefr.b1c"))}</li><li>${esc(t("cefr.b1d"))}</li></ul>
+      <p class="muted small">${esc(t("cefr.b1Words"))}</p>
+    </details>`;
 
     // The long view: every month studied, and the words known at the end of each one.
     const months = byMonth(log);
