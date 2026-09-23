@@ -34,6 +34,9 @@ const defaults = () => ({
   //                  known?: how many words were known that day (a daily mark, for the long charts) }
   log: {},
   goals: { done: [] }, // the birthday plan's "I can…" goals ticked (views/birthday.js)
+  // Awards (core/game.js): the ids already won, and the level already celebrated — so each one is
+  // celebrated once and stays won even if a card is later forgotten.
+  game: { badges: [], level: 1 },
   reading: { done: [] }, // stories read: "st.<id>" (views/stories.js)
   // Cards (core/cards.js): cardId → the scheduler's card (core/srs.js) plus mod, the time it last changed.
   // prefs: new cards a day, practice saying (reverse cards), open every deck early, read the answer aloud.
@@ -53,6 +56,7 @@ function merge(saved) {
     srs: { cards: { ...saved.srs?.cards }, prefs: { ...d.srs.prefs, ...saved.srs?.prefs } },
     log: saved.log && typeof saved.log === "object" ? saved.log : {},
     goals: { done: Array.isArray(saved.goals?.done) ? saved.goals.done : [] },
+    game: { badges: Array.isArray(saved.game?.badges) ? saved.game.badges : [], level: saved.game?.level ?? 1 },
     reading: { done: Array.isArray(saved.reading?.done) ? saved.reading.done : [] },
   };
 }

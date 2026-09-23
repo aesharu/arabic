@@ -6,6 +6,8 @@ import { esc, pageHead } from "../core/dom.js";
 import { icon } from "../core/art.js";
 import { columns } from "../core/charts.js";
 import { progressNow } from "../core/cards.js";
+import { allStandings } from "../core/game.js";
+import { boardNow } from "./awards.js";
 import { vocabNow, loadVocab } from "../core/vocab.js";
 import { START, DAILY_GOAL_MIN } from "../config.js";
 import { PHASES } from "../data/plan.js";
@@ -17,6 +19,12 @@ import { journeyParapet, minutesBetween, weeksSoFar } from "./shared.js";
 const day = key => format(key, { day: "numeric", month: "short" }, locale());
 const dayLong = key => format(key, { weekday: "short", day: "numeric", month: "short" }, locale());
 const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+
+// How many of the awards are won (core/game.js) — the tile links through to them.
+const awardsWon = () => {
+  const all = allStandings(boardNow());
+  return { won: all.filter(x => x.have).length, all: all.length };
+};
 
 // The 28 days a chart shows: the first four weeks of the plan, then always the last 28 days.
 function window28(today) {
@@ -161,6 +169,8 @@ export default {
         ${tile(t("today.streak"), days, tu("unit.days", days))}
         ${tile(t("today.studied"), tot.days, tu("unit.days", tot.days))}
         ${tile(t("progress.tasksDone"), tot.tasks)}
+        ${(board => tile(t("aw.tile"), num(board.won), t("progress.of", { n: num(board.won), total: num(board.all) }),
+          `<p class="stat-note"><a href="#/awards">${esc(t("aw.seeAll"))}</a></p>`))(awardsWon())}
         ${tile(t("progress.bestStreak"), best, tu("unit.days", best))}
         ${tile(t("progress.average"), num(Math.round(hb.average)), t("progress.aDay"))}
         ${tile(t("progress.share"), `${Math.round(hb.share * 100)}%`, t("progress.ofDays", { n: num(hb.since) }))}

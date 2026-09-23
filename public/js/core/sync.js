@@ -22,7 +22,7 @@ const key = () => store.own().sync?.key ?? "";
 const headers = () => ({ authorization: `Bearer ${key()}`, "content-type": "application/json" });
 
 // The parts of the state that belong in the cloud. prefs (language, theme) stay per computer; so does the timer.
-const cloudPart = s => ({ version: s.version, script: s.script, log: s.log, srs: s.srs, goals: s.goals, reading: s.reading });
+const cloudPart = s => ({ version: s.version, script: s.script, log: s.log, srs: s.srs, goals: s.goals, reading: s.reading, game: s.game });
 
 function mergeDay(a = { min: 0, tasks: [] }, b = { min: 0, tasks: [] }) {
   const quiz = (a.quiz?.total ?? 0) >= (b.quiz?.total ?? 0) ? a.quiz : b.quiz;
@@ -59,6 +59,8 @@ export function merge(local, remote) {
     srs: mergeSrs(local.srs, remote.srs),
     goals: { done: union(local.goals?.done, remote.goals?.done) },
     reading: { done: union(local.reading?.done, remote.reading?.done) },
+    // An award won on one computer is won everywhere, and the level only ever goes up.
+    game: { badges: union(local.game?.badges, remote.game?.badges), level: Math.max(local.game?.level ?? 1, remote.game?.level ?? 1) },
   };
 }
 

@@ -14,6 +14,9 @@ import * as sync from "./core/sync.js";
 import { welcome, keepWatch, switchProfile, logOut } from "./core/welcome.js";
 import * as activity from "./core/activity.js";
 import { chime } from "./core/music.js";
+import { celebrate } from "./core/celebrate.js";
+import { toast } from "./core/toast.js";
+import { earned } from "./core/game.js";
 import { elapsed, clock } from "./core/together.js";
 import { TOGETHER_SINCE } from "./config.js";
 
@@ -46,6 +49,7 @@ import review from "./views/review.js";
 import stats from "./views/stats.js";
 import speak from "./views/speak.js";
 import write from "./views/write.js";
+import awards, { boardNow } from "./views/awards.js";
 import * as editmode from "./core/editmode.js";
 import * as content from "./core/content.js";
 import { openEditor } from "./core/editor.js";
@@ -53,8 +57,8 @@ import { renderCulture, startCulture } from "./views/culture.js";
 
 // Each view is { titleKey, mount(root, { params, signal }) }. Listeners a view adds with
 // { signal } are removed automatically when you leave it.
-const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record, grammar, lessons, saudi, review, stats, speak, write, love, birthday, numbers, chats, stories, practice, verbs, me, path };
-const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound", grammar: "reading", lessons: "plan", saudi: "star", review: "check", stats: "progress", speak: "mic", write: "pencil", love: "heart", birthday: "star", numbers: "timer", chats: "phrases", stories: "reading", practice: "quiz", verbs: "reading", me: "phrases", path: "plan" };
+const routes = { today, progress, calendar, plan, print, cards, words, phrases, letters, vowels, reading, quiz, record, grammar, lessons, saudi, review, stats, speak, write, awards, love, birthday, numbers, chats, stories, practice, verbs, me, path };
+const NAV_ICONS = { today: "today", progress: "progress", calendar: "calendar", plan: "plan", print: "print", cards: "cards", words: "words", phrases: "phrases", letters: "letters", vowels: "vowels", reading: "reading", quiz: "quiz", record: "sound", grammar: "reading", lessons: "plan", saudi: "star", review: "check", stats: "progress", speak: "mic", write: "pencil", awards: "star", love: "heart", birthday: "star", numbers: "timer", chats: "phrases", stories: "reading", practice: "quiz", verbs: "reading", me: "phrases", path: "plan" };
 const view = document.getElementById("view");
 const motion = !matchMedia("(prefers-reduced-motion: reduce)").matches;
 let controller = null;
@@ -216,6 +220,41 @@ pill.addEventListener("click", e => {
 });
 setInterval(() => timer.running() && renderTimerPill(), 1000);
 
+// The fire, the level and today's points — under the day pill, on every page. Tap it for the Awards page.
+// Dima has her own copy of all of it, so the site keeps score for her too when she studies.
+const scoreStrip = document.getElementById("scorestrip");
+function renderScore() {
+  if (store.watching()) return void (scoreStrip.hidden = true); // his progress, seen from her profile
+  const b = boardNow();
+  scoreStrip.hidden = false;
+  scoreStrip.innerHTML = `<a href="#/awards" aria-label="${esc(`${t("aw.streak")}: ${num(b.streak)}. ${t("aw.level", { n: num(b.level.n) })}. ${t("aw.todayPoints")}: ${num(b.today)}`)}">
+      <span class="sc-fire fire-${b.fire}">${icon("flame")}<b>${num(b.streak)}</b></span>
+      <span class="sc-lv">${esc(t("aw.level", { n: num(b.level.n) }))}</span>
+      <span class="sc-xp">+${num(b.today)}</span>
+    </a>`;
+}
+
+// An award is won once and stays won. Whatever page he is on, the moment the numbers reach one, it lands.
+function checkAwards() {
+  if (store.isTeacher() || store.watching() || !vocabNow()) return;
+  const b = boardNow();
+  const had = new Set(store.get().game?.badges ?? []);
+  const fresh = earned(b).filter(id => !had.has(id));
+  const level = store.get().game?.level ?? 1;
+  if (!fresh.length && b.level.n <= level) return;
+  store.update(s => {
+    s.game = { badges: [...new Set([...(s.game?.badges ?? []), ...fresh])], level: Math.max(level, b.level.n) };
+  });
+  // One at a time is a moment; ten at once is noise, so a handful become one line.
+  if (fresh.length > 2) toast(t("aw.earnedMany", { n: num(fresh.length) }), { ms: 5000 });
+  else for (const id of fresh) toast(t("aw.earnedToast", { name: t(`badge.${id}`) }), { ms: 4200 });
+  if (b.level.n > level) toast(t("aw.levelToast", { n: num(b.level.n), name: t(`lv.${b.level.id}`) }), { ms: 5500 });
+  if (fresh.length || b.level.n > level) {
+    celebrate(scoreStrip);
+    chime();
+  }
+}
+
 // Cards waiting today, on the Cards menu item — like the numbers beside Anki's decks.
 let countQueued = false;
 // A mark of how many words are known today, kept day by day so the years can show a line that only goes up.
@@ -232,6 +271,8 @@ function noteWordsKnown(notes) {
 function renderNavCount() {
   countQueued = false;
   renderDayPill(); // words learned can move the stage on
+  renderScore();
+  checkAwards();
   const v = vocabNow();
   if (!v) return;
   noteWordsKnown(v.notes);

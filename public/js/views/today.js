@@ -22,6 +22,8 @@ import * as content from "../core/content.js";
 import { spoken, openStudio } from "../core/studio.js";
 import { DECKS } from "../core/vocab.js";
 import { streaks, daysFromTimes, saudiDay } from "../core/activity.js";
+import { nextUp } from "../core/game.js";
+import { boardNow } from "./awards.js";
 
 // New phrases on Days 1–14; after that, a rotating review of three.
 function phrasesFor(n) {
@@ -137,6 +139,26 @@ function storyCard(S) {
 
 const stat = (iconName, label, value, unit) =>
   `<div><dt>${icon(iconName)}${label}</dt><dd>${value} <small>${unit}</small></dd></div>`;
+
+// The level, what today has earned so far, and the one award closest to done — the reason to sit down again.
+function scoreCard() {
+  const b = boardNow();
+  const close = nextUp(b, 1)[0];
+  return `<section class="panel tg-score">
+    <h2>${t("aw.title")}</h2>
+    <div class="tg-sc-row">
+      <p class="tg-sc-lv"><b>${esc(t(`lv.${b.level.id}`))}</b><small>${esc(t("aw.level", { n: num(b.level.n) }))}</small></p>
+      <p class="tg-sc-xp"><b>+${num(b.today)}</b><small>${esc(t("aw.todayPoints"))}</small></p>
+      <p class="tg-sc-fire fire-${b.fire}"><b>${icon("flame")}${num(b.streak)}</b><small>${esc(t("aw.streak"))}</small></p>
+    </div>
+    ${close ? `<div class="tg-sc-next">
+      <p><b>${esc(t(`badge.${close.id}`))}</b> <span>${esc(t(`badge.${close.id}.sub`))}</span></p>
+      <span class="meter" aria-hidden="true"><span style="width:${Math.min(100, close.pct).toFixed(1)}%"></span></span>
+      <span class="tg-sc-count" dir="ltr">${num(close.now)} / ${num(close.need)}</span>
+    </div>` : ""}
+    <p><a class="btn" href="#/awards">${t("aw.seeAll")}</a></p>
+  </section>`;
+}
 
 // Minutes for each of the last 14 days, as small columns with a tooltip each.
 function last14(date) {
@@ -287,6 +309,8 @@ export default {
                 <button class="btn" data-add="30">+30</button>
               </div>
             </section>
+
+            ${scoreCard()}
 
             <section class="panel stats">
               <h2>${t("today.journey")}</h2>

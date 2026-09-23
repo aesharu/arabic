@@ -387,3 +387,27 @@ body { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org
     background-repeat: repeat-y; background-size: 12px 24px; background-position: right top; }
   html[dir="rtl"] .sidebar { background-position: left top; }
 }
+
+/* The fire, the level and today's points, under the day pill on every page. */
+.scorestrip { margin-top: 8px; }
+.scorestrip a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px; border-radius: 12px; text-decoration: none;
+  background: color-mix(in srgb, var(--sidebar-ink) 8%, transparent);
+  color: var(--sidebar-ink); font-variant-numeric: tabular-nums;
+}
+.scorestrip a:hover { background: color-mix(in srgb, var(--sidebar-ink) 14%, transparent); }
+.sc-fire { display: inline-flex; align-items: center; gap: 4px; font-weight: 800; }
+.sc-fire .i { width: 20px; height: 20px; }
+.sc-lv { flex: 1; color: var(--sidebar-muted); font-size: 14px; font-weight: 700; white-space: nowrap; }
+.sc-xp { font-weight: 800; font-size: 14px; white-space: nowrap; }
+
+/* A fire that grows: grey when it's out, then warmer the longer the run. */
+.fire-0 { color: var(--sidebar-muted); opacity: .6; }
+.fire-1 { color: #E0A33A; }
+.fire-2 { color: #E2802C; }
+.fire-3 { color: #DC5F22; }
+.fire-4 { color: #C9401F; }
+.fire-5 { color: #9E2A2B; }
+.fire-4 .i, .fire-5 .i { filter: drop-shadow(0 0 5px color-mix(in srgb, currentColor 55%, transparent)); }
+.fire-5 .i { fill: currentColor; fill-opacity: .18; }

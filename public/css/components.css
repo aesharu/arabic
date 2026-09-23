@@ -2026,3 +2026,66 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
 .year-day.is-today { outline: 2px solid var(--ink); outline-offset: 1px; }
 @media (max-width: 560px) { .year-day { width: 9px; height: 9px; } }
 .stat-note { margin: 2px 0 0; color: var(--muted); font-weight: 700; }
+
+/* ---------- Awards ---------- */
+.aw-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin: 4px 0 14px; }
+.aw-level, .aw-fire, .aw-today {
+  border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; background: var(--surface);
+  font-variant-numeric: tabular-nums;
+}
+.aw-lv-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.aw-lv-n { color: var(--muted); font-size: 14px; font-weight: 700; }
+.aw-lv-name { font-size: 21px; }
+.aw-xp { margin: 6px 0 0; }
+.aw-xp b { font-size: 30px; font-weight: 800; line-height: 1; }
+.aw-xp small, .aw-today-n small { color: var(--muted); font-size: 14px; }
+.aw-lv-bar { margin: 10px 0 6px; }
+.aw-lv-left { margin: 0; color: var(--muted); font-size: 14px; }
+.aw-fire { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2px; }
+.aw-fire .i { width: 40px; height: 40px; }
+.aw-fire-n b { font-size: 26px; font-weight: 800; }
+.aw-fire-n, .aw-today-n, .aw-today-l { margin: 0; }
+.aw-fire-n small, .aw-today-l { display: block; color: var(--muted); font-size: 13px; }
+.aw-fire-hint { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+.aw-today { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.aw-today-n b { font-size: 30px; font-weight: 800; line-height: 1; }
+.aw-total { margin: 0 0 18px; color: var(--muted); font-weight: 700; }
+.aw-group, .aw-next { margin: 22px 0; }
+.aw-group h2, .aw-next h2 { display: flex; align-items: baseline; gap: 10px; font-size: 19px; margin: 0 0 10px; }
+.aw-g-count { color: var(--muted); font-size: 14px; font-weight: 700; }
+.aw-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 10px; }
+.aw-badge {
+  display: flex; align-items: flex-start; gap: 12px;
+  border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; background: var(--surface);
+}
+.aw-badge.is-won { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
+.aw-ico { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--line); color: var(--muted); }
+.aw-badge.is-won .aw-ico { background: var(--accent); color: #fff; }
+.aw-text { flex: 1; min-width: 0; }
+.aw-text b { display: block; font-size: 16px; }
+.aw-text small { display: block; color: var(--muted); font-size: 13.5px; margin-top: 2px; }
+.aw-b-bar { height: 6px; margin: 8px 0 4px; }
+.aw-b-count { color: var(--muted); font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.aw-tick { flex: none; color: var(--accent); }
+.aw-lock { flex: none; color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+.aw-how { margin: 26px 0 0; color: var(--muted); }
+.aw-how summary { cursor: pointer; font-weight: 700; }
+.aw-how p { margin: 8px 0 0; font-size: 14px; line-height: 1.7; }
+@media (max-width: 860px) {
+  .aw-top { grid-template-columns: 1fr 1fr; }
+  .aw-level { grid-column: 1 / -1; }
+  .aw-list { grid-template-columns: 1fr; }
+}
+
+/* The awards panel on Today: level, today's points, the fire, and the one closest to done. */
+.tg-sc-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 0 0 14px; }
+.tg-sc-row p { flex: 1 1 90px; margin: 0; }
+.tg-sc-row b { display: block; font-size: 22px; font-weight: 800; line-height: 1.2; }
+.tg-sc-row small { display: block; color: var(--muted); font-size: 13px; font-weight: 700; }
+.tg-sc-fire b { display: flex; align-items: center; gap: 5px; }
+.tg-sc-fire .i { width: 22px; height: 22px; }
+.tg-sc-next { border-top: 1px solid var(--line); padding-top: 12px; }
+.tg-sc-next p { margin: 0; }
+.tg-sc-next span { color: var(--muted); }
+.tg-sc-next .meter { margin: 8px 0 4px; }
+.tg-sc-count { color: var(--muted); font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
