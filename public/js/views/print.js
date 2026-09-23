@@ -10,7 +10,7 @@
 import { todayKey, addDays, format } from "../core/dates.js";
 import { weekNumber } from "../core/schedule.js";
 import { t, tx, num, locale, lang } from "../core/i18n.js";
-import { esc, ar, lat, pageHead } from "../core/dom.js";
+import { esc, ar, lat, translit, pageHead } from "../core/dom.js";
 import { icon } from "../core/art.js";
 import { loadVocab } from "../core/vocab.js";
 import { GROUPS, formsOf } from "../data/letters.js";
@@ -72,7 +72,7 @@ function wordSheets(stage) {
   return pages.map((p, i) => sheet(
     `${esc(deckName(stage.id))} · ${esc(tx(p.topic.title))}`,
     p.list.map(e => `<div class="tword">
-      <p class="tw-cap" dir="ltr">${lat(e.say, "tr")}${meaningLines(e)}</p>
+      <p class="tw-cap" dir="ltr">${translit(e.say)}${meaningLines(e)}</p>
       ${row(solid(e.ar) + grey(e.ar).repeat(4), "fit")}
       ${row()}
     </div>`).join(""),
@@ -88,7 +88,7 @@ function foldSheets(stage) {
     `${esc(t("print.foldTitle"))} · ${esc(deckName(stage.id))}`,
     `<p class="fold-line"><span>${esc(t("print.foldHere"))}</span></p>
      <table class="fold" dir="ltr"><tbody>${list.map(e => `
-       <tr><td class="fold-meaning">${lat(e.say, "tr")}${meaningLines(e)}</td><td class="fold-ar" dir="rtl" lang="ar">${esc(e.ar)}</td></tr>`).join("")}
+       <tr><td class="fold-meaning">${translit(e.say)}${meaningLines(e)}</td><td class="fold-ar" dir="rtl" lang="ar">${esc(e.ar)}</td></tr>`).join("")}
      </tbody></table>`,
     i + 1, pages.length, "s-fold",
   )).join("");
@@ -105,7 +105,7 @@ function cardSheets(list) {
     const no = c => `<span class="pc-n" dir="ltr">${num(c.n)}</span>`; // the same number front and back, to pair them after cutting
     const front = slots.map(c => `<div class="pcard">${c ? `${no(c)}<p lang="ar" dir="rtl">${esc(c.ar)}</p>` : ""}</div>`).join("");
     const mirrored = [0, 1, 2, 3].flatMap(r => [slots[r * 2 + 1], slots[r * 2]]);
-    const back = mirrored.map(c => `<div class="pcard back">${c ? `${no(c)}${lat(c.say, "tr")}${meaningLines(c)}` : ""}</div>`).join("");
+    const back = mirrored.map(c => `<div class="pcard back">${c ? `${no(c)}${translit(c.say)}${meaningLines(c)}` : ""}</div>`).join("");
     out.push(sheet(esc(t("print.cardsFront")), `<div class="pcards">${front}</div>`, i * 2 + 1, pages.length * 2, "s-cards", { date: false }));
     out.push(sheet(esc(t("print.cardsBack")), `<div class="pcards">${back}</div>`, i * 2 + 2, pages.length * 2, "s-cards", { date: false }));
   });
@@ -141,7 +141,7 @@ function storySheets(S, level) {
     <ol class="ps-ar" dir="rtl" lang="ar">${st.text.map(l => `<li>${esc(l.ar)}</li>`).join("")}</ol>
     <div class="ps-write optional"><p class="free-label">${esc(t("print.copySentence"))}</p>${row()}${row()}</div>
     <p class="ps-cut"><span>${esc(t("print.foldHere"))}</span></p>
-    <ol class="ps-key">${st.text.map(l => `<li>${lat(l.say, "tr")}${meaningLines(l)}</li>`).join("")}</ol>
+    <ol class="ps-key">${st.text.map(l => `<li>${translit(l.say)}${meaningLines(l)}</li>`).join("")}</ol>
   </div>`;
   return pages.map((group, i) => sheet(`${esc(t("print.storiesName"))} · ${esc(t(`st.step.${level}`))}`, group.map(story).join(""), i + 1, pages.length, `s-stories lv-${level}`)).join("");
 }

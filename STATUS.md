@@ -44,6 +44,11 @@ Last updated: 23 Sept 2026 (no more deadline: stages open by what you have done;
 
 - **Weekly lessons** `#/lessons` (`data/weeks.js`, `views/lessons.js`), weeks 3–67, "This week's lesson" link on Today: the stage goal, that week's words from the plan (big topics split over 2–3 weeks; review weeks), a grammar lesson, a speaking task per stage, and a short conversation — **all 65 weeks have one** (the last 44 written 23 Sept 2026: weeks 19–21, 27–67). Conversation lines are Claude-written — each flagged, ✎-correctable (ids `d<week>x<line>`). `tests/weeks.test.mjs` checks weeks, topics, both languages and dialect traps.
 
+- **The pronunciation in Ukrainian letters** (`core/ua.js`, `tests/ua.test.mjs`): under every Latin pronunciation, the same sounds written in Ukrainian — «аль-хамду ліллаг», «ґальбі», «шлонік?». Ukrainian carries sounds English spelling can only hint at, and nothing in it is silent.
+  - The map: ق = **ґ** (ґанок — the sound that makes Saudi sound Saudi) · خ, ح = **х** · ه, غ = **г** · ث س ص = **с** · ذ ز ظ ض = **з** · ت ط = **т** · ل before a consonant or at the end = **ль** (аль-бет, ґальбі) · ع, ء = **ʼ** · ya/yu/ye = я/ю/є. What Ukrainian can't keep apart, the Latin line above still shows.
+  - Worked out from the Latin pronunciation, so every word has one and they're all consistent. **Any word can be corrected by hand** — the ✎ form has a "How to say it, in Ukrainian letters" box, pre-filled with the worked-out spelling; a correction is stored like any other and wins from then on (`content.FIELDS`, D1 `edits`).
+  - Everywhere `translit()` is used: words, phrases, cards, stories, chats, weekly conversations, the Speak and Write pages, and the **printable sheets**. Only in his profile — Dima never sees it.
+
 - **Awards** `#/awards` (`core/game.js`, `views/awards.js`): points, ten levels, the fire and 33 awards, all worked out from progress that already exists — nothing extra to tick.
   - **Points**: 1 a minute · 2 a card answered · 3 a quiz answer right · 5 a phrase said out loud · 5 a word written in Arabic · 5 a task ticked · 25 for a day that counts as done.
   - **Ten levels**, named for what you can do by then: The start · Letters · Words · Sentences · Sawalif · A phone call · A whole story · Her dialect · Straight to her heart · Poet (0 → 90,000 points, years apart on purpose).

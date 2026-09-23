@@ -13,6 +13,7 @@ import { vocabNow } from "./vocab.js";
 import { toast, rescue } from "./toast.js";
 import { say } from "./speech.js";
 import { openStudio, spoken } from "./studio.js";
+import { uaSay } from "./ua.js";
 
 function find(id) {
   const v = vocabNow();
@@ -24,6 +25,7 @@ function find(id) {
 const WORD_FIELDS = [
   ["ar", "edit.ar", "rtl", "ar"],
   ["say", "edit.say", "ltr", "en"],
+  ["ua", "edit.ua", "ltr", "uk"],
   ["en", "edit.en", "ltr", "en"],
 ];
 const TEXT_FIELDS = [
@@ -122,11 +124,14 @@ function voiceRow(e) {
 export function openEditor(id) {
   const e = find(id);
   if (!e) return;
-  const orig = e.orig ?? e;
+  // The Ukrainian pronunciation isn't in the plan — it's worked out from the Latin one (core/ua.js). The box
+  // opens with that already in it, so correcting one is a small edit rather than writing it out from nothing.
+  const said = uaSay(e.say);
+  const orig = { ...(e.orig ?? e), ua: said };
   dialog({
     title: t("edit.title"),
     fields: WORD_FIELDS,
-    values: e,
+    values: { ...e, ua: e.ua || said },
     orig,
     top: voiceRow(e),
     extra: `<label class="check"><input type="checkbox" name="checked"${content.editOf(id)?.checked ? " checked" : ""}><span>${t("edit.checked")}</span></label>`,

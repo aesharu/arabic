@@ -1,6 +1,8 @@
 import { t, tx, lang, isArabic } from "./i18n.js";
 import { icon, vignette } from "./art.js";
 import { hasScene, sceneSvg, SCENE_WORDS } from "./scenes.js";
+import { uaSay, hasSay } from "./ua.js";
+import * as store from "./store.js";
 
 export const esc = s =>
   String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -13,10 +15,19 @@ export const rich = text => (isArabic() ? esc(text) : esc(text).replace(ARABIC_R
 // Arabic learning content always goes through here: Naskh font, right-to-left, and never machine-translated.
 export const ar = (text, cls = "") => `<span class="ar${cls ? " " + cls : ""}" lang="ar" translate="no">${esc(text)}</span>`;
 
-// Latin text (transliteration, English, Ukrainian) kept left-to-right inside an Arabic interface.
+// Latin text (a pronunciation, or English) kept left-to-right inside the Arabic interface.
 export const lat = (text, cls = "", l = "") =>
   `<bdi class="lat${cls ? " " + cls : ""}" dir="ltr"${l ? ` lang="${l}"` : ""}${cls === "tr" ? ` translate="no"` : ""}>${esc(text)}</bdi>`;
-export const translit = text => lat(text, "tr");
+
+// How to say it: the Latin pronunciation, and under it the same thing in Ukrainian letters (core/ua.js) —
+// Ukrainian gets several of these sounds right that English spelling can only hint at. `ua` overrides the
+// worked-out one when the word has been corrected by hand.
+// Only in Volodymyr's profile: Dima is the native speaker and doesn't need it.
+export const translit = (text, ua = "") => {
+  const line = lat(text, "tr");
+  if (store.isTeacher() || !hasSay(text)) return line;
+  return `${line}<bdi class="lat tr-ua" dir="ltr" lang="uk" translate="no">${esc(ua || uaSay(text))}</bdi>`;
+};
 
 // Visible "check with tutor" badge for content that still needs a native speaker's OK.
 export const flag = item =>

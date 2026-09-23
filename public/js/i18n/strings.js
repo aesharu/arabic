@@ -1062,6 +1062,7 @@ export const STRINGS = {
   "edit.title": { en: "Correct this word", najdi: "تصحيح الكلمة" },
   "edit.ar": { en: "Saudi (Arabic script)", najdi: "السعودي (بالحروف العربية)" },
   "edit.say": { en: "Pronunciation (Latin letters)", najdi: "النطق (بحروف لاتينية)" },
+  "edit.ua": { en: "How to say it, in Ukrainian letters", najdi: "طريقة النطق بالحروف الأوكرانية" },
   "edit.en": { en: "English", najdi: "الإنجليزي" },
   "edit.original": { en: "Originally: {text}", najdi: "كانت: {text}" },
   "edit.checked": {
