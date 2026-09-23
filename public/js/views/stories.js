@@ -21,7 +21,7 @@ export const loadStories = () =>
 
 const show = { say: false, mean: false, hide: false }; // kept while moving between stories; hide = "Listen first"
 const answers = new Map(); // story id → true/false answers given (until reload)
-const mean = x => lat(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en })); // English/Ukrainian, left to right even in Arabic
+const mean = x => lat(tx({ en: x.en, najdi: x.en })); // English/Ukrainian, left to right even in Arabic
 const readIds = () => store.get().reading?.done ?? [];
 const isRead = id => readIds().includes(`st.${id}`);
 const BADGE = { easy: "st.badgeEasy", A1: "", A2: "" };

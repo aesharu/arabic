@@ -188,7 +188,7 @@ export default {
           <div class="sp-word">
             ${ar(n.ar, "sp-ar")}
             <span class="sp-say">${translit(n.say)}</span>
-            <span class="sp-mean">${esc(tx({ en: n.en, uk: n.uk, najdi: n.en, msa: n.en }))}</span>
+            <span class="sp-mean">${esc(n.en)}</span>
             ${flag(n)}
           </div>
 

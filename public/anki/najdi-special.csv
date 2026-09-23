@@ -3,13 +3,13 @@
 #notetype:Basic
 #deck:Saudi::Special moments
 #tags column:3
-"<div dir=""rtl"" style=""font-size:2em"">رمضان كريم</div>","<b>ramaḍān karīm</b><br>EN: Ramadan greeting<br>UA: привітання з Рамаданом<br>MSA: <span dir=""rtl"">رمضان كريم</span><br>Reply / Відповідь: <span dir=""rtl"">الله أكرم</span> <i>allah akram</i>","stage-special topic-7"
-"<div dir=""rtl"" style=""font-size:2em"">رمضان مبارك</div>","<b>ramaḍān mbārak</b><br>EN: Ramadan greeting<br>UA: привітання з Рамаданом<br>MSA: <span dir=""rtl"">رمضان مبارك</span><br>Reply / Відповідь: <span dir=""rtl"">علينا وعليك</span> <i>ʿalēna w ʿalēk</i><br>⚠ check with tutor","stage-special topic-7 check-with-tutor"
-"<div dir=""rtl"" style=""font-size:2em"">عيدك مبارك</div>","<b>ʿīdik mbārak</b><br>EN: Eid greeting (to her)<br>UA: привітання зі святом Ід (до неї)<br>MSA: <span dir=""rtl"">عيدكِ مبارك</span>","stage-special topic-7"
-"<div dir=""rtl"" style=""font-size:2em"">كل عام وانتي بخير</div>","<b>kill ʿām w inti bkhēr</b><br>EN: Eid / birthday (to her)<br>UA: зі святом / з днем народження (до неї)<br>MSA: <span dir=""rtl"">كل عام وأنتِ بخير</span><br>Reply / Відповідь: <span dir=""rtl"">وانت بخير</span> <i>w int bkhēr</i>","stage-special topic-7"
-"<div dir=""rtl"" style=""font-size:2em"">عساك من عواده</div>","<b>ʿasāk min ʿuwwādah</b><br>EN: Eid wish<br>UA: побажання на Ід<br>MSA: <span dir=""rtl"">أعاده الله عليكِ بالخير</span><br>⚠ check with tutor","stage-special topic-7 check-with-tutor"
-"<div dir=""rtl"" style=""font-size:2em"">الله يشفيك</div>","<b>allah yishfīk</b><br>EN: when she's sick<br>UA: коли вона хворіє («хай Бог зцілить»)<br>MSA: <span dir=""rtl"">شفاكِ الله</span>","stage-special topic-7"
-"<div dir=""rtl"" style=""font-size:2em"">سلامات</div>","<b>salāmāt</b><br>EN: ""get well"" (quick)<br>UA: «одужуй» (коротко)<br>MSA: <span dir=""rtl"">سلامتكِ</span><br>Reply / Відповідь: <span dir=""rtl"">الله يسلمك</span> <i></i>","stage-special topic-7"
-"<div dir=""rtl"" style=""font-size:2em"">مبروك</div>","<b>mabrūk</b><br>EN: congratulations<br>UA: вітаю!<br>MSA: <span dir=""rtl"">مبارك / تهانينا</span><br>Reply / Відповідь: <span dir=""rtl"">الله يبارك فيك</span> <i>allah ybārik fīk</i>","stage-special topic-7"
-"<div dir=""rtl"" style=""font-size:2em"">الله يرحمه</div>","<b>allah yirḥamah</b><br>EN: when someone has died<br>UA: коли хтось помер («Боже, змилуйся над ним»)<br>MSA: <span dir=""rtl"">رحمه الله</span>","stage-special topic-7"
-"<div dir=""rtl"" style=""font-size:2em"">بالتوفيق</div>","<b>bit-tōfīg</b><br>EN: good luck<br>UA: успіхів!<br>MSA: <span dir=""rtl"">بالتوفيق</span>","stage-special topic-7"
+"<div dir=""rtl"" style=""font-size:2em"">رمضان كريم</div>","<b>ramaḍān karīm</b><br>EN: Ramadan greeting<br>Reply: <span dir=""rtl"">الله أكرم</span> <i>allah akram</i>","stage-special topic-7"
+"<div dir=""rtl"" style=""font-size:2em"">رمضان مبارك</div>","<b>ramaḍān mbārak</b><br>EN: Ramadan greeting<br>Reply: <span dir=""rtl"">علينا وعليك</span> <i>ʿalēna w ʿalēk</i><br>⚠ check with tutor","stage-special topic-7 check-with-tutor"
+"<div dir=""rtl"" style=""font-size:2em"">عيدك مبارك</div>","<b>ʿīdik mbārak</b><br>EN: Eid greeting (to her)","stage-special topic-7"
+"<div dir=""rtl"" style=""font-size:2em"">كل عام وانتي بخير</div>","<b>kill ʿām w inti bkhēr</b><br>EN: Eid / birthday (to her)<br>Reply: <span dir=""rtl"">وانت بخير</span> <i>w int bkhēr</i>","stage-special topic-7"
+"<div dir=""rtl"" style=""font-size:2em"">عساك من عواده</div>","<b>ʿasāk min ʿuwwādah</b><br>EN: Eid wish<br>⚠ check with tutor","stage-special topic-7 check-with-tutor"
+"<div dir=""rtl"" style=""font-size:2em"">الله يشفيك</div>","<b>allah yishfīk</b><br>EN: when she's sick","stage-special topic-7"
+"<div dir=""rtl"" style=""font-size:2em"">سلامات</div>","<b>salāmāt</b><br>EN: ""get well"" (quick)<br>Reply: <span dir=""rtl"">الله يسلمك</span> <i></i>","stage-special topic-7"
+"<div dir=""rtl"" style=""font-size:2em"">مبروك</div>","<b>mabrūk</b><br>EN: congratulations<br>Reply: <span dir=""rtl"">الله يبارك فيك</span> <i>allah ybārik fīk</i>","stage-special topic-7"
+"<div dir=""rtl"" style=""font-size:2em"">الله يرحمه</div>","<b>allah yirḥamah</b><br>EN: when someone has died","stage-special topic-7"
+"<div dir=""rtl"" style=""font-size:2em"">بالتوفيق</div>","<b>bit-tōfīg</b><br>EN: good luck","stage-special topic-7"

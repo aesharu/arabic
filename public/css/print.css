@@ -48,7 +48,6 @@ html[dir="rtl"] .cell[data-form]::before { font-family: var(--font-ui-ar); direc
 .tw-cap { display: flex; justify-content: flex-end; align-items: baseline; gap: 3.5mm; height: 5.5mm; margin: 1.2mm 0 1.6mm; overflow: hidden; white-space: nowrap; font-size: 9.5pt; line-height: 5.5mm; }
 .tw-cap .tr { font-weight: 800; font-size: 11pt; color: #0B2E1C; }
 .pm1 { color: #222; }
-.pm2 { color: #6b6b6b; font-size: 8.5pt; }
 
 /* 3. Fold and test */
 .fold-line { position: relative; height: 5mm; margin: 0 0 1mm; text-align: center; }
@@ -58,7 +57,7 @@ html[dir="rtl"] .cell[data-form]::before { font-family: var(--font-ui-ar); direc
 .fold td { height: 15.6mm; padding: 0 5mm; border-bottom: .25mm solid #e4e4e4; vertical-align: middle; }
 .fold-meaning { display: table-cell; font-size: 10pt; line-height: 1.25; }
 .fold-meaning .tr { display: block; font-size: 10.5pt; }
-.fold-meaning .pm1, .fold-meaning .pm2 { display: block; }
+.fold-meaning .pm1 { display: block; }
 .fold-ar { font-family: var(--font-ar); font-size: 10.5mm; text-align: right; }
 
 /* 4. Phrase cards: 2 × 4, dashed cut lines */
@@ -68,7 +67,6 @@ html[dir="rtl"] .cell[data-form]::before { font-family: var(--font-ui-ar); direc
 .pcard p { margin: 0; font-family: var(--font-ar); font-size: 11mm; line-height: 1.35; }
 .pcard.back .tr { font-size: 13pt; }
 .pcard.back .pm1 { font-size: 11.5pt; }
-.pcard.back .pm2 { font-size: 10pt; }
 .pmsa { margin-top: 1.5mm; font-family: var(--font-ar); font-size: 5.5mm; color: #666; }
 
 /* 5. Weekly tracker: the seven days share the whole page */
@@ -122,4 +120,4 @@ html[dir="rtl"] .cell[data-form]::before { font-family: var(--font-ui-ar); direc
 .ps-key { margin: 0; padding: 0 0 0 6mm; font-size: 9pt; line-height: 1.25; direction: ltr; text-align: left; columns: 2; column-gap: 8mm; }
 .ps-key li { break-inside: avoid; margin-bottom: 1.4mm; }
 .ps-key .tr { display: block; font-size: 9.5pt; }
-.ps-key .pm1, .ps-key .pm2 { display: block; }
+.ps-key .pm1 { display: block; }

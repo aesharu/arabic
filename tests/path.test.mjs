@@ -1,5 +1,5 @@
 // Your path (public/js/data/path.js): 21 weeks from Day 1, A1 in week 13 (ends 20 Dec), every step points at
-// something that exists, every text in four languages, and every story, chat and new topic is on the path.
+// something that exists, every text in both languages, and every story, chat and new topic is on the path.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -17,7 +17,7 @@ import { addDays } from "../public/js/core/dates.js";
 
 const vocab = JSON.parse(readFileSync(new URL("../public/data/vocab.json", import.meta.url), "utf8"));
 const topics = new Set(vocab.stages.flatMap(s => s.topics.map(t => t.id)));
-const four = (x, where) => ["en", "uk", "najdi", "msa"].forEach(l => assert.ok(x?.[l], `${where}: ${l}`));
+const four = (x, where) => ["en", "najdi"].forEach(l => assert.ok(x?.[l], `${where}: ${l}`));
 
 test("the weeks line up with the goals: A1 after week 13, her birthday in week 21", () => {
   assert.equal(PATH.length, 21);
@@ -27,7 +27,7 @@ test("the weeks line up with the goals: A1 after week 13, her birthday in week 2
   assert.ok(PATH[20].secret, "the birthday week is hidden from Dima");
 });
 
-test("every step points at something that exists; every text in four languages", () => {
+test("every step points at something that exists; every text in both languages", () => {
   const exists = {
     st: id => STORIES.some(s => s.id === id), ch: id => CHATS.some(c => c.id === id), pr: id => id === "hers" || topics.has(id),
     vb: id => VERBS.some(v => v.id === id), gr: id => GRAMMAR.some(g => g.id === id), lv: id => LOVE.some(s => s.id === id),

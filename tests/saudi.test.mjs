@@ -1,4 +1,4 @@
-// Saudi life (public/js/data/saudi.js, core/prayer.js): four languages, flags on words not in the plan, sane prayer times.
+// Saudi life (public/js/data/saudi.js, core/prayer.js): both languages, flags on words not in the plan, sane prayer times.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -6,13 +6,12 @@ import { STORIES, FACTS, OCCASIONS, REGIONS } from "../public/js/data/saudi.js";
 import { prayerTimes, qibla, CITIES } from "../public/js/core/prayer.js";
 
 const plan = readFileSync(new URL("../NAJDI-PLAN.md", import.meta.url), "utf8");
-const L = ["en", "uk", "najdi", "msa"];
+const L = ["en", "najdi"];
 
-test("stories, facts and occasions are in four languages", () => {
+test("stories, facts and occasions are in both languages", () => {
   for (const s of STORIES) {
     for (const l of L) assert.ok(s.title[l] && s.body[l], `${s.id}: ${l}`);
     assert.ok(REGIONS[s.region], `${s.id}: region`);
-    assert.match(s.body.uk, /[Ѐ-ӿ]/, `${s.id}: Ukrainian`);
   }
   for (const f of FACTS) for (const l of L) assert.ok(f[l], `fact ${f.en}: ${l}`);
   for (const o of OCCASIONS) for (const l of L) assert.ok(o.name[l], `${o.id}: ${l}`);
@@ -20,8 +19,7 @@ test("stories, facts and occasions are in four languages", () => {
 
 test("a culture word without the tutor flag must be in the plan", () => {
   for (const s of STORIES) for (const w of s.words) {
-    for (const f of ["ar", "say", "en", "uk", "msa"]) assert.ok(w[f], `${w.ar}: ${f}`);
-    assert.match(w.uk, /[Ѐ-ӿ]/, `${w.ar}: Ukrainian`);
+    for (const f of ["ar", "say", "en"]) assert.ok(w[f], `${w.ar}: ${f}`);
     if (!w.check) assert.ok(plan.includes(w.ar), `${w.ar} is not in the plan, so it needs the check flag`);
   }
 });

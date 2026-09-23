@@ -1,5 +1,5 @@
-// Every interface text must exist in all four languages — English, Ukrainian, Najdi Arabic and formal Arabic
-// (MSA) — with the same {placeholders}; every key the code asks for must exist, and every key must be used.
+// Every interface text must exist in both languages — English and Saudi Arabic — with the same
+// {placeholders}; every key the code asks for must exist, and every key must be used.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync, statSync } from "node:fs";
@@ -11,21 +11,17 @@ const files = dir => readdirSync(dir).flatMap(f => (statSync(join(dir, f)).isDir
 const code = files(root).filter(f => /\.(js|html)$/.test(f) && !f.endsWith("strings.js")).map(f => readFileSync(f, "utf8")).join("\n");
 const placeholders = s => [...s.matchAll(/\{(\w+)\}/g)].map(m => m[1]).sort();
 const ARABIC = /[؀-ۿ]/;
-const CYRILLIC = /[Ѐ-ӿ]/;
-const PLURALS = { en: ["one", "other"], uk: ["one", "few", "many", "other"], najdi: ["zero", "one", "two", "few", "many", "other"], msa: ["zero", "one", "two", "few", "many", "other"] };
+const PLURALS = { en: ["one", "other"], najdi: ["zero", "one", "two", "few", "many", "other"] };
 
-test("every string exists in English, Ukrainian, Najdi and MSA", () => {
+test("every string exists in English and Saudi Arabic", () => {
   for (const [key, v] of Object.entries(STRINGS)) {
-    for (const lang of ["en", "uk", "najdi", "msa"]) assert.ok(v[lang], `${key}: ${lang} missing`);
+    for (const lang of ["en", "najdi"]) assert.ok(v[lang], `${key}: ${lang} missing`);
     if (typeof v.en === "object") {
       for (const [lang, forms] of Object.entries(PLURALS)) for (const f of forms) assert.ok(v[lang][f], `${key}: ${lang} needs the "${f}" form`);
       continue;
     }
-    for (const lang of ["uk", "najdi", "msa"]) assert.deepEqual(placeholders(v[lang]), placeholders(v.en), `${key}: ${lang} placeholders differ`);
-    assert.notEqual(v.uk, v.en, `${key}: Ukrainian is identical to English — not translated?`);
-    assert.match(v.uk, CYRILLIC, `${key}: Ukrainian should be in Cyrillic`);
-    assert.match(v.najdi, ARABIC, `${key}: Najdi should be in Arabic script`);
-    assert.match(v.msa, ARABIC, `${key}: MSA should be in Arabic script`);
+    assert.deepEqual(placeholders(v.najdi), placeholders(v.en), `${key}: Saudi placeholders differ`);
+    assert.match(v.najdi, ARABIC, `${key}: Saudi Arabic should be in Arabic script`);
   }
 });
 
@@ -47,11 +43,11 @@ test("every defined key is used somewhere", () => {
 });
 
 // The ten messages Dima sees when she comes in are picked as `nudge.m${i}` (core/nudge.js): all ten must be there.
-test("all ten of Dima's welcome messages exist, in every language", () => {
+test("all ten of Dima's welcome messages exist, in both languages", () => {
   for (let i = 1; i <= 10; i++) {
     const v = STRINGS[`nudge.m${i}`];
     assert.ok(v, `nudge.m${i} is missing`);
-    for (const lang of ["en", "uk", "najdi", "msa"]) assert.ok(v[lang], `nudge.m${i}: ${lang} missing`);
+    for (const lang of ["en", "najdi"]) assert.ok(v[lang], `nudge.m${i}: ${lang} missing`);
   }
   assert.ok(!STRINGS["nudge.m11"], "there are eleven messages but core/nudge.js only shows ten");
 });

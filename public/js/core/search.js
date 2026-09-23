@@ -11,14 +11,13 @@ export function fold(text) {
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "") // ā → a, ḥ → h, ṣ → s …
     .replace(/[ʿʾ'’`ʼ]/g, "")
-    .replace(/ґ/g, "г")
     .replace(/[؟?!.,،…“”"«»()]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
 // One searchable string per word, built once.
-export const haystack = n => fold([n.ar, n.say, n.en, n.uk, n.msa, n.toHer?.ar, n.toHer?.say].filter(Boolean).join(" "));
+export const haystack = n => fold([n.ar, n.say, n.en, n.toHer?.ar, n.toHer?.say].filter(Boolean).join(" "));
 
 // Every word of the query must appear somewhere.
 export function matches(hay, query) {

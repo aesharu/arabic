@@ -31,7 +31,7 @@ function describe(step, ctx) {
   if (kind === "pr") return { href: `#/practice/${id}`, text: id === "hers" ? t("cards.deckHers") : title(ctx.topics.get(id)), hint: t("path.pass", { n: PASS }) };
   if (kind === "vb") {
     const v = VERBS.find(x => x.id === id);
-    return { href: `#/verbs/${id}`, text: `${v.now.ar} — ${tx({ en: v.en, uk: v.ukInf, najdi: v.en, msa: v.en })}` };
+    return { href: `#/verbs/${id}`, text: `${v.now.ar} — ${v.en}` };
   }
   if (kind === "gr") return { href: `#/grammar/${id}`, text: title(GRAMMAR.find(g => g.id === id)?.title) };
   if (kind === "lv") return { href: `#/love/${id}`, text: title(LOVE.find(s => s.id === id)?.title) };

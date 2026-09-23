@@ -67,16 +67,15 @@ function split(e) {
   const forms = String(e.ar).split(/ [/→] /);
   if (forms.length < 2) return [e];
   const cut = (x, sep) => String(x ?? "").split(sep).map(p => p.trim());
-  const say = cut(e.say, /\s[/→]\s/), en = cut(e.en, / \/ /), uk = cut(e.uk, / \/ /);
+  const say = cut(e.say, /\s[/→]\s/), en = cut(e.en, / \/ /);
   return forms.map((ar, i) => ({
     ...e, ar,
     say: say.length === forms.length ? say[i] : e.say,
     en: en.length === forms.length ? en[i] : e.en,
-    uk: uk.length === forms.length ? uk[i] : e.uk,
   }));
 }
 
-// groups: lists of entries { ar, say, en, uk, check?, kind? } — earlier lists win. kind: "v" = a verb in the
+// groups: lists of entries { ar, say, en, check?, kind? } — earlier lists win. kind: "v" = a verb in the
 // "I" form of the present (أروح), "p1" = past "I" form (رحت), "p3" = past "he" form (راح).
 export function makeGlossary(groups) {
   const words = new Map();

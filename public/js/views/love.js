@@ -16,7 +16,7 @@ const phrase = x => (content.apply(x), `
   <button class="phrase lv-phrase" data-say="${esc(speakText(x.ar))}" data-edit-id="${x.id}">
     ${ar(x.ar, "phrase-ar")}
     <span class="phrase-t">${translit(x.say)} ${x.check ? flag({ check: true }) : ""}
-      <span class="gr-mean">${esc(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }))}</span>
+      <span class="gr-mean">${esc(x.en)}</span>
       ${x.note ? `<span class="pnote">${esc(tx(x.note))}</span>` : ""}</span>
     ${playIcon}
   </button>`);

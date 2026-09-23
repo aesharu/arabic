@@ -52,7 +52,7 @@ const HAFAR = CITIES.find(c => c.id === "hafar");
 const TZ = "Asia/Riyadh";
 let occasions = { day: "", list: [] }; // upcoming() walks the calendar day by day: once a day is enough
 const clockAt = at => new Intl.DateTimeFormat(locale(), { hour: "2-digit", minute: "2-digit", hourCycle: "h23", timeZone: TZ }).format(at);
-const meanOf = x => lat(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }));
+const meanOf = x => lat(tx({ en: x.en, najdi: x.en }));
 const daysText = n => (n === 0 ? t("saudi.isToday") : n === 1 ? t("saudi.tomorrow") : t("saudi.inDays", { n: cnt("unit.days", n) }));
 
 function herWorld(now = Date.now()) {
@@ -107,7 +107,7 @@ function fiveCard() {
     </div>
     <span class="meter" aria-hidden="true"><span style="width:${Math.min(100, (todayCount / FIVE) * 100)}%"></span></span>
     <p class="five-sub">${esc(t(enough ? "td.fiveDone" : "td.fiveSub"))}</p>
-    ${five.length ? `<ul class="five-words">${five.map(x => `<li>${ar(x.ar)}${lat(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }))}</li>`).join("")}</ul>
+    ${five.length ? `<ul class="five-words">${five.map(x => `<li>${ar(x.ar)}${lat(x.en)}</li>`).join("")}</ul>
       <button type="button" class="btn btn-primary five-go" data-five-go>${icon("mic")} ${esc(t("td.fiveGo"))}</button>`
     : `<p class="empty-note">${icon("check")} ${esc(t("record.allDone"))}</p>`}
     <p class="five-foot">${esc(t("td.fiveTotal", { n: said("unit.words", times.length) }))}${current > 1 ? ` · <b>${esc(`${said("unit.days", current)} ${t("td.fiveRow")}`)}</b>` : ""}</p>

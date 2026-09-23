@@ -89,10 +89,9 @@ html[data-welcome] body { background: #03100A; overflow: hidden; }
 .wl-stage { display: flex; flex-direction: column; align-items: center; gap: 18px; min-height: 250px; }
 .wl-title, .wl-line { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 0; }
 .wl-title .wl-ar { font-family: var(--font-ar); font-weight: 700; font-size: clamp(30px, 5vh, 42px); line-height: 1.4; color: var(--wl-ink); }
-.wl-title .wl-en, .wl-title .wl-uk { font-size: 19px; font-weight: 700; color: var(--wl-muted); line-height: 1.3; }
-.wl-title .wl-uk { font-weight: 400; }
+.wl-title .wl-en { font-size: 19px; font-weight: 700; color: var(--wl-muted); line-height: 1.3; }
 .wl-line .wl-ar { font-family: var(--font-ar); font-size: 22px; color: var(--wl-gold-2); line-height: 1.5; }
-.wl-line .wl-en, .wl-line .wl-uk { font-size: 16px; font-style: italic; color: var(--wl-muted); }
+.wl-line .wl-en { font-size: 16px; font-style: italic; color: var(--wl-muted); }
 .wl-line { opacity: 0; transform: translateY(8px); transition: opacity 1s 1.4s ease, transform 1s 1.4s ease; }
 .is-open .wl-line { opacity: 1; transform: none; }
 .is-open .wl-title { animation: wl-in .9s .2s cubic-bezier(.2, .7, .2, 1) both; }

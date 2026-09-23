@@ -14,7 +14,7 @@ const TENSES = ["now", "past", "will"];
 let tense = "now"; // the column shown on narrow screens
 let mix = false; // drill: every verb, or just this one
 const score = { right: 0, total: 0, run: 0 };
-const mean = v => lat(tx({ en: v.en, uk: v.ukInf, najdi: v.en, msa: v.en }));
+const mean = v => lat(tx({ en: v.en, najdi: v.en }));
 const tensesOf = v => (v.id === "want" ? ["now", "past"] : TENSES); // "I will want" isn't something you'd say
 const cell = f => `<button type="button" class="vb-form" data-say="${esc(f.ar)}">${ar(f.ar)}<span>${translit(f.say)}</span></button>`;
 
@@ -43,7 +43,7 @@ function verbCard(v) {
       <div class="vb-imp"><span class="muted">${t("vb.toHim")}</span>${cell(v.imp.him)}<span class="muted">${t("vb.toHer")} ${icon("heart")}</span>${cell(v.imp.her)}</div>` : ""}
     <h3>${t("vb.more")}</h3>
     <div class="vocab">${patterns(v).map(x => `<button type="button" class="phrase lv-phrase" data-say="${esc(x.ar.replace(/[؟!]/g, ""))}">${ar(x.ar, "phrase-ar")}
-      <span class="phrase-t">${translit(x.say)}<span class="gr-mean">${lat(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }))}</span></span>${playIcon}</button>`).join("")}</div>
+      <span class="phrase-t">${translit(x.say)}<span class="gr-mean">${lat(x.en)}</span></span>${playIcon}</button>`).join("")}</div>
   </section>`;
 }
 
@@ -91,7 +91,7 @@ export default {
     const render = () => {
       root.innerHTML = `${pageHead(t("vb.title"), esc(t("vb.sub", { n: num(VERBS.length) })), "", "", "camels")}
         <p class="callout"><span>${rich(t("vb.pattern"))}</span></p>
-        <div class="vb-list" role="group" aria-label="${esc(t("vb.pick"))}">${VERBS.map(x => `<a href="#/verbs/${x.id}"${x === v ? ' aria-current="page"' : ""}>${ar(x.now.ar)}<small>${esc(tx({ en: x.en, uk: x.ukInf, najdi: x.en, msa: x.en }))}</small></a>`).join("")}</div>
+        <div class="vb-list" role="group" aria-label="${esc(t("vb.pick"))}">${VERBS.map(x => `<a href="#/verbs/${x.id}"${x === v ? ' aria-current="page"' : ""}>${ar(x.now.ar)}<small>${esc(x.en)}</small></a>`).join("")}</div>
         ${verbCard(v)}
         <div data-drill>${drill(q)}</div>`;
       root.querySelector(".vb-list [aria-current]")?.scrollIntoView({ block: "nearest", inline: "center" });

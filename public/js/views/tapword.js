@@ -5,7 +5,7 @@ import { esc, ar, lat, translit, flag, meanings, playIcon } from "../core/dom.js
 import { icon } from "../core/art.js";
 import { tokens, sayWords, norm } from "../core/gloss.js";
 
-const mean = x => lat(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en })); // English/Ukrainian, left to right even in Arabic
+const mean = x => lat(tx({ en: x.en, najdi: x.en })); // English/Ukrainian, left to right even in Arabic
 
 // The words of line i; words that make a phrase in the lists ("صباح الخير") are one piece. tag: "button", or "span"
 // inside something that is already a button (a chat bubble).

@@ -10,8 +10,8 @@ import { aboutMe, DEFAULT_ME } from "../core/aboutme.js";
 import { NAMES, CITIES, COUNTRIES, JOBS, LANGUAGES, HOBBIES, FOODS } from "../data/me.js";
 
 const me = () => ({ ...DEFAULT_ME, ...store.get().prefs.me });
-const label = x => tx({ en: x.en, uk: x.uk, najdi: x.ar, msa: x.ar });
-const mean = x => lat(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }));
+const label = x => tx({ en: x.en, najdi: x.ar });
+const mean = x => lat(tx({ en: x.en, najdi: x.en }));
 const phrase = x => `<button type="button" class="phrase lv-phrase" data-say="${esc(x.ar.replace(/[؟!.]/g, ""))}">${ar(x.ar, "phrase-ar")}
   <span class="phrase-t">${translit(x.say)} ${flag(x)}<span class="gr-mean">${mean(x)}</span></span>${playIcon}</button>`;
 

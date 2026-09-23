@@ -59,7 +59,7 @@ function fnv(s) {
   return h.toString(36);
 }
 
-// Every card-able word once, in teaching order: { id, deck, stage, ar, say, en, uk, msa, note?, toHer?, reply?, check }
+// Every card-able word once, in teaching order: { id, deck, stage, ar, say, en, note?, toHer?, reply?, check }
 export function buildNotes(vocab) {
   const all = vocab.stages.flatMap(s => s.topics.flatMap(t => t.entries.map(e => ({ ...e, deck: s.id, topicTitle: t.title }))));
   const byBare = new Map();
@@ -79,7 +79,7 @@ export function buildNotes(vocab) {
     const twin = byBare.get(bare(p.ar));
     add({
       id: twin?.id ?? fnv(`${p.ar}|${p.en}`), deck: "phrases", stage: 0, day: p.day,
-      ar: p.ar, say: p.tr, en: p.en, uk: p.uk, msa: p.msa, note: p.note, check: !!p.check, checkNote: p.checkNote, speak: p.speak,
+      ar: p.ar, say: p.tr, en: p.en, note: p.note, check: !!p.check, checkNote: p.checkNote, speak: p.speak,
       topicTitle: twin?.topicTitle,
     });
   }

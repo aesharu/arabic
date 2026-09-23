@@ -34,8 +34,6 @@ const normal = s => s.normalize("NFC").toLowerCase().replace(/[ً-ْـ]/g, "").r
 export const isNameOf = (profile, s) => NAMES[profile].includes(normal(s));
 const logins = () => storage("local", s => JSON.parse(s.getItem(LOGINS) || "{}")) ?? {};
 
-const arLang = () => (lang() === "msa" ? "msa" : "najdi");
-const latLang = () => (lang() === "uk" ? "uk" : "en");
 const storage = (area, fn) => {
   try {
     return fn(area === "local" ? localStorage : sessionStorage);
@@ -44,18 +42,17 @@ const storage = (area, fn) => {
   }
 };
 
-// One text in Arabic (large), English and Ukrainian — the screen appears before anyone picks a language.
+// One text in Arabic (large) and English — the screen appears before anyone picks a language.
 function three(key, tag, cls, id = "") {
   const s = STRINGS[key];
   return `<${tag} class="${cls}"${id ? ` id="${id}"` : ""}>
-    <span class="wl-ar" lang="ar" dir="rtl">${s[arLang()]}</span>
+    <span class="wl-ar" lang="ar" dir="rtl">${s.najdi}</span>
     <span class="wl-en" lang="en" dir="ltr">${s.en}</span>
-    <span class="wl-uk" lang="uk" dir="ltr">${s.uk}</span>
   </${tag}>`;
 }
 
-// A button label in Arabic and English (or Ukrainian).
-const two = key => `<span lang="ar">${STRINGS[key][arLang()]}</span><span>${STRINGS[key][latLang()]}</span>`;
+// A button label in Arabic and English.
+const two = key => `<span lang="ar">${STRINGS[key].najdi}</span><span>${STRINGS[key].en}</span>`;
 
 // An eight-pointed star, as carved on Najdi doors and painted on ceilings: two squares turned 45°.
 function star() {
@@ -145,7 +142,7 @@ function lanterns() {
 function holidayWords(h, profile) {
   const her = profile === "teacher";
   const phrase = p => `<span class="wl-ar" lang="ar" dir="rtl">${p.ar}</span>${her ? "" : `<span class="hol-say" lang="ar-Latn" dir="ltr" translate="no">${p.say}</span>`}
-    <span class="wl-en" lang="${latLang()}" dir="ltr">${p[latLang()]}</span>`;
+    <span class="wl-en" lang="en" dir="ltr">${p.en}</span>`;
   const title = (!her && h.titleV) || h.title;
   const fact = her ? h.fact : h.factV ?? h.fact;
   const learn = h.sayToHer && `<div class="hol-learn">
@@ -153,16 +150,16 @@ function holidayWords(h, profile) {
       <button type="button" class="hol-phrase" data-hol-say="${h.sayToHer.ar}">
         <span class="wl-ar" lang="ar" dir="rtl">${h.sayToHer.ar}</span>
         <span class="hol-say" lang="ar-Latn" dir="ltr" translate="no">${h.sayToHer.say}</span>
-        <span class="hol-mean" dir="ltr">${h.sayToHer[latLang()]}</span>
+        <span class="hol-mean" dir="ltr">${h.sayToHer.en}</span>
         <span class="hol-play">${PLAY}</span>
       </button>
-      ${h.reply ? `<p class="hol-reply" dir="ltr">${STRINGS["hol.reply"][latLang()]}: <span lang="ar" dir="rtl">${h.reply.ar}</span> <i>${h.reply.say}</i> — ${h.reply[latLang()]}</p>` : ""}
-      ${h.check ? `<p class="hol-check">${STRINGS["flag.label"][latLang()]}</p>` : ""}
+      ${h.reply ? `<p class="hol-reply" dir="ltr">${STRINGS["hol.reply"].en}: <span lang="ar" dir="rtl">${h.reply.ar}</span> <i>${h.reply.say}</i> — ${h.reply.en}</p>` : ""}
+      ${h.check ? `<p class="hol-check">${STRINGS["flag.label"].en}</p>` : ""}
     </div>`;
-  return `<p class="hol-name"><span lang="ar" dir="rtl">${h.name[arLang()]}</span><span dir="ltr">${h.name[latLang()]}</span></p>
+  return `<p class="hol-name"><span lang="ar" dir="rtl">${h.name.najdi}</span><span dir="ltr">${h.name.en}</span></p>
     <h1 class="wl-title hol-title" id="wl-title">${phrase(title)}</h1>
     ${her ? `<p class="wl-line hol-line">${phrase(h.toHer)}</p>` : learn}
-    ${fact ? `<p class="hol-fact" lang="${lang() === "uk" ? "uk" : lang() === "en" ? "en" : "ar"}" dir="auto">${fact[lang()]}</p>` : ""}
+    ${fact ? `<p class="hol-fact" lang="${lang() === "en" ? "en" : "ar"}" dir="auto">${fact[lang()]}</p>` : ""}
     <div class="hol-actions">
       ${!her && h.id === "birthday" ? `<button type="button" class="hol-more" data-hol-go="#/birthday">${two("hol.wishes")}</button>` : ""}
       <button type="button" class="wl-btn" data-hol-in>${two(her ? "welcome.go" : "hol.in")}</button>
@@ -179,8 +176,8 @@ function profileCard(id, last) {
     <span class="wl-avatar" aria-hidden="true" lang="ar">${n.najdi[0]}</span>
     <span class="wl-p-text">
       <span class="wl-p-ar" lang="ar" dir="rtl">${n.najdi}</span>
-      <span class="wl-p-lat">${n.en} · <span lang="uk">${n.uk}</span></span>
-      <span class="wl-p-role">${STRINGS[role][latLang()]} · <span lang="ar">${STRINGS[role][arLang()]}</span></span>
+      <span class="wl-p-lat">${n.en}</span>
+      <span class="wl-p-role">${STRINGS[role].en} · <span lang="ar">${STRINGS[role].najdi}</span></span>
       <span class="wl-p-note">${STRINGS[note][lang()]}</span>
     </span>
   </button>`;

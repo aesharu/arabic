@@ -19,7 +19,7 @@ import { deckName, wordsMeter } from "./shared.js";
 const MAX_ANSWER_MS = 60_000; // like Anki: a card never counts for more than a minute of study time
 let carryMs = 0; // study time not yet added to today's minutes
 
-// "10m", "4d", "2.5mo" in English; the locale's own short units elsewhere ("10 хв", "4 أيام").
+// "10m", "4d", "2.5mo" in English; the locale's own short units in Arabic ("4 أيام").
 function span(p) {
   const round1 = n => Math.round(n * 10) / 10;
   const unit = (n, u) =>
@@ -42,17 +42,12 @@ const GRADES = [
   { g: 4, key: "cards.easy", cls: "easy" },
 ];
 
-// The meaning, for a "say it" card's front: interface language first (English in the Arabic interfaces).
+// The meaning, for a "say it" card's front.
 function meaningFront(n) {
-  const first = lang() === "uk" ? "uk" : "en";
-  const second = first === "en" ? "uk" : "en";
-  return `<p class="study-meaning" lang="${first}">${esc(n[first])}</p>
-    <p class="study-meaning-2" lang="${second}" dir="ltr"><i>${second === "uk" ? "UA" : "EN"}</i> ${esc(n[second])}</p>`;
+  return `<p class="study-meaning" lang="en">${esc(n.en)}</p>`;
 }
 
 function answerSide(n, kind) {
-  const first = lang() === "uk" ? "uk" : "en";
-  const second = first === "en" ? "uk" : "en";
   const extra = [
     n.toHer ? `<p class="study-extra">${t("words.toHer")}: ${ar(n.toHer.ar)} ${translit(n.toHer.say)}</p>` : "",
     n.reply ? `<p class="study-extra">${t("words.reply")}: ${ar(n.reply.ar)} ${n.reply.say ? translit(n.reply.say) : ""}</p>` : "",
@@ -64,7 +59,7 @@ function answerSide(n, kind) {
   return `
     ${arabic}
     <p class="study-say">${translit(n.say)} ${n.check ? flag({ check: true, checkNote: n.checkNote ?? n.note }) : ""}</p>
-    ${kind === "r" ? `<p class="study-meaning" lang="${first}">${esc(n[first])}</p><p class="study-meaning-2" lang="${second}" dir="ltr"><i>${second === "uk" ? "UA" : "EN"}</i> ${esc(n[second])}</p>` : ""}
+    ${kind === "r" ? `<p class="study-meaning" lang="en">${esc(n.en)}</p>` : ""}
     ${extra}`;
 }
 

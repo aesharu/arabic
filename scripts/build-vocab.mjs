@@ -2,10 +2,10 @@
 // NAJDI-WORDS.md, and writes:
 //   public/data/vocab.json     the Word list and the Cards page
 //   public/anki/*.csv          one Anki deck per stage (Anki reads the #headers and sets deck, note type and tags)
-// NAJDI-PLAN.md stays the source of truth for the plan's words. The formal-Arabic and Ukrainian meanings of those, and
-// the Ukrainian/Najdi/MSA topic names, live in data/vocab-translations.json (keyed by "arabic|english meaning").
-// NAJDI-WORDS.md carries all four languages in its own tables; a word there is flagged "check with tutor" until its
-// Checked column has a ✓.
+// NAJDI-PLAN.md stays the source of truth for the plan's words. The Saudi topic names live in
+// data/vocab-translations.json (keyed by "arabic|english meaning"). The plan's tables still carry a Ukrainian and
+// a formal-Arabic column — they are read past and thrown away. A word from NAJDI-WORDS.md is flagged
+// "check with tutor" until its Checked column has a ✓.
 // Every entry gets an id from its Arabic and English, so card progress stays attached to the word.
 // Run with --check to only report entries that are missing a translation.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
@@ -118,25 +118,24 @@ for (let i = 0; i < plan.length; i++) {
 }
 
 // NAJDI-WORDS.md: "## 4.1 English | Ukrainian | Najdi | MSA" headings, then | Arabic | Say | English | Ukrainian | MSA | Checked |
+// Only the English and Saudi columns are kept.
 const UNCHECKED = {
   en: "Suggested word — not yet checked by a native speaker",
-  uk: "Запропоноване слово — носій мови ще не перевірив",
   najdi: "كلمة مقترحة — ما تأكد منها أحد من أهل اللغة للحين",
-  msa: "كلمة مقترحة — لم يتحقّق منها متحدّث أصلي بعد",
 };
 const herTopics = [];
 for (let i = 0; i < candidates.length; i++) {
   const h = candidates[i].match(/^## (4\.\d+) (.+)$/);
   if (h) {
-    const [en, uk, najdi, msa] = h[2].split("|").map(x => x.trim());
-    herTopics.push({ id: h[1], stage: "4", title: { en, uk, najdi, msa }, entries: [] });
+    const [en, , najdi] = h[2].split("|").map(x => x.trim());
+    herTopics.push({ id: h[1], stage: "4", title: { en, najdi }, entries: [] });
     continue;
   }
   const line = candidates[i];
   if (!herTopics.length || !line.startsWith("| ") || line.startsWith("| Arabic") || line.startsWith("|---")) continue;
-  const [ar, say, en, uk, msa, checked = ""] = cells(line);
+  const [ar, say, en, , , checked = ""] = cells(line);
   const check = !checked.includes("✓");
-  herTopics.at(-1).entries.push({ ar, say, en, uk, msa, check, ...(check ? { note: UNCHECKED } : {}) });
+  herTopics.at(-1).entries.push({ ar, say, en, check, ...(check ? { note: UNCHECKED } : {}) });
 }
 
 // Merge translations and check completeness.
@@ -154,30 +153,28 @@ for (const s of STAGES) {
   if (s === "4") {
     out.stages.push({ id: s, topics: herTopics.map(t => ({ id: t.id, title: t.title, entries: t.entries.map(e => ({ id: idOf(e), stage: s, topic: t.id, ...e })) })) });
     for (const t of herTopics) {
-      if (!t.title.uk || !t.title.najdi || !t.title.msa) missing.push(`topic ${t.id} ${t.title.en}`);
-      for (const e of t.entries) if (!e.say || !e.en || !e.uk || !e.msa) missing.push(`NAJDI-WORDS.md ${t.id}: ${e.ar}`);
+      if (!t.title.najdi) missing.push(`topic ${t.id} ${t.title.en}`);
+      for (const e of t.entries) if (!e.say || !e.en) missing.push(`NAJDI-WORDS.md ${t.id}: ${e.ar}`);
     }
     continue;
   }
   const list = [...topics.values()].filter(t => t.stage === s).map(t => {
     const title = { en: t.title, ...(extra.topics[t.id] ?? {}) };
-    if (!title.uk || !title.najdi || !title.msa) missing.push(`topic ${t.id} ${t.title}`);
+    if (!title.najdi) missing.push(`topic ${t.id} ${t.title}`);
     return {
       id: t.id,
       title,
       entries: t.entries.map(e => {
-        const tr = extra.words[key(e)];
-        if (!tr?.msa || !tr?.uk) missing.push(`${key(e)}  (${e.en})`);
         if (e.note && !extra.notes[e.note]) missing.push(`note: ${e.note}`);
         const note = e.note ? { en: e.note, ...extra.notes[e.note] } : undefined;
-        return { id: idOf(e), stage: s, topic: t.id, ...e, note, msa: tr?.msa ?? "", uk: tr?.uk ?? "" };
+        return { id: idOf(e), stage: s, topic: t.id, ...e, note };
       }),
     };
   });
   out.stages.push({ id: s, topics: list });
 }
 out.traps = traps.map(t => ({ ...t, dialect: { en: t.dialect, ...extra.dialects[t.dialect] } }));
-for (const t of out.traps) if (!t.dialect.uk) missing.push(`dialect: ${t.dialect.en}`);
+for (const t of out.traps) if (!t.dialect.najdi) missing.push(`dialect: ${t.dialect.en}`);
 
 const count = out.stages.reduce((n, s) => n + s.topics.reduce((m, t) => m + t.entries.length, 0), 0);
 
@@ -225,11 +222,9 @@ for (const s of out.stages) {
       const back = [
         `<b>${html(e.say)}</b>`,
         `EN: ${html(e.en)}`,
-        `UA: ${html(e.uk)}`,
-        `MSA: <span dir="rtl">${html(e.msa)}</span>`,
         e.toHer ? `To her: <span dir="rtl">${html(e.toHer.ar)}</span> <i>${html(e.toHer.say)}</i>` : "",
-        e.reply ? `Reply / Відповідь: <span dir="rtl">${html(e.reply.ar)}</span> <i>${html(e.reply.say)}</i>` : "",
-        e.note ? `<i>${html(e.note.en)} · ${html(e.note.uk)}</i>` : "",
+        e.reply ? `Reply: <span dir="rtl">${html(e.reply.ar)}</span> <i>${html(e.reply.say)}</i>` : "",
+        e.note ? `<i>${html(e.note.en)}</i>` : "",
         e.check ? `⚠ check with tutor` : "",
       ].filter(Boolean).join("<br>");
       const tags = [`stage-${s.id}`, `topic-${t.id}`, e.check ? "check-with-tutor" : ""].filter(Boolean).join(" ");

@@ -1,50 +1,44 @@
-// Each row: { ar, name, text }. Names and texts are in four languages: { en, uk, najdi, msa }.
+// Each row: { ar, name, text }. Names and texts are in both languages: { en, najdi }.
 export const VOWEL_SECTIONS = [
   {
-    title: { en: "Short vowels", uk: "Короткі голосні", najdi: "الحركات القصيرة", msa: "الحركات القصيرة" },
+    title: { en: "Short vowels", najdi: "الحركات القصيرة" },
     intro: {
       en: "Small marks above or below a letter. Practice with them now — everyday writing leaves them out, so later you'll read without them.",
-      uk: "Маленькі знаки над або під літерою. Тренуйся з ними зараз — у звичайному письмі їх пропускають, тож згодом читатимеш без них.",
       najdi: "علامات صغيرة فوق الحرف أو تحته. تدرّب عليها الحين — الكتابة العادية ما تحطها، فبعدين بتقرا بدونها.",
-      msa: "علامات صغيرة فوق الحرف أو تحته. تدرّب عليها الآن، فالكتابة المعتادة تُسقطها، وستقرأ لاحقًا بدونها.",
     },
     rows: [
-      { ar: "بَ", name: { en: "fatḥa", uk: "фатха", najdi: "فتحة", msa: "الفتحة" }, text: { en: "ba — short a", uk: "ba — коротке а", najdi: "ba — فتحة قصيرة", msa: "ba — فتحة قصيرة" } },
-      { ar: "بِ", name: { en: "kasra", uk: "касра", najdi: "كسرة", msa: "الكسرة" }, text: { en: "bi — short i", uk: "bi — коротке і", najdi: "bi — كسرة قصيرة", msa: "bi — كسرة قصيرة" } },
-      { ar: "بُ", name: { en: "ḍamma", uk: "дамма", najdi: "ضمة", msa: "الضمة" }, text: { en: "bu — short u", uk: "bu — коротке у", najdi: "bu — ضمة قصيرة", msa: "bu — ضمة قصيرة" } },
-      { ar: "بْ", name: { en: "sukūn", uk: "сукун", najdi: "سكون", msa: "السكون" }, text: { en: "b — no vowel at all", uk: "b — зовсім без голосної", najdi: "b — بدون حركة أبد", msa: "b — بلا حركة" } },
-      { ar: "بّ", name: { en: "shadda", uk: "шадда", najdi: "شدة", msa: "الشدّة" }, text: { en: "bb — say the letter twice as long", uk: "bb — вимовляй літеру вдвічі довше", najdi: "bb — طوّل الحرف مرتين", msa: "bb — انطق الحرف مضعّفًا" } },
+      { ar: "بَ", name: { en: "fatḥa", najdi: "فتحة" }, text: { en: "ba — short a", najdi: "ba — فتحة قصيرة" } },
+      { ar: "بِ", name: { en: "kasra", najdi: "كسرة" }, text: { en: "bi — short i", najdi: "bi — كسرة قصيرة" } },
+      { ar: "بُ", name: { en: "ḍamma", najdi: "ضمة" }, text: { en: "bu — short u", najdi: "bu — ضمة قصيرة" } },
+      { ar: "بْ", name: { en: "sukūn", najdi: "سكون" }, text: { en: "b — no vowel at all", najdi: "b — بدون حركة أبد" } },
+      { ar: "بّ", name: { en: "shadda", najdi: "شدة" }, text: { en: "bb — say the letter twice as long", najdi: "bb — طوّل الحرف مرتين" } },
     ],
   },
   {
-    title: { en: "Long vowels", uk: "Довгі голосні", najdi: "حروف المد", msa: "حروف المدّ" },
+    title: { en: "Long vowels", najdi: "حروف المد" },
     intro: {
       en: "Three letters double as long vowels.",
-      uk: "Три літери також позначають довгі голосні.",
       najdi: "ثلاث حروف تشتغل بعد كحروف مد.",
-      msa: "ثلاثة حروف تؤدي أيضًا وظيفة حروف المدّ.",
     },
     rows: [
-      { ar: "بَا", name: { en: "alif", uk: "аліф", najdi: "ألف", msa: "الألف" }, text: { en: "bā — long a", uk: "bā — довге а", najdi: "bā — ألف ممدودة", msa: "bā — مدّ بالألف" } },
-      { ar: "بِي", name: { en: "yāʾ", uk: "йа", najdi: "ياء", msa: "الياء" }, text: { en: "bī — long i", uk: "bī — довге і", najdi: "bī — ياء ممدودة", msa: "bī — مدّ بالياء" } },
-      { ar: "بُو", name: { en: "wāw", uk: "вав", najdi: "واو", msa: "الواو" }, text: { en: "bū — long u", uk: "bū — довге у", najdi: "bū — واو ممدودة", msa: "bū — مدّ بالواو" } },
-      { ar: "زين", name: { en: "Saudi ē", uk: "саудівське ē", najdi: "ē السعودية", msa: "ē في اللهجة السعودية" }, text: { en: "zēn — ay becomes ē", uk: "zēn — ay стає ē", najdi: "zēn — ay تصير ē", msa: "zēn — تتحول ay إلى ē" } },
-      { ar: "يوم", name: { en: "Saudi ō", uk: "саудівське ō", najdi: "ō السعودية", msa: "ō في اللهجة السعودية" }, text: { en: "yōm — aw becomes ō", uk: "yōm — aw стає ō", najdi: "yōm — aw تصير ō", msa: "yōm — تتحول aw إلى ō" } },
+      { ar: "بَا", name: { en: "alif", najdi: "ألف" }, text: { en: "bā — long a", najdi: "bā — ألف ممدودة" } },
+      { ar: "بِي", name: { en: "yāʾ", najdi: "ياء" }, text: { en: "bī — long i", najdi: "bī — ياء ممدودة" } },
+      { ar: "بُو", name: { en: "wāw", najdi: "واو" }, text: { en: "bū — long u", najdi: "bū — واو ممدودة" } },
+      { ar: "زين", name: { en: "Saudi ē", najdi: "ē السعودية" }, text: { en: "zēn — ay becomes ē", najdi: "zēn — ay تصير ē" } },
+      { ar: "يوم", name: { en: "Saudi ō", najdi: "ō السعودية" }, text: { en: "yōm — aw becomes ō", najdi: "yōm — aw تصير ō" } },
     ],
   },
   {
-    title: { en: "Four extras", uk: "Чотири додаткові знаки", najdi: "الأربع الإضافية", msa: "العلامات الأربع الإضافية" },
+    title: { en: "Four extras", najdi: "الأربع الإضافية" },
     intro: {
       en: "Not full letters, but everywhere. The plan covers them on Day 13.",
-      uk: "Не повноцінні літери, але трапляються всюди. У плані вони припадають на 13-й день.",
       najdi: "مو حروف كاملة، بس موجودة بكل مكان. الخطة تغطيها في اليوم 13.",
-      msa: "ليست حروفًا كاملة لكنها في كل مكان، وتتناولها الخطة في اليوم 13.",
     },
     rows: [
-      { ar: "ء", name: { en: "hamza", uk: "хамза", najdi: "همزة", msa: "الهمزة" }, text: { en: "A catch in the throat, like the break in uh-oh.", uk: "Коротка зупинка в горлі, як пауза в англ. uh-oh.", najdi: "وقفة في الحلق، مثل الوقفة في uh-oh.", msa: "وقفة حنجرية كالتي في uh-oh." } },
-      { ar: "ة", name: { en: "tāʾ marbūṭa", uk: "та марбута", najdi: "تاء مربوطة", msa: "التاء المربوطة" }, text: { en: "Word-ending -a, as in قهوة gahwa.", uk: "Закінчення -a, як у قهوة gahwa.", najdi: "آخر الكلمة -a، مثل «قهوة» gahwa.", msa: "تُنطق -a في آخر الكلمة، كما في «قهوة» gahwa." } },
-      { ar: "ى", name: { en: "alif maqṣūra", uk: "аліф максура", najdi: "ألف مقصورة", msa: "الألف المقصورة" }, text: { en: "Also a word-ending -a, as in أبغى abgha.", uk: "Теж закінчення -a, як у أبغى abgha.", najdi: "بعد آخر الكلمة -a، مثل «أبغى» abgha.", msa: "تُنطق أيضًا -a في آخر الكلمة، كما في «أبغى» abgha." } },
-      { ar: "لا", name: { en: "lām-alif", uk: "лям-аліф", najdi: "لام ألف", msa: "اللام ألف" }, text: { en: "ل + ا always fuse into this shape. It means “no”.", uk: "ل + ا завжди зливаються в цю форму. Означає «ні».", najdi: "ل + ا دايم يلتصقون بهالشكل. ومعناها «لا».", msa: "تندمج اللام والألف دائمًا في هذا الشكل، ومعناها «لا»." } },
+      { ar: "ء", name: { en: "hamza", najdi: "همزة" }, text: { en: "A catch in the throat, like the break in uh-oh.", najdi: "وقفة في الحلق، مثل الوقفة في uh-oh." } },
+      { ar: "ة", name: { en: "tāʾ marbūṭa", najdi: "تاء مربوطة" }, text: { en: "Word-ending -a, as in قهوة gahwa.", najdi: "آخر الكلمة -a، مثل «قهوة» gahwa." } },
+      { ar: "ى", name: { en: "alif maqṣūra", najdi: "ألف مقصورة" }, text: { en: "Also a word-ending -a, as in أبغى abgha.", najdi: "بعد آخر الكلمة -a، مثل «أبغى» abgha." } },
+      { ar: "لا", name: { en: "lām-alif", najdi: "لام ألف" }, text: { en: "ل + ا always fuse into this shape. It means “no”.", najdi: "ل + ا دايم يلتصقون بهالشكل. ومعناها «لا»." } },
     ],
   },
 ];

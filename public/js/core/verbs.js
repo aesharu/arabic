@@ -74,14 +74,14 @@ export function patterns(v) {
     notPast: v.id === "can" ? "I couldn't" : `I didn't ${base}`,
   };
   const out = [
-    { ar: `ما ${now[0].ar}`, say: `ma ${now[0].say}`, en: en.not, uk: `я не ${v.ukNow}` },
-    { ar: `ما ${p[0].ar}`, say: `ma ${p[0].say}`, en: en.notPast, uk: `я не ${v.ukPast}` },
+    { ar: `ما ${now[0].ar}`, say: `ma ${now[0].say}`, en: en.not },
+    { ar: `ما ${p[0].ar}`, say: `ma ${p[0].say}`, en: en.notPast },
   ];
   if (!modal) {
     out.push(
-      { ar: `لا ${now[2].ar}`, say: `la ${now[2].say}`, en: `don't ${base}! (to her)`, uk: `не треба ${v.ukInf}! (до неї)` },
-      { ar: `أبي ${now[0].ar}`, say: `abi ${now[0].say}`, en: `I want to ${base}`, uk: `я хочу ${v.ukInf}` },
-      { ar: `تبين ${now[2].ar}؟`, say: `tibīn ${now[2].say}?`, en: `do you want to ${base}? (to her)`, uk: `хочеш ${v.ukInf}? (до неї)` },
+      { ar: `لا ${now[2].ar}`, say: `la ${now[2].say}`, en: `don't ${base}! (to her)` },
+      { ar: `أبي ${now[0].ar}`, say: `abi ${now[0].say}`, en: `I want to ${base}` },
+      { ar: `تبين ${now[2].ar}؟`, say: `tibīn ${now[2].say}?`, en: `do you want to ${base}? (to her)` },
     );
   }
   return out;

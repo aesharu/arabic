@@ -8,8 +8,8 @@ import * as content from "../core/content.js";
 import * as store from "../core/store.js";
 import { STRINGS } from "../i18n/strings.js";
 
-const LABEL = { ar: "edit.ar", say: "edit.say", en: "edit.en", uk: "edit.uk", najdi: "edit.najdiUi", msa: "edit.msa" };
-const RTL = new Set(["ar", "najdi", "msa"]);
+const LABEL = { ar: "edit.ar", say: "edit.say", en: "edit.en", najdi: "edit.najdiUi" };
+const RTL = new Set(["ar", "najdi"]);
 
 function kind(target) {
   if (target.startsWith("s.")) return t("review.kindText");

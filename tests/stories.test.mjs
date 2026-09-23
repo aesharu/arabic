@@ -1,5 +1,5 @@
 // Stories (public/js/data/stories.js) and tap-a-word (core/gloss.js, core/dictionary.js): every sentence in
-// three languages, pronunciation that lines up word for word, easy stories really easy, and every word in every
+// both languages, pronunciation that lines up word for word, easy stories really easy, and every word in every
 // story explained.
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -13,22 +13,21 @@ const TRAPS = ["إزيك", "شو", "فين", "عايز", "بدي", "دلوقتي
 const words = ar => tokens(ar).filter(t => t.w).map(t => t.w);
 
 function checkLine(l, where) {
-  for (const f of ["ar", "say", "en", "uk"]) assert.ok(l[f], `${where} ${l.ar ?? ""}: ${f} is missing`);
+  for (const f of ["ar", "say", "en"]) assert.ok(l[f], `${where} ${l.ar ?? ""}: ${f} is missing`);
   assert.match(l.ar, /[؀-ۿ]/, `${where} ${l.ar}: should be Arabic`);
-  assert.match(l.uk, /[Ѐ-ӿ]/, `${where} ${l.ar}: Ukrainian should be Cyrillic`);
   assert.doesNotMatch(l.say, /[؀-ۿ]/, `${where} ${l.ar}: pronunciation should be Latin`);
   for (const trap of TRAPS) assert.ok(!words(l.ar).includes(trap), `${where}: ${l.ar} contains ${trap}`);
 }
 
-test("60 stories, 20 in each step, unique ids, titles in four languages", () => {
+test("60 stories, 20 in each step, unique ids, titles in both languages", () => {
   assert.deepEqual(LEVELS, ["easy", "A1", "A2"]);
   for (const level of LEVELS) assert.equal(STORIES.filter(s => s.level === level).length, 20, level);
   assert.equal(new Set(STORIES.map(s => s.id)).size, STORIES.length);
   assert.equal(new Set(STORY_LINES.map(l => l.id)).size, STORY_LINES.length);
-  for (const s of STORIES) for (const f of ["en", "uk", "najdi", "msa"]) assert.ok(s.title[f], `${s.id}: title ${f}`);
+  for (const s of STORIES) for (const f of ["en", "najdi"]) assert.ok(s.title[f], `${s.id}: title ${f}`);
 });
 
-test("every sentence, key word and question: three languages, pronunciation one piece per Arabic word", () => {
+test("every sentence, key word and question: both languages, pronunciation one piece per Arabic word", () => {
   for (const s of STORIES) {
     assert.ok(s.text.length >= 5, `${s.id}: at least five sentences`);
     assert.ok(s.words.length >= 5, `${s.id}: at least five key words`);
@@ -92,10 +91,9 @@ test("tap-a-word explains every word in every chat", async () => {
   assert.deepEqual(missing, []);
 });
 
-test("the reading glossary: pronunciation, meanings in two languages, valid kinds", () => {
+test("the reading glossary: pronunciation, meanings in both languages, valid kinds", () => {
   for (const g of GLOSSARY) {
-    for (const f of ["ar", "say", "en", "uk"]) assert.ok(g[f], `${g.ar}: ${f}`);
-    assert.match(g.uk, /[Ѐ-ӿ]/, `${g.ar}: Ukrainian`);
+    for (const f of ["ar", "say", "en"]) assert.ok(g[f], `${g.ar}: ${f}`);
     assert.ok([undefined, "v", "p1", "p3"].includes(g.kind), `${g.ar}: kind`);
     assert.ok(g.check, `${g.ar}: should be flagged`);
   }

@@ -27,8 +27,7 @@
   try {
     const p = JSON.parse(localStorage.getItem(localStorage.getItem("najdi-profile") === "teacher" ? "najdi-v2-dima" : "najdi-v2") || "{}").prefs || {};
     if (["saudi", "saudi-dark", "light", "dark"].includes(p.theme)) document.documentElement.dataset.theme = p.theme;
-    if (p.lang === "najdi" || p.lang === "msa") { document.documentElement.dir = "rtl"; document.documentElement.lang = "ar"; }
-    else if (p.lang === "uk") document.documentElement.lang = "uk";
+    if (p.lang === "najdi") { document.documentElement.dir = "rtl"; document.documentElement.lang = "ar"; }
   } catch {}
   // The welcome screen, every time the page loads (js/core/welcome.js) — except right after choosing a new profile.
   try { if (sessionStorage.getItem("najdi-welcomed") === "reload") sessionStorage.removeItem("najdi-welcomed"); else document.documentElement.dataset.welcome = "1"; } catch { document.documentElement.dataset.welcome = "1"; }
@@ -177,9 +176,7 @@
       </div>
       <div class="langs" role="group" data-i18n-label="lang.label" aria-label="Language">
         <button type="button" data-lang="en" lang="en" aria-pressed="true"><span class="lang-sign lang-flag" aria-hidden="true"><span>🇺🇸</span></span>EN</button>
-        <button type="button" data-lang="uk" lang="uk" aria-pressed="false"><span class="lang-sign lang-flag" aria-hidden="true"><span>🇺🇦</span></span>УКР</button>
         <button type="button" data-lang="najdi" lang="ar-SA" aria-pressed="false"><span class="lang-sign lang-heart" aria-hidden="true"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2C5.4 16 1 12.2 1 7.3 1 3.9 3.6 1.3 6.8 1.3c2.1 0 4 1.1 5.2 2.8 1.2-1.7 3.1-2.8 5.2-2.8 3.2 0 5.8 2.6 5.8 6 0 4.9-4.4 8.7-11 13.9z"/></svg></span>سعودي</button>
-        <button type="button" data-lang="msa" lang="ar" aria-pressed="false"><span class="lang-sign lang-dad" aria-hidden="true">ض</span>فصحى</button>
       </div>
       <div class="themes" role="group" data-i18n-label="theme.label" aria-label="Theme">
         <span class="foot-label" data-i18n="theme.label" aria-hidden="true">Theme</span>
@@ -198,7 +195,7 @@
   </nav>
   <main>
     <div id="view" tabindex="-1">
-      <noscript><p>This site needs JavaScript turned on. Для цього сайту потрібно ввімкнути JavaScript.</p></noscript>
+      <noscript><p>This site needs JavaScript turned on. هذا الموقع يحتاج تفعيل الجافاسكربت.</p></noscript>
     </div>
     <aside id="culture" class="culture-slot" hidden></aside>
   </main>

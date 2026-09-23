@@ -24,16 +24,14 @@ test("vocab.json is up to date with NAJDI-PLAN.md", () => {
   assert.equal(entries.length, count, "vocab.json has a different number of entries — run npm run vocab");
 });
 
-test("every entry is in four languages and its Arabic comes from the plan (or NAJDI-WORDS.md for Stages 4–5)", () => {
+test("every entry is in both languages and its Arabic comes from the plan (or NAJDI-WORDS.md for Stages 4–5)", () => {
   for (const e of entries) {
-    for (const f of ["id", "ar", "say", "en", "msa", "uk"]) assert.ok(e[f], `${e.ar}: ${f} missing`);
-    assert.match(e.msa, /[؀-ۿ]/, `${e.ar}: MSA should be Arabic`);
-    assert.match(e.uk, /[Ѐ-ӿ]/, `${e.ar}: Ukrainian should be Cyrillic`);
+    for (const f of ["id", "ar", "say", "en"]) assert.ok(e[f], `${e.ar}: ${f} missing`);
     const source = e.stage === "4" ? candidates : plan;
     for (const part of e.ar.split(/ [/→] /)) assert.ok(source.includes(part.trim()), `${part} not found in ${e.stage === "4" ? "NAJDI-WORDS.md" : "the plan"}`);
-    if (e.note) for (const l of ["en", "uk", "najdi", "msa"]) assert.ok(e.note[l], `${e.ar}: note ${l} missing`);
+    if (e.note) for (const l of ["en", "najdi"]) assert.ok(e.note[l], `${e.ar}: note ${l} missing`);
   }
-  for (const s of vocab.stages) for (const t of s.topics) for (const l of ["en", "uk", "najdi", "msa"]) assert.ok(t.title[l], `topic ${t.id}: ${l}`);
+  for (const s of vocab.stages) for (const t of s.topics) for (const l of ["en", "najdi"]) assert.ok(t.title[l], `topic ${t.id}: ${l}`);
 });
 
 test("one Anki deck per stage, one card per entry", () => {

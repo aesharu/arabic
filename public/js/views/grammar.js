@@ -15,15 +15,13 @@ const GRAMMAR = [...PLAN_GRAMMAR, ...GRAMMAR_A2];
 for (const l of GRAMMAR) l.rows.forEach((r, i) => (r.id = `g${l.id}x${i}`));
 content.register(GRAMMAR.flatMap(l => l.rows));
 
-const meaning = r => tx({ en: r.en, uk: r.uk, najdi: r.en, msa: r.en });
-const second = r => tx({ en: r.uk, uk: r.en, najdi: r.uk, msa: r.uk });
+const meaning = r => tx({ en: r.en, najdi: r.en });
 
 const exampleRow = r => (content.apply(r), `
   <button class="phrase gr-row${r.her ? " is-her" : ""}" data-say="${esc(speakText(r.ar))}" data-edit-id="${r.id}">
     ${ar(r.ar, "phrase-ar")}
     <span class="phrase-t">${translit(r.say)} ${r.check ? flag({ check: true, checkNote: r.note }) : ""}
       <span class="gr-mean">${esc(meaning(r))}</span>
-      <span class="gr-mean-2">${esc(second(r))}</span>
       ${r.her ? `<span class="gr-her">${icon("star")}${t("grammar.toHer")}</span>` : ""}
       ${r.note && !r.check ? `<span class="pnote">${rich(tx(r.note))}</span>` : ""}</span>
     ${playIcon}

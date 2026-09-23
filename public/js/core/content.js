@@ -60,7 +60,7 @@ export const decided = () => history;
 export const pendingFor = id => suggestions.find(x => x.target === id);
 // A text anywhere on the site, if it has been changed: "s.<string key>" or "x.<hash>" (see core/i18n.js).
 export const textOf = (id, l) => effective(id)?.[l];
-export const FIELDS = ["ar", "say", "en", "uk", "msa"];
+export const FIELDS = ["ar", "say", "en"];
 
 // Lay the corrections over a word (keeps the plan's version in .orig).
 export function apply(entry) {

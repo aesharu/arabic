@@ -41,41 +41,38 @@ test("three phrases on each of the 14 Script days", () => {
   for (let d = 1; d <= 14; d++) assert.equal(PHRASES.filter(p => p.day === d).length, 3, `day ${d}`);
 });
 
-// The rule from CLAUDE.md: every word and phrase in Najdi (ar + tr), MSA, English and Ukrainian;
-// every other text in English, Ukrainian, Najdi and MSA.
-// Interface-style content texts: { en, uk, najdi, msa }, each in the right script.
+// The rule from CLAUDE.md: every word and phrase in Saudi (ar + tr) and English;
+// every other text in English and Saudi Arabic.
+// Interface-style content texts: { en, najdi }, each in the right script.
 const both = (v, what) => {
-  assert.ok(v && typeof v === "object", `${what}: needs { en, uk, najdi, msa }`);
-  for (const l of ["en", "uk", "najdi", "msa"]) assert.ok(v[l]?.trim(), `${what}: ${l} missing`);
+  assert.ok(v && typeof v === "object", `${what}: needs { en, najdi }`);
+  for (const l of ["en", "najdi"]) assert.ok(v[l]?.trim(), `${what}: ${l} missing`);
   if (!/\p{L}/u.test(v.en)) return; // "—", "~320": nothing to translate
   assert.match(v.najdi, /[\u0600-\u06FF]/, `${what}: Najdi should be in Arabic script`);
-  assert.match(v.msa, /[\u0600-\u06FF]/, `${what}: MSA should be in Arabic script`);
 };
-const four = (item, what) => {
-  for (const f of ["ar", "tr", "msa", "en", "uk"]) assert.ok(item[f]?.trim(), `${what}: "${f}" missing`);
-  assert.match(item.msa, /[\u0600-\u06FF]/, `${what}: MSA must be in Arabic script`);
-  assert.match(item.uk, /[\u0400-\u04FF]/, `${what}: Ukrainian must be in Cyrillic`);
+const word = (item, what) => {
+  for (const f of ["ar", "tr", "en"]) assert.ok(item[f]?.trim(), `${what}: "${f}" missing`);
 };
 
-test("every word and phrase is in all four languages", () => {
+test("every word and phrase is in both languages", () => {
   for (const p of PHRASES) {
-    four(p, `phrase ${p.ar}`);
+    word(p, `phrase ${p.ar}`);
     if (p.note) both(p.note, `phrase ${p.ar} note`);
     if (p.check) both(p.checkNote, `phrase ${p.ar} checkNote`);
   }
   for (const w of WORDS) {
-    four(w, `word ${w.ar}`);
+    word(w, `word ${w.ar}`);
     if (w.check) both(w.checkNote, `word ${w.ar} checkNote`);
   }
 });
 
-test("every letter, vowel row and plan text is in all four languages", () => {
+test("every letter, vowel row and plan text is in both languages", () => {
   for (const g of GROUPS) {
     both(g.title, "group title");
     both(g.note, "group note");
     for (const l of g.letters) {
       both(l.sound, `${l.char} sound`);
-      four(l.example, `${l.char} example`);
+      word(l.example, `${l.char} example`);
       if (l.najdi) both(l.najdi, `${l.char} Najdi note`);
       if (l.check) both(l.checkNote, `${l.char} checkNote`);
     }

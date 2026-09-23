@@ -8,7 +8,7 @@ const LEVELS = [10, 20, 100, 1000];
 let level = 20;
 let current = 7; // the number in the "say any number" box
 const rnd = max => Math.floor(Math.random() * (max + 1));
-const mean = x => esc(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }));
+const mean = x => esc(tx({ en: x.en, najdi: x.en }));
 
 const numberCard = n => {
   const s = spoken(n);
@@ -93,9 +93,9 @@ export default {
       <div class="vocab">${DAYS.map(d => row({ ...d, check: false })).join("")}</div>
       <h2>${t("nums.months")}</h2>
       <p class="muted">${esc(t("nums.monthsNote"))}</p>
-      <div class="vocab">${MONTHS.map((x, i) => row({ ...x, check: false, en: `${i + 1} · ${x.en}`, uk: `${i + 1} · ${x.uk}` })).join("")}</div>
+      <div class="vocab">${MONTHS.map((x, i) => row({ ...x, check: false, en: `${i + 1} · ${x.en}` })).join("")}</div>
       <h2>${t("nums.hijri")}</h2>
-      <div class="vocab">${HIJRI_MONTHS.map((x, i) => row({ ...x, check: false, en: `${i + 1} · ${x.en}`, uk: `${i + 1} · ${x.uk}` })).join("")}</div>
+      <div class="vocab">${HIJRI_MONTHS.map((x, i) => row({ ...x, check: false, en: `${i + 1} · ${x.en}` })).join("")}</div>
       <h2>${t("nums.phrases")}</h2>
       <div class="vocab">${NUMBER_PHRASES.map(row).join("")}</div>`;
 

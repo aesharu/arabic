@@ -1,7 +1,7 @@
 // The voice studio: Dima records a word or a line, listens to it (normally or slowly), cuts off the silence,
 // picks the best of her takes and saves it. Nothing reaches the site until she presses Save, and every save
 // or delete can be undone (the server keeps the version before, see worker/index.js).
-//   openStudio(items, index, { onClose })   items: words or lines { id, ar, say, en, uk, speak? }; ‹ › move through them
+//   openStudio(items, index, { onClose })   items: words or lines { id, ar, say, en, speak? }; ‹ › move through them
 import { t, tx, num } from "./i18n.js";
 import { esc, ar, translit } from "./dom.js";
 import { icon } from "./art.js";
@@ -64,7 +64,7 @@ export function openStudio(items, index = 0, { onClose } = {}) {
         <button type="button" class="btn btn-ghost st-danger" data-leave>${t("studio.leaveAnyway")}</button></div>` : ""}
       <header class="st-word">
         <h2 id="st-title">${ar(n.ar, "st-ar")}</h2>
-        <p>${translit(n.say)} · <span>${esc(tx({ en: n.en, uk: n.uk, najdi: n.en, msa: n.en }))}</span></p>
+        <p>${translit(n.say)} · <span>${esc(n.en)}</span></p>
       </header>
 
       <section class="st-card st-saved${saved ? "" : " is-empty"}">

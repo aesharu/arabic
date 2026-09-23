@@ -42,7 +42,7 @@ export default {
       const done = content.hasAudio(textOf(n));
       return `<li class="rec-row${done ? " is-done" : ""}" data-id="${esc(n.id)}">
         <button type="button" class="rec-open" data-open="${k}">
-          <span class="rec-word">${ar(n.ar, "rec-ar")} <span class="rec-t">${translit(n.say)} · <span>${esc(tx({ en: n.en, uk: n.uk, najdi: n.en, msa: n.en }))}</span></span></span>
+          <span class="rec-word">${ar(n.ar, "rec-ar")} <span class="rec-t">${translit(n.say)} · <span>${esc(n.en)}</span></span></span>
           <span class="rec-state">${done ? `<span class="rec-ok">${icon("check")}<span>${t("record.saved")}</span></span>` : `<span class="rec-go"><i class="rec-dot" aria-hidden="true"></i>${t("record.start")}</span>`}</span>
         </button>
         <span class="rec-actions">

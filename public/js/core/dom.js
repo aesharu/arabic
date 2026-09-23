@@ -24,28 +24,17 @@ export const flag = item =>
 
 export const flagNote = item => (item.check && item.checkNote ? `<p class="flag-note">${rich(tx(item.checkNote))}</p>` : "");
 
-// "UA", not "UK", so English readers don't read it as United Kingdom.
-const SHORT = { en: "EN", uk: "UA" };
-const meaningLine = (item, l, cls) => `<span class="${cls}" lang="${l}" dir="ltr"><i>${SHORT[l]}</i> ${esc(item[l])}</span>`;
-
-// The languages of a word or phrase after its Najdi Arabic: English and Ukrainian meanings (the interface
-// language first) and the formal-Arabic (MSA) equivalent.
-export function meanings(item) {
-  const l = lang();
-  const lines = l === "en" || l === "uk"
-    ? `<span class="m1" lang="${l}">${esc(item[l])}</span>${meaningLine(item, l === "en" ? "uk" : "en", "m2")}`
-    : `${meaningLine(item, "en", "m1")}${meaningLine(item, "uk", "m2")}`;
-  return lines; // formal Arabic (item.msa) stays in the data but isn't shown: the goal is her spoken dialect
-}
+// What a word or phrase means, under its Saudi Arabic: English, in both interface languages.
+export const meanings = item => `<span class="m1" lang="en" dir="ltr">${esc(item.en)}</span>`;
 
 export const playIcon = `<span class="play" aria-hidden="true">${icon("sound")}</span>`;
 
 // A page's heading, with its picture: a scene of her world (core/scenes.js) with its word to hear, or a small
 // illustration (core/art.js).
 const sceneCard = name => {
-  const [word, say, en, uk] = SCENE_WORDS[name];
+  const [word, say, en] = SCENE_WORDS[name];
   return `<figure class="scene-card" data-scene="${name}">${sceneSvg(name)}
-    <figcaption><button type="button" class="scene-cap" data-say="${esc(word)}">${ar(word)}<span class="scene-say">${translit(say)}</span><span class="scene-mean">${lat(tx({ en, uk, najdi: en, msa: en }))}</span>${playIcon}</button></figcaption>
+    <figcaption><button type="button" class="scene-cap" data-say="${esc(word)}">${ar(word)}<span class="scene-say">${translit(say)}</span><span class="scene-mean">${lat(en)}</span>${playIcon}</button></figcaption>
   </figure>`;
 };
 export const pageHead = (title, sub = "", eyebrow = "", cls = "", art = "") => `

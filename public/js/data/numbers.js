@@ -1,5 +1,5 @@
 // Numbers, time, days and months, the way they're spoken (views/numbers.js). Every text in three languages:
-// ar (spoken Najdi) + say (pronunciation), en, uk. check = not verified by a native speaker yet.
+// ar (spoken Saudi) + say (pronunciation) + en. check = not verified by a native speaker yet.
 // 1–10, 20, 100, 1000 and the days are the plan's (NAJDI-PLAN.md 2.6); the rest is flagged.
 
 const UNITS = [
@@ -60,19 +60,19 @@ const HOURS = [null, ["وحدة", "waḥda"], ["ثنتين", "thintēn"], ["ثل
 // Minutes in steps of five, as they're said: past the hour, or "to" the next one.
 const MINUTES = {
   0: null,
-  5: ["وخمس", "w khams", "five past", "п'ять на"],
-  10: ["وعشر", "w ʿashar", "ten past", "десять на"],
-  15: ["وربع", "w rubʿ", "quarter past", "чверть на"],
-  20: ["وثلث", "w thilth", "twenty past (lit. “and a third”)", "двадцять на (досл. «і третина»)"],
-  25: ["ونص إلا خمس", "w nuṣṣ illa khams", "twenty-five past (lit. “half minus five”)", "двадцять п'ять на (досл. «пів мінус п'ять»)"],
-  30: ["ونص", "w nuṣṣ", "half past", "пів на"],
-  35: ["ونص وخمس", "w nuṣṣ w khams", "twenty-five to (lit. “half and five”)", "за двадцять п'ять (досл. «пів і п'ять»)"],
-  40: ["إلا ثلث", "illa thilth", "twenty to (lit. “minus a third”)", "за двадцять (досл. «без третини»)"],
-  45: ["إلا ربع", "illa rubʿ", "quarter to", "за чверть"],
-  50: ["إلا عشر", "illa ʿashar", "ten to", "за десять"],
-  55: ["إلا خمس", "illa khams", "five to", "за п'ять"],
+  5: ["وخمس", "w khams", "five past"],
+  10: ["وعشر", "w ʿashar", "ten past"],
+  15: ["وربع", "w rubʿ", "quarter past"],
+  20: ["وثلث", "w thilth", "twenty past (lit. “and a third”)"],
+  25: ["ونص إلا خمس", "w nuṣṣ illa khams", "twenty-five past (lit. “half minus five”)"],
+  30: ["ونص", "w nuṣṣ", "half past"],
+  35: ["ونص وخمس", "w nuṣṣ w khams", "twenty-five to (lit. “half and five”)"],
+  40: ["إلا ثلث", "illa thilth", "twenty to (lit. “minus a third”)"],
+  45: ["إلا ربع", "illa rubʿ", "quarter to"],
+  50: ["إلا عشر", "illa ʿashar", "ten to"],
+  55: ["إلا خمس", "illa khams", "five to"],
 };
-const PART_OF_DAY = h => (h < 5 ? ["بالليل", "bil-lēl", "at night", "вночі"] : h < 12 ? ["الصبح", "aṣ-ṣubḥ", "in the morning", "вранці"] : h < 15 ? ["الظهر", "aẓ-ẓuhr", "at noon", "опівдні"] : h < 18 ? ["العصر", "al-ʿaṣr", "in the afternoon", "по обіді"] : ["بالليل", "bil-lēl", "in the evening", "увечері"]);
+const PART_OF_DAY = h => (h < 5 ? ["بالليل", "bil-lēl", "at night"] : h < 12 ? ["الصبح", "aṣ-ṣubḥ", "in the morning"] : h < 15 ? ["الظهر", "aẓ-ẓuhr", "at noon"] : h < 18 ? ["العصر", "al-ʿaṣr", "in the afternoon"] : ["بالليل", "bil-lēl", "in the evening"]);
 
 // "It's 3:40 in the afternoon" → الساعة أربع إلا ثلث العصر. h 0–23, m a multiple of 5.
 export function clockTime(h, m) {
@@ -86,61 +86,61 @@ export function clockTime(h, m) {
     digits: `${h}:${String(m).padStart(2, "0")}`,
   };
 }
-export const TIME_PARTS = Object.entries(MINUTES).filter(([, v]) => v).map(([m, v]) => ({ m: +m, ar: v[0], say: v[1], en: v[2], uk: v[3] }));
+export const TIME_PARTS = Object.entries(MINUTES).filter(([, v]) => v).map(([m, v]) => ({ m: +m, ar: v[0], say: v[1], en: v[2] }));
 
 // ---------- Days, months ----------
 export const DAYS = [
-  { ar: "الأحد", say: "al-aḥad", en: "Sunday", uk: "неділя" },
-  { ar: "الاثنين", say: "al-ithnēn", en: "Monday", uk: "понеділок" },
-  { ar: "الثلاثاء", say: "ath-thalāthāʾ", en: "Tuesday", uk: "вівторок" },
-  { ar: "الأربعاء", say: "al-arbiʿāʾ", en: "Wednesday", uk: "середа" },
-  { ar: "الخميس", say: "al-khamīs", en: "Thursday", uk: "четвер" },
-  { ar: "الجمعة", say: "al-jumʿa", en: "Friday — weekend", uk: "п'ятниця — вихідний" },
-  { ar: "السبت", say: "as-sabt", en: "Saturday — weekend", uk: "субота — вихідний" },
+  { ar: "الأحد", say: "al-aḥad", en: "Sunday" },
+  { ar: "الاثنين", say: "al-ithnēn", en: "Monday" },
+  { ar: "الثلاثاء", say: "ath-thalāthāʾ", en: "Tuesday" },
+  { ar: "الأربعاء", say: "al-arbiʿāʾ", en: "Wednesday" },
+  { ar: "الخميس", say: "al-khamīs", en: "Thursday" },
+  { ar: "الجمعة", say: "al-jumʿa", en: "Friday — weekend" },
+  { ar: "السبت", say: "as-sabt", en: "Saturday — weekend" },
 ];
 
 // The months of the year as Saudis name them; many also just say the number: شهر ٢ shahar thnēn = February.
 export const MONTHS = [
-  { ar: "يناير", say: "yanāyir", en: "January", uk: "січень" },
-  { ar: "فبراير", say: "fibrāyir", en: "February", uk: "лютий" },
-  { ar: "مارس", say: "māris", en: "March", uk: "березень" },
-  { ar: "أبريل", say: "abrīl", en: "April", uk: "квітень" },
-  { ar: "مايو", say: "māyu", en: "May", uk: "травень" },
-  { ar: "يونيو", say: "yūnyu", en: "June", uk: "червень" },
-  { ar: "يوليو", say: "yūlyu", en: "July", uk: "липень" },
-  { ar: "أغسطس", say: "aghusṭus", en: "August", uk: "серпень" },
-  { ar: "سبتمبر", say: "sibtambir", en: "September", uk: "вересень" },
-  { ar: "أكتوبر", say: "uktōbar", en: "October", uk: "жовтень" },
-  { ar: "نوفمبر", say: "nōfambir", en: "November", uk: "листопад" },
-  { ar: "ديسمبر", say: "disambir", en: "December", uk: "грудень" },
+  { ar: "يناير", say: "yanāyir", en: "January" },
+  { ar: "فبراير", say: "fibrāyir", en: "February" },
+  { ar: "مارس", say: "māris", en: "March" },
+  { ar: "أبريل", say: "abrīl", en: "April" },
+  { ar: "مايو", say: "māyu", en: "May" },
+  { ar: "يونيو", say: "yūnyu", en: "June" },
+  { ar: "يوليو", say: "yūlyu", en: "July" },
+  { ar: "أغسطس", say: "aghusṭus", en: "August" },
+  { ar: "سبتمبر", say: "sibtambir", en: "September" },
+  { ar: "أكتوبر", say: "uktōbar", en: "October" },
+  { ar: "نوفمبر", say: "nōfambir", en: "November" },
+  { ar: "ديسمبر", say: "disambir", en: "December" },
 ];
 export const HIJRI_MONTHS = [
-  { ar: "محرم", say: "muḥarram", en: "Muharram — the new Islamic year", uk: "Мухаррам — новий ісламський рік" },
-  { ar: "صفر", say: "ṣafar", en: "Safar", uk: "Сафар" },
-  { ar: "ربيع الأول", say: "rabīʿ al-awwal", en: "Rabi' I", uk: "Рабі перший" },
-  { ar: "ربيع الثاني", say: "rabīʿ ath-thāni", en: "Rabi' II", uk: "Рабі другий" },
-  { ar: "جمادى الأولى", say: "jumād al-ūla", en: "Jumada I", uk: "Джумада перший" },
-  { ar: "جمادى الآخرة", say: "jumād al-ākhra", en: "Jumada II", uk: "Джумада другий" },
-  { ar: "رجب", say: "rajab", en: "Rajab", uk: "Раджаб" },
-  { ar: "شعبان", say: "shaʿbān", en: "Sha'ban", uk: "Шаабан" },
-  { ar: "رمضان", say: "ramaḍān", en: "Ramadan — the month of fasting", uk: "Рамадан — місяць посту" },
-  { ar: "شوال", say: "shawwāl", en: "Shawwal — Eid al-Fitr on the 1st", uk: "Шавваль — Ід аль-Фітр першого числа" },
-  { ar: "ذو القعدة", say: "dhu l-gaʿda", en: "Dhu al-Qa'dah", uk: "Зуль-каада" },
-  { ar: "ذو الحجة", say: "dhu l-ḥijja", en: "Dhu al-Hijjah — Hajj and Eid al-Adha", uk: "Зуль-хіджа — хадж і Ід аль-Адха" },
+  { ar: "محرم", say: "muḥarram", en: "Muharram — the new Islamic year" },
+  { ar: "صفر", say: "ṣafar", en: "Safar" },
+  { ar: "ربيع الأول", say: "rabīʿ al-awwal", en: "Rabi' I" },
+  { ar: "ربيع الثاني", say: "rabīʿ ath-thāni", en: "Rabi' II" },
+  { ar: "جمادى الأولى", say: "jumād al-ūla", en: "Jumada I" },
+  { ar: "جمادى الآخرة", say: "jumād al-ākhra", en: "Jumada II" },
+  { ar: "رجب", say: "rajab", en: "Rajab" },
+  { ar: "شعبان", say: "shaʿbān", en: "Sha'ban" },
+  { ar: "رمضان", say: "ramaḍān", en: "Ramadan — the month of fasting" },
+  { ar: "شوال", say: "shawwāl", en: "Shawwal — Eid al-Fitr on the 1st" },
+  { ar: "ذو القعدة", say: "dhu l-gaʿda", en: "Dhu al-Qa'dah" },
+  { ar: "ذو الحجة", say: "dhu l-ḥijja", en: "Dhu al-Hijjah — Hajj and Eid al-Adha" },
 ];
 
 // Questions and answers with numbers.
 export const NUMBER_PHRASES = [
-  { ar: "كم الساعة؟", say: "kam as-sāʿa?", en: "what time is it?", uk: "котра година?" },
-  { ar: "كم عمرك؟", say: "kam ʿumrik?", en: "how old are you?", uk: "скільки тобі років?" },
-  { ar: "عمري ثلاثين سنة", say: "ʿumri thalāthīn sana", en: "I'm thirty (years old)", uk: "мені тридцять (років)" },
-  { ar: "بكم؟", say: "bikam?", en: "how much is it?", uk: "скільки коштує?" },
-  { ar: "بخمسين ريال", say: "b-khamsīn riyāl", en: "fifty riyals", uk: "п'ятдесят ріалів" },
-  { ar: "اليوم كم بالشهر؟", say: "al-yōm kam bish-shahar?", en: "what's the date today?", uk: "яке сьогодні число?" },
-  { ar: "اليوم تسعة فبراير", say: "al-yōm tisʿa fibrāyir", en: "today is 9 February", uk: "сьогодні 9 лютого" },
-  { ar: "يوم ميلادك متى؟", say: "yōm mīlādik mita?", en: "when is your birthday?", uk: "коли в тебе день народження?" },
-  { ar: "كم رقمك؟", say: "kam ragmik?", en: "what's your number?", uk: "який у тебе номер?" },
-  { ar: "نتقابل الساعة ثمان", say: "nitgābal as-sāʿa thamān", en: "let's meet at eight", uk: "зустрінемося о восьмій" },
-  { ar: "بعد ساعتين", say: "baʿad sāʿatēn", en: "in two hours", uk: "за дві години" },
-  { ar: "قبل يومين", say: "gabl yōmēn", en: "two days ago", uk: "два дні тому" },
+  { ar: "كم الساعة؟", say: "kam as-sāʿa?", en: "what time is it?" },
+  { ar: "كم عمرك؟", say: "kam ʿumrik?", en: "how old are you?" },
+  { ar: "عمري ثلاثين سنة", say: "ʿumri thalāthīn sana", en: "I'm thirty (years old)" },
+  { ar: "بكم؟", say: "bikam?", en: "how much is it?" },
+  { ar: "بخمسين ريال", say: "b-khamsīn riyāl", en: "fifty riyals" },
+  { ar: "اليوم كم بالشهر؟", say: "al-yōm kam bish-shahar?", en: "what's the date today?" },
+  { ar: "اليوم تسعة فبراير", say: "al-yōm tisʿa fibrāyir", en: "today is 9 February" },
+  { ar: "يوم ميلادك متى؟", say: "yōm mīlādik mita?", en: "when is your birthday?" },
+  { ar: "كم رقمك؟", say: "kam ragmik?", en: "what's your number?" },
+  { ar: "نتقابل الساعة ثمان", say: "nitgābal as-sāʿa thamān", en: "let's meet at eight" },
+  { ar: "بعد ساعتين", say: "baʿad sāʿatēn", en: "in two hours" },
+  { ar: "قبل يومين", say: "gabl yōmēn", en: "two days ago" },
 ];

@@ -16,7 +16,7 @@ import { deckName } from "./shared.js";
 import { celebrate } from "../core/celebrate.js";
 
 const ROUND = 10;
-export const mean = x => tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en });
+export const mean = x => tx({ en: x.en, najdi: x.en });
 const best = () => store.get().prefs.practice ?? {};
 
 // Every topic as { id, title, group, entries }. The typing page (views/write.js) uses the same list.

@@ -12,7 +12,7 @@ import { CULTURE } from "../data/culture.js";
 const turn = new Map(); // route → how many times "Another story" was pressed (until reload)
 
 function card(c, many) {
-  const [word, say, en, uk] = c.word;
+  const [word, say, en] = c.word;
   return `<section class="culture" aria-labelledby="cu-title">
     <div class="sadu" aria-hidden="true"></div>
     <div class="culture-body">
@@ -22,7 +22,7 @@ function card(c, many) {
         <h2 id="cu-title">${esc(tx(c.title))}</h2>
         <p>${rich(tx(c.text))}</p>
         <div class="culture-foot">
-          <button type="button" class="culture-word" data-say="${esc(word.replace(/[؟?]/g, ""))}">${ar(word)}<span>${translit(say)}</span><small>${lat(tx({ en, uk, najdi: en, msa: en }))}</small>${playIcon}</button>
+          <button type="button" class="culture-word" data-say="${esc(word.replace(/[؟?]/g, ""))}">${ar(word)}<span>${translit(say)}</span><small>${lat(en)}</small>${playIcon}</button>
           ${flag({ check: true })}
           ${many ? `<button type="button" class="btn btn-ghost culture-next" data-culture-next>${icon("redo")} ${t("cu.next")}</button>` : ""}
         </div>

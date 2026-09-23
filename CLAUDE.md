@@ -14,13 +14,14 @@ This project is my personal learning website: the tools I study with every day, 
 
 ## LANGUAGES — ALWAYS, ON EVERY CHANGE
 
-**Everything must ALWAYS be translated. Every time you change or add anything, translate it into every language below — never add or change text in only one language.**
+**Everything must ALWAYS be in both languages. Every time you change or add anything, write it in both languages below — never add or change text in only one.**
 
-- **Interface text** (menus, buttons, instructions, notes): **English, Ukrainian, Saudi Arabic (the `najdi` key in the code) AND MSA.** My girlfriend reads English and Arabic and checks the site to help me; I read Ukrainian. Texts live in `public/js/i18n/strings.js` (all four side by side); content data uses `{ en, uk, najdi, msa }`. The Arabic interfaces run right-to-left.
-- **Every Arabic word, phrase and example**: **her Saudi Arabic (with pronunciation), English AND Ukrainian.** I don't want formal Arabic (MSA): it is **not shown** anywhere I study, and new content doesn't need it (older data files still carry an `msa` field — leave it, the tests check it there).
+- **Interface text** (menus, buttons, instructions, notes): **English AND Saudi Arabic (the `najdi` key in the code).** My girlfriend reads English and Arabic and checks the site to help me; I learn Saudi through English. Texts live in `public/js/i18n/strings.js` (both side by side); content data uses `{ en, najdi }`. The Arabic interface runs right-to-left.
+- **Every Arabic word, phrase and example**: **her Saudi Arabic (with pronunciation) AND English.**
+- **Ukrainian and formal Arabic (MSA) are gone** (23 Sept 2026, my decision): no `uk` and no `msa` anywhere on the site — not in the interface, not in the data, not in the tests. Never add either back. `NAJDI-PLAN.md` and `NAJDI-WORDS.md` still have a Ukrainian and an MSA column in their tables; `npm run vocab` reads past them and throws them away.
 - **Double- and triple-check every translation:**
-  1. Proofread each translation yourself — natural Ukrainian and English, correct everyday Saudi (her dialect).
-  2. Run `npm test` — it fails if any language is missing, if Ukrainian isn't in Cyrillic or MSA isn't in Arabic script, or if a Saudi word doesn't match `NAJDI-PLAN.md`.
+  1. Proofread each translation yourself — natural English, correct everyday Saudi (her dialect).
+  2. Run `npm test` — it fails if either language is missing, if the Saudi text isn't in Arabic script, or if a Saudi word doesn't match `NAJDI-PLAN.md`.
   3. Tell me (in chat, not on the site) which translations you're unsure of, so she can check them. If a Saudi word itself is uncertain, use the "check with tutor" flag.
 - **No behind-the-scenes notes on the site.** My girlfriend uses it too: never show who translated what, file names like NAJDI-PLAN.md, or notes addressed to me about the build. Study content only.
 

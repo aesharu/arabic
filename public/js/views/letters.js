@@ -22,7 +22,6 @@ const card = l => `
         <div class="name"><b>${lat(l.name)}</b>${ar(l.nameAr)}
           ${l.hard ? `<span class="tag h">${t("letters.newSound")}</span>` : ""}${l.nonJoining ? `<span class="tag nc">${t("letters.nonJoining")}</span>` : ""}</div>
         <p class="sound">${rich(tx(l.sound))}</p>
-        <p class="ua"><span>${t("lab.ua")}</span><bdi lang="uk">${esc(l.ua)}</bdi></p>
       </div>
     </div>
     <div class="forms">${formsOf(l).map(([f, key]) => `<div>${ar(f)}<small>${t(key)}</small></div>`).join("")}</div>
@@ -47,17 +46,16 @@ const tableRow = (l, i) => `
     <td class="lt-name"><b>${lat(l.name)}</b> ${ar(l.nameAr)}
       ${l.hard ? `<span class="tag h">${t("letters.newSound")}</span>` : ""}${l.nonJoining ? `<span class="tag nc">${t("letters.nonJoining")}</span>` : ""}</td>
     <td class="lt-sound"><b>${esc(l.translit)}</b></td>
-    <td class="lt-ua"><bdi lang="uk">${esc(l.ua)}</bdi></td>
     ${shapes(l).map((f, k) => `<td class="lt-f" data-label="${esc(t(FORMS[k]))}">${ar(f)}</td>`).join("")}
     <td class="lt-ex"><button class="lt-exbtn" data-say="${esc(l.example.ar)}">${ar(l.example.ar)}
-      <span>${translit(l.example.tr)} · ${esc(tx({ en: l.example.en, uk: l.example.uk, najdi: l.example.en, msa: l.example.en }))} ${flag(l)}</span></button></td>
+      <span>${translit(l.example.tr)} · ${esc(l.example.en)} ${flag(l)}</span></button></td>
   </tr>`;
 
 const table = () => `
   ${pageHead(t("letters.tableTitle"), t("letters.tableSub"), "", "", "qalam")}
   <p class="lt-back"><a href="#/letters">${icon("back")} ${t("letters.byGroups")}</a></p>
   <table class="lt-table">
-    <thead><tr><th class="lt-n">#</th><th>${t("letters.colLetter")}</th><th>${t("letters.colName")}</th><th>${t("letters.colSound")}</th><th>${t("lab.ua")}</th>
+    <thead><tr><th class="lt-n">#</th><th>${t("letters.colLetter")}</th><th>${t("letters.colName")}</th><th>${t("letters.colSound")}</th>
       ${FORMS.map(k => `<th class="lt-fh">${t(k)}</th>`).join("")}<th>${t("letters.colExample")}</th></tr></thead>
     <tbody>${ALL.map(tableRow).join("")}</tbody>
   </table>`;

@@ -8,7 +8,7 @@
 // Nobody can write anyone else's. SYNC_KEY is a Worker secret, never in this repository.
 //   GET    /api/content          → { edits, audio, suggestions, history }  corrections, which words she has recorded,
 //                                  her suggestions waiting, and the last ones decided
-//   PUT    /api/edits/<id>       ← { ar?, say?, en?, uk?, najdi?, msa?, checked?, before? }  a correction to a word, a line
+//   PUT    /api/edits/<id>       ← { ar?, say?, en?, najdi?, checked?, before? }  a correction to a word, a line
 //                                  or any text on the site ("s.<string key>", "x.<hash>"). Volodymyr's goes live at once;
 //                                  Dima's becomes a suggestion that waits for him.
 //   DELETE /api/edits/<id>       back to the original (Volodymyr)
@@ -209,7 +209,7 @@ const MAX_AUDIO = 600_000; // a few seconds of speech is ~30 KB
 // something bind() can store again. Everything that reads audio out of the database goes through this.
 const bytes = data => (data instanceof ArrayBuffer ? new Uint8Array(data) : ArrayBuffer.isView(data) ? data : new Uint8Array(data ?? []));
 const ID = /^[a-zA-Z0-9._:-]{1,80}$/;
-const FIELDS = ["ar", "say", "en", "uk", "najdi", "msa"];
+const FIELDS = ["ar", "say", "en", "najdi"];
 const clean = body => {
   const data = {};
   for (const f of FIELDS) if (typeof body?.[f] === "string" && body[f].trim()) data[f] = body[f].trim().slice(0, 2000);

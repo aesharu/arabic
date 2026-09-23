@@ -64,7 +64,7 @@ function compass(bearing) {
 
 const wordBtn = w => (content.apply(w), `<button class="phrase" data-say="${esc(speakText(w.ar))}" data-edit-id="${w.id}">${ar(w.ar, "phrase-ar")}
   <span class="phrase-t">${translit(w.say)} ${w.check ? flag({ check: true }) : ""}
-    <span class="gr-mean">${esc(tx({ en: w.en, uk: w.uk, najdi: w.en, msa: w.en }))}</span></span>${playIcon}</button>`);
+    <span class="gr-mean">${esc(w.en)}</span></span>${playIcon}</button>`);
 
 export default {
   titleKey: "saudi.title",
@@ -81,7 +81,7 @@ export default {
         <ol class="pr-list">${PRAYERS.map(p => {
           const at = today[p.id];
           const cls = next && p.id === next.p.id && at.getTime() === next.at.getTime() ? "is-next" : prev && p.id === prev.p.id && at.getTime() === prev.at.getTime() ? "is-prev" : at < now ? "is-past" : "";
-          return `<li class="${cls}${p.notPrayer ? " is-sun" : ""}"><button class="pr-name" data-say="${esc(p.ar)}">${ar(p.ar)} <span>${esc(tx({ en: p.en, uk: p.uk, najdi: p.en, msa: p.en }))}</span></button><b>${esc(clock(at))}</b></li>`;
+          return `<li class="${cls}${p.notPrayer ? " is-sun" : ""}"><button class="pr-name" data-say="${esc(p.ar)}">${ar(p.ar)} <span>${esc(p.en)}</span></button><b>${esc(clock(at))}</b></li>`;
         }).join("")}</ol>
         <p class="muted small">${esc(t("saudi.method"))}</p>`;
     };
@@ -102,7 +102,7 @@ export default {
         <div class="sa-top">
           <section class="panel sa-today"><h2>${icon("calendar")} ${t("saudi.today")}</h2>
             <p class="sa-hijri" lang="ar" dir="rtl">${esc(hijriLong(todayD, "ar-SA"))}</p>
-            ${lang() === "najdi" || lang() === "msa" ? "" : `<p class="sa-hijri-lat">${esc(hijriLong(todayD))}</p>`}
+            ${lang() === "najdi" ? "" : `<p class="sa-hijri-lat">${esc(hijriLong(todayD))}</p>`}
             <p class="muted">${esc(gregLong(todayD))}</p>
             ${next[0] ? `<p class="sa-next">${icon("star")} <b>${esc(tx(next[0].o.name))}</b> — ${esc(daysText(next[0].days))}</p>` : ""}
           </section>

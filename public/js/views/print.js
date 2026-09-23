@@ -23,12 +23,8 @@ const chunk = (list, n) => Array.from({ length: Math.ceil(list.length / n) }, (_
 const STAGES = ["1", "2", "3", "4", "special", "grammar"];
 const CARD_SETS = ["phrases", "1", "2", "3", "4", "special"];
 
-// The meaning under a word: the interface language first (English in the Arabic interfaces), then the other one.
-const meaningLines = e => {
-  const first = lang() === "uk" ? "uk" : "en";
-  const second = first === "en" ? "uk" : "en";
-  return `<span class="pm1" lang="${first}">${esc(e[first])}</span><span class="pm2" lang="${second}">${esc(e[second])}</span>`;
-};
+// The meaning under a word, in English.
+const meaningLines = e => `<span class="pm1" lang="en">${esc(e.en)}</span>`;
 
 // A guideline row: the baseline, a faint line above it, and whatever glyphs sit on it.
 const row = (glyphs = "", cls = "") => `<div class="trow${cls ? " " + cls : ""}" dir="rtl">${glyphs}</div>`;

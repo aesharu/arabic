@@ -1,15 +1,13 @@
-// Interface language: English, Ukrainian, Najdi Arabic or formal Arabic (MSA). Texts live in i18n/strings.js;
-// content data carries { en, uk, najdi, msa } values that tx() picks from. Arabic interfaces run right-to-left.
+// Interface language: English or Saudi Arabic. Texts live in i18n/strings.js; content data carries
+// { en, najdi } values that tx() picks from. The Arabic interface runs right-to-left.
 import * as store from "./store.js";
 import * as content from "./content.js";
 import { STRINGS } from "../i18n/strings.js";
 
-export const LANGS = ["en", "uk", "najdi", "msa"];
+export const LANGS = ["en", "najdi"];
 const META = {
   en: { html: "en", dir: "ltr", locale: "en-US", plural: "en" },
-  uk: { html: "uk", dir: "ltr", locale: "uk-UA", plural: "uk" },
   najdi: { html: "ar-SA", dir: "rtl", locale: "ar-SA-u-ca-gregory-nu-latn", plural: "ar" },
-  msa: { html: "ar", dir: "rtl", locale: "ar-u-ca-gregory-nu-latn", plural: "ar" },
 };
 
 export const lang = () => (LANGS.includes(store.get().prefs.lang) ? store.get().prefs.lang : "en");
@@ -63,29 +61,29 @@ function idOf(v) {
   return id;
 }
 
-// The unit word for a count: tu("unit.days", 3) → "days" / "дні" / "أيام"
+// The unit word for a count: tu("unit.days", 3) → "days" / "أيام"
 export function tu(key, n, opts) {
   const forms = STRINGS[key][lang()];
   return forms[new Intl.PluralRules(meta().plural, opts).select(n)] ?? forms.other;
 }
 
 // A count inside a sentence: in Arabic the number with its word, the way it's said — one and two by the word alone
-// (ساعة، ساعتين), the number only from three up (3 ساعات، 11 ساعة); in English and Ukrainian just the number,
-// since their texts carry a short unit ("in {h} h").
+// (ساعة، ساعتين), the number only from three up (3 ساعات، 11 ساعة); in English just the number, since its
+// texts carry a short unit ("in {h} h").
 export function cnt(key, n) {
   if (meta().plural !== "ar") return num(n);
   const w = tu(key, n);
   return n === 1 || n === 2 ? w : `${num(n)} ${w}`;
 }
 
-// A count with its word, the way each language says it: "7 words", "7 слів", "٧ كلمات" — and يومين, not "٢ يومين".
+// A count with its word, the way each language says it: "7 words", "٧ كلمات" — and يومين, not "٢ يومين".
 export const said = (key, n) => (isArabic() ? cnt(key, n) : `${num(n)} ${tu(key, n)}`);
 
 // A number the way the current language writes it (1.5 / 1,5)
 export const num = (n, digits = 0) =>
   n.toLocaleString(locale(), { minimumFractionDigits: digits, maximumFractionDigits: digits });
 
-// A content value — { en, uk, najdi, msa } — in the current language. Plain strings pass through.
+// A content value — { en, najdi } — in the current language. Plain strings pass through.
 export function tx(v) {
   if (!v || typeof v !== "object") return v ?? "";
   const id = idOf(v);

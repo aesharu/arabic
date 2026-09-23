@@ -19,7 +19,7 @@ content.register(CHAT_LINES); // ✎ in edit mode
 const show = { say: false, mean: false };
 // Read chats: "ch.<id>" in reading.done (synced); older marks were kept on the device in prefs.chatsRead.
 const read = () => [...(store.get().prefs.chatsRead ?? []), ...(store.get().reading?.done ?? []).filter(x => x.startsWith("ch.")).map(x => x.slice(3))];
-const mean = x => esc(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }));
+const mean = x => esc(tx({ en: x.en, najdi: x.en }));
 
 function list() {
   const done = read();
@@ -32,7 +32,7 @@ function list() {
     </a></li>`).join("")}</ol>`;
 }
 
-const who = (c, l) => (l.who === "her" ? t("profile.dima") : l.who === "other" ? tx({ ...c.other, najdi: c.other.ar, msa: c.other.ar }) : "");
+const who = (c, l) => (l.who === "her" ? t("profile.dima") : l.who === "other" ? tx({ ...c.other, najdi: c.other.ar }) : "");
 
 const bubble = (c, l, i, d) => (content.apply(l), `
   <li class="ch-msg is-${l.who}">

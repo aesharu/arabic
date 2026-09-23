@@ -14,12 +14,12 @@ export function phaseFor(date) {
   return PHASES.find(p => date >= p.start && date <= p.end) ?? PHASES.at(-1);
 }
 
-const LANGS = ["en", "uk", "najdi", "msa"];
+const LANGS = ["en", "najdi"];
 const byLang = fn => Object.fromEntries(LANGS.map(l => [l, fn(l)]));
 
-// "Script" / "Stage 1 · Core" — in every language: { en, uk, najdi, msa }
+// "Script" / "Stage 1 · Core" — in both languages: { en, najdi }
 export const phaseTitle = p => byLang(l => (p.label[l] === p.name[l] ? p.name[l] : `${p.label[l]} · ${p.name[l]}`));
-const GOAL_PREFIX = { en: "Goal of this stage", uk: "Мета етапу", najdi: "هدف المرحلة", msa: "هدف المرحلة" };
+const GOAL_PREFIX = { en: "Goal of this stage", najdi: "هدف المرحلة" };
 
 // ---------- Stages, opened by what you have done ----------
 // 23 Sept 2026: the fifteen-month deadline is gone — Arabic takes as long as it takes. A stage now opens when

@@ -33,12 +33,11 @@ test("clock times", () => {
   for (let h = 0; h < 24; h++) for (let m = 0; m < 60; m += 5) assert.ok(clockTime(h, m).say, `${h}:${m}`);
 });
 
-test("days, months and phrases in three languages", () => {
+test("days, months and phrases in both languages", () => {
   assert.equal(DAYS.length, 7);
   assert.equal(MONTHS.length, 12);
   assert.equal(HIJRI_MONTHS.length, 12);
   for (const x of [...DAYS, ...MONTHS, ...HIJRI_MONTHS, ...NUMBER_PHRASES, ...TIME_PARTS]) {
-    for (const f of ["ar", "say", "en", "uk"]) assert.ok(x[f], `${x.ar}: ${f}`);
-    assert.match(x.uk, /[Ѐ-ӿ]/, `${x.ar}: Ukrainian`);
+    for (const f of ["ar", "say", "en"]) assert.ok(x[f], `${x.ar}: ${f}`);
   }
 });

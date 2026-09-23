@@ -1,5 +1,5 @@
 // Special days on the welcome screen (public/js/data/holidays.js): the right day for each, every phrase with
-// Saudi Arabic, pronunciation, English and Ukrainian, facts in four languages, and plan phrases unflagged.
+// Saudi Arabic, pronunciation and English, facts in both languages, and plan phrases unflagged.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -34,22 +34,20 @@ test("every occasion on Saudi life has its greeting", () => {
   for (const o of OCCASIONS) assert.ok(HOLIDAYS.some(h => h.id === (o.id === "ramadan" ? "ramadan" : o.id)), o.id);
 });
 
-test("every phrase: Arabic, pronunciation, English, Ukrainian; facts in four languages", () => {
+test("every phrase: Arabic, pronunciation and English; facts in both languages", () => {
   assert.equal(new Set(HOLIDAYS.map(h => h.id)).size, HOLIDAYS.length);
   for (const h of HOLIDAYS) {
-    for (const l of ["en", "uk", "najdi", "msa"]) assert.ok(h.name[l], `${h.id} name ${l}`);
+    for (const l of ["en", "najdi"]) assert.ok(h.name[l], `${h.id} name ${l}`);
     for (const k of ["title", "titleV", "toHer", "sayToHer", "reply"]) {
       const p = h[k];
       if (!p) continue;
       assert.match(p.ar, /[؀-ۿ]/, `${h.id} ${k} Arabic`);
       assert.ok(p.say && !/[؀-ۿ]/.test(p.say), `${h.id} ${k} pronunciation`);
       assert.ok(p.en, `${h.id} ${k} English`);
-      assert.match(p.uk, /[Ѐ-ӿ]/, `${h.id} ${k} Ukrainian`);
     }
     for (const k of ["fact", "factV"]) {
       if (!h[k]) continue;
-      for (const l of ["en", "uk", "najdi", "msa"]) assert.ok(h[k][l], `${h.id} ${k} ${l}`);
-      assert.match(h[k].uk, /[Ѐ-ӿ]/);
+      for (const l of ["en", "najdi"]) assert.ok(h[k][l], `${h.id} ${k} ${l}`);
       assert.match(h[k].najdi, /[؀-ۿ]/);
     }
     assert.ok(h.title && h.toHer && h.sayToHer, `${h.id}: greeting, line to her, line for him`);

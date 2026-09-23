@@ -1,6 +1,6 @@
 # Saudi — everyday Saudi Arabic
 
-Volodia's study site for learning Dima's dialect — modern everyday Saudi Arabic, the way young Saudis talk (she's from Hafar al-Batin) — in 15 months (21 Sept 2026 → 31 Dec 2027): today's tasks, a calendar of the whole plan, weekly lessons, grammar, Anki-style cards for 1,000+ words, a searchable word list, an alphabet trainer and full alphabet table, "To her ♥" (love, compliments, her family, marriage), her own words, numbers and time, 60 stories to read (from children's-book easy to A2, tap any word to see its meaning and how it's built), 20 chats to read, a week-by-week path to A1 and A2, practice by topic, verb tables for 48 verbs, a "talk about yourself" builder, 17 grammar lessons, reading practice, phrases, Saudi life (Hijri date, prayer times, Qibla, culture), a birthday goal page (his profile only) and printable A4 practice sheets. Formal Arabic (MSA) isn't shown. Dima, a native speaker, records the words in her own voice and corrects any text on the site; Volodymyr approves her changes. The interface is in English, Ukrainian, Saudi Arabic and formal Arabic (MSA); every Arabic word is shown in Saudi Arabic (with pronunciation), English and Ukrainian.
+Volodia's study site for learning Dima's dialect — modern everyday Saudi Arabic, the way young Saudis talk (she's from Hafar al-Batin) — from 21 Sept 2026, for as long as it takes: today's tasks, a calendar of the whole plan, weekly lessons, grammar, Anki-style cards for 1,000+ words, a searchable word list, an alphabet trainer and full alphabet table, "To her ♥" (love, compliments, her family, marriage), her own words, numbers and time, 60 stories to read (from children's-book easy to A2, tap any word to see its meaning and how it's built), 20 chats to read, a week-by-week path to A1 and A2, practice by topic, verb tables for 48 verbs, a "talk about yourself" builder, 17 grammar lessons, reading practice, phrases, Saudi life (Hijri date, prayer times, Qibla, culture), a birthday goal page (his profile only) and printable A4 practice sheets. Dima, a native speaker, records the words in her own voice and corrects any text on the site; Volodymyr approves her changes. The interface is in English and Saudi Arabic; every Arabic word is shown in Saudi Arabic (with pronunciation) and English. Formal Arabic (MSA) and Ukrainian are not on the site at all.
 
 The curriculum and the plan's vocabulary come from [`NAJDI-PLAN.md`](NAJDI-PLAN.md); suggested extra words for Stages 4–5 are in [`NAJDI-WORDS.md`](NAJDI-WORDS.md) (flagged until a native speaker ticks them). What's built and what's next: [`STATUS.md`](STATUS.md).
 
@@ -27,13 +27,13 @@ public/                 the website — Cloudflare serves this folder as-is
     data/               letters, vowels, words, phrases, plan, grammar, weeks (lessons), saudi, love, hers (her words),
                         numbers, chats, stories (60, loaded only when needed), glossary (reading words), verbs, grammar2 (A2),
                         me (about yourself), path (the weekly route), birthday — the content
-    i18n/strings.js     every interface text in English, Ukrainian, Saudi Arabic (key `najdi`) and MSA
+    i18n/strings.js     every interface text in English and Saudi Arabic (key `najdi`)
     views/              one file per page
   css/welcome.css, js/core/welcome.js, js/core/music.js   the welcome screen, profiles and the synthesised oud greeting
 worker/index.js         the only server code: /api/login (sign in by name), /api/progress (each profile's progress),
                         /api/content, /api/edits, /api/suggestions, /api/audio (corrections, suggestions, recordings) — all in D1
 scripts/build-vocab.mjs npm run vocab — builds public/data/vocab.json and the Anki decks from NAJDI-PLAN.md + NAJDI-WORDS.md
-data/                   MSA and Ukrainian meanings for the plan's vocabulary
+data/                   the Saudi names of the plan's topics, dialects and notes
 tests/                  checks for dates/plan logic, translations, vocabulary and content vs NAJDI-PLAN.md
 wrangler.jsonc          Cloudflare Workers config (static assets from ./public, D1 binding)
 ```
@@ -59,4 +59,4 @@ The site is https://arabic.aesdvi.workers.dev. It opens with a welcome screen: c
 ## Content rules
 
 - Saudi only — modern everyday Saudi, nothing from other countries — and never invented: anything not verified carries a visible "check with tutor" flag.
-- Every word and phrase has Saudi Arabic (Arabic + pronunciation), MSA, English and Ukrainian. Every interface text has English, Ukrainian, Saudi Arabic and MSA. `npm test` fails if any is missing.
+- Every word and phrase has Saudi Arabic (Arabic + pronunciation) and English. Every interface text has English and Saudi Arabic. `npm test` fails if either is missing.

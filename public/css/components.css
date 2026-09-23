@@ -38,8 +38,6 @@
 
 /* A word's languages after its Najdi Arabic: meaning in the interface language, the others, formal Arabic */
 .m1 { display: block; color: var(--ink); }
-.m2, .msa { display: block; color: var(--muted); font-size: 15px; }
-.m2 i, .msa i { font-style: normal; font-weight: 800; font-size: 12px; letter-spacing: .05em; margin-inline-end: 6px; text-transform: uppercase; }
 .msa .ar { font-size: 18px; }
 .tr { font-weight: 800; }
 
@@ -187,8 +185,6 @@ html[dir="rtl"] { --end-side: left; }
 .phrase-t { flex: 1; }
 .phrase-t b { font-size: 18px; }
 .pnote { display: block; margin-top: 2px; font-size: 15px; color: var(--muted); font-style: italic; }
-.ua { margin: 6px 0 0; font-weight: 700; }
-.ua > span { font-weight: 400; color: var(--muted); margin-inline-end: 6px; }
 .pday { margin: 0 0 26px; }
 .pday .phrase-list { grid-template-columns: repeat(auto-fill, minmax(min(100%, 560px), 1fr)); }
 .pday h2 { font-size: 20px; }
@@ -656,8 +652,6 @@ html[dir="rtl"] .study-kind { letter-spacing: 0; text-transform: none; }
 .study-ar .ar { font-size: 44px; }
 .study-ar.big .ar { font-size: clamp(52px, 8vw, 84px); }
 .study-meaning { margin: 0; font-size: 30px; font-weight: 800; line-height: 1.2; }
-.study-meaning-2 { margin: 6px 0 0; color: var(--muted); font-size: 18px; }
-.study-meaning-2 i { font-style: normal; font-weight: 800; font-size: 12px; letter-spacing: .05em; margin-inline-end: 6px; }
 .study-prompt { margin: 14px 0 0; color: var(--muted); font-weight: 700; }
 .study-back hr { width: 60%; margin: 18px auto; border: 0; border-top: 1.5px dashed var(--line); }
 .study-back > * { animation: rise .2s ease-out; }
@@ -940,7 +934,6 @@ html[dir="rtl"] .gr-card > .i { transform: scaleX(-1); }
 .gr-rows { margin-bottom: 22px; }
 .gr-row.is-her { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent); }
 .gr-mean { font-weight: 800; }
-.gr-mean-2 { color: var(--muted); font-size: 15px; }
 .gr-msa { color: var(--muted); font-size: 15px; }
 .gr-msa i { font-style: normal; font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; margin-inline-end: 4px; }
 .gr-her { display: inline-flex; align-items: center; gap: 4px; color: var(--accent); font-weight: 800; font-size: 13.5px; }
@@ -1174,7 +1167,6 @@ html[dir="rtl"] .lt-table th { letter-spacing: 0; }
 .lt-name .ar { font-size: 20px; margin-inline-start: 4px; }
 .lt-name .tag { display: inline-block; margin: 4px 4px 0 0; }
 .lt-sound b { font-size: 17px; white-space: nowrap; }
-.lt-ua { color: var(--muted); font-size: 15px; min-width: 110px; }
 .lt-f { text-align: center; }
 .lt-f .ar, .lt-fh { font-size: 26px; }
 .lt-fh { font-size: 12px !important; text-align: center !important; }
@@ -1193,7 +1185,6 @@ html[dir="rtl"] .lt-table th { letter-spacing: 0; }
   .lt-char { grid-row: 1 / span 3; grid-column: 1; align-self: start; }
   .lt-name { grid-column: 2 / -1; grid-row: 1; }
   .lt-sound { grid-column: 2; grid-row: 2; }
-  .lt-ua { grid-column: 3 / -1; grid-row: 2; }
   .lt-f { grid-row: 3; padding: 6px 0 2px !important; border-radius: 10px; background: var(--bg) !important; }
   .lt-f .ar { font-size: 24px; }
   .lt-f::after { content: attr(data-label); display: block; font-size: 11.5px; color: var(--muted); }
@@ -1359,8 +1350,6 @@ html[dir="rtl"] .ch-end .i:last-child { transform: scaleX(-1); }
 .st-x { position: absolute; top: 10px; inset-inline-end: 10px; display: grid; place-items: center; width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--surface-2); color: var(--muted); cursor: pointer; }
 .st-meaning { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin: 8px 0 0; }
 .st-meaning .m1 { font-size: 19px; font-weight: 800; }
-.st-meaning .m2 { flex-basis: 100%; color: var(--muted); }
-.st-meaning .m1 i, .st-meaning .m2 i { font-style: normal; font-size: 11.5px; font-weight: 800; letter-spacing: .04em; margin-inline-end: 4px; }
 .st-form { display: inline-block; padding: 3px 12px; border-radius: 99px; background: var(--surface-2); font-size: 14.5px; font-weight: 800; }
 .st-meaning .st-form { font-size: 15px; }
 .st-parts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0 0; }

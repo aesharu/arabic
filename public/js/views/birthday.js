@@ -30,7 +30,7 @@ const line = (x, i) => `
     <span class="bd-body">
       <span class="bd-ar">${ar(x.ar, "phrase-ar")}</span>
       <span class="phrase-t"><span class="bd-say">${translit(x.say)} ${x.check ? flag({ check: true }) : ""}</span>
-        <span class="gr-mean">${esc(tx({ en: x.en, uk: x.uk, najdi: x.en, msa: x.en }))}</span></span>
+        <span class="gr-mean">${esc(x.en)}</span></span>
     </span>${playIcon}</button></li>`;
 
 export default {

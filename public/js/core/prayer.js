@@ -4,24 +4,24 @@
 // mosque's by a minute or two. Saudi Arabia is UTC+3 all year (no summer time).
 
 export const CITIES = [
-  { id: "hafar", lat: 28.4328, lng: 45.9708, name: { en: "Hafar al-Batin", uk: "Хафр-ель-Батін", najdi: "حفر الباطن", msa: "حفر الباطن" } },
-  { id: "riyadh", lat: 24.7136, lng: 46.6753, name: { en: "Riyadh", uk: "Ер-Ріяд", najdi: "الرياض", msa: "الرياض" } },
-  { id: "buraidah", lat: 26.326, lng: 43.975, name: { en: "Buraidah", uk: "Бурайда", najdi: "بريدة", msa: "بريدة" } },
-  { id: "hail", lat: 27.5114, lng: 41.7208, name: { en: "Ha'il", uk: "Хаїль", najdi: "حايل", msa: "حائل" } },
-  { id: "sakaka", lat: 29.9697, lng: 40.2064, name: { en: "Sakaka (Al-Jouf)", uk: "Сакака (Ель-Джауф)", najdi: "سكاكا (الجوف)", msa: "سكاكا (الجوف)" } },
-  { id: "arar", lat: 30.9753, lng: 41.0381, name: { en: "Arar", uk: "Арар", najdi: "عرعر", msa: "عرعر" } },
-  { id: "tabuk", lat: 28.3835, lng: 36.5662, name: { en: "Tabuk", uk: "Табук", najdi: "تبوك", msa: "تبوك" } },
+  { id: "hafar", lat: 28.4328, lng: 45.9708, name: { en: "Hafar al-Batin", najdi: "حفر الباطن" } },
+  { id: "riyadh", lat: 24.7136, lng: 46.6753, name: { en: "Riyadh", najdi: "الرياض" } },
+  { id: "buraidah", lat: 26.326, lng: 43.975, name: { en: "Buraidah", najdi: "بريدة" } },
+  { id: "hail", lat: 27.5114, lng: 41.7208, name: { en: "Ha'il", najdi: "حايل" } },
+  { id: "sakaka", lat: 29.9697, lng: 40.2064, name: { en: "Sakaka (Al-Jouf)", najdi: "سكاكا (الجوف)" } },
+  { id: "arar", lat: 30.9753, lng: 41.0381, name: { en: "Arar", najdi: "عرعر" } },
+  { id: "tabuk", lat: 28.3835, lng: 36.5662, name: { en: "Tabuk", najdi: "تبوك" } },
 ];
 export const MECCA = { lat: 21.4225, lng: 39.8262 }; // the Kaaba
 const TZ = 3;
 
 export const PRAYERS = [
-  { id: "fajr", ar: "الفجر", say: "al-fajr", en: "Fajr (dawn)", uk: "Фаджр (світанок)", msa: "صلاة الفجر" },
-  { id: "sunrise", ar: "الشروق", say: "ash-shurūg", en: "Sunrise", uk: "Схід сонця", msa: "الشروق", notPrayer: true },
-  { id: "dhuhr", ar: "الظهر", say: "aẓ-ẓuhr", en: "Dhuhr (noon)", uk: "Зухр (полудень)", msa: "صلاة الظهر" },
-  { id: "asr", ar: "العصر", say: "al-ʿaṣr", en: "Asr (afternoon)", uk: "Аср (пообідня)", msa: "صلاة العصر" },
-  { id: "maghrib", ar: "المغرب", say: "al-maghrib", en: "Maghrib (sunset)", uk: "Магриб (захід сонця)", msa: "صلاة المغرب" },
-  { id: "isha", ar: "العشاء", say: "al-ʿisha", en: "Isha (night)", uk: "Іша (нічна)", msa: "صلاة العشاء" },
+  { id: "fajr", ar: "الفجر", say: "al-fajr", en: "Fajr (dawn)" },
+  { id: "sunrise", ar: "الشروق", say: "ash-shurūg", en: "Sunrise", notPrayer: true },
+  { id: "dhuhr", ar: "الظهر", say: "aẓ-ẓuhr", en: "Dhuhr (noon)" },
+  { id: "asr", ar: "العصر", say: "al-ʿaṣr", en: "Asr (afternoon)" },
+  { id: "maghrib", ar: "المغرب", say: "al-maghrib", en: "Maghrib (sunset)" },
+  { id: "isha", ar: "العشاء", say: "al-ʿisha", en: "Isha (night)" },
 ];
 
 const rad = d => (d * Math.PI) / 180;

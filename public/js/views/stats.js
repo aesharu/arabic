@@ -25,8 +25,8 @@ const remember = pass => {
   } catch {}
 };
 
-const LABEL = { ar: "edit.ar", say: "edit.say", en: "edit.en", uk: "edit.uk", najdi: "edit.najdiUi", msa: "edit.msa" };
-const RTL = new Set(["ar", "najdi", "msa"]);
+const LABEL = { ar: "edit.ar", say: "edit.say", en: "edit.en", najdi: "edit.najdiUi" };
+const RTL = new Set(["ar", "najdi"]);
 const cell = (f, text) => (RTL.has(f) ? ar(text) : esc(text));
 
 // Saudi time, so the day and the hour are the ones Dima was living.

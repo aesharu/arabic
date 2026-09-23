@@ -15,13 +15,10 @@ import { WEEKS, TASKS, DIALOGUES } from "../data/weeks.js";
 import { GRAMMAR } from "../data/grammar.js";
 
 const startOf = w => addDays(START, (w - 1) * 7);
-const meaning = r => tx({ en: r.en, uk: r.uk, najdi: r.en, msa: r.en });
-const second = r => tx({ en: r.uk, uk: r.en, najdi: r.uk, msa: r.uk });
+const meaning = r => tx({ en: r.en, najdi: r.en });
 const CHECK_NOTE = {
   en: "A practice conversation, not from the plan — Dima checks each line.",
-  uk: "Тренувальна розмова, не з плану — Діма перевіряє кожен рядок.",
   najdi: "محادثة للتمرين، مو من الخطة — ديما تراجع كل سطر.",
-  msa: "محادثة تدريبية ليست من الخطة — تراجع ديما كلّ سطر.",
 };
 
 // The words of a week: its topics' entries, or the right slice when a topic runs over several weeks.
@@ -41,7 +38,7 @@ const wordRow = e => `<div class="word-wrap">
   <button type="button" class="word-edit" data-edit="${esc(e.id)}" aria-label="${esc(t("edit.button"))}">✎</button>
   <button class="phrase" data-say="${esc(speakText(e.ar))}">${ar(e.ar, "phrase-ar")}
     <span class="phrase-t">${translit(e.say)} ${e.check ? flag({ check: true, checkNote: e.note }) : ""}
-      <span class="gr-mean">${esc(meaning(e))}</span><span class="gr-mean-2">${esc(second(e))}</span>
+      <span class="gr-mean">${esc(meaning(e))}</span>
       ${e.toHer ? `<span class="to-her">${t("words.toHer")}: ${ar(e.toHer.ar)} ${translit(e.toHer.say)}</span>` : ""}</span>
     ${playIcon}</button></div>`;
 
@@ -53,7 +50,7 @@ const line = l => {
       <button type="button" class="word-edit" data-edit="${l.id}" aria-label="${esc(t("edit.button"))}">✎</button>
       <button class="phrase dl-bubble" data-say="${esc(speakText(l.ar))}">${ar(l.ar, "phrase-ar")}
         <span class="phrase-t">${translit(l.say)} ${l.check === false ? "" : flag({ check: true, checkNote: CHECK_NOTE })}
-          <span class="gr-mean">${esc(meaning(l))}</span><span class="gr-mean-2">${esc(second(l))}</span></span>
+          <span class="gr-mean">${esc(meaning(l))}</span></span>
         ${playIcon}</button></div></div>`;
 };
 

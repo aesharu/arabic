@@ -25,13 +25,10 @@ const WORD_FIELDS = [
   ["ar", "edit.ar", "rtl", "ar"],
   ["say", "edit.say", "ltr", "en"],
   ["en", "edit.en", "ltr", "en"],
-  ["uk", "edit.uk", "ltr", "uk"],
 ];
 const TEXT_FIELDS = [
   ["en", "edit.en", "ltr", "en"],
-  ["uk", "edit.uk", "ltr", "uk"],
   ["najdi", "edit.najdiUi", "rtl", "ar"],
-  ["msa", "edit.msa", "rtl", "ar"],
 ];
 
 // The dialog both editors share. fields: [name, label, dir, lang]; values: current; orig: before any change.
