@@ -60,7 +60,7 @@ export const STRINGS = {
   "cefr.b1b": { en: "You get through any everyday situation in Saudi Arabia on your own.", najdi: "تتصرف بأي موقف يومي بالسعودية لحالك." },
   "cefr.b1c": { en: "You tell a story about something that happened — a beginning, a middle and an end.", najdi: "تحكي سالفة صارت لك — من أولها لوسطها لآخرها." },
   "cefr.b1d": { en: "You say what you hope for, what you think, and why.", najdi: "تقول وش تتمنى، ووش رايك، وليش." },
-  "cefr.b1Words": { en: "B1 in Arabic asks for roughly 1,500–2,000 words you can actually use. This course ends at 2,000.", najdi: "مستوى B1 بالعربي يبي تقريبًا ١٥٠٠–٢٠٠٠ كلمة تقدر تستخدمها فعلًا. وهالخطة تنتهي عند ٢٠٠٠." },
+  "cefr.b1Words": { en: "B1 in Arabic asks for roughly 1,500–2,000 words you can actually use. This course teaches 1,814 — every one of them on a card.", najdi: "مستوى B1 بالعربي يبي تقريبًا ١٥٠٠–٢٠٠٠ كلمة تقدر تستخدمها فعلًا. وهالخطة تعلّمك ١٨١٤ كلمة — كلها بكروت." },
   "stage.next": { en: "Next: {stage}", najdi: "اللي بعده: {stage}" },
   "stage.opens": {
     en: "opens when you've learned {need} words",

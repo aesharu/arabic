@@ -12,7 +12,10 @@ import { START } from "../config.js";
 import { loadVocab, speakText } from "../core/vocab.js";
 import * as content from "../core/content.js";
 import { WEEKS, TASKS, DIALOGUES } from "../data/weeks.js";
-import { GRAMMAR } from "../data/grammar.js";
+import { GRAMMAR as PLAN_GRAMMAR } from "../data/grammar.js";
+import { GRAMMAR_A2 } from "../data/grammar2.js";
+import { GRAMMAR_B1 } from "../data/grammar3.js";
+const GRAMMAR = [...PLAN_GRAMMAR, ...GRAMMAR_A2, ...GRAMMAR_B1];
 
 const startOf = w => addDays(START, (w - 1) * 7);
 const meaning = r => tx({ en: r.en, najdi: r.en });

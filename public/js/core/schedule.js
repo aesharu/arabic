@@ -34,7 +34,8 @@ export const STAGE_GATE = {
   5: { words: 750 }, // Stage 4 · Her words
   6: { words: 1000 }, // Stage 5 · Her words, deeper — about A2
   7: { words: 1400 }, // Stage 6 · Opinions and stories — on the way to B1
-  8: { words: 2000 }, // Stage 7 · On your own — B1 (1,500–2,000 words active is what B1 Arabic asks for)
+  8: { words: 1750 }, // Stage 7 · On your own — B1. B1 Arabic asks for 1,500–2,000 words you can use; the
+  //                      course teaches 1,814, so the last gate is reachable (tests/schedule.test.mjs checks it).
 };
 
 // progress: { letters: groups marked done, words: words learned, days: days actually studied }

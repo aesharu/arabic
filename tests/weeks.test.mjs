@@ -1,15 +1,18 @@
-// Weekly lessons (public/js/data/weeks.js): weeks 3–67, real topics and grammar, conversations in both languages.
+// Weekly lessons (public/js/data/weeks.js): weeks 3–100, real topics and grammar, conversations in both languages.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { WEEKS, TASKS, DIALOGUES } from "../public/js/data/weeks.js";
-import { GRAMMAR } from "../public/js/data/grammar.js";
+import { GRAMMAR as PLAN_GRAMMAR } from "../public/js/data/grammar.js";
+import { GRAMMAR_A2 } from "../public/js/data/grammar2.js";
+import { GRAMMAR_B1 } from "../public/js/data/grammar3.js";
+const GRAMMAR = [...PLAN_GRAMMAR, ...GRAMMAR_A2, ...GRAMMAR_B1];
 
 const vocab = JSON.parse(readFileSync(new URL("../public/data/vocab.json", import.meta.url), "utf8"));
 const topicIds = new Set(vocab.stages.flatMap(s => s.topics.map(t => t.id)));
 
-test("one lesson for every week from 3 to 67", () => {
-  assert.deepEqual(WEEKS.map(w => w.week), Array.from({ length: 65 }, (_, i) => i + 3));
+test("one lesson for every week of the route, 3 to 100", () => {
+  assert.deepEqual(WEEKS.map(w => w.week), Array.from({ length: 98 }, (_, i) => i + 3));
 });
 
 test("every week's topics and grammar exist, and every plan topic is taught", () => {

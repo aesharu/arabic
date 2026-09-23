@@ -111,3 +111,14 @@ test("a stage opens when the one before it is finished, whatever the date", () =
   assert.equal(sp.need, 320);
   assert.equal(sp.left, 60);
 });
+
+// A stage you can never finish is a broken promise. The last gate has to be reachable from the words the
+// course actually teaches.
+test("every stage gate can be reached with the words the course teaches", async () => {
+  const { readFileSync } = await import("node:fs");
+  const vocab = JSON.parse(readFileSync(new URL("../public/data/vocab.json", import.meta.url), "utf8"));
+  const taught = vocab.stages.reduce((n, s) => n + s.topics.reduce((m, t) => m + t.entries.length, 0), 0);
+  const last = Math.max(...Object.values(STAGE_GATE).map(g => g.words ?? 0));
+  assert.ok(taught >= last, `the last gate needs ${last} words but the course only teaches ${taught}`);
+  assert.ok(last >= 1500, `B1 needs at least 1,500 words; the last gate is ${last}`);
+});

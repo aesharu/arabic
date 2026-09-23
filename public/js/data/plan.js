@@ -176,7 +176,7 @@ export const PHASES = [
     routine: DAY_BLOCKS, weekly: WEEK },
   { id: 8, cefr: "B1", label: both("Stage 7", "المرحلة 7"), name: both("On your own", "على حسابك"),
     when: both("Months 24–33", "الشهور 24–33"),
-    start: "2028-09-01", end: "2029-06-30", words: both("~2000", "~2000"),
+    start: "2028-09-01", end: "2029-06-30", words: both("~1800", "~1800"),
     canDo: both("Handle any everyday situation in Saudi on your own, follow her family around the table, and say what you hope for and why — B1",
                 "تتصرف بأي موقف يومي بالسعودية لحالك، وتتابع أهلها وهم يسولفون على السفرة، وتقول وش تتمنى وليش — مستوى B1"),
     note: both("B1 is the level where you stop needing English as a rescue. Not perfect — you'll still search for words — but you get through the day on your own.",

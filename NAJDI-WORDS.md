@@ -1,6 +1,6 @@
 # Saudi words for Stages 4–5 — to check with a native speaker
 
-`NAJDI-PLAN.md` lists the first ~350 words and says the last ~500 should come from her, her voice notes and the tutor. Until they do, this file holds **candidate words** so the site can reach 1000: everyday, high-frequency modern Saudi — the way young Saudis talk — arranged by the plan's Stage 4–5 target topics (Part 6).
+`NAJDI-PLAN.md` lists the first ~350 words and says the last ~500 should come from her, her voice notes and the tutor. Until they do, this file holds **candidate words** so the site can reach B1: everyday, high-frequency modern Saudi — the way young Saudis talk — arranged by the plan's Stage 4–5 target topics (Part 6).
 
 **Every word here is a suggestion, not a verified fact.** The site shows each one with a "check with tutor" flag until it's marked checked.
 
@@ -12,6 +12,8 @@ How to check them (her, or the tutor):
 - Forms marked *(to her)* are what he says to a woman — the point of the plan.
 
 Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
+
+**Topics 4.23 and after** were written on 23 Sept 2026 to take the course to CEFR **B1** (B1 Arabic asks for roughly 1,500–2,000 words you can actually use). Ukrainian and formal-Arabic meanings are gone from the site, so those two columns are left as `—` in the new tables — `npm run vocab` reads past them either way.
 
 ---
 
@@ -938,3 +940,761 @@ Each topic heading is `## id English | Ukrainian | Najdi | MSA`.
 | عسى ما شر؟ | ʿasa ma sharr? | nothing wrong, I hope? — when someone is ill or away | сподіваюся, нічого поганого? — коли хтось хворий чи зник | أرجو أن يكون خيرًا | |
 | إن شاء الله خير | in shāʾ allah khēr | hopefully it's good news | сподіваюся, на добре | خيرًا إن شاء الله | |
 | الله يسعدك | allah yisʿidik | God make you happy — a warm thank-you | хай Бог дарує тобі щастя — тепла подяка | أسعدك الله | |
+
+## 4.23 Thinking, deciding, trying | — | التفكير والقرار | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| أستمر | astamirr | I carry on, I keep going | — | — | |
+| وقفت | waggaft | I stopped | — | — | |
+| أكمل | akammil | I carry on, I finish off | — | — | |
+| أقترح | agtariḥ | I suggest | — | — | |
+| اقتراح | igtirāḥ | a suggestion | — | — | |
+| أنصحك | anṣaḥik | I'd advise you (to her) | — | — | |
+| نصيحة | naṣīḥa | a piece of advice | — | — | |
+| أشك | ashukk | I doubt it | — | — | |
+| متأكد | mitʾakkid | sure, certain | — | — | |
+| ما أنا متأكد | ma ana mitʾakkid | I'm not sure | — | — | |
+| ألاحظ | alāḥiẓ | I notice | — | — | |
+| اكتشفت | ktashaft | I found out | — | — | |
+| أتخيل | atkhayyal | I imagine | — | — | |
+| أتمنى | atmanna | I hope, I wish | — | — | |
+| أخطط | akhaṭṭiṭ | I plan | — | — | |
+| خطة | khiṭṭa | a plan | — | — | |
+| هدف | hadaf | a goal | — | — | |
+| قرار | garār | a decision | — | — | |
+| أعتمد على | aʿtamid ʿala | I rely on | — | — | |
+| أهتم | ahtamm | I care about it | — | — | |
+| أركز | arakkiz | I concentrate | — | — | |
+| أنتبه | antabih | I pay attention | — | — | |
+| أتجنب | atjannab | I avoid | — | — | |
+| أتعود | atʿawwad | I get used to | — | — | |
+| تعودت | tʿawwadt | I got used to it | — | — | |
+| أعتذر | aʿtidhir | I apologise | — | — | |
+| أعترف | aʿtarif | I admit | — | — | |
+| أوافق | awāfig | I agree to it | — | — | |
+| أرفض | arfuẓ | I refuse | — | — | |
+| أسمح | asmaḥ | I allow | — | — | |
+| أمنع | amnaʿ | I forbid | — | — | |
+| أبدأ | abda | I begin | — | — | |
+| أنجح | anjaḥ | I succeed | — | — | |
+| أفشل | afshal | I fail | — | — | |
+| أحقق | aḥaggig | I achieve | — | — | |
+| أستسلم | astaslim | I give up | — | — | |
+| ما أستسلم | ma astaslim | I don't give up | — | — | |
+| أصر | aṣirr | I insist | — | — | |
+| أتردد | atraddad | I hesitate | — | — | |
+| متردد | mitraddid | undecided | — | — | |
+| أحسم أمري | aḥsim amri | I make up my mind | — | — | |
+| على بالي | ʿala bāli | on my mind; I thought | — | — | |
+| ما جا على بالي | ma ja ʿala bāli | it never occurred to me | — | — | |
+| أظن | aẓunn | I think, I suppose | — | — | |
+| ما أظن | ma aẓunn | I don't think so | — | — | |
+| عن جد؟ | ʿan jadd? | seriously? | — | — | |
+| أمزح | amzaḥ | I'm joking | — | — | |
+| جد ولا مزح؟ | jadd wala mizaḥ? | serious, or joking? | — | — | |
+
+
+## 4.24 Reasons, ideas and how things are | — | الأسباب والأفكار والأحوال | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| سبب | sabab | a reason | — | — | |
+| نتيجة | natīja | a result | — | — | |
+| فكرة | fikra | an idea | — | — | |
+| رأي | raʾy | an opinion | — | — | |
+| مشكلة | mushkila | a problem | — | — | |
+| حل | ḥall | a solution | — | — | |
+| فرق | farg | a difference | — | — | |
+| طريقة | ṭarīga | a way of doing it | — | — | |
+| حالة | ḥāla | a state, a case | — | — | |
+| وضع | waẓʿ | the situation | — | — | |
+| موضوع | mawẓūʿ | a subject, the matter | — | — | |
+| نوع | nōʿ | a kind, a type | — | — | |
+| شكل | shakil | a shape; the look of it | — | — | |
+| جزء | juzʾ | a part | — | — | |
+| مثال | mithāl | an example | — | — | |
+| فرصة | furṣa | a chance | — | — | |
+| تجربة | tajruba | an experience; a go at something | — | — | |
+| مسؤولية | masʾūliyya | responsibility | — | — | |
+| ثقة | thiga | trust | — | — | |
+| احترام | iḥtirām | respect | — | — | |
+| صبر | ṣabr | patience | — | — | |
+| أمل | amal | hope | — | — | |
+| حظ | ḥaẓẓ | luck | — | — | |
+| خبرة | khibra | experience, know-how | — | — | |
+| معلومة | maʿlūma | a piece of information | — | — | |
+| تفاصيل | tafāṣīl | the details | — | — | |
+| سر | sirr | a secret | — | — | |
+| حقيقة | ḥagīga | the truth | — | — | |
+| كذب | kidhb | a lie | — | — | |
+| عدل | ʿadl | fairness | — | — | |
+| ظلم | ẓulm | unfairness | — | — | |
+| حق | ḥagg | a right; what's due | — | — | |
+| غرض | gharaẓ | the point of it | — | — | |
+| قيمة | gīma | value | — | — | |
+| كمية | kammiyya | an amount | — | — | |
+| عدد | ʿadad | a number of | — | — | |
+| أغلب | aghlab | most of | — | — | |
+| معظم | muʿẓam | most | — | — | |
+| قليل | galīl | a few, not much | — | — | |
+| زيادة | ziyāda | extra | — | — | |
+| نقص | nagṣ | a shortage | — | — | |
+| بداية | bidāya | the beginning | — | — | |
+| نهاية | nihāya | the end | — | — | |
+| وسط | wasaṭ | the middle | — | — | |
+| مستوى | mustawa | a level | — | — | |
+| نسبة | nisba | a rate, a share | — | — | |
+| ترتيب | tartīb | the order of things | — | — | |
+| تغيير | taghyīr | a change | — | — | |
+| تطور | taṭawwur | progress, development | — | — | |
+
+
+## 4.25 Agreeing, disagreeing, saying sorry | — | الاتفاق والاختلاف والاعتذار | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| ما معك حق | ma maʿik ḥagg | you're not right (to her) | — | — | |
+| كلامك صح | kalāmik ṣaḥḥ | what you say is right (to her) | — | — | |
+| أوافقك | awāfgik | I agree with you (to her) | — | — | |
+| ما أوافقك | ma awāfgik | I don't agree with you (to her) | — | — | |
+| من جهة | min jiha | on one hand | — | — | |
+| ومن جهة ثانية | w min jiha thānya | and on the other hand | — | — | |
+| بالعكس | bil-ʿaks | on the contrary | — | — | |
+| مو شرط | mū sharṭ | not necessarily | — | — | |
+| وجهة نظر | wijhat naẓar | a point of view | — | — | |
+| أحترم رأيك | aḥtarim raʾyik | I respect your opinion (to her) | — | — | |
+| عندك حق بس | ʿindik ḥagg bass | you have a point, but (to her) | — | — | |
+| أنا ضد | ana ẓidd | I'm against it | — | — | |
+| ليش لا؟ | lēsh la? | why not? | — | — | |
+| ما فيه داعي | ma fīh dāʿi | there's no need | — | — | |
+| خلاص اتفقنا | khalāṣ ttifagna | alright — we agree | — | — | |
+| وش قصدك؟ | wesh gaṣdik? | what do you mean? (to her) | — | — | |
+| قصدي | gaṣdi | what I mean is | — | — | |
+| ما قصدت | ma gaṣadt | I didn't mean it | — | — | |
+| فهمتك غلط | fihamtik ghalaṭ | I misunderstood you (to her) | — | — | |
+| خليني أوضح | khallīni awaẓẓiḥ | let me make it clear | — | — | |
+| بصراحة | b-ṣarāḥa | frankly | — | — | |
+| ما أبي أزعلك | ma abi azʿilik | I don't want to upset you (to her) | — | — | |
+| لا تزعلين مني | la tizʿalīn minni | don't be upset with me (to her) | — | — | |
+| عادي ما فيه شي | ʿādi ma fīh shay | it's fine, it's nothing | — | — | |
+| خلاص انتهى | khalāṣ ntaha | it's over and done with | — | — | |
+| كلنا نغلط | killana nighlaṭ | we all get things wrong | — | — | |
+| الغلط مني | al-ghalaṭ minni | it's my fault | — | — | |
+
+
+## 4.26 Feelings, deeper | — | المشاعر، أعمق | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| مطمئن | muṭmaʾinn | at ease | — | — | |
+| محبط | muḥbaṭ | discouraged | — | — | |
+| وحيد | waḥīd | lonely | — | — | |
+| خجلان | khajlān | embarrassed | — | — | |
+| قلق | galag | worry | — | — | |
+| خوف | khōf | fear | — | — | |
+| أمان | amān | safety | — | — | |
+| راحة | rāḥa | rest, ease | — | — | |
+| تعب | taʿab | tiredness | — | — | |
+| ملل | malal | boredom | — | — | |
+| غضب | ghaẓab | anger | — | — | |
+| حب | ḥubb | love | — | — | |
+| شوق | shōg | longing | — | — | |
+| غيرة | ghīra | jealousy | — | — | |
+| فخر | fakhr | pride | — | — | |
+| ندم | nadam | regret | — | — | |
+| أحس بالذنب | aḥiss bidh-dhanb | I feel guilty | — | — | |
+| متضايق من نفسي | mitẓāyig min nafsi | annoyed with myself | — | — | |
+| مو قادر أنام | mū gādir anām | I can't sleep | — | — | |
+| قلبي مو مرتاح | galbi mū mirtāḥ | I've got a bad feeling | — | — | |
+| ارتحت لك | rtiḥt lik | I feel at ease with you (to her) | — | — | |
+| أحس إني محظوظ | aḥiss inni maḥẓūẓ | I feel lucky | — | — | |
+| مشاعر | mashāʿir | feelings | — | — | |
+| حساس | ḥassās | sensitive | — | — | |
+| متفائل | mutafāʾil | hopeful, optimistic | — | — | |
+| متشائم | mutashāʾim | gloomy, pessimistic | — | — | |
+| فرحت لك | friḥt lik | I was happy for you (to her) | — | — | |
+| زعلت عليك | ziʿalt ʿalēk | I felt bad for you (to her) | — | — | |
+| افتقدتك | ftagadtik | I missed you (to her) | — | — | |
+
+
+## 4.27 Plans, hopes and the two of you | — | الخطط والأماني وأنتم الاثنين | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| مستقبل | mustagbal | the future | — | — | |
+| حلم | ḥilm | a dream | — | — | |
+| أحلامي | aḥlāmi | my dreams | — | — | |
+| نتزوج | nitzawwaj | we get married | — | — | |
+| زواجنا | zawājna | our wedding | — | — | |
+| عيالنا | ʿyālna | our children | — | — | |
+| نعيش مع بعض | nʿīsh maʿ baʿaẓ | we live together | — | — | |
+| أبي أشوفك | abi ashūfik | I want to see you (to her) | — | — | |
+| متى نتقابل؟ | mita nitgābal? | when do we meet? | — | — | |
+| أجي لك | aji lik | I'll come to you (to her) | — | — | |
+| تجين لي | tijīn li | you come to me (to her) | — | — | |
+| نخطط | nkhaṭṭiṭ | we plan | — | — | |
+| قريب إن شاء الله | garīb in shāʾ allah | soon, hopefully | — | — | |
+| السنة الجاية | as-sana l-jāya | next year | — | — | |
+| بعد سنة | baʿad sana | in a year | — | — | |
+| لو صار | law ṣār | if it happens | — | — | |
+| أدعي لنا | adʿi lana | I pray for us | — | — | |
+| نصبر | niṣbir | we'll be patient | — | — | |
+| الصبر مفتاح الفرج | aṣ-ṣabr miftāḥ al-faraj | patience opens the way | — | — | |
+| أوعدك | awʿidik | I promise you (to her) | — | — | |
+| وعد | waʿd | a promise | — | — | |
+| أنتظرك | antaẓrik | I'm waiting for you (to her) | — | — | |
+| ما راح أمل | ma rāḥ amall | I won't get tired of waiting | — | — | |
+| نبدأ حياتنا | nibda ḥayātna | we start our life | — | — | |
+| بإذن الله | biʾidhn allah | God willing | — | — | |
+| مكتوب | maktūb | it's meant to be | — | — | |
+| نصيب | naṣīb | fate, the one meant for you | — | — | |
+| أهلك | ahlik | your family (to her) | — | — | |
+| أقابل أهلك | agābil ahlik | I meet your family (to her) | — | — | |
+| أطلب يدك | aṭlub yadik | I ask for your hand (to her) | — | — | |
+| خطوبة | khuṭūba | an engagement | — | — | |
+| نتفاهم | nitfāham | we understand each other | — | — | |
+| نكمل مع بعض | nkammil maʿ baʿaẓ | we carry on together | — | — | |
+
+
+## 4.28 Money, work and getting things done | — | الفلوس والشغل وإنجاز الأمور | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| ميزانية | mīzāniyya | a budget | — | — | |
+| أوفر | awaffir | I save up | — | — | |
+| أصرف | aṣrif | I spend | — | — | |
+| دين | dēn | a debt | — | — | |
+| أقساط | agsāṭ | instalments | — | — | |
+| راتبي | rātbi | my salary | — | — | |
+| غالي | ghāli | expensive | — | — | |
+| رخيص | rakhīṣ | cheap | — | — | |
+| يستاهل السعر | yistāhil as-siʿr | it's worth the price | — | — | |
+| أحول لك | aḥawwil lik | I'll transfer it to you (to her) | — | — | |
+| تحويل | taḥwīl | a transfer | — | — | |
+| حساب بنكي | ḥisāb banki | a bank account | — | — | |
+| بطاقة | biṭāga | a card | — | — | |
+| رصيد | raṣīd | balance, credit | — | — | |
+| فاتورة الكهربا | fātūrat al-kahraba | the electricity bill | — | — | |
+| إيجار | ījār | rent | — | — | |
+| عقد | ʿagd | a contract | — | — | |
+| وظيفة أحلام | waẓīfat aḥlām | a dream job | — | — | |
+| مقابلة | mugābala | an interview | — | — | |
+| سيرة ذاتية | sīra dhātiyya | a CV | — | — | |
+| ترقية | tarqiya | a promotion | — | — | |
+| استقالة | istigāla | resignation | — | — | |
+| أوفر تايم | ōvartāym | overtime | — | — | |
+| إجازة سنوية | ijāza sanawiyya | annual leave | — | — | |
+| زميل شغل | zamīl shughul | a workmate | — | — | |
+| مدير طيّب | mudīr ṭayyib | a good manager | — | — | |
+| أنجز | anjiz | I get it done | — | — | |
+| مؤجل | mʾajjal | put off | — | — | |
+| أأجل | aʾajjil | I put it off | — | — | |
+| موعد نهائي | mawʿid nihāʾi | a deadline | — | — | |
+| مستعجل | mistaʿjil | in a hurry | — | — | |
+| أرتب أولوياتي | arattib awlawiyyāti | I sort out my priorities | — | — | |
+| قايمة | gāyma | a list | — | — | |
+| أتابع | atābiʿ | I follow up | — | — | |
+| جاهز للتسليم | jāhiz lit-taslīm | ready to hand in | — | — | |
+
+
+## 4.29 The country and the world | — | البلد والعالم | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| أخبار | akhbār | the news | — | — | |
+| حكومة | ḥukūma | a government | — | — | |
+| الملك | al-malik | the King | — | — | |
+| ولي العهد | waliyy al-ʿahd | the Crown Prince | — | — | |
+| رؤية ٢٠٣٠ | ruʾyat alfēn w thalāthīn | Vision 2030 | — | — | |
+| اقتصاد | igtiṣād | the economy | — | — | |
+| بترول | batrōl | oil | — | — | |
+| شركة كبيرة | sharika kabīra | a big company | — | — | |
+| سياحة | siyāḥa | tourism | — | — | |
+| مشروع جديد | mashrūʿ jadīd | a new project | — | — | |
+| تعليم | taʿlīm | education | — | — | |
+| مستشفى حكومي | mustashfa ḥukūmi | a public hospital | — | — | |
+| قانون | gānūn | a law | — | — | |
+| نظام | niẓām | the rules, the system | — | — | |
+| ممنوع | mamnūʿ | not allowed | — | — | |
+| مسموح | masmūḥ | allowed | — | — | |
+| شرطة | shurṭa | the police | — | — | |
+| سفارة | sifāra | an embassy | — | — | |
+| إقامة | igāma | a residence permit | — | — | |
+| تأشيرة | taʾshīra | a visa | — | — | |
+| جنسية | jinsiyya | nationality | — | — | |
+| حدود | ḥudūd | a border | — | — | |
+| سكان | sukkān | the people living there | — | — | |
+| عاصمة | ʿāṣima | a capital city | — | — | |
+| شمال وجنوب | shimāl w janūb | north and south | — | — | |
+| شرق وغرب | sharg w gharb | east and west | — | — | |
+| الخليج | al-khalīj | the Gulf | — | — | |
+| العالم العربي | al-ʿālam al-ʿarabi | the Arab world | — | — | |
+| حرب | ḥarb | war | — | — | |
+| مساعدات | musāʿadāt | aid | — | — | |
+| لاجئ | lājiʾ | a refugee | — | — | |
+| متطوع | mutaṭawwiʿ | a volunteer | — | — | |
+| تبرع | tabarruʿ | a donation | — | — | |
+| بيئة | bīʾa | the environment | — | — | |
+| تلوث | talawwuth | pollution | — | — | |
+
+
+## 4.30 Food and cooking | — | الأكل والطبخ | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| وجبة | wajba | a meal | — | — | |
+| مقبلات | mugabbilāt | starters | — | — | |
+| زيت | zēt | oil | — | — | |
+| ملح | milḥ | salt | — | — | |
+| فلفل | filfil | pepper | — | — | |
+| سكر | sukkar | sugar | — | — | |
+| بهار | bahār | spices | — | — | |
+| حلو المذاق | ḥilw al-madhāg | sweet-tasting | — | — | |
+| طعم | ṭaʿam | taste | — | — | |
+| أطبخ | aṭbukh | I cook | — | — | |
+| أقلي | agli | I fry | — | — | |
+| أشوي | ashwi | I grill | — | — | |
+| أسلق | aslug | I boil | — | — | |
+| أقطع | agṭaʿ | I cut it up | — | — | |
+| أخلط | akhliṭ | I mix | — | — | |
+| وصفة | waṣfa | a recipe | — | — | |
+| مندي | mandi | mandi | — | — | |
+| مطبق | muṭabbag | mutabbaq (stuffed pancake) | — | — | |
+| شاورما | shāwarma | shawarma | — | — | |
+| فول | fūl | fava beans | — | — | |
+| شاي | shāy | tea | — | — | |
+| ماي | māy | water | — | — | |
+| شبعت | shibaʿt | I'm full | — | — | |
+| بالعافية | bil-ʿāfya | enjoy your food | — | — | |
+| نطلب أكل | niṭlub akil | we order food | — | — | |
+| الحساب لو سمحت | al-ḥisāb law samaḥt | the bill, please | — | — | |
+
+
+## 4.31 Talking about the language itself | — | الكلام عن اللغة نفسها | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| كلمة | kalima | a word | — | — | |
+| جملة | jumla | a sentence | — | — | |
+| معنى | maʿna | a meaning | — | — | |
+| لهجة | lahja | a dialect | — | — | |
+| فصحى | fuṣḥa | formal Arabic | — | — | |
+| عامية | ʿāmmiyya | everyday spoken Arabic | — | — | |
+| ترجمة | tarjama | a translation | — | — | |
+| أترجم | atarjim | I translate | — | — | |
+| نطق | nuṭg | pronunciation | — | — | |
+| أنطقها صح؟ | anṭughha ṣaḥḥ? | am I saying it right? | — | — | |
+| حرف | ḥarf | a letter | — | — | |
+| حركة | ḥaraka | a vowel mark | — | — | |
+| قاعدة | gāʿida | a rule | — | — | |
+| تعبير | taʿbīr | an expression | — | — | |
+| مرادف | murādif | another word for it | — | — | |
+| عكس | ʿaks | the opposite | — | — | |
+| أحفظ | aḥfaẓ | I memorise | — | — | |
+| أراجع | arājiʿ | I revise | — | — | |
+| أتدرب | atdarrab | I practise | — | — | |
+| درس | dars | a lesson | — | — | |
+| واجبي | wājbi | my homework | — | — | |
+| أختبر نفسي | akhtabir nafsi | I test myself | — | — | |
+| صعب علي | ṣaʿb ʿalay | it's hard for me | — | — | |
+| سهل علي | sahl ʿalay | it's easy for me | — | — | |
+| لساني ما يطاوعني | lisāni ma yiṭāwiʿni | my tongue won't obey me | — | — | |
+| أتلعثم | atlaʿtham | I stumble over words | — | — | |
+| نسيت الكلمة | nisīt al-kalima | I've forgotten the word | — | — | |
+| صححي لي | ṣaḥḥiḥi li | correct me (to her) | — | — | |
+| أعيدي | aʿīdi | say it again (to her) | — | — | |
+| على مهلك | ʿala mahlik | slowly, take your time (to her) | — | — | |
+| فهمت عليك | fihamt ʿalēk | I understood you (to her) | — | — | |
+| ما فهمت عليك | ma fihamt ʿalēk | I didn't catch that (to her) | — | — | |
+| بالعربي | bil-ʿarabi | in Arabic | — | — | |
+
+
+## 4.32 What Saudis say all day | — | كلام يقال كل يوم | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| يعطيك العافية | yiʿṭīk al-ʿāfya | well done, thanks for your effort | — | — | |
+| تسلم يدك | tislam yadik | bless your hands (for food or a gift) | — | — | |
+| ما قصرت | ma gaṣṣart | you've done plenty, thank you | — | — | |
+| الله يجزاك خير | allah yijzāk khēr | God reward you | — | — | |
+| تبارك الله | tabārak allah | the same, said in wonder | — | — | |
+| الله كريم | allah karīm | God is generous — it'll work out | — | — | |
+| على بركة الله | ʿala barakat allah | let's get going, then | — | — | |
+| الله يستر | allah yistur | God protect us | — | — | |
+| الله يعينك | allah yʿīnik | God help you (to her) | — | — | |
+| الله يهنيك | allah yhannīk | may it bring you joy | — | — | |
+| عساك بخير | ʿasāk bikhēr | hope you're well | — | — | |
+| طال عمرك | ṭāl ʿumrak | respectful address to a man | — | — | |
+| حياك | ḥayyāk | welcome | — | — | |
+| تفضل | tfaẓẓal | here you are, go ahead | — | — | |
+| أبشر | abshir | consider it done | — | — | |
+| من عيوني | min ʿyūni | gladly, anything for you | — | — | |
+| على طول | ʿala ṭūl | right away | — | — | |
+| عاد | ʿād | come on now (softener) | — | — | |
+| طيب | ṭayyib | okay then | — | — | |
+| أجل | ajal | so, in that case | — | — | |
+| موفق | muwaffag | may you succeed | — | — | |
+| الله يبارك فيك | allah ybārik fīk | God bless you | — | — | |
+| سلملي عليهم | sallim li ʿalēhum | say hi to them for me | — | — | |
+| بلغهم سلامي | ballighhum salāmi | pass on my greeting | — | — | |
+| نشوفك على خير | nshūfik ʿala khēr | see you, take care (to her) | — | — | |
+
+
+## 4.33 When something goes wrong | — | لما يصير شي غلط | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| خربان | kharbān | broken, not working | — | — | |
+| تعطل | taʿaṭṭal | it broke down | — | — | |
+| يصلح | yiṣalliḥ | he fixes | — | — | |
+| أصلحه | aṣalliḥah | I fix it | — | — | |
+| تصليح | taṣlīḥ | a repair | — | — | |
+| فني | fanni | a repairman | — | — | |
+| قطعة غيار | gaṭʿat ghiyār | a spare part | — | — | |
+| ضاع مني | ḍāʿ minni | I lost it | — | — | |
+| لقيته | ligēta | I found it | — | — | |
+| نسيته بالبيت | nisīta bil-bēt | I left it at home | — | — | |
+| طاح | ṭāḥ | it fell | — | — | |
+| انسكب | insikab | it spilled | — | — | |
+| احترق | iḥtirag | it burned | — | — | |
+| غرق | ghirig | it flooded, it drowned | — | — | |
+| تأخر | tʾakhkhar | it was late | — | — | |
+| ألغي | ulghi | it was cancelled | — | — | |
+| ما زبط | ma ẓabaṭ | it didn't work out | — | — | |
+| زبط | ẓabaṭ | it worked | — | — | |
+| جرب مرة ثانية | jarrib marra thānya | try again | — | — | |
+| مشكلة بسيطة | mushkila basīṭa | a small problem | — | — | |
+| مشكلة كبيرة | mushkila kabīra | a big problem | — | — | |
+| ساعدني | sāʿidni | help me | — | — | |
+| محتاج مساعدة | miḥtāj musāʿada | I need help | — | — | |
+| اتصل بالطوارئ | ttiṣil biṭ-ṭawāriʾ | call the emergency number | — | — | |
+| حادث | ḥādith | an accident | — | — | |
+| إسعاف | isʿāf | an ambulance | — | — | |
+| مطافي | maṭāfi | the fire brigade | — | — | |
+| خطر | khaṭar | danger | — | — | |
+| انتبه | intabih | watch out | — | — | |
+| بحذر | bi-ḥadhar | carefully | — | — | |
+| الحمد لله على السلامة | al-ḥamdu lillāh ʿala s-salāma | thank God you're safe | — | — | |
+| ما صار شي | ma ṣār shay | nothing happened, it's fine | — | — | |
+| كل شي تمام | kill shay tamām | everything's fine | — | — | |
+
+
+## 4.34 Through the day | — | اليوم من أوله لآخره | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| أقوم من النوم | agūm min an-nōm | I get out of bed | — | — | |
+| أغسل وجهي | aghassil wajhi | I wash my face | — | — | |
+| أنظف أسناني | anaẓẓif asnāni | I brush my teeth | — | — | |
+| أحلق | aḥlig | I shave | — | — | |
+| ألبس ملابسي | albas malābsi | I get dressed | — | — | |
+| أفطر | afṭir | I have breakfast | — | — | |
+| أطلع من البيت | aṭlaʿ min al-bēt | I leave the house | — | — | |
+| أوصل الشغل | awṣal ash-shughul | I get to work | — | — | |
+| أبدأ دوامي | abda dawāmi | I start my shift | — | — | |
+| أستريح شوي | astarīḥ shwayy | I take a short break | — | — | |
+| أتغدى | atghadda | I have lunch | — | — | |
+| أخلص دوام | akhalliṣ dawām | I finish work | — | — | |
+| أرجع البيت | arjaʿ al-bēt | I go back home | — | — | |
+| أتعشى | atʿashsha | I have dinner | — | — | |
+| أرتب البيت | arattib al-bēt | I tidy the house | — | — | |
+| أكلمها | akallimha | I call her | — | — | |
+| أذاكر عربي | adhākir ʿarabi | I study Arabic | — | — | |
+| أتفرج شوي | atfarraj shwayy | I watch something for a bit | — | — | |
+| أنام بدري | anām badri | I go to bed early | — | — | |
+| أسهر | ashar | I stay up late | — | — | |
+| أضبط المنبه | aẓbuṭ al-munabbih | I set the alarm | — | — | |
+| صحيت متأخر | ṣiḥēt mitʾakhkhir | I woke up late | — | — | |
+| يوم طويل | yōm ṭawīl | a long day | — | — | |
+| يوم خفيف | yōm khafīf | an easy day | — | — | |
+| روتين يومي | rūtīn yōmi | a daily routine | — | — | |
+| نص يومي | nuṣṣ yōmi | half my day | — | — | |
+| من الصبح لين الليل | min aṣ-ṣubḥ lēn al-lēl | from morning till night | — | — | |
+
+
+## 4.35 What a place is like | — | وصف المكان | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| واسع | wāsiʿ | roomy | — | — | |
+| ضيق | ẓayyig | tight, narrow | — | — | |
+| مرتفع | murtafiʿ | high up | — | — | |
+| قريب من | garīb min | close to | — | — | |
+| بعيد عن | baʿīd ʿan | far from | — | — | |
+| بالضبط هنا | biẓ-ẓabṭ hina | right here | — | — | |
+| في الزاوية | fi z-zāwya | on the corner | — | — | |
+| مقابل | mugābil | opposite | — | — | |
+| بين | bēn | between | — | — | |
+| حول | ḥōl | around | — | — | |
+| في الوسط | fi l-wasaṭ | in the middle | — | — | |
+| في آخر الشارع | fi ākhir ash-shāriʿ | at the end of the street | — | — | |
+| الدور الثاني | ad-dōr ath-thāni | the second floor | — | — | |
+| مصعد | miṣʿad | a lift | — | — | |
+| مدخل | madkhal | an entrance | — | — | |
+| ممر | mamarr | a corridor | — | — | |
+| ساحة | sāḥa | a square, a yard | — | — | |
+| هادي | hādi | quiet | — | — | |
+| مزعج | muzʿij | noisy | — | — | |
+| مزدحم | muzdaḥim | crowded | — | — | |
+| مضيء | muẓīʾ | bright | — | — | |
+| مظلم | muẓlim | dark | — | — | |
+| نظيف ومرتب | naẓīf w mrattab | clean and tidy | — | — | |
+| قديم | gadīm | old | — | — | |
+| جديد | jadīd | new | — | — | |
+| مريح | murīḥ | comfortable | — | — | |
+| منظر حلو | manẓar ḥilw | a nice view | — | — | |
+| جو المكان | jaww al-makān | the feel of the place | — | — | |
+| أحب هالمكان | aḥibb hal-makān | I love this place | — | — | |
+| ما يعجبني | ma yiʿjibni | I don't like it | — | — | |
+| نرجع له | nirjaʿ lah | let's go back there | — | — | |
+
+
+## 4.36 Family life and growing up | — | العايلة والطفولة | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| طفولة | ṭufūla | childhood | — | — | |
+| صغير | ṣaghīr | young, small | — | — | |
+| كبرت | kibart | I grew up | — | — | |
+| لما كنت صغير | lamma kint ṣaghīr | when I was little | — | — | |
+| مدرستي | madrasati | my school | — | — | |
+| ذكريات | dhikrayāt | memories | — | — | |
+| أذكر | adhkur | I remember | — | — | |
+| جدي | jaddi | my grandfather | — | — | |
+| جدتي | jaddati | my grandmother | — | — | |
+| عمي | ʿammi | my uncle (father's side) | — | — | |
+| خالي | khāli | my uncle (mother's side) | — | — | |
+| أقاربي | agārbi | my relatives | — | — | |
+| أخوي الكبير | akhūy al-kabīr | my big brother | — | — | |
+| أختي الصغيرة | ukhti ṣ-ṣaghīra | my little sister | — | — | |
+| توأم | tawʾam | a twin | — | — | |
+| مولود | mawlūd | a newborn | — | — | |
+| حامل | ḥāmil | pregnant | — | — | |
+| نربي | nrabbi | we raise (children) | — | — | |
+| مدلل | mdallal | spoiled | — | — | |
+| مؤدب | mʾaddab | well-mannered | — | — | |
+| نتجمع | nitjammaʿ | we all get together | — | — | |
+| عزومة | ʿazūma | a family dinner | — | — | |
+| مناسبة | munāsaba | an occasion | — | — | |
+| نتزاور | nitzāwar | we visit each other | — | — | |
+| بيت العايلة | bēt al-ʿāyla | the family home | — | — | |
+| أهل الزوج | ahl az-zōj | the husband's family | — | — | |
+| أهل الزوجة | ahl az-zōja | the wife's family | — | — | |
+| يتيم | yatīm | an orphan | — | — | |
+| أحترم الكبير | aḥtarim al-kabīr | I respect my elders | — | — | |
+| أحن على الصغير | aḥinn ʿala ṣ-ṣaghīr | I'm gentle with the young | — | — | |
+
+
+## 4.37 Cars and the road | — | السيارة والطريق | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| أسوق | asūg | I drive | — | — | |
+| رخصة | rukhṣa | a driving licence | — | — | |
+| بنزين | banzīn | petrol | — | — | |
+| عبي بنزين | ʿabbi banzīn | fill it up | — | — | |
+| محطة بنزين | maḥaṭṭat banzīn | a petrol station | — | — | |
+| إطار | iṭār | a tyre | — | — | |
+| بنشر | banshar | a puncture | — | — | |
+| زيت المحرك | zēt al-muḥarrik | engine oil | — | — | |
+| بطارية | baṭṭāriyya | a battery | — | — | |
+| مكينة | makīna | the engine | — | — | |
+| فرامل | farāmil | brakes | — | — | |
+| أحزمة الأمان | aḥzimat al-amān | seatbelts | — | — | |
+| مخالفة | mukhālafa | a traffic fine | — | — | |
+| ساهر | sāhir | the speed camera system | — | — | |
+| سرعة | surʿa | speed | — | — | |
+| ببطء | bi-buṭʾ | slowly | — | — | |
+| زحمة الطريق | zaḥmat aṭ-ṭarīg | traffic | — | — | |
+| طريق سريع | ṭarīg sarīʿ | a motorway | — | — | |
+| جسر | jisr | a bridge | — | — | |
+| نفق | nafag | a tunnel | — | — | |
+| علامة | ʿalāma | a road sign | — | — | |
+| أركن | arkin | I park | — | — | |
+| موقف سيارات | mawgif sayyārāt | a car park | — | — | |
+| ورشة | warsha | a garage, a workshop | — | — | |
+| غسيل سيارة | ghasīl sayyāra | a car wash | — | — | |
+| تأمين | taʾmīn | insurance | — | — | |
+| استمارة | istimāra | the vehicle registration | — | — | |
+| نروح بسيارتي | nrūḥ b-sayyārti | we'll go in my car | — | — | |
+| أوصلك | awaṣṣlik | I'll give you a lift (to her) | — | — | |
+
+
+## 4.38 Online, deeper | — | الإنترنت، أعمق | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| موقع | mawgiʿ | a website | — | — | |
+| رابط | rābiṭ | a link | — | — | |
+| كلمة السر | kalimat as-sirr | a password | — | — | |
+| أسجل دخول | asajjil dukhūl | I log in | — | — | |
+| أسجل خروج | asajjil khurūj | I log out | — | — | |
+| ملف | malaff | a file | — | — | |
+| صورة شاشة | ṣūrat shāsha | a screenshot | — | — | |
+| أرفع | arfaʿ | I upload | — | — | |
+| أحذف | aḥdhif | I delete | — | — | |
+| أحفظ | aḥfaẓ | I save | — | — | |
+| نسخة احتياطية | nuskha iḥtiyāṭiyya | a backup | — | — | |
+| إعلان | iʿlān | an advert | — | — | |
+| متابعين | mutābiʿīn | followers | — | — | |
+| أتابعك | atābiʿik | I follow you (to her) | — | — | |
+| تعليق | taʿlīg | a comment | — | — | |
+| مشاركة | mushāraka | a share | — | — | |
+| خصوصية | khuṣūṣiyya | privacy | — | — | |
+| حظر | ḥaẓr | a block | — | — | |
+| أبلغ عنه | ublugh ʿannah | I report it | — | — | |
+| إشعار | ishʿār | a notification | — | — | |
+| وضع الطيران | waẓʿ aṭ-ṭayarān | aeroplane mode | — | — | |
+| بيانات | bayānāt | mobile data | — | — | |
+| بطيء | baṭīʾ | slow | — | — | |
+| انقطع النت | ingaṭaʿ an-nit | the internet cut out | — | — | |
+| اتصال ضعيف | ittiṣāl ẓaʿīf | a weak connection | — | — | |
+| أحدث التطبيق | uḥaddith at-taṭbīg | I update the app | — | — | |
+| لوحة المفاتيح | lōḥat al-mafātīḥ | a keyboard | — | — | |
+| أكتب بالعربي | aktib bil-ʿarabi | I type in Arabic | — | — | |
+| تصحيح تلقائي | taṣḥīḥ tilgāʾi | autocorrect | — | — | |
+| ترجمة قوقل | tarjamat gūgil | Google Translate | — | — | |
+
+
+## 4.39 Watching and playing | — | المشاهدة واللعب | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| دوري | dawri | a league | — | — | |
+| بطولة | buṭūla | a championship | — | — | |
+| هدف | hadaf | a goal (in a game) | — | — | |
+| فوز | fōz | a win | — | — | |
+| خسارة | khasāra | a loss | — | — | |
+| تعادل | taʿādul | a draw | — | — | |
+| حكم | ḥakam | a referee | — | — | |
+| ملعب | malʿab | a stadium | — | — | |
+| جمهور | jumhūr | the crowd | — | — | |
+| مشجع | mushajjiʿ | a supporter | — | — | |
+| لاعب مفضل | lāʿib mufaẓẓal | a favourite player | — | — | |
+| تدريب | tadrīb | training | — | — | |
+| أتمرن | atmarran | I work out | — | — | |
+| جري | jari | running | — | — | |
+| مشي يومي | mashi yōmi | a daily walk | — | — | |
+| بطل | baṭal | a champion, a hero | — | — | |
+| جايزة | jāyza | a prize | — | — | |
+| حلقة | ḥalga | an episode | — | — | |
+| موسم | mōsim | a season | — | — | |
+| بطل المسلسل | baṭal al-musalsal | the main character | — | — | |
+| نهاية حزينة | nihāya ḥazīna | a sad ending | — | — | |
+| مثير | muthīr | exciting | — | — | |
+| ممثل | mumaththil | an actor | — | — | |
+| مخرج | mukhrij | a director | — | — | |
+| ترجمة الفلم | tarjamat al-film | subtitles | — | — | |
+| أحمل حلقة | aḥammil ḥalga | I download an episode | — | — | |
+| نتفرج مع بعض | nitfarraj maʿ baʿaẓ | we watch together | — | — | |
+| لا تحرقين لي | la taḥrigīn li | no spoilers (to her) | — | — | |
+
+
+## 4.40 Faith in everyday talk | — | الدين في الكلام اليومي | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| وضوء | wuẓūʾ | washing before prayer | — | — | |
+| سجادة | sajjāda | a prayer mat | — | — | |
+| قبلة | gibla | the direction of prayer | — | — | |
+| أذكار | adhkār | daily remembrances | — | — | |
+| دعاء | duʿāʾ | a supplication | — | — | |
+| أدعي لك | adʿi lik | I pray for you (to her) | — | — | |
+| استغفر الله | astaghfir allah | God forgive me | — | — | |
+| صلاة الجمعة | ṣalāt al-jumʿa | Friday prayer | — | — | |
+| خطبة | khuṭba | the Friday sermon | — | — | |
+| إمام | imām | the one who leads the prayer | — | — | |
+| عمرة | ʿumra | umrah | — | — | |
+| حج | ḥajj | hajj | — | — | |
+| الكعبة | al-kaʿba | the Kaaba | — | — | |
+| مكة | makka | Mecca | — | — | |
+| المدينة | al-madīna | Medina | — | — | |
+| زمزم | zamzam | Zamzam water | — | — | |
+| صدقة | ṣadaga | charity given freely | — | — | |
+| زكاة | zakāh | the yearly due on wealth | — | — | |
+| حلال | ḥalāl | permitted | — | — | |
+| حرام | ḥarām | not permitted | — | — | |
+| نية | niyya | intention | — | — | |
+| توكلت على الله | tawakkalt ʿala llah | I put my trust in God | — | — | |
+| قدر الله وما شاء فعل | gadar allah w ma shāʾ faʿal | what God decreed, He did | — | — | |
+| رحمه الله | raḥimah allah | God have mercy on him (of someone who died) | — | — | |
+| جزاك الله خير | jazāk allah khēr | God reward you | — | — | |
+| ربي يسهل | rabbi ysahhil | may God make it easy | — | — | |
+| ربي يحفظك | rabbi yiḥfaẓik | may God keep you safe (to her) | — | — | |
+
+
+## 4.41 Character and manners | — | الطبع والأخلاق | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| أخلاق | akhlāg | manners, character | — | — | |
+| متواضع | mutawāẓiʿ | humble | — | — | |
+| متكبر | mutakabbir | arrogant | — | — | |
+| صبور | ṣabūr | patient | — | — | |
+| عجول | ʿajūl | impatient, hasty | — | — | |
+| أمين | amīn | trustworthy | — | — | |
+| خاين | khāyin | treacherous | — | — | |
+| مخلص | mukhliṣ | loyal, sincere | — | — | |
+| وفي | wafi | faithful | — | — | |
+| عنيد | ʿanīd | stubborn | — | — | |
+| مرن | marin | easy-going | — | — | |
+| جاد | jādd | serious | — | — | |
+| مرح | mariḥ | cheerful | — | — | |
+| عطوف | ʿaṭūf | tender, caring | — | — | |
+| قاسي | gāsi | harsh | — | — | |
+| مهذب | muhadhdhab | polite | — | — | |
+| وقح | wagiḥ | rude | — | — | |
+| محترم | muḥtaram | respectable | — | — | |
+| عاقل | ʿāgil | sensible | — | — | |
+| طايش | ṭāyish | reckless | — | — | |
+| طموح | ṭumūḥ | ambitious | — | — | |
+| قنوع | ganūʿ | content with what he has | — | — | |
+| حسود | ḥasūd | envious | — | — | |
+| متسامح | mutasāmiḥ | forgiving | — | — | |
+| عصبي شوي | ʿaṣabi shwayy | a bit short-tempered | — | — | |
+| طيب القلب | ṭayyib al-galb | kind-hearted | — | — | |
+| خفيف الظل | khafīf aẓ-ẓill | good company | — | — | |
+| يعتمد عليه | yiʿtamad ʿalēh | you can count on him | — | — | |
+| ما يكذب | ma yikdhib | he doesn't lie | — | — | |
+| يحب الخير | yḥibb al-khēr | he wishes people well | — | — | |
+| أحترمه | aḥtarmah | I respect him | — | — | |
+| أثق فيك | athig fīk | I trust you (to her) | — | — | |
+
+
+## 4.42 How much, how many, how big | — | المقادير والأحجام | —
+
+| Arabic | Say | English | Ukrainian | MSA | Checked |
+|---|---|---|---|---|---|
+| كيلو | kīlo | a kilo | — | — | |
+| جرام | grām | a gram | — | — | |
+| لتر | litr | a litre | — | — | |
+| متر | mitr | a metre | — | — | |
+| سنتيمتر | santimitr | a centimetre | — | — | |
+| كيلومتر | kīlomitr | a kilometre | — | — | |
+| طول | ṭūl | length, height | — | — | |
+| عرض | ʿarẓ | width | — | — | |
+| ارتفاع | irtifāʿ | height | — | — | |
+| وزن | wazn | weight | — | — | |
+| حجم | ḥajm | size | — | — | |
+| مقاس كبير | magās kabīr | a large size | — | — | |
+| مقاس صغير | magās ṣaghīr | a small size | — | — | |
+| نص كيلو | nuṣṣ kīlo | half a kilo | — | — | |
+| ربع | rubʿ | a quarter | — | — | |
+| ثلث | thilth | a third | — | — | |
+| ضعف | ẓiʿf | double | — | — | |
+| مرتين | marratēn | twice | — | — | |
+| ثلاث مرات | thalāth marrāt | three times | — | — | |
+| قطعة | gaṭʿa | a piece | — | — | |
+| حبة | ḥabba | one of them (a fruit, a pill) | — | — | |
+| علبة | ʿilba | a box, a tin | — | — | |
+| كيس | kīs | a bag | — | — | |
+| قارورة | gārūra | a bottle | — | — | |
+| صندوق | ṣandūg | a crate, a box | — | — | |
+| شوية | shwayya | a little bit | — | — | |
+| كثير أوي | kathīr marra | an awful lot | — | — | |
+| بالكثير | bil-kathīr | at most | — | — | |
+| بالقليل | bil-galīl | at least | — | — | |
+| تقريباً نصف | tagrīban nuṣṣ | about half | — | — | |
+| زيادة عن اللزوم | ziyāda ʿan al-luzūm | more than needed | — | — | |
+
