@@ -1,7 +1,7 @@
 # Status — what's built, what's next
 
 **Read this first in a new session** instead of re-reading the code. Keep it short; update it after every deploy.
-Last updated: 24 Sept 2026 (every Arabic consonant now has its own Ukrainian letter — ҳ ғ ҫ ҙ ҙʹ сʹ тʹ ъ — so no two sounds are learned as one; B1 rung added to the plan ladder). Previously: 23 Sept 2026 (no more deadline: stages open by what you have done; the "Together for" counter, Write it in Arabic, Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
+Last updated: 24 Sept 2026 (the eight A2 grammar lessons were written but never scheduled — weeks 22–67 now teach them, so every lesson on the route is reached; every Arabic consonant now has its own Ukrainian letter — ҳ ғ ҫ ҙ ҙʹ сʹ тʹ ъ — so no two sounds are learned as one; B1 rung added to the plan ladder). Previously: 23 Sept 2026 (no more deadline: stages open by what you have done; the "Together for" counter, Write it in Arabic, Speak it back, a real playback bug fixed, Stats page, her one-minute recording card, her welcome pop-up, special-day greetings, accessibility pass). Live: https://saudiarabic.online
 
 ## Who uses it
 

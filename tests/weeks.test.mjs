@@ -66,3 +66,25 @@ test("no conversation writes ق as q", () => {
     for (const l of lines) assert.doesNotMatch(l.say, /q/i, `week ${w}: "${l.say}" — ق is "g" in Saudi`);
   }
 });
+
+// The course is a route, not a library: if a lesson is written but no week ever hands it to him, he does
+// everything he's told and still never learns it. That is how the whole A2 grammar (اللي, كان, إذا, لازم…)
+// sat unreachable between A1 and B1 until 24 Sept 2026.
+test("every grammar lesson written is actually taught, at least twice, and in level order", () => {
+  const taught = new Map();
+  for (const w of WEEKS) (taught.get(String(w.grammar)) ?? taught.set(String(w.grammar), []).get(String(w.grammar))).push(w.week);
+
+  const never = GRAMMAR.filter(g => !taught.has(String(g.id)));
+  assert.deepEqual(never.map(g => g.id), [], `written but never scheduled: ${never.map(g => g.id).join(", ")}`);
+
+  const thin = GRAMMAR.filter(g => taught.get(String(g.id)).length < 2);
+  assert.deepEqual(thin.map(g => g.id), [], `taught only once, so it won't stick: ${thin.map(g => g.id).join(", ")}`);
+
+  // A1 before A2 before B1: each level's first week comes after the level below it started.
+  const firstOf = list => Math.min(...list.map(g => taught.get(String(g.id))[0]));
+  assert.ok(firstOf(PLAN_GRAMMAR) < firstOf(GRAMMAR_A2), "the A2 grammar must start after the A1 grammar");
+  assert.ok(firstOf(GRAMMAR_A2) < firstOf(GRAMMAR_B1), "the B1 grammar must start after the A2 grammar");
+
+  // and nothing from a higher level turns up before the level below it has been taught at all
+  for (const g of GRAMMAR_B1) assert.ok(taught.get(String(g.id))[0] > firstOf(GRAMMAR_A2), `B1 lesson ${g.id} comes before any A2 lesson`);
+});

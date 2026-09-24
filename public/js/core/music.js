@@ -79,6 +79,20 @@ function render(sr) {
 }
 
 // Call from a click or key press: browsers only let sound start after the person does something.
+// Freeing an audio context: the natural end and an early skip both want to do it, and on a quick skip both
+// happen. close() throws if it has already gone and rejects if one is still in flight, so it runs once and
+// its promise is always caught — otherwise the page reports an uncaught error.
+function closeOnce(ctx) {
+  let done = false;
+  return () => {
+    if (done) return;
+    done = true;
+    try {
+      ctx.close()?.catch?.(() => {});
+    } catch {}
+  };
+}
+
 export function play() {
   const AC = window.AudioContext || window.webkitAudioContext;
   if (!AC) return () => {};
@@ -96,13 +110,14 @@ export function play() {
   src.buffer = buf;
   src.connect(vol).connect(ctx.destination);
   src.start();
-  src.onended = () => ctx.close();
+  const done = closeOnce(ctx);
+  src.onended = done;
   // Stopping early (the person skipped): a short fade instead of a click.
   return () => {
     try {
       vol.gain.setTargetAtTime(0, ctx.currentTime, 0.08);
-      setTimeout(() => ctx.close(), 400);
     } catch {}
+    setTimeout(done, 400);
   };
 }
 
@@ -125,6 +140,6 @@ export function chime(toDark) {
     src.buffer = buf;
     src.connect(ctx.destination);
     src.start();
-    src.onended = () => ctx.close();
+    src.onended = closeOnce(ctx);
   } catch {}
 }
