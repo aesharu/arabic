@@ -10,6 +10,7 @@ import { wordStats } from "../core/cards.js";
 import { vocabNow, loadVocab } from "../core/vocab.js";
 import { BADGES, GROUPS, LEVELS, allStandings, levelOf, nextUp, scoreboard, XP } from "../core/game.js";
 import { STORIES } from "../data/stories.js";
+import { READS } from "../data/read.js";
 import { GOALS } from "../data/birthday.js";
 
 const A1 = GOALS.filter(g => g.level === "a1").map(g => g.id);
@@ -22,10 +23,12 @@ export function boardNow(today = todayKey()) {
     log: s.log,
     script: s.script,
     reading: s.reading,
+    read: s.read,
     goals: s.goals,
     words: notes ? wordStats(notes) : {},
     streak: streak(s.log, today),
     stories: STORIES.length,
+    texts: READS.length,
     a1: A1,
     today,
   });

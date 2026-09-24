@@ -188,6 +188,6 @@ export function learnedLetters(done, date = todayKey()) {
 }
 
 // Vowel marks, spaces and punctuation are not letters to learn.
-const NOT_LETTERS = /[\u064B-\u0652\u0670\s؟،…/?.!]/g;
+const NOT_LETTERS = /[\u064B-\u0652\u0670\u0640\s؟،…/?.!]/g;
 const SEATS = { "أ": "ا", "إ": "ا", "آ": "ا" };
 export const lettersIn = word => [...word.replace(NOT_LETTERS, "")].map(c => SEATS[c] ?? c);

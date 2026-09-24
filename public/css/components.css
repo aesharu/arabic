@@ -2117,3 +2117,28 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
   border: 1px solid var(--line); border-radius: 9px; padding: 6px 4px; background: var(--bg); }
 .ua-tbl b { font-size: 17px; font-weight: 700; color: var(--text); }
 .ua-tbl .ar { font-size: 16px; color: var(--muted); }
+
+/* Learning to read, from zero (views/read.js) — the ladder of a hundred texts. */
+.rd-total { color: var(--muted); margin: 0 0 10px; }
+.rd-steps { margin-bottom: 14px; }
+.rd-chip { min-width: 84px; }
+.rd-chip-n { display: block; font-size: 12px; color: var(--muted); }
+.rd-head { border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; background: var(--surface); margin-bottom: 16px; }
+.rd-head h2 { margin: 0 0 8px; }
+.rd-letters { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+.rd-l { font-family: var(--font-ar); font-size: 20px; line-height: 1; padding: 5px 9px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }
+.rd-l.is-new { color: var(--brand); border-color: var(--brand); font-weight: 700; }
+.rd-note { margin: 0 0 12px; color: var(--muted); }
+.rd-card { margin-bottom: 16px; }
+.rd-card.is-read { border-color: var(--brand); }
+.rd-t { margin: 0 0 10px; display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; justify-content: space-between; }
+.rd-t-ar { font-size: 20px; color: var(--brand-ar, var(--brand)); }
+.rd-lines { list-style: none; margin: 0 0 14px; padding: 0; }
+.rd-line { padding: 10px 0; border-top: 1px solid var(--line); }
+.rd-line:first-child { border-top: 0; }
+.rd-say { display: flex; align-items: center; gap: 10px; background: none; border: 0; padding: 0; cursor: pointer; text-align: start; width: 100%; color: inherit; }
+.rd-ar { font-size: 30px; line-height: 1.75; }
+.rd-tr { display: block; margin-top: 2px; }
+.rd-en { display: block; margin-top: 4px; color: var(--muted); }
+.rd-tick { width: 100%; }
+@media (max-width: 480px) { .rd-ar { font-size: 26px; } .rd-chip { min-width: 72px; } }

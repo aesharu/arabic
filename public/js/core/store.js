@@ -38,6 +38,7 @@ const defaults = () => ({
   // celebrated once and stays won even if a card is later forgotten.
   game: { badges: [], level: 1 },
   reading: { done: [] }, // stories read: "st.<id>" (views/stories.js)
+  read: { done: [] }, // texts read on the learning-to-read ladder: the text's id (views/read.js)
   // Cards (core/cards.js): cardId → the scheduler's card (core/srs.js) plus mod, the time it last changed.
   // prefs: new cards a day, practice saying (reverse cards), open every deck early, read the answer aloud.
   srs: { cards: {}, prefs: { newPerDay: 8, reverse: true, unlockAll: profileNow === "teacher", autoplay: true, mod: 0 } }, // Dima: every deck open
@@ -58,6 +59,7 @@ function merge(saved) {
     goals: { done: Array.isArray(saved.goals?.done) ? saved.goals.done : [] },
     game: { badges: Array.isArray(saved.game?.badges) ? saved.game.badges : [], level: saved.game?.level ?? 1 },
     reading: { done: Array.isArray(saved.reading?.done) ? saved.reading.done : [] },
+    read: { done: Array.isArray(saved.read?.done) ? saved.read.done : [] },
   };
 }
 

@@ -105,9 +105,9 @@ export const bestDayMin = log => Object.values(log).reduce((n, e) => Math.max(n,
 
 /**
  * Everything the awards need, out of a profile's progress.
- * log · script.done · reading.done · goals.done · words { learned, strong } · streak · stories (how many there are)
+ * log · script.done · reading.done · read.done · goals.done · words { learned, strong } · streak · stories/texts (how many there are)
  */
-export function scoreboard({ log = {}, script = {}, reading = {}, goals = {}, words = {}, streak = 0, stories = 0, a1 = [], today = todayKey() } = {}) {
+export function scoreboard({ log = {}, script = {}, reading = {}, read = {}, goals = {}, words = {}, streak = 0, stories = 0, texts = 0, a1 = [], today = todayKey() } = {}) {
   const days = Object.values(log).filter(active);
   const sum = f => days.reduce((n, e) => n + (f(e) || 0), 0);
   const xp = totalXp(log);
@@ -126,6 +126,8 @@ export function scoreboard({ log = {}, script = {}, reading = {}, goals = {}, wo
     letters: new Set(script.done ?? []).size,
     stories: (reading.done ?? []).length,
     allStories: stories,
+    texts: (read.done ?? []).length,
+    allTexts: texts,
     words: { learned: words.learned ?? 0, strong: words.strong ?? 0 },
     perfectQuizzes: perfectQuizzes(log),
     goalStreak: goalStreak(log),
@@ -175,6 +177,10 @@ export const BADGES = [
   { id: "story1", group: "read", icon: "reading", need: 1, of: s => s.stories },
   { id: "story10", group: "read", icon: "reading", need: 10, of: s => s.stories },
   { id: "storyAll", group: "read", icon: "reading", need: 0, of: s => s.stories, all: s => s.allStories },
+
+  { id: "read1", group: "read", icon: "qalam", need: 1, of: s => s.texts },
+  { id: "read25", group: "read", icon: "qalam", need: 25, of: s => s.texts },
+  { id: "readAll", group: "read", icon: "qalam", need: 0, of: s => s.texts, all: s => s.allTexts },
 
   { id: "goal7", group: "habit", icon: "check", need: 7, of: s => s.goalStreak },
   { id: "fullmonth", group: "habit", icon: "calendar", need: 1, of: s => s.fullMonths },
