@@ -11,7 +11,7 @@ import { tokens, sayWords } from "../public/js/core/gloss.js";
 
 const ARABIC = /[ء-ي]/;
 const MARKS = /[ً-ْ]/;
-const VOWELLED = 7; // steps 1–7 carry their vowel marks; 8–10 do without, like real writing
+const VOWELLED = 6; // steps 1–6 carry their vowel marks; 7–10 do without, like real writing
 const TRAPS = ["إزيك", "شو", "فين", "عايز", "بدي", "دلوقتي", "هلق", "كويس", "ليه", "كمان", "مش", "دحين", "إيش",
   "ازاي", "هيك", "منيح", "بحبك", "كتير", "هلأ", "نحن", "وايد", "چذي", "مب", "أحبچ"];
 const allowedAt = n => new Set(STEPS.filter(s => s.n <= n).flatMap(s => [...s.add]));
@@ -22,7 +22,7 @@ const SOUND = { "ب":"b","ت":"t","ث":"th","ج":"j","ح":"H","خ":"kh","د":"d"
   "ش":"sh","ص":"S","ض":"Z","ط":"T","ظ":"Z","ع":"3","غ":"gh","ف":"f","ق":"g","ك":"k","ل":"l","م":"m","ن":"n","ه":"h" };
 const SUN = "تثدذرزسشصضطظلن";
 const arSkeleton = ar => [...ar.replace(/ا?ً/g, "ن").replace(/[ً-ْٰـ]/g, "")
-  .replace(new RegExp(`ال(?=[${SUN}])`, "g"), "ا")].flatMap(c => (SOUND[c] ? [SOUND[c]] : []));
+  .replace(new RegExp(`(^|[\\s\u0648\u0628\u0643\u0644\u0639\u0641])ال(?=[${SUN}])`, "gu"), "$1ا")].flatMap(c => (SOUND[c] ? [SOUND[c]] : []));
 const saySkeleton = say => {
   const s = String(say).toLowerCase().replace(/[āīūēō]/g, "")
     .replace(/ḥ/g, "H").replace(/ṣ/g, "S").replace(/[ẓḍ]/g, "Z").replace(/ṭ/g, "T")
@@ -41,9 +41,12 @@ const saySkeleton = say => {
 const collapse = a => a.filter((x, i) => x !== a[i - 1]);       // شدّة: one letter, two in the Latin
 const expand = a => a.flatMap(x => (x.length === 2 ? [x[0], x[1]] : [x]));
 const norm = a => collapse(expand(collapse(a)));
+const same = (A, S) => A.length === S.length && A.every((x, i) => x === S[i]);
+// ة is silent at the end of a phrase and said "t" before the next word (صلاة العيد → ṣalāt al-ʿīd),
+// so a skeleton that treats it either way is accepted.
 const sameWord = (ar, say) => {
-  const A = norm(arSkeleton(ar)), S = norm(saySkeleton(say));
-  return A.length === S.length && A.every((x, i) => x === S[i]);
+  const S = norm(saySkeleton(say));
+  return same(norm(arSkeleton(ar)), S) || same(norm(arSkeleton(ar.replace(/ة(?=\s)/g, "ت"))), S);
 };
 
 test("a hundred texts, ten steps, unique ids", () => {
@@ -134,7 +137,8 @@ test("the texts get longer as the steps go up", () => {
 
 test("the page and its awards are named in both languages", () => {
   const keys = ["nav.read", "nav.readGroup", "read.title", "read.sub", "read.step", "read.total",
-    "read.markRead", "read.readIt", "read.hideEn", "read.showEn", "read.hear", "read.steps", "read.allRead",
+    "read.markRead", "read.readIt", "read.hideEn", "read.showEn", "read.hideSay", "read.showSay",
+    "read.flow", "read.byLine", "read.howTitle", "read.how1", "read.how2", "read.how3", "read.steps", "read.allRead",
     "badge.read1", "badge.read1.sub", "badge.read25", "badge.read25.sub", "badge.readAll", "badge.readAll.sub"];
   for (const k of keys) for (const l of ["en", "najdi"]) assert.ok(STRINGS[k]?.[l], `${k}: ${l}`);
 });

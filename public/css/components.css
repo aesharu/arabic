@@ -2118,27 +2118,58 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
 .ua-tbl b { font-size: 17px; font-weight: 700; color: var(--text); }
 .ua-tbl .ar { font-size: 16px; color: var(--muted); }
 
-/* Learning to read, from zero (views/read.js) — the ladder of a hundred texts. */
+/* Learning to read, from zero (views/read.js) — laid out like a page in a book. */
 .rd-total { color: var(--muted); margin: 0 0 10px; }
 .rd-steps { margin-bottom: 14px; }
 .rd-chip { min-width: 84px; }
 .rd-chip-n { display: block; font-size: 12px; color: var(--muted); }
-.rd-head { border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; background: var(--surface); margin-bottom: 16px; }
+.rd-head { border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; background: var(--surface); margin-bottom: 14px; }
 .rd-head h2 { margin: 0 0 8px; }
 .rd-letters { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
 .rd-l { font-family: var(--font-ar); font-size: 20px; line-height: 1; padding: 5px 9px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }
 .rd-l.is-new { color: var(--brand); border-color: var(--brand); font-weight: 700; }
 .rd-note { margin: 0 0 12px; color: var(--muted); }
-.rd-card { margin-bottom: 16px; }
+.rd-tools { flex-wrap: wrap; }
+.rd-tg { font-size: 14px; padding: 7px 13px; }
+.rd-tg.is-on { border-color: var(--brand); color: var(--brand); font-weight: 700; }
+.rd-how { margin: 0 0 18px; border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; background: var(--surface); }
+.rd-how summary { cursor: pointer; font-weight: 700; }
+.rd-how p { margin: 10px 0 0; color: var(--muted); }
+
+.rd-card { margin-bottom: 18px; }
 .rd-card.is-read { border-color: var(--brand); }
-.rd-t { margin: 0 0 10px; display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; justify-content: space-between; }
-.rd-t-ar { font-size: 20px; color: var(--brand-ar, var(--brand)); }
+.rd-t { margin: 0 0 12px; display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; justify-content: space-between; }
+.rd-t-ar { font-size: 22px; color: var(--brand-ar, var(--brand)); }
+.rd-t-en { font-size: 15px; color: var(--muted); font-weight: 600; text-transform: none; letter-spacing: 0; }
+
+/* the page of Arabic: one block of text, each sentence still its own button */
+.rd-body { font-size: 27px; line-height: 2.1; margin: 0 0 14px; }
+.rd-s { font: inherit; color: inherit; background: none; border: 0; padding: 0 1px; margin: 0; cursor: pointer; border-radius: 4px; }
+.rd-s:hover, .rd-s:focus-visible { background: color-mix(in srgb, var(--brand) 16%, transparent); outline: none; }
+.rd-say { margin: 0 0 2px; color: var(--text); font-size: 15px; line-height: 1.7; }
+.rd-ua { margin: 0 0 10px; color: var(--muted); font-size: 15px; line-height: 1.7; font-weight: 600; }
+.rd-en { margin: 0 0 14px; color: var(--muted); line-height: 1.6; padding-top: 10px; border-top: 1px solid var(--line); }
+
+/* word practice, steps 1–3 */
+.rd-words { list-style: none; margin: 0 0 14px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.rd-w { width: 100%; text-align: center; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 12px 10px; cursor: pointer; color: inherit; }
+.rd-w:hover { border-color: var(--brand); }
+.rd-w-ar { display: block; font-size: 26px; line-height: 1.7; }
+.rd-w-say { display: block; margin-top: 4px; font-size: 14px; }
+.rd-w-en { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+
+/* line by line */
 .rd-lines { list-style: none; margin: 0 0 14px; padding: 0; }
 .rd-line { padding: 10px 0; border-top: 1px solid var(--line); }
 .rd-line:first-child { border-top: 0; }
-.rd-say { display: flex; align-items: center; gap: 10px; background: none; border: 0; padding: 0; cursor: pointer; text-align: start; width: 100%; color: inherit; }
-.rd-ar { font-size: 30px; line-height: 1.75; }
+.rd-say-btn { background: none; border: 0; padding: 0; cursor: pointer; text-align: start; color: inherit; }
+.rd-ar { font-size: 25px; line-height: 1.9; }
 .rd-tr { display: block; margin-top: 2px; }
-.rd-en { display: block; margin-top: 4px; color: var(--muted); }
+.rd-en-s { display: block; margin-top: 4px; color: var(--muted); }
 .rd-tick { width: 100%; }
-@media (max-width: 480px) { .rd-ar { font-size: 26px; } .rd-chip { min-width: 72px; } }
+@media (max-width: 480px) {
+  .rd-body { font-size: 24px; line-height: 2; }
+  .rd-ar { font-size: 22px; }
+  .rd-chip { min-width: 72px; }
+  .rd-words { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+}
