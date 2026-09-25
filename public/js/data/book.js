@@ -90,7 +90,7 @@ const LETTERS = [
 // The little signs above and below the letters. They are the difference between reading Arabic and guessing it.
 const M = (id, title, note, show, words) => ({ kind: "mark", id, title, note, show, words });
 
-const MARKS = [
+export const MARKS = [
   M("m1", T("Three little marks", "ثَلاث حَرَكَات"),
     T("A letter on its own is only a consonant. The mark tells you the vowel: a stroke above is a, a stroke below is i, a little loop above is u.",
       "الحَرْف لِحَالَه صَامِت. الحَرَكَة هِيَ اللي تْقُول لَك الصَّوْت: فَوْق فَتْحَة a، وتَحْت كَسْرَة i، واللِّفَّة فَوْق ضَمَّة u."),

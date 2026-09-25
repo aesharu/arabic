@@ -51,6 +51,20 @@ Each word carries three spellings: `ar` (how it is really written), `said` (full
 
 `tests/essentials.test.mjs` checks all of it — provenance, that the marks don't change the word, that no consonant is left bare, that ē is written ay and ō aw, that nothing ends in -ak, that the Arabic and the pronunciation are the same word, that every word with a voice has its file, and that the waiting list is exactly what the folder is missing.
 
+## The sheets he prints (`npm run sheets`)
+
+Five A4 booklets for learning to **write** the letters by hand, in `public/worksheets` — built by `scripts/sheets-html.mjs` and printed to PDF by the Chrome on this Mac (`scripts/sheets.mjs`), no library and no service:
+
+1. **1-letters** — the 28 letters, one a sheet: the letter, its sound in English and in Ukrainian letters, its example word, the four shapes it wears, and about seventy letters to trace plus empty lines.
+2. **2-in-a-word** — the same letters joined up, every shape line after line, then a real word from `vocab.json` with the letter at the start, in the middle and at the end.
+3. **3-look-alike** — the six shape families (ب ت ث ن ي, ج ح خ, د ذ …): side by side, one line each, all of them mixed, then a row of bare bodies for him to put the dots on.
+4. **4-marks** — the seven marks from the book, with the syllables and words that show them.
+5. **5-practice-paper** — nothing but ruled lines.
+
+**Every booklet is printed twice**: the colour one (the letter in ink, its dots picked out in green) and `-bw` for his **black-and-white printer**, where nothing he writes over may be solid — a solid letter prints the same black as his pen and he cannot see his own hand. On the grey sheets the lead letter is the same dashes drawn heavier.
+
+Rules: **a sheet must hold a lot of writing** (he asked twice), and **nothing may overflow 297mm** — a page that runs long pushes its footer onto the next sheet, so `scripts/sheets.mjs` measures every page in the browser and refuses to print if one is too tall; it also reports how much space the emptiest sheet still has. `tests/sheets.test.mjs` checks the letters, both languages, the Ukrainian letters, that the mono set has nothing solid, and that all ten PDFs are there. The font is Noto Naskh Arabic, the site's own (his choice, 25 Sept 2026).
+
 ## Her words, in a Saudi voice
 
 The ten words she taught him (`data/hers.js`) have audio of their own: `public/audio/saudi/*.mp3`, the ar-SA voice **Hamed** from speechgen.io's free page, 320 kbps / 48 kHz. `data/voices.js` maps the word to the file and keeps the exact text that was typed in; `core/speech.js` plays **her recording first, this second, the browser voice last**, and says "A Saudi voice — a computer, not Dima" when it plays, so neither of them can mistake it for her.
