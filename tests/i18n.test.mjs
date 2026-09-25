@@ -55,11 +55,11 @@ test("all ten of Dima's welcome messages exist, in both languages", () => {
 // The Saudi voice files (public/audio/saudi) — the words she taught him, spoken by a computer with an ar-SA
 // voice. Her own recording always wins over them; this checks the files are really there and really match
 // the words, so a play button never points at nothing.
-test("every word with a Saudi voice file has the file, and every file has its word", async () => {
+test("every word she taught him has a Saudi voice file, and the file is really there", async () => {
   const { voiceFile, VOICE_WORDS, VOICE_FILES } = await import("../public/js/data/voices.js");
   const { HER_WORDS } = await import("../public/js/data/hers.js");
   const dir = new URL("../public/audio/saudi/", import.meta.url);
-  assert.equal(VOICE_WORDS.length, 10, "ten words");
+  assert.ok(VOICE_WORDS.length >= 10, "the ten she taught him, at least");
   assert.equal(new Set(VOICE_FILES).size, VOICE_FILES.length, "two words share a file");
   for (const file of VOICE_FILES) {
     const path = new URL(file + ".mp3", dir);
@@ -71,7 +71,7 @@ test("every word with a Saudi voice file has the file, and every file has its wo
   // and the vowel marks or the question mark never stop it being found
   assert.equal(voiceFile("زَيْن"), voiceFile("زين"));
   assert.equal(voiceFile("شلونك"), voiceFile("شلونك؟"));
-  assert.equal(voiceFile("قهوة"), "", "a word with no file should say so");
+  assert.equal(voiceFile("نخلة"), "", "a word with no file should say so");
   // what was typed into the voice engine is kept, and it is marked — bare letters make it read فصحى
   const { voiceText } = await import("../public/js/data/voices.js");
   for (const w of VOICE_WORDS) {

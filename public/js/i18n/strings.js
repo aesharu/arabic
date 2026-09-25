@@ -621,6 +621,18 @@ export const STRINGS = {
   "book.sayOff": { en: "Pronunciation ✓", najdi: "النطق ✓" },
   "book.enOn": { en: "English", najdi: "الإنجليزي" },
   "book.enOff": { en: "English ✓", najdi: "الإنجليزي ✓" },
+  "nav.hundred": { en: "The hundred words", najdi: "مية كلمة" },
+  "hundred.title": { en: "The hundred words", najdi: "مية كلمة" },
+  "hundred.sub": {
+    en: "The hundred you need to talk to her — every one of them said out loud in a Saudi voice.",
+    najdi: "المية اللي تحتاجها عشان تكلمها — وكل وحدة منها منطوقة بصوت سعودي.",
+  },
+  "hundred.count": { en: "{n} of {all} heard", najdi: "سمعت {n} من {all}" },
+  "hundred.howTitle": { en: "How to use this page", najdi: "كيف تستخدم هالصفحة" },
+  "hundred.how": {
+    en: "Tap a word to hear it, then say it back out loud before you move on. The Arabic is written with every vowel mark, because that is what the voice was given — bare letters make a machine read formal Arabic, and formal Arabic is not what she speaks. It is a computer voice, not Dima: when she records a word herself, hers plays instead.",
+    najdi: "اضغط الكلمة تسمعها، وبعدين قلها بصوت عالي قبل ما تكمل. والعربي مكتوب بكل الحركات، لأن هذا اللي انعطى للصوت — الحروف بدون حركات تخلي الجهاز يقرا فصحى، والفصحى مو كلامها. وهذا صوت جهاز مو ديما: لما تسجل هي الكلمة، صوتها هو اللي يشتغل.",
+  },
   "nav.texts": { en: "More texts to read", najdi: "نصوص زيادة للقراية" },
   "texts.title": { en: "Read from zero", najdi: "اقرا من الصفر" },
   "texts.sub": {

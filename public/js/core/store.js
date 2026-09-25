@@ -41,6 +41,7 @@ const defaults = () => ({
   read: { done: [] }, // texts read on the learning-to-read ladder: the text's id (views/texts.js)
   // The book (views/book.js): the page he is on, and every page he has turned away from.
   book: { page: 1, done: [] },
+  hundred: { done: [] }, // the hundred words he has heard at least once (views/hundred.js)
   // Cards (core/cards.js): cardId → the scheduler's card (core/srs.js) plus mod, the time it last changed.
   // prefs: new cards a day, practice saying (reverse cards), open every deck early, read the answer aloud.
   srs: { cards: {}, prefs: { newPerDay: 8, reverse: true, unlockAll: profileNow === "teacher", autoplay: true, mod: 0 } }, // Dima: every deck open
@@ -63,6 +64,7 @@ function merge(saved) {
     reading: { done: Array.isArray(saved.reading?.done) ? saved.reading.done : [] },
     read: { done: Array.isArray(saved.read?.done) ? saved.read.done : [] },
     book: { page: saved.book?.page ?? 1, done: Array.isArray(saved.book?.done) ? saved.book.done : [] },
+    hundred: { done: Array.isArray(saved.hundred?.done) ? saved.hundred.done : [] },
   };
 }
 

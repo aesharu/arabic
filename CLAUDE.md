@@ -41,6 +41,12 @@ Rules it keeps, all checked by `tests/book.test.mjs`:
 - The marks are written through the first four parts and gone after that; the reading gets longer part by part and page by page.
 - The old ladder of 140 texts still lives at **`#/texts`** ("More texts to read", `views/texts.js`, `data/read.js`).
 
+## The hundred words, and the voice files
+
+**The hundred words for talking to her** (`#/hundred`, in the "Learn to read" menu under the book): `data/hundred.js`, `views/hundred.js`, `tests/hundred.test.mjs`. Ten groups — hello, yes/no, asking, the small words, when, how you are, to her, what you do, when you don't understand, four things. Every word is from the plan's vocabulary or from her, and every one has its own Saudi voice file. Tapping a word counts it as heard (`store.hundred.done`).
+
+Each word carries three spellings: `ar` (how it is really written), `said` (fully marked, and what the voice engine was given), `show` (the same, with ق back in place of گ). `tests/hundred.test.mjs` checks all of it — provenance, that the marks don't change the word, that no consonant is left bare, that ē is written ay and ō aw, that nothing ends in -ak, and that every word has its file.
+
 ## Her words, in a Saudi voice
 
 The ten words she taught him (`data/hers.js`) have audio of their own: `public/audio/saudi/*.mp3`, the ar-SA voice **Hamed** from speechgen.io's free page, 320 kbps / 48 kHz. `data/voices.js` maps the word to the file and keeps the exact text that was typed in; `core/speech.js` plays **her recording first, this second, the browser voice last**, and says "A Saudi voice — a computer, not Dima" when it plays, so neither of them can mistake it for her.
