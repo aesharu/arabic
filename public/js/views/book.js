@@ -376,6 +376,11 @@ export default {
       if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.6) go(at + (dx > 0 ? -1 : 1));
     }, { signal });
 
+    // A book is a reading surface: while it is open, the floating "Together for" card steps aside instead of
+    // sitting on top of the page (on a phone it covered the page-turn buttons and two lines of every text).
+    document.body.classList.add("reading");
+    signal.addEventListener("abort", () => document.body.classList.remove("reading"), { once: true });
+
     render();
     if (at > 0) remember();
   },

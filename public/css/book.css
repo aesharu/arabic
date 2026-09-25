@@ -76,14 +76,21 @@
 .bk-cover-do { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .bk-open { font-size: 16px; padding: 12px 22px; }
 
+/* While the book is open nothing floats over the page: on a phone the "Together for" card sat exactly where
+   the page-turn buttons are, and over two lines of every long text. */
+body.reading .together { display: none; }
+
 /* ---------- the shell ---------- */
 .bk-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
 .bk-where { margin: 0; display: flex; gap: 10px; align-items: baseline; flex: 1; min-width: 0; }
 .bk-where b { font-family: var(--font-ar); font-size: 19px; font-weight: 400; }
 .bk-where span { color: var(--muted); font-size: 14px; white-space: nowrap; }
 .bk-toggles { display: flex; gap: 6px; flex-wrap: wrap; }
-.bk-tg { font-size: 13px; padding: 6px 11px; }
-.bk-tg.is-on { font-weight: 700; }
+/* Quiet chips, not three green slabs: the only strong button on the page should be the one that turns it. */
+.bk-tg { font-size: 13px; padding: 6px 11px; border-width: 1.5px; border-color: var(--line); color: var(--muted); font-weight: 700; }
+.bk-tg.is-on { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); color: var(--accent); }
+.bk-tg:hover { background: var(--surface-2); }
+.bk-tg.is-on:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
 .bk-toc-btn { font-size: 14px; padding: 7px 12px; }
 .bk-progress { height: 5px; border-radius: 3px; background: var(--surface-2); overflow: hidden; margin-bottom: 12px; }
 .bk-progress span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
@@ -234,9 +241,15 @@
   .bk-part-ar { font-size: 30px; }
   .bk-cover-ar { font-size: 32px; }
   .bk-where b { font-size: 17px; }
-  .bk-bar { row-gap: 8px; }
-  .bk-toggles { flex: 1 0 100%; justify-content: space-between; }
-  .bk-tg { flex: 1; }
+  /* the toolbar is a line of small print, not three green buttons the size of the page-turn one */
+  .bk-bar { row-gap: 7px; column-gap: 8px; }
+  .bk-toc-btn { font-size: 13px; padding: 6px 10px; border-width: 1.5px; }
+  .bk-where { flex: 1 1 auto; gap: 6px; }
+  .bk-where span { font-size: 12.5px; }
+  .bk-toggles { flex: 1 0 100%; gap: 6px; }
+  .bk-tg { flex: 1; font-size: 12px; padding: 5px 4px; border-width: 1.5px; font-weight: 700; }
+  .bk-nav { gap: 8px; }
+  .bk-next, .bk-back { padding: 14px 14px; }
 }
 
 .bk-sadu path { fill: none; stroke: #B0562F; stroke-width: 1.4; opacity: .9; }
