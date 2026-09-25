@@ -275,36 +275,42 @@ body.reading .together { display: none; }
   .bk-key-ua { font-size: 18px; }
 }
 
-/* ---------- the hundred words (#/hundred — views/hundred.js) ---------- */
-.hd-count { margin: 0 0 6px; color: var(--muted); }
-.hd-bar { height: 5px; border-radius: 3px; background: var(--surface-2); overflow: hidden; margin-bottom: 16px; }
-.hd-bar span { display: block; height: 100%; background: var(--accent); border-radius: 3px; transition: width .25s ease; }
-.hd-how { margin: 0 0 20px; border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; background: var(--surface); }
-.hd-how summary { cursor: pointer; font-weight: 700; }
-.hd-how p { margin: 10px 0 0; color: var(--muted); line-height: 1.6; }
-.hd-group { margin-bottom: 26px; }
-.hd-h { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 0 0 2px; }
-.hd-h-ar { font-family: var(--font-ar); font-size: 24px; font-weight: 400; }
-.hd-h-en { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
-.hd-h-n { margin-inline-start: auto; font-size: 13px; font-weight: 800; color: var(--muted); }
-.hd-sub { margin: 0 0 12px; color: var(--muted); }
-.hd-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
-.hd-word {
+/* ---------- the four hundred words (#/essentials — views/essentials.js) ---------- */
+.es-find { display: block; margin: 0 0 12px; }
+.es-search {
+  width: 100%; padding: 11px 14px; font: inherit; font-size: 16px; color: var(--ink);
+  background: var(--surface); border: 1.5px solid var(--line); border-radius: 12px;
+}
+.es-search:focus { outline: none; border-color: var(--accent); }
+.es-count { margin: 0 0 6px; color: var(--muted); }
+.es-bar { height: 5px; border-radius: 3px; background: var(--surface-2); overflow: hidden; margin-bottom: 16px; }
+.es-bar span { display: block; height: 100%; background: var(--accent); border-radius: 3px; transition: width .25s ease; }
+.es-how { margin: 0 0 20px; border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; background: var(--surface); }
+.es-how summary { cursor: pointer; font-weight: 700; }
+.es-how p { margin: 10px 0 0; color: var(--muted); line-height: 1.6; }
+.es-group { margin-bottom: 26px; }
+.es-h { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 0 0 2px; }
+.es-h-ar { font-family: var(--font-ar); font-size: 24px; font-weight: 400; }
+.es-h-en { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.es-h-n { margin-inline-start: auto; font-size: 13px; font-weight: 800; color: var(--muted); }
+.es-sub { margin: 0 0 12px; color: var(--muted); }
+.es-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+.es-word {
   position: relative; width: 100%; display: grid; gap: 3px; padding: 13px 44px 13px 15px; cursor: pointer;
   text-align: start; color: inherit; background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
 }
-html[dir="rtl"] .hd-word { padding: 13px 15px 13px 44px; }
-.hd-word:hover, .hd-word:focus-visible { border-color: var(--accent); outline: none; }
-.hd-word.is-heard { background: var(--surface-2); }
-.hd-word.is-heard::after {
+html[dir="rtl"] .es-word { padding: 13px 15px 13px 44px; }
+.es-word:hover, .es-word:focus-visible { border-color: var(--accent); outline: none; }
+.es-word.is-heard { background: var(--surface-2); }
+.es-word.is-heard::after {
   content: "✓"; position: absolute; top: 9px; inset-inline-end: 12px; font-size: 12px; font-weight: 800; color: var(--good);
 }
-.hd-ar { font-size: 27px; line-height: 1.9; }
-.hd-say { font-size: 14px; }
-.hd-en { font-size: 13.5px; color: var(--muted); }
-.hd-word .play { position: absolute; bottom: 10px; inset-inline-end: 12px; width: 30px; height: 30px; flex: 0 0 30px; }
-.hd-word .play .i { width: 15px; height: 15px; }
+.es-ar { font-size: 27px; line-height: 1.9; }
+.es-say { font-size: 14px; }
+.es-en { font-size: 13.5px; color: var(--muted); }
+.es-word .play { position: absolute; bottom: 10px; inset-inline-end: 12px; width: 30px; height: 30px; flex: 0 0 30px; }
+.es-word .play .i { width: 15px; height: 15px; }
 @media (max-width: 560px) {
-  .hd-list { grid-template-columns: 1fr; }
-  .hd-ar { font-size: 25px; }
+  .es-list { grid-template-columns: 1fr; }
+  .es-ar { font-size: 25px; }
 }

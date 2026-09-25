@@ -41,11 +41,15 @@ Rules it keeps, all checked by `tests/book.test.mjs`:
 - The marks are written through the first four parts and gone after that; the reading gets longer part by part and page by page.
 - The old ladder of 140 texts still lives at **`#/texts`** ("More texts to read", `views/texts.js`, `data/read.js`).
 
-## The hundred words, and the voice files
+## The words you need, and the voice files
 
-**The hundred words for talking to her** (`#/hundred`, in the "Learn to read" menu under the book): `data/hundred.js`, `views/hundred.js`, `tests/hundred.test.mjs`. Ten groups — hello, yes/no, asking, the small words, when, how you are, to her, what you do, when you don't understand, four things. Every word is from the plan's vocabulary or from her, and every one has its own Saudi voice file. Tapping a word counts it as heard (`store.hundred.done`).
+**The four hundred words for talking to her** (`#/essentials`, in the "Learn to read" menu under the book): `data/essentials.js`, `views/essentials.js`, `tests/essentials.test.mjs`. Thirty-four groups, from hello and yes/no to the weather, the body, the road and the forms of a verb. Every word is from the plan's vocabulary or from her. **Two hundred and thirteen of them have a Saudi voice of their own**; the other 187 are listed in `VOICE_WAITING` (`data/voices.js`) and speak in the browser's voice until their file is made — speechgen gives a thousand characters to a visitor and then refuses the address, and that is where it stopped on 25 Sept 2026. The marked spelling each one needs is already kept, so they can be made the moment a voice is available. Tapping a word counts it as heard (`store.essentials.done`); there is a search box because four hundred is a lot to scroll.
 
-Each word carries three spellings: `ar` (how it is really written), `said` (fully marked, and what the voice engine was given), `show` (the same, with ق back in place of گ). `tests/hundred.test.mjs` checks all of it — provenance, that the marks don't change the word, that no consonant is left bare, that ē is written ay and ō aw, that nothing ends in -ak, and that every word has its file.
+Each word carries three spellings: `ar` (how it is really written), `said` (fully marked, and what the voice engine was given), `show` (the same, with ق back in place of گ).
+
+**Marking a new word**: `scripts/vocalise.mjs` works the marks out from the plan's own pronunciation — `vocalise("زين", "zēn")` → `زَيْن` — and returns null rather than guessing when the Arabic and the Latin don't line up. The first hundred were marked by hand; of the next three hundred it marked 450 of 486 candidates and refused 36, which were done by hand. Never ship a word it refused without marking it yourself.
+
+`tests/essentials.test.mjs` checks all of it — provenance, that the marks don't change the word, that no consonant is left bare, that ē is written ay and ō aw, that nothing ends in -ak, that the Arabic and the pronunciation are the same word, that every word with a voice has its file, and that the waiting list is exactly what the folder is missing.
 
 ## Her words, in a Saudi voice
 

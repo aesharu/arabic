@@ -41,7 +41,7 @@ const defaults = () => ({
   read: { done: [] }, // texts read on the learning-to-read ladder: the text's id (views/texts.js)
   // The book (views/book.js): the page he is on, and every page he has turned away from.
   book: { page: 1, done: [] },
-  hundred: { done: [] }, // the hundred words he has heard at least once (views/hundred.js)
+  essentials: { done: [] }, // the words he has heard at least once on #/essentials (views/essentials.js)
   // Cards (core/cards.js): cardId → the scheduler's card (core/srs.js) plus mod, the time it last changed.
   // prefs: new cards a day, practice saying (reverse cards), open every deck early, read the answer aloud.
   srs: { cards: {}, prefs: { newPerDay: 8, reverse: true, unlockAll: profileNow === "teacher", autoplay: true, mod: 0 } }, // Dima: every deck open
@@ -64,7 +64,10 @@ function merge(saved) {
     reading: { done: Array.isArray(saved.reading?.done) ? saved.reading.done : [] },
     read: { done: Array.isArray(saved.read?.done) ? saved.read.done : [] },
     book: { page: saved.book?.page ?? 1, done: Array.isArray(saved.book?.done) ? saved.book.done : [] },
-    hundred: { done: Array.isArray(saved.hundred?.done) ? saved.hundred.done : [] },
+    // the words heard on #/essentials — the page was called "the hundred words" until it grew to four
+    // hundred, so anything saved under the old name is carried over rather than lost.
+    essentials: { done: Array.isArray(saved.essentials?.done) ? saved.essentials.done
+      : Array.isArray(saved.hundred?.done) ? saved.hundred.done : [] },
   };
 }
 
