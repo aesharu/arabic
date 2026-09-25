@@ -1,10 +1,13 @@
-// Tap-to-hear. Dima's own recording when she has made one (core/content.js) — a real Najdi voice.
-// Otherwise the browser's built-in voice, which speaks formal Arabic, not Najdi (ق = q, not g),
-// so each time it plays a short note says so.
+// Tap-to-hear, in this order:
+//   1. Dima's own recording, when she has made one (core/content.js) — a real Najdi voice;
+//   2. a Saudi voice file for the words she taught him (data/voices.js) — a computer, but a Saudi one;
+//   3. the browser's built-in voice, which speaks formal Arabic, not Najdi (ق = q, not g).
+// Whichever of 2 and 3 plays, a short note says what it is, so he never mistakes either for her.
 import * as content from "./content.js";
+import { voiceFile } from "../data/voices.js";
 import { t } from "./i18n.js";
 import { toast } from "./toast.js";
-import { SLOW, stop } from "./audiotools.js";
+import { SLOW, stop, play } from "./audiotools.js";
 
 export const canSpeak = "speechSynthesis" in window;
 
@@ -31,6 +34,17 @@ function robot(text, slow) {
   } catch {}
 }
 
+// A Saudi voice file, when this word has one. Returns false if it hasn't, so the caller can fall back.
+function saudi(text, slow) {
+  const file = voiceFile(text);
+  if (!file) return false;
+  if (canSpeak) speechSynthesis.cancel();
+  play(`audio/saudi/${file}.mp3`, slow ? SLOW : 1)
+    .then(() => toast(slow ? `${t("speech.slow")} · ${t("speech.saudi")}` : t("speech.saudi"), { ms: 3200 }))
+    .catch(() => robot(text, slow));
+  return true;
+}
+
 // Tap the same speaker again within a few seconds and it plays slowly (the next tap is normal again).
 let last = { text: "", at: 0, slow: false };
 export function say(text, { tap = false, slow } = {}) {
@@ -44,6 +58,7 @@ export function say(text, { tap = false, slow } = {}) {
     return;
   }
   stop();
+  if (saudi(text, slow)) return;
   robot(text, slow);
 }
 
@@ -72,9 +87,13 @@ export function sayAll(texts, onLine = () => {}) {
       if (!noted) toast(t("speech.robot"), { ms: 3200 });
       noted = true;
     };
+    const file = voiceFile(text);
     if (content.hasAudio(text)) {
       if (canSpeak) speechSynthesis.cancel();
       content.playRecording(text).then(a => a.addEventListener("ended", () => setTimeout(next, 250), { once: true }), computer);
+    } else if (file) {
+      if (canSpeak) speechSynthesis.cancel();
+      play(`audio/saudi/${file}.mp3`).then(a => a.addEventListener("ended", () => setTimeout(next, 250), { once: true }), computer);
     } else computer();
   };
   stop();

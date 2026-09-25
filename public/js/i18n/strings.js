@@ -944,6 +944,7 @@ export const STRINGS = {
     en: "Computer voice — formal Arabic, not Saudi. Not recorded yet.",
     najdi: "صوت كمبيوتر — فصحى مو سعودي. للحين ما تسجّلت.",
   },
+  "speech.saudi": { en: "A Saudi voice — a computer, not Dima", najdi: "صوت سعودي — جهاز، مو ديما" },
   "edit.modeOn": { en: "Edit mode — tap any text to change it", najdi: "وضع التعديل — اضغطي أي كلام وغيّريه" },
   "edit.short": { en: "Edit", najdi: "تعديل" },
   "edit.savedToast": { en: "Saved.", najdi: "انحفظ." },

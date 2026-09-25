@@ -41,6 +41,12 @@ Rules it keeps, all checked by `tests/book.test.mjs`:
 - The marks are written through the first four parts and gone after that; the reading gets longer part by part and page by page.
 - The old ladder of 140 texts still lives at **`#/texts`** ("More texts to read", `views/texts.js`, `data/read.js`).
 
+## Her words, in a Saudi voice
+
+The ten words she taught him (`data/hers.js`) have audio of their own: `public/audio/saudi/*.mp3`, the ar-SA voice **Hamed** from speechgen.io's free page, 320 kbps / 48 kHz. `data/voices.js` maps the word to the file and keeps the exact text that was typed in; `core/speech.js` plays **her recording first, this second, the browser voice last**, and says "A Saudi voice — a computer, not Dima" when it plays, so neither of them can mistake it for her.
+
+Making another one: **always type it in fully marked**, and spell it so that a formal reading lands on her sound — bare زين came out *zīn*, marked زَيْن comes out *zēn*. **ay** where she says ē, **aw** where she says ō, a sukun where the dialect drops the vowel (بْخَيْر), and a kasra on the final ك because he is speaking to her (شَخْبَارِكْ, -ik, never -ak). A word with **ق** in it should not be made this way at all: the engine says *qahwa*, she says *gahwa* — that one needs her voice.
+
 ## Status
 
 **Read `STATUS.md` first**: what's built, what's next, open questions and decisions. Update it after every deploy.

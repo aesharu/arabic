@@ -2,7 +2,7 @@
 // {placeholders}; every key the code asks for must exist, and every key must be used.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { STRINGS } from "../public/js/i18n/strings.js";
 
@@ -50,4 +50,33 @@ test("all ten of Dima's welcome messages exist, in both languages", () => {
     for (const lang of ["en", "najdi"]) assert.ok(v[lang], `nudge.m${i}: ${lang} missing`);
   }
   assert.ok(!STRINGS["nudge.m11"], "there are eleven messages but core/nudge.js only shows ten");
+});
+
+// The Saudi voice files (public/audio/saudi) — the words she taught him, spoken by a computer with an ar-SA
+// voice. Her own recording always wins over them; this checks the files are really there and really match
+// the words, so a play button never points at nothing.
+test("every word with a Saudi voice file has the file, and every file has its word", async () => {
+  const { voiceFile, VOICE_WORDS, VOICE_FILES } = await import("../public/js/data/voices.js");
+  const { HER_WORDS } = await import("../public/js/data/hers.js");
+  const dir = new URL("../public/audio/saudi/", import.meta.url);
+  assert.equal(VOICE_WORDS.length, 10, "ten words");
+  assert.equal(new Set(VOICE_FILES).size, VOICE_FILES.length, "two words share a file");
+  for (const file of VOICE_FILES) {
+    const path = new URL(file + ".mp3", dir);
+    assert.ok(existsSync(path), `public/audio/saudi/${file}.mp3 is missing`);
+    assert.ok(statSync(path).size > 8000, `${file}.mp3 is too small to be a word`);
+  }
+  // every word she taught is in there, found however it is written
+  for (const w of HER_WORDS) assert.ok(voiceFile(w.ar), `no Saudi voice for "${w.ar}"`);
+  // and the vowel marks or the question mark never stop it being found
+  assert.equal(voiceFile("زَيْن"), voiceFile("زين"));
+  assert.equal(voiceFile("شلونك"), voiceFile("شلونك؟"));
+  assert.equal(voiceFile("قهوة"), "", "a word with no file should say so");
+  // what was typed into the voice engine is kept, and it is marked — bare letters make it read فصحى
+  const { voiceText } = await import("../public/js/data/voices.js");
+  for (const w of VOICE_WORDS) {
+    const said = voiceText(w);
+    assert.ok(said, `no marked spelling kept for "${w}"`);
+    assert.match(said, /[\u064B-\u0652]/, `"${said}" has no vowel marks, so the voice will guess`);
+  }
 });
