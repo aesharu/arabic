@@ -68,3 +68,23 @@ export const KEYS = [
   ["ق", "ك", "ل", "م", "ن", "ه", "و", "ي", "ة", "ى"],
   ["أ", "إ", "آ", "ء", "ؤ", "ئ", "لا", "؟"],
 ];
+
+// --- Reading help: a word taken apart the way a reader has to take it apart ---
+// Arabic joins its letters up, so a beginner cannot see where one ends and the next begins. These split a
+// word into what the eye should treat as one letter — the letter itself, plus any marks riding on it — so
+// the book can give each one its own colour (views/book.js).
+const RIDER = /[ً-ٰٕۖ-ۭـ]/;
+
+export function clusters(word) {
+  const out = [];
+  for (const ch of String(word ?? "").normalize("NFC")) {
+    if (out.length && RIDER.test(ch)) out[out.length - 1].marks += ch;
+    else out.push({ ch, marks: "" });
+  }
+  return out;
+}
+
+// The shapes one letter wears: alone, at the start, in the middle, at the end. The ones that never join
+// forward (ا د ذ ر ز و) only have two — that is the point of them.
+export const shapes = (char, nonJoining = false) =>
+  nonJoining ? [char, "ـ" + char] : [char, char + "ـ", "ـ" + char + "ـ", "ـ" + char];

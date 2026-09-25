@@ -18,14 +18,14 @@ const lettersSoFar = n => STEPS.filter(s => s.n <= n).flatMap(s => [...s.add]);
 const mine = () => !store.isTeacher();
 
 const stepChips = (now, done) => `
-  <div class="chips rd-steps" role="group" aria-label="${esc(t("read.steps"))}">
+  <div class="chips rd-steps" role="group" aria-label="${esc(t("texts.steps"))}">
     ${STEPS.map(s => {
       const list = textsOf(s.n);
       const n = list.filter(r => done.has(r.id)).length;
       return `<button class="chip rd-chip" data-step="${s.n}" aria-pressed="${s.n === now}">
-        <span class="d">${esc(t("read.step", { n: num(s.n) }))}</span>
+        <span class="d">${esc(t("texts.step", { n: num(s.n) }))}</span>
         <span class="rd-chip-n">${num(n)}/${num(list.length)}</span>
-        ${n === list.length ? `<span class="ok" aria-label="${esc(t("read.allRead"))}">✓</span>` : ""}
+        ${n === list.length ? `<span class="ok" aria-label="${esc(t("texts.allRead"))}">✓</span>` : ""}
       </button>`;
     }).join("")}
   </div>`;
@@ -71,7 +71,7 @@ const card = (r, step, done) => `
     ${step.kind === "words" ? "" : `<p class="rd-t-en rd-t-over" dir="ltr">${esc(tx(r.title))}</p>`}
     ${step.kind === "words" ? strip(r) : show.lines ? byLine(r) : page(r)}
     <button type="button" class="btn rd-tick${done.has(r.id) ? "" : " btn-primary"}" data-done="${r.id}"
-      aria-pressed="${done.has(r.id)}">${icon("check")} ${esc(t(done.has(r.id) ? "read.readIt" : "read.markRead"))}</button>
+      aria-pressed="${done.has(r.id)}">${icon("check")} ${esc(t(done.has(r.id) ? "texts.readIt" : "texts.markRead"))}</button>
   </article>`;
 
 const toggle = (key, onKey, offKey) => `
@@ -79,7 +79,7 @@ const toggle = (key, onKey, offKey) => `
     ${esc(t(show[key] ? onKey : offKey))}</button>`;
 
 export default {
-  titleKey: "read.title",
+  titleKey: "texts.title",
   mount(root, { params, signal }) {
     let now = Math.min(STEPS.length, Math.max(1, parseInt(params[0], 10) || 1));
 
@@ -90,8 +90,8 @@ export default {
       const readAll = READS.filter(r => done.has(r.id)).length;
 
       root.innerHTML = `
-        ${pageHead(t("read.title"), t("read.sub"), "", "", "qalam")}
-        <p class="rd-total">${esc(t("read.total", { n: num(readAll), all: num(READS.length) }))}</p>
+        ${pageHead(t("texts.title"), t("texts.sub"), "", "", "qalam")}
+        <p class="rd-total">${esc(t("texts.total", { n: num(readAll), all: num(READS.length) }))}</p>
         ${stepChips(now, done)}
         <section class="rd-head">
           <h2>${esc(tx(step.title))}</h2>
@@ -101,16 +101,16 @@ export default {
             : ""}
           <p class="rd-note">${esc(tx(step.note))}</p>
           <div class="btn-row rd-tools">
-            ${toggle("say", "read.hideSay", "read.showSay")}
-            ${toggle("en", "read.hideEn", "read.showEn")}
-            ${step.kind === "words" ? "" : toggle("lines", "read.flow", "read.byLine")}
+            ${toggle("say", "texts.hideSay", "texts.showSay")}
+            ${toggle("en", "texts.hideEn", "texts.showEn")}
+            ${step.kind === "words" ? "" : toggle("lines", "texts.flow", "texts.byLine")}
           </div>
         </section>
         <details class="rd-how">
-          <summary>${esc(t("read.howTitle"))}</summary>
-          <p>${esc(t("read.how1"))}</p>
-          <p>${esc(t("read.how2"))}</p>
-          <p>${esc(t("read.how3"))}</p>
+          <summary>${esc(t("texts.howTitle"))}</summary>
+          <p>${esc(t("texts.how1"))}</p>
+          <p>${esc(t("texts.how2"))}</p>
+          <p>${esc(t("texts.how3"))}</p>
         </details>
         <div class="rd-list">${list.map(r => card(r, step, done)).join("")}</div>`;
     };

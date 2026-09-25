@@ -84,10 +84,59 @@ export function uaSay(say) {
 // ʿ and ʾ count: ع on its own is a sound — the squeeze in the throat.
 export const hasSay = say => /[a-zāīūēōḥṣṭẓḍḏṯġʿʾ]/i.test(String(say ?? ""));
 
-// The letters that are not simply the Ukrainian ones, for the key on the alphabet page.
+// The key at the front of the book, the way a dictionary prints one: every letter of this line that is not
+// simply the Ukrainian one, what it is in Arabic, and how to say it — in English and in his own language,
+// because a pronunciation key is the one thing that has to be read in the language you think in.
+//   ua  the Cyrillic letter · ar  the Arabic it stands for · en / uk  how to say it · ex  a word he knows
 export const UA_KEY = [
-  { ua: "ґ", ar: "ق" }, { ua: "х", ar: "خ" }, { ua: "ҳ", ar: "ح" }, { ua: "г", ar: "ه" }, { ua: "ғ", ar: "غ" },
-  { ua: "с", ar: "س" }, { ua: "ҫ", ar: "ث" }, { ua: "сʹ", ar: "ص" },
-  { ua: "з", ar: "ز" }, { ua: "ҙ", ar: "ذ" }, { ua: "ҙʹ", ar: "ظ ض" },
-  { ua: "т", ar: "ت" }, { ua: "тʹ", ar: "ط" }, { ua: "ъ", ar: "ع" }, { ua: "ʼ", ar: "ء" },
+  { ua: "ґ", ar: "ق", ex: "ґагва — قهوة",
+    en: "A hard g made far back, deeper than any Ukrainian sound. Never the Ukrainian г. This one letter is most of what makes Saudi sound Saudi.",
+    uk: "Твердий ґ, як у «ґанок», але глибше в горлі. Ніколи не «г». Саме цей звук найбільше робить саудівську саудівською." },
+  { ua: "х", ar: "خ", ex: "хер — خير",
+    en: "The ch of Scottish “loch” — a scrape at the back of the mouth.", uk: "Як «х» у «хата» — шкрябання в задній частині рота." },
+  { ua: "ҳ", ar: "ح", ex: "ҳабібті — حبيبتي",
+    en: "An h pushed out of the throat itself: breath, not scrape. Say “h” and squeeze the throat while you do it.",
+    uk: "«Х», яке йде з самого горла: видих, а не шкрябання. Скажи «х» і водночас стисни горло." },
+  { ua: "г", ar: "ه", ex: "гала — هلا",
+    en: "The ordinary h of “hello” — a soft breath.", uk: "Звичайне українське «г» — м'який видих." },
+  { ua: "ғ", ar: "غ", ex: "ғанам — غنم",
+    en: "A gargled r — the French r, or г with the throat rattling.", uk: "«Г» з гарчанням, як французьке «r»." },
+  { ua: "с", ar: "س", ex: "салам — سلام", en: "Plain s.", uk: "Звичайне «с»." },
+  { ua: "ҫ", ar: "ث", ex: "ҫалаҫа — ثلاثة",
+    en: "The th of “think”: the tip of the tongue between the teeth. Never a plain s — that is Egyptian.",
+    uk: "Англійське «th» у think: кінчик язика між зубами. Не «с» — так кажуть єгиптяни." },
+  { ua: "сʹ", ar: "ص", ex: "сʹабаҳ — صباح",
+    en: "A heavy s: the tongue pulls back and the whole sound goes dark. The tick ʹ always means heavy.",
+    uk: "Важке «с»: язик відтягується назад, звук стає глухим і «темним». Риска ʹ завжди означає важкий звук." },
+  { ua: "з", ar: "ز", ex: "зен — زين", en: "Plain z.", uk: "Звичайне «з»." },
+  { ua: "ҙ", ar: "ذ", ex: "ҙіб — ذيب",
+    en: "The th of “this” — the voiced one.", uk: "Англійське «th» у this — дзвінке, з голосом." },
+  { ua: "ҙʹ", ar: "ظ ض", ex: "рамаҙʹан — رمضان",
+    en: "A heavy ҙ. In Saudi ظ and ض are one and the same sound, whatever the spelling says.",
+    uk: "Важке «ҙ». У саудівській ظ і ض — це один і той самий звук, хоч пишуться по-різному." },
+  { ua: "т", ar: "ت", ex: "тамр — تمر", en: "A light, clean t.", uk: "Легке, чисте «т»." },
+  { ua: "тʹ", ar: "ط", ex: "тʹаййіб — طيب",
+    en: "A heavy t: tongue back, the vowel after it goes dark too.", uk: "Важке «т»: язик назад, і голосна після нього теж «темніє»." },
+  { ua: "ъ", ar: "ع", ex: "ъалекум — عليكم",
+    en: "The throat squeezes shut and lets go. It is a sound, not a pause — and there is nothing like it in English.",
+    uk: "Горло стискається і відпускається. Це звук, а не пауза — в українській такого немає." },
+  { ua: "ʼ", ar: "ء", ex: "масаʼ — مساء",
+    en: "A clean catch in the voice, the break in “uh-oh”.", uk: "Чиста зупинка голосу — як апостроф у «п'ять»." },
+  { ua: "дж", ar: "ج", ex: "джамаль — جمل", en: "The j of “jam”.", uk: "Як «дж» у «джем»." },
+  { ua: "ш", ar: "ش", ex: "шмағ — شماغ", en: "Plain sh.", uk: "Звичайне «ш»." },
+  { ua: "в", ar: "و", ex: "вен — وين",
+    en: "The w of “water” — the в of «вовк», never a hard v.", uk: "Як «в» у «вовк» (англійське w), ніколи не тверде «в»." },
+  { ua: "ль", ar: "ل", ex: "аль-бет — البيت",
+    en: "Before a consonant and at the end of a word the Arabic l is lighter than ours, so it is written ль.",
+    uk: "Перед приголосним і в кінці слова арабська «л» легша за нашу, тому пишемо «ль»." },
+  { ua: "я є ю йо", ar: "يـ", ex: "я ґальбі — يا قلبي",
+    en: "ي and a vowel run together into one letter, exactly as Ukrainian already writes them.",
+    uk: "ي разом із голосною зливається в одну літеру — так само, як в українській." },
 ];
+
+// Vowel length is the one thing this line cannot carry: Ukrainian has no long vowels. The Latin line above
+// each word shows it with ā ī ū ē ō — hold those, and the word is right.
+export const UA_LENGTH = {
+  en: "Ukrainian has no long vowels, so this line can't show them. The Latin line above does: ā ī ū ē ō. Hold those two beats and the word comes out right.",
+  uk: "В українській немає довгих голосних, тому цей рядок їх не показує. Показує латинський рядок угорі: ā ī ū ē ō. Тягни їх удвічі довше — і слово звучатиме правильно.",
+};

@@ -23,12 +23,23 @@ This project is my personal learning website: the tools I study with every day, 
   - **Every Arabic consonant has a Ukrainian letter of its own — no two may ever share one** (24 Sept 2026), or I'd learn to say them the same. ق = **ґ** · خ = **х**, ح = **ҳ** · ه = **г**, غ = **ғ** · س = **с**, ث = **ҫ**, ص = **сʹ** · ز = **з**, ذ = **ҙ**, ظ and ض = **ҙʹ** (one sound in Saudi) · ت = **т**, ط = **тʹ** · ع = **ъ**, ء = **ʼ** · ل before a consonant = **ль**. A tick (ʹ, U+02B9) after с т ҙ means heavy; a tail or a bar means the Arabic letter, not the Ukrainian one it grew from.
   - Only single codepoints the site's own subset font carries. **Never use a combining accent** (х̣, а̄, с̇): they are not in the subset, fall back to another font and break the line. `tests/ua.test.mjs` pins every letter; a headless check of `CSS.getPlatformFontsForNode` is how to prove a new one renders.
   - Vowel length is the one thing the Ukrainian line doesn't carry (Ukrainian has none) — the Latin line above shows it with ā ī ū ē ō.
+  - **The key that explains this line is in Ukrainian too** (25 Sept 2026, my request): a pronunciation key like a dictionary's, at the front of the book and on the Letters page. It lives in `UA_KEY` (`public/js/core/ua.js`): every letter with `en` and `uk` descriptions and an example. That is the one place Ukrainian sentences belong — it explains how to read, it never translates a meaning.
   - Any single word's Ukrainian can be corrected in the ✎ form ("How to say it, in Ukrainian letters"); the correction wins over the worked-out one.
 - **Double- and triple-check every translation:**
   1. Proofread each translation yourself — natural English, correct everyday Saudi (her dialect).
   2. Run `npm test` — it fails if either language is missing, if the Saudi text isn't in Arabic script, or if a Saudi word doesn't match `NAJDI-PLAN.md`.
   3. Tell me (in chat, not on the site) which translations you're unsure of, so she can check them. If a Saudi word itself is uncertain, use the "check with tutor" flag.
 - **No behind-the-scenes notes on the site.** My girlfriend uses it too: never show who translated what, file names like NAJDI-PLAN.md, or notes addressed to me about the build. Study content only.
+
+## The book (the `#/read` page)
+
+The most important page: **«أقرا وأتكلم» — a book you turn page by page**, cover first, 118 pages (`public/js/data/book.js`, `views/book.js`, `css/book.css`). It goes: a pronunciation key · the 28 letters, one to a page, each with its four shapes and pictured words · the seven marks · 26 pictured word pages · then reading that grows — first sentences, whole days, her messages, and full pages at the end.
+
+Rules it keeps, all checked by `tests/book.test.mjs`:
+- **Five hundred words, no more** — and every word on a word page comes from the plan's own vocabulary (`public/data/vocab.json`), so none of it is invented Arabic.
+- **Every letter has its own colour and keeps it through the whole book.** The numbers in `HUE` are worked out from the book's own text so that no two letters that ever touch share a colour, and no two letters that look alike (ب/ث, ج/ح) either. Change the words and the test will tell you to recolour (the working script is a DSATUR colouring of the adjacency graph).
+- The marks are written through the first four parts and gone after that; the reading gets longer part by part and page by page.
+- The old ladder of 140 texts still lives at **`#/texts`** ("More texts to read", `views/texts.js`, `data/read.js`).
 
 ## Status
 

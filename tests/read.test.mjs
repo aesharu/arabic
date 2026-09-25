@@ -8,6 +8,7 @@ import { STRINGS } from "../public/js/i18n/strings.js";
 import { lettersIn } from "../public/js/core/schedule.js";
 import { GROUPS } from "../public/js/data/letters.js";
 import { tokens, sayWords } from "../public/js/core/gloss.js";
+import { sameWord, arSkeleton, saySkeleton } from "./spelling.mjs";
 
 const ARABIC = /[ء-ي]/;
 const MARKS = /[ً-ْ]/;
@@ -16,60 +17,6 @@ const TRAPS = ["إزيك", "شو", "فين", "عايز", "بدي", "دلوقتي
   "ازاي", "هيك", "منيح", "بحبك", "كتير", "هلأ", "نحن", "وايد", "چذي", "مب", "أحبچ"];
 const allowedAt = n => new Set(STEPS.filter(s => s.n <= n).flatMap(s => [...s.add]));
 const words = ar => tokens(ar).filter(t => t.w).map(t => t.w);
-
-// --- the Arabic spelling and the pronunciation have to be the same word ---
-//  agree with the pronunciation, letter for letter?
-// Only the hard consonants are compared: alif/waw/ya as long vowels, hamza and the ال of a sun letter behave
-// differently in speech, so they are ignored on both sides.
-const SOUND = { "ب":"b","ت":"t","ث":"th","ج":"j","ح":"H","خ":"kh","د":"d","ذ":"dh","ر":"r","ز":"z","س":"s",
-  "ش":"sh","ص":"S","ض":"Z","ط":"T","ظ":"Z","ع":"3","غ":"gh","ف":"f","ق":"g","ك":"k","ل":"l","م":"m","ن":"n","ه":"h" };
-const SUN = "تثدذرزسشصضطظلن";
-// الـ is the article only at the start of a word — قالت is not "qa + al + t". و ب ك ل ع ف may sit in front of it.
-const ART = new RegExp(`(^|[\\sوبكلعف])ال(?=[${SUN}])`, "gu");
-
-const arSkeleton = ar => [...ar.replace(/ا?ً/g, "ن").replace(/[ً-ْٰـ]/g, "").replace(ART, "$1ا")]
-  .flatMap(c => (SOUND[c] ? [SOUND[c]] : []));
-
-const saySkeleton = say => {
-  const s = String(say).toLowerCase().replace(/[āīūēō]/g, "")
-    .replace(/ḥ/g, "H").replace(/ṣ/g, "S").replace(/[ẓḍ]/g, "Z").replace(/ṭ/g, "T")
-    .replace(/ʿ/g, "3").replace(/[ʾ'’ʼ]/g, "").replace(/ġ/g, "gh").replace(/ž/g, "j").replace(/v/g, "f")
-    .replace(/[^a-z3HSZT]/g, "");
-  const out = [];
-  for (let i = 0; i < s.length; ) {
-    if ("HSZT3".includes(s[i])) { out.push(s[i]); i++; continue; }
-    const two = s.slice(i, i + 2);
-    if (["th", "kh", "dh", "sh", "gh"].includes(two)) { out.push(two); i += 2; continue; }
-    if ("aeiouyw".includes(s[i])) { i++; continue; }
-    out.push(s[i] === "q" ? "g" : s[i]); i++;
-  }
-  return out;
-};
-
-const collapse = a => a.filter((x, i) => x !== a[i - 1]);              // شدّة writes one letter, the Latin two
-const expand = a => a.flatMap(x => (x.length === 2 ? [x[0], x[1]] : [x]));
-const norm = a => collapse(expand(collapse(a)));
-const same = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
-
-// ة is silent at the end of a phrase and sounded "t" before the next word (شجرة السعودية → shajarat as-...).
-// A line can hold several, each going its own way, so every combination is tried.
-const variants = ar => {
-  const at = [...ar].flatMap((c, i) => (c === "ة" ? [i] : []));
-  if (!at.length) return [ar];
-  if (at.length > 8) return [ar];
-  const out = [];
-  for (let m = 0; m < 1 << at.length; m++) {
-    const chars = [...ar];
-    at.forEach((i, k) => { if (m & (1 << k)) chars[i] = "ت"; });
-    out.push(chars.join(""));
-  }
-  return out;
-};
-
-const sameWord = (ar, say) => {
-  const S = norm(saySkeleton(say));
-  return variants(ar).some(v => same(norm(arSkeleton(v)), S));
-};
 
 test("a hundred and forty texts, ten steps, unique ids", () => {
   assert.equal(READS.length, 140);
@@ -158,9 +105,9 @@ test("the texts get longer as the steps go up", () => {
 });
 
 test("the page and its awards are named in both languages", () => {
-  const keys = ["nav.read", "nav.readGroup", "read.title", "read.sub", "read.step", "read.total",
-    "read.markRead", "read.readIt", "read.hideEn", "read.showEn", "read.hideSay", "read.showSay",
-    "read.flow", "read.byLine", "read.howTitle", "read.how1", "read.how2", "read.how3", "read.steps", "read.allRead",
+  const keys = ["nav.texts", "nav.readGroup", "texts.title", "texts.sub", "texts.step", "texts.total",
+    "texts.markRead", "texts.readIt", "texts.hideEn", "texts.showEn", "texts.hideSay", "texts.showSay",
+    "texts.flow", "texts.byLine", "texts.howTitle", "texts.how1", "texts.how2", "texts.how3", "texts.steps", "texts.allRead",
     "badge.read1", "badge.read1.sub", "badge.read25", "badge.read25.sub", "badge.readAll", "badge.readAll.sub"];
   for (const k of keys) for (const l of ["en", "najdi"]) assert.ok(STRINGS[k]?.[l], `${k}: ${l}`);
 });

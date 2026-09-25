@@ -64,7 +64,8 @@ const uaKey = () => (store.isTeacher() ? "" : `
     <p>${bidi(t("ua.keyIntro"))}</p>
     <p class="ua-tbl-h">${esc(t("ua.keyTable"))}</p>
     <ul class="ua-tbl">${UA_KEY.map(x => `
-      <li><b lang="uk" dir="ltr">${esc(x.ua)}</b>${ar(x.ar)}</li>`).join("")}</ul>
+      <li title="${esc(x.en + " — " + x.uk)}"><b lang="uk" dir="ltr">${esc(x.ua)}</b>${ar(x.ar)}</li>`).join("")}</ul>
+    <p class="muted small">${esc(t("ua.keyBook"))}</p>
     <ul>${["ua.keyG", "ua.keyTail", "ua.keyTh", "ua.keyHeavy", "ua.keyA", "ua.keyL", "ua.keyW", "ua.keyLong"]
       .map(k => `<li>${bidi(t(k))}</li>`).join("")}</ul>
     <p class="muted small">${esc(t("ua.keyFix"))}</p>
