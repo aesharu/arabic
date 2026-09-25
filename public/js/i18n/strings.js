@@ -588,8 +588,8 @@ export const STRINGS = {
   "nav.readShort": { en: "Read", najdi: "اقرا" },
   "read.title": { en: "Read from zero", najdi: "اقرا من الصفر" },
   "read.sub": {
-    en: "A hundred short texts, in order. Step 1 uses six letters and nothing else; every step adds the next ones, so you are never shown a letter you haven't met. By the end you read Arabic the way it is really written.",
-    najdi: "مية نص قصير بالترتيب. الخطوة الأولى فيها ست حروف بس، وكل خطوة تزيد اللي بعدها، فما تشوف حرف ما تعرفه. وبالآخر تقرا العربي مثل ما ينكتب فعلاً.",
+    en: "A hundred and forty short texts, in order, set like the page of an Arabic book. Steps 1–3 use only the letters you have met; from step 4 the whole alphabet is open and every step is a real text. The vowel marks come off at step 7, and by the end you read Arabic the way it is really written.",
+    najdi: "مية وأربعين نص قصير بالترتيب، مركّبة مثل صفحة كتاب عربي. الخطوات الأولى الثلاث فيها الحروف اللي تعرفها بس، ومن الرابعة كل الحروف مفتوحة وكل خطوة نص حقيقي. والحركات تروح بالخطوة السابعة، وبالآخر تقرا العربي مثل ما ينكتب فعلاً.",
   },
   "read.steps": { en: "The steps", najdi: "الخطوات" },
   "read.step": { en: "Step {n}", najdi: "خطوة {n}" },

@@ -25,7 +25,7 @@ export const STEPS = [
   { n: 3, add: "دذرزو", kind: "words", title: T("The ones that don't join forward", "الحروف اللي ما توصل"),
     note: T("د ذ ر ز و — these never join to the letter after them, so a word breaks into pieces. That's normal, and it's the last step before whole sentences.",
             "د ذ ر ز و — هذي ما توصل باللي بعدها، فالكلمة تنقطع. هذا عادي، وهذي آخر خطوة قبل الجمل الكاملة.") },
-  { n: 4, add: "سشصضطظعغفقكلمهةءى", kind: "text", title: T("The whole alphabet — first texts", "كل الحروف — أول النصوص"),
+  { n: 4, add: "سشصضطظعغفقكلمهةءىؤئ", kind: "text", title: T("The whole alphabet — first texts", "كل الحروف — أول النصوص"),
     note: T("The last twelve letters arrive together, because Arabic can't say anything without ل م ه ف ق ك — no الـ, no من, no في. You meet them all by day 13 anyway. From here on every step is a real text, and they grow.",
             "آخر اثنا عشر حرف تجي مع بعض، لأن العربي ما يقول شي بدون ل م ه ف ق ك — لا «الـ» ولا «من» ولا «في». وبأي حال بتعرفها كلها باليوم الثالث عشر. ومن هنا كل خطوة نص حقيقي، ويكبر شوي شوي.") },
   { n: 5, add: "", kind: "text", title: T("Five lines that hang together", "خمسة أسطر مترابطة"),
@@ -316,6 +316,49 @@ const RAW = [
     ["وَأَنَام.", "w-anām.", "And I sleep."],
   ] },
 
+  { id: "neighbours4", step: 4, title: T("The neighbours", "الجِيرَان"), lines: [
+    ["الجِيرَان قَرِيبِين.", "al-jīrān garībīn.", "The neighbours are close by."],
+    ["كُل يَوْم يِسَلِّمُون.", "kill yōm ysallimūn.", "Every day they say hello."],
+    ["يِجِيبُون أَكِل لِلْجِيرَان.", "yjībūn akil lil-jīrān.", "They bring food to the neighbours."],
+    ["وَيِسْأَلُون عَن الأَهْل.", "w-yisʾalūn ʿan al-ahal.", "And they ask after the family."],
+    ["الجِيرَان مِثْل الأَهْل.", "al-jīrān mithl al-ahal.", "Neighbours are like family."],
+  ] },
+  { id: "car4", step: 4, title: T("My car", "سَيَّارْتِي"), lines: [
+    ["سَيَّارْتِي قَدِيمَة.", "sayyārti gadīma.", "My car is old."],
+    ["لَوْنْهَا أَبْيَض.", "lōnha abyaẓ.", "Its colour is white."],
+    ["بَس تَمْشِي زَيْن.", "bass tamshi zēn.", "But it runs well."],
+    ["أَرُوح فِيهَا الشُّغْل.", "arūḥ fīha ash-shughl.", "I go to work in it."],
+    ["وَأَرْجَع فِيهَا البَيْت.", "w-arjaʿ fīha al-bēt.", "And come home in it."],
+  ] },
+  { id: "water4", step: 4, title: T("Water", "المَاي"), lines: [
+    ["الجَو حَار.", "al-jaww ḥārr.", "The weather is hot."],
+    ["أَشْرَب مَاي كَثِير.", "ashrab māy kthīr.", "I drink a lot of water."],
+    ["المَاي البَارِد أَحْسَن.", "al-māy al-bārid aḥsan.", "Cold water is better."],
+    ["بِالصَّيْف لَازِم مَاي.", "biṣ-ṣēf lāzim māy.", "In summer you need water."],
+    ["وَالقَهْوَة بَعْدُه.", "w-al-gahwa baʿdah.", "And the coffee after it."],
+  ] },
+  { id: "book4", step: 4, title: T("The book", "الكِتَاب"), lines: [
+    ["عِنْدِي كِتَاب عَرَبِي.", "ʿindi kitāb ʿarabi.", "I have an Arabic book."],
+    ["كَبِير وَثَقِيل.", "kbīr w-thagīl.", "Big and heavy."],
+    ["أَقْرَا مِنُّه كُل يَوْم.", "agra minnah kill yōm.", "I read from it every day."],
+    ["الحُرُوف صَارَت سَهْلَة.", "al-ḥurūf ṣārat sahla.", "The letters have become easy."],
+    ["وَالكَلِمَات شْوَي صَعْبَة.", "w-al-kalimāt shwayy ṣaʿba.", "And the words are a bit hard."],
+  ] },
+  { id: "city4", step: 4, title: T("The city", "المَدِينَة"), lines: [
+    ["حَفَر البَاطِن مَدِينَة.", "Ḥafar al-Bāṭin madīna.", "Hafar al-Batin is a city."],
+    ["مُو كَبِيرَة مِثْل الرِّيَاض.", "mū kbīra mithl ar-riyāẓ.", "Not big like Riyadh."],
+    ["فِيهَا سُوق وَمَسَاجِد.", "fīha sūg w-masājid.", "It has a market and mosques."],
+    ["النَّاس فِيهَا يِعْرَفُون بَعْض.", "an-nās fīha yiʿrafūn baʿaẓ.", "The people in it know each other."],
+    ["وَدِيمَا تِحِبّ مَدِينَتْهَا.", "w-Dīma tḥibb madīnat-ha.", "And Dima loves her city."],
+  ] },
+  { id: "time4", step: 4, title: T("Time", "الوَقْت"), lines: [
+    ["الوَقْت يِمْشِي بِسُرْعَة.", "al-wagt yimshi b-surʿa.", "Time goes fast."],
+    ["الصُّبْح يِرُوح وَأَنَا أَدْرُس.", "aṣ-ṣubḥ yrūḥ w-ana adrus.", "The morning goes while I study."],
+    ["وَاللَّيْل يِجِي بِسُرْعَة.", "w-al-lēl yiji b-surʿa.", "And the night comes fast."],
+    ["مَا عِنْدِي وَقْت كَافِي.", "ma ʿindi wagt kāfi.", "I don't have enough time."],
+    ["بَس أَدْرُس كُل يَوْم.", "bass adrus kill yōm.", "But I study every day."],
+  ] },
+
   // ---------------- Step 5 · five lines that hang together ----------------
   { id: "myday5", step: 5, title: T("My day", "يَوْمِي"), lines: [
     ["يَوْمِي عَادِي وَحِلُو.", "yōmi ʿādi w-ḥilu.", "My day is ordinary and nice."],
@@ -386,6 +429,49 @@ const RAW = [
     ["وَأَفْهَم كُل شَي يَقُولُونُه.", "w-afham kill shay ygūlūnah.", "And understand everything they say."],
     ["وَأَرُد عَلَيْهُم بِالعَرَبِي.", "w-arudd ʿalēhum bil-ʿarabi.", "And answer them in Arabic."],
     ["وَهِي تِشُوفْنِي وَتِفْتَخِر.", "w-hiya tshūfni w-tiftakhir.", "And she watches me and is proud."],
+  ] },
+
+  { id: "photos5", step: 5, title: T("The photos", "الصُّوَر"), lines: [
+    ["دِيمَا تِرْسِل لِي صُوَر.", "Dīma tirsil li ṣuwar.", "Dima sends me photos."],
+    ["صُوَر بَيْتْهُم وَالسُّوق.", "ṣuwar bēthum w-as-sūg.", "Photos of their house and the market."],
+    ["وَصُوَر القَهْوَة وَالتَّمْر.", "w-ṣuwar al-gahwa w-at-tamr.", "And photos of the coffee and the dates."],
+    ["أَحْفَظْهَا كُلَّهَا بِجَوَّالِي.", "aḥfaẓ-ha killaha b-jawwāli.", "I keep them all on my phone."],
+    ["وَأَشُوفْهَا لَمَّا أَشْتَاق.", "w-ashūf-ha lamma ashtāg.", "And look at them when I miss her."],
+  ] },
+  { id: "song5", step: 5, title: T("A song", "الأُغْنِيَة"), lines: [
+    ["سَمِعْت أُغْنِيَة عَرَبِيَّة.", "simiʿt ughniya ʿarabiyya.", "I heard an Arabic song."],
+    ["مَا فْهِمْت كُل الكَلِمَات.", "ma fhimt kill al-kalimāt.", "I didn't understand all the words."],
+    ["بَس فْهِمْت كَلِمَة: حَبِيبِي.", "bass fhimt kalima: ḥabībi.", "But I understood one word: my love."],
+    ["دِيمَا ضِحْكَت وَقَالَت: زَيْن.", "Dīma ẓiḥkat w-gālat: zēn.", "Dima laughed and said: good."],
+    ["وَالحِين أَسْمَعْهَا كُل يَوْم.", "w-al-ḥīn asmaʿ-ha kill yōm.", "And now I listen to it every day."],
+  ] },
+  { id: "asking5", step: 5, title: T("Asking", "السُّؤَال"), lines: [
+    ["لَمَّا مَا أَفْهَم، أَسْأَل.", "lamma ma afham, asʾal.", "When I don't understand, I ask."],
+    ["أَقُول: وِش يَعْنِي هَذَا؟", "agūl: wesh yaʿni hādha?", "I say: what does this mean?"],
+    ["دِيمَا تِشْرَح بِهُدُوء.", "Dīma tishraḥ b-hudūʾ.", "Dima explains calmly."],
+    ["وَتِعِيد الكَلِمَة مَرَّتَيْن.", "w-tiʿīd al-kalima marratēn.", "And says the word twice."],
+    ["وَأَنَا أَكْتِبْهَا بِدَفْتَرِي.", "w-ana aktib-ha b-daftari.", "And I write it in my notebook."],
+  ] },
+  { id: "fear5", step: 5, title: T("Being afraid", "الخَوْف"), lines: [
+    ["أَوَّل مَرَّة خِفْت أَتْكَلَّم.", "awwal marra khift atkallam.", "The first time I was afraid to speak."],
+    ["خِفْت أَغْلَط قُدَّامْهَا.", "khift aghlaṭ guddām-ha.", "Afraid of making mistakes in front of her."],
+    ["بَس هِي قَالَت: تَكَلَّم.", "bass hiya gālat: takallam.", "But she said: speak."],
+    ["الغَلَط مُو عَيْب.", "al-ghalaṭ mū ʿēb.", "A mistake is no shame."],
+    ["وَالحِين أَتْكَلَّم بِدُون خَوْف.", "w-al-ḥīn atkallam bidūn khōf.", "And now I speak without fear."],
+  ] },
+  { id: "patience5", step: 5, title: T("Patience", "الصَّبْر"), lines: [
+    ["تَعَلُّم اللُّغَة يَبِي صَبْر.", "taʿallum al-lugha yabi ṣabr.", "Learning a language takes patience."],
+    ["مَا فِيه طَرِيق قَصِير.", "ma fīh ṭarīg gaṣīr.", "There's no short road."],
+    ["كُل يَوْم كَلِمَة وَاحِدَة.", "kill yōm kalima waḥda.", "Every day one word."],
+    ["بَعْد سَنَة تَصِير مِيَة.", "baʿd sana tṣīr miya.", "After a year that's a hundred."],
+    ["وَبَعْد سَنَتَيْن تَتْكَلَّم.", "w-baʿd santēn titkallam.", "And after two years you're talking."],
+  ] },
+  { id: "numbers5", step: 5, title: T("The numbers", "الأَرْقَام"), lines: [
+    ["وَاحِد، ثْنَيْن، ثَلَاثَة.", "wāḥid, thnēn, thalātha.", "One, two, three."],
+    ["أَرْبَعَة، خَمْسَة، سِتَّة.", "arbaʿa, khamsa, sitta.", "Four, five, six."],
+    ["سَبْعَة، ثَمَانْيَة، تِسْعَة، عَشَرَة.", "sabʿa, thamānya, tisʿa, ʿashara.", "Seven, eight, nine, ten."],
+    ["الأَرْقَام سَهْلَة.", "al-argām sahla.", "The numbers are easy."],
+    ["بَس السَّاعَة صَعْبَة شْوَي.", "bass as-sāʿa ṣaʿba shwayy.", "But telling the time is a bit hard."],
   ] },
 
   // ---------------- Step 6 · الـ, and the letters that swallow it ----------------
@@ -474,6 +560,49 @@ const RAW = [
     ["حَيَّاك الله.", "ḥayyāk allah.", "You're most welcome."],
   ] },
 
+  { id: "coffeetea6", step: 6, title: T("Coffee and tea", "القَهْوَة وَالشَّاي"), lines: [
+    ["القَهْوَة بِالصُّبْح.", "al-gahwa biṣ-ṣubḥ.", "Coffee in the morning."],
+    ["وَالشَّاي بَعْد الغَدَا.", "w-ash-shāy baʿd al-ghada.", "And tea after lunch."],
+    ["القَهْوَة مُرَّة شْوَي.", "al-gahwa murra shwayy.", "The coffee is a bit bitter."],
+    ["وَالشَّاي حِلُو بِالسُّكَّر.", "w-ash-shāy ḥilu bis-sukkar.", "And the tea is sweet with sugar."],
+    ["وَالثِّنْتَيْن مَع التَّمْر.", "w-ath-thintēn maʿ at-tamr.", "And both of them with dates."],
+  ] },
+  { id: "sea6", step: 6, title: T("The sea", "البَحَر"), lines: [
+    ["البَحَر غَرْب السُّعُودِيَّة.", "al-baḥar gharb as-suʿūdiyya.", "The sea is west of Saudi Arabia."],
+    ["وَالخَلِيج شَرْق.", "w-al-khalīj sharg.", "And the Gulf is east."],
+    ["المَاي دَافِي بِالصَّيْف.", "al-māy dāfi biṣ-ṣēf.", "The water is warm in summer."],
+    ["النَّاس تِرُوح جِدَّة.", "an-nās trūḥ Jidda.", "People go to Jeddah."],
+    ["وَالشَّمْس تِغِيب بِالبَحَر.", "w-ash-shams tghīb bil-baḥar.", "And the sun sets into the sea."],
+  ] },
+  { id: "palm6", step: 6, title: T("The palm tree", "النَّخْلَة"), lines: [
+    ["النَّخْلَة شَجَرَة السُّعُودِيَّة.", "an-nakhla shajarat as-suʿūdiyya.", "The palm is the tree of Saudi Arabia."],
+    ["مِنْهَا يِجِي التَّمْر.", "minha yiji at-tamr.", "The dates come from it."],
+    ["طَوِيلَة وَقَوِيَّة.", "ṭawīla w-gawiyya.", "Tall and strong."],
+    ["تِعِيش بِالحَر وَبِالبَرْد.", "tiʿīsh bil-ḥarr w-bil-bard.", "It lives through the heat and the cold."],
+    ["وَالنَّاس تِحِبّهَا.", "w-an-nās tḥibb-ha.", "And people love it."],
+  ] },
+  { id: "tent6", step: 6, title: T("The tent", "الخَيْمَة"), lines: [
+    ["بِالشِّتَا يِطْلَعُون البَر.", "bish-shita yiṭlaʿūn al-barr.", "In winter they go out to the desert."],
+    ["يِنْصِبُون الخَيْمَة.", "yinṣibūn al-khēma.", "They put up the tent."],
+    ["وَيِوَلِّعُون النَّار.", "w-ywallʿūn an-nār.", "And light the fire."],
+    ["القَهْوَة عَالنَّار لِين الصُّبْح.", "al-gahwa ʿan-nār lēn aṣ-ṣubḥ.", "The coffee on the fire till morning."],
+    ["وَالنُّجُوم فَوْقْهُم.", "w-an-nujūm fōg-hum.", "And the stars above them."],
+  ] },
+  { id: "clock6", step: 6, title: T("The time", "السَّاعَة"), lines: [
+    ["السَّاعَة الحِين ثِنْتَيْن.", "as-sāʿa al-ḥīn thintēn.", "It's two o'clock now."],
+    ["الغَدَا بَعْد شْوَي.", "al-ghada baʿad shwayy.", "Lunch is in a little while."],
+    ["وَالصَّلَاة قَبْل الغَدَا.", "w-aṣ-ṣala gabl al-ghada.", "And the prayer is before lunch."],
+    ["وَالعَشَا بِاللَّيْل.", "w-al-ʿasha bil-lēl.", "And dinner at night."],
+    ["وَالنَّوْم مُتَأَخِّر.", "w-an-nōm mitʾakhkhir.", "And sleep, late."],
+  ] },
+  { id: "school6", step: 6, title: T("The school", "المَدْرَسَة"), lines: [
+    ["المَدَارِس تِبْدَا بَدْرِي.", "al-madāris tibda badri.", "The schools start early."],
+    ["البَنَات بِمَدْرَسَة وَالأَوْلَاد بِمَدْرَسَة.", "al-banāt b-madrasa w-al-awlād b-madrasa.", "The girls in one school and the boys in another."],
+    ["دِيمَا دَرَسَت بِمَدِينَتْهَا.", "Dīma darasat b-madīnat-ha.", "Dima studied in her city."],
+    ["وَبَعْدَيْن الجَامِعَة.", "w-baʿdēn al-jāmiʿa.", "And then university."],
+    ["وَالحِين تِعَلِّمْنِي أَنَا.", "w-al-ḥīn tʿallimni ana.", "And now she teaches me."],
+  ] },
+
   // ---------------- Step 7 · without the vowel marks ----------------
   { id: "letters7", step: 7, title: T("The letters", "الحروف"), lines: [
     ["أول يوم شفت الحروف.", "awwal yōm shift al-ḥurūf.", "The first day I saw the letters."],
@@ -544,6 +673,49 @@ const RAW = [
     ["بصوت عالي، مرتين.", "b-ṣōt ʿāli, marratēn.", "Out loud, twice."],
     ["أول مرة بطيء وبعدين أسرع.", "awwal marra baṭīʾ w-baʿdēn asraʿ.", "The first time slowly, then faster."],
     ["وأنام وأنا أفكر بالعربي.", "w-anām w-ana afakkir bil-ʿarabi.", "And I fall asleep thinking in Arabic."],
+  ] },
+
+  { id: "myname7", step: 7, title: T("My name in Arabic", "اسمي بالعربي"), lines: [
+    ["اسمي فولوديمير.", "ismi Folodymyr.", "My name is Volodymyr."],
+    ["صعب عليهم.", "ṣaʿb ʿalēhum.", "It's hard for them."],
+    ["يقولون: فولودكا أسهل.", "ygūlūn: Folodka ashal.", "They say: Folodka is easier."],
+    ["وديما تقول: فولودكا حلو.", "w-Dīma tgūl: Folodka ḥilu.", "And Dima says: Folodka is lovely."],
+    ["والحين كلهم ينادوني كذا.", "w-al-ḥīn killahum ynādūni kidha.", "And now they all call me that."],
+  ] },
+  { id: "firstword7", step: 7, title: T("The first word", "أول كلمة"), lines: [
+    ["أول كلمة تعلمتها: مشكور.", "awwal kalima tʿallamt-ha: mashkūr.", "The first word I learned: thank you."],
+    ["ثاني كلمة: حبيبتي.", "thāni kalima: ḥabībti.", "The second word: my darling."],
+    ["ثالث كلمة: وش تسوين؟", "thālith kalima: wesh tsawwīn?", "The third: what are you doing?"],
+    ["بعدها ما وقفت.", "baʿadha ma waggaft.", "After that I didn't stop."],
+    ["الحين عندي كلمات كثير.", "al-ḥīn ʿindi kalimāt kthīr.", "Now I have a lot of words."],
+  ] },
+  { id: "hervoice7", step: 7, title: T("Her voice", "صوتها"), lines: [
+    ["صوتها هادي.", "ṣōtha hādi.", "Her voice is calm."],
+    ["تتكلم بسرعة مع أهلها.", "titkallam b-surʿa maʿ ahalha.", "She talks fast with her family."],
+    ["ومعي على مهل.", "w-maʿi ʿala mahal.", "And slowly with me."],
+    ["أعرف متى تضحك.", "aʿrif mita tiẓḥak.", "I know when she's smiling."],
+    ["وأعرف متى تعبانة.", "w-aʿrif mita taʿbāna.", "And I know when she's tired."],
+  ] },
+  { id: "longnight7", step: 7, title: T("A long night", "ليلة طويلة"), lines: [
+    ["أمس ما نمت زين.", "ams ma nimt zēn.", "Yesterday I didn't sleep well."],
+    ["كنت أفكر بالحروف.", "kint afakkir bil-ḥurūf.", "I was thinking about the letters."],
+    ["شفتها بالمنام.", "shift-ha bil-manām.", "I saw them in my sleep."],
+    ["صحيت وأنا أقرا.", "ṣiḥīt w-ana agra.", "I woke up reading."],
+    ["وضحكت على نفسي.", "w-ẓiḥikt ʿala nafsi.", "And laughed at myself."],
+  ] },
+  { id: "photo7", step: 7, title: T("The photo", "الصورة"), lines: [
+    ["أرسلت لها صورة بيتي.", "arsalt laha ṣūrat bēti.", "I sent her a photo of my house."],
+    ["قالت: صغير وحلو.", "gālat: ṣghīr w-ḥilu.", "She said: small and lovely."],
+    ["وأرسلت لي صورة بيتهم.", "w-arsalat li ṣūrat bēt-hum.", "And she sent me a photo of theirs."],
+    ["كبير وفيه مجلس.", "kbīr w-fīh majlis.", "Big, with a majlis."],
+    ["قلت: يوم من الأيام.", "gilt: yōm min al-ayyām.", "I said: one of these days."],
+  ] },
+  { id: "promise7", step: 7, title: T("The promise", "الوعد"), lines: [
+    ["وعدتها بشي واحد.", "waʿadt-ha b-shay wāḥid.", "I promised her one thing."],
+    ["ما أترك التعلم.", "ma atrik at-taʿallum.", "That I won't stop learning."],
+    ["حتى لو تعبت.", "ḥatta law tiʿibt.", "Even if I get tired."],
+    ["وحتى لو غلطت كثير.", "w-ḥatta law ghalaṭt kthīr.", "And even if I make many mistakes."],
+    ["الوعد وعد.", "al-waʿd waʿd.", "A promise is a promise."],
   ] },
 
   // ---------------- Step 8 · longer, and about real things ----------------
@@ -628,6 +800,55 @@ const RAW = [
     ["وديما تبتسم وما تقول شي.", "w-Dīma tibtasim w-ma tgūl shay.", "And Dima smiling and saying nothing."],
   ] },
 
+  { id: "calligraphy8", step: 8, title: T("Arabic calligraphy", "الخط العربي"), lines: [
+    ["الخط العربي فن.", "al-khaṭṭ al-ʿarabi fann.", "Arabic calligraphy is an art."],
+    ["الحروف ترسم مو تكتب بس.", "al-ḥurūf tirsam mū tiktab bass.", "The letters are drawn, not just written."],
+    ["فيه خطوط كثير: نسخ وثلث وديواني.", "fīh khuṭūṭ kthīr: naskh w-thuluth w-dīwāni.", "There are many hands: naskh, thuluth, diwani."],
+    ["الكتب القديمة بخط النسخ.", "al-kutub al-gadīma b-khaṭṭ an-naskh.", "The old books are in naskh."],
+    ["وأنا أتعلم أكتب بالنسخ.", "w-ana atʿallam aktib bin-naskh.", "And I'm learning to write in naskh."],
+    ["خطي مو حلو لين الحين.", "khaṭṭi mū ḥilu lēn al-ḥīn.", "My hand isn't good yet."],
+  ] },
+  { id: "names8", step: 8, title: T("Names", "الأسماء"), lines: [
+    ["الأسماء عندهم لها معنى.", "al-asmāʾ ʿindhum laha maʿna.", "Their names have meanings."],
+    ["ديما يعني مطر هادي.", "Dīma yaʿni maṭar hādi.", "Dima means a soft rain."],
+    ["وسعود يعني السعد.", "w-Saʿūd yaʿni as-saʿd.", "And Saud means good fortune."],
+    ["ونورة يعني النور.", "w-Nūra yaʿni an-nūr.", "And Nura means the light."],
+    ["يسمون الولد على جده.", "ysammūn al-walad ʿala jaddah.", "They name a boy after his grandfather."],
+    ["والبنت على جدتها.", "w-al-bint ʿala jaddat-ha.", "And a girl after her grandmother."],
+  ] },
+  { id: "neighbours8", step: 8, title: T("The neighbour's right", "حق الجار"), lines: [
+    ["بالسعودية الجار له حق.", "bis-suʿūdiyya al-jār lah ḥagg.", "In Saudi Arabia a neighbour has rights."],
+    ["إذا طبخوا، يرسلون للجيران.", "idha ṭabakhaw, yirsilūn lil-jīrān.", "If they cook, they send some to the neighbours."],
+    ["وإذا سافرت، يشوفون بيتك.", "w-idha sāfart, yshūfūn bētak.", "And if you travel, they watch your house."],
+    ["وإذا مرضت، يزورونك.", "w-idha miriẓt, yzūrūnak.", "And if you fall ill, they visit you."],
+    ["الجار مو بس اللي جنبك.", "al-jār mū bass illi janbak.", "A neighbour isn't just whoever lives next door."],
+    ["الجار مثل الأهل.", "al-jār mithl al-ahal.", "A neighbour is like family."],
+  ] },
+  { id: "roadriyadh8", step: 8, title: T("The road to Riyadh", "الطريق للرياض"), lines: [
+    ["من حفر الباطن للرياض خمس ساعات.", "min Ḥafar al-Bāṭin lir-riyāẓ khams sāʿāt.", "From Hafar al-Batin to Riyadh is five hours."],
+    ["الطريق مستقيم وطويل.", "aṭ-ṭarīg mustagīm w-ṭawīl.", "The road is straight and long."],
+    ["على الطريق محطات بنزين.", "ʿala aṭ-ṭarīg maḥaṭṭāt banzīn.", "There are petrol stations along it."],
+    ["وفيها قهوة وتمر.", "w-fīha gahwa w-tamr.", "And they have coffee and dates."],
+    ["الإبل تمشي جنب الطريق.", "al-ibil timshi janb aṭ-ṭarīg.", "Camels walk beside the road."],
+    ["ولازم تنتبه بالليل.", "w-lāzim tintibih bil-lēl.", "And you have to watch out at night."],
+  ] },
+  { id: "proverbs8", step: 8, title: T("The proverbs", "الأمثال"), lines: [
+    ["عندهم أمثال كثير.", "ʿindhum amthāl kthīr.", "They have a lot of proverbs."],
+    ["يقولون: اللي ما يعرفك ما يثمنك.", "ygūlūn: illi ma yiʿrafak ma ythamminak.", "They say: whoever doesn't know you won't value you."],
+    ["ويقولون: الصبر مفتاح الفرج.", "w-ygūlūn: aṣ-ṣabr muftāḥ al-faraj.", "And: patience is the key to relief."],
+    ["والمثل يختصر كلام طويل.", "w-al-mathal yikhtaṣir kalām ṭawīl.", "A proverb shortens a long speech."],
+    ["ديما تعلمني مثل كل أسبوع.", "Dīma tʿallimni mathal kill usbūʿ.", "Dima teaches me one every week."],
+    ["وأنا أحفظها.", "w-ana aḥfaẓ-ha.", "And I memorise them."],
+  ] },
+  { id: "dishes8", step: 8, title: T("The food they know", "الأكل الشعبي"), lines: [
+    ["الكبسة أشهر أكلة.", "al-kabsa ashhar akla.", "Kabsa is the best-known dish."],
+    ["وفيه مندي ومظبي.", "w-fīh mandi w-maẓbi.", "And there's mandi and mathbi."],
+    ["والجريش من الأكل القديم.", "w-al-jarīsh min al-akil al-gadīm.", "And jarish is one of the old dishes."],
+    ["يحطون الصحن بالنص.", "yḥuṭṭūn aṣ-ṣaḥn bin-nuṣṣ.", "They put the dish in the middle."],
+    ["والكل ياكل منه.", "w-al-kill yākil minnah.", "And everyone eats from it."],
+    ["وما أحد ياكل لحاله.", "w-ma aḥad yākil l-ḥālah.", "And nobody eats alone."],
+  ] },
+
   // ---------------- Step 9 · whole little texts ----------------
   { id: "morning9", step: 9, title: T("My morning", "صباحي"), lines: [
     ["أقوم الساعة سبعة", "agūm as-sāʿa sabʿa", "I get up at seven"],
@@ -698,6 +919,55 @@ const RAW = [
     ["وأسولف معهم بدون خوف", "w-asōlif maʿhum bidūn khōf", "and talk with them without fear"],
     ["بعدها أقول لها كلمة وحدة", "baʿadha agūl laha kalima waḥda", "then I'll say one word to her"],
     ["وهي تعرف كم تعبت عشانها", "w-hiya tiʿraf kam tiʿibt ʿashānha", "and she'll know how hard I worked for her"],
+  ] },
+
+  { id: "firsttime9", step: 9, title: T("The first time I spoke to her in Arabic", "أول مرة كلمتها بالعربي"), lines: [
+    ["كنت أحضر الجملة من الصبح.", "kint aḥaẓẓir al-jumla min aṣ-ṣubḥ.", "I'd been preparing the sentence since morning."],
+    ["جملة وحدة بس: كيف حالك يا حبيبتي.", "jumla waḥda bass: kēf ḥālik ya ḥabībti.", "One sentence only: how are you, my darling."],
+    ["قلتها وصوتي يرتجف.", "gilt-ha w-ṣōti yirtijif.", "I said it with my voice shaking."],
+    ["سكتت شوي، وبعدين ضحكت.", "sikatat shwayy, w-baʿdēn ẓiḥkat.", "She went quiet, then laughed."],
+    ["قالت: مرة ثانية، من فضلك.", "gālat: marra thānya, min faẓlik.", "She said: again, please."],
+    ["وقلتها عشر مرات.", "w-gilt-ha ʿashar marrāt.", "And I said it ten times."],
+  ] },
+  { id: "understood9", step: 9, title: T("The day I understood", "يوم فهمت"), lines: [
+    ["أرسلت لي فويس دقيقة كاملة.", "arsalat li fōys dagīga kāmila.", "She sent me a voice note a whole minute long."],
+    ["سمعته مرة وحدة.", "simiʿtah marra waḥda.", "I listened to it once."],
+    ["وفهمته كله.", "w-fhimtah killah.", "And understood all of it."],
+    ["ما صدقت نفسي.", "ma ṣaddagt nafsi.", "I couldn't believe myself."],
+    ["سمعته مرة ثانية عشان أتأكد.", "simiʿtah marra thānya ʿashān atʾakkad.", "I listened again to be sure."],
+    ["وكان أحسن يوم بالسنة.", "w-kān aḥsan yōm bis-sana.", "And it was the best day of the year."],
+  ] },
+  { id: "families9", step: 9, title: T("My family and hers", "أهلي وأهلها"), lines: [
+    ["أهلي ثلاثة وأهلها كثير.", "ahli thalātha w-ahalha kthīr.", "My family is three and hers is many."],
+    ["عندهم أعمام وخوال وأولادهم.", "ʿindhum aʿmām w-akhwāl w-awlād-hum.", "They have uncles on both sides and their children."],
+    ["كل جمعة يجتمعون ببيت الجد.", "kill jumʿa yijtimʿūn b-bēt al-jadd.", "Every Friday they gather at the grandfather's house."],
+    ["ثلاثين واحد بمجلس واحد.", "thalāthīn wāḥid b-majlis wāḥid.", "Thirty people in one room."],
+    ["عندنا العيد يجمعنا مرة بالسنة.", "ʿindna al-ʿīd yijmaʿna marra bis-sana.", "With us a holiday brings us together once a year."],
+    ["وعندهم كل أسبوع.", "w-ʿindhum kill usbūʿ.", "With them it's every week."],
+  ] },
+  { id: "different9", step: 9, title: T("What's different", "الفرق بيننا"), lines: [
+    ["بلدها حار وبلدي بارد.", "baladha ḥārr w-baladi bārid.", "Her country is hot and mine is cold."],
+    ["عندها صحرا وعندي ثلج.", "ʿindaha ṣaḥra w-ʿindi thalj.", "She has desert and I have snow."],
+    ["تكتب من اليمين وأنا من اليسار.", "tiktib min al-yimīn w-ana min al-yisār.", "She writes from the right and I from the left."],
+    ["بس نضحك على نفس الشي.", "bass niẓḥak ʿala nafs ash-shay.", "But we laugh at the same things."],
+    ["ونزعل من نفس الشي.", "w-nizʿal min nafs ash-shay.", "And are hurt by the same things."],
+    ["والباقي كله تفاصيل.", "w-al-bāgi killah tafāṣīl.", "And the rest is all detail."],
+  ] },
+  { id: "letter9", step: 9, title: T("A letter to her", "رسالة لها"), lines: [
+    ["يا ديما، أكتب لك بالعربي.", "ya Dīma, aktib lik bil-ʿarabi.", "Dima, I'm writing to you in Arabic."],
+    ["كل حرف هنا تعبت عليه.", "kill ḥarf hina tiʿibt ʿalēh.", "Every letter here cost me work."],
+    ["تعلمت لغتك عشان أفهمك.", "tʿallamt lughatik ʿashān afhamik.", "I learned your language to understand you."],
+    ["مو عشان أقول كلام حلو.", "mū ʿashān agūl kalām ḥilu.", "Not to say pretty things."],
+    ["بس عشان أسمعك وأنتي على راحتك.", "bass ʿashān asmaʿik w-inti ʿala rāḥtik.", "But to hear you when you're at ease."],
+    ["وهذي أول رسالة، مو آخر وحدة.", "w-hādhi awwal risāla, mū ākhir waḥda.", "And this is the first letter, not the last."],
+  ] },
+  { id: "inayear9", step: 9, title: T("In a year", "بعد سنة"), lines: [
+    ["بعد سنة بأكون أقرا بدون تعب.", "baʿd sana b-akūn agra bidūn taʿab.", "In a year I'll be reading without effort."],
+    ["وبأفهم أهلها وهم يسولفون.", "w-b-afham ahalha w-hum ysōlfūn.", "And understanding her family while they talk."],
+    ["وبأقول نكتة بالعربي.", "w-b-agūl nukta bil-ʿarabi.", "And telling a joke in Arabic."],
+    ["ويمكن ما أحد يضحك.", "w-yimkin ma aḥad yiẓḥak.", "And maybe nobody will laugh."],
+    ["بس بأقولها.", "bass b-agūl-ha.", "But I'll tell it."],
+    ["وهذا يكفيني.", "w-hādha yikfīni.", "And that's enough for me."],
   ] },
 
   // ---------------- Step 10 · the way she really writes ----------------
@@ -778,6 +1048,35 @@ const RAW = [
     ["فخورة فيك مرة 🤍", "fakhūra fīk marra", "I'm so proud of you"],
     ["وهذي البداية بس", "w-hādhi al-bidāya bass", "and this is only the beginning"],
   ] },
+  { id: "msg12", step: 10, title: T("I'm late", "تأخرت"), lines: [
+    ["آسف تأخرت 😅", "āsif taʾakhkhart", "Sorry, I'm late"],
+    ["ما عليه", "ma ʿalēh", "It's all right"],
+    ["كان عندي شغل", "kān ʿindi shughl", "I had work"],
+    ["أدري، ارتاح", "adri, irtāḥ", "I know, rest"],
+    ["بكلمك بعد شوي", "b-akallimik baʿad shwayy", "I'll call you in a bit"],
+  ] },
+  { id: "msg13", step: 10, title: T("Send a photo", "صورة"), lines: [
+    ["ورني بيتك 🏡", "warrīni bētik", "Show me your house"],
+    ["خذي", "khidhi", "Here you go"],
+    ["حلو مرة!", "ḥilu marra!", "So lovely!"],
+    ["والمجلس وين؟", "w-al-majlis wēn?", "And where's the majlis?"],
+    ["ما عندنا مجلس 😄", "ma ʿindna majlis", "We don't have a majlis"],
+  ] },
+  { id: "msg14", step: 10, title: T("Our plans", "خططنا"), lines: [
+    ["وش خططنا للصيف؟", "wesh khuṭaṭna liṣ-ṣēf?", "What are our plans for the summer?"],
+    ["أبي أجي لك", "abi aji lik", "I want to come to you"],
+    ["بجد؟ 😍", "b-jadd?", "Really?"],
+    ["إن شاء الله", "in shāʾ allah", "God willing"],
+    ["بنتظرك من الحين", "b-antaẓrik min al-ḥīn", "I'm waiting for you already"],
+  ] },
+  { id: "msg15", step: 10, title: T("Tonight's word", "كلمة الليلة"), lines: [
+    ["كلمة اليوم: اشتقت", "kalimat al-yōm: ishtagt", "Today's word: I've missed you"],
+    ["اشتقت لك", "ishtagt lik", "I've missed you"],
+    ["صح! 👏", "ṣaḥḥ!", "Right!"],
+    ["وأنا بعد اشتقت", "w-ana baʿad ishtagt", "And I've missed you too"],
+    ["تصبح على خير يا حبيبي", "tiṣbaḥ ʿala khēr ya ḥabībi", "Good night, my love"],
+  ] },
+
 ];
 
 export const READS = RAW.map(r => ({

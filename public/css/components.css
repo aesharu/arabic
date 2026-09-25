@@ -2142,10 +2142,22 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
 .rd-t-ar { font-size: 22px; color: var(--brand-ar, var(--brand)); }
 .rd-t-en { font-size: 15px; color: var(--muted); font-weight: 600; text-transform: none; letter-spacing: 0; }
 
-/* the page of Arabic: one block of text, each sentence still its own button */
-.rd-body { font-size: 27px; line-height: 2.1; margin: 0 0 14px; }
-.rd-s { font: inherit; color: inherit; background: none; border: 0; padding: 0 1px; margin: 0; cursor: pointer; border-radius: 4px; }
-.rd-s:hover, .rd-s:focus-visible { background: color-mix(in srgb, var(--brand) 16%, transparent); outline: none; }
+/* The sheet: a page from a printed Arabic book — warm paper, a double rule round it, naskh justified. */
+.rd-sheet { background: var(--sheet); border: 1px solid var(--sheet-edge); border-radius: 4px; padding: 9px; margin: 0 0 14px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .10), 0 6px 18px rgba(0, 0, 0, .06); }
+.rd-sheet-in { border: 2.5px solid var(--sheet-rule); border-radius: 2px; padding: 26px 24px 22px; position: relative; }
+.rd-sheet-in::before { content: ""; position: absolute; inset: 4px; border: 1px solid var(--sheet-rule); border-radius: 1px; opacity: .55; pointer-events: none; }
+.rd-sheet-t { margin: 0 0 6px; text-align: center; font-family: var(--font-ar); font-size: 19px; font-weight: 400;
+  color: var(--sheet-rule); letter-spacing: 0; }
+.rd-sheet-t::before, .rd-sheet-t::after { content: "٭"; margin: 0 .55em; opacity: .75; }
+.rd-body { font-family: var(--font-ar); font-size: 27px; line-height: 2.25; margin: 14px 0 0; color: var(--sheet-ink);
+  text-align: justify; text-align-last: center; direction: rtl; unicode-bidi: isolate;
+  border-top: 1px solid var(--sheet-rule); padding-top: 16px; }
+.rd-s { font: inherit; color: inherit; background: none; border: 0; padding: 0 1px; margin: 0; cursor: pointer; border-radius: 3px; }
+.rd-s:hover, .rd-s:focus-visible { background: color-mix(in srgb, var(--sheet-rule) 22%, transparent); outline: none; }
+.rd-orn { color: var(--sheet-rule); font-size: .7em; vertical-align: .25em; margin: 0 .2em; }
+.rd-t-over { margin: 0 0 10px; text-align: center; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+
 .rd-say { margin: 0 0 2px; color: var(--text); font-size: 15px; line-height: 1.7; }
 .rd-ua { margin: 0 0 10px; color: var(--muted); font-size: 15px; line-height: 1.7; font-weight: 600; }
 .rd-en { margin: 0 0 14px; color: var(--muted); line-height: 1.6; padding-top: 10px; border-top: 1px solid var(--line); }
@@ -2168,7 +2180,9 @@ html[dir="rtl"] .td-story { padding: 14px 14px 14px 18px; }
 .rd-en-s { display: block; margin-top: 4px; color: var(--muted); }
 .rd-tick { width: 100%; }
 @media (max-width: 480px) {
-  .rd-body { font-size: 24px; line-height: 2; }
+  .rd-sheet { padding: 6px; }
+  .rd-sheet-in { padding: 18px 14px 16px; }
+  .rd-body { font-size: 23px; line-height: 2.15; }
   .rd-ar { font-size: 22px; }
   .rd-chip { min-width: 72px; }
   .rd-words { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }

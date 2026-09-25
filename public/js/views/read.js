@@ -30,14 +30,22 @@ const stepChips = (now, done) => `
     }).join("")}
   </div>`;
 
-// A page of text: the Arabic as one block, each sentence its own button.
+// A page of text, set like a sheet from a printed Arabic book: a ruled frame, the title above a rule, the
+// Arabic justified in naskh, and a small star between sentences. Each sentence is still its own button.
+// Not every line was written with a full stop, and run together in one block they need one.
+const stop = t => (/[.!?…؟]$/.test(t.trim()) ? t.trim() : t.trim() + ".");
+const run = (r, f) => r.lines.map(l => stop(f(l))).join(" ");
+
 const page = r => `
-  <p class="rd-body ar" lang="ar" dir="rtl" translate="no">${r.lines.map(l =>
-    `<button type="button" class="rd-s" data-say="${esc(l.ar)}">${esc(l.ar)}</button>`).join(" ")}</p>
-  ${show.say ? `<p class="rd-say">${lat(r.lines.map(l => l.say).join(" "), "", "ar-Latn")}</p>
+  <div class="rd-sheet"><div class="rd-sheet-in">
+    <h4 class="rd-sheet-t" lang="ar" dir="rtl">${esc(r.title.najdi)}</h4>
+    <p class="rd-body" lang="ar" dir="rtl" translate="no">${r.lines.map((l, i) =>
+      `${i ? '<span class="rd-orn" aria-hidden="true">٭</span>' : ""}<button type="button" class="rd-s" data-say="${esc(l.ar)}">${esc(l.ar)}</button>`).join(" ")}</p>
+  </div></div>
+  ${show.say ? `<p class="rd-say">${lat(run(r, l => l.say), "", "ar-Latn")}</p>
     ${mine() && r.lines.some(l => hasSay(l.say))
-      ? `<p class="rd-ua" lang="uk" dir="ltr" translate="no">${esc(r.lines.map(l => uaSay(l.say)).join(" "))}</p>` : ""}` : ""}
-  ${show.en ? `<p class="rd-en" lang="en" dir="ltr">${esc(r.lines.map(l => l.en).join(" "))}</p>` : ""}`;
+      ? `<p class="rd-ua" lang="uk" dir="ltr" translate="no">${esc(run(r, l => uaSay(l.say)))}</p>` : ""}` : ""}
+  ${show.en ? `<p class="rd-en" lang="en" dir="ltr">${esc(run(r, l => l.en))}</p>` : ""}`;
 
 // Word practice (steps 1–3): a strip of cards, because five unrelated words are not a text.
 const strip = r => `
@@ -59,7 +67,8 @@ const byLine = r => `
 
 const card = (r, step, done) => `
   <article class="panel rd-card${done.has(r.id) ? " is-read" : ""}">
-    <h3 class="rd-t">${ar(r.title.najdi, "rd-t-ar")}<span class="rd-t-en" dir="ltr">${esc(tx(r.title))}</span></h3>
+    ${step.kind === "words" ? `<h3 class="rd-t">${ar(r.title.najdi, "rd-t-ar")}<span class="rd-t-en" dir="ltr">${esc(tx(r.title))}</span></h3>` : ""}
+    ${step.kind === "words" ? "" : `<p class="rd-t-en rd-t-over" dir="ltr">${esc(tx(r.title))}</p>`}
     ${step.kind === "words" ? strip(r) : show.lines ? byLine(r) : page(r)}
     <button type="button" class="btn rd-tick${done.has(r.id) ? "" : " btn-primary"}" data-done="${r.id}"
       aria-pressed="${done.has(r.id)}">${icon("check")} ${esc(t(done.has(r.id) ? "read.readIt" : "read.markRead"))}</button>

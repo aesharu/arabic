@@ -10,6 +10,8 @@
   --bg: #F1F6F3; --surface: #FFFFFF; --surface-2: #E6F0EA; --tile: #D3E7DB; --trim: #006C35;
   --ink: #0B2E1C; --muted: #4B6656; --accent: #006C35; --accent-ink: #FFFFFF; --hard: #9A3412;
   --line: rgba(11, 46, 28, .14); --good: #006C35; --bad: #B42318; --flag: #8A5A00;
+  /* The reading page: a sheet of a printed Arabic book — warm paper, ink, a ruled frame. */
+  --sheet: #F7F0DE; --sheet-2: #F2E8D1; --sheet-ink: #2E2416; --sheet-rule: #A8874A; --sheet-edge: rgba(94, 72, 34, .30);
   --sidebar-bg: #006C35; --sidebar-ink: #FFFFFF; --sidebar-muted: rgba(255, 255, 255, .9);
   --nav-on-bg: #FFFFFF; --nav-on-ink: #006C35;
   --strong-bg: #006C35; --strong-ink: #FFFFFF; --brand-ar: #FFFFFF; --pill-meter: #FFFFFF; --pill-ok: #FFFFFF;
@@ -29,6 +31,8 @@
     --bg: #0B1A12; --surface: #11241A; --surface-2: #173024; --tile: #1F3D2C; --trim: #1C8350;
     --ink: #E6F1EA; --muted: #9FBDAC; --accent: #4CC38A; --accent-ink: #04130B; --hard: #F0A36B;
     --line: rgba(230, 241, 234, .14); --good: #4CC38A; --bad: #F08A7A; --flag: #E3B55B;
+  /* The reading page, at night: the same sheet by lamplight. */
+  --sheet: #1D1811; --sheet-2: #241E15; --sheet-ink: #ECE1C6; --sheet-rule: #8C7040; --sheet-edge: rgba(205, 175, 115, .26);
     --sidebar-bg: #00552A; --sidebar-ink: #FFFFFF; --sidebar-muted: rgba(255, 255, 255, .9);
     --nav-on-bg: #FFFFFF; --nav-on-ink: #00552A;
     --strong-bg: #006C35; --strong-ink: #FFFFFF; --brand-ar: #FFFFFF; --pill-meter: #FFFFFF; --pill-ok: #FFFFFF;
@@ -42,6 +46,8 @@
   --bg: #0B1A12; --surface: #11241A; --surface-2: #173024; --tile: #1F3D2C; --trim: #1C8350;
   --ink: #E6F1EA; --muted: #9FBDAC; --accent: #4CC38A; --accent-ink: #04130B; --hard: #F0A36B;
   --line: rgba(230, 241, 234, .14); --good: #4CC38A; --bad: #F08A7A; --flag: #E3B55B;
+  /* The reading page, at night: the same sheet by lamplight. */
+  --sheet: #1D1811; --sheet-2: #241E15; --sheet-ink: #ECE1C6; --sheet-rule: #8C7040; --sheet-edge: rgba(205, 175, 115, .26);
   --sidebar-bg: #00552A; --sidebar-ink: #FFFFFF; --sidebar-muted: rgba(255, 255, 255, .9);
   --nav-on-bg: #FFFFFF; --nav-on-ink: #00552A;
   --strong-bg: #006C35; --strong-ink: #FFFFFF; --brand-ar: #FFFFFF; --pill-meter: #FFFFFF; --pill-ok: #FFFFFF;
@@ -55,6 +61,8 @@
   --bg: #DCC8A6; --surface: #EBDEC6; --surface-2: #E2D0B0; --tile: #C39B69; --trim: #C39B69;
   --ink: #2A1C10; --muted: #66503A; --accent: #1D5A5C; --accent-ink: #F2E9D6; --hard: #8B3A1C;
   --line: rgba(42, 28, 16, .18); --good: #2F6B3A; --bad: #9A2F1F; --flag: #7A4F00;
+  /* The reading page: a sheet of a printed Arabic book — warm paper, ink, a ruled frame. */
+  --sheet: #F7F0DE; --sheet-2: #F2E8D1; --sheet-ink: #2E2416; --sheet-rule: #A8874A; --sheet-edge: rgba(94, 72, 34, .30);
   --sidebar-bg: #EBDEC6; --sidebar-ink: #2A1C10; --sidebar-muted: #66503A;
   --nav-on-bg: #2A1C10; --nav-on-ink: #DCC8A6;
   --strong-bg: #2A1C10; --strong-ink: #DCC8A6; --brand-ar: #1D5A5C; --pill-meter: #1D5A5C; --pill-ok: #2F6B3A;
@@ -67,6 +75,8 @@
   --bg: #1B140E; --surface: #261D15; --surface-2: #30251B; --tile: #4B3723; --trim: #4B3723;
   --ink: #EFE3CC; --muted: #B39B7C; --accent: #5BA9A7; --accent-ink: #0F0B07; --hard: #E0925F;
   --line: rgba(239, 227, 204, .16); --good: #7CC08A; --bad: #EE8A76; --flag: #E3B55B;
+  /* The reading page: a sheet of a printed Arabic book — warm paper, ink, a ruled frame. */
+  --sheet: #F7F0DE; --sheet-2: #F2E8D1; --sheet-ink: #2E2416; --sheet-rule: #A8874A; --sheet-edge: rgba(94, 72, 34, .30);
   --sidebar-bg: #261D15; --sidebar-ink: #EFE3CC; --sidebar-muted: #B39B7C;
   --nav-on-bg: #EFE3CC; --nav-on-ink: #1B140E;
   --strong-bg: #EFE3CC; --strong-ink: #1B140E; --brand-ar: #5BA9A7; --pill-meter: #5BA9A7; --pill-ok: #7CC08A;

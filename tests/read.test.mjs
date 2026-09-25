@@ -18,11 +18,18 @@ const allowedAt = n => new Set(STEPS.filter(s => s.n <= n).flatMap(s => [...s.ad
 const words = ar => tokens(ar).filter(t => t.w).map(t => t.w);
 
 // --- the Arabic spelling and the pronunciation have to be the same word ---
+//  agree with the pronunciation, letter for letter?
+// Only the hard consonants are compared: alif/waw/ya as long vowels, hamza and the ال of a sun letter behave
+// differently in speech, so they are ignored on both sides.
 const SOUND = { "ب":"b","ت":"t","ث":"th","ج":"j","ح":"H","خ":"kh","د":"d","ذ":"dh","ر":"r","ز":"z","س":"s",
   "ش":"sh","ص":"S","ض":"Z","ط":"T","ظ":"Z","ع":"3","غ":"gh","ف":"f","ق":"g","ك":"k","ل":"l","م":"m","ن":"n","ه":"h" };
 const SUN = "تثدذرزسشصضطظلن";
-const arSkeleton = ar => [...ar.replace(/ا?ً/g, "ن").replace(/[ً-ْٰـ]/g, "")
-  .replace(new RegExp(`(^|[\\s\u0648\u0628\u0643\u0644\u0639\u0641])ال(?=[${SUN}])`, "gu"), "$1ا")].flatMap(c => (SOUND[c] ? [SOUND[c]] : []));
+// الـ is the article only at the start of a word — قالت is not "qa + al + t". و ب ك ل ع ف may sit in front of it.
+const ART = new RegExp(`(^|[\\sوبكلعف])ال(?=[${SUN}])`, "gu");
+
+const arSkeleton = ar => [...ar.replace(/ا?ً/g, "ن").replace(/[ً-ْٰـ]/g, "").replace(ART, "$1ا")]
+  .flatMap(c => (SOUND[c] ? [SOUND[c]] : []));
+
 const saySkeleton = say => {
   const s = String(say).toLowerCase().replace(/[āīūēō]/g, "")
     .replace(/ḥ/g, "H").replace(/ṣ/g, "S").replace(/[ẓḍ]/g, "Z").replace(/ṭ/g, "T")
@@ -33,24 +40,39 @@ const saySkeleton = say => {
     if ("HSZT3".includes(s[i])) { out.push(s[i]); i++; continue; }
     const two = s.slice(i, i + 2);
     if (["th", "kh", "dh", "sh", "gh"].includes(two)) { out.push(two); i += 2; continue; }
-    if ("aeiouywq".includes(s[i])) { out.push(...(s[i] === "q" ? ["g"] : [])); i++; continue; }
-    out.push(s[i]); i++;
+    if ("aeiouyw".includes(s[i])) { i++; continue; }
+    out.push(s[i] === "q" ? "g" : s[i]); i++;
   }
   return out;
 };
-const collapse = a => a.filter((x, i) => x !== a[i - 1]);       // شدّة: one letter, two in the Latin
+
+const collapse = a => a.filter((x, i) => x !== a[i - 1]);              // شدّة writes one letter, the Latin two
 const expand = a => a.flatMap(x => (x.length === 2 ? [x[0], x[1]] : [x]));
 const norm = a => collapse(expand(collapse(a)));
-const same = (A, S) => A.length === S.length && A.every((x, i) => x === S[i]);
-// ة is silent at the end of a phrase and said "t" before the next word (صلاة العيد → ṣalāt al-ʿīd),
-// so a skeleton that treats it either way is accepted.
-const sameWord = (ar, say) => {
-  const S = norm(saySkeleton(say));
-  return same(norm(arSkeleton(ar)), S) || same(norm(arSkeleton(ar.replace(/ة(?=\s)/g, "ت"))), S);
+const same = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
+
+// ة is silent at the end of a phrase and sounded "t" before the next word (شجرة السعودية → shajarat as-...).
+// A line can hold several, each going its own way, so every combination is tried.
+const variants = ar => {
+  const at = [...ar].flatMap((c, i) => (c === "ة" ? [i] : []));
+  if (!at.length) return [ar];
+  if (at.length > 8) return [ar];
+  const out = [];
+  for (let m = 0; m < 1 << at.length; m++) {
+    const chars = [...ar];
+    at.forEach((i, k) => { if (m & (1 << k)) chars[i] = "ت"; });
+    out.push(chars.join(""));
+  }
+  return out;
 };
 
-test("a hundred texts, ten steps, unique ids", () => {
-  assert.equal(READS.length, 100);
+const sameWord = (ar, say) => {
+  const S = norm(saySkeleton(say));
+  return variants(ar).some(v => same(norm(arSkeleton(v)), S));
+};
+
+test("a hundred and forty texts, ten steps, unique ids", () => {
+  assert.equal(READS.length, 140);
   assert.equal(STEPS.length, 10);
   assert.equal(new Set(READS.map(r => r.id)).size, READS.length);
   assert.equal(new Set(READ_LINES.map(l => l.id)).size, READ_LINES.length);
