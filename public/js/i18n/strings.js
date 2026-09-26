@@ -28,6 +28,7 @@ export const STRINGS = {
   "nav.words": { en: "Word list", najdi: "قائمة الكلمات" },
   "nav.vocab": { en: "Vocabulary", najdi: "الكلمات" },
   "nav.cards": { en: "Cards", najdi: "الكروت" },
+  "nav.siteCards": { en: "The site’s own cards", najdi: "كروت الموقع" },
   "nav.print": { en: "Printables", najdi: "أوراق للطباعة" },
   "nav.menu": { en: "Menu", najdi: "القائمة" },
   "nav.more": { en: "More", najdi: "المزيد" },

@@ -2,6 +2,7 @@ import * as D from "../deck.js";
 import { S, TYPES, VOCAB_TYPES } from "../deck.js";
 import { $, esc, plural, toast, confirmDialog, saveTextFile, forgetMedia } from "../util.js";
 import { loader } from "./welcome.js";
+import * as sync from "../sync.js";
 
 const seg = (name, options, value) => `<div class="seg" data-setting="${name}">${options.map(([v, l]) =>
   `<button data-v="${v}" aria-pressed="${String(value) === String(v)}">${l}</button>`).join("")}</div>`;
@@ -17,6 +18,10 @@ export function render(root) {
         <p>${deck ? `${plural(deck.notes, "word")} · ${plural(deck.media, "audio file")} · added ${new Date(deck.importedAt).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}` : ""}</p></div>
         <div style="display:flex;gap:8px"><button class="btn ghost small" id="updateBtn">Fetch again…</button><button class="btn danger small" id="removeBtn">Remove</button></div></div>
       <div id="updateBox" style="margin-top:16px" hidden></div>
+      <div class="setting" style="border-top:1px solid var(--line);margin-top:14px;padding-top:14px">
+        <div><label>Your progress</label><p id="syncLine">Kept in your own database, so the phone and the computer stay the same deck.</p></div>
+        <button class="btn ghost small" id="syncBtn">Save now</button>
+      </div>
       <div class="setting" style="border-top:1px solid var(--line);margin-top:14px;padding-top:14px">
         <div><label>The rest of the site</label><p>The book, the words you need, today’s plan — everything else lives there.</p></div>
         <a class="btn ghost small" href="/">Back to the site</a>
@@ -39,7 +44,7 @@ export function render(root) {
 
     <h2 class="section-title">Audio</h2>
     <section class="panel">
-      <div class="setting"><div><label>Voice</label><p>Both plays the man and then the woman, every time. V switches while you study.</p></div>${seg("voice", [["both", "♂♀ Both"], ["m", "♂ Male"], ["f", "♀ Female"]], s.voice)}</div>
+      <div class="setting"><div><label>Voice</label><p>Both plays the man and then the woman, every time. V switches while you study.</p></div>${seg("voice", [["both", "Both"], ["m", "Man"], ["f", "Woman"]], s.voice)}</div>
       <div class="setting"><div><label>Play automatically</label><p>Play the recording when a card appears or is revealed.</p></div>${seg("autoplay", [[true, "On"], [false, "Off"]], s.autoplay)}</div>
       <div class="setting"><div><label>Speed</label><p>The slow button (or T) always plays at 0.7×.</p></div>${seg("speed", [[1, "1×"], [0.85, "0.85×"], [0.7, "0.7×"]], s.speed)}</div>
     </section>
@@ -51,12 +56,12 @@ export function render(root) {
 
     <h2 class="section-title">Your progress</h2>
     <section class="panel">
-      <div class="setting"><div><label>Back up</label><p>Saves your progress, stars and notes to a small file. The deck itself isn’t included.</p></div>
+      <div class="setting"><div><label>Back up</label><p>Saves your progress, stars and notes to a file of your own, as well as to your database. The deck itself isn’t included.</p></div>
         <div style="display:flex;gap:8px"><button class="btn ghost small" id="exportBtn">Export…</button><button class="btn ghost small" id="importBtn">Restore…</button></div>
         <input type="file" id="restoreFile" accept="application/json,.json" hidden></div>
       <div class="setting"><div><label>Start over</label><p>Forget all answers and scheduling. Stars and notes are kept.</p></div><button class="btn danger small" id="resetBtn">Reset progress</button></div>
     </section>
-    <p class="muted" style="font-size:13px;margin-top:22px">Your deck and progress are stored only on this device.</p>
+    <p class="muted" style="font-size:13px;margin-top:22px">Your deck and your progress live in your own database, and on every device you sign in on. Nobody else can read either.</p>
   </div>`;
 
   root.querySelectorAll("[data-setting]").forEach(g => g.addEventListener("click", e => {
@@ -84,6 +89,17 @@ export function render(root) {
     S.settings.levels = cur.size === S.levels.length ? [] : S.levels.filter(l => cur.has(l));
     root.querySelectorAll("[data-level]").forEach(x => x.setAttribute("aria-pressed", cur.has(x.dataset.level)));
     D.saveSettings(); window.app.refreshChrome();
+  });
+
+  const syncLine = $("#syncLine", root);
+  const saidSaved = at => at ? `Saved to your database ${new Date(at).toLocaleString(undefined, { hour: "2-digit", minute: "2-digit", day: "numeric", month: "short" })}.` : "Not saved to your database yet.";
+  if (sync.lastSaved) syncLine.textContent = saidSaved(sync.lastSaved);
+  $("#syncBtn", root).addEventListener("click", async e => {
+    e.target.disabled = true;
+    const ok = await sync.push();
+    e.target.disabled = false;
+    syncLine.textContent = ok ? saidSaved(Date.now()) : "Couldn’t reach your database — it will try again by itself.";
+    if (ok) toast("Progress saved");
   });
 
   $("#updateBtn", root).addEventListener("click", () => {

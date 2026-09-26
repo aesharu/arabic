@@ -86,6 +86,7 @@ async function ensureTables(db) {
     // the recordings one row each. Only the student profile may read any of it.
     db.prepare("CREATE TABLE IF NOT EXISTS najdi_deck (part INTEGER PRIMARY KEY, data TEXT NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS najdi_media (name TEXT PRIMARY KEY, type TEXT NOT NULL, data BLOB NOT NULL)"),
+    db.prepare("CREATE TABLE IF NOT EXISTS najdi_progress (id TEXT PRIMARY KEY, data BLOB NOT NULL, updated_at INTEGER NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS visits (who TEXT NOT NULL, day TEXT NOT NULL, opens INTEGER NOT NULL DEFAULT 0, minutes INTEGER NOT NULL DEFAULT 0, first_at INTEGER NOT NULL, last_at INTEGER NOT NULL, PRIMARY KEY (who, day))"),
   ]);
   tablesReady = true;
@@ -377,6 +378,7 @@ async function content(request, env, url) {
 //   PUT  /api/najdi/deck/<part>     ← a slice of that array, without its brackets (the upload script)
 //   GET  /api/najdi/media           → the names already stored, so an upload can carry on where it stopped
 //   GET  /api/najdi/media/<file>    → one recording          PUT ← the recording itself
+//   GET  /api/najdi/progress       → what he has learned (gzipped), with x-updated-at    PUT ← the same
 //   GET  /api/najdi/status          → what is in there
 const MEDIA_NAME = /^[A-Za-z0-9._-]{1,120}$/;
 const MAX_MEDIA = 2_000_000; // the deck's own files are about 32 KB each
@@ -420,6 +422,32 @@ async function najdi(request, env, url) {
     await env.DB.prepare("INSERT INTO najdi_deck (part, data) VALUES (?1, ?2) ON CONFLICT(part) DO UPDATE SET data = excluded.data")
       .bind(part, data).run();
     return json({ ok: true, part, bytes: data.length });
+  }
+
+  // Everything he has learned on the deck — which cards are due when, his stars and notes, and the
+  // review log the charts are drawn from. It is one gzipped blob: the phone and the computer each
+  // merge it with what they have, so studying on one is waiting on the other.
+  if (what === "progress") {
+    if (m === "GET") {
+      const row = await env.DB.prepare("SELECT data, updated_at FROM najdi_progress WHERE id = 'main'").first();
+      if (!row) return new Response(null, { status: 204, headers: { "x-updated-at": "0", "cache-control": "no-store" } });
+      return new Response(bytes(row.data), { headers: {
+        "content-type": "application/octet-stream", "cache-control": "no-store", "x-updated-at": String(row.updated_at),
+      } });
+    }
+    if (m !== "PUT") return json({ error: "method-not-allowed" }, 405);
+    const buf = await request.arrayBuffer();
+    if (!buf.byteLength || buf.byteLength > MAX_MEDIA) return json({ error: "bad-size" }, 413);
+    // The device says which version it started from. If the other device has saved since, this one is
+    // told to go and look first — otherwise a phone that had not caught up could quietly undo a reset
+    // made on the computer.
+    const base = Number(request.headers.get("x-base-at") ?? 0);
+    const now = await env.DB.prepare("SELECT updated_at FROM najdi_progress WHERE id = 'main'").first();
+    if (now && Number(now.updated_at) > base) return json({ error: "stale", at: now.updated_at }, 409);
+    const at = Date.now();
+    await env.DB.prepare("INSERT INTO najdi_progress (id, data, updated_at) VALUES ('main', ?1, ?2) ON CONFLICT(id) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at")
+      .bind(buf, at).run();
+    return json({ ok: true, at, bytes: buf.byteLength });
   }
 
   if (what === "media") {

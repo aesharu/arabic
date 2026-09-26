@@ -2,6 +2,7 @@ import * as D from "../deck.js";
 import { S, TYPES } from "../deck.js";
 import { $, esc, plain, plural, toast, hydrateMedia, play, audioName } from "../util.js";
 import { F, wordBlock, example, notes, playBtn, genericBack } from "../render.js";
+import { MALE_ICON, FEMALE_ICON } from "../util.js";
 import { fmtDuration, fmtDays, dayStart, DAY } from "../fsrs.js";
 
 const STATUS = [["all", "All"], ["new", "New"], ["learning", "Learning"], ["known", "Known"], ["starred", "Starred"], ["suspended", "Hidden"]];
@@ -39,7 +40,8 @@ export function render(el, opts = {}) {
       ${S.levels.length ? `<div class="chips" id="levelChips">${S.levels.map(l => `<button class="chip" data-level="${l}" aria-pressed="${level === l}">${l}</button>`).join("")}</div>` : ""}
     </div>
     <div class="browse"><div><div class="list" id="list" role="listbox" aria-label="Words"></div></div><aside class="detail" id="detail"></aside></div>
-  </div>`;
+  </div>
+  <div class="detail-scrim" id="scrim" hidden></div>`;
   $("#q", root).addEventListener("input", e => { q = fold(e.target.value.trim()); limit = 150; renderList(); });
   $("#statusSeg", root).addEventListener("click", e => {
     const b = e.target.closest("[data-status]"); if (!b) return;
@@ -59,6 +61,7 @@ export function render(el, opts = {}) {
     select(r.dataset.guidRow, true);
   });
   $("#detail", root).addEventListener("click", onDetailClick);
+  $("#scrim", root).addEventListener("click", closeSheet);
   renderList();
   renderDetail();
 }
@@ -86,8 +89,26 @@ function select(guid, audio) {
   renderDetail();
   const n = S.byGuid.get(guid);
   if (audio && n?.kind === "vocab") play(audioName(n, "word", S.settings.voice));
-  if (matchMedia("(max-width: 900px)").matches) $("#detail", root).scrollIntoView({ behavior: "smooth", block: "start" });
+  // Wide enough for two columns (the Mac, the iPad lying down): the word is already beside the list.
+  // Narrow (the phone, the iPad standing up): the list stacks above the detail, so tapping a word used
+  // to throw him to the bottom of the page and he lost his place. It opens over the list instead.
+  if (stacked()) openSheet();
 }
+
+const stacked = () => matchMedia("(max-width: 900px)").matches;
+
+function openSheet() {
+  document.body.classList.add("detail-open");
+  const scrim = $("#scrim", root);
+  if (scrim) scrim.hidden = false;
+  $("#detail", root)?.scrollTo?.(0, 0);
+}
+export function closeSheet() {
+  document.body.classList.remove("detail-open");
+  const scrim = root && $("#scrim", root);
+  if (scrim) scrim.hidden = true;
+}
+export function leave() { closeSheet(); }
 
 function dueText(c) {
   if (!c) return "Not started";
@@ -105,9 +126,10 @@ function renderDetail() {
   const types = D.availableTypes(n), on = D.enabledTypes(n);
   const vocab = n.kind === "vocab";
   box.innerHTML = `<div class="panel">
+    <button class="icon-btn detail-close" data-act="close" aria-label="Close"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
     ${vocab ? `${wordBlock(n)}
-      <div class="plays">${playBtn(n, "word", "♂ Word", { voice: "m" })}${playBtn(n, "word", "♀ Word", { voice: "f" })}
-        ${playBtn(n, "sent", "♂ Sentence", { voice: "m" })}${playBtn(n, "sent", "♀ Sentence", { voice: "f" })}${playBtn(n, "word", "", { rate: 0.7, cls: "icon" })}</div>
+      <div class="plays">${playBtn(n, "word", "Word", {})}${playBtn(n, "word", "", { voice: "m", cls: "icon", mark: MALE_ICON })}${playBtn(n, "word", "", { voice: "f", cls: "icon", mark: FEMALE_ICON })}
+        ${playBtn(n, "sent", "Sentence", {})}${playBtn(n, "sent", "", { voice: "m", cls: "icon", mark: MALE_ICON })}${playBtn(n, "sent", "", { voice: "f", cls: "icon", mark: FEMALE_ICON })}${playBtn(n, "word", "", { rate: 0.7, cls: "icon" })}</div>
       <div class="details">${example(n, { audio: false })}${notes(n, { mine: false })}` : `<div class="details" style="border:0;margin:0;padding:0">${genericBack(n)}`}
       <div class="note mine"><b>My note</b><textarea id="myNote" placeholder="A mnemonic, where you heard it, how she says it…" aria-label="My note">${esc(u.note || "")}</textarea></div>
     </div>
@@ -132,14 +154,16 @@ async function onDetailClick(e) {
   const b = e.target.closest("[data-act]"); if (!b) return;
   const n = S.byGuid.get(selected); if (!n) return;
   const u = D.userOf(n.guid);
+  if (b.dataset.act === "close") return closeSheet();
   if (b.dataset.act === "star") await D.setUser(n.guid, { star: !u.star });
   else if (b.dataset.act === "suspend") { await D.setUser(n.guid, { suspended: !u.suspended }); toast(u.suspended ? "Back in your study queue" : "Hidden from study"); }
-  else if (b.dataset.act === "theme") return window.app.go("study", { focus: { theme: n.theme.id, label: n.theme.name } });
+  else if (b.dataset.act === "theme") { closeSheet(); return window.app.go("study", { focus: { theme: n.theme.id, label: n.theme.name } }); }
   renderList();
   renderDetail();
 }
 
 export function onKey(e) {
+  if (e.key === "Escape" && document.body.classList.contains("detail-open")) { closeSheet(); return; }
   if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "f") { e.preventDefault(); $("#q", root)?.focus(); return; }
   if (e.target.matches("input, textarea")) return;
   if (e.key === "/") { e.preventDefault(); $("#q", root)?.focus(); }

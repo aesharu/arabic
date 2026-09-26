@@ -23,24 +23,29 @@ export function render(root) {
   }
   root.innerHTML = `<div class="welcome">
     <div class="ar big">أهلاً وسهلاً</div>
-    <h1>Bring your deck in</h1>
-    <p class="lead">Your words and recordings are waiting in your own database. This gets them onto this
-      device once; after that they play straight from here, with or without a signal.</p>
+    <h1>Getting your deck</h1>
+    <p class="lead">Your words are in your own database, and every device you sign in on picks them up by
+      itself. What comes down is the words — a couple of megabytes. The recordings stay in the database
+      and arrive one at a time, as you hear them.</p>
     <div id="loader"></div>
     <p class="privacy">${LOCK_ICON}<span>Only your profile can read it, and none of it is a public file.</span></p>
   </div>`;
-  loader($("#loader", root), { onDone: () => window.app.go("today") });
+  // No button to press: a device he is signed in on just gets it.
+  loader($("#loader", root), { auto: true, onDone: () => window.app.go("today") });
 }
 
 /** The "get the deck" panel — first run, and again from Settings when the deck changes. */
-export function loader(box, { update = false, onDone }) {
+export function loader(box, { update = false, auto = false, onDone }) {
   box.innerHTML = `<div class="drop" id="drop">${DOWN_ICON}
     <button class="btn primary big" id="get">${update ? "Get it again" : "Get my deck"}</button>
     <p id="hint">1,744 words · A1 to B2</p>
   </div>`;
   $("#get", box).addEventListener("click", run);
+  if (auto) run();
   cloud.status().then(s => {
-    if ($("#hint", box)) $("#hint", box).textContent = `${plural(s.media, "recording")} · ${(s.deckBytes / 1e6).toFixed(1)} MB of cards`;
+    // The megabytes are the words, not the audio — he asked what the 2.4 MB was.
+    if ($("#hint", box)) $("#hint", box).textContent =
+      `${(s.deckBytes / 1e6).toFixed(1)} MB of words · ${plural(s.media, "recording")} stay in the database`;
   }).catch(() => {});
 
   async function run() {
@@ -67,7 +72,11 @@ export function loader(box, { update = false, onDone }) {
       });
       forgetMedia();
       await D.load();
+      set("Catching up with your progress…", 0.9);
+      await window.app.deckReady();
       set("Ready", 1);
+      // Set up by itself: no "your deck is here" to acknowledge on every new device.
+      if (auto) return onDone();
       showResult(notes.length, media.size);
     } catch (err) {
       console.error(err);
@@ -92,7 +101,7 @@ export function loader(box, { update = false, onDone }) {
         <div><b>${S.themes.length || S.levels.length || "–"}</b><span>${S.themes.length ? "themes" : "levels"}</span></div>
       </div>
       ${update && kept ? `<p class="muted" style="margin:0">Your progress on ${plural(kept, "card")} carried over.</p>` : ""}
-      <p class="muted" style="margin:0">The recordings come as you meet each word, and stay on this device once heard.</p>
+      <p class="muted" style="margin:0">Only the words came down. Each recording arrives the first time you hear that word, and stays on this device after that.</p>
       <div><button class="btn primary big" id="go">${update ? "Done" : "Start learning"}</button></div>
     </div>`;
     $("#go", box).addEventListener("click", onDone);

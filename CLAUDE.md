@@ -62,7 +62,15 @@ Each word carries three spellings: `ar` (how it is really written), `said` (full
 - `PUT` on both — the upload, from `scripts/najdi-deck.mjs` (signs in by name, resumable, never prints a key).
 - Rebuild the deck: extract with `AnkiCardsTryOne/scripts/extract_apkg.py`, then `node scripts/najdi-deck.mjs <dir>`.
 
-The page reads the site's own sign-in from `localStorage` (same domain), fetches the notes once into IndexedDB, and then **fetches each recording the first time he hears it and keeps it** — so nothing big is ever downloaded and it works with no signal afterwards.
+The page reads the site's own sign-in from `localStorage` (same domain) and then **sets itself up**: any device he is signed in on fetches the notes by itself (2.4 MB, once per device — never ask him to "get the deck"), and **each recording is fetched the first time he hears that word** and kept. Nothing big is ever downloaded, and it plays with no signal afterwards.
+
+**Starting over travels.** A merge only ever adds, so "Reset progress" and restoring a backup stamp `meta.resetAt`; a device seeing a newer stamp throws its own cards and reviews away. And every save carries `x-base-at` — the version it started from — so the server answers 409 if the other device has saved since, and the device looks first and saves again. Without that, a phone that hadn't caught up would hand back everything he had just reset on the Mac.
+
+**Words on a narrow screen** open as a sheet over the list (`body.detail-open`), because below 900px the two columns stack and tapping a word used to throw him to the bottom of the page.
+
+**His progress is in the database too** (`najdi_progress`, one gzipped row): which cards are due when, his stars and notes, the day's counters and the review log. `js/sync.js` pulls it when a device opens and pushes a few seconds after each answer and whenever the page is hidden. Two devices are **merged, not overwritten** — a card is taken from whichever side reviewed it last, reviews are kept from both, the day's counters take the higher. So the phone, the iPad and the Mac are one deck at one place. Never write copy saying the deck or the progress lives "only on this device" — that was the Mac app, and it is no longer true.
+
+His **Cards tab** in the bottom bar opens this deck (`body.is-teacher` gets the site's own cards instead, and the menu keeps "The site's own cards" for both).
 
 **Both voices, the way he listens**: the default voice setting is `both` — the man, then the woman. On the front of a card the word plays in both; when the answer is shown, the word plays in both again and then the example sentence in both. Each card also has ♂ and ♀ buttons to hear one speaker again, and `V` cycles both → ♂ → ♀.
 

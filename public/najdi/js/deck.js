@@ -1,6 +1,7 @@
 // In-memory model of the deck + progress, and the logic that decides what to study next.
 import * as store from "./store.js";
 import { schedule, dayStart, dayKey, DAY, MIN, recallNow } from "./fsrs.js";
+import { saveSoon, push as pushNow } from "./sync.js";
 
 export const TYPES = {
   rec:    { label: "Recognition", short: "Arabic → English" },
@@ -55,7 +56,7 @@ export function ensureDay() {
   if (S.day.key !== dayKey()) S.day = freshDay();
 }
 
-export const saveSettings = () => store.set("meta", "settings", S.settings);
+export const saveSettings = () => { saveSoon(8000); return store.set("meta", "settings", S.settings); };
 export const userOf = guid => S.user.get(guid) || {};
 export async function setUser(guid, patch) {
   const u = { ...userOf(guid), ...patch };
@@ -168,6 +169,7 @@ export async function grade(item, g, ms) {
   const logKey = await store.add("revlog", { cid: item.id, t: now, g, from: prev ? prev.state : "new", ivl: next.ivl, s: next.s, ms: Math.round(ms) });
   await Promise.all([store.set("cards", item.id, next), store.set("meta", "day", S.day)]);
   undoStack.push({ item, prev, daySnap, logKey });
+  saveSoon(); // the answer is on its way to his database a few seconds from now
   if (undoStack.length > 50) undoStack.shift();
 }
 
@@ -212,14 +214,20 @@ export async function importProgress(data) {
   await store.putMany("revlog", (data.revlog || []).map((r, i) => [i + 1, r]));
   if (data.settings) await store.set("meta", "settings", data.settings);
   await store.set("meta", "day", data.day?.key === dayKey() ? data.day : freshDay());
+  await store.set("meta", "resetAt", Date.now()); // a restored backup replaces what the others hold too
   undoStack.length = 0;
   await load();
+  pushNow();
 }
 export async function resetProgress() {
   await store.clear("cards", "revlog");
   await store.set("meta", "day", freshDay());
+  // Starting over has to reach his other devices — without this stamp they would simply hand back
+  // everything they still remember the next time they synced.
+  await store.set("meta", "resetAt", Date.now());
   undoStack.length = 0;
   await load();
+  pushNow();
 }
 export async function removeDeck() {
   await store.set("meta", "deck", null);

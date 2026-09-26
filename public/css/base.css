@@ -147,6 +147,9 @@ html[dir="rtl"] .navhead { letter-spacing: 0; font-size: 13.5px; }
 .nav-najdi .nav-sub { font-size: 12px; font-weight: 600; opacity: .72; }
 .nav-najdi:hover { filter: brightness(1.08); }
 body.is-teacher .nav-najdi { display: none; }
+/* The Cards tab: his opens the Anki deck, hers stays the site's own cards. */
+body:not(.is-teacher) .tab-sitecards { display: none; }
+body.is-teacher .tab-najdi { display: none; }
 nav a {
   display: flex;
   align-items: center;

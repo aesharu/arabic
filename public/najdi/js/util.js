@@ -7,6 +7,11 @@ export const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;"
 export const plural = (n, one, many = one + "s") => `${n.toLocaleString()} ${n === 1 ? one : many}`;
 export const PLAY_ICON = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z"/></svg>';
 export const SLOW_ICON = '<svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1 1.5v9l6-4.5zM8.5 1.5v9l6-4.5z" opacity=".55"/></svg>';
+// ♂ and ♀ as text land wherever the phone's fallback font puts them — too small, off the line, and
+// different in Safari and on the Mac. Drawn here, they sit exactly where they are put.
+export const MALE_ICON = '<svg viewBox="0 0 16 16" class="vx" aria-hidden="true"><circle cx="6.5" cy="9.5" r="4"/><path d="M10 6l4-4M10.5 2H14v3.5"/></svg>';
+export const FEMALE_ICON = '<svg viewBox="0 0 16 16" class="vx" aria-hidden="true"><circle cx="8" cy="6" r="4"/><path d="M8 10v5M5.5 12.5h5"/></svg>';
+export const BOTH_ICON = MALE_ICON.replace('class="vx"', 'class="vx vx-m"') + FEMALE_ICON.replace('class="vx"', 'class="vx vx-f"');
 export const STAR_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.3l2 4.3 4.6.5-3.4 3.2.9 4.6L8 11.6l-4.1 2.3.9-4.6L1.4 6.1 6 5.6z"/></svg>';
 
 // ---------- Field text ----------

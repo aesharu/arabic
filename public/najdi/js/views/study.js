@@ -1,7 +1,7 @@
 import * as D from "../deck.js";
 import { S, TYPES } from "../deck.js";
 import { previewLabel, fmtDuration, MIN } from "../fsrs.js";
-import { $, esc, plural, play, playAll, stopAudio, audioName, audioNames, clozeHtml, hydrateMedia, toast, STAR_ICON, PLAY_ICON } from "../util.js";
+import { $, esc, plural, play, playAll, stopAudio, audioName, audioNames, clozeHtml, hydrateMedia, toast, STAR_ICON, PLAY_ICON, MALE_ICON, FEMALE_ICON, BOTH_ICON } from "../util.js";
 import { F, wordBlock, example, notes, playBtn, genericFront, genericBack, hasAudio } from "../render.js";
 import { fmtMinutes } from "../stats.js";
 
@@ -21,9 +21,9 @@ export function render(el, opts = {}) {
       <div class="progress" aria-hidden="true"><i id="prog"></i></div>
       <div class="mini" id="mini"></div>
       <div class="seg" aria-label="Voice">
-        <button data-voice-set="both" aria-pressed="${S.settings.voice === "both"}" title="Both voices (V)">♂♀</button>
-        <button data-voice-set="m" aria-pressed="${S.settings.voice === "m"}" title="Male voice (V)">♂</button>
-        <button data-voice-set="f" aria-pressed="${S.settings.voice === "f"}" title="Female voice (V)">♀</button>
+        <button data-voice-set="both" aria-pressed="${S.settings.voice === "both"}" title="Both voices (V)" aria-label="Both voices">${BOTH_ICON}</button>
+        <button data-voice-set="m" aria-pressed="${S.settings.voice === "m"}" title="Man’s voice (V)" aria-label="Man’s voice">${MALE_ICON}</button>
+        <button data-voice-set="f" aria-pressed="${S.settings.voice === "f"}" title="Woman’s voice (V)" aria-label="Woman’s voice">${FEMALE_ICON}</button>
       </div>
       <button class="icon-btn" id="starBtn" data-act="star" title="Star this word (S)" aria-label="Star this word">${STAR_ICON.replace("<svg", '<svg style="stroke:currentColor;stroke-width:1.3"')}</button>
     </div>
@@ -74,7 +74,8 @@ function face(note, type) {
   const slowWord = playBtn(note, "word", "", { rate: 0.7, cls: "icon" });
   // The big button follows the voice setting (both, by default: the man and then the woman); the two
   // small ones are there for when he wants to hear one speaker again on its own.
-  const eachVoice = kind => playBtn(note, kind, "♂", { voice: "m", cls: "icon" }) + playBtn(note, kind, "♀", { voice: "f", cls: "icon" });
+  const eachVoice = kind => playBtn(note, kind, "", { voice: "m", cls: "icon", mark: MALE_ICON })
+    + playBtn(note, kind, "", { voice: "f", cls: "icon", mark: FEMALE_ICON });
   if (type === "basic") return revealed ? genericBack(note) : genericFront(note);
   if (type === "rec") return revealed
     ? wordBlock(note) + plays(playBtn(note, "word", "Word"), eachVoice("word"), slowWord)

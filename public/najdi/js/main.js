@@ -9,6 +9,7 @@ import * as stats from "./views/stats.js";
 import * as settings from "./views/settings.js";
 import * as study from "./views/study.js";
 import * as welcome from "./views/welcome.js";
+import * as sync from "./sync.js";
 
 const views = { today, themes, browse, stats, settings, study, welcome };
 const NAV_ORDER = ["today", "themes", "browse", "stats", "settings"];
@@ -45,7 +46,21 @@ function applyTheme() {
   tellNative({ type: "appearance", value: t });
 }
 
-window.app = { go, refreshChrome, applyTheme, get view() { return currentName; } };
+// Once this device has the deck: start saving, and fold in whatever the other device did. It runs
+// after the first fetch too, not only on later openings — otherwise the day he set a device up, the
+// progress already in his database would sit there until he closed the page and came back.
+let syncing = false;
+async function deckReady() {
+  if (syncing || !S.deck) return;
+  syncing = true;
+  sync.start();
+  try {
+    if (await sync.pull()) { await D.load(); refreshChrome(); if (currentName === "today") await go("today"); }
+  } catch (err) { console.warn("progress didn't come down:", err.message); }
+  sync.saveSoon(2000);
+}
+
+window.app = { go, refreshChrome, applyTheme, deckReady, get view() { return currentName; } };
 
 // Any audio button anywhere
 document.addEventListener("click", e => {
@@ -95,4 +110,5 @@ window.addEventListener("focus", onReturn);
   }
   applyTheme();
   await go(S.deck ? "today" : "welcome");
+  await deckReady();
 })();

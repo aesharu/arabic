@@ -209,7 +209,8 @@ textarea { resize: vertical; min-height: 70px; font-size: 14px; }
 body.studying { grid-template-columns: minmax(0, 1fr); }
 body.studying .sidebar { display: none; }
 .study { height: 100vh; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; max-width: 880px; margin: 0 auto; padding: 18px 28px 22px; }
-.studybar { display: flex; align-items: center; gap: 14px; }
+.studybar { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.studybar > * { min-width: 0; }
 .studybar .seg { flex: none; flex-wrap: nowrap; }
 .studybar .seg button { padding: 5px 9px; font-size: 13px; line-height: 1.1; }
 .icon-btn { border: 0; background: var(--sunk); width: 34px; height: 34px; border-radius: 99px; display: grid; place-items: center; color: var(--ink-2); flex: none; }
@@ -224,7 +225,8 @@ body.studying .sidebar { display: none; }
 .mini span.cur { border-color: var(--ink-2); font-weight: 600; color: var(--ink); }
 .focus-tag { font-size: 12px; font-weight: 600; background: var(--accent-soft); color: var(--accent); padding: 4px 10px; border-radius: 99px; white-space: nowrap; }
 
-.stage { min-height: 0; overflow: auto; padding: 18px 2px; display: flex; align-items: flex-start; }
+.stage { min-height: 0; overflow: auto; padding: 18px 2px; display: flex; align-items: flex-start; scrollbar-width: none; }
+.stage::-webkit-scrollbar { width: 0; height: 0; } /* the thin bar sat on the card's rounded edge */
 .card { background: var(--surface); border-radius: 24px; box-shadow: var(--shadow); padding: 26px 34px 30px; width: 100%;
   display: flex; flex-direction: column; min-height: 100%; animation: rise .22s ease-out; }
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
@@ -266,7 +268,16 @@ mark { background: var(--accent-soft); color: var(--accent); border-radius: 6px;
 .generic { text-align: center; font-size: 22px; line-height: 1.6; max-width: 40ch; }
 .generic img { max-width: 100%; border-radius: 10px; }
 
-.answer-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding-top: 4px; }
+/* The drawn ♂ / ♀ — same weight as the play triangle next to them, and on the same line. */
+.vx { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; flex: none; }
+.seg .vx { width: 14px; height: 14px; }
+.seg button { display: inline-flex; align-items: center; gap: 2px; }
+.vx-m { margin-right: -2px; }
+.play .vx { opacity: .9; }
+.answer-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding-top: 4px; position: relative; }
+/* The card scrolls behind the answer buttons, so the cut edge has to look like an edge. */
+.answer-bar::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--bg)); }
 .answer-bar.reveal { grid-template-columns: 1fr; }
 .grade { border: 0; border-radius: 16px; padding: 12px 0 11px; display: grid; justify-items: center; gap: 2px; font-weight: 600; font-size: 15px; transition: transform .08s, filter .15s; }
 .grade:hover { filter: brightness(.97); }
@@ -432,9 +443,24 @@ mark { background: var(--accent-soft); color: var(--accent); border-radius: 6px;
 #toast.show { opacity: 1; transform: translate(-50%, 0); }
 
 /* ---------- Narrow windows & phones ---------- */
+/* A word on a narrow screen opens over the list, not at the bottom of the page. */
+.detail-scrim { position: fixed; inset: 0; background: rgba(10, 8, 5, .45); z-index: 30; animation: fade .15s; }
+.detail-close { display: none; position: absolute; top: 10px; right: 10px; z-index: 2; }
+@keyframes sheetUp { from { transform: translateY(14px); opacity: .6; } }
+
 @media (max-width: 900px) {
   .today, .browse, .grid-2 { grid-template-columns: minmax(0, 1fr); }
   .detail { position: static; }
+  body:not(.detail-open) .detail { display: none; }
+  body.detail-open .detail {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 31; max-height: 88dvh; overflow: auto;
+    background: var(--bg); border-radius: 20px 20px 0 0; box-shadow: 0 -12px 40px rgba(0, 0, 0, .35);
+    padding: 6px 12px calc(14px + env(safe-area-inset-bottom)); animation: sheetUp .2s ease-out;
+    scrollbar-width: none;
+  }
+  body.detail-open .detail::-webkit-scrollbar { width: 0; }
+  body.detail-open .detail .panel { position: relative; padding-top: 26px; }
+  body.detail-open .detail-close { display: grid; }
   .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 720px) {
@@ -449,10 +475,32 @@ mark { background: var(--accent-soft); color: var(--accent); border-radius: 6px;
   .page { padding: 22px 16px 40px; }
   .page-head h1 { font-size: 26px; }
   .panel { padding: 18px 16px; border-radius: 18px; }
-  .study { padding: calc(10px + env(safe-area-inset-top)) 14px calc(14px + env(safe-area-inset-bottom)); height: 100dvh; }
-  .card { padding: 20px 18px 24px; border-radius: 20px; }
+  .study { padding: calc(8px + env(safe-area-inset-top)) 12px calc(10px + env(safe-area-inset-bottom)); height: 100dvh; gap: 2px; }
+  /* The last thing on a card — usually the note about the Gulf — was ending right where the answer
+     buttons and their fade begin, so it read as cut off. The card now keeps room below it. */
+  .card { padding: 14px 15px 34px; border-radius: 20px; }
+  /* A phone screen with Safari's own bars on it has about 500px to study in: the labels along the top
+     of the card said what the card already shows, so they go, and the word itself comes down a size. */
+  .card-top { display: none; }
+  /* The front of a card is short and the back is long. The card keeps filling the screen, but its
+     content sits in the middle — "safe" so that a long back still starts at the top and scrolls
+     instead of disappearing above it. */
+  /* The card must grow with what is on it. (align-items: stretch here pinned it to the height of the
+     screen instead, so a long note hung out below the card's own background.) */
+  .card { min-height: 100%; justify-content: safe center; }
+  .stage { align-items: flex-start; }
+  .stage { padding: 8px 0 4px; }
+  .word { font-size: clamp(40px, 13vw, 58px); line-height: 1.35; }
+  .ex .ar { font-size: 22px; line-height: 1.7; }
+  .prompt { font-size: 14px; }
+  .listen-big { width: 88px; height: 88px; }
+  .listen-big svg { width: 30px; height: 30px; }
   .answer-bar { gap: 7px; }
   .studybar { gap: 8px; }
+  /* A theme name in the bar pushed the voice buttons — and with them the whole screen — off the
+     right edge, which cut "Easy" in half. On a phone the name is already on the card. */
+  .focus-tag { display: none; }
+  .study { overflow: hidden; }
   .studybar .seg button { padding: 5px 7px; font-size: 12px; }
   .studybar .mini { gap: 8px; font-size: 12px; }
   .grade { padding: 11px 0 10px; font-size: 14px; border-radius: 14px; }

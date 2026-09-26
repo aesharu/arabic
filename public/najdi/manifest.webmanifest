@@ -1,0 +1,15 @@
+{
+  "name": "Najdi A1–B2",
+  "short_name": "Najdi",
+  "description": "Saudi Arabic flashcards, 1,744 words with audio.",
+  "start_url": "/najdi/",
+  "scope": "/najdi/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#131210",
+  "theme_color": "#131210",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

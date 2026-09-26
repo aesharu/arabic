@@ -69,6 +69,8 @@ let current = { name: "", params: [] };
 
 if (!canSpeak) document.body.classList.add("no-tts");
 document.querySelectorAll("nav [data-route]").forEach(a => a.insertAdjacentHTML("afterbegin", icon(NAV_ICONS[a.dataset.route])));
+// His Cards tab goes to his own Anki deck (/najdi/), so it has no route of its own to take an icon from.
+document.querySelector(".tab-najdi")?.insertAdjacentHTML("afterbegin", icon("cards"));
 document.querySelector("[data-menu-open]").insertAdjacentHTML("afterbegin", icon("more"));
 document.querySelector("[data-menu-close]").innerHTML = icon("close");
 

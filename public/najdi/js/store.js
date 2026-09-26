@@ -1,4 +1,8 @@
-// IndexedDB persistence. The deck (notes + audio) and your progress live on this device only.
+// IndexedDB: this device's copy of the deck and of his progress.
+//
+// On the Mac app this was the only copy there was. On the site it is a copy: the deck comes from his
+// own database (cloud.js) and his progress goes back to it (sync.js), so every device he signs in on
+// is the same deck at the same place. Nothing here is shared with anyone else.
 const DB_NAME = "najdi";
 const DB_VERSION = 1;
 let dbPromise = null;
