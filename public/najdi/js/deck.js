@@ -56,7 +56,12 @@ export function ensureDay() {
   if (S.day.key !== dayKey()) S.day = freshDay();
 }
 
-export const saveSettings = () => { saveSoon(8000); return store.set("meta", "settings", S.settings); };
+// Settings follow him between devices like everything else: the moment they changed decides which
+// side wins when two devices disagree.
+export const saveSettings = async () => {
+  await Promise.all([store.set("meta", "settings", S.settings), store.set("meta", "settingsAt", Date.now())]);
+  saveSoon(3000);
+};
 export const userOf = guid => S.user.get(guid) || {};
 export async function setUser(guid, patch) {
   const u = { ...userOf(guid), ...patch };

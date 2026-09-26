@@ -8,7 +8,7 @@
 //   · a card is taken from whichever side reviewed it last;
 //   · a review is kept if either side has it (they are matched by card and time);
 //   · the day's counters take the higher of the two for today;
-//   · the settings stay the ones on this device, because they are how he likes to study here.
+//   · the settings come from whichever side changed them last.
 //
 // Merging only ever adds, so a **reset** needs saying out loud: "Start over" and restoring a backup
 // both stamp meta.resetAt, and a device that sees a newer stamp than its own throws its own cards and
@@ -41,8 +41,9 @@ async function snapshot() {
     store.entries("cards"), store.entries("user"), store.all("revlog"), store.get("meta", "day"),
     store.get("meta", "resetAt"),
   ]);
+  const settingsAt = (await store.get("meta", "settingsAt")) ?? 0;
   return {
-    v: 1, at: Date.now(), resetAt: resetAt ?? 0,
+    v: 1, at: Date.now(), resetAt: resetAt ?? 0, settingsAt,
     cards: [...cards.entries()],
     user: [...user.entries()],
     revlog: revlog.slice(-REVLOG_KEEP),
@@ -63,6 +64,10 @@ async function merge(remote) {
     for (const r of remote.revlog ?? []) await store.add("revlog", r);
     await store.set("meta", "resetAt", theirResetAt);
     if (remote.day) await store.set("meta", "day", remote.day);
+    if (remote.settings) {
+      await store.set("meta", "settings", remote.settings);
+      await store.set("meta", "settingsAt", remote.settingsAt ?? theirResetAt);
+    }
     return true;
   }
   // This device started over more recently: what is up there is from before, so none of it comes back.
@@ -97,6 +102,15 @@ async function merge(remote) {
   const missing = (remote.revlog ?? []).filter(r => !seen.has(`${r.cid}|${r.t}`));
   for (const r of missing) await store.add("revlog", r);
   if (missing.length) changed = true;
+
+  // How he likes to study — new cards a day, which card types, the voice, the theme — is one setting
+  // per account, not per device: the last change he made anywhere is the one that holds.
+  const mineSettingsAt = (await store.get("meta", "settingsAt")) ?? 0;
+  if (remote.settings && (remote.settingsAt ?? 0) > mineSettingsAt) {
+    await store.set("meta", "settings", remote.settings);
+    await store.set("meta", "settingsAt", remote.settingsAt);
+    changed = true;
+  }
 
   const theirDay = remote.day;
   if (theirDay && S.day && theirDay.key === S.day.key && theirDay.done > S.day.done) {

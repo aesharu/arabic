@@ -92,10 +92,17 @@ document.addEventListener("keydown", e => {
 
 // New study day while the app stays open
 let lastDay = new Date().getDate();
-const onReturn = () => {
+const onReturn = async () => {
   if (document.hidden) return;
   const d = new Date().getDate();
   if (d !== lastDay) { lastDay = d; if (currentName === "today") go("today"); else refreshChrome(); }
+  // Coming back to this device: whatever he did on another one since is folded in now, so picking up
+  // the iPad after the phone shows the same deck at the same place. Never mid-card — that would move
+  // the answer under his thumb.
+  if (!S.deck || currentName === "study") return;
+  try {
+    if (await sync.pull()) { refreshChrome(); await go(currentName || "today"); }
+  } catch {}
 };
 document.addEventListener("visibilitychange", onReturn);
 window.addEventListener("focus", onReturn);

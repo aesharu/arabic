@@ -99,6 +99,17 @@ test("his Cards tab opens the deck, and Dima's stays the site's own", () => {
   for (const l of ["en", "najdi"]) assert.ok(STRINGS["nav.siteCards"]?.[l], `nav.siteCards: ${l}`);
 });
 
+test("how he likes to study follows him, and so does coming back to a device", () => {
+  const deck = read("public/najdi/js/deck.js"), sync = read("public/najdi/js/sync.js"), main = read("public/najdi/js/main.js");
+  assert.match(deck, /store\.set\("meta", "settingsAt", Date\.now\(\)\)/, "a settings change must be stamped");
+  assert.match(sync, /settingsAt/, "the settings must travel with his progress");
+  assert.match(sync, /remote\.settings && \(remote\.settingsAt \?\? 0\) > mineSettingsAt/, "the newest change must win");
+  // switching devices: picking the iPad up again folds in what the phone did, but never mid-card
+  assert.match(main, /if \(!S\.deck \|\| currentName === "study"\) return;/, "it must not change a card under his thumb");
+  assert.match(main, /if \(await sync\.pull\(\)\) \{ refreshChrome\(\); await go\(currentName \|\| "today"\); \}/,
+    "coming back to a device must catch it up");
+});
+
 test("starting over on one device empties the others", () => {
   // Merging only adds, so a reset had to be said out loud, or the phone handed back everything the
   // computer had just thrown away.

@@ -64,6 +64,8 @@ Each word carries three spellings: `ar` (how it is really written), `said` (full
 
 The page reads the site's own sign-in from `localStorage` (same domain) and then **sets itself up**: any device he is signed in on fetches the notes by itself (2.4 MB, once per device — never ask him to "get the deck"), and **each recording is fetched the first time he hears that word** and kept. Nothing big is ever downloaded, and it plays with no signal afterwards.
 
+**The settings travel too** (`meta.settingsAt`, newest change wins) — new cards a day, card types, levels, voice, theme are one account's settings, not one device's. And **coming back to a device pulls** (`visibilitychange`), so picking up the iPad after the phone shows the same deck at the same place — never while a card is open, which would move the answer under his thumb.
+
 **Starting over travels.** A merge only ever adds, so "Reset progress" and restoring a backup stamp `meta.resetAt`; a device seeing a newer stamp throws its own cards and reviews away. And every save carries `x-base-at` — the version it started from — so the server answers 409 if the other device has saved since, and the device looks first and saves again. Without that, a phone that hadn't caught up would hand back everything he had just reset on the Mac.
 
 **Words on a narrow screen** open as a sheet over the list (`body.detail-open`), because below 900px the two columns stack and tapping a word used to throw him to the bottom of the page.
