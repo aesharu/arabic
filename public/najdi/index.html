@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131210" media="(prefers-color-scheme: dark)">
+<title>Najdi A1–B2</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d6b57'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fffdf8' font-family='serif'%3E%D9%86%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body class="no-deck">
+<nav class="sidebar" id="sidebar" aria-label="Main">
+  <a class="brand" href="/" title="Back to the site"><span class="ar">نجدي</span><b>Najdi A1–B2</b></a>
+  <button class="nav" data-go="today" title="Today (⌘1)">
+    <svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg><span>Today</span><span class="badge-count" id="navDue"></span></button>
+  <button class="nav" data-go="themes" title="Themes (⌘2)">
+    <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg><span>Themes</span></button>
+  <button class="nav" data-go="browse" title="Words (⌘3)">
+    <svg viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 2-2h12v15H7a2 2 0 0 0-2 2z"/><path d="M5 20a2 2 0 0 0 2 1h12v-3"/></svg><span>Words</span></button>
+  <button class="nav" data-go="stats" title="Progress (⌘4)">
+    <svg viewBox="0 0 24 24"><path d="M5 20V11M12 20V4M19 20v-6"/></svg><span>Progress</span></button>
+  <button class="nav" data-go="settings" title="Settings (⌘,)">
+    <svg viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span>Settings</span></button>
+  <div class="side-foot" id="sideFoot"></div>
+</nav>
+<main class="view" id="view"></main>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

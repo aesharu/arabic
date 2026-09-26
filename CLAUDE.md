@@ -51,6 +51,23 @@ Each word carries three spellings: `ar` (how it is really written), `said` (full
 
 `tests/essentials.test.mjs` checks all of it — provenance, that the marks don't change the word, that no consonant is left bare, that ē is written ay and ō aw, that nothing ends in -ak, that the Arabic and the pronunciation are the same word, that every word with a voice has its file, and that the waiting list is exactly what the folder is missing.
 
+## Najdi A1–B2 — his own flashcard deck (`/najdi/`)
+
+**The first thing in the menu**, and his alone. The Anki app built for his Mac (`AnkiCardsTryOne/`, not in git) now also runs on the site at `public/najdi/` — same code, same FSRS scheduler, opened full screen with nothing of the site around it, and it works on the phone.
+
+**The deck is not in this repository and is not a public file.** It is Eidetic's *Saudi Arabic* course, 1,744 words (A1–B2, 43 themes) and 6,976 recordings, licensed to one person: their terms allow him to use it on his own devices, not to republish it. So it lives in his own D1 database (`najdi_deck`, `najdi_media` — 231 MB) and `/api/najdi` hands it over **only to the student profile**: Dima's profile gets 403, no sign-in gets 401. Never serve any of it from `public/`, and never commit the `.apkg`.
+
+- `GET /api/najdi/deck` — the notes, stored as nine text slices and joined without parsing.
+- `GET /api/najdi/media/<file>` — one recording, cached for a year by the browser.
+- `PUT` on both — the upload, from `scripts/najdi-deck.mjs` (signs in by name, resumable, never prints a key).
+- Rebuild the deck: extract with `AnkiCardsTryOne/scripts/extract_apkg.py`, then `node scripts/najdi-deck.mjs <dir>`.
+
+The page reads the site's own sign-in from `localStorage` (same domain), fetches the notes once into IndexedDB, and then **fetches each recording the first time he hears it and keeps it** — so nothing big is ever downloaded and it works with no signal afterwards.
+
+**Both voices, the way he listens**: the default voice setting is `both` — the man, then the woman. On the front of a card the word plays in both; when the answer is shown, the word plays in both again and then the example sentence in both. Each card also has ♂ and ♀ buttons to hear one speaker again, and `V` cycles both → ♂ → ♀.
+
+`tests/najdi.test.mjs` keeps all of that honest: no deck file under `public/`, the 403 for anyone but him, the menu entry first and in both languages, hidden for Dima, and the both-voices behaviour.
+
 ## The sheets he prints (`npm run sheets`)
 
 Five A4 booklets for learning to **write** the letters by hand, in `public/worksheets` — built by `scripts/sheets-html.mjs` and printed to PDF by the Chrome on this Mac (`scripts/sheets.mjs`), no library and no service:

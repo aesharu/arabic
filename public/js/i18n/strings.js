@@ -584,6 +584,8 @@ export const STRINGS = {
   "ua.keyFix": { en: "If one of them is wrong, tap ✎ on the word and fix it — your spelling wins from then on.", najdi: "إذا وحدة غلط، اضغط ✎ على الكلمة وصححها — وتصحيحك هو اللي يعتمد بعدها." },
   "ua.keyTable": { en: "Every letter, at a glance", najdi: "كل الحروف بنظرة" },
   // Learning to read, from zero (views/read.js, data/read.js) — the first thing in the menu, on purpose.
+  "nav.najdi": { en: "Najdi A1–B2", najdi: "نجدي A1–B2" },
+  "nav.najdiSub": { en: "1,744 words with audio", najdi: "١٧٤٤ كلمة بالصوت" },
   "nav.readGroup": { en: "Learn to read", najdi: "تعلّم القراءة" },
   // The book (views/book.js) — the one thing on the site that is a book and not an exercise.
   "nav.book": { en: "The book", najdi: "الكتاب" },

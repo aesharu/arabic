@@ -82,6 +82,10 @@ async function ensureTables(db) {
     db.prepare("CREATE TABLE IF NOT EXISTS suggestions (sid INTEGER PRIMARY KEY AUTOINCREMENT, target TEXT NOT NULL, data TEXT NOT NULL, before TEXT, by TEXT NOT NULL, created INTEGER NOT NULL, status TEXT NOT NULL DEFAULT 'pending')"),
     // What each profile did, and when: one row per thing done (see log()) and one per day spent on the site.
     db.prepare("CREATE TABLE IF NOT EXISTS activity (aid INTEGER PRIMARY KEY AUTOINCREMENT, who TEXT NOT NULL, kind TEXT NOT NULL, detail TEXT, at INTEGER NOT NULL)"),
+    // His own Anki deck (Najdi A1–B2), kept out of the public files: the notes in a few text parts,
+    // the recordings one row each. Only the student profile may read any of it.
+    db.prepare("CREATE TABLE IF NOT EXISTS najdi_deck (part INTEGER PRIMARY KEY, data TEXT NOT NULL)"),
+    db.prepare("CREATE TABLE IF NOT EXISTS najdi_media (name TEXT PRIMARY KEY, type TEXT NOT NULL, data BLOB NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS visits (who TEXT NOT NULL, day TEXT NOT NULL, opens INTEGER NOT NULL DEFAULT 0, minutes INTEGER NOT NULL DEFAULT 0, first_at INTEGER NOT NULL, last_at INTEGER NOT NULL, PRIMARY KEY (who, day))"),
   ]);
   tablesReady = true;
@@ -365,6 +369,88 @@ async function content(request, env, url) {
   return json({ ok: true, at });
 }
 
+// ---------- His flashcard deck ----------
+// The deck he bought is not his to publish, so it is not in the site's files: it lives in his own
+// database and is handed over only to his own profile — Dima's profile is told no, like anyone else.
+// The phone keeps what it has already heard, so a word is fetched once and then comes from the phone.
+//   GET  /api/najdi/deck            → the notes, as one JSON array
+//   PUT  /api/najdi/deck/<part>     ← a slice of that array, without its brackets (the upload script)
+//   GET  /api/najdi/media           → the names already stored, so an upload can carry on where it stopped
+//   GET  /api/najdi/media/<file>    → one recording          PUT ← the recording itself
+//   GET  /api/najdi/status          → what is in there
+const MEDIA_NAME = /^[A-Za-z0-9._-]{1,120}$/;
+const MAX_MEDIA = 2_000_000; // the deck's own files are about 32 KB each
+
+async function najdi(request, env, url) {
+  if (!env.DB || !env.SYNC_KEY) return json({ error: "not-configured" }, 503);
+  const role = await roleOf(request, env);
+  if (!role) return json({ error: "wrong-key" }, 401);
+  if (role !== "student") return json({ error: "not-yours" }, 403);
+  await ensureTables(env.DB);
+
+  const rest = url.pathname.replace(/^\/api\/najdi\/?/, "");
+  const [what, id] = [rest.split("/")[0], decodeURIComponent(rest.split("/").slice(1).join("/"))];
+  const m = request.method;
+
+  if (what === "status") {
+    const [parts, media] = await Promise.all([
+      env.DB.prepare("SELECT COUNT(*) AS n, SUM(LENGTH(data)) AS bytes FROM najdi_deck").first(),
+      env.DB.prepare("SELECT COUNT(*) AS n FROM najdi_media").first(),
+    ]);
+    return json({ parts: parts?.n ?? 0, deckBytes: parts?.bytes ?? 0, media: media?.n ?? 0 });
+  }
+
+  if (what === "deck") {
+    if (m === "GET") {
+      const { results } = await env.DB.prepare("SELECT data FROM najdi_deck ORDER BY part").all();
+      if (!results?.length) return json({ error: "no-deck" }, 404);
+      // The parts are stored without their brackets, so the whole deck is one string join — no parsing here.
+      return new Response(`[${results.map(r => r.data).join(",")}]`,
+        { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
+    }
+    if (m === "DELETE") {
+      await env.DB.prepare("DELETE FROM najdi_deck").run();
+      return json({ ok: true });
+    }
+    if (m !== "PUT") return json({ error: "method-not-allowed" }, 405);
+    const part = Number(id);
+    if (!Number.isInteger(part) || part < 0 || part > 999) return json({ error: "bad-part" }, 400);
+    const data = await request.text();
+    if (!data || data.length > MAX_BYTES) return json({ error: "bad-size" }, 413);
+    await env.DB.prepare("INSERT INTO najdi_deck (part, data) VALUES (?1, ?2) ON CONFLICT(part) DO UPDATE SET data = excluded.data")
+      .bind(part, data).run();
+    return json({ ok: true, part, bytes: data.length });
+  }
+
+  if (what === "media") {
+    if (!id) {
+      if (m !== "GET") return json({ error: "method-not-allowed" }, 405);
+      const { results } = await env.DB.prepare("SELECT name FROM najdi_media").all();
+      return json({ names: results.map(r => r.name) });
+    }
+    if (!MEDIA_NAME.test(id)) return json({ error: "bad-name" }, 400);
+    if (m === "GET") {
+      const row = await env.DB.prepare("SELECT type, data FROM najdi_media WHERE name = ?1").bind(id).first();
+      if (!row) return json({ error: "not-found" }, 404);
+      return new Response(bytes(row.data), { headers: {
+        "content-type": row.type,
+        // The file never changes: once the phone has it, it never asks again.
+        "cache-control": "private, max-age=31536000, immutable",
+      } });
+    }
+    if (m !== "PUT") return json({ error: "method-not-allowed" }, 405);
+    const type = (request.headers.get("content-type") ?? "").split(";")[0];
+    if (!/^audio\/[\w.+-]+$/.test(type)) return json({ error: "not-audio" }, 415);
+    const buf = await request.arrayBuffer();
+    if (!buf.byteLength || buf.byteLength > MAX_MEDIA) return json({ error: "bad-size" }, 413);
+    await env.DB.prepare("INSERT INTO najdi_media (name, type, data) VALUES (?1, ?2, ?3) ON CONFLICT(name) DO UPDATE SET type = excluded.type, data = excluded.data")
+      .bind(id, type, buf).run();
+    return json({ ok: true, bytes: buf.byteLength });
+  }
+
+  return json({ error: "not-found" }, 404);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -372,6 +458,7 @@ export default {
     if (url.pathname === "/api/login") return login(request, env);
     if (url.pathname === "/api/activity") return activity(request, env);
     if (url.pathname === "/api/stats") return stats(request, env);
+    if (/^\/api\/najdi(\/|$)/.test(url.pathname)) return najdi(request, env, url);
     if (/^\/api\/(content|edits|audio|suggestions)(\/|$)/.test(url.pathname)) return content(request, env, url);
     return env.ASSETS.fetch(request);
   },

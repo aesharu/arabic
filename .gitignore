@@ -10,3 +10,7 @@ node_modules/
 # Editors
 .vscode/
 .idea/
+
+# His Anki workspace: the deck he bought (222 MB), the built Mac app and the extracted copy.
+# The deck is Eidetic's and licensed to one person — it lives in his own database, never in here.
+AnkiCardsTryOne/

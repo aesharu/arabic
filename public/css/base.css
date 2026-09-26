@@ -134,6 +134,19 @@ nav { display: flex; flex-direction: column; gap: 1px; }
   color: var(--sidebar-muted);
 }
 html[dir="rtl"] .navhead { letter-spacing: 0; font-size: 13.5px; }
+
+/* His own flashcard deck, first in the menu and looking like the door it is. It is his alone —
+   Dima's profile never sees it, and the deck behind it answers only his sign-in. */
+.nav-najdi {
+  flex-direction: column; align-items: flex-start; gap: 2px;
+  margin: 2px 0 10px; padding: 11px 13px; border-radius: 14px;
+  background: var(--sidebar-active, rgba(255, 255, 255, .12));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18);
+  font-weight: 800; line-height: 1.25;
+}
+.nav-najdi .nav-sub { font-size: 12px; font-weight: 600; opacity: .72; }
+.nav-najdi:hover { filter: brightness(1.08); }
+body.is-teacher .nav-najdi { display: none; }
 nav a {
   display: flex;
   align-items: center;
